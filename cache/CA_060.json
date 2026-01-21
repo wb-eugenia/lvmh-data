@@ -1,0 +1,46 @@
+{
+  "client_id": "CA_060",
+  "language": "ES",
+  "tags": [
+    "business_gift",
+    "birthday_gift",
+    "regular_client",
+    "pescatarian",
+    "personalization_interest",
+    "frequent_traveler_leisure",
+    "art_events_regular",
+    "high_referral_potential",
+    "leather_work",
+    "ready_to_wear"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.85,
+  "budget_range": "10K-20K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "april",
+      "context": "esposa 50 años"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "entrepreneur_tech",
+  "mentioned_persons": [
+    {
+      "relation": "esposa",
+      "interests": [
+        "diseño",
+        "arte"
+      ]
+    }
+  ],
+  "follow_up_action": "llamar marzo confirmar piezas",
+  "reasoning": "Les tags extraits reflètent les occasions d'achat pour l'anniversaire de l'épouse, le statut de client régulier, l'intérêt pour la personnalisation, et le style de vie de voyage fréquent. Le budget est élevé, indiquant un potentiel de référence élevé.",
+  "from_cache": false
+}

@@ -1,0 +1,24 @@
+{
+  "client_id": "CA_025",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "first_visit",
+    "regular_client",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "under_5K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "referral_potential": "medium",
+  "profession": "medical_professional",
+  "mentioned_persons": [],
+  "follow_up_action": "rappeler dans deux mois",
+  "reasoning": "Mme Girard est une nouvelle cliente (first_visit) qui a acheté un sac de travail (leather_work) avec un budget de 3500€, ce qui la place dans la catégorie 'under_5K'. Elle est dentiste (medical_professional) et pratique la course à pied, ce qui indique un style de vie actif (frequent_traveler_leisure). Son potentiel de recommandation est jugé moyen.",
+  "from_cache": false
+}

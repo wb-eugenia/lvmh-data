@@ -1,0 +1,49 @@
+{
+  "client_id": "CA_080",
+  "language": "EN",
+  "tags": [
+    "frequent_traveler_leisure",
+    "vegetarian",
+    "high_referral_potential",
+    "personalization_interest",
+    "heritage_importance",
+    "artisan_craft_appreciation",
+    "leather_travel",
+    "ready_to_wear"
+  ],
+  "invalid_tags": [
+    "retirement_gift",
+    "books"
+  ],
+  "num_tags": 8,
+  "confidence": 0.9,
+  "budget_range": "20K-50K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "retirement_party",
+      "month": "juin",
+      "context": "célébration de retraite"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [
+    "latex_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "medical_professional",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "literature",
+        "travel"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up in May",
+  "reasoning": "Tags extraits basés sur leur statut de clients VIP, leur intérêt pour les voyages, leur régime végétarien, leur budget généreux pour des cadeaux de retraite, et leur intérêt pour l'artisanat et l'héritage.",
+  "from_cache": false
+}

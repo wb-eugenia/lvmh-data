@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_087",
+  "language": "FR",
+  "tags": [
+    "corporate_gifting",
+    "high_referral_potential",
+    "vegetarian",
+    "leather_small",
+    "frequent_traveler_business"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "milestone_celebration",
+      "month": "février",
+      "context": "obtention étoile Michelin"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "restaurateur",
+  "mentioned_persons": [],
+  "follow_up_action": "rappeler été",
+  "reasoning": "Les tags extraits reflètent le profil du client en tant que restaurateur cherchant des cadeaux pour son équipe, avec un budget significatif et un intérêt pour la gastronomie. Le client est également un nouveau client avec un potentiel de recommandation élevé.",
+  "from_cache": false
+}

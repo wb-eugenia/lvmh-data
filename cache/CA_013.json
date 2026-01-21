@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_013",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "regular_client",
+    "self_purchase",
+    "vegetarian",
+    "frequent_traveler_business"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "under_5K",
+  "client_status": "regular",
+  "key_dates": [],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "granddaughter",
+      "interests": [
+        "travel",
+        "modern style"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler novembre",
+  "reasoning": "Les tags extraits reflètent le style de vie du client et les préférences de la petite-fille, ainsi que le fait qu'il s'agit d'un client régulier avec un achat pour un cadeau.",
+  "from_cache": false
+}

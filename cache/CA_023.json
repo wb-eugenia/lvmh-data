@@ -1,0 +1,51 @@
+{
+  "client_id": "CA_023",
+  "language": "DE",
+  "tags": [
+    "regular_client",
+    "birthday_gift",
+    "frequent_traveler_leisure",
+    "pescatarian",
+    "limited_editions_interest",
+    "personalization_interest"
+  ],
+  "invalid_tags": [
+    "interior_design",
+    "minimalist_aesthetic"
+  ],
+  "num_tags": 6,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "april",
+      "context": "wife"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "investment_banker",
+  "mentioned_persons": [
+    {
+      "relation": "wife",
+      "interests": [
+        "design",
+        "pilates"
+      ]
+    },
+    {
+      "relation": "daughter",
+      "interests": [
+        "fashion"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up in March for spring collection preview",
+  "reasoning": "Tags extraits reflètent le statut de client régulier, l'occasion d'achat pour l'anniversaire de sa femme, son style de vie de voyageur fréquent, et ses préférences alimentaires. L'intérêt pour le design et les éditions limitées est également pertinent.",
+  "from_cache": false
+}

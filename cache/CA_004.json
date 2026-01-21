@@ -1,0 +1,39 @@
+{
+  "client_id": "CA_004",
+  "language": "FR",
+  "tags": [
+    "leather_small",
+    "regular_client",
+    "self_purchase",
+    "high_referral_potential",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.85,
+  "budget_range": "under_5K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "février",
+      "context": "gendre"
+    }
+  ],
+  "dietary": [],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "retired_banker",
+  "mentioned_persons": [
+    {
+      "relation": "son_in_law",
+      "interests": [
+        "photography",
+        "travel"
+      ]
+    }
+  ],
+  "follow_up_action": null,
+  "reasoning": "Les tags extraits reflètent le profil du client régulier, son achat d'un portefeuille en cuir pour un anniversaire, et son intérêt pour les voyages. Le budget est précisé et le client a un potentiel de recommandation élevé.",
+  "from_cache": false
+}

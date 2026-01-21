@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_067",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "frequent_traveler_business",
+    "golf",
+    "vegetarian",
+    "high_referral_potential",
+    "first_visit"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "hospitality_director",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "leather"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler mars",
+  "reasoning": "Les tags extraits reflètent les préférences professionnelles et de style de vie de Mme Fontaine, ainsi que son statut de nouvelle cliente avec un potentiel de recommandation élevé.",
+  "from_cache": false
+}

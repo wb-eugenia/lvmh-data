@@ -1,0 +1,52 @@
+{
+  "client_id": "CA_056",
+  "language": "EN",
+  "tags": [
+    "leather_travel",
+    "frequent_traveler_business",
+    "golf",
+    "vegan",
+    "first_visit",
+    "high_referral_potential",
+    "innovation_interest",
+    "social_media_presence"
+  ],
+  "invalid_tags": [
+    "purchase_occurrences",
+    "professional_athlete"
+  ],
+  "num_tags": 8,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "May",
+      "context": "wife"
+    },
+    {
+      "event": "anniversary",
+      "month": "August",
+      "context": "marriage"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "professional golfer",
+  "mentioned_persons": [
+    {
+      "relation": "wife",
+      "interests": [
+        "sports agent",
+        "golf"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up immediately after purchase",
+  "reasoning": "Tags extracted reflect Mr. Taylor's profession as a golfer, his travel needs, dietary preferences, and high potential for referrals due to his social media presence and professional background.",
+  "from_cache": false
+}

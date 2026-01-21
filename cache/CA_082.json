@@ -1,0 +1,47 @@
+{
+  "client_id": "CA_082",
+  "language": "EN",
+  "tags": [
+    "birthday_gift",
+    "regular_client",
+    "frequent_traveler_leisure",
+    "vegan",
+    "personalization_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "April",
+      "context": "sister's 30th birthday"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "finance_professional",
+  "mentioned_persons": [
+    {
+      "relation": "sister",
+      "interests": [
+        "fashion",
+        "travel"
+      ]
+    },
+    {
+      "relation": "wife",
+      "interests": [
+        "baby"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up in March",
+  "reasoning": "Tags extracted include birthday gift for the sister, regular client status, interest in leisure travel, vegan lifestyle of the sister, and potential for personalization in future purchases.",
+  "from_cache": false
+}

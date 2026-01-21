@@ -1,0 +1,40 @@
+{
+  "client_id": "CA_084",
+  "language": "IT",
+  "tags": [
+    "business_gift",
+    "vegetarian",
+    "frequent_traveler_business",
+    "running_marathon",
+    "leather_work"
+  ],
+  "invalid_tags": [
+    "occasionnal_client"
+  ],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "occasional",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "april",
+      "context": "husband's 40th birthday"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": []
+    }
+  ],
+  "follow_up_action": "call in summer",
+  "reasoning": "Les tags extraits reflètent le statut de cliente occasionnelle, l'achat d'un cadeau d'anniversaire pour son mari, son mode de vie de voyage d'affaires, son intérêt pour la course de marathon, et le fait que son mari est végétarien.",
+  "from_cache": false
+}

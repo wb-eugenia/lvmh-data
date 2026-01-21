@@ -1,0 +1,48 @@
+{
+  "client_id": "CA_098",
+  "language": "DE",
+  "tags": [
+    "regular_client",
+    "opera_theater_regular",
+    "pescatarian",
+    "personalization_interest",
+    "high_referral_potential",
+    "legal_professional",
+    "art_events_regular",
+    "anniversary_gift"
+  ],
+  "invalid_tags": [
+    "luxury_travel"
+  ],
+  "num_tags": 8,
+  "confidence": 0.9,
+  "budget_range": "20K-50K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "mai",
+      "context": "25 ans de mariage"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [
+    "nickel_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "wife",
+      "interests": [
+        "interior_design",
+        "opera"
+      ]
+    }
+  ],
+  "follow_up_action": "coordinate party preparations monthly",
+  "reasoning": "Les tags extraits reflètent leur statut de clients réguliers, leur intérêt pour l'opéra, leur régime alimentaire, leur profession, et leur potentiel de recommandation élevé. Le budget et la date d'anniversaire sont également critiques pour le suivi.",
+  "from_cache": false
+}

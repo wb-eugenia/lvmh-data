@@ -1,0 +1,48 @@
+{
+  "client_id": "CA_054",
+  "language": "IT",
+  "tags": [
+    "anniversary_gift",
+    "high_referral_potential",
+    "regular_client",
+    "personalization_interest",
+    "frequent_traveler_business",
+    "pescatarian"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "avril",
+      "context": "50 ans mariage"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "mère",
+      "interests": [
+        "gardening"
+      ]
+    },
+    {
+      "relation": "père",
+      "interests": [
+        "history",
+        "antique books"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler mars",
+  "reasoning": "Les tags extraits reflètent les occasions d'achat (anniversary_gift), le statut de client (regular_client), l'intérêt pour la personnalisation (personalization_interest), et le mode de vie (frequent_traveler_business, pescatarian). Le budget est élevé, indiquant un client avec un potentiel de recommandation élevé.",
+  "from_cache": false
+}

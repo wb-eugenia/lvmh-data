@@ -1,0 +1,46 @@
+{
+  "client_id": "CA_078",
+  "language": "IT",
+  "tags": [
+    "leather_work",
+    "ready_to_wear",
+    "art_collector",
+    "frequent_traveler_leisure",
+    "pescatarian",
+    "artisan_craft_appreciation",
+    "high_referral_potential",
+    "first_visit",
+    "anniversary_gift"
+  ],
+  "invalid_tags": [],
+  "num_tags": 9,
+  "confidence": 0.85,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "november",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [
+    "nickel_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "conductor",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "sculpture"
+      ]
+    }
+  ],
+  "follow_up_action": "call in April for preview",
+  "reasoning": "Tags extraits reflètent les préférences de la cliente pour des pièces de travail en cuir et des vêtements élégants, son intérêt pour l'art et la musique, ainsi que son style de vie de voyageur fréquent. Le budget élevé et le potentiel de recommandation sont également notables.",
+  "from_cache": false
+}

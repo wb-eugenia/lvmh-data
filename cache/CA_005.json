@@ -1,0 +1,53 @@
+{
+  "client_id": "CA_005",
+  "language": "EN",
+  "tags": [
+    "leather_work",
+    "art_collector",
+    "frequent_traveler_leisure",
+    "golf",
+    "vegan",
+    "nut_allergy",
+    "high_referral_potential",
+    "graduation_gift",
+    "anniversary_gift"
+  ],
+  "invalid_tags": [
+    "leather_handbags"
+  ],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "graduation",
+      "month": "may",
+      "context": "daughter studying at Oxford"
+    },
+    {
+      "event": "anniversary",
+      "month": "september",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [
+    "nut_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "medical_professional",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "golf"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up in March for private showing",
+  "reasoning": "Tags extracted reflect Mrs. Thompson's interests in handbags and art, her husband's profession and interests, their travel habits, dietary restrictions, and significant upcoming events.",
+  "from_cache": false
+}

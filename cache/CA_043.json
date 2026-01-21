@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_043",
+  "language": "IT",
+  "tags": [
+    "ready_to_wear",
+    "innovation_interest",
+    "frequent_traveler_leisure",
+    "art_collector",
+    "yoga_pilates",
+    "high_referral_potential",
+    "first_visit"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "journalist",
+  "mentioned_persons": [
+    {
+      "relation": "boyfriend",
+      "interests": [
+        "fashion photography"
+      ]
+    }
+  ],
+  "follow_up_action": "immediate follow-up for loyalty",
+  "reasoning": "Tags extracted reflect the client's profession, lifestyle, dietary preferences, and high potential for referrals in the fashion industry.",
+  "from_cache": false
+}

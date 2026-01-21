@@ -1,0 +1,51 @@
+{
+  "client_id": "CA_010",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "vegetarian",
+    "regular_client",
+    "frequent_traveler_business",
+    "anniversary_gift",
+    "self_purchase",
+    "art_collector"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "graduation",
+      "month": "juillet",
+      "context": "fille termine études médecine"
+    },
+    {
+      "event": "anniversary",
+      "month": "septembre",
+      "context": "mari"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "medical_professional",
+  "mentioned_persons": [
+    {
+      "relation": "fille",
+      "interests": []
+    },
+    {
+      "relation": "mari",
+      "interests": [
+        "architecture"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler juin",
+  "reasoning": "Les tags extraits reflètent les préférences de produit (cuir pour le travail), le style de vie (voyages fréquents pour le travail), le statut de cliente régulière, et les occasions d'achat (anniversaire et graduation).",
+  "from_cache": false
+}

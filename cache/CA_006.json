@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_006",
+  "language": "ES",
+  "tags": [
+    "leather_small",
+    "birthday_gift",
+    "first_visit",
+    "high_referral_potential",
+    "frequent_traveler_leisure",
+    "vegan"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [
+    "shellfish_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "girlfriend",
+      "interests": [
+        "influencer"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up after purchase",
+  "reasoning": "Les tags extraits reflètent les préférences du client pour un cadeau d'anniversaire, son statut de première visite, son potentiel de recommandation élevé, et les informations sur le régime alimentaire et les allergies de sa partenaire.",
+  "from_cache": false
+}

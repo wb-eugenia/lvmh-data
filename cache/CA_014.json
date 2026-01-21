@@ -1,0 +1,40 @@
+{
+  "client_id": "CA_014",
+  "language": "EN",
+  "tags": [
+    "leather_small",
+    "leather_travel",
+    "accessories",
+    "equestrian",
+    "frequent_traveler_business",
+    "art_collector",
+    "vegan",
+    "latex_allergy",
+    "high_referral_potential",
+    "personalization_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.95,
+  "budget_range": "50K+",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "graduation_gift",
+      "month": "June",
+      "context": "younger sister"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [
+    "latex_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "entrepreneur_tech",
+  "mentioned_persons": [],
+  "follow_up_action": "weekly follow up with curated selections",
+  "reasoning": "Tags extracted reflect Ms. Johnson's interests in luxury accessories, her lifestyle as an equestrian and frequent traveler, her vegan dietary choice, and her severe latex allergy. The budget indicates her high purchasing potential, and her profile as a tech entrepreneur and art collector aligns with her high referral potential.",
+  "from_cache": false
+}

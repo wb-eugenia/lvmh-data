@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_061",
+  "language": "EN",
+  "tags": [
+    "ready_to_wear",
+    "personalization_interest",
+    "frequent_traveler_leisure",
+    "social_media_presence",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "partner",
+      "interests": [
+        "tech",
+        "influencer"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up immediately",
+  "reasoning": "Tags extracted reflect Ms. Park's interests in fashion for content creation, her frequent travel lifestyle, her strong social media presence, and her commitment to sustainability. The budget indicates flexibility and potential for high-value purchases.",
+  "from_cache": false
+}

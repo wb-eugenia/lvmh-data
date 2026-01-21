@@ -1,0 +1,40 @@
+{
+  "client_id": "CA_008",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "running_marathon",
+    "wine_collector",
+    "high_referral_potential",
+    "self_purchase"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "juin",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [],
+  "allergies": [
+    "gluten_intolerance"
+  ],
+  "referral_potential": "high",
+  "profession": "marketing_project_manager",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "wine"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler mai",
+  "reasoning": "Les tags extraits reflètent les professions, les intérêts et les allergies des clients, ainsi que leur potentiel de recommandation élevé et leur budget pour les cadeaux.",
+  "from_cache": false
+}

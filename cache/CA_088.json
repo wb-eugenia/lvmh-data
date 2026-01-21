@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_088",
+  "language": "DE",
+  "tags": [
+    "art_collector",
+    "regular_client",
+    "limited_editions_interest",
+    "vegetarian",
+    "self_purchase",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "book_presentation",
+      "month": "may",
+      "context": "Frankfurt Book Fair"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "publisher",
+  "mentioned_persons": [],
+  "follow_up_action": "follow up in April",
+  "reasoning": "Tags extraits basés sur le profil de la cliente, son intérêt pour les éditions limitées, son statut de cliente régulière, son régime végétarien, et son style de vie de voyage fréquente.",
+  "from_cache": false
+}

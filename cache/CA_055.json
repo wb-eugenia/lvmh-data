@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_055",
+  "language": "ES",
+  "tags": [
+    "corporate_gifting",
+    "high_referral_potential",
+    "sustainable_values",
+    "leather_work",
+    "personalization_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "occasional",
+  "key_dates": [
+    {
+      "event": "wellness retreat",
+      "month": "next month",
+      "context": "executive leadership program"
+    }
+  ],
+  "dietary": [
+    "vegan",
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "human_resources_director",
+  "mentioned_persons": [],
+  "follow_up_action": "quarterly follow-up for regular retreats",
+  "reasoning": "Tags extraits basés sur le profil de la cliente, son budget, ses valeurs d'entreprise, et son intérêt pour la personnalisation.",
+  "from_cache": false
+}

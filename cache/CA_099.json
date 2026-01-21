@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_099",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "regular_client",
+    "vegetarian",
+    "business_gift",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "mother's day",
+      "month": "mai",
+      "context": "cadeau épouse"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "épouse",
+      "interests": [
+        "musique",
+        "piano"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler juillet",
+  "reasoning": "Les tags extraits reflètent le profil du client, ses préférences d'achat, son statut de client fidèle, ainsi que les informations sur le cadeau pour la fête des mères.",
+  "from_cache": false
+}

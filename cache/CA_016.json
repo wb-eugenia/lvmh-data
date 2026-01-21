@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_016",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "running_marathon",
+    "vegan",
+    "first_visit",
+    "high_referral_potential",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "marathon",
+      "month": "septembre",
+      "context": "Berlin"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "corporate_executive",
+  "mentioned_persons": [
+    {
+      "relation": "ex-husband",
+      "interests": [
+        "watch_collecting"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler mars",
+  "reasoning": "Les tags extraits reflètent les préférences de produit, le style de vie actif, les convictions alimentaires, le statut de nouvelle cliente, et le potentiel de recommandation élevé.",
+  "from_cache": false
+}

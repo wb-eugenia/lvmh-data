@@ -1,0 +1,42 @@
+{
+  "client_id": "CA_062",
+  "language": "FR",
+  "tags": [
+    "art_collector",
+    "high_referral_potential",
+    "frequent_traveler_leisure",
+    "vegetarian",
+    "self_purchase",
+    "leather_work"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "graduation",
+      "month": "mai",
+      "context": "petite-fille"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "petite-fille",
+      "interests": [
+        "diplomatie",
+        "ONU"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler avril",
+  "reasoning": "Les tags extraits reflètent le profil du client collectionneur d'art, son statut VIP, son intérêt pour les voyages, ainsi que le cadeau d'anniversaire pour sa petite-fille végétarienne.",
+  "from_cache": false
+}

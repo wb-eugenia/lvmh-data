@@ -1,0 +1,51 @@
+{
+  "client_id": "CA_079",
+  "language": "ES",
+  "tags": [
+    "leather_work",
+    "wedding_gift",
+    "yoga_pilates",
+    "sustainable_values",
+    "vegan",
+    "high_referral_potential",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [
+    "occasionnal_client"
+  ],
+  "num_tags": 7,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "occasional",
+  "key_dates": [
+    {
+      "event": "wedding",
+      "month": "april",
+      "context": "sister's wedding"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "architect",
+  "mentioned_persons": [
+    {
+      "relation": "sister",
+      "interests": [
+        "graphic design",
+        "creative style"
+      ]
+    },
+    {
+      "relation": "husband",
+      "interests": [
+        "engineering"
+      ]
+    }
+  ],
+  "follow_up_action": "call in summer",
+  "reasoning": "Tags extraits basés sur les préférences de produits, le statut du client, l'occasion d'achat, le style de vie, et les valeurs personnelles mentionnées.",
+  "from_cache": false
+}

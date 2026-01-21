@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_071",
+  "language": "FR",
+  "tags": [
+    "corporate_gifting",
+    "occasional_client",
+    "pescatarian",
+    "vegan",
+    "leather_small",
+    "frequent_traveler_leisure",
+    "art_events_regular",
+    "high_referral_potential",
+    "limited_editions_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "occasional",
+  "key_dates": [
+    {
+      "event": "film_selection",
+      "month": "mai",
+      "context": "festival Cannes"
+    }
+  ],
+  "dietary": [
+    "vegan",
+    "pescatarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "film_producer",
+  "mentioned_persons": [],
+  "follow_up_action": "rappeler avril",
+  "reasoning": "Les tags extraits reflètent le profil du client, ses préférences alimentaires, son statut occasionnel, et l'occasion d'achat pour des cadeaux d'équipe au festival de Cannes.",
+  "from_cache": false
+}

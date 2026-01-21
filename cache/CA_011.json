@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_011",
+  "language": "IT",
+  "tags": [
+    "leather_travel",
+    "leather_small",
+    "accessories",
+    "frequent_traveler_leisure",
+    "innovation_interest",
+    "vegan",
+    "first_visit",
+    "high_referral_potential",
+    "social_media_presence"
+  ],
+  "invalid_tags": [
+    "art_collection"
+  ],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "entrepreneur_tech",
+  "mentioned_persons": [
+    {
+      "relation": "compagna",
+      "interests": [
+        "beauty",
+        "social_media"
+      ]
+    }
+  ],
+  "follow_up_action": "follow-up next week to show new arrivals",
+  "reasoning": "Tags extraits basés sur les préférences de produits, le style de vie, le statut de client, et les intérêts mentionnés. Le budget est basé sur l'indication d'un investissement ouvert de 15K.",
+  "from_cache": false
+}

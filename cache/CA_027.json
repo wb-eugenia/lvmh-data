@@ -1,0 +1,47 @@
+{
+  "client_id": "CA_027",
+  "language": "EN",
+  "tags": [
+    "high_referral_potential",
+    "first_visit",
+    "frequent_traveler_leisure",
+    "golf",
+    "art_collector",
+    "personalization_interest",
+    "anniversary_gift",
+    "graduation_gift",
+    "ready_to_wear"
+  ],
+  "invalid_tags": [
+    "rose_gold"
+  ],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "20K-50K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "august",
+      "context": "wedding"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "finance_professional",
+  "mentioned_persons": [
+    {
+      "relation": "wife",
+      "interests": [
+        "interior design",
+        "contemporary Asian art"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up next week with personalized selection",
+  "reasoning": "Tags extracted based on Mr. Chen's profile as a first-time client with high referral potential, interest in art and golf, and specific gift occasions for his wife and children.",
+  "from_cache": false
+}

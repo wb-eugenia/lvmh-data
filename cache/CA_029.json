@@ -1,0 +1,45 @@
+{
+  "client_id": "CA_029",
+  "language": "DE",
+  "tags": [
+    "accessories",
+    "personalization_interest",
+    "leather_small",
+    "leather_travel",
+    "frequent_traveler_leisure",
+    "high_referral_potential",
+    "vegan",
+    "sustainable_values",
+    "first_visit",
+    "entrepreneur_tech"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.9,
+  "budget_range": "25K+",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "wedding",
+      "month": "autumn",
+      "context": "wedding gifts opportunity"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "tech entrepreneur",
+  "mentioned_persons": [
+    {
+      "relation": "partner",
+      "interests": [
+        "tech trends"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up immediately after purchase",
+  "reasoning": "Tags extraits basés sur les préférences de produits, le style de vie, le statut client, et les occasions d'achat mentionnées. Le budget flexible et l'intérêt pour la durabilité renforcent le potentiel de référence élevé.",
+  "from_cache": false
+}

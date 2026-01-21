@@ -1,0 +1,49 @@
+{
+  "client_id": "CA_058",
+  "language": "FR",
+  "tags": [
+    "frequent_traveler_leisure",
+    "anniversary_gift",
+    "vegetarian",
+    "artisan_craft_appreciation",
+    "high_referral_potential",
+    "leather_travel",
+    "leather_small",
+    "self_purchase",
+    "watches"
+  ],
+  "invalid_tags": [
+    "photography"
+  ],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "20K-50K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "juin",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [
+    "sun_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "photography",
+        "safari"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler mai preview exclusive été",
+  "reasoning": "Les tags extraits reflètent le style de vie des clients, leur intérêt pour les voyages et la photographie, ainsi que leur statut de clients VIP avec un potentiel de recommandation élevé.",
+  "from_cache": false
+}

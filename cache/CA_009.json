@@ -1,0 +1,54 @@
+{
+  "client_id": "CA_009",
+  "language": "EN",
+  "tags": [
+    "leather_work",
+    "accessories",
+    "corporate_gifting",
+    "art_collector",
+    "skiing",
+    "yoga_pilates",
+    "frequent_traveler_leisure",
+    "high_referral_potential",
+    "first_visit",
+    "golf"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.9,
+  "budget_range": "20K-50K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "graduation",
+      "month": "juin",
+      "context": "son"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [
+    "shellfish_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "finance_professional",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "golf"
+      ]
+    },
+    {
+      "relation": "wife",
+      "interests": [
+        "interior_design",
+        "art"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up in two weeks",
+  "reasoning": "Tags extracted reflect their interests in leather goods and accessories, their lifestyle as art collectors and skiers, and their potential for corporate gifting. The couple's first visit status and high referral potential are also noted.",
+  "from_cache": false
+}

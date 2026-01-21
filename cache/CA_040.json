@@ -1,0 +1,47 @@
+{
+  "client_id": "CA_040",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "equestrian",
+    "art_collector",
+    "pescatarian",
+    "nickel_allergy",
+    "high_referral_potential",
+    "regular_client",
+    "anniversary_gift",
+    "frequent_traveler_leisure",
+    "corporate_executive"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.85,
+  "budget_range": "10K-20K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "mai",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [
+    "nickel_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "mari",
+      "interests": [
+        "equestrian"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler mars preview exclusive",
+  "reasoning": "Les tags extraits reflètent les préférences de produits (leather_work), le style de vie (equestrian, art_collector), les sensibilités alimentaires (pescatarian), les allergies (nickel_allergy), le potentiel de référence (high_referral_potential), le statut client (regular_client), les occasions d'achat (anniversary_gift), le profil professionnel (legal_professional) et les voyages fréquents (frequent_traveler_leisure).",
+  "from_cache": false
+}

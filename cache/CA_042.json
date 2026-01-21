@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_042",
+  "language": "EN",
+  "tags": [
+    "regular_client",
+    "pescatarian",
+    "art_events_regular",
+    "frequent_traveler_leisure",
+    "limited_editions_interest"
+  ],
+  "invalid_tags": [
+    "elegant_evening_pieces"
+  ],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "annual_gala",
+      "month": "September",
+      "context": "fundraising event"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "philanthropy_director",
+  "mentioned_persons": [],
+  "follow_up_action": "follow up next month for spring arrivals",
+  "reasoning": "Tags extracted include her status as a regular client, her dietary preference as pescatarian, and her involvement in cultural events. The budget indicates her spending capacity for the gala event.",
+  "from_cache": false
+}

@@ -1,0 +1,49 @@
+{
+  "client_id": "CA_086",
+  "language": "EN",
+  "tags": [
+    "multi_generational",
+    "high_referral_potential",
+    "frequent_traveler_leisure",
+    "heritage_importance",
+    "vegetarian",
+    "nut_allergy",
+    "legal_professional",
+    "personalization_interest",
+    "limited_editions_interest"
+  ],
+  "invalid_tags": [
+    "theater_opera_regular"
+  ],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "september",
+      "context": "mother's 75th birthday"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [
+    "nut_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "mother",
+      "interests": [
+        "theater",
+        "diplomatic memorabilia"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up July summer collection preview",
+  "reasoning": "Tags extraits reflètent le profil multi-générationnel de la cliente, son intérêt pour le théâtre et les voyages, ainsi que ses valeurs héritées et son statut professionnel dans le domaine légal. La sensibilité alimentaire et l'allergie aux noix sont également critiques pour les événements en boutique.",
+  "from_cache": false
+}

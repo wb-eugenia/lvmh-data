@@ -1,0 +1,42 @@
+{
+  "client_id": "CA_018",
+  "language": "EN",
+  "tags": [
+    "leather_travel",
+    "leather_small",
+    "frequent_traveler_leisure",
+    "wine_collector",
+    "first_visit",
+    "high_referral_potential",
+    "personalization_interest"
+  ],
+  "invalid_tags": [
+    "sports_events_regular"
+  ],
+  "num_tags": 7,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "march",
+      "context": "wife's birthday"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "wife",
+      "interests": []
+    }
+  ],
+  "follow_up_action": "follow up in a month with personalized selection",
+  "reasoning": "Tags extracted reflect Mr. Davis's interests in travel and small leather goods, his lifestyle as a frequent traveler and wine collector, and his potential as a new client with high referral potential. The budget indicates a willingness to invest in quality pieces, and the upcoming birthday event for his wife is noted for potential gift opportunities.",
+  "from_cache": false
+}

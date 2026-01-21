@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_091",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "wedding_gift",
+    "first_visit",
+    "frequent_traveler_leisure",
+    "vegan"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "wedding",
+      "month": "mai",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "dentist",
+  "mentioned_persons": [
+    {
+      "relation": "best friend",
+      "interests": [
+        "graphic design",
+        "creative style"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler été",
+  "reasoning": "Les tags extraits reflètent le cadeau de mariage pour une amie, le statut de première visite, le budget, et l'intérêt pour le cuir, ainsi que le mode de vie végan de l'amie.",
+  "from_cache": false
+}

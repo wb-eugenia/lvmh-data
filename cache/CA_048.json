@@ -1,0 +1,39 @@
+{
+  "client_id": "CA_048",
+  "language": "IT",
+  "tags": [
+    "art_collector",
+    "graduation_gift",
+    "vegetarian",
+    "nickel_allergy",
+    "frequent_traveler_leisure",
+    "leather_work",
+    "high_referral_potential",
+    "vic"
+  ],
+  "invalid_tags": [],
+  "num_tags": 8,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [
+    "nickel"
+  ],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "granddaughter",
+      "interests": [
+        "running_marathon"
+      ]
+    }
+  ],
+  "follow_up_action": "call in May for new summer collection",
+  "reasoning": "Tags extraits basés sur le profil de la cliente, ses préférences d'achat, et les informations sur sa petite-fille. Le budget et l'allergie sont également notés.",
+  "from_cache": false
+}

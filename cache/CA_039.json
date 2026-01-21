@@ -1,0 +1,48 @@
+{
+  "client_id": "CA_039",
+  "language": "DE",
+  "tags": [
+    "accessories",
+    "frequent_traveler_business",
+    "frequent_traveler_leisure",
+    "sailing",
+    "art_collector",
+    "limited_editions_interest",
+    "pescatarian",
+    "gluten_intolerance",
+    "corporate_executive",
+    "high_referral_potential"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.9,
+  "budget_range": "20K-50K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "december",
+      "context": "wedding"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [
+    "gluten_intolerance"
+  ],
+  "referral_potential": "high",
+  "profession": "entrepreneur_tech",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "sailing",
+        "art"
+      ]
+    }
+  ],
+  "follow_up_action": "weekly curated selection follow-up",
+  "reasoning": "Les tags extraits reflètent les intérêts des clients dans les accessoires de luxe, leur mode de vie de voyageurs fréquents, leur passion pour l'art et la voile, ainsi que leur statut professionnel élevé et leur potentiel de recommandation.",
+  "from_cache": false
+}

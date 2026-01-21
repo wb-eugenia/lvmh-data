@@ -1,0 +1,42 @@
+{
+  "client_id": "CA_036",
+  "language": "FR",
+  "tags": [
+    "anniversary_gift",
+    "art_collector",
+    "frequent_traveler_leisure",
+    "vegan"
+  ],
+  "invalid_tags": [
+    "occasionnal_client"
+  ],
+  "num_tags": 4,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "occasional",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "mars",
+      "context": "30 ans mariage"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "entrepreneur_import_export",
+  "mentioned_persons": [
+    {
+      "relation": "épouse",
+      "interests": [
+        "art",
+        "voyages"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler février",
+  "reasoning": "Les tags extraits reflètent le statut occasionnel du client, son intérêt pour l'art et les voyages, ainsi que le cadeau d'anniversaire pour son épouse. Le budget et les préférences alimentaires sont également notés.",
+  "from_cache": false
+}

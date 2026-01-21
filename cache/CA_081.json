@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_081",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "sustainable_values",
+    "frequent_traveler_business",
+    "yoga_pilates",
+    "vegan"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": []
+    }
+  ],
+  "follow_up_action": "rappeler avril",
+  "reasoning": "Les tags extraits reflètent les préférences professionnelles, les valeurs de durabilité, le style de vie actif et les convictions alimentaires de la cliente.",
+  "from_cache": false
+}

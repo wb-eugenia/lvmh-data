@@ -1,0 +1,47 @@
+{
+  "client_id": "CA_066",
+  "language": "EN",
+  "tags": [
+    "ready_to_wear",
+    "accessories",
+    "art_collector",
+    "frequent_traveler_business",
+    "frequent_traveler_leisure",
+    "pescatarian",
+    "shellfish_allergy",
+    "personalization_interest",
+    "high_referral_potential",
+    "corporate_executive"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.9,
+  "budget_range": "30K+",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "September",
+      "context": "marriage"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [
+    "shellfish_allergy"
+  ],
+  "referral_potential": "high",
+  "profession": "art curator",
+  "mentioned_persons": [
+    {
+      "relation": "husband",
+      "interests": [
+        "squash"
+      ]
+    }
+  ],
+  "follow_up_action": "weekly curated selections",
+  "reasoning": "Tags extracted reflect the clients' interests in fashion and art, their travel habits, dietary preferences, and significant allergy. The budget indicates high potential for luxury purchases, and the referral potential is high due to their network.",
+  "from_cache": false
+}

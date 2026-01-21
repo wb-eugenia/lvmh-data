@@ -1,0 +1,49 @@
+{
+  "client_id": "CA_035",
+  "language": "IT",
+  "tags": [
+    "regular_client",
+    "birthday_gift",
+    "graduation_gift",
+    "pescatarian",
+    "vegan",
+    "skiing",
+    "sailing",
+    "limited_editions_interest",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [
+    "fashion_events_regular"
+  ],
+  "num_tags": 9,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "september",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "vegan",
+    "pescatarian"
+  ],
+  "allergies": [
+    "nickel"
+  ],
+  "referral_potential": "high",
+  "profession": "entrepreneur_tech",
+  "mentioned_persons": [
+    {
+      "relation": "son",
+      "interests": [
+        "finance"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler fin février",
+  "reasoning": "Les tags extraits reflètent le statut de client régulier, les occasions d'achat pour les anniversaires et les graduations, ainsi que les préférences alimentaires et les activités de loisirs de la famille. L'intérêt pour les éditions limitées et l'appréciation de l'artisanat sont également pertinents.",
+  "from_cache": false
+}

@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_049",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "birthday_gift",
+    "regular_client",
+    "vegan",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.85,
+  "budget_range": "5K-10K",
+  "client_status": "regular",
+  "key_dates": [
+    {
+      "event": "birthday",
+      "month": "mars",
+      "context": "fille 21 ans"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "finance_professional",
+  "mentioned_persons": [
+    {
+      "relation": "fille",
+      "interests": [
+        "design",
+        "danse contemporaine"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler été",
+  "reasoning": "Les tags extraits reflètent les préférences de M. Martin pour des articles en cuir pour le travail, son statut de client régulier, l'achat d'un cadeau d'anniversaire pour sa fille végane, et son intérêt pour les voyages de loisirs.",
+  "from_cache": false
+}

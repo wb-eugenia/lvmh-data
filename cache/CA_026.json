@@ -1,0 +1,48 @@
+{
+  "client_id": "CA_026",
+  "language": "ES",
+  "tags": [
+    "anniversary_gift",
+    "frequent_traveler_leisure",
+    "art_collector",
+    "golf",
+    "pescatarian",
+    "nickel_allergy",
+    "multi_generational",
+    "leather_small",
+    "corporate_gifting",
+    "limited_editions_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.85,
+  "budget_range": "10K-20K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "anniversary",
+      "month": "février",
+      "context": "20 ans de mariage"
+    }
+  ],
+  "dietary": [
+    "pescatarian"
+  ],
+  "allergies": [
+    "nickel"
+  ],
+  "referral_potential": "high",
+  "profession": "entrepreneur_tech",
+  "mentioned_persons": [
+    {
+      "relation": "épouse",
+      "interests": [
+        "golf",
+        "art"
+      ]
+    }
+  ],
+  "follow_up_action": "rappeler fin février",
+  "reasoning": "Les tags extraits reflètent les préférences d'achat pour un cadeau d'anniversaire, leur style de vie de voyageurs fréquents, leur passion pour l'art et le golf, ainsi que des informations sur leurs allergies et leur potentiel de référence élevé.",
+  "from_cache": false
+}

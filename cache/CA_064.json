@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_064",
+  "language": "ES",
+  "tags": [
+    "ready_to_wear",
+    "frequent_traveler_leisure",
+    "innovation_interest",
+    "social_media_presence",
+    "vegan"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "girlfriend",
+      "interests": [
+        "streaming"
+      ]
+    }
+  ],
+  "follow_up_action": "immediate follow-up",
+  "reasoning": "Les tags extraits reflètent le style de vie du client (frequent_traveler_leisure), ses préférences de produits (ready_to_wear), son intérêt pour l'innovation, sa présence sur les réseaux sociaux, et son régime alimentaire (vegan).",
+  "from_cache": false
+}

@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_053",
+  "language": "FR",
+  "tags": [
+    "leather_work",
+    "corporate_gifting",
+    "high_referral_potential",
+    "first_visit",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "under_5K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "collègue",
+      "interests": [
+        "golf",
+        "voyages"
+      ]
+    }
+  ],
+  "follow_up_action": "null",
+  "reasoning": "Les tags extraits reflètent le besoin d'un cadeau de départ à la retraite pour un collègue, avec un budget spécifique et une profession d'avocate. Le client est nouveau et a un potentiel de recommandation élevé.",
+  "from_cache": false
+}

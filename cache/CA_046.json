@@ -1,0 +1,45 @@
+{
+  "client_id": "CA_046",
+  "language": "FR",
+  "tags": [
+    "ready_to_wear",
+    "personalization_interest",
+    "frequent_traveler_leisure",
+    "yoga_pilates",
+    "sustainable_values",
+    "artisan_craft_appreciation",
+    "high_referral_potential",
+    "first_visit"
+  ],
+  "invalid_tags": [
+    "influencer"
+  ],
+  "num_tags": 8,
+  "confidence": 0.9,
+  "budget_range": "10K-20K",
+  "client_status": "first_visit",
+  "key_dates": [
+    {
+      "event": "wedding",
+      "month": "juin",
+      "context": "mariage"
+    }
+  ],
+  "dietary": [
+    "vegan"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": null,
+  "mentioned_persons": [
+    {
+      "relation": "fiancé",
+      "interests": [
+        "entrepreneur_tech"
+      ]
+    }
+  ],
+  "follow_up_action": "immediate follow-up for client retention",
+  "reasoning": "Les tags extraits reflètent les préférences de style, le mode de vie actif, l'intérêt pour la durabilité et le potentiel de recommandation élevé en tant qu'influenceuse.",
+  "from_cache": false
+}

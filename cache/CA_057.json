@@ -1,0 +1,42 @@
+{
+  "client_id": "CA_057",
+  "language": "DE",
+  "tags": [
+    "regular_client",
+    "business_gift",
+    "vegetarian",
+    "frequent_traveler_leisure"
+  ],
+  "invalid_tags": [
+    "theater_events_regular"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5K-10K",
+  "client_status": "vic",
+  "key_dates": [
+    {
+      "event": "mother's day",
+      "month": "mai",
+      "context": "gift for wife"
+    }
+  ],
+  "dietary": [
+    "vegetarian"
+  ],
+  "allergies": [],
+  "referral_potential": "high",
+  "profession": "legal_professional",
+  "mentioned_persons": [
+    {
+      "relation": "wife",
+      "interests": [
+        "literature",
+        "theater"
+      ]
+    }
+  ],
+  "follow_up_action": "follow up in April to show selection",
+  "reasoning": "Tags extracted include client status as a regular client, the occasion of a business gift for Mother's Day, and dietary preference as vegetarian. The budget is specified, and the profession is noted as a legal professional.",
+  "from_cache": false
+}
