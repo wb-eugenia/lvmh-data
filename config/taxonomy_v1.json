@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-01-21",
+    "updated": "2026-01-21",
+    "num_categories": 7,
+    "num_tags": 52,
+    "languages_supported": ["FR", "EN", "IT", "ES", "DE"]
+  },
+  "categories": {
+    "PRODUCT_PREFERENCES": {
+      "description": "Product interests and preferences expressed by the client",
+      "tags": [
+        "leather_small",
+        "leather_travel",
+        "leather_work",
+        "ready_to_wear",
+        "watches",
+        "jewelry",
+        "shoes",
+        "accessories",
+        "personalization_interest",
+        "limited_editions_interest"
+      ]
+    },
+    "LIFESTYLE": {
+      "description": "Lifestyle, hobbies and interests",
+      "tags": [
+        "golf",
+        "tennis",
+        "sailing",
+        "equestrian",
+        "running_marathon",
+        "cycling",
+        "skiing",
+        "yoga_pilates",
+        "art_collector",
+        "wine_collector",
+        "watch_collector",
+        "art_events_regular",
+        "opera_theater_regular",
+        "frequent_traveler_business",
+        "frequent_traveler_leisure"
+      ]
+    },
+    "SENSITIVITIES": {
+      "description": "Values, ethical concerns and preferences",
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "pescatarian",
+        "sustainable_values",
+        "artisan_craft_appreciation",
+        "heritage_importance",
+        "innovation_interest"
+      ]
+    },
+    "HEALTH_ALLERGIES": {
+      "description": "Health conditions and allergies critical for events",
+      "tags": [
+        "nickel_allergy",
+        "latex_allergy",
+        "nut_allergy",
+        "shellfish_allergy",
+        "gluten_intolerance",
+        "lactose_intolerance"
+      ]
+    },
+    "CLIENT_PROFILE": {
+      "description": "Client type, status and relationship",
+      "tags": [
+        "vic",
+        "regular_client",
+        "occasional_client",
+        "first_visit",
+        "multi_generational",
+        "corporate_gifting",
+        "high_referral_potential",
+        "social_media_presence"
+      ]
+    },
+    "PURCHASE_OCCASIONS": {
+      "description": "Purchase motivations and occasions",
+      "tags": [
+        "anniversary_gift",
+        "birthday_gift",
+        "wedding_gift",
+        "graduation_gift",
+        "self_purchase",
+        "business_gift",
+        "milestone_celebration"
+      ]
+    },
+    "PROFESSIONAL_PROFILE": {
+      "description": "Professional background and industry",
+      "tags": [
+        "medical_professional",
+        "legal_professional",
+        "finance_professional",
+        "entrepreneur_tech",
+        "creative_arts",
+        "corporate_executive"
+      ]
+    }
+  }
+}
