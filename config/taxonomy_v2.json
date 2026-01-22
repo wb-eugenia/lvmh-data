@@ -1,0 +1,214 @@
+{
+    "version": "2.0",
+    "description": "Taxonomie hiérarchique LVMH pour classification par embeddings",
+    "categories": {
+        "CLIENT_PROFILE": {
+            "description": "Informations sur le profil et l'identité du client",
+            "subcategories": {
+                "Demographics": {
+                    "description": "Âge, genre, localisation, situation familiale du client",
+                    "examples": [
+                        "Young_professional",
+                        "Paris_resident",
+                        "Married",
+                        "Mother_of_two"
+                    ]
+                },
+                "Status": {
+                    "description": "Statut client, fidélité, historique d'achat",
+                    "examples": [
+                        "VIC_client",
+                        "New_client",
+                        "Loyal_customer",
+                        "First_visit"
+                    ]
+                },
+                "Profession": {
+                    "description": "Métier, secteur d'activité, niveau professionnel",
+                    "examples": [
+                        "Lawyer",
+                        "Architect",
+                        "CEO",
+                        "Doctor",
+                        "Artist"
+                    ]
+                }
+            }
+        },
+        "PRODUCT": {
+            "description": "Produits, articles et collections mentionnés",
+            "subcategories": {
+                "Bags": {
+                    "description": "Sacs à main, pochettes, modèles iconiques",
+                    "examples": [
+                        "Capucines_bag",
+                        "Neverfull_bag",
+                        "Speedy_bag",
+                        "Alma_bag",
+                        "Pochette"
+                    ]
+                },
+                "Leather_Goods": {
+                    "description": "Petite maroquinerie, portefeuilles, ceintures",
+                    "examples": [
+                        "Leather_wallet",
+                        "Card_holder",
+                        "Belt",
+                        "Passport_cover"
+                    ]
+                },
+                "Accessories": {
+                    "description": "Bijoux, montres, foulards, lunettes",
+                    "examples": [
+                        "Silver_necklace",
+                        "Gold_bracelet",
+                        "Silk_scarf",
+                        "Sunglasses"
+                    ]
+                },
+                "Ready_to_Wear": {
+                    "description": "Vêtements, prêt-à-porter, chaussures",
+                    "examples": [
+                        "Leather_jacket",
+                        "Cashmere_coat",
+                        "Sneakers",
+                        "Heels"
+                    ]
+                }
+            }
+        },
+        "OCCASION": {
+            "description": "Contexte d'achat, événement, raison",
+            "subcategories": {
+                "Gifts": {
+                    "description": "Cadeaux pour autrui, anniversaires, célébrations",
+                    "examples": [
+                        "Wife_gift",
+                        "Husband_gift",
+                        "Birthday_gift",
+                        "Christmas_gift",
+                        "Wedding_gift"
+                    ]
+                },
+                "Events": {
+                    "description": "Événements spéciaux, cérémonies, occasions",
+                    "examples": [
+                        "Wedding_guest",
+                        "Gala_event",
+                        "Graduation",
+                        "Anniversary"
+                    ]
+                },
+                "Travel": {
+                    "description": "Voyages, vacances, déplacements",
+                    "examples": [
+                        "Business_trip",
+                        "Vacation",
+                        "Weekend_getaway",
+                        "Frequent_traveler"
+                    ]
+                },
+                "Business": {
+                    "description": "Usage professionnel, travail",
+                    "examples": [
+                        "Work_bag",
+                        "Meeting_outfit",
+                        "Professional_look",
+                        "Office_use"
+                    ]
+                }
+            }
+        },
+        "PREFERENCES": {
+            "description": "Goûts, préférences esthétiques, style",
+            "subcategories": {
+                "Style": {
+                    "description": "Style général, esthétique préférée",
+                    "examples": [
+                        "Minimalist_style",
+                        "Classic_taste",
+                        "Modern_look",
+                        "Vintage_lover"
+                    ]
+                },
+                "Materials": {
+                    "description": "Préférences de matériaux, cuirs, textiles",
+                    "examples": [
+                        "Epi_leather_fan",
+                        "Canvas_preference",
+                        "Exotic_leather",
+                        "Vegan_leather"
+                    ]
+                },
+                "Colors": {
+                    "description": "Couleurs préférées ou recherchées",
+                    "examples": [
+                        "Black_preference",
+                        "Neutral_tones",
+                        "Bold_colors",
+                        "Pastel_lover"
+                    ]
+                },
+                "Dislikes": {
+                    "description": "Ce que le client n'aime pas, à éviter",
+                    "examples": [
+                        "Hates_logos",
+                        "No_gold_hardware",
+                        "Avoids_trends",
+                        "Dislikes_small_bags"
+                    ]
+                }
+            }
+        },
+        "BUDGET": {
+            "description": "Informations budgétaires et financières",
+            "subcategories": {
+                "Under_2K": {
+                    "description": "Petit budget, budget entrée de gamme, moins de 2000 euros",
+                    "examples": [
+                        "500_euros_budget",
+                        "1000_euros_max",
+                        "Entry_level_budget",
+                        "Affordable_gift"
+                    ]
+                },
+                "2K_to_5K": {
+                    "description": "Budget moyen, standard luxe, entre 2000 et 5000 euros",
+                    "examples": [
+                        "3000_euros_budget",
+                        "4000_euros_max",
+                        "Mid_range_budget",
+                        "Standard_bag_price"
+                    ]
+                },
+                "5K_to_10K": {
+                    "description": "Budget élevé, premium, entre 5000 et 10000 euros",
+                    "examples": [
+                        "7000_euros_budget",
+                        "High_end_budget",
+                        "Premium_purchase",
+                        "8000_euros_limit"
+                    ]
+                },
+                "Over_10K": {
+                    "description": "Très haut budget, plus de 10000 euros, exceptionnel",
+                    "examples": [
+                        "15000_euros_budget",
+                        "20k_budget",
+                        "High_jewelry_budget",
+                        "Unlimited_budget_feel"
+                    ]
+                },
+                "Flexible_No_Limit": {
+                    "description": "Pas de limite, budget flexible, prix non important",
+                    "examples": [
+                        "No_budget_limit",
+                        "Price_is_no_object",
+                        "Flexible_spending",
+                        "Open_budget"
+                    ]
+                }
+            }
+        }
+    }
+}

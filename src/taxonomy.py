@@ -33,11 +33,24 @@ class Taxonomy:
             self._taxonomy = json.load(f)
         
         # Build flat tag set and tag-to-category mapping
-        for category_name, category_data in self._taxonomy.get('categories', {}).items():
-            for tag in category_data.get('tags', []):
-                self._all_tags.add(tag)
-                self._tag_to_category[tag] = category_name
-    
+        categories = self._taxonomy.get('categories', {})
+        
+        for category_name, category_data in categories.items():
+            # Support v1 structure (direct tags list)
+            if 'tags' in category_data:
+                for tag in category_data['tags']:
+                    self._all_tags.add(tag)
+                    self._tag_to_category[tag] = category_name
+            
+            # Support v2 structure (subcategories -> examples)
+            if 'subcategories' in category_data:
+                for sub_name, sub_data in category_data['subcategories'].items():
+                    # Treat examples as valid tags for validation purposes
+                    examples = sub_data.get('examples', [])
+                    for tag in examples:
+                        self._all_tags.add(tag)
+                        self._tag_to_category[tag] = category_name
+
     def get_all_tags(self) -> List[str]:
         """Return sorted list of all valid tags."""
         return sorted(list(self._all_tags))
@@ -75,13 +88,27 @@ class Taxonomy:
     def get_taxonomy_json(self) -> str:
         """Return the full taxonomy as JSON string for prompts."""
         return json.dumps(self._taxonomy, indent=2, ensure_ascii=False)
-    
+
     def get_tags_summary(self) -> str:
         """Return a compact summary of all tags for prompts."""
         lines = []
-        for category_name, category_data in self._taxonomy.get('categories', {}).items():
-            tags = category_data.get('tags', [])
-            lines.append(f"{category_name}: {', '.join(tags)}")
+        categories = self._taxonomy.get('categories', {})
+        
+        for category_name, category_data in categories.items():
+            # v1 style
+            if 'tags' in category_data:
+                tags = category_data['tags']
+                lines.append(f"{category_name}: {', '.join(tags)}")
+            
+            # v2 style
+            elif 'subcategories' in category_data:
+                # For v2, show subcategory names and a few examples to keep prompt concise
+                sub_summaries = []
+                for sub_name, sub_data in category_data['subcategories'].items():
+                    examples = sub_data.get('examples', [])[:3] # Limit to 3 examples
+                    sub_summaries.append(f"{sub_name} ({', '.join(examples)}...)")
+                lines.append(f"{category_name}: {'; '.join(sub_summaries)}")
+                
         return "\n".join(lines)
     
     @property

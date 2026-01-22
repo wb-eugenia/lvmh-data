@@ -1,15 +1,16 @@
 """
 LLM-based tag extractor for LVMH Voice to Tag.
-Supports OpenAI GPT-4o-mini with structured JSON output.
+Powered by Mistral AI with structured JSON output.
 """
 
 import json
 import os
 import time
+import re
 from typing import Dict, List, Optional, Any
 from pathlib import Path
 
-from openai import OpenAI
+from mistralai import Mistral
 from dotenv import load_dotenv
 
 from .taxonomy import Taxonomy
@@ -22,26 +23,28 @@ load_dotenv()
 
 class TagExtractor:
     """
-    Extracts structured tags from transcriptions using LLM.
+    Extracts structured tags from transcriptions using Mistral AI.
     """
     
     def __init__(
         self,
         taxonomy_path: str = "config/taxonomy_v1.json",
-        model: str = "gpt-4o-mini",
+        model: str = "mistral-small-latest",
         temperature: float = 0.0,
         max_retries: int = 3,
-        cache_dir: Optional[str] = "cache"
+        cache_dir: Optional[str] = "cache",
+        api_key: Optional[str] = None
     ):
         """
         Initialize the tag extractor.
         
         Args:
             taxonomy_path: Path to taxonomy JSON file
-            model: OpenAI model to use
+            model: Mistral model to use
             temperature: Sampling temperature (0 for deterministic)
             max_retries: Max retries on API failure
-            cache_dir: Directory for caching results (None to disable)
+            cache_dir: Directory for caching results
+            api_key: Mistral API key
         """
         self.taxonomy = Taxonomy(taxonomy_path)
         self.model = model
@@ -49,12 +52,12 @@ class TagExtractor:
         self.max_retries = max_retries
         self.cache_dir = Path(cache_dir) if cache_dir else None
         
-        # Initialize OpenAI client
-        api_key = os.getenv("OPENAI_API_KEY")
+        # Initialize Mistral client
+        api_key = api_key or os.getenv("MISTRAL_API_KEY")
         if not api_key:
-            raise ValueError("OPENAI_API_KEY not found in environment variables")
+            raise ValueError("MISTRAL_API_KEY not found in environment variables")
         
-        self.client = OpenAI(api_key=api_key)
+        self.client = Mistral(api_key=api_key)
         
         # Create cache directory if needed
         if self.cache_dir:
@@ -62,6 +65,51 @@ class TagExtractor:
         
         # Get taxonomy summary for prompts
         self._taxonomy_summary = self.taxonomy.get_tags_summary()
+    
+    def _extract_json_from_text(self, text: str) -> str:
+        """
+        Extract JSON from text that might contain markdown or other content.
+        Handles responses like ```json {...} ``` or plain text with JSON.
+        """
+        if not text:
+            return "{}"
+        
+        # Try to find JSON in markdown code blocks
+        json_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
+        if json_match:
+            return json_match.group(1)
+        
+        # Try to find raw JSON object
+        json_match = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', text, re.DOTALL)
+        if json_match:
+            return json_match.group(0)
+        
+        # Return original text and hope for the best
+        return text.strip()
+    
+    def _call_llm(self, system_prompt: str, user_prompt: str) -> str:
+        """
+        Call Mistral LLM.
+        Returns the response content as string (JSON).
+        """
+        enhanced_prompt = f"""{user_prompt}
+
+IMPORTANT: Tu DOIS répondre UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication.
+Format attendu: {{"tags": ["tag1", "tag2"]}}"""
+        
+        response = self.client.chat.complete(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt + "\nTu réponds toujours en JSON valide uniquement."},
+                {"role": "user", "content": enhanced_prompt}
+            ],
+            temperature=self.temperature,
+            response_format={"type": "json_object"}
+        )
+        
+        # Extract JSON from potential markdown/text response
+        raw_content = response.choices[0].message.content
+        return self._extract_json_from_text(raw_content)
     
     def _get_cache_path(self, client_id: str) -> Path:
         """Get cache file path for a client ID."""
@@ -82,6 +130,58 @@ class TagExtractor:
             with open(cache_path, 'w', encoding='utf-8') as f:
                 json.dump(result, f, ensure_ascii=False, indent=2)
     
+    def extract_tags_simple(self, transcription: str) -> List[str]:
+        """
+        Extract tags from transcription using the Smart Tags prompt.
+        Simplified method for the hybrid pipeline - returns only a list of strings.
+        
+        Args:
+            transcription: The transcribed text
+            
+        Returns:
+            List of extracted tag strings
+        """
+        # Simplified user prompt for Smart Tags extraction
+        user_prompt = f"""Analyse cette transcription et génère des tags pertinents.
+
+TRANSCRIPTION :
+"{transcription}"
+
+Réponds avec un JSON contenant une clé "tags" avec la liste des tags extraits."""
+
+        # Call LLM with retries
+        result = None
+        last_error = None
+        
+        for attempt in range(self.max_retries):
+            try:
+                # Use the abstracted LLM call method
+                content = self._call_llm(SYSTEM_PROMPT, user_prompt)
+                result = json.loads(content)
+                break
+                
+            except json.JSONDecodeError as e:
+                last_error = f"JSON parse error: {e}"
+                time.sleep(1)
+            except Exception as e:
+                last_error = str(e)
+                time.sleep(2 ** attempt)
+        
+        if result is None:
+            print(f"⚠️ Extraction failed: {last_error}")
+            return []
+        
+        # Return clean list of tags
+        tags = result.get('tags', [])
+        
+        # Ensure all tags are strings and properly formatted
+        clean_tags = []
+        for tag in tags:
+            if isinstance(tag, str) and tag.strip():
+                clean_tags.append(tag.strip())
+        
+        return clean_tags
+    
     def extract(
         self,
         transcription: str,
@@ -91,15 +191,6 @@ class TagExtractor:
     ) -> Dict[str, Any]:
         """
         Extract tags and metadata from a transcription.
-        
-        Args:
-            transcription: The transcribed text
-            language: Language code (FR, EN, IT, ES, DE)
-            client_id: Optional client identifier
-            use_cache: Whether to use cached results
-            
-        Returns:
-            Dict with extracted tags and metadata
         """
         # Check cache first
         if use_cache and client_id:
@@ -122,18 +213,8 @@ class TagExtractor:
         
         for attempt in range(self.max_retries):
             try:
-                response = self.client.chat.completions.create(
-                    model=self.model,
-                    messages=[
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    temperature=self.temperature,
-                    response_format={"type": "json_object"}
-                )
-                
-                # Parse response
-                content = response.choices[0].message.content
+                # Use the abstracted LLM call method
+                content = self._call_llm(SYSTEM_PROMPT, user_prompt)
                 result = json.loads(content)
                 break
                 
@@ -162,17 +243,7 @@ class TagExtractor:
             "language": language,
             "tags": validation['valid'],
             "invalid_tags": validation['invalid'],
-            "num_tags": len(validation['valid']),
             "confidence": result.get('confidence', 0.0),
-            "budget_range": result.get('budget_range'),
-            "client_status": result.get('client_status'),
-            "key_dates": result.get('key_dates', []),
-            "dietary": result.get('dietary', []),
-            "allergies": result.get('allergies', []),
-            "referral_potential": result.get('referral_potential'),
-            "profession": result.get('profession'),
-            "mentioned_persons": result.get('mentioned_persons', []),
-            "follow_up_action": result.get('follow_up_action'),
             "reasoning": result.get('reasoning'),
             "from_cache": False
         }
@@ -182,108 +253,15 @@ class TagExtractor:
             self._save_to_cache(client_id, final_result)
         
         return final_result
-    
-    def extract_batch(
-        self,
-        data: List[Dict],
-        id_col: str = "ID",
-        text_col: str = "Transcription",
-        lang_col: str = "Language",
-        use_cache: bool = True,
-        progress_callback: Optional[callable] = None
-    ) -> List[Dict]:
-        """
-        Extract tags from multiple transcriptions.
-        
-        Args:
-            data: List of dicts with transcription data
-            id_col: Column name for client ID
-            text_col: Column name for transcription text
-            lang_col: Column name for language
-            use_cache: Whether to use cached results
-            progress_callback: Optional callback(current, total)
-            
-        Returns:
-            List of extraction results
-        """
-        results = []
-        total = len(data)
-        
-        for i, row in enumerate(data):
-            client_id = row.get(id_col)
-            transcription = row.get(text_col)
-            language = row.get(lang_col, 'EN')
-            
-            result = self.extract(
-                transcription=transcription,
-                language=language,
-                client_id=client_id,
-                use_cache=use_cache
-            )
-            
-            results.append(result)
-            
-            if progress_callback:
-                progress_callback(i + 1, total)
-        
-        return results
-    
-    def get_stats(self, results: List[Dict]) -> Dict:
-        """
-        Calculate statistics from extraction results.
-        
-        Args:
-            results: List of extraction results
-            
-        Returns:
-            Dict with statistics
-        """
-        total = len(results)
-        if total == 0:
-            return {}
-        
-        # Tag statistics
-        all_tags = []
-        for r in results:
-            all_tags.extend(r.get('tags', []))
-        
-        tag_counts = {}
-        for tag in all_tags:
-            tag_counts[tag] = tag_counts.get(tag, 0) + 1
-        
-        # Category statistics
-        category_counts = {}
-        for tag in all_tags:
-            category = self.taxonomy.get_category_for_tag(tag)
-            if category:
-                category_counts[category] = category_counts.get(category, 0) + 1
-        
-        # Confidence stats
-        confidences = [r.get('confidence', 0) for r in results]
-        avg_confidence = sum(confidences) / len(confidences) if confidences else 0
-        
-        # Cache stats
-        from_cache = sum(1 for r in results if r.get('from_cache', False))
-        
-        return {
-            "total_processed": total,
-            "total_tags_extracted": len(all_tags),
-            "unique_tags_used": len(tag_counts),
-            "avg_tags_per_note": len(all_tags) / total,
-            "avg_confidence": round(avg_confidence, 3),
-            "from_cache": from_cache,
-            "top_10_tags": sorted(tag_counts.items(), key=lambda x: x[1], reverse=True)[:10],
-            "tags_by_category": category_counts
-        }
-
 
 def create_extractor(**kwargs) -> TagExtractor:
     """Factory function to create a TagExtractor instance."""
     return TagExtractor(**kwargs)
 
-
 if __name__ == "__main__":
     # Quick test
-    extractor = TagExtractor()
-    print(f"Extractor initialized with model: {extractor.model}")
-    print(f"Taxonomy: {extractor.taxonomy.num_tags} tags in {extractor.taxonomy.num_categories} categories")
+    try:
+        extractor = TagExtractor()
+        print(f"✅ Mistral Extractor initialized with model: {extractor.model}")
+    except Exception as e:
+        print(f"❌ Error initializing extractor: {e}")
