@@ -1,0 +1,34 @@
+{
+  "tags": [
+    "creative_arts_visual",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "travel_frequent",
+    "art_collector"
+  ],
+  "confidence": 0.95,
+  "budget_range": "19K",
+  "client_status": "VIC",
+  "profession": "Philosophy professor, Literature critic",
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "reasoning": "Clients are distinguished academics in philosophy and literature, indicating tags related to creative arts. Shopping together for anniversary gifts -> shopping_with_spouse and gift_for_spouse. Budget is specified as 19K, indicating high flexibility.",
+  "extracted_by": "tier3_llm",
+  "cost": 0.0001,
+  "ID": "CA_117",
+  "tier": 3,
+  "routing_reasons": [
+    "VIP/VIC client - premium processing"
+  ],
+  "routing_confidence": 0.9,
+  "from_cache": false
+}

@@ -1,0 +1,35 @@
+{
+  "tags": [
+    "creative_arts_music",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "art_collector",
+    "travel_frequent"
+  ],
+  "confidence": 0.95,
+  "budget_range": "13K",
+  "client_status": "first_visit",
+  "profession": "Opernsängerin international",
+  "allergies": [],
+  "allergy_severity": {
+    "chemical_sensitivity": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "reasoning": "Profession 'Opernsängerin international' -> creative_arts_music. Shopping with partner -> shopping_with_spouse. Gift for spouse's birthday -> gift_for_spouse. Allergy to food colors indicates a chemical sensitivity with moderate severity.",
+  "extracted_by": "tier3_llm",
+  "cost": 0.0001,
+  "ID": "CA_115",
+  "tier": 3,
+  "routing_reasons": [
+    "Complex relationship dynamics detected"
+  ],
+  "routing_confidence": 0.82,
+  "from_cache": false
+}

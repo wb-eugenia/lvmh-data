@@ -1,6 +1,4 @@
 {
-  "client_id": "CA_105",
-  "language": "DE",
   "tags": [
     "legal_corporate",
     "medical_specialist",
@@ -10,13 +8,10 @@
     "opera_theater",
     "book_collector_rare"
   ],
-  "invalid_tags": [],
-  "num_tags": 7,
   "confidence": 0.95,
   "budget_range": "22K",
   "client_status": "VIC",
-  "key_dates": [],
-  "dietary": [],
+  "profession": "Professorin Literatur, Rechtsanwalt Partner",
   "allergies": [],
   "allergy_severity": {},
   "relationship_context": {
@@ -27,10 +22,14 @@
       "child"
     ]
   },
-  "referral_potential": null,
-  "profession": "Professorin Literatur, Rechtsanwalt Partner",
-  "mentioned_persons": [],
-  "follow_up_action": null,
   "reasoning": "Profession includes 'Rechtsanwalt' -> legal_corporate and 'Professorin Literatur' -> medical_specialist. Shopping together as a couple -> shopping_with_spouse. Gifts for children mentioned -> gift_for_child. Their interests in travel and theater align with tags.",
+  "extracted_by": "tier3_llm",
+  "cost": 0.0001,
+  "ID": "CA_105",
+  "tier": 3,
+  "routing_reasons": [
+    "RGPD keywords detected: ['rechts']"
+  ],
+  "routing_confidence": 0.95,
   "from_cache": false
 }

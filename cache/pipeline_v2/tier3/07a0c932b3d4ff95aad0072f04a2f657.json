@@ -1,0 +1,33 @@
+{
+  "tags": [
+    "entrepreneur_hospitality",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "pescatarian",
+    "artisan_craft_appreciation"
+  ],
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Prospect",
+  "profession": "Chef ristorante due stelle Michelin",
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "reasoning": "Specific profession 'chef ristorante due stelle Michelin' -> entrepreneur_hospitality. Shopping for anniversary gift for his partner -> gift_for_spouse + anniversary_gift. Pescatarian preference noted -> pescatarian tag.",
+  "extracted_by": "tier3_llm",
+  "cost": 0.0001,
+  "ID": "CA_118",
+  "tier": 3,
+  "routing_reasons": [
+    "Complex relationship dynamics detected"
+  ],
+  "routing_confidence": 0.82,
+  "from_cache": false
+}
