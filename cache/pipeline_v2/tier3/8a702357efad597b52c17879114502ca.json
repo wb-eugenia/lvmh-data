@@ -1,6 +1,4 @@
 {
-  "client_id": "CA_104",
-  "language": "IT",
   "tags": [
     "entrepreneur_tech",
     "travel_frequent",
@@ -9,13 +7,10 @@
     "gift_for_parent",
     "anniversary_gift"
   ],
-  "invalid_tags": [],
-  "num_tags": 6,
   "confidence": 0.9,
   "budget_range": "10k-20k",
   "client_status": "first_visit",
-  "key_dates": [],
-  "dietary": [],
+  "profession": "sviluppatore software AI startup",
   "allergies": [],
   "allergy_severity": {
     "penicillin_allergy": "moderate"
@@ -26,10 +21,14 @@
       "parent"
     ]
   },
-  "referral_potential": null,
-  "profession": "sviluppatore software AI startup",
-  "mentioned_persons": [],
-  "follow_up_action": null,
   "reasoning": "Profession 'sviluppatore software AI startup' -> entrepreneur_tech. Frequent travel and interest in tech -> travel_frequent, tech_enthusiast. Gift for parents' anniversary -> gift_for_parent, anniversary_gift. Allergy to penicillin detected, severity set to moderate.",
+  "extracted_by": "tier3_llm",
+  "cost": 0.0001,
+  "ID": "CA_104",
+  "tier": 3,
+  "routing_reasons": [
+    "Complex relationship dynamics detected"
+  ],
+  "routing_confidence": 0.82,
   "from_cache": false
 }

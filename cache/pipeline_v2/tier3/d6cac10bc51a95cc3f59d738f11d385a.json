@@ -1,6 +1,4 @@
 {
-  "client_id": "CA_109",
-  "language": "ES",
   "tags": [
     "medical_surgeon",
     "shopping_with_children",
@@ -10,13 +8,10 @@
     "artisan_craft_appreciation",
     "investment_mindset"
   ],
-  "invalid_tags": [],
-  "num_tags": 7,
   "confidence": 0.95,
   "budget_range": "7k-10k",
   "client_status": "first_visit",
-  "key_dates": [],
-  "dietary": [],
+  "profession": "cirujana plástica clínica prestigiosa",
   "allergies": [],
   "allergy_severity": {},
   "relationship_context": {
@@ -25,10 +20,14 @@
       "child"
     ]
   },
-  "referral_potential": null,
-  "profession": "cirujana plástica clínica prestigiosa",
-  "mentioned_persons": [],
-  "follow_up_action": null,
   "reasoning": "Specific profession 'cirujana plástica clínica prestigiosa' -> medical_surgeon. Gift for daughter -> gift_for_child. Vegan lifestyle and appreciation for artisan craft noted.",
+  "extracted_by": "tier3_llm",
+  "cost": 0.0001,
+  "ID": "CA_109",
+  "tier": 3,
+  "routing_reasons": [
+    "Complex relationship dynamics detected"
+  ],
+  "routing_confidence": 0.82,
   "from_cache": false
 }
