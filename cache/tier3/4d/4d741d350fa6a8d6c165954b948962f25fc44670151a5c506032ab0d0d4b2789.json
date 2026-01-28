@@ -1,0 +1,90 @@
+{
+  "cached_at": "2026-01-28T23:49:27.015424",
+  "cache_key": "4d741d350fa6a8d6c165954b948962f25fc44670151a5c506032ab0d0d4b2789",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "vegan",
+      "sustainable_values",
+      "handbags",
+      "travel_luggage",
+      "tech_enthusiast",
+      "leather_goods"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "30K+",
+    "budget_min": 30000,
+    "budget_max": null,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "ultimate",
+    "allergies": [
+      "nut_allergy"
+    ],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "twin_daughters"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "weekly_follow_up",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [
+        "travel pieces",
+        "work bags",
+        "handbag collection"
+      ],
+      "brands_mentioned": [],
+      "locations": [
+        "London",
+        "Paris",
+        "Silicon Valley"
+      ],
+      "events": [
+        "World Series of Poker"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": true,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Clients are first-time but ultra-high potential with a strong interest in establishing a luxury wardrobe post-liquidity event."
+    ],
+    "profession": "entrepreneur_tech",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are high-profile with a significant budget and specific interests in sustainability and tech integration. Their professional background and lifestyle indicate a high likelihood of substantial purchases.",
+    "model_name": "gpt-4o",
+    "cost": 0.0063275,
+    "age": null,
+    "gender": null
+  }
+}

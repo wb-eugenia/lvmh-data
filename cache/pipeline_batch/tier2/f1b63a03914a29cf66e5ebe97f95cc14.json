@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1769640900.9700274,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "gift_for_genitori"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "San Francisco",
+      "Tokyo",
+      "Singapore"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K+",
+    "budget_min": 10000,
+    "budget_max": null,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "new",
+    "allergies": [
+      "penicillina_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [],
+    "relationship_context": {
+      "gift_for": [
+        "genitori"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "anniversario_genitori"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_executive",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Nuovo cliente con alto potenziale, informazioni sulla professione e sugli interessi, budget aperto ma non esplicito, allergia segnalata",
+    "model_name": "llama-3.3-70b-versatile",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_104",
+    "from_cache": false
+  }
+}

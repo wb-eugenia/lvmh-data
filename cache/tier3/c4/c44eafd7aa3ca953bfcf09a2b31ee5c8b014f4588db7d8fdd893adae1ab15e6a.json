@@ -1,0 +1,92 @@
+{
+  "cached_at": "2026-01-28T23:49:09.892972",
+  "cache_key": "c44eafd7aa3ca953bfcf09a2b31ee5c8b014f4588db7d8fdd893adae1ab15e6a",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "architect",
+      "travel_frequent",
+      "art_lover",
+      "vegetarian",
+      "leather_goods"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "4K-5K",
+    "budget_min": 4000,
+    "budget_max": 5000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "pollen_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "birthday_gift"
+    ],
+    "urgency": "this_month",
+    "event_date": "2026-06-01",
+    "days_until_event": 123,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Corse"
+      ],
+      "events": [
+        "GR20"
+      ],
+      "people_mentioned": [
+        "Mme Girard",
+        "Mari professeur université",
+        "Fille architecte",
+        "Fils jardinier chef restaurant étoilé"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "La cliente a une allergie sévère au pollen, mais cela ne nécessite pas de drapeau d'urgence immédiat."
+    ],
+    "profession": "architect",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Mme Girard est une cliente régulière avec un budget clairement défini et des préférences précises pour des sacs en cuir dans des tons naturels. Son intérêt pour les jardins botaniques et les livres anciens indique une passion pour la nature et l'élégance, ce qui est cohérent avec ses choix de produits.",
+    "model_name": "gpt-4o",
+    "cost": 0.0063100000000000005,
+    "age": null,
+    "gender": null
+  }
+}

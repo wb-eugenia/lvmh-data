@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1769640488.4014695,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "vegan",
+      "influencer"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Patagonie"
+    ],
+    "events": [
+      "meetups"
+    ],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 6400,
+    "budget_max": 9600,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "nouveau_client",
+    "allergies": [
+      "allergie_arachides"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "today",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "influenceur_voyage",
+    "processing_tier": "tier2",
+    "confidence": 0.92,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Extraction complète : influenceur voyage, budget explicite, allergie sévère, régime vegan, intérêt pour l'authenticité et la provenance des matériaux.",
+    "model_name": "llama-3.3-70b-versatile",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_106",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 50K: +15",
+      "Allergy Severe: +12",
+      "Urgent: +8"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

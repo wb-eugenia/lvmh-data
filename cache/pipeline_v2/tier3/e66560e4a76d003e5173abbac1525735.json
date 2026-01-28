@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1769640522.5451658,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "leather_preference",
+      "travel_frequent",
+      "womenswear",
+      "vegan",
+      "pilates",
+      "medical_specialist",
+      "leather_goods"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "7K-10K",
+    "budget_min": 7000,
+    "budget_max": 10000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential_high",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "daughter"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "next_month",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Miami",
+        "Dubai"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": [],
+      "opportunities_upsell": [
+        "investment_pieces",
+        "craftsmanship_quality"
+      ]
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client is a vegan for events, indicating ethical considerations in purchasing decisions.",
+      "Potential for referrals through her medical network."
+    ],
+    "profession": "medical_specialist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The client is a high potential new client with a clear interest in elegant and professional handbags. She has a specific budget and preferences for leather colors. Her lifestyle and profession suggest a high likelihood of future purchases, especially given her interest in craftsmanship and investment pieces.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_109",
+    "tier": 3,
+    "routing_reasons": [
+      "🚨 Rgpd Legal: +10",
+      "🔒 RGPD detected → Force Tier 2+ (+30 pts)",
+      "🚨 Critical risk → Force Tier 3"
+    ],
+    "routing_confidence": 0.95,
+    "from_cache": false
+  }
+}

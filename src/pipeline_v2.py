@@ -12,19 +12,24 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
+import dataclasses
+import asyncio
 
 import pandas as pd
 from tqdm import tqdm
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.smart_router import SmartRouter
+from src.smart_router import SmartRouterV2 as SmartRouter
 from src.tier1_rules import Tier1RulesEngine
-from src.tier2_nlp import Tier2OllamaEngine
-from src.rgpd_ollama import RGPDOllamaFilter
+from src.tier1_rules import Tier1RulesEngine
+from src.tier2_groq import Tier2Groq  # New Groq Implementation
+
+
 from src.extractor import TagExtractor
 from src.cache_manager import CacheManager
 from src.cost_tracker import CostTracker
+from src.text_cleaner import MultilingualTextCleaner
 
 
 class PipelineV2:
@@ -41,43 +46,50 @@ class PipelineV2:
         self.tier1 = Tier1RulesEngine()
         self.tier2 = None  # Lazy load
         self.tier3 = None  # Lazy load
-        self.rgpd_filter = None # Lazy load
         self.cache = CacheManager('cache/pipeline_v2') if use_cache else None
         self.cost_tracker = CostTracker()
         self.use_cache = use_cache
         self.results = []
         self.tier2_available = True
+        self.text_cleaner = None  # Lazy load
     
     def _init_tier2(self):
-        """Lazy load Tier 2 Ollama engine."""
+        """Lazy load Tier 2 Groq engine."""
         if self.tier2 is None:
             try:
-                self.tier2 = Tier2OllamaEngine()
+                self.tier2 = Tier2Groq()
                 self.tier2_available = True
             except Exception as e:
-                print(f"⚠️ Tier 2 Ollama not available: {e}")
+                print(f"⚠️ Tier 2 Groq not available: {e}")
                 self.tier2_available = False
     
-    def _init_rgpd(self):
-        """Lazy load RGPD Ollama filter."""
-        if self.rgpd_filter is None:
-            try:
-                self.rgpd_filter = RGPDOllamaFilter()
-            except:
-                self.rgpd_filter = None
 
     def _init_tier3(self):
         """Lazy load Tier 3 LLM extractor."""
         if self.tier3 is None:
-            self.tier3 = TagExtractor()
+            self.tier3 = TagExtractor()  # Uses Tier3Enhanced logic directly
     
     def process_single(self, note: Dict) -> Dict:
         """Process a single note through appropriate tier."""
-        text = note.get('Transcription', '')
+        raw_text = note.get('Transcription', '')
         language = note.get('Language', 'FR')
         note_id = note.get('ID', 'unknown')
         
-        # Route to tier
+        # 1. TEXT CLEANING (Remove fillers, normalize, deduplicate)
+        if self.text_cleaner is None:
+            try:
+                self.text_cleaner = MultilingualTextCleaner(use_embeddings=False)  # Fast mode
+            except Exception as e:
+                print(f"⚠️ TextCleaner init failed: {e}")
+                self.text_cleaner = None
+        
+        if self.text_cleaner:
+            clean_result = self.text_cleaner.clean_text(raw_text, language)
+            text = clean_result.get('cleaned', raw_text) if isinstance(clean_result, dict) else raw_text
+        else:
+            text = raw_text
+        
+        # 2. ROUTE to tier
         decision = self.router.route(text, language, note)
         tier = decision.tier
         
@@ -90,16 +102,8 @@ class PipelineV2:
                 cached['tier'] = tier
                 return cached
         
-        # RGPD Check (Local) - Run for all notes to be safe
-        self._init_rgpd()
-        rgpd_result = None
-        if self.rgpd_filter:
-            rgpd_result = self.rgpd_filter.detect(text, language)
-            if rgpd_result.contains_sensitive:
-                # If sensitive, force Tier 3 for secure handling/anonymization
-                if tier < 3:
-                    tier = 3
-                    decision.reasons.insert(0, f"RGPD Sensitive: {rgpd_result.categories_detected}")
+        # NOTE: RGPD detection is now handled by Smart Router V3 (RGPD boost)
+        # No need for separate Ollama filter - 1000x faster!
         
         # Process based on tier
         if tier == 1:
@@ -128,7 +132,7 @@ class PipelineV2:
                 print(f"⚠️ ESCALATING Note {note_id} to Tier 3: {escalation_reason}")
                 tier = 3
                 decision.reasons.append(f"Escalated: {escalation_reason}")
-                result = self._process_tier3(text, language, note_id)
+                result = self._process_tier3(text, language, note_id, client_status=result.get('client_status'), escalation_reason=escalation_reason)
                 
         else:
             result = self._process_tier3(text, language, note_id)
@@ -140,11 +144,6 @@ class PipelineV2:
         result['routing_confidence'] = decision.confidence
         result['from_cache'] = False
         
-        # Add RGPD info if available
-        if rgpd_result:
-            result['rgpd_sensitive'] = rgpd_result.contains_sensitive
-            result['rgpd_categories'] = rgpd_result.categories_detected
-        
         # Cache result
         if self.cache:
             self.cache.save(cache_key, f'tier{tier}', result)
@@ -154,68 +153,66 @@ class PipelineV2:
     def _process_tier1(self, text: str, language: str) -> Dict:
         """Process with Tier 1 rules engine."""
         extraction = self.tier1.extract(text, language)
-        return {
-            'tags': extraction.tags,
-            'confidence': extraction.confidence,
-            'budget_range': extraction.budget_range,
-            'client_status': extraction.client_status,
-            'profession': extraction.profession,
-            'age': extraction.age,
-            'gender': extraction.gender,
-            'relationship_context': extraction.relationship_context,
-            'extracted_by': 'tier1_rules',
-            'cost': 0.0
-        }
+        # Convert Pydantic model to dict
+        return extraction.model_dump()
     
     def _process_tier2(self, text: str, language: str) -> Dict:
-        """Process with Tier 2 Ollama engine."""
+        """Process with Tier 2 Groq engine."""
         self._init_tier2()
         
         if not self.tier2_available or self.tier2 is None:
-            # Fallback to Tier 1 if Ollama not available
+            # Fallback to Tier 1 if Groq not available
             return self._process_tier1(text, language)
         
-        extraction = self.tier2.extract(text, language)
-        return {
-            'tags': extraction.tags,
-            'confidence': extraction.confidence,
-            'budget_range': extraction.budget_range,
-            'client_status': extraction.client_status,
-            'profession': extraction.profession,
-            'allergies': extraction.allergies,
-            'dietary': extraction.dietary,
-            'relationship_context': extraction.relationship_context,
-            'reasoning': extraction.reasoning,
-            'extracted_by': 'tier2_ollama',
-            'cost': 0.0
-        }
+        # Groq is async, need to run it synchronously here
+        try:
+             extraction = asyncio.run(self.tier2.extract(text, language))
+        except Exception as e:
+             print(f"⚠️ Tier 2 Groq failed: {e}. Falling back.")
+             return self._process_tier1(text, language)
+
+        # Convert dataclass or Pydantic model to dict
+        if dataclasses.is_dataclass(extraction):
+            return dataclasses.asdict(extraction)
+        elif hasattr(extraction, 'model_dump'):
+            return extraction.model_dump()
+        return extraction
     
-    def _process_tier3(self, text: str, language: str, client_id: str) -> Dict:
-        """Process with Tier 3 LLM."""
+    def _process_tier3(self, text: str, language: str, client_id: str, client_status: str = None, escalation_reason: str = None) -> Dict:
+        """Process with Tier 3 LLM (Async Wrapper)."""
         self._init_tier3()
-        extraction = self.tier3.extract(
-            transcription=text,
-            language=language,
-            client_id=client_id,
-            use_cache=False  # We handle caching at pipeline level
-        )
+        
+        # Async call wrapper
+        async def run_tier3():
+            return await self.tier3.extract(
+                text=text,
+                language=language,
+                client_status=client_status,
+                escalation_reason=escalation_reason,
+                use_cache=self.use_cache
+            )
+            
+        try:
+             extraction = asyncio.run(run_tier3())
+        except Exception as e:
+             print(f"⚠️ Tier 3 failed: {e}")
+             # Return empty/error dict
+             return {"processed_by": "tier3_failed", "error": str(e), "confidence": 0.0}
         
         # Track cost
-        cost = 0.0001  # Approximate cost per note
+        cost = 0.0001
         
-        return {
-            'tags': extraction.get('tags', []),
-            'confidence': extraction.get('confidence', 0.5),
-            'budget_range': extraction.get('budget_range'),
-            'client_status': extraction.get('client_status'),
-            'profession': extraction.get('profession'),
-            'allergies': extraction.get('allergies', []),
-            'allergy_severity': extraction.get('allergy_severity', {}),
-            'relationship_context': extraction.get('relationship_context', {}),
-            'reasoning': extraction.get('reasoning'),
-            'extracted_by': 'tier3_llm',
-            'cost': cost
-        }
+        # Tier 3 might return raw dict or model, handle both safely
+        if hasattr(extraction, 'model_dump'):
+            data = extraction.model_dump()
+        else:
+            data = extraction
+            
+        # Ensure cost is tracked
+        data['cost'] = cost
+        data['extracted_by'] = 'tier3_llm'
+        
+        return data
     
     def run(self, df: pd.DataFrame) -> pd.DataFrame:
         """Run pipeline on dataframe."""
@@ -223,7 +220,7 @@ class PipelineV2:
         
         print(f"🚀 PIPELINE V2 MULTI-TIER - {start_time.strftime('%H:%M:%S')}")
         print("="*60)
-        print("Tiers: Rules (0€) → Ollama Qwen 2.5 7B (0€) → GPT-4o-mini ($)")
+        print("Tiers: Rules (0€) → Groq Llama 3 (0€) → GPT-4o-mini ($)")
         print("="*60)
         
         self.results = []
@@ -267,7 +264,7 @@ class PipelineV2:
         
         print(f"\n🔀 TIER DISTRIBUTION:")
         print(f"  Tier 1 (Rules):  {tier_counts[1]:>4} ({tier1_pct:>5.1f}%) - 0€")
-        print(f"  Tier 2 (Ollama): {tier_counts[2]:>4} ({tier2_pct:>5.1f}%) - 0€")
+        print(f"  Tier 2 (Groq):   {tier_counts[2]:>4} ({tier2_pct:>5.1f}%) - 0€ (Beta)")
         print(f"  Tier 3 (GPT):    {tier_counts[3]:>4} ({tier3_pct:>5.1f}%) - ${tier_counts[3] * 0.0001:.4f}")
         
         print(f"\n💰 COST SAVINGS:")

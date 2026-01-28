@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1769640596.5884356,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "philanthropist",
+      "gift_for_partner",
+      "art_collector",
+      "travel_frequent",
+      "jewelry",
+      "travel_luggage",
+      "vegetarian",
+      "leather_goods"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Milan",
+      "Vienna",
+      "New York",
+      "Sydney"
+    ],
+    "events": [
+      "opera_performances"
+    ],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 10000,
+    "budget_max": 20000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "new",
+    "allergies": [
+      "food_coloring_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "partner"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "birthday"
+    ],
+    "urgency": "this_spring",
+    "event_date": "2026-05",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "opera_singer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Neue Kundin mit hohem Potenzial, flexibles Budget, spezifische Interessen und Lebensstil",
+    "model_name": "llama-3.3-70b-versatile",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_115",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 10K: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

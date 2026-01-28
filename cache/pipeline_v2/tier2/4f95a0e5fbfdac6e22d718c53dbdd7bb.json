@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1769640480.6884105,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_sohn",
+      "professor",
+      "gift_for_tochter",
+      "vegetarian",
+      "shopping_with_frau_und_herr_hoffmann"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "griechenland"
+    ],
+    "events": [
+      "exklusive_vorschau"
+    ],
+    "professions": [],
+    "budget_range": "10K-50K",
+    "budget_min": 22000,
+    "budget_max": 25000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarier"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "tochter",
+        "sohn"
+      ],
+      "shopping_with": [
+        "frau_und_herr_hoffmann"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "tochter_hochzeit"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "professorin_literatur",
+    "processing_tier": "tier2",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Exzellente Kunden mit hoher Bildung, klare Angaben zu Budget und Anlässen, keine Allergien oder Unstimmigkeiten",
+    "model_name": "llama-3.3-70b-versatile",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_105",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 10K: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}
