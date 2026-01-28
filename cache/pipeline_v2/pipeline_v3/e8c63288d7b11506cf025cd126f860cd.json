@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769634136.0620174,
+  "payload": {
+    "id": "CA_092",
+    "original_text": "Mr. and Mrs. Wellington, both 59, exceptional long-time VIP clients since 2008. Shopping for extended family gifts daughter's wedding June. Combined budget extremely generous 32K+. He's retired investment banker, she's art consultant private collections. Daughter marrying Oxford professor classics, wedding Oxford college traditional elegant affair 300 guests. Looking for gifts bridesmaids groomsmen parents family members special pieces. Daughter 31 works museum curator, passionate ancient history art. Groom's family academic distinguished professors. Both passionate about classical music art, collectors rare manuscripts. Travel extensively art auctions acquisitions, just returned Christie's London planning Sotheby's New York. She impeccable taste elegant sophisticated, rose gold burgundy cognac neutrals. He classic traditional, wants quality timeless pieces black navy brown. Both vegetarian 15 years events. She latex allergy severe critical. Son 28 works finance London married two grandchildren. Daughter's wedding June major family event year. Anniversary October annually tradition shopping here decades. Exceptional clients lifetime value extraordinary highest tier, art collecting finance network international extensive referred countless high-value clients years. Follow up monthly wedding preparations coordinate everything. Very interested bespoke customization commissioned several pieces past, asked about unique pieces wedding party personalized meaningful. Planning major charitable gala art foundation autumn after wedding could be partnership sponsorship opportunity. Treasure clients relationship decades maintained impeccably appreciation loyalty extraordinary. Absolute top priority relationship continue excellence service maintain carefully ongoing.",
+    "processed_text": "Mr. and Mrs. Wellington, both 59, exceptional long-time VIP clients since 2008. Shopping for extended family gifts daughter's wedding June. Combined budget extremely generous 32K+. He's retired investment banker, she's art consultant private collections. Daughter marrying Oxford professor classics, wedding Oxford college traditional elegant affair 300 guests. Looking for gifts bridesmaids groomsmen parents family members special pieces. Daughter 31 works museum curator, passionate ancient history art. Groom's family academic distinguished professors. Both passionate about classical music art, collectors rare manuscripts. Travel extensively art auctions acquisitions, just returned Christie's London planning Sotheby's New York. She impeccable taste elegant sophisticated, rose gold burgundy cognac neutrals. He classic traditional, wants quality timeless pieces black navy brown. Both vegetarian 15 years events. She latex allergy severe critical. Son 28 works finance London married two grandchildren. Daughter's wedding June major family event year. Anniversary October annually tradition shopping here decades. Exceptional clients lifetime value extraordinary highest tier, art collecting finance network international extensive referred countless high-value clients years. Follow up monthly wedding preparations coordinate everything. Very interested bespoke customization commissioned several pieces past, asked about unique pieces wedding party personalized meaningful. Planning major charitable gala art foundation autumn after wedding could be partnership sponsorship opportunity. Treasure clients relationship decades maintained impeccably appreciation loyalty extraordinary. Absolute top priority relationship continue excellence service maintain carefully ongoing.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:02:16.061143",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit or implicit data related to health, family conflicts, religion, political opinions, or sexual orientation. It primarily discusses business and personal information about clients and their preferences.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "banker",
+        "shopping_with_spouse",
+        "art_collector",
+        "wedding_gift",
+        "vegetarian",
+        "music_lover",
+        "gift_for_family"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "32K+",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "family"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession includes 'retired investment banker' and 'art consultant' -> tags for both. Shopping with spouse for daughter's wedding gifts -> shopping_with_spouse and gift_for_family + wedding_gift. Noted severe latex allergy.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 37015.88559150696,
+    "error": null,
+    "from_cache": false
+  }
+}

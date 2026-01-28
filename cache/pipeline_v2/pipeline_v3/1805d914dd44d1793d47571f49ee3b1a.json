@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1769634047.7917256,
+  "payload": {
+    "id": "CA_030",
+    "original_text": "Famiglia Ricci completa, tre generazioni shopping insieme evento speciale. Nonna 72 anni, genitori 48-50, figlia 22 anni, figlio 19 anni. Budget familiare combinato eccezionale 28K+. Nonna eleganza classica senza tempo, colleziona porcellane antiche frequenta aste. Madre architetto progetta ville lusso, padre cardiologo. Entrambi genitori appassionati vela, possiedono barca, participano regate estate. Figlia appena laurea economia Bocconi, cerca pezzi vita professionale inizia. Figlio studia ingegneria Politecnico appassionato tecnologia. Nonna preferisce cognac bordeaux stile tradizionale. Genitori moderno sofisticato, madre beige grigio, padre nero marrone. Figlia stile giovane trendy ma qualità. Nonna vegetariana, genitori pescetariani, figli onnivori eventi. Madre allergia nichel hardware importante. Famiglia unita tradizione shopping lusso insieme, potenziale multi-generazionale straordinario. Celebrano matrimonio genitori anniversario 25 anni, compleanno nonna 73 ottobre. Rete sociale estesa professionale alto livello, riferito amici già. Richiamare marzo preview esclusiva primavera estate. Interessati pezzi personalizzati storia famiglia incisione. Cliente eccezionale lifetime value altissimo priorità massima.",
+    "processed_text": "Famiglia Ricci completa, tre generazioni shopping insieme evento speciale. Nonna 72 anni, genitori 48-50, figlia 22 anni, figlio 19 anni. Budget familiare combinato eccezionale 28K+. Nonna eleganza classica senza tempo, colleziona porcellane antiche frequenta aste. Madre architetto progetta ville lusso, padre cardiologo. Entrambi genitori appassionati vela, possiedono barca, participano regate estate. Figlia appena laurea economia Bocconi, cerca pezzi vita professionale inizia. Figlio studia ingegneria Politecnico appassionato tecnologia. Nonna preferisce cognac bordeaux stile tradizionale. Genitori moderno sofisticato, madre beige grigio, padre nero marrone. Figlia stile giovane trendy ma qualità. Nonna vegetariana, genitori pescetariani, figli onnivori eventi. Madre allergia nichel hardware importante. Famiglia unita tradizione shopping lusso insieme, potenziale multi-generazionale straordinario. Celebrano matrimonio genitori anniversario 25 anni, compleanno nonna 73 ottobre. Rete sociale estesa professionale alto livello, riferito amici già. Richiamare marzo preview esclusiva primavera estate. Interessati pezzi personalizzati storia famiglia incisione. Cliente eccezionale lifetime value altissimo priorità massima.",
+    "language": "IT",
+    "timestamp": "2026-01-28T22:00:47.791106",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Standard complexity, safe for local LLM"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informations dans le texte ne contiennent aucune donnée sensible selon les catégories définies.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "fragrance",
+        "travel_luggage",
+        "leather_goods",
+        "shopping_with_family",
+        "jewelry",
+        "shoes",
+        "gift_for_spouse",
+        "ready_to_wear",
+        "gift_for_family",
+        "watches",
+        "shopping_with_spouse"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "50K+",
+      "budget_amount": null,
+      "client_status": "vic",
+      "allergies": [
+        "nickel_allergy"
+      ],
+      "allergy_severity": "medium",
+      "dietary": [
+        "vegetarian",
+        "pescetarian"
+      ],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse",
+          "family"
+        ],
+        "gift_for": [
+          "spouse",
+          "family"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier2",
+      "confidence": 0.98,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Famiglia completa con professioni elevate, budget eccezionale e tradizione shopping lusso insieme.",
+      "model_name": "llama-3.1-8b-instant",
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 29914.20030593872,
+    "error": null,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634041.511352,
+  "payload": {
+    "id": "CA_088",
+    "original_text": "Frau Klein, 52 Jahre, Verlegerin Kunstbücher, Stammkundin seit 2017. Kauft Geschenk Autorin Bestseller Kunstgeschichte Buchveröffentlichung. Budget 7K. Autorin 45 Jahre Professorin Kunstgeschichte, Buch große Erfolg Kritik. Stil intellektuell elegant, reist Buchpräsentationen Europa. Vegetarierin. Buchpräsentation Mai große Event Buchmesse Frankfurt. Kundin selbst sammelt Kunstbücher Erstausgaben, Haus Bibliothek beeindruckend. Exzellente Kundin, Netzwerk Verlags Kunstwelt groß verwiesen viele Autoren Künstler. Nachfassen April koordinieren. Interessiert limitierte Editionen künstlerische Kooperationen.",
+    "processed_text": "Frau Klein, 52 Jahre, Verlegerin Kunstbücher, Stammkundin seit 2017. Kauft Geschenk Autorin Bestseller Kunstgeschichte Buchveröffentlichung. Budget 7K. Autorin 45 Jahre Professorin Kunstgeschichte, Buch große Erfolg Kritik. Stil intellektuell elegant, reist Buchpräsentationen Europa. Vegetarierin. Buchpräsentation Mai große Event Buchmesse Frankfurt. Kundin selbst sammelt Kunstbücher Erstausgaben, Haus Bibliothek beeindruckend. Exzellente Kundin, Netzwerk Verlags Kunstwelt groß verwiesen viele Autoren Künstler. Nachfassen April koordinieren. Interessiert limitierte Editionen künstlerische Kooperationen.",
+    "language": "DE",
+    "timestamp": "2026-01-28T22:00:41.510987",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (65 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Il s'agit uniquement de données non sensibles liées à la clientèle.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 7000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.21648406982421875,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 29395.593404769897,
+    "error": null,
+    "from_cache": false
+  }
+}

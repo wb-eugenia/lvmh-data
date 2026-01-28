@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634240.133099,
+  "payload": {
+    "id": "CA_078",
+    "original_text": "Signora Caruso, 58 anni, direttrice orchestra sinfonica Napoli, nuova cliente eccellente. Cerca pezzi eleganti professionali rappresentanza internazionale. Budget 12K. Stile raffinato artistico, viaggia tournée concerti mondiale. Passione musica classica ovviamente, colleziona spartiti antichi rari. Pratica tai chi meditazione disciplina mentale. Marito scultore artista, coppia artistica. Cuoio bordeaux cognac hardware argento classico elegante. Pescetariana eventi. Allergia profumi forti sensibilità importante. Mentionò orchestra tournée Asia estate Giappone Corea, serve pezzi viaggio qualità. Figlia violinista orchestra anche, figlio ingegnere. Anniversario matrimonio novembre. Cliente potenziale ottimo rete culturale musicale vastissima. Richiamare aprile preview. Interessata artigianalità storia pezzi apprezza profondamente.",
+    "processed_text": "Signora Caruso, 58 anni, direttrice orchestra sinfonica Napoli, nuova cliente eccellente. Cerca pezzi eleganti professionali rappresentanza internazionale. Budget 12K. Stile raffinato artistico, viaggia tournée concerti mondiale. Passione musica classica ovviamente, colleziona spartiti antichi rari. Pratica tai chi meditazione disciplina mentale. Marito scultore artista, coppia artistica. Cuoio bordeaux cognac hardware argento classico elegante. Pescetariana eventi. Allergia profumi forti sensibilità importante. Mentionò orchestra tournée Asia estate Giappone Corea, serve pezzi viaggio qualità. Figlia violinista orchestra anche, figlio ingegnere. Anniversario matrimonio novembre. Cliente potenziale ottimo rete culturale musicale vastissima. Richiamare aprile preview. Interessata artigianalità storia pezzi apprezza profondamente.",
+    "language": "IT",
+    "timestamp": "2026-01-28T22:04:00.132711",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (95 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informations dans le texte ne contiennent aucune donnée sensible selon les catégories définies.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 12000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.2799034118652344,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 30713.109016418457,
+    "error": null,
+    "from_cache": false
+  }
+}

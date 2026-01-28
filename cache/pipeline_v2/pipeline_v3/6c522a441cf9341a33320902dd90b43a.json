@@ -1,0 +1,76 @@
+{
+  "_cached_at": 1769633987.1928449,
+  "payload": {
+    "id": "CA_045",
+    "original_text": "Herr Schulz, 58 Jahre, Dirigent Symphonieorchester München, neuer Kunde ausgezeichnet. Sucht Geschenk Ehefrau 30. Hochzeitstag großes Ereignis Familie. Budget sehr großzügig 12K flexibel. Ehefrau Cellistin Orchester auch, beide leidenschaftlich klassische Musik leben dafür. Reisen Konzerte weltweit, nächste Tournee Japan China. Sammeln Musikinstrumente antik, Haus voll historische Stücke. Ehefrau liebt japanische Ästhetik minimalistisch elegant, bevorzugt subtile Farben beige grau rosé Gold. Beide Vegetarier Events. Keine Allergien. Zwei Kinder erwachsen, Tochter Pianistin Paris Sohn Architekt Berlin. Feier Hochzeitstag groß April Familie Freunde Kollegen. Kunde sehr zufrieden Service, erwähnt viele Freunde Kulturkreise könnten interessieren. Nachfassen März. Interessiert Boutique Event Sponsoring Konzert Saison möglich. Exzellentes Netzwerk Kultur Musik.",
+    "processed_text": "Herr Schulz, 58 Jahre, Dirigent Symphonieorchester München, neuer Kunde ausgezeichnet. Sucht Geschenk Ehefrau 30. Hochzeitstag großes Ereignis Familie. Budget sehr großzügig 12K flexibel. Ehefrau Cellistin Orchester auch, beide leidenschaftlich klassische Musik leben dafür. Reisen Konzerte weltweit, nächste Tournee Japan China. Sammeln Musikinstrumente antik, Haus voll historische Stücke. Ehefrau liebt japanische Ästhetik minimalistisch elegant, bevorzugt subtile Farben beige grau rosé Gold. Beide Vegetarier Events. Keine Allergien. Zwei Kinder erwachsen, Tochter Pianistin Paris Sohn Architekt Berlin. Feier Hochzeitstag groß April Familie Freunde Kollegen. Kunde sehr zufrieden Service, erwähnt viele Freunde Kulturkreise könnten interessieren. Nachfassen März. Interessiert Boutique Event Sponsoring Konzert Saison möglich. Exzellentes Netzwerk Kultur Musik.",
+    "language": "DE",
+    "timestamp": "2026-01-28T21:59:47.192308",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Standard complexity, safe for local LLM"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations personnelles sont généralement liées à des aspects professionnels et personnels non sensibles.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "wine_enthusiast",
+        "travel_luggage",
+        "leather_goods",
+        "travel_frequent",
+        "vegan",
+        "jewelry",
+        "gift_for_spouse",
+        "ready_to_wear",
+        "philanthropist",
+        "art_collector",
+        "shopping_with_spouse"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "20K-50K",
+      "budget_amount": null,
+      "client_status": "vic",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [
+        "vegetarian"
+      ],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "spouse"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier2",
+      "confidence": 0.98,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "VIC identifié, profession et régime détectés, préférences esthétiques et culturelles explicitées.",
+      "model_name": "llama-3.1-8b-instant",
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 28369.89188194275,
+    "error": null,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633868.7059028,
+  "payload": {
+    "id": "CA_041",
+    "original_text": "M. Renaud, 41 ans, directeur commercial, première visite. Cherche cadeau épouse Saint-Valentin urgent dans deux jours. Budget 3K. Épouse aime voyages yoga. Style moderne. Cuir noir. Pressé beaucoup. Végane épouse. Satisfait achat rapide. Rappeler prochain événement.",
+    "processed_text": "M. Renaud, 41 ans, directeur commercial, première visite. Cherche cadeau épouse Saint-Valentin urgent dans deux jours. Budget 3K. Épouse aime voyages yoga. Style moderne. Cuir noir. Pressé beaucoup. Végane épouse. Satisfait achat rapide. Rappeler prochain événement.",
+    "language": "FR",
+    "timestamp": "2026-01-28T21:57:48.705550",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (36 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant des catégories sensibles telles que la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations sur le style de vie et les préférences personnelles sont pertinentes pour le contexte commercial mais ne relèvent pas des données sensibles au sens du RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "2K-5K",
+      "budget_amount": 3000,
+      "client_status": "first_visit",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.23889541625976562,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 41,
+      "gender": null
+    },
+    "processing_time_ms": 13267.404079437256,
+    "error": null,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1769634247.466362,
+  "payload": {
+    "id": "CA_020",
+    "original_text": "Sra. López, 39 años, influencer moda lifestyle 2M seguidores Instagram TikTok, primera visita importante. Busca piezas contenido redes sociales y uso personal. Presupuesto 10-12K hoy, potencial compras regulares. Estilo moderno trendy pero aprecia calidad artesanía. Interesada bolsos statement, accesorios únicos, pequeña marroquinería. Viaja constantemente eventos moda, semanas moda París Milán Nueva York. Practica pilates yoga diario, wellness contenido también. Vegana estricta valores éticos fuertes para eventos. Sin alergias. Mencionó colaboraciones marcas importante visibilidad, posible partnership boutique contenido redes. Novio empresario tech también influencia. Excelente potencial nuevo cliente segmento joven, gran alcance social media. Follow-up inmediato después compra fidelizar. Invitar todos eventos VIP, aprecia exclusividad contenido. Interesada sostenibilidad transparencia materiales proceso.",
+    "processed_text": "Sra. López, 39 años, influencer moda lifestyle 2M seguidores Instagram TikTok, primera visita importante. Busca piezas contenido redes sociales y uso personal. Presupuesto 10-12K hoy, potencial compras regulares. Estilo moderno trendy pero aprecia calidad artesanía. Interesada bolsos statement, accesorios únicos, pequeña marroquinería. Viaja constantemente eventos moda, semanas moda París Milán Nueva York. Practica pilates yoga diario, wellness contenido también. Vegana estricta valores éticos fuertes para eventos. Sin alergias. Mencionó colaboraciones marcas importante visibilidad, posible partnership boutique contenido redes. Novio empresario tech también influencia. Excelente potencial nuevo cliente segmento joven, gran alcance social media. Follow-up inmediato después compra fidelizar. Invitar todos eventos VIP, aprecia exclusividad contenido. Interesada sostenibilidad transparencia materiales proceso.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:04:07.465828",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, l'orientation sexuelle. Les informations personnelles sont généralement liées à un profil client et non à des données sensibles.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "sustainable_values",
+        "travel_frequent",
+        "vegan",
+        "fashion_industry",
+        "influencer",
+        "lifestyle_content_creator",
+        "shopping_with_partner"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10k-12k",
+      "budget_amount": null,
+      "client_status": "Prospect",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "partner"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession 'influencer moda lifestyle' aligns with tags for influencer and fashion industry. Budget indicates high spending potential. No allergies mentioned. Shopping context includes partner, indicating a relationship dynamic.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 36442.93713569641,
+    "error": null,
+    "from_cache": false
+  }
+}

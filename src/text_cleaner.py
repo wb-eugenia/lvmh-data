@@ -110,7 +110,8 @@ class MultilingualTextCleaner:
             return text, 0
         
         # Sépare le texte en phrases (par ponctuation forte)
-        sentences = re.split(r'[.!?]+', text)
+        # Amélioration: lookbehind pour ne pas couper sur M. ou Mme.
+        sentences = re.split(r'(?<!\bM)(?<!\bMr)(?<!\bDr)(?<!\bMme)[.!?]+', text)
         seen_phrases = set()
         unique_sentences = []
         duplicates_removed = 0
@@ -127,8 +128,20 @@ class MultilingualTextCleaner:
             word_count = len(normalized.split())
             
             if word_count >= min_words:
-                # Vérifie si on a déjà vu cette phrase
-                if normalized not in seen_phrases:
+                # Vérifie si on a déjà vu cette phrase (Exact match OU Fuzzy match)
+                is_duplicate = False
+                
+                # Check exact
+                if normalized in seen_phrases:
+                    is_duplicate = True
+                else:
+                    # Check fuzzy
+                    for seen in seen_phrases:
+                        if self._is_similar(seen, normalized, threshold=0.9):
+                            is_duplicate = True
+                            break
+                            
+                if not is_duplicate:
                     seen_phrases.add(normalized)
                     unique_sentences.append(sentence)
                 else:
@@ -157,15 +170,19 @@ class MultilingualTextCleaner:
             }
         
         if language not in self.FILLERS:
+            # Même si pas de dictionnaire fillers, on fait le nettoyage basique
+            basic_clean = self._remove_extra_chars(text)
             return {
                 'original': text,
-                'cleaned': text,
+                'cleaned': basic_clean,
                 'fillers_removed': 0,
-                'compression_ratio': 1.0,
+                'compression_ratio': len(basic_clean)/len(text) if len(text) > 0 else 1.0,
                 'tokens_saved_estimate': 0
             }
         
-        cleaned = text
+        # Etape 0: Normalisation caractères (ex: "trèèès" -> "très")
+        # Important de le faire AVANT les regex fillers
+        cleaned = self._remove_extra_chars(text)
         fillers_count = 0
         
         # Applique chaque pattern de fillers

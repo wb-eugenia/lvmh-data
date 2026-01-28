@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1769634188.7985287,
+  "payload": {
+    "id": "CA_056",
+    "original_text": "Mr. Taylor, 38, professional golfer PGA Tour, first time client exceptional potential. Looking for travel pieces lifestyle professional golf circuit. Budget 16K very flexible. Travels constantly tournaments worldwide, on road 40 weeks year. Needs durable elegant functional pieces. Passionate about golf obviously, also fitness training, follows strict athlete regimen. Wife former model now sports agent represents athletes. Planning start golf academy youth after retiring few years. Vegan athlete diet performance. No allergies. Mentioned major tournament wins significant, brand partnerships several companies, good visibility potential. Wife birthday coming May gift opportunity. Anniversary August annually. Excellent new client segment professional athletes. Very active social media 500K followers lifestyle golf content. Follow up immediately after purchase maintain relationship. Invite VIP events sports-related. Asked about durability testing pieces travel wear tear important. Interested innovation materials technology lightweight durable. Could be brand ambassador if relationship develops well ongoing purchases likely.",
+    "processed_text": "Mr. Taylor, 38, professional golfer PGA Tour, first time client exceptional potential. Looking for travel pieces lifestyle professional golf circuit. Budget 16K very flexible. Travels constantly tournaments worldwide, on road 40 weeks year. Needs durable elegant functional pieces. Passionate about golf obviously, also fitness training, follows strict athlete regimen. Wife former model now sports agent represents athletes. Planning start golf academy youth after retiring few years. Vegan athlete diet performance. No allergies. Mentioned major tournament wins significant, brand partnerships several companies, good visibility potential. Wife birthday coming May gift opportunity. Anniversary August annually. Excellent new client segment professional athletes. Very active social media 500K followers lifestyle golf content. Follow up immediately after purchase maintain relationship. Invite VIP events sports-related. Asked about durability testing pieces travel wear tear important. Interested innovation materials technology lightweight durable. Could be brand ambassador if relationship develops well ongoing purchases likely.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:03:08.798023",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit mentions of health, family conflicts, religion, political opinions or sexual orientation. It primarily discusses professional and lifestyle information.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "fitness",
+        "shopping_with_spouse",
+        "travel_frequent",
+        "vegan",
+        "golf",
+        "professional_athlete"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "15k-20k",
+      "budget_amount": null,
+      "client_status": "Prospect",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific profession 'professional golfer PGA Tour' -> professional_athlete. Shopping with wife -> shopping_with_spouse. Budget of 16K indicates high spending potential.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 41330.64532279968,
+    "error": null,
+    "from_cache": false
+  }
+}

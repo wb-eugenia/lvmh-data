@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633865.1366436,
+  "payload": {
+    "id": "CA_060",
+    "original_text": "Sr. Ortiz, 55 años, empresario construcción, cliente regular. Compra regalos esposa cumpleaños 50 celebración grande familia. Budget 13K. Esposa decoradora interiores proyectos lujo, ama diseño arte. Celebración fiesta sorpresa 100 invitados casa. Viajan frecuente Italia Francia inspiración diseño. Ella estilo elegante sofisticado, prefiere beige cognac hardware dorado. Colecciona muebles diseño mid-century. Pescetariana ella. Cumpleaños abril próximo. Tres hijos: dos hijas casadas, hijo soltero arquitecto. Esposa mencionó siempre quiso piezas especiales únicas. Cliente muy fiel, compra regular ocasiones. Llamar marzo confirmar piezas antes fiesta. Preguntó posibilidad personalización mensaje amor grabado. Excelente cliente apreciado.",
+    "processed_text": "Sr. Ortiz, 55 años, empresario construcción, cliente regular. Compra regalos esposa cumpleaños 50 celebración grande familia. Budget 13K. Esposa decoradora interiores proyectos lujo, ama diseño arte. Celebración fiesta sorpresa 100 invitados casa. Viajan frecuente Italia Francia inspiración diseño. Ella estilo elegante sofisticado, prefiere beige cognac hardware dorado. Colecciona muebles diseño mid-century. Pescetariana ella. Cumpleaños abril próximo. Tres hijos: dos hijas casadas, hijo soltero arquitecto. Esposa mencionó siempre quiso piezas especiales únicas. Cliente muy fiel, compra regular ocasiones. Llamar marzo confirmar piezas antes fiesta. Preguntó posibilidad personalización mensaje amor grabado. Excelente cliente apreciado.",
+    "language": "ES",
+    "timestamp": "2026-01-28T21:57:45.136250",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (92 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Il s'agit principalement de détails sur le client et ses préférences personnelles et professionnelles.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 13000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.26726722717285156,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 9701.75290107727,
+    "error": null,
+    "from_cache": false
+  }
+}

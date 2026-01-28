@@ -1,0 +1,71 @@
+{
+  "_cached_at": 1769633952.0802245,
+  "payload": {
+    "id": "CA_024",
+    "original_text": "Signora e Signor Ferrara, coppia 42-45 anni, clienti VIP 2017. Acquisto multiplo collezione primavera e regali famiglia. Budget combinato 22K molto flessibile. Lei avvocato societario Milano, lui imprenditore immobiliare. Entrambi appassionati tennis, membri Tennis Club Milano, competono tornei amatoriali. Collezionano fotografia vintage italiana, casa piena opere Ghirri Basilico. Viaggiano lusso frequente, prossimi viaggi New York poi safari Tanzania estate. Lei eleganza moderna sofisticata, preferisce nero cognac rosé gold. Lui stile classico senza tempo, marrone navy argento. Entrambi pescetariani per eventi boutique. Lui intolleranza lattosio importante. Due figli: figlia 18 studia economia Bocconi potenziale cliente futura, figlio 15 passione calcio. Anniversario matrimonio settembre ogni anno shopping rituale. Eccellenti clienti lifetime value, riferito numerosi amici. Richiamare marzo anteprima esclusiva privata. Interessati personalizzazione monogrammi pezzi speciali.",
+    "processed_text": "Signora e Signor Ferrara, coppia 42-45 anni, clienti VIP 2017. Acquisto multiplo collezione primavera e regali famiglia. Budget combinato 22K molto flessibile. Lei avvocato societario Milano, lui imprenditore immobiliare. Entrambi appassionati tennis, membri Tennis Club Milano, competono tornei amatoriali. Collezionano fotografia vintage italiana, casa piena opere Ghirri Basilico. Viaggiano lusso frequente, prossimi viaggi New York poi safari Tanzania estate. Lei eleganza moderna sofisticata, preferisce nero cognac rosé gold. Lui stile classico senza tempo, marrone navy argento. Entrambi pescetariani per eventi boutique. Lui intolleranza lattosio importante. Due figli: figlia 18 studia economia Bocconi potenziale cliente futura, figlio 15 passione calcio. Anniversario matrimonio settembre ogni anno shopping rituale. Eccellenti clienti lifetime value, riferito numerosi amici. Richiamare marzo anteprima esclusiva privata. Interessati personalizzazione monogrammi pezzi speciali.",
+    "language": "IT",
+    "timestamp": "2026-01-28T21:59:12.079753",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informations fournies ne concernent pas de données sensibles au sens du RGPD. Elles sont principalement liées à la situation socio-professionnelle, les préférences personnelles et les habitudes d'achat.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "travel_frequent",
+        "tennis",
+        "gift_for_child",
+        "real_estate",
+        "legal_corporate",
+        "art_collector",
+        "shopping_with_spouse",
+        "pescatarian"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "22K",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "child"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Professioni specifiche 'avvocato societario' e 'imprenditore immobiliare' -> legal_corporate e real_estate. Shopping con il coniuge -> shopping_with_spouse. Due figli -> gift_for_child. Intolleranza al lattosio importante -> lactose_intolerance con severità severa.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 25818.02988052368,
+    "error": null,
+    "from_cache": false
+  }
+}

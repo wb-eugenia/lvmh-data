@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634262.0410173,
+  "payload": {
+    "id": "CA_079",
+    "original_text": "Sra. Romero, 37 años, arquitecta proyectos sostenibles, cliente ocasional. Compra regalo hermana boda próximo mes. Budget 5K. Hermana diseñadora gráfica freelance estilo creativo moderno. Practica yoga escalada deportes aventura. Cuero negro cognac rosé gold. Hermana vegana valores fuertes. Boda abril Barcelona playa. Cliente satisfecha servicio. Mencionó proyecto grande edificio sostenible premio arquitectura posible, futuras compras probable éxito. Marido ingeniero también potencial. Llamar verano.",
+    "processed_text": "Sra. Romero, 37 años, arquitecta proyectos sostenibles, cliente ocasional. Compra regalo hermana boda próximo mes. Budget 5K. Hermana diseñadora gráfica freelance estilo creativo moderno. Practica yoga escalada deportes aventura. Cuero negro cognac rosé gold. Hermana vegana valores fuertes. Boda abril Barcelona playa. Cliente satisfecha servicio. Mencionó proyecto grande edificio sostenible premio arquitectura posible, futuras compras probable éxito. Marido ingeniero también potencial. Llamar verano.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:04:22.040628",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (63 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, ou l'orientation sexuelle. Les informations personnelles sont généralement non sensibles pour le contexte d'un client.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 5000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.20122528076171875,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 31865.81516265869,
+    "error": null,
+    "from_cache": false
+  }
+}

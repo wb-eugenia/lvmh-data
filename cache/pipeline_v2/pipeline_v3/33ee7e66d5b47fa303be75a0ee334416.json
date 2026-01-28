@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634068.9301782,
+  "payload": {
+    "id": "CA_071",
+    "original_text": "M. Lambert, 48 ans, producteur cinéma films auteur, client occasionnel. Cherche cadeaux équipe film primé festival Cannes. Budget 12K pour 6 personnes. Film sélection officielle mai grande opportunité. Équipe réalisatrice acteurs producteurs. Veut pièces mémorables élégantes variées goûts. Cuirs couleurs classiques noir cognac navy. Réalisatrice végane, acteur principal pescetarien. Festival mai donc urgent confirmer. Client connecté milieu cinéma art, beaucoup contacts potentiels. Mentionné si film succès, budget futurs projets beaucoup plus important. Rappeler avril coordonner livraison Cannes possible. Opportunité visibilité festival tapis rouge.",
+    "processed_text": "M. Lambert, 48 ans, producteur cinéma films auteur, client occasionnel. Cherche cadeaux équipe film primé festival Cannes. Budget 12K pour 6 personnes. Film sélection officielle mai grande opportunité. Équipe réalisatrice acteurs producteurs. Veut pièces mémorables élégantes variées goûts. Cuirs couleurs classiques noir cognac navy. Réalisatrice végane, acteur principal pescetarien. Festival mai donc urgent confirmer. Client connecté milieu cinéma art, beaucoup contacts potentiels. Mentionné si film succès, budget futurs projets beaucoup plus important. Rappeler avril coordonner livraison Cannes possible. Opportunité visibilité festival tapis rouge.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:01:08.929710",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (83 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles définies (santé mentale, maladies graves, divorce contentieux, croyances religieuses, opinions politiques ou orientation sexuelle). Il s'agit principalement de détails sur un client et ses préférences pour des cadeaux.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 12000,
+      "client_status": "occasional",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.354766845703125,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 48,
+      "gender": "male"
+    },
+    "processing_time_ms": 9407.478094100952,
+    "error": null,
+    "from_cache": false
+  }
+}

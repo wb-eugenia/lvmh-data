@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1769634105.7270858,
+  "payload": {
+    "id": "CA_012",
+    "original_text": "Sra. Martínez y madre juntas, clientas ocasionales. Sra. 42 años abogada, madre 68 años jubilada profesora universidad. Buscan regalos múltiples: madre busca bolso hija, hija busca regalo madre y marido. Presupuesto combinado 14K aproximadamente. Madre estilo clásico elegante, colecciona libros raros primera edición, frecuenta subastas. Hija estilo profesional sofisticado, práctica tenis club local, viaja frecuente trabajo Buenos Aires Madrid. Madre prefiere cuero cognac burdeos, hija negro navy. Marido hija arquitecto pasión vela, compete regatas verano. Madre vegetariana, hija pescetariana para eventos. Hija alergia níquel importante hardware. Mencionaron aniversario boda hija junio cada año, madre cumpleaños octubre. Familia unida, potencial compras multi-generacional excelente. Llamar abril presentar colección verano privada. Invitar madre eventos culturales boutique aprecia arte.",
+    "processed_text": "Sra. Martínez y madre juntas, clientas ocasionales. Sra. 42 años abogada, madre 68 años jubilada profesora universidad. Buscan regalos múltiples: madre busca bolso hija, hija busca regalo madre y marido. Presupuesto combinado 14K aproximadamente. Madre estilo clásico elegante, colecciona libros raros primera edición, frecuenta subastas. Hija estilo profesional sofisticado, práctica tenis club local, viaja frecuente trabajo Buenos Aires Madrid. Madre prefiere cuero cognac burdeos, hija negro navy. Marido hija arquitecto pasión vela, compete regatas verano. Madre vegetariana, hija pescetariana para eventos. Hija alergia níquel importante hardware. Mencionaron aniversario boda hija junio cada año, madre cumpleaños octubre. Familia unida, potencial compras multi-generacional excelente. Llamar abril presentar colección verano privada. Invitar madre eventos culturales boutique aprecia arte.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:01:45.726508",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Standard complexity, safe for local LLM"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations mentionnées sont essentiellement des détails sur les préférences de style, les allergies et les habitudes d'achat.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "gift_for_spouse",
+        "shopping_with_spouse",
+        "gift_for_child",
+        "leather_goods",
+        "gift_for_parent",
+        "ready_to_wear",
+        "travel_luggage",
+        "shoes",
+        "small_leather",
+        "jewelry",
+        "shopping_with_parent",
+        "fragrance"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": null,
+      "client_status": "occasional",
+      "allergies": [
+        "nickel_allergy"
+      ],
+      "allergy_severity": "medium",
+      "dietary": [
+        "vegetarian",
+        "pescetarian"
+      ],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse",
+          "parent"
+        ],
+        "gift_for": [
+          "parent",
+          "child",
+          "spouse"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier2",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Mención de profesiones, productos, presupuesto, alergias y preferencias de estilo y dieta. También se mencionan eventos y aniversarios importantes.",
+      "model_name": "llama-3.1-8b-instant",
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 46209.05327796936,
+    "error": null,
+    "from_cache": false
+  }
+}

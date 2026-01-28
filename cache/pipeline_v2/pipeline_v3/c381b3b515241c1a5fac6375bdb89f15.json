@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634101.2452848,
+  "payload": {
+    "id": "CA_013",
+    "original_text": "M. Lefevre, 70 ans, retraité ancien ambassadeur, client fidèle depuis 2012. Achat cadeau petite-fille 25 ans nouveau travail cabinet consulting. Budget 2500€. Petite-fille style jeune moderne, voyage beaucoup professionnellement. Cuir noir pratique élégant. Client toujours satisfait, jamais problème. Petite-fille végétarienne. Parti content. Rappeler novembre cadeaux Noël famille comme chaque année.",
+    "processed_text": "M. Lefevre, 70 ans, retraité ancien ambassadeur, client fidèle depuis 2012. Achat cadeau petite-fille 25 ans nouveau travail cabinet consulting. Budget 2500€. Petite-fille style jeune moderne, voyage beaucoup professionnellement. Cuir noir pratique élégant. Client toujours satisfait, jamais problème. Petite-fille végétarienne. Parti content. Rappeler novembre cadeaux Noël famille comme chaque année.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:01:41.244838",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (50 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant des catégories sensibles telles que la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations mentionnées sont généralement considérées comme non-sensibles pour le cadre RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "50K+",
+      "budget_amount": 250000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.1926422119140625,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 70,
+      "gender": "male"
+    },
+    "processing_time_ms": 41721.60267829895,
+    "error": null,
+    "from_cache": false
+  }
+}

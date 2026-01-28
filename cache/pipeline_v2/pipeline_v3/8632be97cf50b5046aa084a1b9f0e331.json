@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1769633950.4051468,
+  "payload": {
+    "id": "CA_005",
+    "original_text": "Mrs. Thompson with husband, both early 50s, excellent VIP clients since 2017. She's looking for new handbag collection spring, he wants briefcase. Combined budget around 18K very flexible. She's art gallery owner, he's cardiothoracic surgeon. Both travel extensively, just returned from Maldives, planning safari Kenya in June. She loves contemporary art, collects emerging artists, attends Art Basel and Frieze regularly. He plays golf twice weekly, member of Wentworth. She prefers rose gold hardware, soft leather tones beige cognac. He wants practical functional pieces, dark colors. Both vegan diet important note for boutique lunches. Severe nut allergy for her critical for events. Daughter studying at Oxford, graduation gift opportunity May. Anniversary in September every year, always shops here. Excellent lifetime value, referred three friends already. Follow up March for private showing new collection.",
+    "processed_text": "Mrs. Thompson with husband, both early 50s, excellent VIP clients since 2017. She's looking for new handbag collection spring, he wants briefcase. Combined budget around 18K very flexible. She's art gallery owner, he's cardiothoracic surgeon. Both travel extensively, just returned from Maldives, planning safari Kenya in June. She loves contemporary art, collects emerging artists, attends Art Basel and Frieze regularly. He plays golf twice weekly, member of Wentworth. She prefers rose gold hardware, soft leather tones beige cognac. He wants practical functional pieces, dark colors. Both vegan diet important note for boutique lunches. Severe nut allergy for her critical for events. Daughter studying at Oxford, graduation gift opportunity May. Anniversary in September every year, always shops here. Excellent lifetime value, referred three friends already. Follow up March for private showing new collection.",
+    "language": "EN",
+    "timestamp": "2026-01-28T21:59:10.404591",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical",
+        "allergies_materials"
+      ],
+      "sensitive_spans": [],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "The text contains sensitive information about a severe nut allergy and family details that could be considered personal data under the GDPR. These should be handled with care and stored securely.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "golf",
+        "travel_frequent",
+        "vegan",
+        "jet_setter",
+        "medical_specialist",
+        "gift_for_child",
+        "graduation_gift",
+        "art_collector",
+        "shopping_with_spouse"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "15k-20k",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "child"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession includes 'art gallery owner' and 'cardiothoracic surgeon' -> tags for both. Shopping with husband -> shopping_with_spouse. Gift for daughter graduating -> gift_for_child + graduation_gift. Vegan diet noted -> vegan tag. Severe nut allergy mentioned.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 24140.999794006348,
+    "error": null,
+    "from_cache": false
+  }
+}

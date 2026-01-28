@@ -1,0 +1,57 @@
+{
+  "_cached_at": 1769634230.532966,
+  "payload": {
+    "id": "CA_097",
+    "original_text": "Mrs. Cooper, 46, surgeon orthopedic hospital private practice, regular client since 2018. Shopping for professional wardrobe update promotion department head. Budget 11K. Style professional elegant appropriate medical setting. Passionate about marathon running training Boston Marathon. Travels medical conferences presentations international. Collects medical history artifacts curiosity professional. Prefers classic timeless pieces black navy burgundy. Vegan lifestyle choice events. Latex allergy occupational important. Mentioned daughter studying medicine follows career, son engineering university. Husband architect also potential client. Anniversary September annually. Good client consistent purchases, medical network extensive colleagues referred. Follow up April spring collection. Interested quality craftsmanship durability investment pieces professional use.",
+    "processed_text": "Mrs. Cooper, 46, surgeon orthopedic hospital private practice, regular client since 2018. Shopping for professional wardrobe update promotion department head. Budget 11K. Style professional elegant appropriate medical setting. Passionate about marathon running training Boston Marathon. Travels medical conferences presentations international. Collects medical history artifacts curiosity professional. Prefers classic timeless pieces black navy burgundy. Vegan lifestyle choice events. Latex allergy occupational important. Mentioned daughter studying medicine follows career, son engineering university. Husband architect also potential client. Anniversary September annually. Good client consistent purchases, medical network extensive colleagues referred. Follow up April spring collection. Interested quality craftsmanship durability investment pieces professional use.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:03:50.532571",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (100 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit or implicit data related to health, family conflicts, religion, political opinions, or sexual orientation. It primarily contains information about a client's professional and personal preferences.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "jewelry"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 11000,
+      "client_status": "regular",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7999999999999999,
+      "processing_time_ms": 0.2281665802001953,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 37455.08885383606,
+    "error": null,
+    "from_cache": false
+  }
+}

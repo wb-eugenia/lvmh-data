@@ -1,0 +1,66 @@
+{
+  "_cached_at": 1769634030.8359125,
+  "payload": {
+    "id": "CA_029",
+    "original_text": "Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen.",
+    "processed_text": "Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen.",
+    "language": "DE",
+    "timestamp": "2026-01-28T22:00:30.835420",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, l'orientation sexuelle. Les informations personnelles sont généralement liées à un profil client et non à des données sensibles au sens du RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "sustainable_values",
+        "tech_enthusiast",
+        "wedding_gift",
+        "entrepreneur_tech",
+        "shopping_with_spouse"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "25K+",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific profession 'tech entrepreneur' -> entrepreneur_tech. Shopping with partner -> shopping_with_spouse. Planning a wedding -> wedding_gift. Interest in sustainability -> sustainable_values.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 34270.69067955017,
+    "error": null,
+    "from_cache": false
+  }
+}

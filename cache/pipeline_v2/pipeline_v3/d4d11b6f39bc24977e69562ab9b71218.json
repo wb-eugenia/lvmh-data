@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1769634101.3832083,
+  "payload": {
+    "id": "CA_090",
+    "original_text": "Sra. Vargas y esposo, 43-45 años, clientes excelentes nuevos alto potencial. Ella empresaria tech startup unicornio exit reciente, él arquitecto proyectos sostenibles. Buscan renovación completa accesorios lujo después éxito financiero. Presupuesto muy generoso 22K+ flexible. Ella estilo moderno profesional tech, aprecia innovación calidad. Él arquitecto sostenible minimalista funcional. Ambos pasión diseño arquitectura, coleccionan muebles diseño escandinavo. Viajan constantemente conferencias tech ferias diseño. Ella practica running maratones, él ciclismo montaña. Ambos veganos éticos fuertes valores sostenibilidad eventos. Sin alergias. Planean boda otoño después años relación, oportunidad regalos invitados. Excelente nuevo segmento clientela joven rica tech consciencia ambiental. Muy activos redes sociales ella 150K seguidores tech entrepreneurship. Follow-up semanal relación construir. Invitar eventos VIP especialmente innovación sostenibilidad relacionados. Muy interesados transparencia materiales origen ético, preguntaron detallado cadena suministro condiciones trabajadores. Podrían ser defensores línea lujo sostenible si desarrolla. Prioridad máxima relación cuidar potencial alto largo plazo.",
+    "processed_text": "Sra. Vargas y esposo, 43-45 años, clientes excelentes nuevos alto potencial. Ella empresaria tech startup unicornio exit reciente, él arquitecto proyectos sostenibles. Buscan renovación completa accesorios lujo después éxito financiero. Presupuesto muy generoso 22K+ flexible. Ella estilo moderno profesional tech, aprecia innovación calidad. Él arquitecto sostenible minimalista funcional. Ambos pasión diseño arquitectura, coleccionan muebles diseño escandinavo. Viajan constantemente conferencias tech ferias diseño. Ella practica running maratones, él ciclismo montaña. Ambos veganos éticos fuertes valores sostenibilidad eventos. Sin alergias. Planean boda otoño después años relación, oportunidad regalos invitados. Excelente nuevo segmento clientela joven rica tech consciencia ambiental. Muy activos redes sociales ella 150K seguidores tech entrepreneurship. Follow-up semanal relación construir. Invitar eventos VIP especialmente innovación sostenibilidad relacionados. Muy interesados transparencia materiales origen ético, preguntaron detallado cadena suministro condiciones trabajadores. Podrían ser defensores línea lujo sostenible si desarrolla. Prioridad máxima relación cuidar potencial alto largo plazo.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:01:41.382707",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Il s'agit principalement de détails sur le client et ses préférences.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "tech_enthusiast",
+        "sustainable_values",
+        "shopping_with_spouse",
+        "travel_frequent",
+        "vegan",
+        "entrepreneur_tech",
+        "architect"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "22K+",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific profession 'empresaria tech startup unicornio' -> entrepreneur_tech. 'Arquitecto proyectos sostenibles' -> architect. Shopping with spouse indicated. No allergies mentioned.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 41862.88285255432,
+    "error": null,
+    "from_cache": false
+  }
+}

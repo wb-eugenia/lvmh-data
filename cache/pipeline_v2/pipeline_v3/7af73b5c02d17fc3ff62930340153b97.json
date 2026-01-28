@@ -1,0 +1,71 @@
+{
+  "_cached_at": 1769633934.8430305,
+  "payload": {
+    "id": "CA_023",
+    "original_text": "Herr Fischer, 44 Jahre, Investmentbanker Frankfurt, regelmäßiger Kunde seit 2019. Kauft Geschenke Ehefrau Geburtstag April. Budget 7-8K. Ehefrau Innenarchitektin, liebt Design Bauhaus mid-century. Sie praktiziert Pilates täglich, Mitglied exklusives Studio. Reisen oft kulturelle Städte, nächste Reise Kopenhagen Design Week geplant. Sie bevorzugt minimalistische Ästhetik, beige grau schwarz. Pescetarier beide für Events. Keine Allergien. Zwei Töchter Teenager, älteste interessiert Mode könnte zukünftige Kundin. Kunde immer zufrieden Service, empfohlen Kollegen bereits. Nachfassen März Vorschau Frühjahrskollektion. Interesse Designerkooperationen limitierte Stücke.",
+    "processed_text": "Herr Fischer, 44 Jahre, Investmentbanker Frankfurt, regelmäßiger Kunde seit 2019. Kauft Geschenke Ehefrau Geburtstag April. Budget 7-8K. Ehefrau Innenarchitektin, liebt Design Bauhaus mid-century. Sie praktiziert Pilates täglich, Mitglied exklusives Studio. Reisen oft kulturelle Städte, nächste Reise Kopenhagen Design Week geplant. Sie bevorzugt minimalistische Ästhetik, beige grau schwarz. Pescetarier beide für Events. Keine Allergien. Zwei Töchter Teenager, älteste interessiert Mode könnte zukünftige Kundin. Kunde immer zufrieden Service, empfohlen Kollegen bereits. Nachfassen März Vorschau Frühjahrskollektion. Interesse Designerkooperationen limitierte Stücke.",
+    "language": "DE",
+    "timestamp": "2026-01-28T21:58:54.842600",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Standard complexity, safe for local LLM"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles telles que définies par le RGPD. Il s'agit principalement de données commerciales et personnelles non classées comme sensibles.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "travel_luggage",
+        "leather_goods",
+        "shoes",
+        "gift_for_spouse",
+        "ready_to_wear",
+        "shopping_with_spouse"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": null,
+      "client_status": "regular",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [
+        "pescetarian"
+      ],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "spouse"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier2",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Mention explicite de profession, produit, régime et relations.",
+      "model_name": "llama-3.1-8b-instant",
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 8586.611986160278,
+    "error": null,
+    "from_cache": false
+  }
+}

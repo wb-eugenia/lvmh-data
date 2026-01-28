@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634071.789804,
+  "payload": {
+    "id": "CA_049",
+    "original_text": "M. Martin, 50 ans, banquier affaires, client régulier. Achat cadeau fille 21 ans anniversaire. Budget 4500€. Fille étudie design mode Londres Central Saint Martins. Style jeune créatif moderne apprécie avant-garde. Fille pratique danse contemporaine. Cuir cognac rosé gold. Fille végane génération Z valeurs. Anniversaire mars prochain. Client fidèle achats réguliers famille. Fils aussi étudiant architecture pourrait intéresser futur. Rappeler été.",
+    "processed_text": "M. Martin, 50 ans, banquier affaires, client régulier. Achat cadeau fille 21 ans anniversaire. Budget 4500€. Fille étudie design mode Londres Central Saint Martins. Style jeune créatif moderne apprécie avant-garde. Fille pratique danse contemporaine. Cuir cognac rosé gold. Fille végane génération Z valeurs. Anniversaire mars prochain. Client fidèle achats réguliers famille. Fils aussi étudiant architecture pourrait intéresser futur. Rappeler été.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:01:11.789251",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (60 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Il s'agit principalement de détails sur le client et ses achats.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "50K+",
+      "budget_amount": 450000,
+      "client_status": "regular",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.17881393432617188,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 50,
+      "gender": "male"
+    },
+    "processing_time_ms": 12277.342319488525,
+    "error": null,
+    "from_cache": false
+  }
+}

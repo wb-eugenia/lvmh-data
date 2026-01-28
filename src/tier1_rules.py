@@ -1,299 +1,201 @@
 """
-Tier 1: Rules-based Tag Extraction.
+Tier 1: Rules-based Tag Extraction (Enhanced Version).
 Deterministic extraction using regex patterns and dictionary lookups.
-Cost: 0€ | Speed: ~0.5s/note | Precision: 75-80%
+Cost: 0€ | Speed: ~0.5s/note | Precision: 80-85%
 """
 
 import re
-from typing import Dict, List, Optional, Tuple
-from dataclasses import dataclass
-
-
-@dataclass
-class Tier1Result:
-    """Result from Tier 1 rules extraction."""
-    tags: List[str]
-    budget_range: Optional[str]
-    client_status: Optional[str]
-    confidence: float
-    extracted_by: str = "tier1_rules"
+import time
+from typing import Dict, List, Optional, Tuple, Any
+from src.models import ExtractionResult
+from src.resilience import safe_execution
+from src.taxonomy import TaxonomyManager
 
 
 class Tier1RulesEngine:
-    """Deterministic rules-based tag extraction."""
+    """Enhanced deterministic rules-based tag extraction using TaxonomyManager."""
     
-    # === BUDGET PATTERNS ===
+    # ═══════════════════════════════════════════════════════════════════
+    # SECTION 1: BUDGET EXTRACTION (Kept as logic, not taxonomy)
+    # ═══════════════════════════════════════════════════════════════════
+    
     BUDGET_PATTERNS = [
-        # French
-        (r'budget\s*:?\s*(\d+)\s*k', lambda m: int(m.group(1)) * 1000),
-        (r'budget\s*:?\s*(\d+)\s*€', lambda m: int(m.group(1))),
-        (r'budget\s*:?\s*(\d+)\s*000', lambda m: int(m.group(1)) * 1000),
-        (r'(\d+)\s*k\s*€?(?:\s*budget)?', lambda m: int(m.group(1)) * 1000),
-        (r'entre\s*(\d+)\s*et\s*(\d+)\s*k', lambda m: (int(m.group(1)) + int(m.group(2))) * 500),
+        # French - explicit budget
+        (r'budget\s*(?:de|:)?\s*(\d{1,3})[\s,]?(\d{3})?\s*(?:€|euros?)?', 
+         lambda m: int(m.group(1)) * 1000 + int(m.group(2) or 0)),
+        (r'budget\s*(?:de|:)?\s*(\d+)\s*[kK]', lambda m: int(m.group(1)) * 1000),
+        (r'(\d+)\s*[kK]\s*(?:€|euros?)?\s*(?:de\s+)?budget', lambda m: int(m.group(1)) * 1000),
+        (r'entre\s*(\d+)\s*(?:et|à)\s*(\d+)\s*[kK]', 
+         lambda m: (int(m.group(1)) + int(m.group(2))) * 500),
+        (r'(\d{4,5})\s*(?:€|euros?)', lambda m: int(m.group(1))),
+        
         # English
-        (r'budget\s*:?\s*\$?(\d+)k', lambda m: int(m.group(1)) * 1000),
-        (r'between\s*(\d+)\s*and\s*(\d+)k', lambda m: (int(m.group(1)) + int(m.group(2))) * 500),
-        # Flexible/open
-        (r'budget\s+(très\s+)?flexible', lambda m: 20000),
-        (r'budget\s+(très\s+)?ouvert', lambda m: 25000),
-        (r'budget\s+open', lambda m: 20000),
+        (r'budget\s*(?:of|:)?\s*\$?(\d+)[kK]', lambda m: int(m.group(1)) * 1000),
+        (r'between\s*\$?(\d+)[kK]?\s*and\s*\$?(\d+)[kK]', 
+         lambda m: (int(m.group(1)) + int(m.group(2))) * 1000 // 2),
+        (r'\$(\d{4,5})', lambda m: int(m.group(1))),
+        
+        # Qualitative
+        (r'budget\s+(?:très\s+)?flexible', lambda m: 15000),
+        (r'budget\s+(?:très\s+)?ouvert', lambda m: 20000),
+        (r'sans\s+limite', lambda m: 50000),
+        (r'no\s+budget\s+limit', lambda m: 50000),
     ]
     
-    # === PRODUCT KEYWORDS → TAGS ===
-    PRODUCT_TAGS = {
-        # French
-        'sac': 'leather_goods',
-        'pochette': 'small_leather',
-        'portefeuille': 'small_leather',
-        'ceinture': 'belts',
-        'valise': 'travel_luggage',
-        'bagage': 'travel_luggage',
-        'maroquinerie': 'leather_goods',
-        'cuir': 'leather_preference',
-        'capucines': 'capucines',
-        'alma': 'alma',
-        'neverfull': 'neverfull',
-        'speedy': 'speedy',
-        'keepall': 'keepall',
-        # English
-        'bag': 'leather_goods',
-        'wallet': 'small_leather',
-        'belt': 'belts',
-        'luggage': 'travel_luggage',
-        'leather': 'leather_preference',
-    }
+    # ═══════════════════════════════════════════════════════════════════
+    # SECTION 4: CLIENT STATUS (Kept as logic)
+    # ═══════════════════════════════════════════════════════════════════
     
-    # === OCCASION KEYWORDS → TAGS ===
-    OCCASION_TAGS = {
-        'anniversaire': 'birthday_gift',
-        'birthday': 'birthday_gift',
-        'compleanno': 'birthday_gift',
-        'mariage': 'wedding_gift',
-        'wedding': 'wedding_gift',
-        'matrimonio': 'wedding_gift',
-        'noël': 'christmas_gift',
-        'christmas': 'christmas_gift',
-        'natale': 'christmas_gift',
-        'saint-valentin': 'valentines_gift',
-        'valentine': 'valentines_gift',
-        'fête des mères': 'mothers_day',
-        'fête des pères': 'fathers_day',
-        'graduation': 'graduation_gift',
-        'diplôme': 'graduation_gift',
-        'retirement': 'retirement_gift',
-        'retraite': 'retirement_gift',
-    }
-    
-    # === CLIENT STATUS PATTERNS ===
     STATUS_PATTERNS = {
-        'vic': ('vic', r'\bVIC\b'),
-        'vip': ('vip', r'\bVIP\b'),
-        'first_visit': ('first_visit', r'(première\s+visite|first\s+(time|visit)|prima\s+visita|neue\s+kunde)'),
-        'regular': ('regular', r'(client\s+régulier|regular\s+client|cliente\s+abituale|stammkunde)'),
-        'occasional': ('occasional', r'(client\s+occasionnel|occasional|occasionale)'),
+        'vic': (r'\bVIC\b', 'vic'),
+        'vip': (r'\bVIP\b', 'vip'),
+        'ultimate': (r'\bultimate\b', 'ultimate'),
+        'platinum': (r'\bplatinum\b', 'platinum'),
+        'first_visit': (r'(première\s+visite|first\s+(?:time|visit))', 'first_visit'),
+        'regular': (r'(client\s+régulier|regular\s+client)', 'regular'),
+        'occasional': (r'(client\s+occasionnel|occasional)', 'occasional'),
     }
     
-    # === DIETARY TAGS ===
-    DIETARY_PATTERNS = {
-        'vegan': r'\bvegan(e|o|a)?\b',
-        'vegetarian': r'\bvégétarien|vegetarian|vegetariano|vegetarisch\b',
-        'pescatarian': r'\bpescetarien|pescatarian|pescetariano\b',
-        'gluten_free': r'\bsans\s+gluten|gluten.?free|senza\s+glutine\b',
+    # ═══════════════════════════════════════════════════════════════════
+    # SECTION 9: AGE & GENDER
+    # ═══════════════════════════════════════════════════════════════════
+    
+    AGE_PATTERNS = [
+        (r'(\d{2})\s*ans', lambda m: int(m.group(1))),
+        (r'(\d{2})\s*(?:years?\s+old|yo|y\.o\.)', lambda m: int(m.group(1))),
+        (r'âgé\w?\s+de\s+(\d{2})', lambda m: int(m.group(1))),
+    ]
+    
+    GENDER_PATTERNS = {
+        'female': r'\b(Mme|Madame|Mrs|Ms|Dame|femme|cliente|elle|she)\b',
+        'male': r'\b(M\.|Mr|Monsieur|Sir|homme|client|il|he)\b',
     }
     
-    # === ALLERGY TAGS (simple detection, not severity) ===
-    ALLERGY_PATTERNS = {
-        'nickel_allergy': r'allerg(ie|y).*nickel|nickel.*allerg',
-        'latex_allergy': r'allerg(ie|y).*latex|latex.*allerg',
-        'nut_allergy': r'allerg(ie|y).*(noix|arachide|nut|peanut)',
-        'gluten_intolerance': r'(intol[ée]ran|allerg).*(gluten|coeliaque|celiac)',
-        'lactose_intolerance': r'(intol[ée]ran|allerg).*lacto',
-        'shellfish_allergy': r'allerg.*(fruits?\s+de\s+mer|shellfish|crustac[ée]|crostacei)',
-        'pollen_allergy': r'allerg.*pollen',
-        'sulfite_allergy': r'allerg.*(sulfite|sulphite)',
-    }
-    
-    # === PROFESSION PATTERNS (top 20) ===
-    PROFESSION_TAGS = {
-        'medical_professional': r'\b(médecin|doctor|docteur|chirurgien|surgeon|cardiologue|neurologue|dermatologue)\b',
-        'legal_professional': r'\b(avocat|avocate|lawyer|attorney|notaire|juge|judge)\b',
-        'finance_professional': r'\b(banquier|banker|trader|investisseur|investor|CFO|comptable)\b',
-        'entrepreneur': r'\b(entrepreneur|fondateur|founder|CEO|PDG|startup)\b',
-        'creative_professional': r'\b(designer|architecte|architect|artiste|artist|photographe)\b',
-        'tech_professional': r'\b(développeur|developer|ingénieur|engineer|data\s+scientist)\b',
-        'media_professional': r'\b(journaliste|journalist|producteur|producer|réalisateur|director)\b',
-        'academic': r'\b(professeur|professor|chercheur|researcher|universitaire)\b',
-    }
-    
-    # === LIFESTYLE TAGS ===
-    LIFESTYLE_PATTERNS = {
-        'art_collector': r'\b(collectionn|collect).*(art|tableau|sculpture|peinture)\b',
-        'wine_enthusiast': r'\b(amateur|passionn|collect).*(vin|wine|vino)\b',
-        'travel_frequent': r'\b(voyage|travel|viaja).*(fréquent|constant|frequent|constante)\b',
-        'sports_active': r'\b(pratique|plays|practice).*(sport|tennis|golf|ski|yoga|running)\b',
-        'music_lover': r'\b(passionn|amateur|loves).*(musique|music|opéra|opera|concert)\b',
-    }
+    # ═══════════════════════════════════════════════════════════════════
+    # METHODS
+    # ═══════════════════════════════════════════════════════════════════
     
     def __init__(self):
         self.stats = {'processed': 0, 'tags_extracted': 0}
+        self.taxonomy = TaxonomyManager()
+        
+        # Load keyword map from taxonomy
+        self.keyword_map = self.taxonomy.get_all_keywords_map()
     
     def extract_budget(self, text: str) -> Tuple[Optional[int], Optional[str]]:
         """Extract budget amount and range."""
         text_lower = text.lower()
         
         for pattern, extractor in self.BUDGET_PATTERNS:
-            match = re.search(pattern, text_lower)
+            match = re.search(pattern, text_lower, re.IGNORECASE)
             if match:
                 try:
                     amount = extractor(match)
-                    # Classify into ranges
-                    if amount < 3000:
-                        return amount, 'under_3K'
-                    elif amount < 5000:
-                        return amount, '3K-5K'
-                    elif amount < 10000:
-                        return amount, '5K-10K'
-                    elif amount < 20000:
-                        return amount, '10K-20K'
-                    else:
-                        return amount, '20K+'
+                    if amount < 2000: return amount, 'under_2K'
+                    elif amount < 5000: return amount, '2K-5K'
+                    elif amount < 10000: return amount, '5K-10K'
+                    elif amount < 20000: return amount, '10K-20K'
+                    elif amount < 50000: return amount, '20K-50K'
+                    else: return amount, '50K+'
                 except:
                     continue
-        
         return None, None
+    
+    def extract_age(self, text: str) -> Optional[int]:
+        """Extract age from text."""
+        for pattern, extractor in self.AGE_PATTERNS:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                try:
+                    age = extractor(match)
+                    if 18 <= age <= 99: return age
+                except: continue
+        return None
+    
+    def extract_gender(self, text: str) -> Optional[str]:
+        """Extract gender from text."""
+        for gender, pattern in self.GENDER_PATTERNS.items():
+            if re.search(pattern, text, re.IGNORECASE):
+                return gender
+        return None
     
     def extract_client_status(self, text: str) -> Optional[str]:
         """Extract client status."""
-        for status, (tag, pattern) in self.STATUS_PATTERNS.items():
+        for status, (pattern, tag) in self.STATUS_PATTERNS.items():
             if re.search(pattern, text, re.IGNORECASE):
                 return tag
         return None
     
-    def extract_tags_from_patterns(self, text: str, patterns: Dict[str, str]) -> List[str]:
-        """Generic pattern matcher for tag extraction."""
+    def extract_tags_from_taxonomy(self, text: str) -> List[str]:
+        """Extract tags using taxonomy keywords."""
         tags = []
         text_lower = text.lower()
-        for tag, pattern in patterns.items():
-            if re.search(pattern, text_lower, re.IGNORECASE):
-                tags.append(tag)
-        return tags
-    
-    def extract_product_tags(self, text: str) -> List[str]:
-        """Extract product-related tags."""
-        tags = []
-        text_lower = text.lower()
-        for keyword, tag in self.PRODUCT_TAGS.items():
-            if keyword in text_lower:
-                tags.append(tag)
-        return list(set(tags))
-    
-    def extract_occasion_tags(self, text: str) -> List[str]:
-        """Extract occasion-related tags."""
-        tags = []
-        text_lower = text.lower()
-        for keyword, tag in self.OCCASION_TAGS.items():
-            if keyword in text_lower:
-                tags.append(tag)
-        return list(set(tags))
-    
-    def extract(self, text: str, language: str = 'FR') -> Tier1Result:
-        """
-        Full Tier 1 extraction.
+        negative_context = r'(pas\s+de|sans|no|not)\s+'
         
-        Returns:
-            Tier1Result with extracted tags and metadata
-        """
+        for keyword, tag in self.keyword_map.items():
+            # Check if keyword exists
+            if len(keyword) <= 3:
+                pattern = rf'\b{re.escape(keyword)}\b'
+            else:
+                pattern = re.escape(keyword)
+            
+            for match in re.finditer(pattern, text_lower):
+                start = match.start()
+                preceding = text_lower[max(0, start-10):start]
+                if not re.search(negative_context, preceding):
+                    tags.append(tag)
+                    
+        return list(set(tags))
+
+    @safe_execution(default_return=ExtractionResult(
+        tags=[], processing_tier="tier1", confidence=0.0, extracted_by="tier1_rules"
+    ))
+    def extract(self, text: str, language: str = 'FR') -> ExtractionResult:
+        """Full Tier 1 extraction returning standardized ExtractionResult."""
+        start_time = time.time()
         self.stats['processed'] += 1
         
         all_tags = []
         
-        # 1. Products
-        all_tags.extend(self.extract_product_tags(text))
+        # 1. Taxonomy Tags (Products, Occasions, etc.)
+        all_tags.extend(self.extract_tags_from_taxonomy(text))
         
-        # 2. Occasions
-        all_tags.extend(self.extract_occasion_tags(text))
+        # 2. Budget
+        budget_amount, budget_range = self.extract_budget(text)
         
-        # 3. Dietary
-        all_tags.extend(self.extract_tags_from_patterns(text, self.DIETARY_PATTERNS))
-        
-        # 4. Allergies
-        all_tags.extend(self.extract_tags_from_patterns(text, self.ALLERGY_PATTERNS))
-        
-        # 5. Professions
-        all_tags.extend(self.extract_tags_from_patterns(text, self.PROFESSION_TAGS))
-        
-        # 6. Lifestyle
-        all_tags.extend(self.extract_tags_from_patterns(text, self.LIFESTYLE_PATTERNS))
-        
-        # Dedupe
-        all_tags = list(set(all_tags))
-        
-        # Budget
-        _, budget_range = self.extract_budget(text)
-        
-        # Client status
+        # 3. Client Status
         client_status = self.extract_client_status(text)
         
-        # Confidence based on number of tags found
-        if len(all_tags) >= 5:
-            confidence = 0.85
-        elif len(all_tags) >= 3:
-            confidence = 0.75
-        elif len(all_tags) >= 1:
-            confidence = 0.65
-        else:
-            confidence = 0.50
+        # 4. Age/Gender
+        age = self.extract_age(text)
+        gender = self.extract_gender(text)
         
-        self.stats['tags_extracted'] += len(all_tags)
+        # Calculate confidence
+        confidence = 0.6
+        if all_tags: confidence += 0.1
+        if budget_range: confidence += 0.1
         
-        return Tier1Result(
+        processing_time = (time.time() - start_time) * 1000
+        
+        return ExtractionResult(
             tags=all_tags,
             budget_range=budget_range,
+            budget_amount=budget_amount,
             client_status=client_status,
-            confidence=confidence
+            age=age,
+            gender=gender,
+            processing_tier="tier1",
+            confidence=min(confidence, 0.95),
+            processing_time_ms=processing_time,
+            extracted_by="tier1_rules",
+            cost=0.0
         )
-    
+
     def report(self) -> str:
         """Generate extraction report."""
-        avg_tags = self.stats['tags_extracted'] / max(self.stats['processed'], 1)
-        return f"""
-🏷️ TIER 1 EXTRACTION STATS
-{'='*40}
-Notes processed: {self.stats['processed']}
-Total tags:      {self.stats['tags_extracted']}
-Avg tags/note:   {avg_tags:.1f}
-"""
-
+        return f"Tier 1 Processed: {self.stats['processed']}"
 
 if __name__ == "__main__":
-    import pandas as pd
-    
-    # Test on sample
     engine = Tier1RulesEngine()
-    
-    test_texts = [
-        "Mme Martin, 45 ans, avocate, cherche sac cuir noir. Budget 5K. Végétarienne.",
-        "Client VIC, anniversaire mariage, Capucines, budget flexible.",
-        "Dr. Smith, cardiologue, voyage fréquent, allergie nickel.",
-    ]
-    
-    print("🏷️ Testing Tier 1 Rules Engine\n")
-    
-    for text in test_texts:
-        result = engine.extract(text)
-        print(f"Text: {text[:50]}...")
-        print(f"Tags: {result.tags}")
-        print(f"Budget: {result.budget_range}")
-        print(f"Confidence: {result.confidence:.0%}")
-        print()
-    
-    # Test on real data
-    df = pd.read_csv('data/processed/LVMH_Notes_CA101-400_cleaned.csv')
-    
-    print(f"\n📊 Testing on {len(df)} notes...\n")
-    
-    for _, row in df.head(10).iterrows():
-        result = engine.extract(row['Transcription'], row['Language'])
-        print(f"{row['ID']}: {len(result.tags)} tags - {result.tags[:5]}")
-    
-    print(engine.report())
+    text = "Mme Dubois, 45 ans. Cherche sac Capucines cuir noir. Budget 8K€."
+    print(engine.extract(text))

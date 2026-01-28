@@ -1,0 +1,66 @@
+{
+  "_cached_at": 1769634163.1545393,
+  "payload": {
+    "id": "CA_074",
+    "original_text": "Sr. Herrera, 35 años, jugador tenis profesional ATP top 50, primera visita excelente potencial. Busca piezas viaje circuito profesional calidad. Budget 11K flexible. Viaja constantemente torneos mundiales, próximos Roland Garros Wimbledon. Necesita funcional durable elegante. Practica obviamente tenis también fitness entrenamiento riguroso. Novia fisioterapeuta deportiva equipo. Vegano atleta rendimiento dieta. Sin alergias. Mencionó victoria reciente torneo importante, patrocinios varias marcas visibilidad buena. Cumpleaños novia junio oportunidad regalo. Aniversario relación agosto. Excelente nuevo cliente segmento atletas profesionales. Activo redes sociales 300K seguidores contenido tenis lifestyle. Follow-up inmediato mantener relación. Invitar eventos VIP deportivos. Preguntó durabilidad piezas viajes constantes importante. Interesado innovación materiales tecnología.",
+    "processed_text": "Sr. Herrera, 35 años, jugador tenis profesional ATP top 50, primera visita excelente potencial. Busca piezas viaje circuito profesional calidad. Budget 11K flexible. Viaja constantemente torneos mundiales, próximos Roland Garros Wimbledon. Necesita funcional durable elegante. Practica obviamente tenis también fitness entrenamiento riguroso. Novia fisioterapeuta deportiva equipo. Vegano atleta rendimiento dieta. Sin alergias. Mencionó victoria reciente torneo importante, patrocinios varias marcas visibilidad buena. Cumpleaños novia junio oportunidad regalo. Aniversario relación agosto. Excelente nuevo cliente segmento atletas profesionales. Activo redes sociales 300K seguidores contenido tenis lifestyle. Follow-up inmediato mantener relación. Invitar eventos VIP deportivos. Preguntó durabilidad piezas viajes constantes importante. Interesado innovación materiales tecnología.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:02:43.153963",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, ou l'orientation sexuelle. Les informations mentionnées sont liées à un joueur de tennis professionnel et peuvent être considérées comme pertinentes pour le contexte commercial.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "fitness",
+        "travel_frequent",
+        "vegan",
+        "gift_for_novia",
+        "professional_athlete"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10k-15k",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [],
+        "gift_for": [
+          "novia"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.9,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific profession 'jugador tenis profesional ATP' -> professional_athlete. Frequent travel for tournaments -> travel_frequent. Vegan athlete -> vegan. Gift for girlfriend's birthday in June -> gift_for with context.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 43884.43398475647,
+    "error": null,
+    "from_cache": false
+  }
+}

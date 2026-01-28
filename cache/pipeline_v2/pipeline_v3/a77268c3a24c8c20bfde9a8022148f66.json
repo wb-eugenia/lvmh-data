@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769634020.726448,
+  "payload": {
+    "id": "CA_028",
+    "original_text": "M. Dubois et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avocate droit affaires. Shopping ensemble cadeaux famille événement familial. Budget combiné 11K. Fille style professionnel moderne, pratique yoga, voyage souvent travail Bruxelles. Père style classique traditionnel. Fille végétarienne père pescetarien événements. Fille allergique latex important. Mentionné petit-fils père né récemment, cadeau baptême opportunité. Épouse père collectionne bijoux anciens. Excellente relation multi-générationnelle, shopping rituel régulier. Rappeler avril nouveautés.",
+    "processed_text": "M. Dubois et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avocate droit affaires. Shopping ensemble cadeaux famille événement familial. Budget combiné 11K. Fille style professionnel moderne, pratique yoga, voyage souvent travail Bruxelles. Père style classique traditionnel. Fille végétarienne père pescetarien événements. Fille allergique latex important. Mentionné petit-fils père né récemment, cadeau baptême opportunité. Épouse père collectionne bijoux anciens. Excellente relation multi-générationnelle, shopping rituel régulier. Rappeler avril nouveautés.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:00:20.725980",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Standard complexity, safe for local LLM",
+        "Escalated from Tier 2 (Safety)"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, ou l'orientation sexuelle. Il mentionne uniquement des informations non sensibles comme l'allergie au latex et les préférences alimentaires.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "vegetarian",
+        "shopping_with_parent",
+        "gift_for_family",
+        "christening",
+        "legal_corporate",
+        "pescatarian"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10k-15k",
+      "budget_amount": null,
+      "client_status": "Regular",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "parent"
+        ],
+        "gift_for": [
+          "family"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.9,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession extracted as 'ancien dirigeant telecom' and 'avocate droit affaires' -> tags for respective professions. Shopping with father and daughter for family gifts -> shopping_with_parent and gift_for_family. Mention of 'allergique latex important' indicates severe latex allergy.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 42882.58242607117,
+    "error": null,
+    "from_cache": false
+  }
+}

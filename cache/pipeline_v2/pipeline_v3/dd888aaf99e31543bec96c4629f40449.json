@@ -1,0 +1,57 @@
+{
+  "_cached_at": 1769634021.0656922,
+  "payload": {
+    "id": "CA_047",
+    "original_text": "Mr. and Mrs. Foster, 45-47, corporate clients excellent. Looking for business gifts top performers company annual awards. Budget 20K for 8 pieces. He CEO consulting firm, she CFO tech company. Want elegant professional pieces varied. Mix men women recipients different tastes. Mentioned company hosts annual gala awards December, could be ongoing partnership opportunity. Both vegan some staff dietary considerations events. Follow up quarterly for ongoing gifting needs. Excellent corporate relationship potential. Asked about bulk ordering customization options monograms company logo subtle. Very satisfied service professionalism.",
+    "processed_text": "Mr. and Mrs. Foster, 45-47, corporate clients excellent. Looking for business gifts top performers company annual awards. Budget 20K for 8 pieces. He CEO consulting firm, she CFO tech company. Want elegant professional pieces varied. Mix men women recipients different tastes. Mentioned company hosts annual gala awards December, could be ongoing partnership opportunity. Both vegan some staff dietary considerations events. Follow up quarterly for ongoing gifting needs. Excellent corporate relationship potential. Asked about bulk ordering customization options monograms company logo subtle. Very satisfied service professionalism.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:00:21.065108",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (85 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any information related to health, family conflicts, religion, political opinions or sexual orientation. It only mentions dietary preferences which are non-sensitive for business purposes.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "jewelry"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "20K-50K",
+      "budget_amount": 20000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7999999999999999,
+      "processing_time_ms": 0.4210472106933594,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 33869.885206222534,
+    "error": null,
+    "from_cache": false
+  }
+}

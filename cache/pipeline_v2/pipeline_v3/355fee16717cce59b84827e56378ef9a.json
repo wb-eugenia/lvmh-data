@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633887.5288434,
+  "payload": {
+    "id": "CA_002",
+    "original_text": "Meeting with Mr. Anderson, first time customer, investment banker from London, around 38. Looking for travel bag, travels frequently Asia for work. Budget around 5K, wants something durable and elegant. He plays tennis weekends at Queens Club, mentioned Wimbledon member. Prefers black or navy leather, classic style but modern touch. Pescatarian diet noted for store events. Wife's birthday coming up in May, possible gift opportunity. Good potential client, works in Mayfair so convenient location. Follow up end of month to show new arrivals.",
+    "processed_text": "Meeting with Mr. Anderson, first time customer, investment banker from London, around 38. Looking for travel bag, travels frequently Asia for work. Budget around 5K, wants something durable and elegant. He plays tennis weekends at Queens Club, mentioned Wimbledon member. Prefers black or navy leather, classic style but modern touch. Pescatarian diet noted for store events. Wife's birthday coming up in May, possible gift opportunity. Good potential client, works in Mayfair so convenient location. Follow up end of month to show new arrivals.",
+    "language": "EN",
+    "timestamp": "2026-01-28T21:58:07.528474",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Standard complexity, safe for local LLM"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any information related to health, family conflicts, religion, political opinions or sexual orientation. It only contains general personal and professional details that are not considered sensitive under the RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": null,
+      "budget_amount": null,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier2",
+      "confidence": 0.0,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 32091.337203979492,
+    "error": null,
+    "from_cache": false
+  }
+}

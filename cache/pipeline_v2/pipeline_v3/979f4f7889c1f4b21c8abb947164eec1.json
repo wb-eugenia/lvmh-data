@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634147.464897,
+  "payload": {
+    "id": "CA_053",
+    "original_text": "Mme Perrin, 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra.",
+    "processed_text": "Mme Perrin, 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:02:27.464567",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (28 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles définies.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "2K-5K",
+      "budget_amount": 2000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.13494491577148438,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 39,
+      "gender": "female"
+    },
+    "processing_time_ms": 38846.26030921936,
+    "error": null,
+    "from_cache": false
+  }
+}

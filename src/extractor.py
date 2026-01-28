@@ -12,8 +12,11 @@ from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from .taxonomy import Taxonomy
+from src.taxonomy import TaxonomyManager
 from .prompts import SYSTEM_PROMPT, get_extraction_prompt
+from src.models import ExtractionResult
+from src.resilience import safe_execution, retry_with_backoff
+from config.production import settings
 
 
 # Load environment variables
@@ -35,16 +38,9 @@ class TagExtractor:
     ):
         """
         Initialize the tag extractor.
-        
-        Args:
-            taxonomy_path: Path to taxonomy JSON file
-            model: OpenAI model to use
-            temperature: Sampling temperature (0 for deterministic)
-            max_retries: Max retries on API failure
-            cache_dir: Directory for caching results (None to disable)
         """
-        self.taxonomy = Taxonomy(taxonomy_path)
-        self.model = model
+        self.taxonomy = TaxonomyManager()
+        self.model = model or settings.openai_model
         self.temperature = temperature
         self.max_retries = max_retries
         self.cache_dir = Path(cache_dir) if cache_dir else None
@@ -82,210 +78,87 @@ class TagExtractor:
             with open(cache_path, 'w', encoding='utf-8') as f:
                 json.dump(result, f, ensure_ascii=False, indent=2)
     
+    @safe_execution(default_return=ExtractionResult(extracted_by="tier3_llm", processing_tier="tier3", confidence=0.0))
+    @retry_with_backoff(retries=3)
     def extract(
         self,
         transcription: str,
         language: str,
         client_id: Optional[str] = None,
         use_cache: bool = True
-    ) -> Dict[str, Any]:
+    ) -> ExtractionResult:
         """
         Extract tags and metadata from a transcription.
-        
-        Args:
-            transcription: The transcribed text
-            language: Language code (FR, EN, IT, ES, DE)
-            client_id: Optional client identifier
-            use_cache: Whether to use cached results
-            
-        Returns:
-            Dict with extracted tags and metadata
+        Returns ExtractionResult Pydantic model.
         """
-        # Check cache first
-        if use_cache and client_id:
-            cached = self._load_from_cache(client_id)
-            if cached:
-                cached['from_cache'] = True
-                return cached
+        # Cache handling should be done by pipeline, skipping internal cache for now
         
-        # Build prompt
-        user_prompt = get_extraction_prompt(
-            transcription=transcription,
-            language=language,
-            taxonomy_summary=self._taxonomy_summary,
-            client_id=client_id
-        )
+        prompt = get_extraction_prompt(transcription, language, self._taxonomy_summary)
         
-        # Call LLM with retries
-        result = None
-        last_error = None
-        
-        for attempt in range(self.max_retries):
-            try:
-                response = self.client.chat.completions.create(
-                    model=self.model,
-                    messages=[
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    temperature=self.temperature,
-                    response_format={"type": "json_object"}
-                )
-                
-                # Parse response
-                content = response.choices[0].message.content
-                result = json.loads(content)
-                break
-                
-            except json.JSONDecodeError as e:
-                last_error = f"JSON parse error: {e}"
-                time.sleep(1)
-            except Exception as e:
-                last_error = str(e)
-                time.sleep(2 ** attempt)  # Exponential backoff
-        
-        if result is None:
-            return {
-                "error": last_error,
-                "tags": [],
-                "confidence": 0.0,
-                "client_id": client_id
-            }
-        
-        # Validate tags against taxonomy
-        extracted_tags = result.get('tags', [])
-        validation = self.taxonomy.validate_tags(extracted_tags)
-        
-        # Build final result
-        final_result = {
-            "client_id": client_id,
-            "language": language,
-            "tags": validation['valid'],
-            "invalid_tags": validation['invalid'],
-            "num_tags": len(validation['valid']),
-            "confidence": result.get('confidence', 0.0),
-            "budget_range": result.get('budget_range'),
-            "client_status": result.get('client_status'),
-            "key_dates": result.get('key_dates', []),
-            "dietary": result.get('dietary', []),
-            "allergies": result.get('allergies', []),
-            "allergy_severity": result.get('allergy_severity', {}),
-            "relationship_context": result.get('relationship_context', {}),
-            "referral_potential": result.get('referral_potential'),
-            "profession": result.get('profession'),
-            "mentioned_persons": result.get('mentioned_persons', []),
-            "follow_up_action": result.get('follow_up_action'),
-            "reasoning": result.get('reasoning'),
-            "from_cache": False
-        }
-        
-        # Cache the result
-        if client_id:
-            self._save_to_cache(client_id, final_result)
-        
-        return final_result
-    
-    def extract_batch(
-        self,
-        data: List[Dict],
-        id_col: str = "ID",
-        text_col: str = "Transcription",
-        lang_col: str = "Language",
-        use_cache: bool = True,
-        progress_callback: Optional[callable] = None
-    ) -> List[Dict]:
-        """
-        Extract tags from multiple transcriptions.
-        
-        Args:
-            data: List of dicts with transcription data
-            id_col: Column name for client ID
-            text_col: Column name for transcription text
-            lang_col: Column name for language
-            use_cache: Whether to use cached results
-            progress_callback: Optional callback(current, total)
-            
-        Returns:
-            List of extraction results
-        """
-        results = []
-        total = len(data)
-        
-        for i, row in enumerate(data):
-            client_id = row.get(id_col)
-            transcription = row.get(text_col)
-            language = row.get(lang_col, 'EN')
-            
-            result = self.extract(
-                transcription=transcription,
-                language=language,
-                client_id=client_id,
-                use_cache=use_cache
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=self.temperature,
+                response_format={"type": "json_object"},
+                timeout=settings.openai_timeout
             )
             
-            results.append(result)
+            result_json = json.loads(response.choices[0].message.content)
             
-            if progress_callback:
-                progress_callback(i + 1, total)
-        
-        return results
-    
+            # Build relationship tags
+            rel_tags = []
+            rel_context = result_json.get('relationship_context', {})
+            if isinstance(rel_context, dict):
+                for r in rel_context.get('shopping_with') or []:
+                    rel_tags.append(f'shopping_with_{r}')
+                for r in rel_context.get('gift_for') or []:
+                    rel_tags.append(f'gift_for_{r}')
+            
+            raw_tags = result_json.get('tags', []) + rel_tags
+            
+            # Filter/Normalize tags using Taxonomy
+            valid_tags = []
+            for tag in raw_tags:
+                # Try to normalize/validate
+                normalized = self.taxonomy.normalize_tag(tag)
+                if normalized:
+                    valid_tags.append(normalized)
+                else:
+                    # If relationship tag, keep it if it looks valid
+                    if tag.startswith('shopping_with_') or tag.startswith('gift_for_'):
+                        valid_tags.append(tag)
+                    # Else ignore invalid tag to avoid pydantic error
+            
+            return ExtractionResult(
+                tags=valid_tags,
+                budget_range=result_json.get('budget_range'),
+                client_status=result_json.get('client_status'),
+                profession=result_json.get('profession'),
+                allergies=result_json.get('allergies', []),
+                allergy_severity=result_json.get('allergy_severity') if result_json.get('allergy_severity') in ['low', 'medium', 'high'] else 'low',
+                dietary=result_json.get('dietary', []),
+                relationship_context=rel_context,
+                confidence=result_json.get('confidence', 0.9),
+                reasoning=result_json.get('reasoning'),
+                processing_tier="tier3",
+                extracted_by="tier3_llm",
+                model_name=self.model,
+                cost=0.0001
+            )
+            
+        except Exception as e:
+            raise e
+
     def get_stats(self, results: List[Dict]) -> Dict:
-        """
-        Calculate statistics from extraction results.
-        
-        Args:
-            results: List of extraction results
-            
-        Returns:
-            Dict with statistics
-        """
-        total = len(results)
-        if total == 0:
-            return {}
-        
-        # Tag statistics
-        all_tags = []
-        for r in results:
-            all_tags.extend(r.get('tags', []))
-        
-        tag_counts = {}
-        for tag in all_tags:
-            tag_counts[tag] = tag_counts.get(tag, 0) + 1
-        
-        # Category statistics
-        category_counts = {}
-        for tag in all_tags:
-            category = self.taxonomy.get_category_for_tag(tag)
-            if category:
-                category_counts[category] = category_counts.get(category, 0) + 1
-        
-        # Confidence stats
-        confidences = [r.get('confidence', 0) for r in results]
-        avg_confidence = sum(confidences) / len(confidences) if confidences else 0
-        
-        # Cache stats
-        from_cache = sum(1 for r in results if r.get('from_cache', False))
-        
-        return {
-            "total_processed": total,
-            "total_tags_extracted": len(all_tags),
-            "unique_tags_used": len(tag_counts),
-            "avg_tags_per_note": len(all_tags) / total,
-            "avg_confidence": round(avg_confidence, 3),
-            "from_cache": from_cache,
-            "top_10_tags": sorted(tag_counts.items(), key=lambda x: x[1], reverse=True)[:10],
-            "tags_by_category": category_counts
-        }
+        """Calculate statistics from extraction results."""
+        # Simplified for now as we move to centralized monitoring
+        return {"total_processed": len(results)}
 
 
 def create_extractor(**kwargs) -> TagExtractor:
     """Factory function to create a TagExtractor instance."""
     return TagExtractor(**kwargs)
-
-
-if __name__ == "__main__":
-    # Quick test
-    extractor = TagExtractor()
-    print(f"Extractor initialized with model: {extractor.model}")
-    print(f"Taxonomy: {extractor.taxonomy.num_tags} tags in {extractor.taxonomy.num_categories} categories")

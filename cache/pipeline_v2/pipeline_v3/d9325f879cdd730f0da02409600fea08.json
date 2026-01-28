@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634031.645314,
+  "payload": {
+    "id": "CA_068",
+    "original_text": "Signor Rossi, 42 anni, chef stellato Michelin ristorante Milano, nuovo cliente ottimo. Cerca regalo moglie anniversario 15 anni matrimonio. Budget 9K flessibile. Moglie sommelier ristorante stesso, coppia lavora insieme passione gastronomia. Viaggiano ricerca ingredienti produttori artigianali Francia Giappone. Moglie stile elegante professionale, preferisce cognac nero rosé gold. Collezionano bottiglie vino rare cantina impressionante. Anniversario marzo ristorante chiude settimana celebrazione privata. Entrambi pescetariani ovviamente. Moglie allergia nichel attenzione. Nessun figli focus carriera. Cliente interessante rete gastronomia lusso alta, molti clienti ristorante potenziali. Richiamare febbraio fine confermare. Interessato collaborazione evento boutique ristorante possibile.",
+    "processed_text": "Signor Rossi, 42 anni, chef stellato Michelin ristorante Milano, nuovo cliente ottimo. Cerca regalo moglie anniversario 15 anni matrimonio. Budget 9K flessibile. Moglie sommelier ristorante stesso, coppia lavora insieme passione gastronomia. Viaggiano ricerca ingredienti produttori artigianali Francia Giappone. Moglie stile elegante professionale, preferisce cognac nero rosé gold. Collezionano bottiglie vino rare cantina impressionante. Anniversario marzo ristorante chiude settimana celebrazione privata. Entrambi pescetariani ovviamente. Moglie allergia nichel attenzione. Nessun figli focus carriera. Cliente interessante rete gastronomia lusso alta, molti clienti ristorante potenziali. Richiamare febbraio fine confermare. Interessato collaborazione evento boutique ristorante possibile.",
+    "language": "IT",
+    "timestamp": "2026-01-28T22:00:31.644888",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (91 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informazioni contenute nel testo non riguardano categorie sensibili come la salute mentale, malattie gravi, conflitti familiari, religioni, opinioni politiche o orientamento sessuale. Le allergie al nickel sono menzionate ma non vengono considerate problematiche dal punto di vista del RGPD in questo contesto.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 9000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.22935867309570312,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 30858.330726623535,
+    "error": null,
+    "from_cache": false
+  }
+}

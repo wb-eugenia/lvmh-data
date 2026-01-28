@@ -1,6 +1,9 @@
 """
 Pipeline v2: Multi-Tier Orchestrator.
 Routes notes through Tier 1/2/3 based on complexity.
+- Tier 1: Rules (regex) - FREE
+- Tier 2: Ollama Qwen 2.5 7B - FREE (local)
+- Tier 3: GPT-4o-mini - $0.0001/note
 """
 
 import json
@@ -17,7 +20,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.smart_router import SmartRouter
 from src.tier1_rules import Tier1RulesEngine
-from src.tier2_nlp import Tier2NLPEngine
+from src.tier2_nlp import Tier2OllamaEngine
+from src.rgpd_ollama import RGPDOllamaFilter
 from src.extractor import TagExtractor
 from src.cache_manager import CacheManager
 from src.cost_tracker import CostTracker
@@ -27,27 +31,41 @@ class PipelineV2:
     """
     Multi-tier processing pipeline.
     
-    Tier 1: Rules-based (0€, 0.5s/note)
-    Tier 2: Local NLP (0€, 1.5s/note)
-    Tier 3: LLM Premium ($0.0001/note, 3s/note)
+    Tier 1: Rules-based (0€, ~0.01s/note)
+    Tier 2: Ollama Qwen 2.5 7B (0€, ~3s/note)
+    Tier 3: GPT-4o-mini ($0.0001/note, ~3s/note)
     """
     
     def __init__(self, use_cache: bool = True):
         self.router = SmartRouter()
         self.tier1 = Tier1RulesEngine()
-        self.tier2 = None  # Lazy load (heavy)
-        self.tier3 = None  # Lazy load (needs API key)
+        self.tier2 = None  # Lazy load
+        self.tier3 = None  # Lazy load
+        self.rgpd_filter = None # Lazy load
         self.cache = CacheManager('cache/pipeline_v2') if use_cache else None
         self.cost_tracker = CostTracker()
         self.use_cache = use_cache
         self.results = []
+        self.tier2_available = True
     
     def _init_tier2(self):
-        """Lazy load Tier 2 NLP engine."""
+        """Lazy load Tier 2 Ollama engine."""
         if self.tier2 is None:
-            self.tier2 = Tier2NLPEngine()
-            self.tier2.load_embeddings()
+            try:
+                self.tier2 = Tier2OllamaEngine()
+                self.tier2_available = True
+            except Exception as e:
+                print(f"⚠️ Tier 2 Ollama not available: {e}")
+                self.tier2_available = False
     
+    def _init_rgpd(self):
+        """Lazy load RGPD Ollama filter."""
+        if self.rgpd_filter is None:
+            try:
+                self.rgpd_filter = RGPDOllamaFilter()
+            except:
+                self.rgpd_filter = None
+
     def _init_tier3(self):
         """Lazy load Tier 3 LLM extractor."""
         if self.tier3 is None:
@@ -72,11 +90,46 @@ class PipelineV2:
                 cached['tier'] = tier
                 return cached
         
+        # RGPD Check (Local) - Run for all notes to be safe
+        self._init_rgpd()
+        rgpd_result = None
+        if self.rgpd_filter:
+            rgpd_result = self.rgpd_filter.detect(text, language)
+            if rgpd_result.contains_sensitive:
+                # If sensitive, force Tier 3 for secure handling/anonymization
+                if tier < 3:
+                    tier = 3
+                    decision.reasons.insert(0, f"RGPD Sensitive: {rgpd_result.categories_detected}")
+        
         # Process based on tier
         if tier == 1:
             result = self._process_tier1(text, language)
         elif tier == 2:
             result = self._process_tier2(text, language)
+            
+            # === SAFETY FALLBACK ===
+            # If Tier 2 detects high severity or critical issues, escalate to Tier 3
+            needs_escalation = False
+            escalation_reason = ""
+            
+            # Check allergy severity
+            if result.get('allergy_severity') == 'high':
+                needs_escalation = True
+                escalation_reason = "Tier 2 detected HIGH severity allergy"
+            
+            # Check critical VIP (if Tier 2 flagged it as 'vic' or 'ultimate')
+            if result.get('client_status') in ['vic', 'ultimate', 'platinum']:
+                # Optional: keep VIP in Tier 2 if confidence is high, but escalate for safety
+                if result.get('confidence', 0) < 0.9:
+                    needs_escalation = True
+                    escalation_reason = "Tier 2 detected VIC/Ultimate with low confidence"
+            
+            if needs_escalation:
+                print(f"⚠️ ESCALATING Note {note_id} to Tier 3: {escalation_reason}")
+                tier = 3
+                decision.reasons.append(f"Escalated: {escalation_reason}")
+                result = self._process_tier3(text, language, note_id)
+                
         else:
             result = self._process_tier3(text, language, note_id)
         
@@ -86,6 +139,11 @@ class PipelineV2:
         result['routing_reasons'] = decision.reasons
         result['routing_confidence'] = decision.confidence
         result['from_cache'] = False
+        
+        # Add RGPD info if available
+        if rgpd_result:
+            result['rgpd_sensitive'] = rgpd_result.contains_sensitive
+            result['rgpd_categories'] = rgpd_result.categories_detected
         
         # Cache result
         if self.cache:
@@ -101,21 +159,34 @@ class PipelineV2:
             'confidence': extraction.confidence,
             'budget_range': extraction.budget_range,
             'client_status': extraction.client_status,
+            'profession': extraction.profession,
+            'age': extraction.age,
+            'gender': extraction.gender,
+            'relationship_context': extraction.relationship_context,
             'extracted_by': 'tier1_rules',
             'cost': 0.0
         }
     
     def _process_tier2(self, text: str, language: str) -> Dict:
-        """Process with Tier 2 NLP engine."""
+        """Process with Tier 2 Ollama engine."""
         self._init_tier2()
+        
+        if not self.tier2_available or self.tier2 is None:
+            # Fallback to Tier 1 if Ollama not available
+            return self._process_tier1(text, language)
+        
         extraction = self.tier2.extract(text, language)
         return {
             'tags': extraction.tags,
-            'tag_scores': extraction.tag_scores,
             'confidence': extraction.confidence,
             'budget_range': extraction.budget_range,
-            'keywords': extraction.keywords,
-            'extracted_by': 'tier2_nlp',
+            'client_status': extraction.client_status,
+            'profession': extraction.profession,
+            'allergies': extraction.allergies,
+            'dietary': extraction.dietary,
+            'relationship_context': extraction.relationship_context,
+            'reasoning': extraction.reasoning,
+            'extracted_by': 'tier2_ollama',
             'cost': 0.0
         }
     
@@ -150,7 +221,9 @@ class PipelineV2:
         """Run pipeline on dataframe."""
         start_time = datetime.now()
         
-        print(f"🚀 PIPELINE V2 STARTED - {start_time.strftime('%H:%M:%S')}")
+        print(f"🚀 PIPELINE V2 MULTI-TIER - {start_time.strftime('%H:%M:%S')}")
+        print("="*60)
+        print("Tiers: Rules (0€) → Ollama Qwen 2.5 7B (0€) → GPT-4o-mini ($)")
         print("="*60)
         
         self.results = []
@@ -178,19 +251,29 @@ class PipelineV2:
         end_time = datetime.now()
         duration = (end_time - start_time).total_seconds()
         
+        # Summary stats
+        total_notes = len(df)
+        tier1_pct = tier_counts[1] / total_notes * 100
+        tier2_pct = tier_counts[2] / total_notes * 100
+        tier3_pct = tier_counts[3] / total_notes * 100
+        savings = (tier_counts[1] + tier_counts[2]) / total_notes * 100
+        
         # Generate report
         print("\n" + "="*60)
         print("📊 PIPELINE V2 COMPLETE")
         print("="*60)
-        print(f"Notes processed: {len(df)}")
-        print(f"Duration: {duration:.1f}s ({duration/len(df):.2f}s/note)")
+        print(f"Notes processed: {total_notes}")
+        print(f"Duration: {duration:.1f}s ({duration/total_notes:.2f}s/note)")
+        
         print(f"\n🔀 TIER DISTRIBUTION:")
-        print(f"  Tier 1 (Rules): {tier_counts[1]} ({tier_counts[1]/len(df)*100:.1f}%)")
-        print(f"  Tier 2 (NLP):   {tier_counts[2]} ({tier_counts[2]/len(df)*100:.1f}%)")
-        print(f"  Tier 3 (LLM):   {tier_counts[3]} ({tier_counts[3]/len(df)*100:.1f}%)")
-        print(f"\n💰 COST:")
-        print(f"  Total: ${total_cost:.4f}")
-        print(f"  Savings vs all-LLM: ${(len(df) * 0.0001 - total_cost):.4f} ({(1 - total_cost/(len(df)*0.0001))*100:.0f}%)")
+        print(f"  Tier 1 (Rules):  {tier_counts[1]:>4} ({tier1_pct:>5.1f}%) - 0€")
+        print(f"  Tier 2 (Ollama): {tier_counts[2]:>4} ({tier2_pct:>5.1f}%) - 0€")
+        print(f"  Tier 3 (GPT):    {tier_counts[3]:>4} ({tier3_pct:>5.1f}%) - ${tier_counts[3] * 0.0001:.4f}")
+        
+        print(f"\n💰 COST SAVINGS:")
+        print(f"  Total API cost: ${total_cost:.4f}")
+        print(f"  All-LLM cost:   ${total_notes * 0.0001:.4f}")
+        print(f"  Savings:        ${(total_notes * 0.0001 - total_cost):.4f} ({savings:.0f}%)")
         
         if self.cache:
             print(self.cache.report())
@@ -212,10 +295,14 @@ class PipelineV2:
                 )
         
         # Export formats
-        base = f'{output_dir}/pipeline_v2_results'
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M')
+        base = f'{output_dir}/pipeline_v2_{timestamp}'
         df_export.to_excel(f'{base}.xlsx', index=False)
         df_export.to_csv(f'{base}.csv', index=False)
         df.to_json(f'{base}.json', orient='records', indent=2, force_ascii=False)
+        
+        # Also save latest
+        df_export.to_excel(f'{output_dir}/pipeline_v2_latest.xlsx', index=False)
         
         print(f"\n✅ Exported to {base}.[xlsx|csv|json]")
         
@@ -223,9 +310,21 @@ class PipelineV2:
 
 
 if __name__ == "__main__":
-    # Test on Wave 2 data
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Run Pipeline V2 Multi-Tier')
+    parser.add_argument('-n', '--notes', type=int, default=None,
+                       help='Number of notes to process (default: all)')
+    parser.add_argument('--no-cache', action='store_true',
+                       help='Disable caching')
+    args = parser.parse_args()
+    
+    # Load Wave 2 cleaned data
     df = pd.read_csv('data/processed/LVMH_Notes_CA101-400_cleaned.csv')
     
-    pipeline = PipelineV2(use_cache=True)
-    results = pipeline.run(df.head(20))  # Test on 20 first
+    if args.notes:
+        df = df.head(args.notes)
+    
+    pipeline = PipelineV2(use_cache=not args.no_cache)
+    results = pipeline.run(df)
     pipeline.export()

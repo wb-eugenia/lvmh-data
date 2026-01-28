@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634166.1416063,
+  "payload": {
+    "id": "CA_055",
+    "original_text": "Sra. Jiménez, 42 años, directora recursos humanos multinacional, cliente ocasional. Compra regalos retiros ejecutivos empresa programa liderazgo. Budget 10K para 5 ejecutivos. Retiro wellness resort lujo Marbella próximo mes. Quiere piezas elegantes profesionales memorables. Mix géneros edades 35-55. Empresa valores sostenibilidad importante. Cuero negro cognac navy. Ejecutivos dietas variadas varios vegetarianos veganos. Follow-up trimestral retiros regulares empresa. Excelente oportunidad corporate continua. Preguntó personalización logo empresa sutil. Muy satisfecha atención profesional.",
+    "processed_text": "Sra. Jiménez, 42 años, directora recursos humanos multinacional, cliente ocasional. Compra regalos retiros ejecutivos empresa programa liderazgo. Budget 10K para 5 ejecutivos. Retiro wellness resort lujo Marbella próximo mes. Quiere piezas elegantes profesionales memorables. Mix géneros edades 35-55. Empresa valores sostenibilidad importante. Cuero negro cognac navy. Ejecutivos dietas variadas varios vegetarianos veganos. Follow-up trimestral retiros regulares empresa. Excelente oportunidad corporate continua. Preguntó personalización logo empresa sutil. Muy satisfecha atención profesional.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:02:46.140798",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (70 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, l'orientation sexuelle. Les informations sur l'allergie alimentaire (veganisme et végétarisme) sont mentionnées mais ne sont pas considérées comme des données sensibles pour le RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 10000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.4017353057861328,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 32408.942699432373,
+    "error": null,
+    "from_cache": false
+  }
+}

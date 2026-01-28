@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1769633959.3152454,
+  "payload": {
+    "id": "CA_083",
+    "original_text": "Herr und Frau Bauer, beide 48 Jahre, ausgezeichnete Kunden seit 2015. Einkauf wichtige Reise Jubiläum 20 Jahre Ehe Safari Luxus Botswana. Budget kombiniert 20K großzügig flexibel. Er Zahnarzt eigene Praxis erfolgreich, sie Apothekerin. Beide leidenschaftlich Tierfotografie Naturdokumentation, Safari Traum lange geplant. Sammeln Tierfotografie Bücher Kunstdrucke Afrika. Reise Juni drei Wochen inklusiv Viktoriafälle Kapstadt. Sie elegant natürlich Stil, bevorzugt khaki beige Safari dann schwarz elegant Kapstadt. Er funktional praktisch, olive braun Safari navy schwarz Stadt. Beide Pescetarier Events. Sie Sonnenallergie schwer Schutz wichtig Accessoires auch. Zwei Kinder Teenager, Tochter studiert Veterinärmedizin Sohn Gymnasium Biologie. Hochzeitstag Mai jedes Jahr Einkauf Tradition hier. Ausgezeichnete Kunden Lifetime Value hoch, Netzwerk medizinisch zahnärztlich Kollegen verwiesen bereits. Nachfassen April letzte Vorbereitungen Reise bestätigen. Erwähnt planen Ruhestand fünf Jahre, Reisen häufiger zukünftig ausgezeichnet Potenzial langfristig. Sehr interessiert Handwerk Qualität Haltbarkeit Investitionsstücke Reisen robust.",
+    "processed_text": "Herr und Frau Bauer, beide 48 Jahre, ausgezeichnete Kunden seit 2015. Einkauf wichtige Reise Jubiläum 20 Jahre Ehe Safari Luxus Botswana. Budget kombiniert 20K großzügig flexibel. Er Zahnarzt eigene Praxis erfolgreich, sie Apothekerin. Beide leidenschaftlich Tierfotografie Naturdokumentation, Safari Traum lange geplant. Sammeln Tierfotografie Bücher Kunstdrucke Afrika. Reise Juni drei Wochen inklusiv Viktoriafälle Kapstadt. Sie elegant natürlich Stil, bevorzugt khaki beige Safari dann schwarz elegant Kapstadt. Er funktional praktisch, olive braun Safari navy schwarz Stadt. Beide Pescetarier Events. Sie Sonnenallergie schwer Schutz wichtig Accessoires auch. Zwei Kinder Teenager, Tochter studiert Veterinärmedizin Sohn Gymnasium Biologie. Hochzeitstag Mai jedes Jahr Einkauf Tradition hier. Ausgezeichnete Kunden Lifetime Value hoch, Netzwerk medizinisch zahnärztlich Kollegen verwiesen bereits. Nachfassen April letzte Vorbereitungen Reise bestätigen. Erwähnt planen Ruhestand fünf Jahre, Reisen häufiger zukünftig ausgezeichnet Potenzial langfristig. Sehr interessiert Handwerk Qualität Haltbarkeit Investitionsstücke Reisen robust.",
+    "language": "DE",
+    "timestamp": "2026-01-28T21:59:19.314645",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Standard complexity, safe for local LLM",
+        "Escalated from Tier 2 (Safety)"
+      ],
+      "confidence": 0.8,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Il mentionne des allergies (sonnenallergie) et un régime alimentaire (pescetarier), mais ces informations ne sont pas considérées comme sensibles pour le RGPD dans ce contexte.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "travel_frequent",
+        "pharmacist",
+        "shopping_with_spouse",
+        "animal_allergy",
+        "dentist",
+        "pescatarian"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "20k",
+      "budget_amount": null,
+      "client_status": "Regular",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession extracted as 'Zahnarzt' and 'Apothekerin' -> dentist and pharmacist. Shopping with spouse for a significant anniversary trip -> shopping_with_spouse. Severe sun allergy noted -> sun_allergy with severity severe. Budget is combined and generous at 20K.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 33048.83432388306,
+    "error": null,
+    "from_cache": false
+  }
+}

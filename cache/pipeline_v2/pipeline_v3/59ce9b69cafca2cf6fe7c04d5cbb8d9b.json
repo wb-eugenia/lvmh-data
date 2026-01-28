@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1769634082.134209,
+  "payload": {
+    "id": "CA_070",
+    "original_text": "Herr und Frau Zimmermann, beide 39 Jahre, neue Kunden ausgezeichnetes Potenzial. Beide Ärzte, er Anästhesist sie Gynäkologin, eigene Praxis gemeinsam. Suchen Luxusaccessoires nach erfolgreichem Geschäftsjahr Praxiserweiterung. Budget großzügig 17K sehr flexibel. Beide leidenschaftlich Marathon Laufen, trainieren zusammen, laufen Berlin Marathon jährlich. Sammeln Laufschuhe vintage limitierte Editionen kurios. Reisen medizinische Konferenzen auch Marathon Events weltweit. Er funktional sportlich Stil, schwarz navy praktisch. Sie elegant professionell, beige grau rosé Gold. Beide Veganer ethische Gründe Events. Keine Allergien. Planen Hochzeit Herbst, keine Kinder noch Karriere Fokus. Hochzeit September Schwarzwald Familie Freunde. Exzellente junge Ärzte Netzwerk medizinisch groß, können viele verweisen. Sofort Follow-up Beziehung aufbauen. VIP Events einladen besonders Sport Wellness bezogen. Sehr interessiert Nachhaltigkeit Innovation Materialien, fragten detailliert Herstellungsprozess Arbeitsbedingungen. Könnten Fürsprecher nachhaltige Luxuslinie sein entwickelt wird. Top Priorität Kundenbeziehung sorgfältig pflegen hoher Wert langfristig.",
+    "processed_text": "Herr und Frau Zimmermann, beide 39 Jahre, neue Kunden ausgezeichnetes Potenzial. Beide Ärzte, er Anästhesist sie Gynäkologin, eigene Praxis gemeinsam. Suchen Luxusaccessoires nach erfolgreichem Geschäftsjahr Praxiserweiterung. Budget großzügig 17K sehr flexibel. Beide leidenschaftlich Marathon Laufen, trainieren zusammen, laufen Berlin Marathon jährlich. Sammeln Laufschuhe vintage limitierte Editionen kurios. Reisen medizinische Konferenzen auch Marathon Events weltweit. Er funktional sportlich Stil, schwarz navy praktisch. Sie elegant professionell, beige grau rosé Gold. Beide Veganer ethische Gründe Events. Keine Allergien. Planen Hochzeit Herbst, keine Kinder noch Karriere Fokus. Hochzeit September Schwarzwald Familie Freunde. Exzellente junge Ärzte Netzwerk medizinisch groß, können viele verweisen. Sofort Follow-up Beziehung aufbauen. VIP Events einladen besonders Sport Wellness bezogen. Sehr interessiert Nachhaltigkeit Innovation Materialien, fragten detailliert Herstellungsprozess Arbeitsbedingungen. Könnten Fürsprecher nachhaltige Luxuslinie sein entwickelt wird. Top Priorität Kundenbeziehung sorgfältig pflegen hoher Wert langfristig.",
+    "language": "DE",
+    "timestamp": "2026-01-28T22:01:22.133728",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations mentionnées sont généralement considérées comme non sensibles pour le cadre RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "sustainable_values",
+        "fitness",
+        "shopping_with_spouse",
+        "running",
+        "vegan",
+        "medical_specialist"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "17K",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Both are medical specialists -> medical_specialist. Shopping together as a couple -> shopping_with_spouse. Vegan lifestyle noted -> vegan. Passion for running and fitness -> fitness and running tags. Interest in sustainability -> sustainable_values.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 22617.47908592224,
+    "error": null,
+    "from_cache": false
+  }
+}

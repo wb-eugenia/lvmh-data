@@ -1,0 +1,66 @@
+{
+  "_cached_at": 1769634079.7143447,
+  "payload": {
+    "id": "CA_050",
+    "original_text": "Sr. y Sra. Navarro, 52-54 años, clientes excelentes desde 2015. Compra importante viaje aniversario 25 matrimonio crucero Mediterráneo mes próximo. Presupuesto combinado 18K muy flexible. Él empresario viñedos Rioja productor vino, ella sommelier reconocida restaurante estrella Michelin. Ambos pasión vino gastronomía, viajan rutas vino mundial constantemente. Coleccionan etiquetas vino raras vintage. Crucero lujo para con grupo amigos íntimos parejas similar perfil. Ella elegancia sofisticada, prefiere cognac beige hardware dorado. Él clásico funcional, negro marrón plata. Ambos pescetarianos eventos. Él alergia mariscos severa crítico eventos boutique. Tres hijos adultos: hijo mayor enólogo continúa negocio familia, hija chef París, menor sommelier formación. Familia unida negocio vino generaciones. Aniversario julio cada año ritual compras. Red extensa contactos gastronomía lujo enología, referido muchos clientes. Llamar mayo preview privada verano. Mencionaron planean evento vendimia septiembre viñedo grande, posible colaboración boutique regalos invitados VIP. Cliente prioritario lifetime value altísimo.",
+    "processed_text": "Sr. y Sra. Navarro, 52-54 años, clientes excelentes desde 2015. Compra importante viaje aniversario 25 matrimonio crucero Mediterráneo mes próximo. Presupuesto combinado 18K muy flexible. Él empresario viñedos Rioja productor vino, ella sommelier reconocida restaurante estrella Michelin. Ambos pasión vino gastronomía, viajan rutas vino mundial constantemente. Coleccionan etiquetas vino raras vintage. Crucero lujo para con grupo amigos íntimos parejas similar perfil. Ella elegancia sofisticada, prefiere cognac beige hardware dorado. Él clásico funcional, negro marrón plata. Ambos pescetarianos eventos. Él alergia mariscos severa crítico eventos boutique. Tres hijos adultos: hijo mayor enólogo continúa negocio familia, hija chef París, menor sommelier formación. Familia unida negocio vino generaciones. Aniversario julio cada año ritual compras. Red extensa contactos gastronomía lujo enología, referido muchos clientes. Llamar mayo preview privada verano. Mencionaron planean evento vendimia septiembre viñedo grande, posible colaboración boutique regalos invitados VIP. Cliente prioritario lifetime value altísimo.",
+    "language": "ES",
+    "timestamp": "2026-01-28T22:01:19.713857",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations personnelles sont généralement liées à des préférences de consommation et ne sont pas considérées comme sensibles pour le RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "pescatarian",
+        "shopping_with_spouse",
+        "gastronome",
+        "entrepreneur_tech",
+        "wine_enthusiast"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "18K",
+      "budget_amount": null,
+      "client_status": "Regular",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific professions 'empresario viñedos' and 'sommelier' lead to tags 'entrepreneur_wine' and 'sommelier'. Shopping with spouse for anniversary trip indicates 'shopping_with_spouse'. Severe shellfish allergy noted.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 20195.282459259033,
+    "error": null,
+    "from_cache": false
+  }
+}

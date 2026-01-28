@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633861.6879432,
+  "payload": {
+    "id": "CA_022",
+    "original_text": "Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking for professional wardrobe upgrade post-fundraising. Budget 15K flexible. She's building fintech company, works between London and NYC. Passionate about sailing, weekend racer member yacht club. Collects modern art prints, follows emerging Latin American artists. Travels constantly investor meetings, next trip San Francisco then Mexico City. Vegan lifestyle choice for events. Shellfish allergy note for boutique lunches. Mentioned younger brother getting married summer, gift opportunity. Very interested sustainability, asked about supply chain transparency materials. Good social media presence tech circles 80K followers. Follow up two weeks with curated selection. Potential excellent long-term client, scaling company fast.",
+    "processed_text": "Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking for professional wardrobe upgrade post-fundraising. Budget 15K flexible. She's building fintech company, works between London and NYC. Passionate about sailing, weekend racer member yacht club. Collects modern art prints, follows emerging Latin American artists. Travels constantly investor meetings, next trip San Francisco then Mexico City. Vegan lifestyle choice for events. Shellfish allergy note for boutique lunches. Mentioned younger brother getting married summer, gift opportunity. Very interested sustainability, asked about supply chain transparency materials. Good social media presence tech circles 80K followers. Follow up two weeks with curated selection. Potential excellent long-term client, scaling company fast.",
+    "language": "EN",
+    "timestamp": "2026-01-28T21:57:41.686876",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (109 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit or implicit data related to health, family conflicts, religion, political opinions, or sexual orientation. It primarily contains information about professional and personal interests, travel habits, and lifestyle choices.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 15000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 1.3227462768554688,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 6246.849060058594,
+    "error": null,
+    "from_cache": false
+  }
+}

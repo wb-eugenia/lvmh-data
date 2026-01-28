@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633886.189343,
+  "payload": {
+    "id": "CA_021",
+    "original_text": "M. Bernard, 56 ans, chirurgien orthopédique, client occasionnel. Cherche cadeau épouse 25 ans mariage mois prochain. Budget 6K flexible. Épouse professeur piano conservatoire, passionnée musique classique opéra. Elle voyage souvent concerts Europe. Style élégant classique, préfère bordeaux navy. Épouse végétarienne pour événements. Mentionné fils étudiant médecine Strasbourg, fille architecte Lyon. Anniversaire épouse mars rappeler février. Satisfait achat précédent il y a deux ans. Bon client potentiel occasions familiales.",
+    "processed_text": "M. Bernard, 56 ans, chirurgien orthopédique, client occasionnel. Cherche cadeau épouse 25 ans mariage mois prochain. Budget 6K flexible. Épouse professeur piano conservatoire, passionnée musique classique opéra. Elle voyage souvent concerts Europe. Style élégant classique, préfère bordeaux navy. Épouse végétarienne pour événements. Mentionné fils étudiant médecine Strasbourg, fille architecte Lyon. Anniversaire épouse mars rappeler février. Satisfait achat précédent il y a deux ans. Bon client potentiel occasions familiales.",
+    "language": "FR",
+    "timestamp": "2026-01-28T21:58:06.188982",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (68 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Il s'agit principalement de détails sur le client et sa famille.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 6000,
+      "client_status": "occasional",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.16760826110839844,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 56,
+      "gender": "female"
+    },
+    "processing_time_ms": 30755.883932113647,
+    "error": null,
+    "from_cache": false
+  }
+}

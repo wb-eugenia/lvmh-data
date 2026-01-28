@@ -1,0 +1,69 @@
+{
+  "_cached_at": 1769634041.9051204,
+  "payload": {
+    "id": "CA_048",
+    "original_text": "Signora Colombo, 60 anni, collezionista arte importante, cliente VIP 2013. Acquista regalo nipote laureata economia Bocconi summa cum laude. Budget generoso 8K. Nipote 25 anni inizia lavoro consulenza Milano, serve pezzi professionali eleganti. Nonna colleziona arte moderna contemporanea, casa galleria privata. Nipote stile giovane professionale sofisticato, pratica corsa maratone. Cuoio nero cognac funzionale elegante. Nipote vegetariana eventi. Allergia nichel nipote importante. Nonna orgogliosissima nipote, menzionato altro nipote maschio studia medicina, laurea prossimo anno opportunità. Famiglia unita benestante, nonna generosa regali sempre qualità. Richiamare maggio nuova collezione estate. Cliente eccezionale lifetime value, rete sociale alto livello arte cultura.",
+    "processed_text": "Signora Colombo, 60 anni, collezionista arte importante, cliente VIP 2013. Acquista regalo nipote laureata economia Bocconi summa cum laude. Budget generoso 8K. Nipote 25 anni inizia lavoro consulenza Milano, serve pezzi professionali eleganti. Nonna colleziona arte moderna contemporanea, casa galleria privata. Nipote stile giovane professionale sofisticato, pratica corsa maratone. Cuoio nero cognac funzionale elegante. Nipote vegetariana eventi. Allergia nichel nipote importante. Nonna orgogliosissima nipote, menzionato altro nipote maschio studia medicina, laurea prossimo anno opportunità. Famiglia unita benestante, nonna generosa regali sempre qualità. Richiamare maggio nuova collezione estate. Cliente eccezionale lifetime value, rete sociale alto livello arte cultura.",
+    "language": "IT",
+    "timestamp": "2026-01-28T22:00:41.904553",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informazioni nel testo riguardano le preferenze di acquisto, la situazione familiare e i dettagli personali non classificati come dati sensibili.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "vegetarian",
+        "shopping_with_grandmother",
+        "graduation_gift",
+        "running",
+        "gift_for_granddaughter",
+        "art_collector"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "8k-10k",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "grandmother"
+        ],
+        "gift_for": [
+          "granddaughter"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.9,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Client is an 'art collector' and is purchasing a 'graduation gift' for her granddaughter. The granddaughter is 'vegetarian' and enjoys 'running'. The budget is specified as '8K'. The allergy to nickel is severe.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 35513.9639377594,
+    "error": null,
+    "from_cache": false
+  }
+}

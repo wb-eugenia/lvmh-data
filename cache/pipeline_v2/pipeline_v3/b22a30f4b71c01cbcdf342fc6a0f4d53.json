@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1769634012.1144607,
+  "payload": {
+    "id": "CA_086",
+    "original_text": "Mrs. Harrison and mother shopping together, multi-generational excellent clients. Mrs. Harrison 47 barrister QC, mother 72 retired diplomat. Combined budget 18K. Mother elegant classic timeless style, decades diplomatic service worldwide lived many countries. Collects diplomatic memorabilia, house museum personal history. Daughter modern professional sophisticated, busy court schedule. Both passionate about theater opera, season tickets Royal Opera House. Travel cultural trips, just returned India next planning Egypt. Mother prefers burgundy navy gold classic diplomatic elegance. Daughter wants versatile professional pieces rose gold black cognac. Both vegetarian events. Mother severe nut allergy critical boutique events. Mentioned mother's 75th birthday coming this year September big family celebration. Daughter's husband architect two children teenagers boarding school. Anniversary mother's late husband June memory honors annually. Excellent multi-generational lifetime value, diplomatic legal network extensive internationally referred many over years. Follow up July summer collection preview. Very interested heritage craftsmanship, mother shared stories diplomatic gifts received career appreciates quality artisanship. Top relationship maintain carefully ongoing loyalty years appreciated.",
+    "processed_text": "Mrs. Harrison and mother shopping together, multi-generational excellent clients. Mrs. Harrison 47 barrister QC, mother 72 retired diplomat. Combined budget 18K. Mother elegant classic timeless style, decades diplomatic service worldwide lived many countries. Collects diplomatic memorabilia, house museum personal history. Daughter modern professional sophisticated, busy court schedule. Both passionate about theater opera, season tickets Royal Opera House. Travel cultural trips, just returned India next planning Egypt. Mother prefers burgundy navy gold classic diplomatic elegance. Daughter wants versatile professional pieces rose gold black cognac. Both vegetarian events. Mother severe nut allergy critical boutique events. Mentioned mother's 75th birthday coming this year September big family celebration. Daughter's husband architect two children teenagers boarding school. Anniversary mother's late husband June memory honors annually. Excellent multi-generational lifetime value, diplomatic legal network extensive internationally referred many over years. Follow up July summer collection preview. Very interested heritage craftsmanship, mother shared stories diplomatic gifts received career appreciates quality artisanship. Top relationship maintain carefully ongoing loyalty years appreciated.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:00:12.113985",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "RGPD Sensitive: ['health_physical', 'family_conflict']",
+        "Simple pattern, short text (161 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical",
+        "family_conflict"
+      ],
+      "sensitive_spans": [],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "The text contains sensitive information about a severe nut allergy and mentions a potential family conflict during the mother's 75th birthday celebration. These details are considered personal data under Article 9 of the GDPR.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "theater_lover",
+        "shopping_with_parent",
+        "vegetarian",
+        "art_lover",
+        "gift_for_parent",
+        "legal_corporate",
+        "diplomat"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "18K",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "parent"
+        ],
+        "gift_for": [
+          "parent"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Mrs. Harrison is a barrister QC -> legal_corporate. Shopping with her mother -> shopping_with_parent. Gift for mother's 75th birthday -> gift_for_parent. Both are passionate about theater -> theater_lover. Mother has a severe nut allergy -> nut_allergy with severity severe.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 38096.92430496216,
+    "error": null,
+    "from_cache": false
+  }
+}

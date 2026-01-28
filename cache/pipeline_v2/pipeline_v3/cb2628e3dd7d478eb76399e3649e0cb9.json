@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769634212.3232145,
+  "payload": {
+    "id": "CA_018",
+    "original_text": "Mr. Davis, 41, professional tennis player recently retired, new client high potential. Looking for lifestyle pieces post-sports career, starting coaching academy. Budget around 12K initial. Wants travel bags, small leather goods, professional pieces for coaching. Still plays tennis daily, member multiple clubs, attends Wimbledon every year. Passionate about wine, taking sommelier courses, planning vineyard visit Bordeaux. Wife's birthday coming March, married to physiotherapist. Follows plant-based diet athlete habits. No allergies. Mentioned starting foundation for young athletes, could be partnership opportunity boutique. Good media presence former professional, 300K followers social media. Interested in durability quality pieces for active lifestyle. Follow up in month with personalized selection. Invite to sports-related VIP events.",
+    "processed_text": "Mr. Davis, 41, professional tennis player recently retired, new client high potential. Looking for lifestyle pieces post-sports career, starting coaching academy. Budget around 12K initial. Wants travel bags, small leather goods, professional pieces for coaching. Still plays tennis daily, member multiple clubs, attends Wimbledon every year. Passionate about wine, taking sommelier courses, planning vineyard visit Bordeaux. Wife's birthday coming March, married to physiotherapist. Follows plant-based diet athlete habits. No allergies. Mentioned starting foundation for young athletes, could be partnership opportunity boutique. Good media presence former professional, 300K followers social media. Interested in durability quality pieces for active lifestyle. Follow up in month with personalized selection. Invite to sports-related VIP events.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:03:32.322704",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit or implicit data related to health, family conflicts, religion, political opinions, or sexual orientation. It primarily contains information about a client's professional background, lifestyle preferences, and business interests.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "gift_for_spouse",
+        "shopping_with_spouse",
+        "philanthropist",
+        "birthday_gift",
+        "travel_frequent",
+        "wine_enthusiast",
+        "professional_athlete"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10k-15k",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "spouse"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific profession 'professional tennis player' -> professional_athlete. Shopping with wife -> shopping_with_spouse. Gift for wife's birthday -> gift_for_spouse + birthday_gift. Interest in wine and philanthropy noted.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 49166.605949401855,
+    "error": null,
+    "from_cache": false
+  }
+}

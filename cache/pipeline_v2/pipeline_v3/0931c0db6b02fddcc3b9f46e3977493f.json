@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1769633953.9594302,
+  "payload": {
+    "id": "CA_043",
+    "original_text": "Signor Galli, 36 anni, giornalista moda Vogue Italia, primo cliente alto potenziale. Cerca pezzi shooting editoriali e uso personale. Budget 9K. Stile avanguardia creativo, apprezza innovazione design. Viaggia settimane moda tutte città mondiali. Colleziona libri moda vintage rarità. Pratica yoga meditazione routine quotidiana. Vegano stretto eventi. Senza allergie. Menzionato contatti industry vasti, possibile visibilità editoriale boutique. Fidanzato fotografo moda anche influenza. Ottimo potenziale networking moda. Follow-up immediato fidelizzazione. Invitare eventi VIP lanci. Interessato collaborazioni editoriali shooting location boutique.",
+    "processed_text": "Signor Galli, 36 anni, giornalista moda Vogue Italia, primo cliente alto potenziale. Cerca pezzi shooting editoriali e uso personale. Budget 9K. Stile avanguardia creativo, apprezza innovazione design. Viaggia settimane moda tutte città mondiali. Colleziona libri moda vintage rarità. Pratica yoga meditazione routine quotidiana. Vegano stretto eventi. Senza allergie. Menzionato contatti industry vasti, possibile visibilità editoriale boutique. Fidanzato fotografo moda anche influenza. Ottimo potenziale networking moda. Follow-up immediato fidelizzazione. Invitare eventi VIP lanci. Interessato collaborazioni editoriali shooting location boutique.",
+    "language": "IT",
+    "timestamp": "2026-01-28T21:59:13.958640",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informazioni nel testo riguardano principalmente le preferenze professionali e personali di Signor Galli, ma non contengono dati sensibili come malattie, croyances religieuses, opinions politiques o orientation sexuelle.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "journalist",
+        "yoga",
+        "travel_frequent",
+        "vegan",
+        "fashion_industry"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5k-10k",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.9,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Specific profession 'giornalista moda Vogue Italia' -> journalist in fashion industry. Budget of 9K indicates high potential. Lifestyle tags include vegan and yoga, along with frequent travel for fashion weeks.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 27693.785905838013,
+    "error": null,
+    "from_cache": false
+  }
+}

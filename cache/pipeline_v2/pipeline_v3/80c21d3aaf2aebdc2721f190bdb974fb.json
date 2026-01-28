@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633899.2123778,
+  "payload": {
+    "id": "CA_081",
+    "original_text": "Mme Leclerc, 41 ans, avocate environnement, nouvelle cliente potentiel. Cherche pièces professionnelles travail ONG international. Budget 8K. Style sobre élégant, valeurs durabilité importantes. Voyage missions Afrique Asie régulièrement. Pratique yoga méditation, retraites wellness occasionnels Bali. Cuir cognac beige matériaux éthiques préférence. Végane stricte convictions événements. Aucune allergie. Mari photographe documentaire voyagent ensemble missions. Très intéressée transparence chaîne approvisionnement, posa beaucoup questions éthique. Pourrait devenir cliente ambassadrice luxe durable si développé. Rappeler avril. Réseau ONG environnement étendu.",
+    "processed_text": "Mme Leclerc, 41 ans, avocate environnement, nouvelle cliente potentiel. Cherche pièces professionnelles travail ONG international. Budget 8K. Style sobre élégant, valeurs durabilité importantes. Voyage missions Afrique Asie régulièrement. Pratique yoga méditation, retraites wellness occasionnels Bali. Cuir cognac beige matériaux éthiques préférence. Végane stricte convictions événements. Aucune allergie. Mari photographe documentaire voyagent ensemble missions. Très intéressée transparence chaîne approvisionnement, posa beaucoup questions éthique. Pourrait devenir cliente ambassadrice luxe durable si développé. Rappeler avril. Réseau ONG environnement étendu.",
+    "language": "FR",
+    "timestamp": "2026-01-28T21:58:19.212001",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (76 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, ou l'orientation sexuelle. Les informations sont principalement professionnelles et personnelles non sensibles.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 8000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.20313262939453125,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 41,
+      "gender": "female"
+    },
+    "processing_time_ms": 34074.650287628174,
+    "error": null,
+    "from_cache": false
+  }
+}

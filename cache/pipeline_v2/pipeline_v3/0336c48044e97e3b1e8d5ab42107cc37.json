@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769634234.0874753,
+  "payload": {
+    "id": "CA_058",
+    "original_text": "M. et Mme Garnier, couple 50-52 ans, clients VIP depuis 2014. Achat important voyage anniversaire 25 ans mariage safari luxe Kenya Tanzanie puis Seychelles. Budget combiné 22K très généreux. Lui cardiologue chef service hôpital universitaire, elle psychologue cabinet privé réputé. Tous deux passionnés photographie animalière, safari rêve longtemps planifié. Collectionnent photos grands photographes nature Salgado Arthus-Bertrand. Voyage trois semaines juillet incluant repos plage après safari. Elle élégance naturelle discrète, préfère beige cognac cuirs souples. Lui style sobre fonctionnel, kaki olive pour safari noir élégant plage. Tous deux végétariens événements. Elle allergie soleil sévère protection important même accessoires. Trois enfants adultes, fils médecin suit père, deux filles architectes. Anniversaire mariage juin chaque année tradition shopping ici. Excellents clients lifetime value élevé, réseau médical professionnel important, référé nombreux collègues. Rappeler mai preview exclusive été confirmer pièces voyage. Mentionné planifient retraite dans 5 ans, voyages fréquents futurs, excellent potentiel long terme. Très intéressés artisanat qualité durabilité pièces investissement.",
+    "processed_text": "M. et Mme Garnier, couple 50-52 ans, clients VIP depuis 2014. Achat important voyage anniversaire 25 ans mariage safari luxe Kenya Tanzanie puis Seychelles. Budget combiné 22K très généreux. Lui cardiologue chef service hôpital universitaire, elle psychologue cabinet privé réputé. Tous deux passionnés photographie animalière, safari rêve longtemps planifié. Collectionnent photos grands photographes nature Salgado Arthus-Bertrand. Voyage trois semaines juillet incluant repos plage après safari. Elle élégance naturelle discrète, préfère beige cognac cuirs souples. Lui style sobre fonctionnel, kaki olive pour safari noir élégant plage. Tous deux végétariens événements. Elle allergie soleil sévère protection important même accessoires. Trois enfants adultes, fils médecin suit père, deux filles architectes. Anniversaire mariage juin chaque année tradition shopping ici. Excellents clients lifetime value élevé, réseau médical professionnel important, référé nombreux collègues. Rappeler mai preview exclusive été confirmer pièces voyage. Mentionné planifient retraite dans 5 ans, voyages fréquents futurs, excellent potentiel long terme. Très intéressés artisanat qualité durabilité pièces investissement.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:03:54.086963",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles définies (health_mental, health_physical, family_conflict, religion, political, sexual_orientation). Il s'agit principalement de données personnelles non sensibles comme l'âge, le statut professionnel et les préférences d'achat.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "shopping_with_spouse",
+        "art_collector",
+        "travel_frequent",
+        "gift_for_child",
+        "vegetarian",
+        "medical_specialist",
+        "gift_for_children"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "22K",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "child"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession 'cardiologue' -> medical_specialist, 'psychologue' -> psychologist. Shopping as a couple -> shopping_with_spouse. Gift for their children -> gift_for_children. Frequent travelers and vegetarians noted. Severe sun allergy mentioned.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 44864.25757408142,
+    "error": null,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769633884.8342354,
+  "payload": {
+    "id": "CA_100",
+    "original_text": "Sir Richard and Lady Catherine, both 68, extraordinary VIP clients since 2005. Shopping for grandchildren university graduations and family milestone gifts. Combined budget exceptionally generous 35K+. He retired senior diplomat knighted service, she retired headmistress prestigious boarding school. Both distinguished accomplished careers public service education. Passionate about history literature, enormous library home accumulated decades. Travel extensively cultural historical tours, National Trust members visit stately homes regularly. Collect antique maps rare books, house treasure trove family heirlooms generations. Four grandchildren graduating this year: two Oxford, one Cambridge, one Edinburgh, ages 21-23. Looking graduation gifts also silver wedding anniversary gift son daughter-in-law July. She impeccable elegant timeless style decades refined taste, burgundy navy gold heritage pieces. He distinguished gentleman classic traditional, wants quality pieces pass down generations black brown silver. Both vegetarian decades events lifestyle choice. She severe peanut allergy critical boutique events decades known. Three children successful: son barrister QC, daughter museum director, youngest son academic Oxford professor. Family distinguished accomplished traditions heritage important values instilled generations. Anniversary late spring tradition shopping here two decades never missed. Extraordinary clients lifetime value exceptional highest possible tier, aristocratic diplomatic academic network Britain internationally unparalleled, referred countless distinguished clients years relationships decades. Follow up monthly graduations anniversary coordinate everything meticulously. Very interested heritage provenance craftsmanship, appreciate history stories pieces, several commissioned bespoke items years family crests meaningful. Planning major family reunion estate Scotland autumn all children grandchildren, could be multiple gifting opportunities. Treasure clients relationship two decades impeccable maintained highest standards, appreciation loyalty extraordinary beyond measure. Absolute pinnacle priority relationship continue utmost excellence service maintain precious carefully ongoing years come. Perfect finale dataset exceptional distinguished clients.",
+    "processed_text": "Sir Richard and Lady Catherine, both 68, extraordinary VIP clients since 2005. Shopping for grandchildren university graduations and family milestone gifts. Combined budget exceptionally generous 35K+. He retired senior diplomat knighted service, she retired headmistress prestigious boarding school. Both distinguished accomplished careers public service education. Passionate about history literature, enormous library home accumulated decades. Travel extensively cultural historical tours, National Trust members visit stately homes regularly. Collect antique maps rare books, house treasure trove family heirlooms generations. Four grandchildren graduating this year: two Oxford, one Cambridge, one Edinburgh, ages 21-23. Looking graduation gifts also silver wedding anniversary gift son daughter-in-law July. She impeccable elegant timeless style decades refined taste, burgundy navy gold heritage pieces. He distinguished gentleman classic traditional, wants quality pieces pass down generations black brown silver. Both vegetarian decades events lifestyle choice. She severe peanut allergy critical boutique events decades known. Three children successful: son barrister QC, daughter museum director, youngest son academic Oxford professor. Family distinguished accomplished traditions heritage important values instilled generations. Anniversary late spring tradition shopping here two decades never missed. Extraordinary clients lifetime value exceptional highest possible tier, aristocratic diplomatic academic network Britain internationally unparalleled, referred countless distinguished clients years relationships decades. Follow up monthly graduations anniversary coordinate everything meticulously. Very interested heritage provenance craftsmanship, appreciate history stories pieces, several commissioned bespoke items years family crests meaningful. Planning major family reunion estate Scotland autumn all children grandchildren, could be multiple gifting opportunities. Treasure clients relationship two decades impeccable maintained highest standards, appreciation loyalty extraordinary beyond measure. Absolute pinnacle priority relationship continue utmost excellence service maintain precious carefully ongoing years come. Perfect finale dataset exceptional distinguished clients.",
+    "language": "EN",
+    "timestamp": "2026-01-28T21:58:04.833702",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit or implicit references to health, family conflicts, religion, political opinions, or sexual orientation. It primarily discusses the clients' professional backgrounds, interests, and family details in a general manner.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "gift_for_grandchild",
+        "shopping_with_grandchildren",
+        "wedding_gift",
+        "diplomat",
+        "vegetarian",
+        "nut_allergy",
+        "graduation_gift"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "35K+",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "grandchildren"
+        ],
+        "gift_for": [
+          "grandchild"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession includes 'senior diplomat' and 'retired headmistress' -> tags for diplomat and educator. Shopping for grandchildren's graduations -> shopping_with_grandchildren and gift_for_grandchild. Severe peanut allergy noted.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 29391.594171524048,
+    "error": null,
+    "from_cache": false
+  }
+}

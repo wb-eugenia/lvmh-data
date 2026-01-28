@@ -1,30 +1,48 @@
 """
-Cache Manager for Wave 2 Pipeline.
-Provides caching for expensive operations (cleaning, RGPD, extraction).
+Smart Cache Manager for Pipeline.
+Features:
+- Normalization (lowercase, strip, punctuation removal)
+- TTL (Time To Live) support
+- JSON persistence
 """
 
 import hashlib
 import json
-import os
+import logging
+import re
+import time
 from pathlib import Path
 from typing import Any, Dict, Optional
-import logging
 
+from config.production import settings
 
 logger = logging.getLogger(__name__)
 
-
 class CacheManager:
-    """Manages caching for pipeline operations."""
+    """
+    Manages caching for pipeline operations.
+    """
     
-    def __init__(self, cache_dir: str = 'cache/wave2'):
-        self.cache_dir = Path(cache_dir)
+    def __init__(self, cache_dir: str = None):
+        self.cache_dir = Path(cache_dir or settings.cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.stats = {'hits': 0, 'misses': 0}
+        self.ttl = settings.cache_ttl_seconds
+    
+    def _normalize_text(self, text: str) -> str:
+        """Normalize text for consistent hashing."""
+        # Lowercase
+        text = text.lower()
+        # Remove punctuation
+        text = re.sub(r'[^\w\s]', '', text)
+        # Collapse whitespace
+        text = re.sub(r'\s+', ' ', text).strip()
+        return text
     
     def get_cache_key(self, text: str, step: str) -> str:
-        """Generate MD5 hash of text + step name."""
-        content = f"{step}:{text}"
+        """Generate MD5 hash of normalized text + step name."""
+        normalized = self._normalize_text(text)
+        content = f"{step}:{normalized}"
         return hashlib.md5(content.encode('utf-8')).hexdigest()
     
     def _get_path(self, cache_key: str, step: str) -> Path:
@@ -34,25 +52,41 @@ class CacheManager:
         return step_dir / f"{cache_key}.json"
     
     def load(self, cache_key: str, step: str) -> Optional[Dict]:
-        """Load from cache if exists."""
+        """Load from cache if exists and not expired."""
         path = self._get_path(cache_key, step)
         if path.exists():
             try:
                 with open(path, 'r', encoding='utf-8') as f:
-                    self.stats['hits'] += 1
-                    return json.load(f)
+                    data = json.load(f)
+                    
+                # Check TTL
+                cached_time = data.get('_cached_at', 0)
+                if time.time() - cached_time > self.ttl:
+                    return None
+                
+                self.stats['hits'] += 1
+                return data['payload']
+                
             except (json.JSONDecodeError, IOError) as e:
                 logger.warning(f"Cache read error for {cache_key}: {e}")
                 return None
+        
         self.stats['misses'] += 1
         return None
     
     def save(self, cache_key: str, step: str, result: Dict) -> None:
-        """Save to cache."""
+        """Save to cache with timestamp."""
         path = self._get_path(cache_key, step)
+        
+        # Wrap payload with metadata
+        data = {
+            '_cached_at': time.time(),
+            'payload': result
+        }
+        
         try:
             with open(path, 'w', encoding='utf-8') as f:
-                json.dump(result, f, ensure_ascii=False, indent=2)
+                json.dump(data, f, ensure_ascii=False, indent=2)
         except IOError as e:
             logger.warning(f"Cache write error for {cache_key}: {e}")
     
@@ -66,34 +100,18 @@ class CacheManager:
             return cached
         
         result = compute_fn()
-        result['from_cache'] = False
-        self.save(cache_key, step, result)
-        return result
-    
-    def clear(self, step: Optional[str] = None) -> int:
-        """Clear cache. If step is specified, only clear that step."""
-        count = 0
-        if step:
-            step_dir = self.cache_dir / step
-            if step_dir.exists():
-                for f in step_dir.glob('*.json'):
-                    f.unlink()
-                    count += 1
+        # Ensure result is dict (if Pydantic model, convert)
+        if hasattr(result, 'dict'):
+            payload = result.dict()
         else:
-            for step_dir in self.cache_dir.iterdir():
-                if step_dir.is_dir():
-                    for f in step_dir.glob('*.json'):
-                        f.unlink()
-                        count += 1
-        return count
+            payload = result
+            
+        payload['from_cache'] = False
+        self.save(cache_key, step, payload)
+        return payload
     
     def report(self) -> str:
         """Generate cache stats report."""
         total = self.stats['hits'] + self.stats['misses']
         hit_rate = self.stats['hits'] / total * 100 if total > 0 else 0
-        return f"""
-📦 CACHE STATS:
-Hits: {self.stats['hits']:,}
-Misses: {self.stats['misses']:,}
-Hit Rate: {hit_rate:.1f}%
-"""
+        return f"Hits: {self.stats['hits']} | Misses: {self.stats['misses']} | Rate: {hit_rate:.1f}%"

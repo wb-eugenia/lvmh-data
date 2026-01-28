@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769634189.2218254,
+  "payload": {
+    "id": "CA_017",
+    "original_text": "Signora Bianchi e marito, 58 e 62 anni, clienti VIP dal 2015. Lei cerca borse nuova stagione, lui accessori viaggio. Budget flessibile 16K discusso. Lei gallerista arte contemporanea Milano, organizza mostre artisti emergenti. Lui imprenditore moda in pensione, consulente ancora. Entrambi amano opera, abbonamento Teatro alla Scala. Viaggiano lusso frequente, prossimo viaggio Giappone aprile cerimonia sakura. Lei preferisce eleganza discreta beige cognac, colleziona sculture moderne. Lui stile classico senza tempo nero marrone. Entrambi pescetariani per eventi boutique. Lei intollerante lattosio importante. Figlia sposata architetto Londra, nipote nascerà estate regalo opportunità. Figlio direttore creativo casa moda Parigi. Famiglia eccellente rete contatti, hanno riferito molti clienti. Richiamare febbraio anteprima esclusiva primavera. Interessati collaborazioni artisti pezzi unici.",
+    "processed_text": "Signora Bianchi e marito, 58 e 62 anni, clienti VIP dal 2015. Lei cerca borse nuova stagione, lui accessori viaggio. Budget flessibile 16K discusso. Lei gallerista arte contemporanea Milano, organizza mostre artisti emergenti. Lui imprenditore moda in pensione, consulente ancora. Entrambi amano opera, abbonamento Teatro alla Scala. Viaggiano lusso frequente, prossimo viaggio Giappone aprile cerimonia sakura. Lei preferisce eleganza discreta beige cognac, colleziona sculture moderne. Lui stile classico senza tempo nero marrone. Entrambi pescetariani per eventi boutique. Lei intollerante lattosio importante. Figlia sposata architetto Londra, nipote nascerà estate regalo opportunità. Figlio direttore creativo casa moda Parigi. Famiglia eccellente rete contatti, hanno riferito molti clienti. Richiamare febbraio anteprima esclusiva primavera. Interessati collaborazioni artisti pezzi unici.",
+    "language": "IT",
+    "timestamp": "2026-01-28T22:03:09.221274",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informations dans le texte ne contiennent aucune donnée sensible selon les catégories définies.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "pescatarian",
+        "shopping_with_spouse",
+        "gift_for_child",
+        "travel_frequent",
+        "lactose_intolerance",
+        "theater_lover",
+        "art_dealer"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "16K",
+      "budget_amount": null,
+      "client_status": "VIP",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "child"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession 'gallerista arte contemporanea' -> art_dealer and 'imprenditore moda in pensione' -> entrepreneur_fashion. Shopping with husband -> shopping_with_spouse. Gift for daughter -> gift_for_child. Frequent luxury travel -> travel_frequent. Love for theater -> theater_lover. Pescetarian dietary choice -> pescatarian. Severe lactose intolerance detected.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 43319.52142715454,
+    "error": null,
+    "from_cache": false
+  }
+}

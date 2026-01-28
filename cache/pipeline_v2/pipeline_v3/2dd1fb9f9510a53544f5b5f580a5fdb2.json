@@ -1,0 +1,66 @@
+{
+  "_cached_at": 1769633960.7546585,
+  "payload": {
+    "id": "CA_062",
+    "original_text": "M. Dubois, 63 ans, collectionneur art contemporain, client VIP 2010. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. Style jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril.",
+    "processed_text": "M. Dubois, 63 ans, collectionneur art contemporain, client VIP 2010. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. Style jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril.",
+    "language": "FR",
+    "timestamp": "2026-01-28T21:59:20.754213",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information relative aux catégories sensibles telles que définies. Il s'agit principalement de détails sur un client et ses habitudes d'achat.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "travel_frequent",
+        "vegetarian",
+        "gift_for_grandchild",
+        "graduation_gift",
+        "art_collector"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5k-10k",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [],
+        "gift_for": [
+          "grandchild"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.9,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Client is a contemporary art collector -> art_collector. Purchasing a gift for granddaughter's graduation -> graduation_gift. Granddaughter is vegetarian -> vegetarian tag. Frequent travel mentioned -> travel_frequent. Budget specified as 7K -> 5k-10k.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 34496.79517745972,
+    "error": null,
+    "from_cache": false
+  }
+}

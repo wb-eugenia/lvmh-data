@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633896.1501832,
+  "payload": {
+    "id": "CA_054",
+    "original_text": "Signor e Signora De Luca, 47-49 anni, clienti fedeli 2017. Comprano regali genitori anniversario 50 anni matrimonio celebrazione grande famiglia. Budget 14K. Genitori anziani 75-77 anni, stile classico tradizionale elegante. Madre ama giardinaggio fiori, padre appassionato storia libri antichi. Celebrazione aprile villa lago Como, famiglia allargata 50 persone. Coppia stessa entrambi avvocati studio legale proprio. Viaggiano frequente lavoro Europa. Lei eleganza moderna, lui classico funzionale. Entrambi pescetariani eventi. Nessuna allergia. Due figli adolescenti studiano liceo. Famiglia molto unita, tradizioni importanti. Ottimi clienti, comprano regolare occasioni famiglia. Richiamare marzo coordinare consegna villa. Interessati possibilità personalizzazione incisione messaggio genitori speciale.",
+    "processed_text": "Signor e Signora De Luca, 47-49 anni, clienti fedeli 2017. Comprano regali genitori anniversario 50 anni matrimonio celebrazione grande famiglia. Budget 14K. Genitori anziani 75-77 anni, stile classico tradizionale elegante. Madre ama giardinaggio fiori, padre appassionato storia libri antichi. Celebrazione aprile villa lago Como, famiglia allargata 50 persone. Coppia stessa entrambi avvocati studio legale proprio. Viaggiano frequente lavoro Europa. Lei eleganza moderna, lui classico funzionale. Entrambi pescetariani eventi. Nessuna allergia. Due figli adolescenti studiano liceo. Famiglia molto unita, tradizioni importanti. Ottimi clienti, comprano regolare occasioni famiglia. Richiamare marzo coordinare consegna villa. Interessati possibilità personalizzazione incisione messaggio genitori speciale.",
+    "language": "IT",
+    "timestamp": "2026-01-28T21:58:16.149703",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (98 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informations dans le texte ne contiennent aucune donnée sensible selon les catégories RGPD définies.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "10K-20K",
+      "budget_amount": 14000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.2834796905517578,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 34461.04645729065,
+    "error": null,
+    "from_cache": false
+  }
+}

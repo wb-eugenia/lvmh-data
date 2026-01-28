@@ -1,0 +1,6 @@
+note_id,timestamp,tier_attempted,retry_count,error,note_text,metadata
+TEST_002,2026-01-28T14:48:03.214453,tier1,3,Object of type datetime is not JSON serializable,"Client VIC, allergie mortelle arachide. Cadeau femme.",{}
+TEST_001,2026-01-28T14:48:07.228692,tier1,3,Object of type datetime is not JSON serializable,Budget 5000€. Cherche sac noir.,{}
+TEST_003,2026-01-28T14:48:11.121151,tier1,3,Object of type datetime is not JSON serializable,Je cherche un cadeau pour mon mari.,{}
+TEST_004,2026-01-28T14:48:15.168041,tier1,3,Object of type datetime is not JSON serializable,Budget 5000€. Cherche sac noir.,{}
+BAD_001,2026-01-28T14:48:19.477590,tier1,3,Object of type datetime is not JSON serializable,,{}

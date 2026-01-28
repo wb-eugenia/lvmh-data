@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634065.9653044,
+  "payload": {
+    "id": "CA_031",
+    "original_text": "Mme Fontaine, 43 ans, consultante stratégie, cliente occasionnelle. Cherche cadeau sœur 40 ans manager finance. Budget 4K. Sœur adore voyages aventure, trek régulier Himalaya Patagonie. Style pratique élégant, cuir noir marron. Sœur végétarienne. Anniversaire sœur février prochain. Cliente satisfaite achats précédents. Mentionné mère 70 ans anniversaire été pourrait revenir. Rappeler avril.",
+    "processed_text": "Mme Fontaine, 43 ans, consultante stratégie, cliente occasionnelle. Cherche cadeau sœur 40 ans manager finance. Budget 4K. Sœur adore voyages aventure, trek régulier Himalaya Patagonie. Style pratique élégant, cuir noir marron. Sœur végétarienne. Anniversaire sœur février prochain. Cliente satisfaite achats précédents. Mentionné mère 70 ans anniversaire été pourrait revenir. Rappeler avril.",
+    "language": "FR",
+    "timestamp": "2026-01-28T22:01:05.964326",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (51 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information concernant la santé mentale, les maladies graves, les conflits familiaux, les croyances religieuses, les opinions politiques ou l'orientation sexuelle. Les informations sur le style de vie et les préférences sont pertinentes pour le contexte commercial.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "2K-5K",
+      "budget_amount": 4000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 1.1129379272460938,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": 43,
+      "gender": "female"
+    },
+    "processing_time_ms": 6449.447393417358,
+    "error": null,
+    "from_cache": false
+  }
+}

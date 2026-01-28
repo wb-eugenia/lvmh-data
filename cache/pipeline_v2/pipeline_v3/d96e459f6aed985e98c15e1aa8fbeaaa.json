@@ -1,0 +1,76 @@
+{
+  "_cached_at": 1769634133.7305229,
+  "payload": {
+    "id": "CA_052",
+    "original_text": "Dr. and Mrs. Montgomery, both 56, long-time VIP clients since 2012. Shopping for daughter's wedding gifts bridesmaids and family. Combined budget 25K+ very generous. He's orthopedic surgeon, she's retired former diplomat. Daughter getting married June destination wedding Tuscany. Looking for gifts 6 bridesmaids, mother of groom, special pieces family members. Daughter works UN sustainable development passionate ethics. Bridesmaids age range 28-32 varied tastes. Mother groom Italian traditional elegant. Both passionate about opera theater, season ticket holders. Travel extensively cultural trips, just back from Prague planning Vienna. She prefers classic elegant pieces rose gold burgundy cognac. He wants quality timeless pieces. Both vegetarian for events. She has severe nut allergy critical boutique events. Mentioned son studying medicine Oxford, graduation next year gift opportunity. Wedding June big family affair 200 guests. Excellent lifetime value family occasions always shop here. Follow up April final selections confirm. Very interested ethical sourcing for daughter's values, asked detailed questions supply chain workers conditions. Could be advocates sustainable luxury line. Top priority clients maintain relationship carefully.",
+    "processed_text": "Dr. and Mrs. Montgomery, both 56, long-time VIP clients since 2012. Shopping for daughter's wedding gifts bridesmaids and family. Combined budget 25K+ very generous. He's orthopedic surgeon, she's retired former diplomat. Daughter getting married June destination wedding Tuscany. Looking for gifts 6 bridesmaids, mother of groom, special pieces family members. Daughter works UN sustainable development passionate ethics. Bridesmaids age range 28-32 varied tastes. Mother groom Italian traditional elegant. Both passionate about opera theater, season ticket holders. Travel extensively cultural trips, just back from Prague planning Vienna. She prefers classic elegant pieces rose gold burgundy cognac. He wants quality timeless pieces. Both vegetarian for events. She has severe nut allergy critical boutique events. Mentioned son studying medicine Oxford, graduation next year gift opportunity. Wedding June big family affair 200 guests. Excellent lifetime value family occasions always shop here. Follow up April final selections confirm. Very interested ethical sourcing for daughter's values, asked detailed questions supply chain workers conditions. Could be advocates sustainable luxury line. Top priority clients maintain relationship carefully.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:02:13.729455",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical",
+        "allergies_materials"
+      ],
+      "sensitive_spans": [],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "The text contains a severe nut allergy, which is considered sensitive data under the GDPR. While other details are not strictly personal health information, they could be used to infer additional sensitive information.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "sustainable_values",
+        "shopping_with_spouse",
+        "gift_for_child",
+        "travel_frequent",
+        "wedding_gift",
+        "vegetarian",
+        "theater_lover",
+        "music_lover",
+        "medical_specialist",
+        "diplomat"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "25k+",
+      "budget_amount": null,
+      "client_status": "VIC",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "child"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Orthopedic surgeon and former diplomat identified as specific professions. Shopping for daughter's wedding gifts -> gift_for_child and wedding_gift. Both are music and theater lovers, and they travel frequently. Severe nut allergy noted.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 46954.1449546814,
+    "error": null,
+    "from_cache": false
+  }
+}

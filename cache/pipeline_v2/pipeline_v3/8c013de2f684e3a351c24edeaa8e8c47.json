@@ -1,0 +1,73 @@
+{
+  "_cached_at": 1769633996.5639505,
+  "payload": {
+    "id": "CA_027",
+    "original_text": "Mr. Chen, 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high potential. Looking for gifts wife and business associates. Budget 20K discussed flexible. Wife interior designer, passionate about contemporary Asian art, attends Hong Kong Art Basel. He plays golf regularly, member exclusive club Peak. They travel luxury extensively, homes Hong Kong London. Wife prefers modern elegant pieces, rose gold neutral tones. Vegan both lifestyle choice events. No allergies. Mentioned two children studying abroad UK universities, graduation gifts opportunities coming years. Anniversary in August annually. Excellent network finance luxury circles, could refer many. Follow up next week personalized selection. Invite to VIP events when in town. Asked about bespoke customization options interested.",
+    "processed_text": "Mr. Chen, 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high potential. Looking for gifts wife and business associates. Budget 20K discussed flexible. Wife interior designer, passionate about contemporary Asian art, attends Hong Kong Art Basel. He plays golf regularly, member exclusive club Peak. They travel luxury extensively, homes Hong Kong London. Wife prefers modern elegant pieces, rose gold neutral tones. Vegan both lifestyle choice events. No allergies. Mentioned two children studying abroad UK universities, graduation gifts opportunities coming years. Anniversary in August annually. Excellent network finance luxury circles, could refer many. Follow up next week personalized selection. Invite to VIP events when in town. Asked about bespoke customization options interested.",
+    "language": "EN",
+    "timestamp": "2026-01-28T21:59:56.563509",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "The text does not contain any explicit or implicit data related to health, family conflicts, religion, political opinions, or sexual orientation. It primarily contains information about a client's preferences and lifestyle.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "golf",
+        "fund_manager",
+        "travel_frequent",
+        "vegan",
+        "gift_for_business_associates",
+        "art_lover",
+        "gift_for_spouse",
+        "graduation_gift",
+        "shopping_with_spouse"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "20K",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": [
+          "spouse",
+          "business_associates"
+        ]
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Profession 'hedge fund manager' -> fund_manager. Shopping for wife and business associates -> shopping_with_spouse + gift_for_spouse + gift_for_business_associates. Interest in art and golf indicates lifestyle tags. Budget of 20K noted.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 35808.13384056091,
+    "error": null,
+    "from_cache": false
+  }
+}

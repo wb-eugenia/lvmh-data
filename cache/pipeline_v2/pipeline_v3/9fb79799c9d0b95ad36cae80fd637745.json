@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769633971.4123826,
+  "payload": {
+    "id": "CA_044",
+    "original_text": "Sra. Mendoza, 48 años, empresaria retail moda, cliente ocasional. Compra regalos equipo trabajo aniversario empresa. Budget 8K para 4 piezas. Empresa celebra 10 años. Quiere piezas elegantes clásicas variadas. Cuero negro cognac navy. Equipo mixto hombres mujeres. Mentionó eventos corporativos frecuentes, posible partnership boutique futuros regalos. Vegetariana algunos empleados eventos. Satisfecha servicio atención. Llamar septiembre siguiente aniversario. Interesada programa corporate gifts.",
+    "processed_text": "Sra. Mendoza, 48 años, empresaria retail moda, cliente ocasional. Compra regalos equipo trabajo aniversario empresa. Budget 8K para 4 piezas. Empresa celebra 10 años. Quiere piezas elegantes clásicas variadas. Cuero negro cognac navy. Equipo mixto hombres mujeres. Mentionó eventos corporativos frecuentes, posible partnership boutique futuros regalos. Vegetariana algunos empleados eventos. Satisfecha servicio atención. Llamar septiembre siguiente aniversario. Interesada programa corporate gifts.",
+    "language": "ES",
+    "timestamp": "2026-01-28T21:59:31.411987",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (61 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le texte ne contient aucune information sur des catégories sensibles telles que la santé mentale, les maladies graves, le divorce contentieux, les croyances religieuses ou politiques, ou l'orientation sexuelle. Les informations mentionnées sont liées à la profession, l'âge et les préférences alimentaires qui ne sont pas considérées comme des données sensibles pour le RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 8000,
+      "client_status": null,
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.19359588623046875,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 32248.632192611694,
+    "error": null,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "_cached_at": 1769634169.776575,
+  "payload": {
+    "id": "CA_094",
+    "original_text": "Signora Romano, 54 anni, psicologa clinica studio privato, cliente occasionale. Acquista regalo figlia laurea psicologia università Milano. Budget 6K. Figlia 25 anni inizia master clinica continua studi. Stile giovane professionale, pratica danza contemporanea hobby. Cuoio cognac nero rosé gold. Figlia vegetariana. Laurea giugno cerimonia famiglia. Madre colleziona libri psicologia prima edizione Freud Jung. Figlia fidanzata medico anche potenziale cliente futuro. Cliente soddisfatta servizio. Rete professionale psicologi medici buona. Richiamare maggio.",
+    "processed_text": "Signora Romano, 54 anni, psicologa clinica studio privato, cliente occasionale. Acquista regalo figlia laurea psicologia università Milano. Budget 6K. Figlia 25 anni inizia master clinica continua studi. Stile giovane professionale, pratica danza contemporanea hobby. Cuoio cognac nero rosé gold. Figlia vegetariana. Laurea giugno cerimonia famiglia. Madre colleziona libri psicologia prima edizione Freud Jung. Figlia fidanzata medico anche potenziale cliente futuro. Cliente soddisfatta servizio. Rete professionale psicologi medici buona. Richiamare maggio.",
+    "language": "IT",
+    "timestamp": "2026-01-28T22:02:49.776206",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Simple pattern, short text (70 tokens)"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "severity": "none",
+      "reasoning": "Le informazioni nel testo non contengono dati sensibili come malattie, croyances religieuses, opinions politiques o orientation sexuelle. Le sole informazioni personali rilevanti riguardano la professione e gli interessi della signora Romano, il che è generalmente considerato non sensibile dal punto di vista del RGPD.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "5K-10K",
+      "budget_amount": 6000,
+      "client_status": "occasional",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {},
+      "key_dates": [],
+      "processing_tier": "tier1",
+      "confidence": 0.7,
+      "processing_time_ms": 0.2117156982421875,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": null,
+      "model_name": null,
+      "cost": 0.0,
+      "age": null,
+      "gender": "female"
+    },
+    "processing_time_ms": 33898.1397151947,
+    "error": null,
+    "from_cache": false
+  }
+}

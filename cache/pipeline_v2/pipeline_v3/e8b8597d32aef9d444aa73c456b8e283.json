@@ -1,0 +1,71 @@
+{
+  "_cached_at": 1769634086.7739346,
+  "payload": {
+    "id": "CA_032",
+    "original_text": "Dr. Patel and husband, both 38, first-time clients exceptional potential. She's plastic surgeon Harley Street, he's barrister specializing corporate law. Looking for professional pieces and gifts. Budget 17K very flexible. She's passionate about wellness, practices yoga daily teacher training, attends wellness retreats quarterly Bali. He plays cricket weekends, member MCC Lords. Both collect contemporary Indian art, attend India Art Fair Delhi. Travel extensively medical conferences legal work, next trips Mumbai then Singapore. She prefers elegant professional pieces, rose gold soft leathers. He wants classic functional dark colors. Both follow Ayurvedic diet principles, vegetarian for events. She has severe peanut allergy critical for boutique events. Mentioned planning family soon, could be long-term relationship. Anniversary in November annually. Excellent network professional medical legal circles, potential many referrals. Follow up in two weeks curated selection. Invite VIP events especially cultural art-related. Very interested ethical sourcing sustainability, asked detailed questions materials.",
+    "processed_text": "Dr. Patel and husband, both 38, first-time clients exceptional potential. She's plastic surgeon Harley Street, he's barrister specializing corporate law. Looking for professional pieces and gifts. Budget 17K very flexible. She's passionate about wellness, practices yoga daily teacher training, attends wellness retreats quarterly Bali. He plays cricket weekends, member MCC Lords. Both collect contemporary Indian art, attend India Art Fair Delhi. Travel extensively medical conferences legal work, next trips Mumbai then Singapore. She prefers elegant professional pieces, rose gold soft leathers. He wants classic functional dark colors. Both follow Ayurvedic diet principles, vegetarian for events. She has severe peanut allergy critical for boutique events. Mentioned planning family soon, could be long-term relationship. Anniversary in November annually. Excellent network professional medical legal circles, potential many referrals. Follow up in two weeks curated selection. Invite VIP events especially cultural art-related. Very interested ethical sourcing sustainability, asked detailed questions materials.",
+    "language": "EN",
+    "timestamp": "2026-01-28T22:01:26.773260",
+    "routing": {
+      "tier": 3,
+      "reasons": [
+        "Complexity patterns detected (VIC, High Budget, etc.)"
+      ],
+      "confidence": 0.9,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "sensitive_spans": [],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "The text contains a severe physical health condition (peanut allergy) that is considered sensitive data under the RGPD. This information should be handled with care and stored securely.",
+      "anonymized_text": null
+    },
+    "extraction": {
+      "note_id": null,
+      "client_id": null,
+      "tags": [
+        "gift_for_self",
+        "yoga",
+        "sustainable_values",
+        "shopping_with_spouse",
+        "art_collector",
+        "vegetarian",
+        "medical_specialist",
+        "legal_corporate"
+      ],
+      "products_mentioned": [],
+      "professions": [],
+      "budget_range": "17K",
+      "budget_amount": null,
+      "client_status": "Unknown",
+      "allergies": [],
+      "allergy_severity": "low",
+      "dietary": [],
+      "relationship_context": {
+        "shopping_with": [
+          "spouse"
+        ],
+        "gift_for": []
+      },
+      "key_dates": [],
+      "processing_tier": "tier3",
+      "confidence": 0.95,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false,
+      "error": null,
+      "reasoning": "Dr. Patel is a plastic surgeon -> medical_specialist. Her husband is a barrister specializing in corporate law -> legal_corporate. Shopping together -> shopping_with_spouse. They are looking for professional pieces and gifts for themselves -> gift_for_self. Both collect contemporary Indian art -> art_collector. She practices yoga -> yoga. They follow a vegetarian diet -> vegetarian. Severe peanut allergy mentioned -> nut_allergy with severity severe.",
+      "model_name": "gpt-4o-mini",
+      "cost": 0.0001,
+      "age": null,
+      "gender": null
+    },
+    "processing_time_ms": 27252.20251083374,
+    "error": null,
+    "from_cache": false
+  }
+}
