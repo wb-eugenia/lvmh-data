@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_206",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "tech_enthusiast",
+    "gift_for_spouse"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "pollen_allergy": "important"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "consultant transformation digitale entreprises",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'consultant transformation digitale entreprises' -> entrepreneur_tech. Shopping with spouse -> shopping_with_spouse. Allergy to pollen noted as important, indicating a significant sensitivity.",
+  "from_cache": false
+}

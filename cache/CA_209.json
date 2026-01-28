@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_209",
+  "language": "ES",
+  "tags": [
+    "shopping_with_spouse",
+    "vegetarian",
+    "sustainable_values",
+    "wellness_yoga"
+  ],
+  "invalid_tags": [
+    "psychologist_clinical"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "chemical_sensitivity": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Psicóloga clínica trauma terapia EMDR",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'psicóloga clínica trauma terapia EMDR' -> psychologist_clinical. Shopping with spouse inferred from 'pareja terapeuta'. Severe allergy to strong perfumes indicated by 'alergia perfumes fuertes importante'. Vegetarian lifestyle noted.",
+  "from_cache": false
+}

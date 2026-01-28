@@ -1,0 +1,15 @@
+{
+  "ID": "CA_108",
+  "original_text": "Signora e Signor Greco, coppia 45-48 anni, clienti VIP dal 2017 per così dire. Shopping importante collezione primavera più regali multipli. Budget combinato 18K molto flessibile. per esempio Lei scrittrice romanzi bestseller, lui editore casa editrice importante. Entrambi mondo letterario, partecipano Salone Libro Torino Francoforte ogni anno. Viaggiano costante presentazioni libri tour letterari internazionali. Lei ama classicismo raffinato beige camel, colleziona mappe antiche rare. Lui preferisce pelle nera cognac, funzionalità importante viaggio costante così,. Entrambi vegetariani per eventi boutique. Lui intolleranza lattosio importante se, se. Figlia adolescente 16 anni talento scrittura precoce. Figlio 20 anni studia filosofia Bologna. Eccellente rete contatti mondo cultura editoria, riferito già molti clienti.",
+  "anonymized_text": "Signora e Signor Greco, coppia 45-48 anni, clienti VIP dal 2017 per così dire. Shopping importante collezione primavera più regali multipli. Budget combinato 18K molto flessibile. per esempio Lei scrittrice romanzi bestseller, lui editore casa editrice importante. Entrambi mondo letterario, partecipano Salone Libro Torino Francoforte ogni anno. Viaggiano costante presentazioni libri tour letterari internazionali. Lei ama classicismo raffinato beige camel, colleziona mappe antiche rare. Lui preferisce pelle nera cognac, funzionalità importante viaggio costante così,. Entrambi vegetariani per eventi boutique. Lui intolleranza lattosio importante se, se. Figlia adolescente 16 anni talento scrittura precoce. Figlio 20 anni studia filosofia Bologna. Eccellente rete contatti mondo cultura editoria, riferito già molti clienti.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le informazioni fournies ne contiennent aucune donnée sensible selon l'Article 9 du RGPD. Les détails sur les professions, les préférences alimentaires (végétarien) et les âges des enfants ne sont pas considérés comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_291",
+  "original_text": "Mme Morel, 38 ans, responsable innovation digital banque fintech, nouvelle cliente potentiel. pour ainsi dire,. Recherche sac professionnel moderne fintech réunions startups. Budget 6K si tu veux.,. fintech moderne tech, cuir noir hardware tech minimaliste. Gère innovation digitale banque transformation fintech applications mobiles. Collectionne applications fintech historiques évolution banking digital disruption. Pratique running tracking finances personnelles apps quantified self. Végétarienne pour événements.,. Allergie latex cartes bancaires ironie banking. Compagnon entrepreneur fintech startup, couple finance tech. Pas enfants carrières fintech exigeantes startup culture. Réseau fintech entrepreneurs banquiers digitaux segment.,. Cliente profil fintech banking digital. Rappeler avril montrer collection,. Intéressée innovation design UX produits expérience utilisateur parallèles fintech apps.",
+  "anonymized_text": "Mme Morel, 38 ans, responsable innovation digital banque fintech, nouvelle cliente potentiel. pour ainsi dire,. Recherche sac professionnel moderne fintech réunions startups. Budget 6K si tu veux.,. fintech moderne tech, cuir noir hardware tech minimaliste. Gère innovation digitale banque transformation fintech applications mobiles. Collectionne applications fintech historiques évolution banking digital disruption. Pratique running tracking finances personnelles apps quantified self. Végétarienne pour événements.,. Allergie latex cartes bancaires ironie banking. Compagnon entrepreneur fintech startup, couple finance tech. Pas enfants carrières fintech exigeantes startup culture. Réseau fintech entrepreneurs banquiers digitaux segment.,. Cliente profil fintech banking digital. Rappeler avril montrer collection,. Intéressée innovation design UX produits expérience utilisateur parallèles fintech apps.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarienne) et les allergies (latex) sont considérées comme non sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

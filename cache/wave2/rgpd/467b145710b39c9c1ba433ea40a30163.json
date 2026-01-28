@@ -1,0 +1,25 @@
+{
+  "ID": "CA_308",
+  "original_text": "Signora e Signor Greco coppia 45-48 anni clienti VIP dal 2017. Shopping importante collezione primavera più regali multipli budget combinato 18K molto flessibile. Lei scrittrice romanzi bestseller lui editore casa editrice importante., se. Entrambi mondo letterario partecipano Salone Libro Torino Francoforte ogni anno. se. Viaggiano costante presentazioni libri tour letterari così internazionali. Lei ama classicismo raffinato beige camel un po' colleziona mappe antiche rare, per esempio. Lui preferisce pelle nera cognac funzionalità importante viaggio costante. Entrambi vegetariani per eventi boutique lui intolleranza lattosio così importante. Figlia adolescente 16 anni talento scrittura precoce diplomazione prossimi anni opportunità, se.,. Figlio 20 anni studia filosofia Bologna. Eccellente rete contatti mondo cultura editoria riferito già molti clienti famiglia intellettuale alto valore,. Richiamare marzo anteprima esclusiva privata interessati pezzi ispirati letteratura se storia. se",
+  "anonymized_text": "Signora e Signor Greco coppia 45-48 anni clienti VIP dal 2017. Shopping importante collezione primavera più regali multipli budget combinato 18K molto flessibile. Lei scrittrice romanzi bestseller lui editore casa editrice importante., se. Entrambi mondo letterario partecipano Salone Libro Torino Francoforte ogni anno. se. Viaggiano costante presentazioni libri tour letterari così internazionali. Lei ama classicismo raffinato beige camel un po' colleziona mappe antiche rare, per esempio. Lui preferisce pelle nera cognac funzionalità importante viaggio costante. Entrambi vegetariani per eventi boutique lui [RGPD_HEALTH_PHYSICAL_REDACTED] così importante. Figlia adolescente 16 anni talento scrittura precoce diplomazione prossimi anni opportunità, se.,. Figlio 20 anni studia filosofia Bologna. Eccellente rete contatti mondo cultura editoria riferito già molti clienti famiglia intellettuale alto valore,. Richiamare marzo anteprima esclusiva privata interessati pezzi ispirati letteratura se storia. se",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "intolleranza lattosio",
+        "category": "health_physical",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": true,
+    "reasoning": "L'intolleranza al lattosio est un dato di salute fisica, ma non è considerato altamente sensibile. Le altre informazioni non rientrano nelle categorie sensibili del RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": true
+}

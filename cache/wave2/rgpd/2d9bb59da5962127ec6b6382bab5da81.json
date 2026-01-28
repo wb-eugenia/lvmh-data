@@ -1,0 +1,25 @@
+{
+  "ID": "CA_237",
+  "original_text": "Dr. and Mrs so. in a manner of speaking,. Johnson, both 56, VIP clients since 2015. He's cardiologist interventional procedures, she's cardiac nurse ICU cardiac unit, power couple cardiology. Shopping spring collection anniversary 29 years marriage celebration gifts family,.,. Combined budget 19K flexible,. I see, I see if you will. Both cardiac care world saves lives daily heart attacks surgeries intensive. Travel medical conferences missions occasionally humanitarian cardiac care developing countries. He collects cardiology equipment historical evolution cardiac medicine stethoscopes EKG machines what I mean,. She passionate cardiac rehabilitation something nursing history Florence Nightingale cardiac care. He practical functional black navy leather professional medical something. She warm elegant beige rose gold feminine caring nurse, something. Both pescatarian heart healthy diet for events obviously,.,. He has high cholesterol ironic cardiologist dietary restrictions,.,. Three adult children all healthcare careers cardiologist nurse physician assistant family medical tradition.,. Six grandchildren young gift opportunities constant celebrations, in some way,., I see, so. Exceptional clients cardiac medical community, refer colleagues so cardiologists nurses cardiac professionals regularly,. Appreciate quality craftsmanship durability investment pieces lasting value.,. Follow up October exclusive private preview something,. Support cardiac foundations charities fundraising organize galas, boutique collaboration sponsorship opportunity.",
+  "anonymized_text": "Dr. and Mrs so. in a manner of speaking,. Johnson, both 56, VIP clients since 2015. He's cardiologist interventional procedures, she's cardiac nurse ICU cardiac unit, power couple cardiology. Shopping spring collection anniversary 29 years marriage celebration gifts family,.,. Combined budget 19K flexible,. I see, I see if you will. Both cardiac care world saves lives daily heart attacks surgeries intensive. Travel medical conferences missions occasionally humanitarian cardiac care developing countries. He collects cardiology equipment historical evolution cardiac medicine stethoscopes EKG machines what I mean,. She passionate cardiac rehabilitation something nursing history Florence Nightingale cardiac care. He practical functional black navy leather professional medical something. She warm elegant beige rose gold feminine caring nurse, something. Both pescatarian heart healthy diet for events obviously,.,. He has [RGPD_HEALTH_PHYSICAL_REDACTED] ironic cardiologist dietary restrictions,.,. Three adult children all healthcare careers cardiologist nurse physician assistant family medical tradition.,. Six grandchildren young gift opportunities constant celebrations, in some way,., I see, so. Exceptional clients cardiac medical community, refer colleagues so cardiologists nurses cardiac professionals regularly,. Appreciate quality craftsmanship durability investment pieces lasting value.,. Follow up October exclusive private preview something,. Support cardiac foundations charities fundraising organize galas, boutique collaboration sponsorship opportunity.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "high cholesterol",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text mentions 'high cholesterol', which is a health-related condition and falls under the category of sensitive data as per Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

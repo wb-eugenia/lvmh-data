@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_309",
+  "language": "ES",
+  "tags": [
+    "medical_surgeon",
+    "shopping_with_children",
+    "gift_for_child",
+    "vegan",
+    "sustainable_values",
+    "investment_mindset"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "7K",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Cirujana plástica",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'cirujana plástica' -> medical_surgeon. Shopping context indicates potential gift for daughter -> gift_for_child. Client is vegan and values sustainability, indicating a preference for ethical products.",
+  "from_cache": false
+}

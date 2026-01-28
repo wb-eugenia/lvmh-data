@@ -1,0 +1,25 @@
+{
+  "ID": "CA_272",
+  "original_text": "Mr. and something Mrs. Martinez, both 60, VIP clients since 2014.,. Both retired C-suite executives Fortune 100 companies successful careers decades,. so, in a way. Shopping spring collection celebration retirements both successful exits legacy to some extent,. Combined budget 26K extremely flexible wealth considerable,.,. Both corporate executive worlds highest levels CEO CFO leadership transformed organizations billions revenue. Travel extensively retirement something luxury world tours cultural immersion safaris cruises freedom.,. He collects business leadership so books first editions management classics historical,. She passionate corporate art collection built during career Impressionist modern pieces. He classic executive navy black brown leather conservative timeless traditional as it were, so,. She elegant sophisticated champagne beige rose gold pearls diamonds feminine luxury,. Both pescatarian health longevity for events. He has high blood pressure dietary restrictions.,. Four adult children all successful corporate careers executive management consulting investment banking proud. Nine grandchildren growing rapidly constant gift opportunities celebrations birthdays holidays graduations I see, you see. Exceptional clients highest something tier lifetime value wealth significant, refer countless wealthy executive friends business associates networks decades extensive,. Deeply appreciate heritage quality craftsmanship investment pieces legacy lasting value appreciate time pass down generations family heirlooms tradition.,. Follow up monthly personalized curated selections dedicated advisor relationship decades loyalty,. Planning major retirement celebration estate hundreds guests corporate community, boutique collaboration sponsorship opportunity visibility prestige significant corporate world.,.",
+  "anonymized_text": "Mr. and something Mrs. Martinez, both 60, VIP clients since 2014.,. Both retired C-suite executives Fortune 100 companies successful careers decades,. so, in a way. Shopping spring collection celebration retirements both successful exits legacy to some extent,. Combined budget 26K extremely flexible wealth considerable,.,. Both corporate executive worlds highest levels CEO CFO leadership transformed organizations billions revenue. Travel extensively retirement something luxury world tours cultural immersion safaris cruises freedom.,. He collects business leadership so books first editions management classics historical,. She passionate corporate art collection built during career Impressionist modern pieces. He classic executive navy black brown leather conservative timeless traditional as it were, so,. She elegant sophisticated champagne beige rose gold pearls diamonds feminine luxury,. Both pescatarian health longevity for events. He has [RGPD_HEALTH_PHYSICAL_REDACTED].,. Four adult children all successful corporate careers executive management consulting investment banking proud. Nine grandchildren growing rapidly constant gift opportunities celebrations birthdays holidays graduations I see, you see. Exceptional clients highest something tier lifetime value wealth significant, refer countless wealthy executive friends business associates networks decades extensive,. Deeply appreciate heritage quality craftsmanship investment pieces legacy lasting value appreciate time pass down generations family heirlooms tradition.,. Follow up monthly personalized curated selections dedicated advisor relationship decades loyalty,. Planning major retirement celebration estate hundreds guests corporate community, boutique collaboration sponsorship opportunity visibility prestige significant corporate world.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "high blood pressure dietary restrictions",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains information about a client's health condition (high blood pressure), which is classified as sensitive data under Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

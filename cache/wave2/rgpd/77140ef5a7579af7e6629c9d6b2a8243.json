@@ -1,0 +1,15 @@
+{
+  "ID": "CA_165",
+  "original_text": "Frau Klein, 43, Chefredakteurin Lifestyle-Magazin Premium, regelmäßige Kundin seit 2019. Sucht Taschen Frühling beruflich Events zahlreich Fashion Weeks ein bisschen.,. Budget 10K. Stil modern avantgardistisch mutig, liebt Statement-Stücke auffällig,. Arbeitet täglich Designern Stylisten Models, Modewelt komplett integriert auf eine Art. Reist Fashion Weeks alle Städte Paris Mailand New York London jede Saison wenn du willst,. Sammelt Vintage Designer-Stücke Archive ikonisch,. Praktiziert Barre Workout täglich, Marathon Läuferin Fitness wichtig. Pescetarierin für Events, also,. Allergie Nickel wichtig Hardware,. wie,. Geschieden fokussiert Karriere, Tochter Modestudium folgt Mutter,.,. Ausgezeichnete Kundin Mode-Industrie Kontakte Designer Models Stylisten endlos. Sehr interessiert Innovation Design Kollaborationen Künstler. Follow-up März private Vorschau exklusive Stücke vor Launch. Mögliche Magazin-Feature Boutique Editorial Kooperation interessant.,.",
+  "anonymized_text": "Frau Klein, 43, Chefredakteurin Lifestyle-Magazin Premium, regelmäßige Kundin seit 2019. Sucht Taschen Frühling beruflich Events zahlreich Fashion Weeks ein bisschen.,. Budget 10K. Stil modern avantgardistisch mutig, liebt Statement-Stücke auffällig,. Arbeitet täglich Designern Stylisten Models, Modewelt komplett integriert auf eine Art. Reist Fashion Weeks alle Städte Paris Mailand New York London jede Saison wenn du willst,. Sammelt Vintage Designer-Stücke Archive ikonisch,. Praktiziert Barre Workout täglich, Marathon Läuferin Fitness wichtig. Pescetarierin für Events, also,. Allergie Nickel wichtig Hardware,. wie,. Geschieden fokussiert Karriere, Tochter Modestudium folgt Mutter,.,. Ausgezeichnete Kundin Mode-Industrie Kontakte Designer Models Stylisten endlos. Sehr interessiert Innovation Design Kollaborationen Künstler. Follow-up März private Vorschau exklusive Stücke vor Launch. Mögliche Magazin-Feature Boutique Editorial Kooperation interessant.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé physique (allergie au nickel) et le régime alimentaire (pescetarienne) sont acceptables pour le business. Les mentions de divorce et de la fille ne montrent pas de conflit familial. Aucune autre catégorie sensible n'est détectée."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_336",
+  "original_text": "M. Durand 48 ans chirurgien orthopédiste clinique privée client régulier depuis 2019. Achat sacs nouveaux collection printemps usage professionnel déplacements hôpitaux budget 6500€. classique professionnel cuir noir navy discret on va dire. Opère patients sportifs haut niveau réseau athlètes professionnels étendu.,. Collectionne équipement ski vintage passionné histoire sports hiver. Pratique ski alpin compétition masters prépare championnat France mars.,. Pescetarien pour événements allergie latex cruciale profession médicale. Épouse pharmacienne anniversaire mariage mai chaque année. Deux enfants lycée fille veut médecine fils ingénieur,. Client fiable achats réguliers qualité référé plusieurs collègues médecins. Rappeler avril montrer nouveautés été intéressé robustesse fonctionnalité pièces usage professionnel intensif.",
+  "anonymized_text": "M. Durand 48 ans chirurgien orthopédiste clinique privée client régulier depuis 2019. Achat sacs nouveaux collection printemps usage professionnel déplacements hôpitaux budget 6500€. classique professionnel cuir noir navy discret on va dire. Opère patients sportifs haut niveau réseau athlètes professionnels étendu.,. Collectionne équipement ski vintage passionné histoire sports hiver. Pratique ski alpin compétition masters prépare championnat France mars.,. Pescetarien pour événements allergie latex cruciale profession médicale. Épouse pharmacienne anniversaire mariage mai chaque année. Deux enfants lycée fille veut médecine fils ingénieur,. Client fiable achats réguliers qualité référé plusieurs collègues médecins. Rappeler avril montrer nouveautés été intéressé robustesse fonctionnalité pièces usage professionnel intensif.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (pescetarien) et les détails familiaux ne relèvent pas des catégories sensibles définies."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

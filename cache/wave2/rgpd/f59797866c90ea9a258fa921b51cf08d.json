@@ -1,0 +1,15 @@
+{
+  "ID": "CA_369",
+  "original_text": "Sra. Silva 45 años directora fundación arte contemporáneo importante ciudad clienta VIP desde 2018.,. Compras temporada primavera más regalos artistas exposiciones inauguraciones presupuesto 12K flexible. Estilo artístico sofisticado único ama piezas statement conversación, por ejemplo. Organiza exposiciones artistas emergentes consagrados viaja bienales ferias arte mundial constante. Colecciona escultura contemporánea pequeño formato apartamento galería. Practica pilates diario clases danza contemporánea ocasional performance. Vegana convicción fuerte para eventos crítico alergia látex importante. veis. Pareja crítico arte periódico nacional ambos mundo arte completo. Hija artista instalaciones video internacional hijo curador museo América Latina. Familia arte completamente valores creatividad red contactos artistas coleccionistas curadores galeristas vastísima muy interesada colaboraciones artistas ediciones limitadas piezas únicas llamar abril presentación privada exclusiva posible exposición boutique obras artistas familia interesante.",
+  "anonymized_text": "Sra. Silva 45 años directora fundación arte contemporáneo importante ciudad clienta VIP desde 2018.,. Compras temporada primavera más regalos artistas exposiciones inauguraciones presupuesto 12K flexible. Estilo artístico sofisticado único ama piezas statement conversación, por ejemplo. Organiza exposiciones artistas emergentes consagrados viaja bienales ferias arte mundial constante. Colecciona escultura contemporánea pequeño formato apartamento galería. Practica pilates diario clases danza contemporánea ocasional performance. Vegana convicción fuerte para eventos crítico alergia látex importante. veis. Pareja crítico arte periódico nacional ambos mundo arte completo. Hija artista instalaciones video internacional hijo curador museo América Latina. Familia arte completamente valores creatividad red contactos artistas coleccionistas curadores galeristas vastísima muy interesada colaboraciones artistas ediciones limitadas piezas únicas llamar abril presentación privada exclusiva posible exposición boutique obras artistas familia interesante.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé physique (allergie au latex) sont acceptables pour le business, et il n'y a pas d'autres catégories sensibles détectées."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

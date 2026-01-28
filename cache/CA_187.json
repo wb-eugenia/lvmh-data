@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_187",
+  "language": "EN",
+  "tags": [
+    "medical_specialist",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "milestone_anniversary_25_plus",
+    "philanthropy"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "19K flexible",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "oncologist research",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'oncologist research' -> medical_specialist. Shopping with spouse for anniversary celebration -> shopping_with_spouse + gift_for_spouse + milestone_anniversary_25_plus. Mention of charity gala indicates philanthropic interests.",
+  "from_cache": false
+}

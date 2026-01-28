@@ -1,0 +1,32 @@
+{
+  "ID": "CA_167",
+  "original_text": "Mr more or less,. and Mrs. White, both 61, retired corporate executives, VIP clients since 2014. Major shopping celebration sold business recently significant liquidity event if you will,. Budget very flexible discussed 27K purchases gifts.,. He former CFO Fortune 500, she former VP marketing global brand.,. Both corporate world highest levels, extensive business networks maintained retirement. Travel luxury constantly world cruises safaris cultural tours, next Antarctica expedition. He collects rare stamps philately serious decades, collection museum worthy.,. She passionate gardens landscape design, home garden tour featured magazines. He classic timeless brown black leather conservative taste what I mean,.,. She elegant sophisticated champagne beige rose gold feminine style. Both pescatarian health reasons for events. He has gout dietary I see restrictions important. Four adult children all successful careers finance law I see medicine, eight grandchildren growing rapidly constant gift opportunities. Family celebrates achievements together frequently so traditions strong. Exceptional clients lifetime highest value tier, referred dozens wealthy friends business associates retired,. Appreciate heritage quality craftsmanship investment pieces lasting generations pass down I guess.,. Follow up monthly personalized selections curated carefully pretty much. Planning major family celebration estate summer large gathering, boutique collaboration opportunity. to some extent.",
+  "anonymized_text": "Mr more or less,. and Mrs. White, both 61, retired corporate executives, VIP clients since 2014. Major shopping celebration sold business recently significant liquidity event if you will,. Budget very flexible discussed 27K purchases gifts.,. He former CFO Fortune 500, she former VP marketing global brand.,. Both corporate world highest levels, extensive business networks maintained retirement. Travel luxury constantly world cruises safaris cultural tours, next Antarctica expedition. He collects rare stamps philately serious decades, collection museum worthy.,. She passionate gardens landscape design, home garden tour featured magazines. He classic timeless brown black leather conservative taste what I mean,.,. She elegant sophisticated champagne beige rose gold feminine style. Both pescatarian health reasons for events. He has gout dietary I see restrictions important. [RGPD_FAMILY_CONFLICT_REDACTED] finance law I see medicine, eight grandchildren growing rapidly constant gift opportunities. Family celebrates achievements together frequently so traditions strong. Exceptional clients lifetime highest value tier, referred dozens wealthy friends business associates retired,. Appreciate heritage quality craftsmanship investment pieces lasting generations pass down I guess.,. Follow up monthly personalized selections curated carefully pretty much. Planning major family celebration estate summer large gathering, boutique collaboration opportunity. to some extent.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "He has gout dietary restrictions",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "Four adult children all successful careers",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains information about a health condition (gout) which is considered sensitive under Article 9 of the GDPR. Additionally, while the mention of adult children is not inherently sensitive, it implies a family structure that could be relevant in a conflict context, thus raising concerns about family dynamics."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

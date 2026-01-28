@@ -1,0 +1,25 @@
+{
+  "ID": "CA_121",
+  "original_text": "Mme Dubois, 33 ans, avocate droit affaires cabinet international, nouvelle cliente potentiel élevé. Cherche sac travail élégant fonctionnel déplacements fréquents.,. Budget 5K. professionnel moderne, cuir noir navy hardware argent. Travaille dossiers complexes entreprises cotées, voyage Europe Asie régulièrement,.,. Pratique yoga quotidien équilibre vie professionnelle intense. Collectionne art abstrait contemporain jeunes artistes. Végane convictions fortes pour événements.,. Allergie nickel importante hardware.,. Fiancé également avocat même cabinet, mariage prévu automne opportunité cadeaux.,. Pas encore enfants carrières priorité grosso modo,.,. Excellente cliente jeune professionnelle succès. Rappeler mars montrer nouveautés voyage.,. Intéressée matériaux innovants durables.",
+  "anonymized_text": "Mme Dubois, 33 ans, avocate droit affaires cabinet international, nouvelle cliente potentiel élevé. Cherche sac travail élégant fonctionnel déplacements fréquents.,. Budget 5K. professionnel moderne, cuir noir navy hardware argent. Travaille dossiers complexes entreprises cotées, voyage Europe Asie régulièrement,.,. Pratique yoga quotidien équilibre vie professionnelle intense. Collectionne art abstrait contemporain jeunes artistes. Végane convictions fortes pour événements.,. [RGPD_HEALTH_PHYSICAL_REDACTED] hardware.,. Fiancé également avocat même cabinet, mariage prévu automne opportunité cadeaux.,. Pas encore enfants carrières priorité grosso modo,.,. Excellente cliente jeune professionnelle succès. Rappeler mars montrer nouveautés voyage.,. Intéressée matériaux innovants durables.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergie nickel importante",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "L'allergie au nickel est considérée comme une donnée de santé physique, ce qui la rend sensible selon l'Article 9 du RGPD. Par conséquent, il n'est pas sûr de stocker cette information."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

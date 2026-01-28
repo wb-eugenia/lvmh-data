@@ -1,0 +1,15 @@
+{
+  "ID": "CA_276",
+  "original_text": "M.,. Mercier, 36 ans, product manager tech GAFAM grande entreprise, nouveau client potentiel. Cherche sac voyage professionnel tech déplacements Silicon Valley fréquents à peu près. Budget 5K par exemple, en quelque manière par exemple. tech Silicon Valley moderne, cuir noir gris hardware minimaliste,. Gère produits tech que millions utilisateurs worldwide, innovation constante.,. Collectionne produits tech iconiques premier iPhone iPod Walkman histoire que,. Pratique méditation pleine conscience, Silicon Valley wellness culture un petit peu, par exemple. Végétarien pour événements, vous savez.,. Allergie gluten importante restaurants tech events par exemple, pour ainsi dire. Compagne designer produit, couple tech design. Pas enfants carrières tech startup culture incompatible,. Réseau product managers tech GAFAM startups excellent segment,. Client profil tech product croissant. Rappeler janvier montrer collection,. en fait,. Intéressé design thinking innovation produits UX expérience utilisateur parallèles maroquinerie.",
+  "anonymized_text": "M.,. Mercier, 36 ans, product manager tech GAFAM grande entreprise, nouveau client potentiel. Cherche sac voyage professionnel tech déplacements Silicon Valley fréquents à peu près. Budget 5K par exemple, en quelque manière par exemple. tech Silicon Valley moderne, cuir noir gris hardware minimaliste,. Gère produits tech que millions utilisateurs worldwide, innovation constante.,. Collectionne produits tech iconiques premier iPhone iPod Walkman histoire que,. Pratique méditation pleine conscience, Silicon Valley wellness culture un petit peu, par exemple. Végétarien pour événements, vous savez.,. Allergie gluten importante restaurants tech events par exemple, pour ainsi dire. Compagne designer produit, couple tech design. Pas enfants carrières tech startup culture incompatible,. Réseau product managers tech GAFAM startups excellent segment,. Client profil tech product croissant. Rappeler janvier montrer collection,. en fait,. Intéressé design thinking innovation produits UX expérience utilisateur parallèles maroquinerie.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé mentale, physique, les conflits familiaux, la religion, les opinions politiques, l'orientation sexuelle et l'origine ethnique ne sont pas présentes. Les allergies alimentaires sont acceptables pour le business."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

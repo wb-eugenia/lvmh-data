@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_134",
+  "language": "ES",
+  "tags": [
+    "interior_design",
+    "travel_frequent",
+    "artisan_craft_appreciation",
+    "pescatarian",
+    "budget_very_flexible"
+  ],
+  "invalid_tags": [
+    "entrepreneur_construction"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "23K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child",
+      "grandchild"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Empresario construcción retirado, decoradora interiores",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'empresario construcción' -> entrepreneur_construction and 'decoradora interiores' -> interior_design. Shopping together as a couple -> shopping_with_spouse. Gifts for children and grandchildren -> gift_for_child and gift_for_grandchild. Budget discussed is 23K, indicating flexibility.",
+  "from_cache": false
+}

@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_137",
+  "language": "EN",
+  "tags": [
+    "media_professional",
+    "travel_frequent",
+    "sustainable_values",
+    "social_media_influencer"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "10k-15k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "former professional athlete turned sports commentator TV",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession as a sports commentator aligns with media_professional. Frequent travel for events indicates travel_frequent. Interest in quality and durability suggests sustainable_values. Active social media presence indicates social_media_influencer. Budget is inferred from the initial purchase amount of 11K.",
+  "from_cache": false
+}

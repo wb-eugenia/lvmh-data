@@ -1,0 +1,25 @@
+{
+  "ID": "CA_293",
+  "original_text": "Signora Rossi, 43 anni, direttrice marketing moda e-commerce piattaforma digitale, cliente regolare dal 2020.,. Cerca borse professionali nuove primavera viaggi digital marketing eventi in qualche maniera, per esempio. Budget 9K approssimativo in un certo senso. per esempio,. Stile marketing digitale moderno, preferisce colori moda tendenza stagionali. Gestisce marketing e-commerce moda piattaforma digitale milioni utenti vendite così,. Colleziona campagne marketing digitali iconiche case studies successo viral. Viaggia conferenze e-commerce digital marketing mondiale Londra San Francisco. Pratica yoga mindfulness, equilibrio digitale benessere offline,. per esempio. Pescetariana per eventi boutique digitali networking. Nessuna allergia. per esempio,. Compagno sviluppatore tech e-commerce, coppia così digitale moda tech. Figli giovani digital natives generazione Z. Cliente professionale digital marketing moda contatti influencer. Richiamare aprile mostrare primavera. Interessata storytelling digitale social media Instagram marketing influencer collaborazioni visibilità online. per esempio,.",
+  "anonymized_text": "Signora Rossi, 43 anni, direttrice marketing moda e-commerce piattaforma digitale, cliente regolare dal 2020.,. Cerca borse professionali nuove primavera viaggi digital marketing eventi in qualche maniera, per esempio. Budget 9K approssimativo in un certo senso. per esempio,. Stile marketing digitale moderno, preferisce colori moda tendenza stagionali. Gestisce marketing e-commerce moda piattaforma digitale milioni utenti vendite così,. Colleziona campagne marketing digitali iconiche case studies successo viral. Viaggia conferenze e-commerce digital marketing mondiale Londra San Francisco. Pratica [RGPD_HEALTH_MENTAL_REDACTED],. per esempio. Pescetariana per eventi boutique digitali networking. Nessuna allergia. per esempio,. Compagno sviluppatore tech e-commerce, coppia così digitale moda tech. Figli giovani digital natives generazione Z. Cliente professionale digital marketing moda contatti influencer. Richiamare aprile mostrare primavera. Interessata storytelling digitale social media Instagram marketing influencer collaborazioni visibilità online. per esempio,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "yoga mindfulness, equilibrio digitale benessere offline",
+        "category": "health_mental",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le mentions de 'yoga mindfulness' et 'equilibrio digitale benessere offline' peuvent indiquer des préoccupations liées à la santé mentale, ce qui est sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental"
+  ],
+  "safe_to_store": false
+}

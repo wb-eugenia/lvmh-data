@@ -1,0 +1,15 @@
+{
+  "ID": "CA_220",
+  "original_text": "Herr und Frau Müller, beide 51, treue Kunden seit 2017,. Großeinkauf Frühjahr Geschenke Familie Freunde Geburtstage zahlreich. Budget zusammen 18K flexibel. Er Steuerberater eigene Kanzlei Mandanten vermögend, sie Notarin Immobilien Vermögen,. Beide Finanz Rechts Welt vermögende Kunden beraten Vermögensplanung,.,. Reisen Fachkonferenzen Steuerrecht Notariat weltweit. wie. Er sammelt Steuergesetze historisch Entwicklung Steuersysteme faszinierend also. Sie liebt Immobilien Architektur historisch Gebäude schön. Er klassisch konservativ schwarz braun Leder. Sie elegant zeitlos beige navy gold Hardware.,. Beide Vegetarier für Events,.,. Keine Allergien,. Kinder studieren Jura Wirtschaft folgen Eltern Berufe,. Familie Recht Finanzen Bildung Werte,. also,. Sehr gute Kunden vermögende Klientel empfehlen Mandanten Freunde,., wenn du willst,. Schätzen Qualität Investitionsstücke Wert Zeit,., gesehen. Follow-up September Herbstkollektion Privatvorschau,. Interessiert Werterhalt Qualität Stücke Investment langfristig.",
+  "anonymized_text": "Herr und Frau Müller, beide 51, treue Kunden seit 2017,. Großeinkauf Frühjahr Geschenke Familie Freunde Geburtstage zahlreich. Budget zusammen 18K flexibel. Er Steuerberater eigene Kanzlei Mandanten vermögend, sie Notarin Immobilien Vermögen,. Beide Finanz Rechts Welt vermögende Kunden beraten Vermögensplanung,.,. Reisen Fachkonferenzen Steuerrecht Notariat weltweit. wie. Er sammelt Steuergesetze historisch Entwicklung Steuersysteme faszinierend also. Sie liebt Immobilien Architektur historisch Gebäude schön. Er klassisch konservativ schwarz braun Leder. Sie elegant zeitlos beige navy gold Hardware.,. Beide Vegetarier für Events,.,. Keine Allergien,. Kinder studieren Jura Wirtschaft folgen Eltern Berufe,. Familie Recht Finanzen Bildung Werte,. also,. Sehr gute Kunden vermögende Klientel empfehlen Mandanten Freunde,., wenn du willst,. Schätzen Qualität Investitionsstücke Wert Zeit,., gesehen. Follow-up September Herbstkollektion Privatvorschau,. Interessiert Werterhalt Qualität Stücke Investment langfristig.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon les catégories définies. Les informations sur la profession, le régime alimentaire (végétarien) et les activités familiales ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

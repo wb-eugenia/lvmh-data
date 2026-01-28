@@ -1,0 +1,30 @@
+{
+  "ID": "CA_249",
+  "original_text": "Sra. Delgado, 42 años, psiquiatra infantil hospital consulta privada, nueva clienta potencial,. por ejemplo. Busca bolsos profesionales trabajo hospital ves consulta niños adolescentes, ves. Presupuesto por ejemplo 7K inicial. Estilo sí psiquiatra cálido sí profesional, prefiere colores suaves beige rosa pálido tierra en alguna que forma,. veis Trata niños adolescentes trastornos mentales salud mental juvenil. Colecciona libros psiquiatría infantil históricos evolución tratamiento niños, un poco. Viaja congresos psiquiatría infantil mundial Boston Londres Sídney. vamos a ver,. Practica meditación mindfulness, enseña técnicas niños ansiedad, veis,. por ejemplo,. Vegetariana para eventos. Sin alergias, sí. Marido pediatra, pareja salud infantil completa,. Hijos pequeños. ves,. Red contactos psiquiatras pediatras psicólogos infantiles buena,.,. Cliente sector salud mental infantil.,. Follow-up veis julio mostrar colección. un tantito,. Interesada psicología colores materiales efecto emocional niños ambiente consulta terapéutico.",
+  "anonymized_text": "Sra. Delgado, 42 años, psiquiatra infantil hospital consulta privada, nueva clienta potencial,. por ejemplo. Busca bolsos profesionales trabajo hospital ves consulta niños adolescentes, ves. Presupuesto por ejemplo 7K inicial. Estilo sí psiquiatra cálido sí profesional, prefiere colores suaves beige rosa pálido tierra en alguna que forma,. veis Trata niños adolescentes [RGPD_HEALTH_MENTAL_REDACTED]. Colecciona libros psiquiatría infantil históricos evolución tratamiento niños, un poco. Viaja congresos psiquiatría infantil mundial Boston Londres Sídney. vamos a ver,. Practica meditación mindfulness, enseña [RGPD_HEALTH_MENTAL_REDACTED], veis,. por ejemplo,. Vegetariana para eventos. Sin alergias, sí. Marido pediatra, pareja salud infantil completa,. Hijos pequeños. ves,. Red contactos psiquiatras pediatras psicólogos infantiles buena,.,. Cliente sector salud mental infantil.,. Follow-up veis julio mostrar colección. un tantito,. Interesada psicología colores materiales efecto emocional niños ambiente consulta terapéutico.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "trastornos mentales salud mental juvenil",
+        "category": "health_mental",
+        "severity": "high"
+      },
+      {
+        "text": "técnicas niños ansiedad",
+        "category": "health_mental",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne des troubles mentaux et des techniques pour gérer l'anxiété chez les enfants, ce qui relève de la santé mentale, une catégorie sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental"
+  ],
+  "safe_to_store": false
+}

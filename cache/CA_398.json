@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_398",
+  "language": "IT",
+  "tags": [
+    "travel_frequent",
+    "pescatarian"
+  ],
+  "invalid_tags": [
+    "corporate_executive"
+  ],
+  "num_tags": 2,
+  "confidence": 0.9,
+  "budget_range": "8k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Direttore vendite azienda farmaceutica multinazionale",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'direttore vendite azienda farmaceutica multinazionale' -> corporate_executive. Frequent travel for work -> travel_frequent. Pescetariano indicates dietary preference -> pescatarian. Regular client since 2019.",
+  "from_cache": false
+}

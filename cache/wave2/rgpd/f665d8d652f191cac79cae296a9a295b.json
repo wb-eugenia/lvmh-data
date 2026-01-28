@@ -1,0 +1,25 @@
+{
+  "ID": "CA_112",
+  "original_text": "Mr. and Mrs. Chen, both late 30s, first time customers ultra-high potential., something. He's founder successful fintech unicorn, she's venture capitalist.,. Looking establish luxury wardrobe after recent liquidity event. Budget extremely flexible, discussed 30K+ initial purchases. He's interested travel pieces work bags, she wants complete handbag collection if you will,.,. Both Stanford alumni, active network Silicon Valley. Travel constantly business, recently opened London office considering Paris, I see. I guess,. He plays poker professionally side, competed World Series several times., something,. She passionate women in tech, runs accelerator program female founders. Both follow plant-based diet mostly health. He severe peanut allergy critical something,.,. Twin daughters age 5, future gift opportunities,. Planning move London permanently next year. Excellent social following combined 500K tech influencers,.,. Interested innovation materials, asked tech integration products. Very interested sustainability carbon footprint. Follow up weekly curated selections,.,. This is transformational tier one priority client.",
+  "anonymized_text": "Mr. and Mrs. Chen, both late 30s, first time customers ultra-high potential., something. He's founder successful fintech unicorn, she's venture capitalist.,. Looking establish luxury wardrobe after recent liquidity event. Budget extremely flexible, discussed 30K+ initial purchases. He's interested travel pieces work bags, she wants complete handbag collection if you will,.,. Both Stanford alumni, active network Silicon Valley. Travel constantly business, recently opened London office considering Paris, I see. I guess,. He plays poker professionally side, competed World Series several times., something,. She passionate women in tech, runs accelerator program female founders. Both follow plant-based diet mostly health. He [RGPD_HEALTH_PHYSICAL_REDACTED] critical something,.,. Twin daughters age 5, future gift opportunities,. Planning move London permanently next year. Excellent social following combined 500K tech influencers,.,. Interested innovation materials, asked tech integration products. Very interested sustainability carbon footprint. Follow up weekly curated selections,.,. This is transformational tier one priority client.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "severe peanut allergy",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains a mention of a severe peanut allergy, which falls under health physical data. This is considered sensitive information under Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

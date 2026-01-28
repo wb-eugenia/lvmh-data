@@ -1,0 +1,15 @@
+{
+  "ID": "CA_303",
+  "original_text": "Sr. Ruiz 51 años director cine documentales cliente ocasional desde 2021.,. Busca regalo esposa cumpleaños 48 próximo mes presupuesto 6K aproximado. Ella productora televisión estilo moderno sofisticado. Aman cine asisten Cannes San Sebastián cada año. Viajan constante rodajes localizaciones exóticas. un poco, más o menos. Ella prefiere colores tierra cognac beige odia negro demasiado formal. Practican buceo certificados avanzados próximo sí viaje Maldivas filmación documental., si queréis. Vegetarianos ambos para eventos boutique. Ella alergia látex importante.,. Hijo adolescente estudia edición audiovisual hija 12 años pasión equitación. Familia creativa excelente potencial.,. Contactar abril pre-colección verano. por ejemplo",
+  "anonymized_text": "Sr. Ruiz 51 años director cine documentales cliente ocasional desde 2021.,. Busca regalo esposa cumpleaños 48 próximo mes presupuesto 6K aproximado. Ella productora televisión estilo moderno sofisticado. Aman cine asisten Cannes San Sebastián cada año. Viajan constante rodajes localizaciones exóticas. un poco, más o menos. Ella prefiere colores tierra cognac beige odia negro demasiado formal. Practican buceo certificados avanzados próximo sí viaje Maldivas filmación documental., si queréis. Vegetarianos ambos para eventos boutique. Ella alergia látex importante.,. Hijo adolescente estudia edición audiovisual hija 12 años pasión equitación. Familia creativa excelente potencial.,. Contactar abril pre-colección verano. por ejemplo",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies au latex et le régime végétarien ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

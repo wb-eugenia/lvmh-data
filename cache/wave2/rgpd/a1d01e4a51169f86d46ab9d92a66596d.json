@@ -1,0 +1,15 @@
+{
+  "ID": "CA_208",
+  "original_text": "Signor Conti, 43 anni, direttore finanziario banca investimenti, cliente regolare dal 2020. che. Cerca borse professionali nuove primavera viaggi finanza internazionale.,. Budget 10K approssimativo. Stile banking classico professionale, preferisce nero navy marrone elegante. Gestisce finanze corporate operazioni M&A che miliardi, responsabilità enorme,. Colleziona monete antiche numismatica storia denaro economia,.,. Pratica vela competitiva, regate week-end mare passione per esempio,. Pescetariano per eventi boutique,. Allergia crostacei frutti mare importante banchetti. Moglie avvocata diritto commerciale, coppia finanza legale potere. Figli scuola internazionale, famiglia cosmopolita valori se globali, più o meno. Cliente affidabile compra qualità funzionalità, rete contatti banchieri executives. Richiamare novembre mostrare autunno inverno per così dire.,. Interessato investimento pezzi valore tempo apprezzamento qualità.",
+  "anonymized_text": "Signor Conti, 43 anni, direttore finanziario banca investimenti, cliente regolare dal 2020. che. Cerca borse professionali nuove primavera viaggi finanza internazionale.,. Budget 10K approssimativo. Stile banking classico professionale, preferisce nero navy marrone elegante. Gestisce finanze corporate operazioni M&A che miliardi, responsabilità enorme,. Colleziona monete antiche numismatica storia denaro economia,.,. Pratica vela competitiva, regate week-end mare passione per esempio,. Pescetariano per eventi boutique,. Allergia crostacei frutti mare importante banchetti. Moglie avvocata diritto commerciale, coppia finanza legale potere. Figli scuola internazionale, famiglia cosmopolita valori se globali, più o meno. Cliente affidabile compra qualità funzionalità, rete contatti banchieri executives. Richiamare novembre mostrare autunno inverno per così dire.,. Interessato investimento pezzi valore tempo apprezzamento qualità.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur l'allergie aux crustacés sont acceptables pour le business. Les autres informations sont liées à la profession, au style de vie et aux préférences personnelles, qui ne sont pas considérées comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

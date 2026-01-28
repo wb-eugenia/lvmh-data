@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_272",
+  "language": "EN",
+  "tags": [
+    "corporate_executive_c_level",
+    "shopping_with_spouse",
+    "retirement_celebration",
+    "art_collector",
+    "book_collector_rare"
+  ],
+  "invalid_tags": [
+    "gift_for_grandchild"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "26K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "grandchild"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "C-suite executive",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Both clients are retired C-suite executives -> corporate_executive_c_level. Shopping together as a couple -> shopping_with_spouse. Mention of grandchildren and gift opportunities -> gift_for_grandchild. Planning a retirement celebration -> retirement_celebration. Interest in art and books -> art_collector and book_collector_rare.",
+  "from_cache": false
+}

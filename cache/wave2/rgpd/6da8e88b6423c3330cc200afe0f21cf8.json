@@ -1,0 +1,32 @@
+{
+  "ID": "CA_264",
+  "original_text": "Sr.,. Díaz, 48 años, arquitecto restauración patrimonio UNESCO experto, cliente regular desde 2020. Busca bolsos trabajo proyectos restauración viajes sitios UNESCO. Presupuesto 9K aproximado, en alguna forma,.,. Estilo clásico respetuoso patrimonio, prefiere colores históricos beige tierra cognac piedra, ves. Restaura monumentos históricos catedrales palacios castillos protección UNESCO,. Colecciona planos arquitectónicos históricos originales siglos pasados valiosos, veis,. Viaja proyectos UNESCO mundial España Italia Latinoamérica sitios históricos. Practica fotografía arquitectura, documenta patrimonio belleza. veis,. Vegetariano para eventos,.,. Alergia polvo antiguo edificios importante trabajo constante. Esposa historiadora arte medieval, pareja patrimonio cultura completo,. ves,. Hijos estudian arquitectura historia arte continúan tradición sí. sí. Familia patrimonio conservación valores centrales vida. Cliente perfil cultural patrimonio alto valor. Follow-up octubre mostrar colección., un poco,. Muy interesado técnicas artesanales históricas restauración conservación parallelos maroquinería sí tradicional. por así que decirlo.",
+  "anonymized_text": "Sr.,. Díaz, 48 años, arquitecto restauración patrimonio UNESCO experto, cliente regular desde 2020. Busca bolsos trabajo proyectos restauración viajes sitios UNESCO. Presupuesto 9K aproximado, en alguna forma,.,. Estilo clásico respetuoso patrimonio, prefiere colores históricos beige tierra cognac piedra, ves. Restaura monumentos históricos catedrales palacios castillos protección UNESCO,. Colecciona planos arquitectónicos históricos originales siglos pasados valiosos, veis,. Viaja proyectos UNESCO mundial España Italia Latinoamérica sitios históricos. Practica fotografía arquitectura, documenta patrimonio belleza. veis,. Vegetariano para eventos,.,. [RGPD_HEALTH_PHYSICAL_REDACTED] importante trabajo constante. [RGPD_FAMILY_CONFLICT_REDACTED], pareja patrimonio cultura completo,. ves,. Hijos estudian arquitectura historia arte continúan tradición sí. sí. Familia patrimonio conservación valores centrales vida. Cliente perfil cultural patrimonio alto valor. Follow-up octubre mostrar colección., un poco,. Muy interesado técnicas artesanales históricas restauración conservación parallelos maroquinería sí tradicional. por así que decirlo.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Alergia polvo antiguo edificios",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "Esposa historiadora arte medieval",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne une allergie, qui est une donnée de santé physique, et fait référence à la conjointe de manière qui pourrait impliquer un contexte familial. Cela nécessite une attention particulière en vertu du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

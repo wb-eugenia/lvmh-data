@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_341",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_hospitality",
+    "gastronomy",
+    "travel_frequent",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5500€",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Cheffe restaurant gastronomique étoile Michelin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'cheffe restaurant gastronomique étoile Michelin' -> entrepreneur_hospitality. Interest in gastronomy and travel -> gastronomy, travel_frequent. Shopping context indicates she is likely accompanied by her partner, a sommelier, hence 'shopping_with_spouse'.",
+  "from_cache": false
+}

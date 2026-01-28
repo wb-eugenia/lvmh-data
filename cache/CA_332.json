@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_332",
+  "language": "EN",
+  "tags": [
+    "finance_investment",
+    "creative_arts_visual",
+    "interior_design",
+    "art_collector",
+    "travel_frequent",
+    "pescatarian",
+    "latex_allergy"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.9,
+  "budget_range": "15K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "parent"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "investment banker private equity, interior designer high-end residential projects",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'investment banker private equity' and 'interior designer high-end residential projects' -> finance_investment and creative_arts_visual + interior_design. Shopping with spouse -> shopping_with_spouse. Gifts for parents' birthdays -> gift_for_parent. Budget of 15K is flexible.",
+  "from_cache": false
+}

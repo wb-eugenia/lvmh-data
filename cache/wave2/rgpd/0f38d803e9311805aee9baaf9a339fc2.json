@@ -1,0 +1,15 @@
+{
+  "ID": "CA_310",
+  "original_text": "Herr Schmidt 38 Unternehmer nachhaltige Mode Startup Erfolg neuer Kunde sehr interessant.,. Sucht Qualitätsstücke nach Geschäftswachstum budget offen besprochen 12K heute auf eine also Art,.,. Stil wie modern bewusst schätzt Handwerk Transparenz., wie,. Sammelt zeitgenössische Kunst junge Künstler unterstützt Kunstszene aktiv,. Reist häufig Berlin Kopenhagen Amsterdam Mode-Hubs.,. Praktiziert Meditation täglich Yoga regelmäßig. wenn du willst. Partner auch Modebranche Designer beide vegan ethische Überzeugung für Events keine Allergien.,. Erwähnt Schwester heiratet Sommer Geschenkgelegenheit Eltern Jubiläum 35 Jahre Herbst,. Exzellenter Kunde Nachhaltigkeitssegment wachsend wichtig.,. Sehr interessiert Lieferkette Materialherkunft Umweltauswirkung follow-up wöchentlich kuratierte Auswahl zeigen mögliche Kooperation nachhaltige Events Boutique.,.",
+  "anonymized_text": "Herr Schmidt 38 Unternehmer nachhaltige Mode Startup Erfolg neuer Kunde sehr interessant.,. Sucht Qualitätsstücke nach Geschäftswachstum budget offen besprochen 12K heute auf eine also Art,.,. Stil wie modern bewusst schätzt Handwerk Transparenz., wie,. Sammelt zeitgenössische Kunst junge Künstler unterstützt Kunstszene aktiv,. Reist häufig Berlin Kopenhagen Amsterdam Mode-Hubs.,. Praktiziert Meditation täglich Yoga regelmäßig. wenn du willst. Partner auch Modebranche Designer beide vegan ethische Überzeugung für Events keine Allergien.,. Erwähnt Schwester heiratet Sommer Geschenkgelegenheit Eltern Jubiläum 35 Jahre Herbst,. Exzellenter Kunde Nachhaltigkeitssegment wachsend wichtig.,. Sehr interessiert Lieferkette Materialherkunft Umweltauswirkung follow-up wöchentlich kuratierte Auswahl zeigen mögliche Kooperation nachhaltige Events Boutique.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur la profession, le régime alimentaire et les activités de loisirs ne sont pas considérées comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

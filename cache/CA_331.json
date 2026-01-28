@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_331",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_fashion",
+    "vegan",
+    "sustainable_values",
+    "artisan_craft_appreciation",
+    "innovation_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "7k-10k",
+  "client_status": "occasional_client",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Créatrice mode marque propre",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'créatrice mode marque propre' -> entrepreneur_fashion. 'Compagne également monde mode' implies shopping with spouse. 'Allergie nickel importante' -> nickel_allergy with severity severe. Budget of 7K indicates a high range.",
+  "from_cache": false
+}

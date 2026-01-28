@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_121",
+  "language": "FR",
+  "tags": [
+    "legal_corporate",
+    "travel_frequent",
+    "wellness_yoga",
+    "art_collector",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "5k",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Avocate droit affaires cabinet international",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'avocate droit affaires cabinet international' -> legal_corporate. Frequent travel and yoga practice indicate lifestyle tags. Interest in contemporary art and strong vegan convictions align with art_collector and sustainable_values.",
+  "from_cache": false
+}

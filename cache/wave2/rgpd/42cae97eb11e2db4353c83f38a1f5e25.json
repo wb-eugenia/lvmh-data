@@ -1,0 +1,32 @@
+{
+  "ID": "CA_137",
+  "original_text": "Mrs.,. Wilson, 41, former professional athlete turned sports commentator TV, new client high potential. Looking for wardrobe upgrade new TV career requiring polished appearance.,. Budget 11K initial purchases, something.,. Style sporty elegant sophisticated, needs balance professionalism athleticism. Travels constantly sports events worldwide, covers Olympics World Cups major tournaments.,. Collects sports what memorabilia signed items legendary athletes personal connections. Still trains daily fitness fanatic, runs half marathons charity in some way,. Follows plant-based diet athlete lifestyle, critical for events so,. Severe nut allergy important,.,. Recently divorced, reinventing personal style post-marriage. Two teenage children, gift opportunities birthdays holidays,.,. Mentioned extensive network former athletes sports professionals, excellent referral potential. Very active social media 800K followers, significant brand visibility opportunity. Interested in durability quality pieces withstand constant travel active lifestyle. Follow up weekly curated selections match her evolving style,. Assign dedicated so advisor build strong relationship growing career.,.",
+  "anonymized_text": "Mrs.,. Wilson, 41, former professional athlete turned sports commentator TV, new client high potential. Looking for wardrobe upgrade new TV career requiring polished appearance.,. Budget 11K initial purchases, something.,. Style sporty elegant sophisticated, needs balance professionalism athleticism. Travels constantly sports events worldwide, covers Olympics World Cups major tournaments.,. Collects sports what memorabilia signed items legendary athletes personal connections. Still trains daily fitness fanatic, runs half marathons charity in some way,. Follows plant-based diet athlete lifestyle, critical for events so,. [RGPD_HEALTH_PHYSICAL_REDACTED] important,.,. [RGPD_FAMILY_CONFLICT_REDACTED]. Two teenage children, gift opportunities birthdays holidays,.,. Mentioned extensive network former athletes sports professionals, excellent referral potential. Very active social media 800K followers, significant brand visibility opportunity. Interested in durability quality pieces withstand constant travel active lifestyle. Follow up weekly curated selections match her evolving style,. Assign dedicated so advisor build strong relationship growing career.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Severe nut allergy",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "Recently divorced, reinventing personal style post-marriage",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains a severe nut allergy, which is considered sensitive health information, and mentions a recent divorce in a context that implies personal conflict, making it sensitive as well."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

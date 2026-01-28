@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_179",
+  "language": "ES",
+  "tags": [
+    "travel_frequent",
+    "vegetarian",
+    "book_collector_rare"
+  ],
+  "invalid_tags": [
+    "corporate_executive"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "directora recursos humanos corporación multinacional",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'directora recursos humanos corporación multinacional' aligns with corporate_executive. Frequent business travel indicates travel_frequent. Vegetarian lifestyle noted. Budget of 9K fits within 5k-10k range. Shopping with spouse is indicated.",
+  "from_cache": false
+}

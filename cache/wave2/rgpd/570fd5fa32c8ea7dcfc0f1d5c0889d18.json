@@ -1,0 +1,25 @@
+{
+  "ID": "CA_192",
+  "original_text": "Mr., you know what,. and Mrs. Williams, both 60, VIP clients since 2015.,. Major shopping spring collection retirement celebration both careers successful. Combined budget 26K very flexible,., I see. He retired CEO pharmaceutical company, she retired hospital administrator healthcare executive. Both healthcare business worlds highest levels, transformed organizations leadership. Travel extensively retirement luxury cruises cultural tours worldwide freedom. He collects rare books first editions medical history pharmacy fascinating. She passionate healthcare art therapy hospitals healing environments. He classic timeless cognac brown leather conservative elegant something,. She sophisticated champagne beige rose gold feminine style. Both pescatarian health longevity for events. He has high blood pressure dietary restrictions. Four adult children successful careers doctor lawyer businessperson teacher proud,. Nine grandchildren growing rapidly constant gift opportunities celebrations something. Exceptional clients highest tier lifetime value, referred countless wealthy friends business associates decades.,. Philanthropy major donated millions healthcare education causes values giving back. what,. Deeply appreciate heritage craftsmanship quality investment pieces legacy pass down generations. Follow up monthly personalized curated selections dedicated relationship.,. Planning major retirement party estate hundreds guests, boutique collaboration sponsorship opportunity significant visibility., more or less,.",
+  "anonymized_text": "Mr., you know what,. and Mrs. Williams, both 60, VIP clients since 2015.,. Major shopping spring collection retirement celebration both careers successful. Combined budget 26K very flexible,., I see. He retired CEO pharmaceutical company, she retired hospital administrator healthcare executive. Both healthcare business worlds highest levels, transformed organizations leadership. Travel extensively retirement luxury cruises cultural tours worldwide freedom. He collects rare books first editions medical history pharmacy fascinating. She passionate healthcare art therapy hospitals healing environments. He classic timeless cognac brown leather conservative elegant something,. She sophisticated champagne beige rose gold feminine style. Both pescatarian health longevity for events. He has [RGPD_HEALTH_PHYSICAL_REDACTED]. Four adult children successful careers doctor lawyer businessperson teacher proud,. Nine grandchildren growing rapidly constant gift opportunities celebrations something. Exceptional clients highest tier lifetime value, referred countless wealthy friends business associates decades.,. Philanthropy major donated millions healthcare education causes values giving back. what,. Deeply appreciate heritage craftsmanship quality investment pieces legacy pass down generations. Follow up monthly personalized curated selections dedicated relationship.,. Planning major retirement party estate hundreds guests, boutique collaboration sponsorship opportunity significant visibility., more or less,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "high blood pressure dietary restrictions",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains information about a client's health condition (high blood pressure), which is classified as sensitive data under Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

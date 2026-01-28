@@ -1,0 +1,32 @@
+{
+  "ID": "CA_107",
+  "original_text": "Mrs. Patterson, 53, museum curator contemporary art, regular client since 2019,. Looking for new handbag versatile work events. Budget 5-6K. in a manner of speaking. Style artistic sophisticated something understated elegance,., sort of. Curates major exhibitions, travels internationally art fairs Basel Venice Miami. Collects minimalist sculptures, home featured design magazines kind of,. sort of,. Divorced two years ago, redefining personal style freedom. I see Practices tai chi daily, wellness retreats quarterly Bali. I see,. Pescatarian diet for events, something. Nickel allergy important hardware., so,. Adult son architect New York, daughter studying art history Sorbonne. Plans retirement three years, building art collection seriously in some way,.,. Excellent cultivated client, refers museum colleagues. Follow up May preview summer collection. Interested artist collaborations limited editions.",
+  "anonymized_text": "Mrs. Patterson, 53, museum curator contemporary art, regular client since 2019,. Looking for new handbag versatile work events. Budget 5-6K. in a manner of speaking. Style artistic sophisticated something understated elegance,., sort of. Curates major exhibitions, travels internationally art fairs Basel Venice Miami. Collects minimalist sculptures, home featured design magazines kind of,. sort of,. Divorced two years ago, redefining personal style freedom. I see [RGPD_HEALTH_MENTAL_REDACTED], wellness retreats quarterly Bali. I see,. Pescatarian diet for events, something. Nickel allergy important hardware., so,. Adult son architect New York, daughter studying art history Sorbonne. Plans retirement three years, building art collection seriously in some way,.,. Excellent cultivated client, refers museum colleagues. Follow up May preview summer collection. Interested artist collaborations limited editions.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "divorced two years ago, redefining personal style freedom",
+        "category": "family_conflict",
+        "severity": "medium"
+      },
+      {
+        "text": "Practices tai chi daily",
+        "category": "health_mental",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains references to a family conflict due to divorce in a potentially sensitive context, as well as a mention of tai chi which may imply a focus on mental wellness. This makes the data sensitive under GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

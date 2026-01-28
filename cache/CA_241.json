@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_241",
+  "language": "FR",
+  "tags": [
+    "media_professional",
+    "shopping_with_spouse",
+    "vegetarian",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Journaliste politique",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'journaliste politique' aligns with media_professional. Shopping with companion who is also a journalist -> shopping_with_spouse. Vegetarian lifestyle noted -> vegetarian tag. Severe nickel allergy detected -> nickel_allergy with severity severe.",
+  "from_cache": false
+}

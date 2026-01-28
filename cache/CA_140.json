@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_140",
+  "language": "DE",
+  "tags": [
+    "entrepreneur_real_estate",
+    "creative_arts_visual",
+    "sustainable_values",
+    "budget_very_flexible",
+    "anniversary_gift"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "19K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Architekt, Landschaftsarchitektin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession as 'Architekt' and 'Landschaftsarchitektin' -> entrepreneur_real_estate and creative_arts_visual. Shopping together as a couple -> shopping_with_spouse. Anniversary gift for their 20 years of marriage -> anniversary_gift. Budget is very flexible at 19K.",
+  "from_cache": false
+}

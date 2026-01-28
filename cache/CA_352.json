@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_352",
+  "language": "EN",
+  "tags": [
+    "shopping_alone",
+    "sustainable_values",
+    "art_collector",
+    "travel_frequent"
+  ],
+  "invalid_tags": [
+    "creative_arts_film"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "16k-20k",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Film producer",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'film producer' aligns with 'creative_arts_film'. Budget discussed is 16K, indicating a high budget range. Client is a VIC and is shopping alone, with no specific gift mentioned.",
+  "from_cache": false
+}

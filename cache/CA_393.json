@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_393",
+  "language": "IT",
+  "tags": [
+    "legal_corporate",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "8k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "chemical_sensitivity": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Avvocata penalista",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'avvocata penalista' -> legal_corporate. Shopping with husband -> shopping_with_spouse. Gift for daughter studying law -> gift_for_child. 'Allergia profumi forti' indicates a severe chemical sensitivity.",
+  "from_cache": false
+}

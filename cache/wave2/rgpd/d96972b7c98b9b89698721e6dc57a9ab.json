@@ -1,0 +1,15 @@
+{
+  "ID": "CA_214",
+  "original_text": "Sr ves,. López, 46 años, director recursos humanos corporación tecnología, nuevo cliente potencial alto. Busca bolsos profesionales trabajo viajes oficinas mundiales frecuentes., ves,. Presupuesto 9K inicial, veis.,. Estilo corporativo moderno profesional, prefiere negro navy gris ejecutivo., sí. Gestiona talento global tech miles ingenieros, reclutamiento cultura empresarial por ejemplo,. Colecciona libros management liderazgo recursos humanos clásicos. Viaja oficinas Silicon Valley Bangalore Berlín constantemente,. Practica CrossFit entrenamiento funcional, fitness ejecutivo. Pescetariano para eventos. Sin alergias. Esposa psicóloga organizacional consultora, pareja RRHH.,. Hijos universidad estudian ingeniería business. Red contactos ejecutivos RRHH tech vastísima referencias., sí, veis. sí Cliente segmento corporativo tech creciente. Follow-up diciembre mostrar colección invierno que, sí,. veis Interesado funcionalidad diseño profesional equilibrio perfecto uso intensivo.",
+  "anonymized_text": "Sr ves,. López, 46 años, director recursos humanos corporación tecnología, nuevo cliente potencial alto. Busca bolsos profesionales trabajo viajes oficinas mundiales frecuentes., ves,. Presupuesto 9K inicial, veis.,. Estilo corporativo moderno profesional, prefiere negro navy gris ejecutivo., sí. Gestiona talento global tech miles ingenieros, reclutamiento cultura empresarial por ejemplo,. Colecciona libros management liderazgo recursos humanos clásicos. Viaja oficinas Silicon Valley Bangalore Berlín constantemente,. Practica CrossFit entrenamiento funcional, fitness ejecutivo. Pescetariano para eventos. Sin alergias. Esposa psicóloga organizacional consultora, pareja RRHH.,. Hijos universidad estudian ingeniería business. Red contactos ejecutivos RRHH tech vastísima referencias., sí, veis. sí Cliente segmento corporativo tech creciente. Follow-up diciembre mostrar colección invierno que, sí,. veis Interesado funcionalidad diseño profesional equilibrio perfecto uso intensivo.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations fournies concernent des aspects professionnels et des préférences personnelles non sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

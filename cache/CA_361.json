@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_361",
+  "language": "FR",
+  "tags": [
+    "wine_connoisseur",
+    "gastronomy",
+    "pescatarian",
+    "shopping_alone"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "sulfites_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "sommelière chef cave",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'sommelière chef cave' indicates expertise in wine -> wine_connoisseur. Interest in gastronomy and pescatarian diet aligns with gastronomy and pescatarian tags. Budget of 5500€ fits '5k-10k'. First visit status inferred from being a new client. 'Allergie sulfites' is severe as indicated in the transcription.",
+  "from_cache": false
+}

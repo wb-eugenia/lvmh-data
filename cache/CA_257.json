@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_257",
+  "language": "EN",
+  "tags": [
+    "medical_specialist",
+    "corporate_executive_c_level",
+    "shopping_with_spouse",
+    "gift_for_business_associate",
+    "philanthropy"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "20k-25k",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "business_associate"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "chief medical officer hospital system, hospital CEO healthcare administration",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'chief medical officer' and 'hospital CEO' -> medical_specialist and corporate_executive_c_level. Shopping with spouse -> shopping_with_spouse. Gifts for healthcare executives -> gift_for_business_associate. Budget is combined and flexible, indicating high value.",
+  "from_cache": false
+}

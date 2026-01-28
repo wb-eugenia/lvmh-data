@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_111",
+  "language": "FR",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_child",
+    "vegetarian",
+    "book_collector_rare"
+  ],
+  "invalid_tags": [
+    "creative_arts_landscape"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "4500€",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "pollen_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Architecte paysagiste",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'architecte paysagiste' -> creative_arts_landscape. Shopping with husband -> shopping_with_spouse. Gift for daughter following mother's footsteps -> gift_for_child. 'Végétarienne stricte' -> vegetarian. 'Allergie pollen sévère' -> pollen_allergy with severity severe.",
+  "from_cache": false
+}

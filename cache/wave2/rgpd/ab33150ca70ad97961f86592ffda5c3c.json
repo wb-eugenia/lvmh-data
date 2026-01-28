@@ -1,0 +1,15 @@
+{
+  "ID": "CA_103",
+  "original_text": "Sr veis. Ruiz, 51 años, director cine documentales, cliente ocasional desde 2021,. Busca regalo esposa 48 cumpleaños próximo mes. Presupuesto 6K aproximado.,. Ella productora televisión, estilo moderno sofisticado. sí. Aman cine, asisten Cannes San Sebastián cada año,. veis. Viajan constante rodajes localizaciones exóticas. Ella prefiere colores tierra cognac beige, odia negro demasiado formal, sí. veis. Practican buceo certificados avanzados, próximo viaje que Maldivas filmación documental., que, ves. Vegetarianos ambos para eventos boutique. Ella alergia látex importante. Hijo adolescente estudia edición audiovisual,. Hija sí pequeña 12 años pasión equitación. Familia veis creativa excelente potencial. Contactar abril.",
+  "anonymized_text": "Sr veis. Ruiz, 51 años, director cine documentales, cliente ocasional desde 2021,. Busca regalo esposa 48 cumpleaños próximo mes. Presupuesto 6K aproximado.,. Ella productora televisión, estilo moderno sofisticado. sí. Aman cine, asisten Cannes San Sebastián cada año,. veis. Viajan constante rodajes localizaciones exóticas. Ella prefiere colores tierra cognac beige, odia negro demasiado formal, sí. veis. Practican buceo certificados avanzados, próximo viaje que Maldivas filmación documental., que, ves. Vegetarianos ambos para eventos boutique. Ella alergia látex importante. Hijo adolescente estudia edición audiovisual,. Hija sí pequeña 12 años pasión equitación. Familia veis creativa excelente potencial. Contactar abril.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Aucune donnée sensible détectée selon les catégories définies. Les informations sur l'allergie au latex et le régime végétarien ne sont pas considérées comme sensibles. Les détails sur la famille et les professions ne relèvent pas des catégories sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

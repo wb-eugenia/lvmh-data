@@ -1,0 +1,15 @@
+{
+  "ID": "CA_120",
+  "original_text": "Herr und Frau Zimmermann, beide 46, regelmäßige Kunden seit 2019. Einkauf Frühjahrskollektion plus Geschenke Eltern beide Seiten. Budget zusammen 14K flexibel,. Er Investmentbanker Luxembourg, sie Innenarchitektin eigenes Studio,. Beide reisen häufig geschäftlich privat, planen Safari Tansania Sommer., in gewisser Weise. Er sammelt moderne Uhren limitierte Editionen, kennt Wert Handwerk. Sie liebt skandinavisches Design, minimalistisch funktional,. Er bevorzugt klassisch schwarz braun Leder. Sie modern grau beige rose gold Hardware. in gewisser Weise,. Beide Pescetarier für Events.,. Keine Allergien,. Sohn gesehen studiert Ingenieurwissenschaften ETH Zürich, Tochter Gymnasium Abitur nächstes Jahr Geschenkgelegenheit, also,. Solide Kunden mittlere obere Preissegment, kaufen zweimal Jahr regelmäßig,.,. Follow-up April zeigen Sommerkollektion.",
+  "anonymized_text": "Herr und Frau Zimmermann, beide 46, regelmäßige Kunden seit 2019. Einkauf Frühjahrskollektion plus Geschenke Eltern beide Seiten. Budget zusammen 14K flexibel,. Er Investmentbanker Luxembourg, sie Innenarchitektin eigenes Studio,. Beide reisen häufig geschäftlich privat, planen Safari Tansania Sommer., in gewisser Weise. Er sammelt moderne Uhren limitierte Editionen, kennt Wert Handwerk. Sie liebt skandinavisches Design, minimalistisch funktional,. Er bevorzugt klassisch schwarz braun Leder. Sie modern grau beige rose gold Hardware. in gewisser Weise,. Beide Pescetarier für Events.,. Keine Allergien,. Sohn gesehen studiert Ingenieurwissenschaften ETH Zürich, Tochter Gymnasium Abitur nächstes Jahr Geschenkgelegenheit, also,. Solide Kunden mittlere obere Preissegment, kaufen zweimal Jahr regelmäßig,.,. Follow-up April zeigen Sommerkollektion.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations fournies concernent des préférences d'achat, des professions et des détails familiaux sans contexte conflictuel."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

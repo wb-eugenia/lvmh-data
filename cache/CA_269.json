@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_269",
+  "language": "ES",
+  "tags": [
+    "philanthropy",
+    "travel_frequent",
+    "vegetarian",
+    "sustainable_values"
+  ],
+  "invalid_tags": [
+    "entrepreneur_education"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Directora fundación educación ONG internacional",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'directora fundación educación ONG internacional' -> entrepreneur_education. Interest in sustainable values and frequent travel aligns with tags. Budget specified as 7K.",
+  "from_cache": false
+}

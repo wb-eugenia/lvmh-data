@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_104",
+  "language": "IT",
+  "tags": [
+    "entrepreneur_tech",
+    "travel_frequent",
+    "social_media_influencer"
+  ],
+  "invalid_tags": [
+    "artisanal_craft_appreciation"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "10k-20k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "penicillin_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "parent"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "sviluppatore software AI startup",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'sviluppatore software AI startup' -> entrepreneur_tech. Frequent traveler -> travel_frequent. Appreciation for craftsmanship noted. Gift for parents' anniversary -> gift_for_parent.",
+  "from_cache": false
+}

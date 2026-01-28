@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_327",
+  "language": "EN",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "promotion_celebration"
+  ],
+  "invalid_tags": [
+    "creative_arts_dance",
+    "artistic_community"
+  ],
+  "num_tags": 3,
+  "confidence": 0.92,
+  "budget_range": "4k-5k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "shellfish_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "professional dancer",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'professional dancer' -> creative_arts_dance. Shopping with partner -> shopping_with_spouse. Gift for partner's anniversary -> gift_for_spouse + promotion_celebration. Severe shellfish allergy detected.",
+  "from_cache": false
+}

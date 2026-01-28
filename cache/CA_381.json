@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_381",
+  "language": "FR",
+  "tags": [
+    "creative_arts_visual",
+    "shopping_with_spouse",
+    "gastronomy",
+    "art_collector"
+  ],
+  "invalid_tags": [
+    "gift_for_self"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "cheffe pâtisserie",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'cheffe pâtisserie' aligns with 'creative_arts_visual'. Shopping with companion who is also a chef -> shopping_with_spouse. Budget specified as 6K -> budget_range '5k-10k'. First visit indicated by 'nouvelle cliente potentiel'.",
+  "from_cache": false
+}

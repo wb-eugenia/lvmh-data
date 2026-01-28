@@ -1,0 +1,15 @@
+{
+  "ID": "CA_348",
+  "original_text": "Signor Colombo 48 anni direttore finanziario multinazionale cliente regolare dal 2019 se. Cerca borse viaggio lavoro spostamenti frequenti Europa Asia budget 8K approssimativo se,., che. Stile professionale classico funzionale preferisce nero marrone sobrio.,. Gestisce finanze operazioni globali responsabilità enorme viaggio costante per esempio, se,. Colleziona orologi meccanici complicati apprezza ingegneria precisione. Pratica golf regolare membro club esclusivo tornei aziendali. Pescetariano per eventi boutique allergia crostacei importante.,. Moglie architetto figli adolescenti scuola internazionale,. Famiglia stabile tradizionale valori solidi. Cliente affidabile compra regolarmente qualità funzionalità riferito colleghi executives,. Richiamare marzo mostrare collezione viaggio interessato equilibrio eleganza praticità uso professionale quotidiano intenso.",
+  "anonymized_text": "Signor Colombo 48 anni direttore finanziario multinazionale cliente regolare dal 2019 se. Cerca borse viaggio lavoro spostamenti frequenti Europa Asia budget 8K approssimativo se,., che. Stile professionale classico funzionale preferisce nero marrone sobrio.,. Gestisce finanze operazioni globali responsabilità enorme viaggio costante per esempio, se,. Colleziona orologi meccanici complicati apprezza ingegneria precisione. Pratica golf regolare membro club esclusivo tornei aziendali. Pescetariano per eventi boutique allergia crostacei importante.,. Moglie architetto figli adolescenti scuola internazionale,. Famiglia stabile tradizionale valori solidi. Cliente affidabile compra regolarmente qualità funzionalità riferito colleghi executives,. Richiamare marzo mostrare collezione viaggio interessato equilibrio eleganza praticità uso professionale quotidiano intenso.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le notes ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (pescetariano) et la situation familiale (famille stable) ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

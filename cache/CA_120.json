@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_120",
+  "language": "DE",
+  "tags": [
+    "finance_investment",
+    "interior_design",
+    "shopping_with_spouse",
+    "gift_for_child"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "14K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Investmentbanker, Innenarchitektin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'Investmentbanker' -> finance_investment and 'Innenarchitektin' -> interior_design. Shopping together as a couple -> shopping_with_spouse. Gift opportunity for their children -> gift_for_child.",
+  "from_cache": false
+}

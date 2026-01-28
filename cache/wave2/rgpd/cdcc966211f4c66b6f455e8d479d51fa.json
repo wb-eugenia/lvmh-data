@@ -1,0 +1,37 @@
+{
+  "ID": "CA_273",
+  "original_text": "Signora Ferrari, 43 anni, avvocata penalista internazionale criminalità organizzata, cliente regolare dal 2020. Cerca borse professionali nuove primavera tribunali processi alto profilo., se. Budget 8K. Stile professionale autorevole potente, preferisce nero colori autorità potere, che. Difende accusa casi criminalità organizzata mafia processi importanti copertura media,. Colleziona sentenze storiche processi mafia Falcone Borsellino storia giustizia. Pratica arti per esempio marziali autodifesa, protezione personale importante lavoro rischioso., un se tantino. Pescetariana per eventi boutique,. un tantino,. Allergia profumi forti tribunali importante. Compagno magistrato, coppia giustizia legalità completa. Figli giovani protezione sicurezza.,. Cliente profilo alto rischio giustizia un po' valori fortissimi. Richiamare dicembre preview inverno., in qualche maniera. Interessata presenza professionale autorità immagine tribunale intimidazione positiva giustizia rappresentazione.",
+  "anonymized_text": "Signora Ferrari, 43 anni, avvocata penalista internazionale criminalità organizzata, cliente regolare dal 2020. Cerca borse professionali nuove primavera tribunali processi alto profilo., se. Budget 8K. Stile professionale autorevole potente, preferisce nero colori autorità potere, che. Difende accusa casi criminalità organizzata mafia processi importanti copertura media,. Colleziona sentenze storiche processi mafia Falcone Borsellino storia giustizia. Pratica arti per esempio marziali autodifesa, protezione personale importante lavoro rischioso., un se tantino. Pescetariana per eventi boutique,. un tantino,. Allergia profumi forti tribunali importante. Compagno magistrato, coppia giustizia legalità completa. Figli giovani protezione sicurezza.,. Cliente profilo alto rischio giustizia un po' valori fortissimi. Richiamare dicembre preview inverno., in qualche maniera. Interessata presenza professionale autorità immagine tribunale intimidazione positiva giustizia rappresentazione.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "allergia profumi forti",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "compagno magistrato",
+        "category": "family_conflict",
+        "severity": "medium"
+      },
+      {
+        "text": "figli giovani protezione sicurezza",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le notes contiennent des informations sur des allergies (sensible) et des conflits familiaux potentiels liés à la profession du partenaire et à la protection des enfants, ce qui les rend sensibles selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

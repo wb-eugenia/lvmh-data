@@ -1,0 +1,32 @@
+{
+  "ID": "CA_312",
+  "original_text": "Mr if you will, so,. and Mrs. so,. Chen both late 30s first time customers ultra-high potential. He's founder successful fintech unicorn she's venture capitalist.,. Looking to establish luxury wardrobe after recent liquidity event budget extremely flexible discussed 30K+ initial purchases,. He's interested in travel pieces work bags she wants what complete handbag collection. Both Stanford alumni active network Silicon Valley. Travel constantly for business recently opened London office considering Paris,.,. He plays poker professionally side competed World Series several times, something,. She passionate women in tech runs accelerator program female founders, I see, so. Both follow plant-based diet mostly for health he severe peanut allergy critical for events,. Twin daughters age 5 future gift opportunities. Planning move London permanently next year building European client relationships,. Excellent social following combined 500K tech influencers potential brand visibility. Interested in innovation materials asked tech integration products. Very interested in sustainability carbon footprint,. Follow up weekly with curated selections assign dedicated advisor immediate this is transformational tier one priority client handle carefully.",
+  "anonymized_text": "Mr if you will, so,. and Mrs. so,. Chen both late 30s first time customers ultra-high potential. He's founder successful fintech unicorn she's venture capitalist.,. Looking to establish luxury wardrobe after recent liquidity event budget extremely flexible discussed 30K+ initial purchases,. He's interested in travel pieces work bags she wants what complete handbag collection. Both Stanford alumni active network Silicon Valley. Travel constantly for business recently opened London office considering Paris,.,. He plays poker professionally side competed World Series several times, something,. She passionate women in tech runs accelerator program female founders, I see, so. Both follow plant-based diet mostly for health he [RGPD_HEALTH_PHYSICAL_REDACTED] critical for events,. Twin daughters age 5 future gift opportunities. Planning move London permanently next year building European client relationships,. Excellent social following combined 500K tech influencers potential brand visibility. Interested in innovation materials asked tech integration products. Very interested in sustainability carbon footprint,. Follow up weekly with curated selections assign dedicated advisor immediate this is transformational tier one priority client handle carefully.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "severe peanut allergy",
+        "category": "health_physical",
+        "severity": "high"
+      },
+      {
+        "text": "twin daughters age 5",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains a severe peanut allergy, which is classified as sensitive health information. Additionally, the mention of twin daughters could imply family dynamics, but it is not explicitly conflictual. However, due to the presence of sensitive health data, it is not safe to store."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

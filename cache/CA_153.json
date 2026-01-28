@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_153",
+  "language": "IT",
+  "tags": [
+    "creative_arts_visual",
+    "art_collector",
+    "pescatarian",
+    "budget_very_flexible",
+    "seeks_unique_pieces"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "10K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "direttrice museo arte contemporanea",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'direttrice museo arte contemporanea' aligns with 'creative_arts_visual'. Client is a VIP since 2018, indicating high status. Shopping with spouse and has a child, hence 'shopping_with_spouse' and 'gift_for_child'. Severe nickel allergy noted.",
+  "from_cache": false
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_399",
+  "original_text": "Sra, que. Ortiz 43 años directora marketing agencia publicidad creativa nueva clienta potencial alto. Busca bolsos elegantes trabajo clientes reuniones creativas presupuesto 10K flexible,. Estilo creativo moderno sofisticado aprecia diseño innovación estética.,. Dirige campañas publicitarias marcas internacionales creatividad estrategia. Colecciona carteles publicitarios vintage iconos diseño gráfico historia, sí. ves,. Viaja pitches clientes producciones filmaciones internacional frecuente. Practica danza contemporánea clases regulares expresión artística,.,. Vegetariana para eventos alergia níquel importante accesorios hardware.,. Pareja director creativo agencia competidora rivalidad amistosa sin hijos enfocados carreras competitivas industria,. Red contactos directores creativos diseñadores clientes empresas enorme cliente industria publicitaria creativa segmento follow-up septiembre mostrar colección muy interesada branding storytelling marca narrativa productos heritage.",
+  "anonymized_text": "Sra, que. Ortiz 43 años directora marketing agencia publicidad creativa nueva clienta potencial alto. Busca bolsos elegantes trabajo clientes reuniones creativas presupuesto 10K flexible,. Estilo creativo moderno sofisticado aprecia diseño innovación estética.,. Dirige campañas publicitarias marcas internacionales creatividad estrategia. Colecciona carteles publicitarios vintage iconos diseño gráfico historia, sí. ves,. Viaja pitches clientes producciones filmaciones internacional frecuente. Practica danza contemporánea clases regulares expresión artística,.,. Vegetariana para eventos alergia níquel importante accesorios hardware.,. Pareja director creativo agencia competidora rivalidad amistosa sin hijos enfocados carreras competitivas industria,. Red contactos directores creativos diseñadores clientes empresas enorme cliente industria publicitaria creativa segmento follow-up septiembre mostrar colección muy interesada branding storytelling marca narrativa productos heritage.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarien) et l'allergie au nickel sont considérées comme non sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

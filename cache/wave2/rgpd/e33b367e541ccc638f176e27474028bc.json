@@ -1,0 +1,32 @@
+{
+  "ID": "CA_311",
+  "original_text": "Mme Girard 56 ans architecte paysagiste renommée cliente régulière depuis 2020, plus ou moins. Renouvelle sacs travail chantiers rendez-vous clients budget 4500€, que.,. naturel élégant terre cuirs cognac beige vert olive, à peu près.,. Passionnée jardins botaniques voyage étudier collections mondiales. Collectionne par exemple livres anciens botanique horticulture,. Pratique randonnée montagne régulière prépare GR20 Corse été. Végétarienne stricte par exemple pour événements allergie pollen sévère printemps été,. Mari professeur université histoire anniversaire juin fille architecte suit traces mère fils jardinier chef restaurant étoilé, on va dire. Excellente cliente nature passionnée rappeler avril preview printemps intéressée matériaux naturels durables origine responsable.",
+  "anonymized_text": "Mme Girard 56 ans architecte paysagiste renommée cliente régulière depuis 2020, plus ou moins. Renouvelle sacs travail chantiers rendez-vous clients budget 4500€, que.,. naturel élégant terre cuirs cognac beige vert olive, à peu près.,. Passionnée jardins botaniques voyage étudier collections mondiales. Collectionne par exemple livres anciens botanique horticulture,. Pratique randonnée montagne régulière prépare GR20 Corse été. Végétarienne stricte par exemple pour événements [RGPD_HEALTH_PHYSICAL_REDACTED] printemps été,. Mari professeur université histoire anniversaire juin fille architecte suit traces mère fils jardinier chef restaurant étoilé, on va dire. Excellente cliente nature passionnée rappeler avril preview printemps intéressée matériaux naturels durables origine responsable.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "allergie pollen sévère",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "divorce",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des informations sur une allergie sévère au pollen, ce qui relève de la santé physique, et des éléments qui pourraient indiquer un conflit familial en mentionnant la profession de la fille et le fait qu'elle suit les traces de sa mère, ce qui peut être interprété dans un contexte de pression familiale."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

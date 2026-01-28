@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_105",
+  "language": "DE",
+  "tags": [
+    "legal_corporate",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "travel_frequent",
+    "opera_theater",
+    "book_collector_rare"
+  ],
+  "invalid_tags": [
+    "academic_professor"
+  ],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "22K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Professorin Literatur Universität, Rechtsanwalt Partner großer Kanzlei",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'Rechtsanwalt' and 'Professorin', tagged as legal_corporate and academic_professor. Shopping together as a couple -> shopping_with_spouse. Gift for their daughter who is a doctor -> gift_for_child. Budget is specified as 22K, indicating high flexibility.",
+  "from_cache": false
+}

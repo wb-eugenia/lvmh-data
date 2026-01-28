@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_261",
+  "language": "FR",
+  "tags": [
+    "sustainable_values",
+    "vegan",
+    "chemical_sensitivity",
+    "shopping_with_spouse"
+  ],
+  "invalid_tags": [
+    "corporate_executive"
+  ],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "chemical_sensitivity": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "responsable RSE grande entreprise CAC40",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'responsable RSE grande entreprise CAC40' -> corporate_executive. Budget specified as 6K -> 5k-10k. Shopping with companion who is a consultant in sustainable development -> shopping_with_spouse. Allergies to chemical products noted as multiple sensitivities -> chemical_sensitivity with default severity moderate.",
+  "from_cache": false
+}

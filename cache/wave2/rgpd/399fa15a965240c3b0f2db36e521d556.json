@@ -1,0 +1,15 @@
+{
+  "ID": "CA_115",
+  "original_text": "Frau Becker, 34, Opernsängerin international, neue Kundin hohes Potenzial.,. Sucht Qualitätsstücke Reisen Auftritte weltweit. Budget flexibel 13K besprochen. Stil elegant künstlerisch raffiniert, liebt besondere Farben. Sammelt vintage Schmuck Art Deco Art Nouveau, gesehen., ein bisschen,. Reist ständig Opernhäuser Mailand Wien New York Sydney, wie. Singt Hauptrollen große Produktionen, nächste Premiere Met Opera Frühjahr, wie. also,. Praktiziert Yoga Stimme Flexibilität, Meditation täglich. Vegetarierin seit Jugend. Lebensmittelfarben Allergie wichtig Events. auf eine Art. Partner Dirigent auch Reisen ständig, Geschenkmöglichkeit Geburtstag Mai. Keine Kinder Karriere fokussiert. Exzellente Kundin Kunstwelt, viele Kontakte Kulturszene international.,. Sehr interessiert einzigartige Stücke Handwerk Geschichte. Follow-up März privatansicht neue Kollektion.",
+  "anonymized_text": "Frau Becker, 34, Opernsängerin international, neue Kundin hohes Potenzial.,. Sucht Qualitätsstücke Reisen Auftritte weltweit. Budget flexibel 13K besprochen. Stil elegant künstlerisch raffiniert, liebt besondere Farben. Sammelt vintage Schmuck Art Deco Art Nouveau, gesehen., ein bisschen,. Reist ständig Opernhäuser Mailand Wien New York Sydney, wie. Singt Hauptrollen große Produktionen, nächste Premiere Met Opera Frühjahr, wie. also,. Praktiziert Yoga Stimme Flexibilität, Meditation täglich. Vegetarierin seit Jugend. Lebensmittelfarben Allergie wichtig Events. auf eine Art. Partner Dirigent auch Reisen ständig, Geschenkmöglichkeit Geburtstag Mai. Keine Kinder Karriere fokussiert. Exzellente Kundin Kunstwelt, viele Kontakte Kulturszene international.,. Sehr interessiert einzigartige Stücke Handwerk Geschichte. Follow-up März privatansicht neue Kollektion.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé mentale, la santé physique, les conflits familiaux, la religion, les opinions politiques, l'orientation sexuelle et l'origine ethnique ne sont pas présentes. Les allergies alimentaires sont mentionnées, mais elles sont considérées comme sûres pour le business."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

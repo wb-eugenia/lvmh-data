@@ -1,0 +1,25 @@
+{
+  "ID": "CA_182",
+  "original_text": "Mr. and Mrs something,. Lee, both 58, VIP clients since 2014., if you will,. Major shopping celebrating business milestone company IPO successful., I suppose. Combined budget 28K extremely flexible. He founder CEO biotech company groundbreaking, she COO same company power couple business,. I see Both science business worlds intersection, revolutionary medical treatments development. Travel constantly investor relations medical conferences boards worldwide what I mean,. He collects scientific instruments antique microscopes telescopes historical. She passionate women in what STEM, runs mentorship programs girls science. He classic professional black brown leather conservative. She modern elegant grey champagne rose gold feminine.,. Both pescatarian health for events to what some extent, what. He has diabetes dietary restrictions critical,. Three adult children all STEM careers scientist engineer physician family tradition,.,. Six grandchildren young growing gift opportunities constant, in some way,. Exceptional clients highest tier wealth philanthropy, donated millions medical research education, something. Refer countless wealthy what business associates investors. Appreciate innovation quality materials lasting value legacy pieces,. Follow up monthly personalized curated selections dedicated advisor. Planning major celebration company IPO gala hundreds guests, boutique collaboration sponsorship opportunity significant.",
+  "anonymized_text": "Mr. and Mrs something,. Lee, both 58, VIP clients since 2014., if you will,. Major shopping celebrating business milestone company IPO successful., I suppose. Combined budget 28K extremely flexible. He founder CEO biotech company groundbreaking, she COO same company power couple business,. I see Both science business worlds intersection, revolutionary medical treatments development. Travel constantly investor relations medical conferences boards worldwide what I mean,. He collects scientific instruments antique microscopes telescopes historical. She passionate women in what STEM, runs mentorship programs girls science. He classic professional black brown leather conservative. She modern elegant grey champagne rose gold feminine.,. Both pescatarian health for events to what some extent, what. [RGPD_HEALTH_PHYSICAL_REDACTED],. Three adult children all STEM careers scientist engineer physician family tradition,.,. Six grandchildren young growing gift opportunities constant, in some way,. Exceptional clients highest tier wealth philanthropy, donated millions medical research education, something. Refer countless wealthy what business associates investors. Appreciate innovation quality materials lasting value legacy pieces,. Follow up monthly personalized curated selections dedicated advisor. Planning major celebration company IPO gala hundreds guests, boutique collaboration sponsorship opportunity significant.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "He has diabetes dietary restrictions critical",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains information about a client's diabetes, which is classified as sensitive health information under Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

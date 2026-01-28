@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_188",
+  "language": "IT",
+  "tags": [
+    "travel_frequent",
+    "pescatarian",
+    "media_professional"
+  ],
+  "invalid_tags": [
+    "corporate_executive"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "10k-15k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Direttore comunicazione azienda multinazionale",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'direttore comunicazione azienda multinazionale' aligns with corporate_executive. Regular client status confirmed. Budget is approximately 10K. Shopping context indicates he is with his wife, a media professional.",
+  "from_cache": false
+}

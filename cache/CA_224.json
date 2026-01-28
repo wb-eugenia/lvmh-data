@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_224",
+  "language": "ES",
+  "tags": [
+    "shopping_with_spouse",
+    "sustainable_values",
+    "chemical_sensitivity"
+  ],
+  "invalid_tags": [
+    "architect_sustainable",
+    "gift_for_children"
+  ],
+  "num_tags": 3,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "occasional_client",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "chemical_sensitivity": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "arquitecto sostenible",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'arquitecto sostenible' -> architect_sustainable. Shopping with wife -> shopping_with_spouse. Gift for children -> gift_for_children. 'Alergia químicos construcción importante' indicates severe chemical sensitivity.",
+  "from_cache": false
+}

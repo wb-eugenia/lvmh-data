@@ -1,0 +1,15 @@
+{
+  "ID": "CA_281",
+  "original_text": "Mme Laurent, 39 ans, directrice artistique agence publicité créative, nouvelle cliente potentiel,. Recherche sac travail créatif agence clients pitches.,. Budget 6K.,. créatif publicitaire, cuir couleurs variées créativité expression,. Dirige créativité campagnes publicité marques luxe mode. Collectionne affiches publicité vintage iconiques histoire pub art. Pratique danse contemporaine, créativité corps esprit expression.,. Végétarienne pour événements. Allergie nickel importante bijoux hardware.,. Compagne photographe mode, couple créatif industrie., eh bien. Pas enfants carrières créatives exigeantes priorité par exemple. Réseau créatifs publicitaires clients marques visibilité. vous savez, tu sais, que. Cliente segment publicité créative,.,. Rappeler février montrer nouveautés. par exemple Intéressée créativité design innovation esthétique campagnes parallèles création produits storytelling.",
+  "anonymized_text": "Mme Laurent, 39 ans, directrice artistique agence publicité créative, nouvelle cliente potentiel,. Recherche sac travail créatif agence clients pitches.,. Budget 6K.,. créatif publicitaire, cuir couleurs variées créativité expression,. Dirige créativité campagnes publicité marques luxe mode. Collectionne affiches publicité vintage iconiques histoire pub art. Pratique danse contemporaine, créativité corps esprit expression.,. Végétarienne pour événements. Allergie nickel importante bijoux hardware.,. Compagne photographe mode, couple créatif industrie., eh bien. Pas enfants carrières créatives exigeantes priorité par exemple. Réseau créatifs publicitaires clients marques visibilité. vous savez, tu sais, que. Cliente segment publicité créative,.,. Rappeler février montrer nouveautés. par exemple Intéressée créativité design innovation esthétique campagnes parallèles création produits storytelling.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarienne) et l'allergie au nickel sont considérées comme non sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

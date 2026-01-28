@@ -1,0 +1,25 @@
+{
+  "ID": "CA_341",
+  "original_text": "Mme Blanc 37 ans cheffe restaurant gastronomique étoile Michelin nouvelle cliente potentiel excellent. Recherche sac élégant usage quotidien restaurant événements culinaires budget 5500€. par exemple. moderne raffiné préfère cuirs ton terre beige camel cognac. Cuisine créative influence asiatique voyage Asie régulièrement inspiration nouvelles techniques. Collectionne couteaux japonais artisanaux par exemple forgés passionnée artisanat culinaire,. Pratique course pied maintien forme stress gestion cuisine.,. Pescetarienne pour événements allergie fruits coque sévère critique cuisine,.,. Compagnon sommelier restaurant ensemble couple restauration haut gamme,. Planifie ouvrir deuxième restaurant année prochaine besoins futurs par exemple probables par exemple,. Mentionné réseau chefs critiques gastronomiques étendu bonnes références potentielles,. Cliente créative monde culinaire apprécie qualité artisanat,. Rappeler mars montrer nouveautés intéressée parallèles artisanat culinaire maroquinerie.,.",
+  "anonymized_text": "Mme Blanc 37 ans cheffe restaurant gastronomique étoile Michelin nouvelle cliente potentiel excellent. Recherche sac élégant usage quotidien restaurant événements culinaires budget 5500€. par exemple. moderne raffiné préfère cuirs ton terre beige camel cognac. Cuisine créative influence asiatique voyage Asie régulièrement inspiration nouvelles techniques. Collectionne couteaux japonais artisanaux par exemple forgés passionnée artisanat culinaire,. Pratique course pied maintien forme stress gestion cuisine.,. Pescetarienne pour événements [RGPD_HEALTH_PHYSICAL_REDACTED] critique cuisine,.,. Compagnon sommelier restaurant ensemble couple restauration haut gamme,. Planifie ouvrir deuxième restaurant année prochaine besoins futurs par exemple probables par exemple,. Mentionné réseau chefs critiques gastronomiques étendu bonnes références potentielles,. Cliente créative monde culinaire apprécie qualité artisanat,. Rappeler mars montrer nouveautés intéressée parallèles artisanat culinaire maroquinerie.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "allergie fruits coque sévère",
+        "category": "health_physical",
+        "severity": "high"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne une allergie sévère aux fruits à coque, ce qui est considéré comme une donnée de santé physique sensible selon l'article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

@@ -1,0 +1,32 @@
+{
+  "ID": "CA_143",
+  "original_text": "Signora Rizzo, 46 anni, psicoterapeuta studio privato clientela alto profilo, cliente regolare dal 2020. Cerca rinnovo borse professionali primavera presentazione importante. Budget 7K.,. un po' Stile elegante discreto rassicurante, colori neutri beige grigio blu navy,. Lavora executives stress burnout, necessita ambiente tranquillo professionale,.,. Pratica mindfulness yoga, insegna corsi gestione stress aziende. Colleziona libri psicologia analitica Jung Freud prime edizioni rare.,. Viaggia conferenze psicoterapia internazionali Europa., un pochino, se. Vegetariana scelta etica per eventi boutique.,. Nessuna allergia.,. Marito avvocato, figlia psicologa segue madre. Figlio medico specializza psichiatria così,. Famiglia professioni aiuto, valori forti empatia. se se vuoi. Cliente affidabile compra regolarmente qualità, riferito molti colleghi terapeuti,. Richiamare aprile preview estate,. Interessata equilibrio estetica funzionalità sensibilità materiali. in qualche modo,.",
+  "anonymized_text": "Signora Rizzo, 46 anni, psicoterapeuta studio privato clientela alto profilo, cliente regolare dal 2020. Cerca rinnovo borse professionali primavera presentazione importante. Budget 7K.,. un po' Stile elegante discreto rassicurante, colori neutri beige grigio blu navy,. Lavora executives [RGPD_HEALTH_MENTAL_REDACTED], necessita ambiente tranquillo professionale,.,. Pratica mindfulness yoga, insegna corsi gestione stress aziende. Colleziona libri psicologia analitica Jung Freud prime edizioni rare.,. Viaggia conferenze psicoterapia internazionali Europa., un pochino, se. Vegetariana scelta etica per eventi boutique.,. Nessuna allergia.,. Marito avvocato, figlia psicologa segue madre. Figlio medico specializza psichiatria così,. Famiglia professioni aiuto, valori forti empatia. se se vuoi. Cliente affidabile compra regolarmente qualità, riferito molti colleghi terapeuti,. Richiamare aprile preview estate,. Interessata equilibrio estetica funzionalità sensibilità materiali. in qualche modo,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "stress burnout",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "marito avvocato, figlia psicologa segue madre. Figlio medico specializza psichiatria",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le note contiennent des références à des problèmes de santé mentale (stress burnout) et des informations sur la dynamique familiale qui peuvent être considérées comme sensibles."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

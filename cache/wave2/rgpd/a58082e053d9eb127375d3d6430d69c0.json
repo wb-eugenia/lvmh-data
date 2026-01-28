@@ -1,0 +1,25 @@
+{
+  "ID": "CA_316",
+  "original_text": "M. par exemple,. Leroy 44 ans journaliste reporter grands médias client occasionnel depuis 2022.,. Achat sac voyage solide léger zones parfois difficiles budget 4K,. fonctionnel discret cuir noir marron., que. Voyage constamment reportages terrains conflits zones sensibles.,. Passionné photographie couvre événements mondiaux importants., que. Collectionne appareils vintage Leica plus ou moins,. Pratique boxe fitness maintien forme,. Végétarien pour événements allergie iode sévère fruits mer. Compagne journaliste aussi voyages ensemble souvent opportunité future. Mentionné prix journalisme reçu récemment reconnaissance travail., tu sais,. client niche aventurier professionnels extrêmes rappeler mars montrer pièces résistantes voyage intéressé durabilité résistance conditions difficiles.,.",
+  "anonymized_text": "M. par exemple,. Leroy 44 ans journaliste reporter grands médias client occasionnel depuis 2022.,. Achat sac voyage solide léger zones parfois difficiles budget 4K,. fonctionnel discret cuir noir marron., que. Voyage constamment reportages terrains conflits zones sensibles.,. Passionné photographie couvre événements mondiaux importants., que. Collectionne appareils vintage Leica plus ou moins,. Pratique boxe fitness maintien forme,. Végétarien pour événements [RGPD_HEALTH_PHYSICAL_REDACTED]. Compagne journaliste aussi voyages ensemble souvent opportunité future. Mentionné prix journalisme reçu récemment reconnaissance travail., tu sais,. client niche aventurier professionnels extrêmes rappeler mars montrer pièces résistantes voyage intéressé durabilité résistance conditions difficiles.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "allergie iode sévère fruits mer",
+        "category": "health_physical",
+        "severity": "high"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne une allergie sévère à l'iode, ce qui est considéré comme une donnée de santé physique sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

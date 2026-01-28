@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_302",
+  "language": "EN",
+  "tags": [
+    "medical_specialist",
+    "shopping_with_spouse",
+    "anniversary_gift",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "14K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "partner"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "oncologist",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'oncologist' -> medical_specialist. Shopping with partner indicates 'shopping_with_spouse'. Anniversary gift context suggests 'anniversary_gift'. Interest in sustainable sourcing aligns with 'sustainable_values'.",
+  "from_cache": false
+}

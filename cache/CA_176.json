@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_176",
+  "language": "FR",
+  "tags": [
+    "creative_fashion_industry",
+    "photography_collector",
+    "pescatarian",
+    "shopping_with_spouse"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "photographe mode commercial",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'photographe mode commercial' aligns with 'creative_fashion_industry'. 'Compagne styliste mode' indicates shopping with spouse. 'Allergie latex importante' indicates severe latex allergy.",
+  "from_cache": false
+}

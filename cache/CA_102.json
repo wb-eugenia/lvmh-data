@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_102",
+  "language": "EN",
+  "tags": [
+    "medical_specialist",
+    "shopping_with_spouse",
+    "anniversary_gift",
+    "sustainable_values"
+  ],
+  "invalid_tags": [
+    "gift_for_niece"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "14K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "partner"
+    ],
+    "gift_for": [
+      "niece"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "oncologist",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'oncologist' -> medical_specialist. Shopping with partner -> shopping_with_spouse. No children, but mentioned nieces/nephews for gifts -> gift_for_niece. Anniversary gift context -> anniversary_gift. Interest in sustainable sourcing -> sustainable_values.",
+  "from_cache": false
+}

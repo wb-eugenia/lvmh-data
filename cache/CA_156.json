@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_156",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "travel_frequent",
+    "tech_enthusiast"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nut_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "data scientist entreprise tech IA",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'data scientist entreprise tech IA' -> entrepreneur_tech. Shopping with partner -> shopping_with_spouse. Gift for spouse mentioned in context of wedding plans -> gift_for_spouse. Allergy to peanuts is severe.",
+  "from_cache": false
+}

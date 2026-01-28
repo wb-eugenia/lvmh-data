@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_364",
+  "language": "ES",
+  "tags": [
+    "creative_arts_music",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "retirement_celebration",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "13K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "director orquesta sinfónica",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'director orquesta sinfónica' -> creative_arts_music. Shopping with spouse -> shopping_with_spouse. Gifts for musicians and retirement celebration -> gift_for_child + retirement_celebration. Appreciation for artisan craftsmanship noted.",
+  "from_cache": false
+}

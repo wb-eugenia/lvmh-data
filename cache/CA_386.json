@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_386",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "tech_enthusiast",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "altitude_sinus_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Ingénieur aérospatial",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'ingénieur aérospatial' -> entrepreneur_tech. Shopping with spouse -> shopping_with_spouse. Budget specified as 5K -> budget_range '5k-10k'. Allergy to altitude with significant impact -> severe allergy severity.",
+  "from_cache": false
+}

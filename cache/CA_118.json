@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_118",
+  "language": "IT",
+  "tags": [
+    "entrepreneur_hospitality",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "pescatarian",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Chef ristorante due stelle Michelin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'chef ristorante due stelle Michelin' -> entrepreneur_hospitality. Shopping for anniversary gift for his partner -> gift_for_spouse + anniversary_gift. Pescatarian preference noted -> pescatarian tag.",
+  "from_cache": false
+}

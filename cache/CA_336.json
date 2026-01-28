@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_336",
+  "language": "FR",
+  "tags": [
+    "medical_surgeon",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "pescatarian",
+    "skiing"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "6500€",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "crucial"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Chirurgien orthopédiste",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'chirurgien orthopédiste' -> medical_surgeon. Shopping with spouse for anniversary gift -> shopping_with_spouse + gift_for_spouse + anniversary_gift. Pescetarien noted in lifestyle -> pescatarian. Skiing mentioned as a passion -> skiing.",
+  "from_cache": false
+}

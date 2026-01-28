@@ -1,0 +1,15 @@
+{
+  "ID": "CA_174",
+  "original_text": "Sr. Ruiz, 50 años, piloto comercial aerolínea internacional capitán, nuevo cliente potencial., sí. Busca maletas bolsos viaje uso profesional constante vuelos, veis. Presupuesto 8K. Estilo funcional práctico piloto, prefiere negro navy resistente.,. Vuela rutas intercontinentales Asia América, viajes trabajo vida. Colecciona maquetas aviones históricos aviación civil militar. Practica ciclismo montaña fines semana, competiciones amateur. Pescetariano para eventos. Sin alergias.,. Esposa azafata misma aerolínea, hijos pequeños escuela,. Familia viajes constante lifestyle nómada. ves,. Mencionó muchos colegas pilotos tripulación bien pagados podrían interesar.,. Buen cliente nicho aviación profesional necesita durabilidad extrema. Follow-up abril mostrar colección viaje resistente,. Interesado materiales ultra-resistentes diseño ergonómico peso ligero crucial.",
+  "anonymized_text": "Sr. Ruiz, 50 años, piloto comercial aerolínea internacional capitán, nuevo cliente potencial., sí. Busca maletas bolsos viaje uso profesional constante vuelos, veis. Presupuesto 8K. Estilo funcional práctico piloto, prefiere negro navy resistente.,. Vuela rutas intercontinentales Asia América, viajes trabajo vida. Colecciona maquetas aviones históricos aviación civil militar. Practica ciclismo montaña fines semana, competiciones amateur. Pescetariano para eventos. Sin alergias.,. Esposa azafata misma aerolínea, hijos pequeños escuela,. Familia viajes constante lifestyle nómada. ves,. Mencionó muchos colegas pilotos tripulación bien pagados podrían interesar.,. Buen cliente nicho aviación profesional necesita durabilidad extrema. Follow-up abril mostrar colección viaje resistente,. Interesado materiales ultra-resistentes diseño ergonómico peso ligero crucial.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon les catégories définies par l'Article 9 du RGPD. Les informations sur le client sont principalement liées à sa profession, ses préférences de voyage et son régime alimentaire, qui ne sont pas considérées comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

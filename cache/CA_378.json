@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_378",
+  "language": "IT",
+  "tags": [
+    "medical_specialist",
+    "shopping_with_spouse",
+    "pescatarian",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "8k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "penicillin_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Cardiologo interventista",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'cardiologo interventista' -> medical_specialist. Shopping with wife -> shopping_with_spouse. Severe allergy to penicillin detected -> penicillin_allergy with severity severe. Budget specified as approximately 8K.",
+  "from_cache": false
+}

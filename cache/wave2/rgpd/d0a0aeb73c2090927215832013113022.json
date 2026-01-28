@@ -1,0 +1,32 @@
+{
+  "ID": "CA_191",
+  "original_text": "Mme Chevalier, 37 ans, responsable développement durable grande entreprise, nouvelle cliente potentiel.,. Recherche sac professionnel écologique si possible réunions stakeholders. Budget 5500€. moderne durable, préfère matériaux éco-responsables couleurs naturelles.,. Travaille stratégie RSE réduction empreinte carbone entreprise. Collectionne rapports développement durable entreprises pionnières benchmarking,. Pratique vélo transport exclusif écologie, marathons cyclistes charité. Végane stricte convictions fortes événements,.,. Allergie latex produits chimiques sensibilités.,. Compagnon ingénieur énergies renouvelables, couple écologie militante.,. Pas enfants décision empreinte carbone consciente. Réseau professionnels durabilité RSE croissant segment. Cliente profil environnemental fort valeurs,. Rappeler août montrer options durables certifiées. Très intéressée transparence totale supply chain certifications environnementales.",
+  "anonymized_text": "Mme Chevalier, 37 ans, responsable développement durable grande entreprise, nouvelle cliente potentiel.,. Recherche sac professionnel écologique si possible réunions stakeholders. Budget 5500€. moderne durable, préfère matériaux éco-responsables couleurs naturelles.,. Travaille stratégie RSE réduction empreinte carbone entreprise. Collectionne rapports développement durable entreprises pionnières benchmarking,. Pratique vélo transport exclusif écologie, marathons cyclistes charité. Végane stricte convictions fortes événements,.,. [RGPD_HEALTH_PHYSICAL_REDACTED].,. Compagnon ingénieur énergies renouvelables, couple écologie militante.,. [RGPD_FAMILY_CONFLICT_REDACTED]. Réseau professionnels durabilité RSE croissant segment. Cliente profil environnemental fort valeurs,. Rappeler août montrer options durables certifiées. Très intéressée transparence totale supply chain certifications environnementales.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergie latex produits chimiques sensibilités",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "Pas enfants décision empreinte carbone consciente",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des informations sur une allergie (latex) qui est considérée comme une donnée de santé physique, ainsi qu'une mention d'une décision concernant les enfants qui peut impliquer un conflit familial en lien avec des valeurs écologiques."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

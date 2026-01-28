@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_297",
+  "language": "EN",
+  "tags": [
+    "medical_surgeon",
+    "medical_specialist",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "philanthropy"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "20K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Chief surgical oncologist, oncology nurse practitioner",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'chief surgical oncologist' and 'oncology nurse practitioner' -> medical_surgeon and medical_specialist. Shopping together for anniversary gifts -> shopping_with_spouse and gift_for_spouse. High budget indicates significant purchasing power.",
+  "from_cache": false
+}

@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_389",
+  "language": "ES",
+  "tags": [
+    "interior_design",
+    "shopping_with_spouse",
+    "vegetarian",
+    "nickel_allergy",
+    "high_network_documented"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "11K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "diseñadora interiores",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'diseñadora interiores' -> interior_design. Shopping with spouse -> shopping_with_spouse. Severe nickel allergy detected -> nickel_allergy with severity severe. Budget of 11K indicates high spending potential.",
+  "from_cache": false
+}

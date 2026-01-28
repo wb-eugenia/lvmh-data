@@ -1,0 +1,32 @@
+{
+  "ID": "CA_178",
+  "original_text": "Signor Lombardi, 52 anni, cardiologo interventista ospedale universitario, cliente regolare dal 2019,. un po',. Cerca borse professionali nuove primavera congressi medici frequenti., così. Budget 8K approssimativo. un po',. Stile medico professionale sobrio, preferisce nero navy marrone,. Opera interventi cardiaci complessi salvavita, ricerca pubblicata journal se prestigiosi.,. Colleziona strumenti cardiologia storici medici, collezione museo qualità. se,. Viaggia congressi cardiologia mondiale Miami Chicago Barcellona regolarmente.,. Pratica golf regolare rilassamento stress, membro club,. un po'. Pescetariano per eventi boutique se. Allergia penicillina importante professione se.,. Moglie anestesista stesso ospedale, coppia medico chirurgico. così,. Figli medicina seguono genitori tradizione, se. Cliente affidabile compra qualità funzionalità, rete colleghi medici cardiologi che. così. Richiamare giugno mostrare estate. Interessato qualità materiali durabilità uso professionale intensivo.",
+  "anonymized_text": "Signor Lombardi, 52 anni, cardiologo interventista ospedale universitario, cliente regolare dal 2019,. un po',. Cerca borse professionali nuove primavera congressi medici frequenti., così. Budget 8K approssimativo. un po',. Stile medico professionale sobrio, preferisce nero navy marrone,. Opera interventi cardiaci complessi salvavita, ricerca pubblicata journal se prestigiosi.,. Colleziona strumenti cardiologia storici medici, collezione museo qualità. se,. Viaggia congressi cardiologia mondiale Miami Chicago Barcellona regolarmente.,. Pratica golf regolare rilassamento stress, membro club,. un po'. Pescetariano per eventi boutique se. [RGPD_HEALTH_PHYSICAL_REDACTED] se.,. Moglie anestesista stesso ospedale, coppia medico chirurgico. così,. Figli medicina seguono genitori tradizione, se. Cliente affidabile compra qualità funzionalità, rete colleghi medici cardiologi che. così. Richiamare giugno mostrare estate. Interessato qualità materiali durabilità uso professionale intensivo.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergia penicillina importante professione",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "moglie anestesista stesso ospedale",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "L'allergie à la pénicilline est une donnée de santé physique sensible. La mention de la femme anesthésiste dans le même hôpital peut indiquer un contexte familial, mais n'est pas nécessairement conflictuel. Cependant, la combinaison de ces éléments rend les données sensibles et non sécurisées à stocker."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

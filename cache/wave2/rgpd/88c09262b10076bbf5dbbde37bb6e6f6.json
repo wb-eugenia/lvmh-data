@@ -1,0 +1,25 @@
+{
+  "ID": "CA_302",
+  "original_text": "Dr Mitchell and partner both 44 oncologists teaching hospital first time customers excellent potential. Looking multiple pieces celebrate research grant received combined budget 14K flexible,. He collects vinyl records vintage attends music festivals plays bass guitar local band something weekends I I see mean, in a way., as it were. She passionate hiking completed Camino Santiago last year planning trek Nepal autumn,. in some way, something. Both something vegan ethical reasons events,. something,. He has celiac disease severe gluten allergy critical,. Mentioned they host academic dinners frequently good network medical professionals. No children by choice nieces nephews gifts opportunities., let me see,. Anniversary July annually. Interested in sustainable sourcing materials,. Follow up March private viewing excellent educated clientele.",
+  "anonymized_text": "Dr Mitchell and partner both 44 oncologists teaching hospital first time customers excellent potential. Looking multiple pieces celebrate research grant received combined budget 14K flexible,. He collects vinyl records vintage attends music festivals plays bass guitar local band something weekends I I see mean, in a way., as it were. She passionate hiking completed Camino Santiago last year planning trek Nepal autumn,. in some way, something. Both something vegan ethical reasons events,. something,. He has [RGPD_HEALTH_PHYSICAL_REDACTED] critical,. Mentioned they host academic dinners frequently good network medical professionals. No children by choice nieces nephews gifts opportunities., let me see,. Anniversary July annually. Interested in sustainable sourcing materials,. Follow up March private viewing excellent educated clientele.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "celiac disease severe gluten allergy",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text mentions a severe gluten allergy related to celiac disease, which falls under health physical data, making it sensitive according to Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

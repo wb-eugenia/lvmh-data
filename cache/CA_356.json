@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_356",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "tech_enthusiast",
+    "travel_frequent",
+    "sustainable_values",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "6k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nut_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "data scientist",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'data scientist' in tech -> entrepreneur_tech. Frequent travel needs -> travel_frequent. Budget specified as 6K -> budget_range '6k-10k'. Severe allergy to peanuts noted -> nut_allergy with severity severe. Shopping with spouse indicated -> shopping_with_spouse.",
+  "from_cache": false
+}

@@ -1,0 +1,47 @@
+{
+  "ID": "CA_387",
+  "original_text": "Dr., so what. Johnson 55 oncologist research cancer treatments Mrs. Johnson 53 nurse oncology unit VIP clients since 2016 so,. Shopping spring collection anniversary celebration 28 years marriage combined budget 19K flexible,. Both oncology world cancer care save lives inspire hope daily. Travel medical conferences research symposiums occasionally missions humanitarian oncology. He collects medical journals historical cancer research evolution treatment fascinating what,. She passionate patient care advocacy cancer survivors support groups,., I see,. He practical functional black navy leather professional she elegant warm champagne beige rose gold feminine,.,. Both pescatarian health reasons for events she has latex allergy important medical settings. I see,. Three adult children nurse physician social worker family caring professions four grandchildren young growing gift opportunities constant. Exceptional clients medical oncology community refer colleagues physicians nurses regularly appreciate quality durability investment pieces lasting value follow-up May exclusive private preview planning charity gala cancer research fundraising organize annually boutique sponsorship collaboration opportunity auction donations.",
+  "anonymized_text": "Dr., so what. Johnson 55 oncologist research [RGPD_HEALTH_PHYSICAL_REDACTED] Mrs. Johnson 53 nurse oncology unit VIP clients since 2016 so,. Shopping spring collection anniversary celebration 28 years marriage combined budget 19K flexible,. Both oncology world [RGPD_HEALTH_PHYSICAL_REDACTED] save lives inspire hope daily. Travel medical conferences research symposiums occasionally missions humanitarian oncology. He collects medical journals historical cancer research evolution treatment fascinating what,. She passionate patient care advocacy [RGPD_HEALTH_PHYSICAL_REDACTED] support groups,., I see,. He practical functional black navy leather professional she elegant warm champagne beige rose gold feminine,.,. Both pescatarian health reasons for events she has [RGPD_HEALTH_PHYSICAL_REDACTED] important medical settings. I see,. Three adult children nurse physician social worker [RGPD_FAMILY_CONFLICT_REDACTED] four grandchildren young growing gift opportunities constant. Exceptional clients medical oncology community refer colleagues physicians nurses regularly appreciate quality durability investment pieces lasting value follow-up May exclusive private preview planning charity gala cancer research fundraising organize annually boutique sponsorship collaboration opportunity auction donations.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "latex allergy",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "cancer treatments",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "cancer care",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "cancer survivors",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "family caring professions",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains references to health conditions related to cancer and a latex allergy, which are considered sensitive data under Article 9 of the GDPR. Additionally, the mention of family members in caring professions could imply family dynamics that may be sensitive."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

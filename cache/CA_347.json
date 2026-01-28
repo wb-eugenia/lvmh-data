@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_347",
+  "language": "EN",
+  "tags": [
+    "shopping_with_spouse",
+    "travel_frequent",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [
+    "academic_professor",
+    "gift_for_children"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "18K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Archaeology professor and anthropologist",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'archaeology professor' and 'anthropologist' -> academic_professor. Shopping with spouse -> shopping_with_spouse. Gift opportunities for grandchildren -> gift_for_children. Frequent travel for research -> travel_frequent. Appreciation for craftsmanship and cultural heritage -> artisan_craft_appreciation.",
+  "from_cache": false
+}

@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_319",
+  "language": "ES",
+  "tags": [
+    "creative_arts_visual",
+    "art_collector",
+    "travel_frequent",
+    "vegan",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "10K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Galerista arte contemporáneo",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'galerista arte contemporáneo' -> creative_arts_visual. Client is a VIP since 2018, indicating high status -> VIC. Budget of 10K indicates a specific range. 'Vegana convicción ética fuerte' indicates vegan and sustainable values. 'Alergia látex importante' indicates severe latex allergy.",
+  "from_cache": false
+}

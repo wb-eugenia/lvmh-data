@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_223",
+  "language": "IT",
+  "tags": [
+    "legal_family",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "pescatarian",
+    "wellness_yoga"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Avvocata diritto famiglia divorzista",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'avvocata diritto famiglia divorzista' -> legal_family. Shopping with partner -> shopping_with_spouse. Gift for children -> gift_for_child. Pescetariana lifestyle noted. Severe nickel allergy detected.",
+  "from_cache": false
+}

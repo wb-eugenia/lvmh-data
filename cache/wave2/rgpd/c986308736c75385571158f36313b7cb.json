@@ -1,0 +1,15 @@
+{
+  "ID": "CA_179",
+  "original_text": "Sra, en plan. Méndez, 40 años, directora recursos humanos corporación multinacional, nueva clienta potencial alto. Busca bolsos profesionales trabajo viajes negocios frecuentes ves,. Presupuesto 9K inicial., un por ejemplo poco. Estilo corporativo elegante moderno, prefiere colores ejecutivos negro navy gris. un poquito. Gestiona talento global miles empleados, viaja oficinas mundial reuniones estratégicas. Colecciona libros liderazgo management primeras ediciones clásicos,. Practica running maratones, equilibrio vida profesional intensa. Vegetariana para eventos. Sin alergias veis. Pareja consultor estrategia, ambos mundo corporativo alto nivel. Hijos adolescentes escuela internacional,.,. Familia valores profesionalismo excelencia., ves. Red contactos ejecutivos RRHH consultores vastísima referencias potenciales. Cliente profesional corporativo segmento creciente. Follow-up mayo mostrar colección business travel sí,. por ejemplo. Interesada funcionalidad diseño elegante balance perfecto.",
+  "anonymized_text": "Sra, en plan. Méndez, 40 años, directora recursos humanos corporación multinacional, nueva clienta potencial alto. Busca bolsos profesionales trabajo viajes negocios frecuentes ves,. Presupuesto 9K inicial., un por ejemplo poco. Estilo corporativo elegante moderno, prefiere colores ejecutivos negro navy gris. un poquito. Gestiona talento global miles empleados, viaja oficinas mundial reuniones estratégicas. Colecciona libros liderazgo management primeras ediciones clásicos,. Practica running maratones, equilibrio vida profesional intensa. Vegetariana para eventos. Sin alergias veis. Pareja consultor estrategia, ambos mundo corporativo alto nivel. Hijos adolescentes escuela internacional,.,. Familia valores profesionalismo excelencia., ves. Red contactos ejecutivos RRHH consultores vastísima referencias potenciales. Cliente profesional corporativo segmento creciente. Follow-up mayo mostrar colección business travel sí,. por ejemplo. Interesada funcionalidad diseño elegante balance perfecto.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des aspects professionnels et des préférences personnelles qui ne relèvent pas des catégories sensibles définies."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

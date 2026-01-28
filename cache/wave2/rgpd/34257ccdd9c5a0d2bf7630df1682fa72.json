@@ -1,0 +1,32 @@
+{
+  "ID": "CA_163",
+  "original_text": "Signora Esposito, così 38 anni, avvocata diritti umani organizzazione internazionale, nuova cliente potenziale interessante.,. Cerca borse resistenti eleganti missioni campo frequenti zone complicate,. Budget 6K consapevole valora investimento durata così., se. Stile funzionale elegante non ostentoso se importante lavoro ONG.,. Viaggia costante Africa Medio Oriente Asia missioni umanitarie advocacy.,. Colleziona artigianato locale comunità assiste, commercio equo solidale. Pratica yoga meditazione, ritiri mindfulness India regolari. Vegana conviczione etica per esempio profonda eventi critico va,.,. Allergie multiple pollini importante, se,. Compagna medico senza frontiere, coppia umanitaria. Senza figli scelta dedicazione cause. Rete contatti ONG attivisti così giornalisti ampia, nicho clienti valori forte. Cliente se profilo unico apprezza etica produzione trasparenza supply chain. Follow-up aprile mostrare opzioni sostenibili responsabili, se. Interessatissima che impatto sociale produzione condizioni lavoratori diritti umani. se,.",
+  "anonymized_text": "Signora Esposito, così 38 anni, avvocata diritti umani organizzazione internazionale, nuova cliente potenziale interessante.,. Cerca borse resistenti eleganti missioni campo frequenti zone complicate,. Budget 6K consapevole valora investimento durata così., se. Stile funzionale elegante non ostentoso se importante lavoro ONG.,. Viaggia costante Africa Medio Oriente Asia missioni umanitarie advocacy.,. Colleziona artigianato locale comunità assiste, commercio equo solidale. Pratica yoga meditazione, [RGPD_HEALTH_MENTAL_REDACTED]. Vegana conviczione etica per esempio profonda eventi critico va,.,. Allergie multiple pollini importante, se,. Compagna medico senza frontiere, coppia umanitaria. Senza figli scelta dedicazione cause. Rete contatti ONG attivisti così giornalisti ampia, nicho clienti valori forte. Cliente se profilo unico apprezza etica produzione trasparenza supply chain. Follow-up aprile mostrare opzioni sostenibili responsabili, se. Interessatissima che impatto sociale produzione condizioni lavoratori diritti umani. se,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "ritiri mindfulness India regolari",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "senza figli scelta dedicazione cause",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le pratiche di mindfulness e yoga peuvent indiquer une sensibilità alla salute mentale, mentre la scelta di non avere figli in un contesto di dedizione a cause umanitarie può suggerire conflitti familiari. Queste informazioni sont considérées come sensibili secondo l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

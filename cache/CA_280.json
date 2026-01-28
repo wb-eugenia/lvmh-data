@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_280",
+  "language": "DE",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "anniversary_gift",
+    "vegetarian",
+    "innovation_interest"
+  ],
+  "invalid_tags": [
+    "corporate_executive",
+    "gift_for_children"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "18K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Unternehmer Software Entwicklung IT-Lösungen, Unternehmensberaterin digitale Transformation",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'Unternehmer' and 'Unternehmensberaterin' -> entrepreneur_tech and corporate_executive. Shopping together as a couple -> shopping_with_spouse. Gifts for their anniversary and for children studying in related fields -> anniversary_gift and gift_for_children. Both are vegetarians -> vegetarian tag.",
+  "from_cache": false
+}

@@ -1,0 +1,25 @@
+{
+  "ID": "CA_218",
+  "original_text": "Signor Marino, 42 anni, regista cinema d'autore festival internazionali, cliente occasionale dal 2021. Cerca borse viaggio festival film presentazioni mondiali frequenti. in pratica, così. Budget 6K. Stile artistico creativo cineasta, preferisce nero colori cinematografici,. Dirige film festival Cannes Venezia Berlino selezioni ufficiali prestigio. Colleziona ciak storici film iconici memorabilia così cinema. Viaggia costante festival promozioni film tour internazionali. Pratica meditazione zen, creatività concentrazione processo artistico. Vegetariano scelta etica per eventi boutique festival. Allergia alcol importante eventi promozioni vino champagne. Compagna sceneggiatrice, coppia cinema creativo,. Nessun figli arte priorità assoluta carriere. Rete contatti registi attori produttori festival vastissima visibilità, se., per se esempio. Cliente mondo cinema autore cultura,. Richiamare gennaio mostrare inverno, così.,. Interessato cinema estetica narrativa visuale paralleli design prodotti storytelling.",
+  "anonymized_text": "Signor Marino, 42 anni, regista cinema d'autore festival internazionali, cliente occasionale dal 2021. Cerca borse viaggio festival film presentazioni mondiali frequenti. in pratica, così. Budget 6K. Stile artistico creativo cineasta, preferisce nero colori cinematografici,. Dirige film festival Cannes Venezia Berlino selezioni ufficiali prestigio. Colleziona ciak storici film iconici memorabilia così cinema. Viaggia costante festival promozioni film tour internazionali. [RGPD_HEALTH_MENTAL_REDACTED], creatività concentrazione processo artistico. Vegetariano scelta etica per eventi boutique festival. Allergia alcol importante eventi promozioni vino champagne. Compagna sceneggiatrice, coppia cinema creativo,. Nessun figli arte priorità assoluta carriere. Rete contatti registi attori produttori festival vastissima visibilità, se., per se esempio. Cliente mondo cinema autore cultura,. Richiamare gennaio mostrare inverno, così.,. Interessato cinema estetica narrativa visuale paralleli design prodotti storytelling.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Pratica meditazione zen",
+        "category": "health_mental",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "La mention de la méditation zen peut être associée à des pratiques de santé mentale, bien que cela ne soit pas nécessairement sensible. Cependant, le contexte général de la santé mentale pourrait justifier une attention particulière."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental"
+  ],
+  "safe_to_store": false
+}

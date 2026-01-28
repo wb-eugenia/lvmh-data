@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_148",
+  "language": "IT",
+  "tags": [
+    "finance_banking",
+    "travel_frequent",
+    "pescatarian",
+    "golf",
+    "shopping_with_spouse"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "8k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "shellfish_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Direttore finanziario multinazionale",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'direttore finanziario multinazionale' -> finance_banking. Frequent travel for work -> travel_frequent. Pescetariano lifestyle noted -> pescatarian. Regular golf practice -> golf. Shopping with wife inferred from context -> shopping_with_spouse. Severe allergy to shellfish mentioned -> shellfish_allergy with severity severe.",
+  "from_cache": false
+}

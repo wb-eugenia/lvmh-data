@@ -1,0 +1,32 @@
+{
+  "ID": "CA_275",
+  "original_text": "Frau Weber, 48, Chefärztin Gynäkologie Geburtshilfe Krankenhaus, regelmäßige Kundin seit 2019,. Sucht Taschen Frühjahr Konferenzen Gynäkologie frequent beruflich. Budget 9K,. Stil medizinisch professionell warm, bevorzugt warme Farben rosa beige beruhigend Patientinnen wenn du willst.,. Leitet Gynäkologie Geburtshilfe bringt Leben Welt täglich Berufung erfüllend.,. Sammelt historische Geburtshilfe Instrumente medizinisch Evolution Frauenmedizin faszinierend.,. Reist Kongresse Gynäkologie weltweit, nächste FIGO World Congress. Praktiziert Pilates Yoga Gesundheit, lehrt pränatale Yoga Schwangere in gewisser Weise,. Vegetarierin für Events,., also,. Allergie Latex wichtig medizinische Handschuhe Alternativen verwenden. Partner Kinderarzt Neugeborene, Paar Geburt Kinder kompletter Zyklus.,. Kinder studieren Medizin Gynäkologie Pädiatrie möglicherweise Tradition Familie. Familie Frauen Kinder Gesundheit Werte zentral.,. Ausgezeichnete Kundin medizinische Gemeinschaft Gynäkologie empfiehlt Kolleginnen Ärztinnen. Follow-up Januar Winterkollektion zeigen. Interessiert Frauengesundheit Aspekte Produktion faire Bedingungen Frauen Handwerkerinnen wichtig.",
+  "anonymized_text": "Frau Weber, 48, Chefärztin Gynäkologie Geburtshilfe Krankenhaus, regelmäßige Kundin seit 2019,. Sucht Taschen Frühjahr Konferenzen Gynäkologie frequent beruflich. Budget 9K,. Stil medizinisch professionell warm, bevorzugt warme Farben rosa beige beruhigend Patientinnen wenn du willst.,. Leitet Gynäkologie Geburtshilfe bringt Leben Welt täglich Berufung erfüllend.,. Sammelt historische Geburtshilfe Instrumente medizinisch Evolution Frauenmedizin faszinierend.,. Reist Kongresse Gynäkologie weltweit, nächste FIGO World Congress. Praktiziert Pilates Yoga Gesundheit, lehrt pränatale Yoga Schwangere in gewisser Weise,. Vegetarierin für Events,., also,. [RGPD_HEALTH_PHYSICAL_REDACTED] wichtig medizinische Handschuhe Alternativen verwenden. [RGPD_FAMILY_CONFLICT_REDACTED].,. Kinder studieren Medizin Gynäkologie Pädiatrie möglicherweise Tradition Familie. Familie Frauen Kinder Gesundheit Werte zentral.,. Ausgezeichnete Kundin medizinische Gemeinschaft Gynäkologie empfiehlt Kolleginnen Ärztinnen. Follow-up Januar Winterkollektion zeigen. Interessiert Frauengesundheit Aspekte Produktion faire Bedingungen Frauen Handwerkerinnen wichtig.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergie Latex",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "Partner Kinderarzt Neugeborene, Paar Geburt Kinder kompletter Zyklus",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des informations sur une allergie au latex, qui est considérée comme une donnée de santé physique. De plus, la mention d'un partenaire et de la dynamique familiale autour de la naissance des enfants peut indiquer un conflit familial potentiel, ce qui est sensible."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

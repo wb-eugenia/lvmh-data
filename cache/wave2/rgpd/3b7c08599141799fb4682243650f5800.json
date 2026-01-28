@@ -1,0 +1,25 @@
+{
+  "ID": "CA_323",
+  "original_text": "Signora Ricci 44 anni psicologa clinica studio privato cliente regolare dal 2020,. se. Cerca rinnovo un po' borse professionali primavera budget 6K. Stile elegante discreto professionale preferisce colori neutri beige grigio navy,. Lavora clienti alto profilo necessita presentazione impeccabile. Pratica meditazione mindfulness insegna workshop benessere,. Colleziona letteratura psicologia prima edizione libri rari, un po', se. Viaggia conferenze internazionali psicoterapia Europa America. un po', che,. Vegetariana scelta etica per eventi boutique nessuna allergia per esempio. Marito professore università filosofia figlio se studia medicina segue interessi familiari figlia architetto paesaggista Firenze. Cliente affidabile professionale compra regolarmente qualità richiamare marzo preview collezione interessata equilibrio funzionalità estetica. in pratica, se vuoi.",
+  "anonymized_text": "Signora Ricci 44 anni psicologa clinica studio privato cliente regolare dal 2020,. se. Cerca rinnovo un po' borse professionali primavera budget 6K. Stile elegante discreto professionale preferisce colori neutri beige grigio navy,. Lavora clienti alto profilo necessita presentazione impeccabile. Pratica meditazione mindfulness insegna workshop benessere,. Colleziona letteratura psicologia prima edizione libri rari, un po', se. Viaggia conferenze internazionali psicoterapia Europa America. un po', che,. Vegetariana scelta etica per eventi boutique nessuna allergia per esempio. Marito professore università filosofia figlio se studia medicina segue interessi familiari figlia architetto paesaggista Firenze. Cliente affidabile professionale compra regolarmente qualità richiamare marzo preview collezione interessata equilibrio funzionalità estetica. in pratica, se vuoi.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "pratica meditazione mindfulness insegna workshop benessere",
+        "category": "health_mental",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le informations sur la pratique de la méditation et des ateliers de bien-être peuvent indiquer des préoccupations liées à la santé mentale, ce qui est sensible selon l'article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental"
+  ],
+  "safe_to_store": false
+}

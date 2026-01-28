@@ -1,0 +1,57 @@
+{
+  "ID": "CA_287",
+  "original_text": "Dr.,. Williams and Dr,. Williams, both 55, VIP clients since 2015 I see.,. He's chief psychiatrist mental health facility, she's psychologist clinical trauma therapy, I see power couple mental health. Shopping spring collection anniversary 27 years marriage gifts family.,. Combined budget 19K flexible,. I see. Both mental health worlds psychiatry psychology treat what patients trauma disorders complex cases,. Travel mental health conferences missions occasionally humanitarian mental health developing countries,. He collects psychiatry history books asylums treatment evolution mental health fascinating what. as it were. She what passionate trauma research PTSD veterans first responders advocacy therapy. He practical functional black navy leather professional psychiatric medical. She warm elegant beige rose gold feminine psychologist caring therapeutic., if you will,. Both vegetarian mental health wellness diet for events.,. No allergies,.,. Three adult children all mental health careers psychiatrist psychologist social worker family mental health dynasty I see, something,. Six grandchildren young gift opportunities constant. Exceptional clients mental health medical community, refer colleagues psychiatrists psychologists therapists regularly.,. Appreciate quality craftsmanship precision parallels mental so health careful listening empathy precision diagnosis treatment. something,. Follow up February exclusive private preview. Support mental health charities organize fundraising galas destigmatize, boutique collaboration sponsorship opportunity visibility mental health community.,.",
+  "anonymized_text": "Dr.,. Williams and Dr,. Williams, both 55, VIP clients since 2015 I see.,. He's chief [RGPD_HEALTH_MENTAL_REDACTED] facility, she's [RGPD_HEALTH_MENTAL_REDACTED], I see power couple mental health. Shopping spring collection anniversary 27 years marriage gifts family.,. Combined budget 19K flexible,. I see. Both mental health worlds psychiatry psychology treat what patients [RGPD_HEALTH_MENTAL_REDACTED] complex cases,. Travel mental health conferences missions occasionally humanitarian mental health developing countries,. He collects psychiatry history books asylums treatment evolution mental health fascinating what. as it were. She what passionate trauma research [RGPD_HEALTH_MENTAL_REDACTED] advocacy therapy. He practical functional black navy leather professional psychiatric medical. She warm elegant beige rose gold feminine psychologist caring therapeutic., if you will,. Both vegetarian mental health wellness diet for events.,. No allergies,.,. Three adult children all [RGPD_HEALTH_MENTAL_REDACTED] psychiatrist psychologist social worker [RGPD_FAMILY_CONFLICT_REDACTED] I see, something,. Six grandchildren young gift opportunities constant. Exceptional clients mental health medical community, refer colleagues psychiatrists psychologists therapists regularly.,. Appreciate quality craftsmanship precision parallels mental so health careful listening empathy precision diagnosis treatment. something,. Follow up February exclusive private preview. Support mental health charities organize fundraising galas destigmatize, boutique collaboration sponsorship opportunity visibility mental health community.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "mental health facility",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "psychiatrist mental health",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "psychologist clinical trauma therapy",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "trauma disorders",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "PTSD veterans first responders",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "mental health careers",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "family mental health dynasty",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains multiple references to mental health issues and the clients' family dynamics, which are considered sensitive data under Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

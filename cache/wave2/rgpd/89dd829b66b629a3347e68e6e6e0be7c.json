@@ -1,0 +1,15 @@
+{
+  "ID": "CA_216",
+  "original_text": "M. Rousseau, 35 ans, par exemple ingénieur cybersécurité entreprise tech, nouveau client potentiel. Cherche sac par exemple voyage professionnel sécurisé missions clients,. Budget 5K en quelque façon, que.,. tech fonctionnel sécurité, cuir noir hardware robuste,. Travaille protection données cyberattaques entreprises, secteur sensible. Collectionne équipements espionnage vintage gadgets tech rétro. Pratique arts martiaux krav maga, sécurité personnelle aussi.,. Végétarien pour événements,. Allergie métaux certains importante équipements. Compagne ingénieure également tech, couple geek sécurité par exemple,. Pas enfants carrières tech exigeantes,. Réseau cybersécurité experts tech segment niche.,. Client profil tech sécurité unique.,. Rappeler janvier montrer collection, je veux dire. Intéressé sécurité produits protection vol tracking possible innovation.",
+  "anonymized_text": "M. Rousseau, 35 ans, par exemple ingénieur cybersécurité entreprise tech, nouveau client potentiel. Cherche sac par exemple voyage professionnel sécurisé missions clients,. Budget 5K en quelque façon, que.,. tech fonctionnel sécurité, cuir noir hardware robuste,. Travaille protection données cyberattaques entreprises, secteur sensible. Collectionne équipements espionnage vintage gadgets tech rétro. Pratique arts martiaux krav maga, sécurité personnelle aussi.,. Végétarien pour événements,. Allergie métaux certains importante équipements. Compagne ingénieure également tech, couple geek sécurité par exemple,. Pas enfants carrières tech exigeantes,. Réseau cybersécurité experts tech segment niche.,. Client profil tech sécurité unique.,. Rappeler janvier montrer collection, je veux dire. Intéressé sécurité produits protection vol tracking possible innovation.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarien), et les allergies aux métaux ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

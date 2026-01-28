@@ -1,0 +1,30 @@
+{
+  "client_id": "CA_107",
+  "language": "EN",
+  "tags": [
+    "creative_arts_visual",
+    "art_collector",
+    "shopping_alone"
+  ],
+  "invalid_tags": [],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "museum curator contemporary art",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'museum curator contemporary art' aligns with 'creative_arts_visual'. Budget of 5-6K fits '5k-10k'. Regular client status inferred from 'regular client since 2019'. Nickel allergy detected with no specified severity, defaulting to moderate.",
+  "from_cache": false
+}

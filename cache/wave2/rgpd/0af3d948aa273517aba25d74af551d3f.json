@@ -1,0 +1,15 @@
+{
+  "ID": "CA_221",
+  "original_text": "Mme Dubois, 39 ans, conservatrice musée beaux-arts ville importante, nouvelle cliente potentiel excellent. Recherche sac élégant travail musée vernissages événements culturels. Budget 6500€. artistique raffiné conservatrice, cuirs ton musée beige camel bordeaux.,. Organise expositions maîtres anciens contemporains, connaissance art vaste,. Collectionne catalogues exposition rares première édition historiques.,. Voyage musées mondial étudier collections prêts œuvres négociations. que. Pratique aquarelle peinture loisir créatif, artiste amateur par exemple.,. Végétarienne pour événements. Allergie moisissures importante musées anciens conservation,.,. Compagnon historien art universitaire, couple culture art. Fille étudie histoire art suit mère carrière,. Excellente cliente monde art culture, réseau conservateurs collectionneurs. Rappeler février montrer nouveautés,. Très intéressée histoire artisanale pièces parallèles conservation œuvres art.",
+  "anonymized_text": "Mme Dubois, 39 ans, conservatrice musée beaux-arts ville importante, nouvelle cliente potentiel excellent. Recherche sac élégant travail musée vernissages événements culturels. Budget 6500€. artistique raffiné conservatrice, cuirs ton musée beige camel bordeaux.,. Organise expositions maîtres anciens contemporains, connaissance art vaste,. Collectionne catalogues exposition rares première édition historiques.,. Voyage musées mondial étudier collections prêts œuvres négociations. que. Pratique aquarelle peinture loisir créatif, artiste amateur par exemple.,. Végétarienne pour événements. Allergie moisissures importante musées anciens conservation,.,. Compagnon historien art universitaire, couple culture art. Fille étudie histoire art suit mère carrière,. Excellente cliente monde art culture, réseau conservateurs collectionneurs. Rappeler février montrer nouveautés,. Très intéressée histoire artisanale pièces parallèles conservation œuvres art.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarienne) et les allergies (moisissures) sont considérées comme non sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_205",
+  "original_text": "Frau Schmidt, 47, Chefärztin Radiologie Krankenhaus, regelmäßige Kundin seit 2019,.,. Sucht Taschen Frühjahr Konferenzen Radiologie häufig. Budget 9K. Stil medizinisch professionell elegant, bevorzugt dunkel navy schwarz grau. Leitet Radiologie bildgebende Diagnostik modernste Technologie,. Sammelt medizinische Bildgebung historisch Röntgenbilder erste je gemacht faszinierend.,. Reist Kongresse Radiologie weltweit, nächste MRT Symposium USA.,. Praktiziert Schwimmen täglich Fitness Gesundheit. Vegetarierin für Events. Keine Allergien. Partner Radiologe auch Praxis gemeinsam,. Kinder studieren Medizin Radiologie möglicherweise Tradition. Familie Medizin Technologie Werte Innovation. Ausgezeichnete Kundin medizinische Gemeinschaft empfiehlt Kolleginnen., gesehen. Follow-up Juli Sommerkollektion zeigen, gesehen.,. Interessiert Technologie Innovation Materialien moderne Ansätze Design.",
+  "anonymized_text": "Frau Schmidt, 47, Chefärztin Radiologie Krankenhaus, regelmäßige Kundin seit 2019,.,. Sucht Taschen Frühjahr Konferenzen Radiologie häufig. Budget 9K. Stil medizinisch professionell elegant, bevorzugt dunkel navy schwarz grau. Leitet Radiologie bildgebende Diagnostik modernste Technologie,. Sammelt medizinische Bildgebung historisch Röntgenbilder erste je gemacht faszinierend.,. Reist Kongresse Radiologie weltweit, nächste MRT Symposium USA.,. Praktiziert Schwimmen täglich Fitness Gesundheit. Vegetarierin für Events. Keine Allergien. Partner Radiologe auch Praxis gemeinsam,. Kinder studieren Medizin Radiologie möglicherweise Tradition. Familie Medizin Technologie Werte Innovation. Ausgezeichnete Kundin medizinische Gemeinschaft empfiehlt Kolleginnen., gesehen. Follow-up Juli Sommerkollektion zeigen, gesehen.,. Interessiert Technologie Innovation Materialien moderne Ansätze Design.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarien) et les activités sportives ne sont pas considérées comme sensibles. Aucune mention de santé mentale, santé physique, conflits familiaux, croyances religieuses, opinions politiques, orientation sexuelle ou origine ethnique n'est présente."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

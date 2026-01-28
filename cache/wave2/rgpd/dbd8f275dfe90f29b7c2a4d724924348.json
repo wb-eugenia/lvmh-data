@@ -1,0 +1,32 @@
+{
+  "ID": "CA_307",
+  "original_text": "Mrs, more or less,. Patterson 53 museum curator contemporary art regular client since 2019. Looking new handbag versatile work events budget 5-6K.,. Style artistic sophisticated understated elegance, so. Curates major exhibitions travels internationally art fairs Basel Venice Miami, kind of., in a manner of speaking. Collects minimalist sculptures home featured design magazines. Divorced two years ago redefining personal style freedom.,. Practices tai chi daily wellness retreats quarterly so Bali., to some extent,. I see Pescatarian diet for events nickel allergy important hardware,.,. Adult son architect New York daughter studying art I see history Sorbonne. Plans retirement in three years building art collection seriously. Excellent cultivated client refers museum colleagues follow up May preview summer collection interested artist collaborations limited editions.",
+  "anonymized_text": "Mrs, more or less,. Patterson 53 museum curator contemporary art regular client since 2019. Looking new handbag versatile work events budget 5-6K.,. Style artistic sophisticated understated elegance, so. Curates major exhibitions travels internationally art fairs Basel Venice Miami, kind of., in a manner of speaking. Collects minimalist sculptures home featured design magazines. [RGPD_FAMILY_CONFLICT_REDACTED] redefining personal style freedom.,. Practices tai chi daily wellness retreats quarterly so Bali., to some extent,. I see Pescatarian diet for events [RGPD_HEALTH_PHYSICAL_REDACTED] important hardware,.,. Adult son architect New York daughter studying art I see history Sorbonne. Plans retirement in three years building art collection seriously. Excellent cultivated client refers museum colleagues follow up May preview summer collection interested artist collaborations limited editions.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "nickel allergy",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "Divorced two years ago",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains a mention of a nickel allergy, which is acceptable for business, but it also includes a reference to a divorce that implies a potential conflict, which is sensitive information under GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

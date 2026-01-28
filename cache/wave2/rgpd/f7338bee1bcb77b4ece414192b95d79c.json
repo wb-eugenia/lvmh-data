@@ -1,0 +1,25 @@
+{
+  "ID": "CA_322",
+  "original_text": "Mr,.,. Roberts 62 Mrs. Roberts 59 retired hedge fund manager former gallerist VIP clients since 2013. Major shopping session celebrate sold London home moving permanently Provence budget very flexible discussed 25K+ purchases gifts I see,. He collects rare wines building serious cellar new French property., I see. She passionate Impressionist art visits museums constantly volunteers museum board. Both love something opera season tickets multiple houses planning Salzburg Festival summer,. Travel frequently cultural luxury recent trip Japan what cultural immersion. He prefers classic timeless brown cognac leather. She elegant sophisticated beige champagne rose gold I guess,. Both pescatarian for events he has gout condition dietary restrictions important. Two adult children London New York grandchildren gift opportunities frequent. Exceptional lifetime value clients referred numerous wealthy friends business associates.,. Follow up monthly curated selections so interested in heritage craftsmanship historical pieces. Planning housewarming party France autumn large gathering boutique event opportunity possible., in a way.",
+  "anonymized_text": "Mr,.,. Roberts 62 Mrs. Roberts 59 retired hedge fund manager former gallerist VIP clients since 2013. Major shopping session celebrate sold London home moving permanently Provence budget very flexible discussed 25K+ purchases gifts I see,. He collects rare wines building serious cellar new French property., I see. She passionate Impressionist art visits museums constantly volunteers museum board. Both love something opera season tickets multiple houses planning Salzburg Festival summer,. Travel frequently cultural luxury recent trip Japan what cultural immersion. He prefers classic timeless brown cognac leather. She elegant sophisticated beige champagne rose gold I guess,. Both pescatarian for events he has [RGPD_HEALTH_PHYSICAL_REDACTED] dietary restrictions important. Two adult children London New York grandchildren gift opportunities frequent. Exceptional lifetime value clients referred numerous wealthy friends business associates.,. Follow up monthly curated selections so interested in heritage craftsmanship historical pieces. Planning housewarming party France autumn large gathering boutique event opportunity possible., in a way.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "gout condition",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains a reference to a health condition (gout) which falls under the category of sensitive data as per Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

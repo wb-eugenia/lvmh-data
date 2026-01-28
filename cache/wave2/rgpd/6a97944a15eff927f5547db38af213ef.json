@@ -1,0 +1,25 @@
+{
+  "ID": "CA_326",
+  "original_text": "M.,. et Mme Rousseau couple 55-58 ans clients VIP depuis 2015,. du coup,. Session shopping importante collection printemps plus cadeaux anniversaire mariage 30 ans budget combiné 20K très flexible,. Lui cardiologue chef service hôpital universitaire elle philanthrope présidente fondation que caritative enfants. Tous deux monde médical humanitaire organisent galas bienfaisance annuels réseau étendu que,. Voyagent missions humanitaires luxe mélangés prochaine mission Cambodge puis vacances Thaïlande,.,. Lui collectionne montres vintage mécaniques complexes passionné horlogerie. Elle aime bijoux anciens Art Déco fréquente ventes enchères.,. Lui préfère classique fonctionnel noir marron cuir elle élégant sophistiqué beige champagne or rose., à peu près. Tous deux que pescetariens événements lui intolérance lactose importante,. Trois enfants adultes médecins architecte avocat nombreuses opportunités cadeaux diplômes mariages.,. Excellents clients valeurs fortes générosité référé beaucoup amis monde médical,.,. Follow-up mars présentation privée exclusive très intéressés artisanat traditionnel histoire pièces.,.",
+  "anonymized_text": "M.,. et Mme Rousseau couple 55-58 ans clients VIP depuis 2015,. du coup,. Session shopping importante collection printemps plus cadeaux anniversaire mariage 30 ans budget combiné 20K très flexible,. Lui cardiologue chef service hôpital universitaire elle philanthrope présidente fondation que caritative enfants. Tous deux monde médical humanitaire organisent galas bienfaisance annuels réseau étendu que,. Voyagent missions humanitaires luxe mélangés prochaine mission Cambodge puis vacances Thaïlande,.,. Lui collectionne montres vintage mécaniques complexes passionné horlogerie. Elle aime bijoux anciens Art Déco fréquente ventes enchères.,. Lui préfère classique fonctionnel noir marron cuir elle élégant sophistiqué beige champagne or rose., à peu près. Tous deux que pescetariens événements lui [RGPD_HEALTH_PHYSICAL_REDACTED],. Trois enfants adultes médecins architecte avocat nombreuses opportunités cadeaux diplômes mariages.,. Excellents clients valeurs fortes générosité référé beaucoup amis monde médical,.,. Follow-up mars présentation privée exclusive très intéressés artisanat traditionnel histoire pièces.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "intolérance lactose importante",
+        "category": "health_physical",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": true,
+    "reasoning": "L'intolérance au lactose est considérée comme une donnée de santé physique, mais elle est acceptable pour le business. Les autres informations ne contiennent pas de données sensibles selon les catégories définies."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": true
+}

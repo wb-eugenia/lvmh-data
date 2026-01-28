@@ -1,0 +1,32 @@
+{
+  "ID": "CA_193",
+  "original_text": "Signora Bianchi, 46 anni, avvocata penalista casi alto profilo media, cliente regolare dal così 2020, che. Cerca borse professionali nuove primavera tribunali processi visibilità., così. Budget 8K,. in un certo senso. Stile professionale autorevole elegante, preferisce nero navy colori potere se, che un po'. Difende casi complessi processi importanti copertura mediatica. Colleziona sentenze storiche diritto penale casi famosi documentazione se. Viaggia tribunali diversi città processi sedi multiple. Pratica arti marziali disciplina concentrazione, cintura nera karate.,. Pescetariana per eventi boutique se vuoi. Allergia profumi forti importante tribunali. Marito giornalista giudiziario, coppia diritto media.,. Figlia studia giurisprudenza segue madre., va. Cliente professionale affidabile compra qualità, rete avvocati magistrati. Richiamare agosto preview autunno. Interessata percezione professionale immagine impatto accessori qualità presenza tribunale.",
+  "anonymized_text": "Signora Bianchi, 46 anni, avvocata penalista casi alto profilo media, cliente regolare dal così 2020, che. Cerca borse professionali nuove primavera tribunali processi visibilità., così. Budget 8K,. in un certo senso. Stile professionale autorevole elegante, preferisce nero navy colori potere se, che un po'. Difende casi complessi processi importanti copertura mediatica. Colleziona sentenze storiche diritto penale casi famosi documentazione se. Viaggia tribunali diversi città processi sedi multiple. Pratica arti marziali disciplina concentrazione, cintura nera karate.,. Pescetariana per eventi boutique se vuoi. Allergia profumi forti importante tribunali. Marito giornalista giudiziario, coppia diritto media.,. Figlia studia giurisprudenza segue madre., va. Cliente professionale affidabile compra qualità, rete avvocati magistrati. Richiamare agosto preview autunno. Interessata percezione professionale immagine impatto accessori qualità presenza tribunale.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "allergia profumi forti",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "marito giornalista giudiziario, coppia diritto media",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "L'allergie ai profumi forts est considérée comme une donnée de santé physique, bien que de faible gravité. De plus, la mention du mari et du contexte de la profession peut indiquer un conflit familial potentiel, ce qui est sensible."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

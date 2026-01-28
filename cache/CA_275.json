@@ -1,0 +1,29 @@
+{
+  "client_id": "CA_275",
+  "language": "DE",
+  "tags": [
+    "medical_specialist",
+    "shopping_alone",
+    "vegetarian",
+    "wellness_yoga"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Chefärztin Gynäkologie Geburtshilfe",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'Chefärztin Gynäkologie Geburtshilfe' -> medical_specialist. Shopping alone indicated. Vegetarian lifestyle noted, along with interest in wellness and yoga.",
+  "from_cache": false
+}

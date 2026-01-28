@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_374",
+  "language": "ES",
+  "tags": [
+    "shopping_with_spouse",
+    "travel_frequent"
+  ],
+  "invalid_tags": [
+    "entrepreneur_aviation",
+    "gift_for_children"
+  ],
+  "num_tags": 2,
+  "confidence": 0.9,
+  "budget_range": "8k",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "children"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Piloto comercial",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'piloto comercial' -> entrepreneur_aviation. Shopping with spouse -> shopping_with_spouse. Gift for children indicated -> gift_for_children. Frequent travel lifestyle noted -> travel_frequent.",
+  "from_cache": false
+}

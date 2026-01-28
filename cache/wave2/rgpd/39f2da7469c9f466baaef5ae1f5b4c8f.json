@@ -1,0 +1,15 @@
+{
+  "ID": "CA_350",
+  "original_text": "Herr und Frau Bauer beide 51 treue Kunden seit 2016.,. Große Einkaufssession Frühjahr plus Silberhochzeit Geschenke gegenseitig budget sehr flexibel besprochen 20K. Er Unternehmensberater internationale Strategie sie Personalentwicklung eigene Beratungsfirma,. Beide Geschäftswelt Beratung reisen ständig gesehen Kundenprojekte weltweit wie wie. gesehen. Er sammelt Business-Bücher erste Ausgaben Management-Klassiker,. Sie interessiert Kunst Therapie malt Aquarelle Hobby. Er klassisch zeitlos schwarz braun Leder funktional sie modern elegant beige grau champagne Hardware. Beide Pescetarier für Events keine Allergien,. Drei gesehen Kinder Universität Berufseinstieg Geschenkgelegenheiten häufig Meilensteine., sagen wir,. Familie Bildung Leistung Werte Erfolg hart erarbeitet geschätzt. Ausgezeichnete Kunden Beratungsbranche empfehlen Kollegen Klienten regelmäßig,., wie. Schätzen Qualität Langlebigkeit Investitionsstücke, gesehen. Follow-up April exklusive Privatvorschau interessiert Handwerksqualität Zeitlosigkeit Design überdauert Trends.",
+  "anonymized_text": "Herr und Frau Bauer beide 51 treue Kunden seit 2016.,. Große Einkaufssession Frühjahr plus Silberhochzeit Geschenke gegenseitig budget sehr flexibel besprochen 20K. Er Unternehmensberater internationale Strategie sie Personalentwicklung eigene Beratungsfirma,. Beide Geschäftswelt Beratung reisen ständig gesehen Kundenprojekte weltweit wie wie. gesehen. Er sammelt Business-Bücher erste Ausgaben Management-Klassiker,. Sie interessiert Kunst Therapie malt Aquarelle Hobby. Er klassisch zeitlos schwarz braun Leder funktional sie modern elegant beige grau champagne Hardware. Beide Pescetarier für Events keine Allergien,. Drei gesehen Kinder Universität Berufseinstieg Geschenkgelegenheiten häufig Meilensteine., sagen wir,. Familie Bildung Leistung Werte Erfolg hart erarbeitet geschätzt. Ausgezeichnete Kunden Beratungsbranche empfehlen Kollegen Klienten regelmäßig,., wie. Schätzen Qualität Langlebigkeit Investitionsstücke, gesehen. Follow-up April exklusive Privatvorschau interessiert Handwerksqualität Zeitlosigkeit Design überdauert Trends.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur les clients sont principalement liées à leur profession, leurs intérêts et leur régime alimentaire, qui ne sont pas considérés comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

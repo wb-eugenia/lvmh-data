@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_354",
+  "language": "ES",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "vegan",
+    "sustainable_values",
+    "investment_mindset",
+    "tech_enthusiast",
+    "nft_digital_art_collector"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "20K+",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "empresario tecnología blockchain startup unicornio",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'empresario tecnología blockchain startup unicornio' -> entrepreneur_tech. Shopping with girlfriend -> shopping_with_spouse. Both are strict vegans -> vegan and sustainable_values tags.",
+  "from_cache": false
+}

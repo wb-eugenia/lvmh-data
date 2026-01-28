@@ -1,0 +1,39 @@
+{
+  "ID": "CA_295",
+  "original_text": "Frau Schulz, 49, Professorin Soziologie Universität Genderforschung, regelmäßige Kundin seit 2018,. Sucht Taschen Frühjahr Konferenzen Soziologie Gender häufig international., also. Budget 8K.,. Stil akademisch progressiv modern, bevorzugt Farben inklusiv grau beige alle Geschlechter. Lehrt Soziologie Geschlechterforschung feministische Theorie publiziert international, wie,. Sammelt feministische Literatur historisch Suffragetten Bewegung Erstausgaben wertvoll. Reist Konferenzen Soziologie Gender Studies weltweit, nächste UN Women Konferenz. Praktiziert Meditation Achtsamkeit, innere Balance akademisch. Vegetarierin für Events,.,. Keine Allergien. wie. Partnerin Aktivistin LGBTQ Rechte, Paar progressiv soziale Gerechtigkeit Werte. mehr oder weniger,. Kinder studieren Soziologie Politikwissenschaft Gender Studies folgen Werte. Familie Gleichheit Gerechtigkeit Inklusion Werte zentral Leben.,. Ausgezeichnete Kundin akademische Gemeinschaft empfiehlt Kolleginnen Feministinnen,. Follow-up April Frühjahrskollektion zeigen. also. Sehr interessiert Geschlechtergerechtigkeit Produktion Frauen Handwerkerinnen Gleichstellung Arbeitsbedingungen fair trade ethisch.",
+  "anonymized_text": "Frau Schulz, 49, Professorin Soziologie Universität Genderforschung, regelmäßige Kundin seit 2018,. Sucht Taschen Frühjahr Konferenzen Soziologie Gender häufig international., also. Budget 8K.,. Stil akademisch progressiv modern, bevorzugt Farben inklusiv grau beige alle Geschlechter. Lehrt Soziologie Geschlechterforschung feministische Theorie publiziert international, wie,. Sammelt feministische Literatur historisch Suffragetten Bewegung Erstausgaben wertvoll. Reist Konferenzen Soziologie Gender Studies weltweit, nächste UN Women Konferenz. [RGPD_HEALTH_MENTAL_REDACTED]. Vegetarierin für Events,.,. Keine Allergien. wie. [RGPD_SEXUAL_ORIENTATION_REDACTED], Paar [RGPD_POLITICAL_REDACTED]. mehr oder weniger,. Kinder studieren Soziologie Politikwissenschaft Gender Studies folgen Werte. Familie Gleichheit Gerechtigkeit Inklusion Werte zentral Leben.,. Ausgezeichnete Kundin akademische Gemeinschaft empfiehlt Kolleginnen Feministinnen,. Follow-up April Frühjahrskollektion zeigen. also. Sehr interessiert Geschlechtergerechtigkeit Produktion Frauen Handwerkerinnen Gleichstellung Arbeitsbedingungen fair trade ethisch.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "sexual_orientation",
+      "political"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Praktiziert Meditation Achtsamkeit, innere Balance akademisch",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "Partnerin Aktivistin LGBTQ Rechte",
+        "category": "sexual_orientation",
+        "severity": "high"
+      },
+      {
+        "text": "progressiv soziale Gerechtigkeit Werte",
+        "category": "political",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des informations sur la santé mentale, l'orientation sexuelle et des opinions politiques, ce qui le rend sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "sexual_orientation",
+    "political"
+  ],
+  "safe_to_store": false
+}

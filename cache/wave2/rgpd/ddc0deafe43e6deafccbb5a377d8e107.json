@@ -1,0 +1,15 @@
+{
+  "ID": "CA_198",
+  "original_text": "Signor Rossi, 45 anni, direttore vendite azienda farmaceutica multinazionale, cliente regolare dal 2019. Cerca borse viaggio lavoro spostamenti clienti medici frequenti. Budget 8K approssimativo. se,. Stile corporate professionale, preferisce nero navy marrone classico,. Gestisce vendite regione Europa medici farmacie ospedali, viaggi costanti. Colleziona pubblicità farmaceutiche storiche marketing evoluzione interessante,. Pratica golf regolare networking clienti, tornei aziendali.,. Pescetariano per eventi boutique. Nessuna allergia se. Moglie farmacista titolare farmacia, coppia mondo farmaceutico,. Figli liceo un po' studieranno medicina farmacia probabilmente così, se,. Cliente professionale affidabile compra funzionalità qualità, rete contatti medici farmacisti.,. Richiamare settembre mostrare autunno. Interessato robustezza materiali uso professionale intensivo viaggio costante.,.",
+  "anonymized_text": "Signor Rossi, 45 anni, direttore vendite azienda farmaceutica multinazionale, cliente regolare dal 2019. Cerca borse viaggio lavoro spostamenti clienti medici frequenti. Budget 8K approssimativo. se,. Stile corporate professionale, preferisce nero navy marrone classico,. Gestisce vendite regione Europa medici farmacie ospedali, viaggi costanti. Colleziona pubblicità farmaceutiche storiche marketing evoluzione interessante,. Pratica golf regolare networking clienti, tornei aziendali.,. Pescetariano per eventi boutique. Nessuna allergia se. Moglie farmacista titolare farmacia, coppia mondo farmaceutico,. Figli liceo un po' studieranno medicina farmacia probabilmente così, se,. Cliente professionale affidabile compra funzionalità qualità, rete contatti medici farmacisti.,. Richiamare settembre mostrare autunno. Interessato robustezza materiali uso professionale intensivo viaggio costante.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le informazioni fournies ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les détails sur le régime alimentaire (pescetariano) et la profession ne sont pas considérés comme sensibles. Aucune mention de santé mentale, santé physique, conflits familiaux, religion, opinions politiques, orientation sexuelle ou origine ethnique n'est présente."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

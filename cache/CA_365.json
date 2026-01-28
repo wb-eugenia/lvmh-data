@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_365",
+  "language": "DE",
+  "tags": [
+    "media_professional",
+    "shopping_alone",
+    "pescatarian",
+    "innovation_interest",
+    "budget_very_flexible"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "10K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Chefredakteurin Lifestyle-Magazin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'Chefredakteurin Lifestyle-Magazin' aligns with media_professional. Shopping alone is implied. Pescetarierin indicates dietary preference, and 'Allergie Nickel' suggests a moderate severity allergy.",
+  "from_cache": false
+}

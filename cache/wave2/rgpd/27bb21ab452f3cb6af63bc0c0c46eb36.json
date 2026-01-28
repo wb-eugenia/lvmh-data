@@ -1,0 +1,15 @@
+{
+  "ID": "CA_145",
+  "original_text": "Frau Fischer, 50, Chefärztin Kardiologie Krankenhaus, regelmäßige Kundin seit 2018. Sucht Taschen neue Saison berufliche Konferenzen zahlreich.,. Budget 9K.,. Stil professionell elegant zeitlos, bevorzugt marine schwarz grau, gesehen.,. Arbeitet Herzkrankheiten Spitzenforschung, publiziert internationale Journale häufig gesehen,.,. Reist medizinische Kongresse weltweit, nächste USA Kardiologie Symposium. Sammelt medizinische Lehrbücher historisch, interessiert Geschichte Medizin. Praktiziert Laufen täglich Stressabbau, mehrere Marathons gelaufen gesehen. Vegetarierin viele Jahre für Events also, gesehen.,. Allergie Penicillin wichtig medizinische Events. Geschieden vor Jahren, erwachsene Tochter Ärztin auch. Sohn Architekt Familie medizinisch-akademisch,. Ausgezeichnete Kundin medizinische Gemeinschaft, empfiehlt Kolleginnen Ärztinnen. also. Follow-up März neue Kollektion wie zeigen.,. Interessiert Qualität Funktionalität Langlebigkeit berufliche Nutzung intensiv.",
+  "anonymized_text": "Frau Fischer, 50, Chefärztin Kardiologie Krankenhaus, regelmäßige Kundin seit 2018. Sucht Taschen neue Saison berufliche Konferenzen zahlreich.,. Budget 9K.,. Stil professionell elegant zeitlos, bevorzugt marine schwarz grau, gesehen.,. Arbeitet Herzkrankheiten Spitzenforschung, publiziert internationale Journale häufig gesehen,.,. Reist medizinische Kongresse weltweit, nächste USA Kardiologie Symposium. Sammelt medizinische Lehrbücher historisch, interessiert Geschichte Medizin. Praktiziert Laufen täglich Stressabbau, mehrere Marathons gelaufen gesehen. Vegetarierin viele Jahre für Events also, gesehen.,. Allergie Penicillin wichtig medizinische Events. Geschieden vor Jahren, erwachsene Tochter Ärztin auch. Sohn Architekt Familie medizinisch-akademisch,. Ausgezeichnete Kundin medizinische Gemeinschaft, empfiehlt Kolleginnen Ärztinnen. also. Follow-up März neue Kollektion wie zeigen.,. Interessiert Qualität Funktionalität Langlebigkeit berufliche Nutzung intensiv.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarien), et le statut marital (divorcé sans conflit) ne sont pas considérées comme sensibles. Les allergies alimentaires sont également acceptables pour le business."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

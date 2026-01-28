@@ -1,0 +1,32 @@
+{
+  "ID": "CA_321",
+  "original_text": "Mme Dubois 33 ans avocate droit affaires cabinet international nouvelle cliente potentiel élevé,.,. Cherche sac travail élégant fonctionnel déplacements fréquents budget 5K. professionnel moderne cuir noir navy hardware argent. Travaille dossiers complexes entreprises cotées voyage Europe Asie régulièrement. Pratique yoga quotidien équilibre vie professionnelle intense,., par exemple. Collectionne art abstrait contemporain jeunes artistes. Végane convictions fortes événements allergie nickel importante hardware. Fiancé également avocat même cabinet mariage prévu automne opportunité cadeaux,.,. Pas encore enfants carrières priorité. Excellente cliente jeune professionnelle succès rappeler mars montrer nouveautés voyage intéressée matériaux innovants durables.",
+  "anonymized_text": "Mme Dubois 33 ans avocate droit affaires cabinet international nouvelle cliente potentiel élevé,.,. Cherche sac travail élégant fonctionnel déplacements fréquents budget 5K. professionnel moderne cuir noir navy hardware argent. Travaille dossiers complexes entreprises cotées voyage Europe Asie régulièrement. [RGPD_HEALTH_MENTAL_REDACTED],., par exemple. Collectionne art abstrait contemporain jeunes artistes. Végane convictions fortes événements [RGPD_HEALTH_PHYSICAL_REDACTED]. Fiancé également avocat même cabinet mariage prévu automne opportunité cadeaux,.,. Pas encore enfants carrières priorité. Excellente cliente jeune professionnelle succès rappeler mars montrer nouveautés voyage intéressée matériaux innovants durables.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Pratique yoga quotidien équilibre vie professionnelle intense",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "allergie nickel importante hardware",
+        "category": "health_physical",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des références à la santé mentale (stress lié à une vie professionnelle intense) et à une allergie matérielle (nickel), ce qui nécessite une attention particulière en matière de protection des données sensibles."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

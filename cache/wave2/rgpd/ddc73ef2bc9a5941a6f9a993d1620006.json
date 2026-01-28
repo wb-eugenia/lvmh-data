@@ -1,0 +1,25 @@
+{
+  "ID": "CA_382",
+  "original_text": "Mr if you will,. and Mrs so,.,. Lee both 58 VIP clients since 2014. Major shopping celebrating business milestone company IPO successful combined budget 28K extremely flexible, I see,. He founder CEO biotech company groundbreaking she COO same company power couple business,. Both science business worlds intersection revolutionary medical treatments development. Travel constantly investor relations medical conferences boards worldwide.,. He collects scientific instruments antique microscopes telescopes historical,. She passionate I see women in STEM runs mentorship programs girls science,. I see,. He classic professional black brown leather conservative she modern elegant grey champagne rose gold feminine let me see, what. I see,. Both pescatarian health for events he has diabetes dietary restrictions critical., in a manner of speaking. Three adult children all STEM careers scientist engineer physician family tradition six grandchildren young growing gift opportunities constant,. Exceptional clients highest tier wealth philanthropy donated millions medical research education refer countless wealthy business associates investors appreciate innovation quality materials lasting value legacy pieces follow-up monthly personalized curated selections dedicated advisor planning major celebration what company IPO gala hundreds guests boutique collaboration sponsorship opportunity significant.",
+  "anonymized_text": "Mr if you will,. and Mrs so,.,. Lee both 58 VIP clients since 2014. Major shopping celebrating business milestone company IPO successful combined budget 28K extremely flexible, I see,. He founder CEO biotech company groundbreaking she COO same company power couple business,. Both science business worlds intersection revolutionary medical treatments development. Travel constantly investor relations medical conferences boards worldwide.,. He collects scientific instruments antique microscopes telescopes historical,. She passionate I see women in STEM runs mentorship programs girls science,. I see,. He classic professional black brown leather conservative she modern elegant grey champagne rose gold feminine let me see, what. I see,. Both pescatarian health for events [RGPD_HEALTH_PHYSICAL_REDACTED] critical., in a manner of speaking. Three adult children all STEM careers scientist engineer physician family tradition six grandchildren young growing gift opportunities constant,. Exceptional clients highest tier wealth philanthropy donated millions medical research education refer countless wealthy business associates investors appreciate innovation quality materials lasting value legacy pieces follow-up monthly personalized curated selections dedicated advisor planning major celebration what company IPO gala hundreds guests boutique collaboration sponsorship opportunity significant.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "he has diabetes dietary restrictions",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "The text contains information about a client's diabetes, which is classified as sensitive health information under Article 9 of the GDPR."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

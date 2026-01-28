@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_227",
+  "language": "EN",
+  "tags": [
+    "medical_surgeon",
+    "medical_specialist",
+    "shopping_with_spouse",
+    "milestone_celebration",
+    "philanthropy"
+  ],
+  "invalid_tags": [
+    "gift_for_grandchild"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "20K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "grandchild"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "orthopedic surgeon sports medicine, physical therapist rehabilitation sports injuries",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'orthopedic surgeon' and 'physical therapist' -> medical_surgeon and medical_specialist. Shopping together as a couple -> shopping_with_spouse. Gifts for grandchildren -> gift_for_grandchild. Mention of milestones and celebrations indicates milestone_celebration. Their involvement in charity work suggests philanthropy.",
+  "from_cache": false
+}

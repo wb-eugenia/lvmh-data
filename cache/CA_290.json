@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_290",
+  "language": "DE",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_child",
+    "graduation_gift",
+    "sustainable_values",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [
+    "academic_professor"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "19K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Professor Biologie, Professorin Biochemie",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Both are professors in the biological sciences -> academic_professor. Shopping together as a couple -> shopping_with_spouse. Gifts for their children's graduations -> gift_for_child + graduation_gift. Their appreciation for organic materials and ethical living aligns with sustainable_values and artisan_craft_appreciation.",
+  "from_cache": false
+}

@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_203",
+  "language": "IT",
+  "tags": [
+    "creative_arts_visual",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "vegetarian",
+    "heritage_importance"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "occasional_client",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "dust_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "architetto restauro monumenti storici UNESCO",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'architetto restauro monumenti storici UNESCO' -> creative_arts_visual. Shopping with partner -> shopping_with_spouse. Gift for daughter -> gift_for_child. Vegetarian choice indicates sustainable values. Allergy to dust is severe.",
+  "from_cache": false
+}

@@ -1,0 +1,39 @@
+{
+  "ID": "CA_363",
+  "original_text": "Signora Esposito 38 anni avvocata diritti umani organizzazione internazionale nuova cliente potenziale interessante,. Cerca borse resistenti eleganti missioni campo frequenti zone complicate budget 6K consapevole valora investimento durata. Stile funzionale elegante non ostentoso importante lavoro ONG. Viaggia costante Africa Medio Oriente così Asia missioni umanitarie advocacy,. Colleziona artigianato locale comunità assiste per esempio commercio equo solidale. Pratica yoga meditazione ritiri mindfulness India regolari.,. Vegana conviczione etica profonda un po' eventi critico allergie multiple pollini importante. Compagna medico senza frontiere coppia umanitaria senza figli scelta dedicazione cause. Rete contatti ONG così attivisti giornalisti ampia nicho clienti valori forte. Cliente profilo unico apprezza etica produzione trasparenza supply chain follow-up aprile mostrare opzioni sostenibili responsabili interessatissima impatto sociale produzione condizioni lavoratori diritti umani., così.",
+  "anonymized_text": "Signora Esposito 38 anni avvocata diritti umani organizzazione internazionale nuova cliente potenziale interessante,. Cerca borse resistenti eleganti missioni campo frequenti zone complicate budget 6K consapevole valora investimento durata. Stile funzionale elegante non ostentoso importante lavoro ONG. Viaggia costante Africa Medio Oriente così Asia missioni umanitarie advocacy,. Colleziona artigianato locale comunità assiste per esempio commercio equo solidale. Pratica yoga meditazione ritiri mindfulness India regolari.,. Vegana conviczione etica profonda un po' eventi critico [RGPD_HEALTH_PHYSICAL_REDACTED] importante. Compagna medico senza frontiere coppia umanitaria senza figli scelta dedicazione cause. Rete contatti ONG così attivisti giornalisti ampia nicho clienti valori forte. Cliente profilo unico apprezza etica produzione trasparenza supply chain follow-up aprile mostrare opzioni sostenibili responsabili interessatissima impatto sociale produzione condizioni lavoratori diritti umani., così.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "pratica yoga meditazione ritiri mindfulness",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "allergie multiple pollini",
+        "category": "health_physical",
+        "severity": "low"
+      },
+      {
+        "text": "compagna medico senza frontiere coppia umanitaria senza figli scelta dedicazione cause",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le notes contiennent des informations sur la santé mentale (yoga, méditation), des allergies (pollens) et des choix de vie familiaux qui peuvent être considérés comme sensibles dans le contexte de la vie personnelle du client."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_317",
+  "original_text": "Dr, in a way. kind of, if you will. and Mrs. Hamilton both 58 distinguished academics philosophy literature regular VIP clients since 2016 what,. Shopping session new season plus anniversary gifts each other 30 years marriage combined budget 19K very flexible. She's philosophy professor published several books lectures internationally.,. He's literature critic writes major newspapers I see published poet. Both intellectual world attend literary festivals Hay Edinburgh annually. Travel cultural educational frequent planning sabbatical year Italy study Renaissance.,. She collects rare philosophical texts first editions auctions regularly. He amateur watercolor painter weekend hobby.,. Both vegetarian decades for events no allergies. Daughter professor history Cambridge son architect Copenhagen,. Grandchild born recently gift opportunities. I guess,. Excellent highly educated clients refer many academic colleagues. so. Sophisticated taste appreciation craft history follow up March exclusive private preview interested in historical craftsmanship cultural heritage pieces.",
+  "anonymized_text": "Dr, in a way. kind of, if you will. and Mrs. Hamilton both 58 distinguished academics philosophy literature regular VIP clients since 2016 what,. Shopping session new season plus anniversary gifts each other 30 years marriage combined budget 19K very flexible. She's philosophy professor published several books lectures internationally.,. He's literature critic writes major newspapers I see published poet. Both intellectual world attend literary festivals Hay Edinburgh annually. Travel cultural educational frequent planning sabbatical year Italy study Renaissance.,. She collects rare philosophical texts first editions auctions regularly. He amateur watercolor painter weekend hobby.,. Both vegetarian decades for events no allergies. Daughter professor history Cambridge son architect Copenhagen,. Grandchild born recently gift opportunities. I guess,. Excellent highly educated clients refer many academic colleagues. so. Sophisticated taste appreciation craft history follow up March exclusive private preview interested in historical craftsmanship cultural heritage pieces.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the clients' professions, interests, and family structure without revealing any sensitive information related to health, family conflicts, religion, political opinions, sexual orientation, or ethnic origin."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

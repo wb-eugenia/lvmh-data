@@ -1,0 +1,15 @@
+{
+  "ID": "CA_228",
+  "original_text": "Signor Gentile, 43 anni, produttore televisione programmi cultura documentari, cliente occasionale dal 2021. Cerca borse viaggio produzioni televisive trasferte riprese. Budget 6K.,. Stile televisivo creativo funzionale, preferisce nero marrone pratico. se Produce documentari programmi culturali RAI canali nazionali,. Colleziona DVD documentari rari collezione cinema verità un po'. Viaggia costante riprese location Italia estero produzione.,. Pratica fotografia documentaria, passione catturare realtà,. se,. Pescetariano per eventi boutique.,. Nessuna allergia,. Compagna regista documentari, coppia televisione creativa,., che. Figli piccoli famiglia. Rete contatti registi produttori giornalisti televisione., così, che. Cliente mondo televisione cultura. Richiamare marzo mostrare primavera, che,. Interessato storytelling narrativa prodotti heritage storia dietro creazione paralleli documentari.,.",
+  "anonymized_text": "Signor Gentile, 43 anni, produttore televisione programmi cultura documentari, cliente occasionale dal 2021. Cerca borse viaggio produzioni televisive trasferte riprese. Budget 6K.,. Stile televisivo creativo funzionale, preferisce nero marrone pratico. se Produce documentari programmi culturali RAI canali nazionali,. Colleziona DVD documentari rari collezione cinema verità un po'. Viaggia costante riprese location Italia estero produzione.,. Pratica fotografia documentaria, passione catturare realtà,. se,. Pescetariano per eventi boutique.,. Nessuna allergia,. Compagna regista documentari, coppia televisione creativa,., che. Figli piccoli famiglia. Rete contatti registi produttori giornalisti televisione., così, che. Cliente mondo televisione cultura. Richiamare marzo mostrare primavera, che,. Interessato storytelling narrativa prodotti heritage storia dietro creazione paralleli documentari.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le informations fournies ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les détails sur le régime alimentaire (pescetariano) et la profession ne sont pas considérés comme sensibles. Aucune mention de santé mentale, santé physique, conflits familiaux, croyances religieuses, opinions politiques, orientation sexuelle ou origine ethnique n'est présente."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

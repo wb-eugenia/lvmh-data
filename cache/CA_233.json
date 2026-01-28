@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_233",
+  "language": "IT",
+  "tags": [
+    "interior_design",
+    "shopping_with_spouse",
+    "pescatarian",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "8k-10k",
+  "client_status": "occasional_client",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "architetto interni yacht superyacht lusso",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'architetto interni yacht superyacht lusso' -> interior_design. Shopping with partner -> shopping_with_spouse. Pescatarian lifestyle noted. Budget of 8K indicates a high spending capacity.",
+  "from_cache": false
+}

@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_247",
+  "language": "EN",
+  "tags": [
+    "shopping_with_spouse",
+    "philanthropy",
+    "vegetarian"
+  ],
+  "invalid_tags": [
+    "academic_dean",
+    "academic_professor",
+    "gift_for_students"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "21K",
+  "client_status": "VIP",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "students"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Dean of Engineering School, Professor of Computer Science",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'Dean of Engineering School' and 'Professor of Computer Science' -> academic_dean and academic_professor. Shopping with spouse -> shopping_with_spouse. Gifts for graduating students -> gift_for_students. Vegetarian lifestyle noted -> vegetarian tag.",
+  "from_cache": false
+}

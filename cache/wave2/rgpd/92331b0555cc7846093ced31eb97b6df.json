@@ -1,0 +1,15 @@
+{
+  "ID": "CA_226",
+  "original_text": "M. Martin, 37 ans, chef projet grands travaux infrastructure, nouveau client potentiel., grosso modo, plus que ou moins. Cherche sac travail chantiers réunions ingénierie robuste.,. Budget 5500€,. ingénieur terrain fonctionnel, cuir marron que noir résistant. Gère projets ponts tunnels autoroutes infrastructures nationales. en quelque manière. Collectionne plans ingénierie historiques ouvrages art XIXe. Pratique escalade alpinisme, structures naturelles artificielles passion.,. Végétarien pour événements. Allergie béton poussière chantiers importante,.,. Compagne ingénieure génie civil, couple infrastructure. que. Pas enfants carrières chantiers nomades incompatibles. Réseau ingénieurs entrepreneurs travaux publics que, à peu près. Client profil ingénierie travaux, je veux dire. Rappeler mars montrer collection.,. Intéressé robustesse extrême matériaux résistance conditions difficiles chantiers.",
+  "anonymized_text": "M. Martin, 37 ans, chef projet grands travaux infrastructure, nouveau client potentiel., grosso modo, plus que ou moins. Cherche sac travail chantiers réunions ingénierie robuste.,. Budget 5500€,. ingénieur terrain fonctionnel, cuir marron que noir résistant. Gère projets ponts tunnels autoroutes infrastructures nationales. en quelque manière. Collectionne plans ingénierie historiques ouvrages art XIXe. Pratique escalade alpinisme, structures naturelles artificielles passion.,. Végétarien pour événements. Allergie béton poussière chantiers importante,.,. Compagne ingénieure génie civil, couple infrastructure. que. Pas enfants carrières chantiers nomades incompatibles. Réseau ingénieurs entrepreneurs travaux publics que, à peu près. Client profil ingénierie travaux, je veux dire. Rappeler mars montrer collection.,. Intéressé robustesse extrême matériaux résistance conditions difficiles chantiers.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarien) et les allergies (béton, poussière) sont considérées comme non sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

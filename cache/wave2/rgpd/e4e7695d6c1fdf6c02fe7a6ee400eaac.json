@@ -1,0 +1,32 @@
+{
+  "ID": "CA_123",
+  "original_text": "Signora Ricci, 44 anni, psicologa clinica studio privato, cliente regolare dal 2020. Cerca rinnovo borse professionali primavera,.,. Budget 6K. Stile elegante discreto professionale, preferisce colori neutri un po' beige grigio navy, che, un po'. Lavora clienti alto profilo, necessita presentazione impeccabile. Pratica meditazione mindfulness, insegna workshop benessere,. Colleziona letteratura psicologia prima edizione libri rari. Viaggia conferenze internazionali psicoterapia Europa America,. Vegetariana scelta etica per eventi. Nessuna allergia. Marito professore università filosofia, figlio studia medicina segue interessi familiari,. Figlia architetto paesaggista Firenze. Cliente affidabile professionale, compra regolarmente qualità apprezza. Richiamare marzo preview collezione. così,. Interessata equilibrio funzionalità estetica.,.",
+  "anonymized_text": "Signora Ricci, 44 anni, psicologa clinica studio privato, cliente regolare dal 2020. Cerca rinnovo borse professionali primavera,.,. Budget 6K. Stile elegante discreto professionale, preferisce colori neutri un po' beige grigio navy, che, un po'. Lavora clienti alto profilo, necessita presentazione impeccabile. Pratica meditazione mindfulness, insegna workshop benessere,. Colleziona letteratura psicologia prima edizione libri rari. Viaggia conferenze internazionali psicoterapia Europa America,. Vegetariana scelta etica per eventi. Nessuna allergia. Marito professore università filosofia, figlio studia medicina segue [RGPD_FAMILY_CONFLICT_REDACTED],. Figlia architetto paesaggista Firenze. Cliente affidabile professionale, compra regolarmente qualità apprezza. Richiamare marzo preview collezione. così,. Interessata equilibrio funzionalità estetica.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "pratica meditazione mindfulness",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "interessi familiari",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le informazioni sur la pratique de la méditation mindfulness peuvent indiquer des préoccupations liées à la santé mentale. De plus, la mention des 'intérêts familiaux' pourrait impliquer des conflits familiaux, bien que cela ne soit pas explicitement mentionné. Ces éléments rendent les données sensibles et non sécurisées pour le stockage."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

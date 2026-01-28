@@ -1,0 +1,25 @@
+{
+  "ID": "CA_166",
+  "original_text": "M.,. Lambert, 35 ans, architecte spécialisé patrimoine restauration monuments, nouveau client potentiel. Cherche sac travail chantiers patrimoine rendez-vous institutions culturelles. Budget 5K. classique intemporel, cuirs ton terre cognac beige vieillissement noble.,. Travaille châteaux églises bâtiments classés, passion patrimoine architectural,. Collectionne plans architecturaux anciens dessins techniques XIXe, archives personnelles. Pratique escalade falaise, grimpe structures naturelles historiques. en quelque sorte,. Végétarien pour événements.,. Allergie poussière sévère chantiers,. Compagne historienne art médiéval, couple patrimoine culture,. Pas enfants prévus carrières exigeantes voyages fréquents. Réseau architectes conservateurs patrimoine institutions culturelles. Client profil intellectuel apprécie histoire artisanat traditionnel du que coup,. Rappeler mai montrer collection.,. Très intéressé techniques traditionnelles maroquinerie parallèles restauration patrimoine. par exemple,.",
+  "anonymized_text": "M.,. Lambert, 35 ans, architecte spécialisé patrimoine restauration monuments, nouveau client potentiel. Cherche sac travail chantiers patrimoine rendez-vous institutions culturelles. Budget 5K. classique intemporel, cuirs ton terre cognac beige vieillissement noble.,. Travaille châteaux églises bâtiments classés, passion patrimoine architectural,. Collectionne plans architecturaux anciens dessins techniques XIXe, archives personnelles. Pratique escalade falaise, grimpe structures naturelles historiques. en quelque sorte,. Végétarien pour événements.,. [RGPD_HEALTH_PHYSICAL_REDACTED],. Compagne historienne art médiéval, couple patrimoine culture,. Pas enfants prévus carrières exigeantes voyages fréquents. Réseau architectes conservateurs patrimoine institutions culturelles. Client profil intellectuel apprécie histoire artisanat traditionnel du que coup,. Rappeler mai montrer collection.,. Très intéressé techniques traditionnelles maroquinerie parallèles restauration patrimoine. par exemple,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergie poussière sévère chantiers",
+        "category": "health_physical",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "L'allergie à la poussière est considérée comme une donnée de santé physique, ce qui la rend sensible selon l'Article 9 du RGPD. Par conséquent, il n'est pas sûr de stocker cette information."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

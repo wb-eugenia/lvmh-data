@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_181",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_hospitality",
+    "shopping_with_spouse",
+    "art_collector",
+    "gastronomy",
+    "wellness_yoga"
+  ],
+  "invalid_tags": [
+    "gift_for_self"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "self"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Cheffe pâtisserie restaurant étoilé Michelin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'cheffe pâtisserie restaurant étoilé Michelin' -> entrepreneur_hospitality. Shopping with companion -> shopping_with_spouse. Searching for a bag for work and culinary events indicates a gift for self. Interest in gastronomy and art collection aligns with tags.",
+  "from_cache": false
+}

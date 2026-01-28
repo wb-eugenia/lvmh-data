@@ -1,0 +1,32 @@
+{
+  "ID": "CA_185",
+  "original_text": "Frau Wagner, 48, Psychiaterin Klinik Psychotherapie, regelmäßige Kundin seit 2018, sag mal. Sucht Taschen Frühjahr beruflich Konferenzen Psychiatrie frequent,.,. Budget 9K.,. Stil professionell beruhigend elegant, bevorzugt warme neutrale Töne beige grau. Behandelt Patienten Störungen komplex, Expertise Traumatherapie.,. Sammelt Psychiatrie Literatur historisch Freud Jung Originalausgaben. Reist wie Kongresse Psychiatrie international Berlin Wien New York. Praktiziert Meditation Achtsamkeit selbst lehrt Patienten, also. Vegetarierin Jahre für Events. wie,. Keine Allergien. Partner Psychologe auch Praxis, Kinder studieren Psychologie Medizin Tradition, also.,. Familie mentale Gesundheit Werte Empathie,. Ausgezeichnete Kundin medizinische Gemeinschaft empfiehlt Kollegen Therapeuten. Follow-up Mai Sommerkollektion zeigen,.,. Interessiert Psychologie Farben Materialien emotionale Wirkung Wohlbefinden., ein wenig.",
+  "anonymized_text": "Frau Wagner, 48, Psychiaterin Klinik Psychotherapie, regelmäßige Kundin seit 2018, sag mal. Sucht Taschen Frühjahr beruflich Konferenzen Psychiatrie frequent,.,. Budget 9K.,. Stil professionell beruhigend elegant, bevorzugt warme neutrale Töne beige grau. [RGPD_HEALTH_MENTAL_REDACTED], Expertise Traumatherapie.,. Sammelt Psychiatrie Literatur historisch Freud Jung Originalausgaben. Reist wie Kongresse Psychiatrie international Berlin Wien New York. Praktiziert Meditation Achtsamkeit selbst lehrt Patienten, also. Vegetarierin Jahre für Events. wie,. Keine Allergien. Partner Psychologe auch Praxis, Kinder studieren Psychologie Medizin Tradition, also.,. [RGPD_FAMILY_CONFLICT_REDACTED],. Ausgezeichnete Kundin medizinische Gemeinschaft empfiehlt Kollegen Therapeuten. Follow-up Mai Sommerkollektion zeigen,.,. Interessiert Psychologie Farben Materialien emotionale Wirkung Wohlbefinden., ein wenig.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Behandelt Patienten Störungen komplex",
+        "category": "health_mental",
+        "severity": "high"
+      },
+      {
+        "text": "Familie mentale Gesundheit Werte Empathie",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne des troubles mentaux liés à la pratique de la psychiatre, ce qui est sensible. De plus, la référence à la famille et à la santé mentale peut indiquer des conflits familiaux, ce qui est également sensible."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

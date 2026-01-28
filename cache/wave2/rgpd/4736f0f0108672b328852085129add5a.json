@@ -1,0 +1,15 @@
+{
+  "ID": "CA_110",
+  "original_text": "Herr Schmidt, 38, Unternehmer nachhaltige Mode Startup Erfolg, neuer Kunde sehr interessant gesehen.,. Sucht Qualitätsstücke nach Geschäftswachstum,. Budget offen besprochen 12K heute. Stil modern bewusst, schätzt Handwerk Transparenz.,. Sammelt zeitgenössische Kunst junge Künstler, unterstützt Kunstszene aktiv. Reist häufig Berlin Kopenhagen Amsterdam Mode-Hubs. Praktiziert Meditation täglich, Yoga regelmäßig.,. Partner auch Modebranche Designer, beide vegan ethische Überzeugung wenn also du willst. also. Keine Allergien. Schwester heiratet Sommer. Eltern Jubiläum 35 Jahre Herbst,. Exzellenter Kunde Nachhaltigkeitssegment wachsend wichtig auf eine Art,. Sehr interessiert Lieferkette Materialherkunft Umweltauswirkung gesehen,. Follow-up wöchentlich.",
+  "anonymized_text": "Herr Schmidt, 38, Unternehmer nachhaltige Mode Startup Erfolg, neuer Kunde sehr interessant gesehen.,. Sucht Qualitätsstücke nach Geschäftswachstum,. Budget offen besprochen 12K heute. Stil modern bewusst, schätzt Handwerk Transparenz.,. Sammelt zeitgenössische Kunst junge Künstler, unterstützt Kunstszene aktiv. Reist häufig Berlin Kopenhagen Amsterdam Mode-Hubs. Praktiziert Meditation täglich, Yoga regelmäßig.,. Partner auch Modebranche Designer, beide vegan ethische Überzeugung wenn also du willst. also. Keine Allergien. Schwester heiratet Sommer. Eltern Jubiläum 35 Jahre Herbst,. Exzellenter Kunde Nachhaltigkeitssegment wachsend wichtig auf eine Art,. Sehr interessiert Lieferkette Materialherkunft Umweltauswirkung gesehen,. Follow-up wöchentlich.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé mentale (méditation, yoga) et les croyances (végétarien, éthique) ne sont pas considérées comme sensibles dans ce contexte. Les détails sur la famille (mariage de la sœur, anniversaire des parents) ne sont pas en conflit et ne relèvent pas de catégories sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

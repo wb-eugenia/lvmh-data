@@ -1,0 +1,15 @@
+{
+  "ID": "CA_286",
+  "original_text": "M. que,. Petit, 37 ans, chef projet construction grands travaux génie civil, nouveau client potentiel.,. Cherche sac travail robuste chantiers réunions ingénierie. Budget 6K,. ingénieur chantier fonctionnel, cuir marron noir résistant poussière.,. Gère projets construction ponts infrastructures bâtiments grands travaux. Collectionne plans ingénierie historiques ouvrages art ponts anciens,. Pratique escalade structures, passion construction verticale. Végétarien pour événements.,. Allergie ciment poussière chantiers importante protection,. Compagne architecte, couple construction ingénierie complète.,. Pas enfants chantiers nomades incompatible famille jeune,. Réseau ingénieurs entrepreneurs construction segment, un petit peu.,. Client profil construction travaux. Rappeler mars montrer collection,. Intéressé robustesse extrême matériaux résistance conditions chantiers difficiles intempéries.,.",
+  "anonymized_text": "M. que,. Petit, 37 ans, chef projet construction grands travaux génie civil, nouveau client potentiel.,. Cherche sac travail robuste chantiers réunions ingénierie. Budget 6K,. ingénieur chantier fonctionnel, cuir marron noir résistant poussière.,. Gère projets construction ponts infrastructures bâtiments grands travaux. Collectionne plans ingénierie historiques ouvrages art ponts anciens,. Pratique escalade structures, passion construction verticale. Végétarien pour événements.,. Allergie ciment poussière chantiers importante protection,. Compagne architecte, couple construction ingénierie complète.,. Pas enfants chantiers nomades incompatible famille jeune,. Réseau ingénieurs entrepreneurs construction segment, un petit peu.,. Client profil construction travaux. Rappeler mars montrer collection,. Intéressé robustesse extrême matériaux résistance conditions chantiers difficiles intempéries.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur l'allergie au ciment et à la poussière sont considérées comme des allergies matérielles et sont donc acceptables pour le business. Les autres informations ne relèvent pas des catégories sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

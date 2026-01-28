@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_212",
+  "language": "EN",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "retirement_celebration",
+    "tech_enthusiast"
+  ],
+  "invalid_tags": [
+    "gift_for_grandchild"
+  ],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "28K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "grandchild"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Co-founder COO of software company",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Both clients are identified as entrepreneurs in the tech sector -> entrepreneur_tech. Shopping together as a couple -> shopping_with_spouse. Mention of grandchildren indicates potential gifts for them -> gift_for_grandchild. Planning a retirement celebration aligns with the purchase occasion -> retirement_celebration.",
+  "from_cache": false
+}

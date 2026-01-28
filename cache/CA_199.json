@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_199",
+  "language": "ES",
+  "tags": [
+    "creative_arts_visual",
+    "shopping_with_spouse",
+    "nickel_allergy",
+    "vegetarian",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "10K",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "directora marketing agencia publicidad creativa",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'directora marketing agencia publicidad creativa' aligns with 'creative_arts_visual'. Shopping context indicates she is with her spouse. 'Alergia níquel importante' indicates a severe nickel allergy.",
+  "from_cache": false
+}

@@ -1,0 +1,30 @@
+{
+  "ID": "CA_383",
+  "original_text": "Signora Martini 43 anni neurologa ricerca malattie neurodegenerative università cliente regolare dal 2020,.,. Cerca borse nuove primavera conferenze che ricerca frequenti budget 7K. Stile medico accademico elegante preferisce colori professionali navy un po' grigio beige. Ricerca Alzheimer Parkinson pubblicazioni peer-reviewed importanti, se. per esempio Colleziona neurologia libri storici Charcot Freud primi studi per esempio. Viaggia congressi un po' neurologia mondiale Boston per esempio Londra Tokyo presentare ricerca se, se vuoi,. un po'. Pratica corsa maratone mente sana corpo sano filosofia., che. Vegetariana scelta etica per eventi boutique nessuna allergia,. un po',. Marito neuroscienziato ricerca anche coppia scientifico figli giovani studiano scienze seguono genitori, in un certo senso,. Famiglia ricerca scientifica valori curiosità conoscenza cliente affidabile rete colleghi ricercatori neurologi richiamare giugno preview estate interessata scienza materiali innovazione tecnologica prodotti.,.",
+  "anonymized_text": "Signora Martini 43 anni neurologa ricerca malattie neurodegenerative università cliente regolare dal 2020,.,. Cerca borse nuove primavera conferenze che ricerca frequenti budget 7K. Stile medico accademico elegante preferisce colori professionali navy un po' grigio beige. Ricerca [RGPD_HEALTH_PHYSICAL_REDACTED] [RGPD_HEALTH_PHYSICAL_REDACTED] pubblicazioni peer-reviewed importanti, se. per esempio Colleziona neurologia libri storici Charcot Freud primi studi per esempio. Viaggia congressi un po' neurologia mondiale Boston per esempio Londra Tokyo presentare ricerca se, se vuoi,. un po'. Pratica corsa maratone mente sana corpo sano filosofia., che. Vegetariana scelta etica per eventi boutique nessuna allergia,. un po',. Marito neuroscienziato ricerca anche coppia scientifico figli giovani studiano scienze seguono genitori, in un certo senso,. Famiglia ricerca scientifica valori curiosità conoscenza cliente affidabile rete colleghi ricercatori neurologi richiamare giugno preview estate interessata scienza materiali innovazione tecnologica prodotti.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Alzheimer",
+        "category": "health_physical",
+        "severity": "high"
+      },
+      {
+        "text": "Parkinson",
+        "category": "health_physical",
+        "severity": "high"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le mentions de maladies neurodégénératives comme Alzheimer et Parkinson sont considérées comme des données de santé physique sensibles selon l'article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

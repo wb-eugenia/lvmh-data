@@ -1,0 +1,15 @@
+{
+  "ID": "CA_296",
+  "original_text": "M en quelque façon,.,. Bernard, 36 ans, architecte paysagiste projets urbains durables, nouveau client potentiel par exemple,., on va dire. Cherche sac travail projets paysagers chantiers réunions municipalités. du coup. Budget 5500€. paysagiste naturel, cuir tons verts terre naturels durables. Conçoit espaces verts urbains parcs jardins durables biodiversité,. Collectionne plans paysagers historiques jardins français Versailles Le Nôtre,. Pratique randonnée nature connection, inspiration projets, pour ainsi dire,. Végétarien strict pour par exemple événements,.,. Allergie pollens multiples importante travail extérieur paradoxe., en quelque sorte. Compagne biologiste conservation, couple nature environnement. Pas enfants lifestyle nomade projets incompatible. Réseau architectes paysagistes urbanistes durables segment,. Client profil paysagiste durable, eh bien.,. Rappeler mai montrer collection. Très intéressé matériaux naturels durables impact environnemental minimal production responsable écologique.",
+  "anonymized_text": "M en quelque façon,.,. Bernard, 36 ans, architecte paysagiste projets urbains durables, nouveau client potentiel par exemple,., on va dire. Cherche sac travail projets paysagers chantiers réunions municipalités. du coup. Budget 5500€. paysagiste naturel, cuir tons verts terre naturels durables. Conçoit espaces verts urbains parcs jardins durables biodiversité,. Collectionne plans paysagers historiques jardins français Versailles Le Nôtre,. Pratique randonnée nature connection, inspiration projets, pour ainsi dire,. Végétarien strict pour par exemple événements,.,. Allergie pollens multiples importante travail extérieur paradoxe., en quelque sorte. Compagne biologiste conservation, couple nature environnement. Pas enfants lifestyle nomade projets incompatible. Réseau architectes paysagistes urbanistes durables segment,. Client profil paysagiste durable, eh bien.,. Rappeler mai montrer collection. Très intéressé matériaux naturels durables impact environnemental minimal production responsable écologique.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur le régime végétarien et l'allergie aux pollens ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

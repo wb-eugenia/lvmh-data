@@ -1,0 +1,15 @@
+{
+  "ID": "CA_189",
+  "original_text": "Sra, o sea. Herrera, 44 años, diseñadora interiores proyectos residenciales lujo, nueva clienta potencial alto. que. Busca bolsos elegantes trabajo clientes alto perfil. Presupuesto 11K flexible,. Estilo sofisticado diseñador, aprecia estética belleza detalles., por ejemplo. Diseña interiores casas celebrities millonarios, portfolio impresionante., que. Colecciona muebles diseño vintage Mid-Century piezas icónicas,. Viaja ferias diseño Milán París Miami inspiración tendencias. Practica pilates diario, yoga flexibilidad,. Vegetariana para eventos. Alergia níquel importante hardware joyería un poco,., más o menos. Pareja arquitecto, ambos mundo diseño construcción lujo. Sin hijos enfocados carreras exitosas. Red por ejemplo contactos diseñadores arquitectos clientes ricos vastísima referencias,. Cliente segmento diseño interiorismo lujo. Follow-up julio mostrar colección. Muy interesada diseño artesanía estética funcionalidad equilibrio perfecto.",
+  "anonymized_text": "Sra, o sea. Herrera, 44 años, diseñadora interiores proyectos residenciales lujo, nueva clienta potencial alto. que. Busca bolsos elegantes trabajo clientes alto perfil. Presupuesto 11K flexible,. Estilo sofisticado diseñador, aprecia estética belleza detalles., por ejemplo. Diseña interiores casas celebrities millonarios, portfolio impresionante., que. Colecciona muebles diseño vintage Mid-Century piezas icónicas,. Viaja ferias diseño Milán París Miami inspiración tendencias. Practica pilates diario, yoga flexibilidad,. Vegetariana para eventos. Alergia níquel importante hardware joyería un poco,., más o menos. Pareja arquitecto, ambos mundo diseño construcción lujo. Sin hijos enfocados carreras exitosas. Red por ejemplo contactos diseñadores arquitectos clientes ricos vastísima referencias,. Cliente segmento diseño interiorismo lujo. Follow-up julio mostrar colección. Muy interesada diseño artesanía estética funcionalidad equilibrio perfecto.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon les catégories définies. Les informations sur la santé physique (allergie au nickel) sont acceptables pour le business, et il n'y a pas d'autres éléments sensibles détectés."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_346",
+  "original_text": "M. Garnier 43 ans directeur artistique maison haute couture client VIP depuis 2016. Renouvelle collection accessoires plus cadeaux équipe studio création budget 11K flexible. Lui monde mode couture haut niveau travaille défilés collections iconiques. Voyage fashion weeks toutes capitales vie constante pression créative. Collectionne croquis mode designers légendaires archives personnelles impressionnantes. Pratique natation régulière détente créativité,.,. Végétarien pour événements allergie certains colorants textiles importante profession. Partenaire également mode styliste couple créatif industrie du coup, un peu. Pas enfants carrières exigeantes priorité totale,. Réseau contacts mode luxe extraordinaire clients potentiels célébrités influenceurs, si vous voulez,. Goût impeccable avant-gardiste recherche toujours innovation,. Rappeler février par exemple montrer pièces exclusives avant sortie très intéressé collaborations artistes designers pièces uniques capsules.",
+  "anonymized_text": "M. Garnier 43 ans directeur artistique maison haute couture client VIP depuis 2016. Renouvelle collection accessoires plus cadeaux équipe studio création budget 11K flexible. Lui monde mode couture haut niveau travaille défilés collections iconiques. Voyage fashion weeks toutes capitales vie constante pression créative. Collectionne croquis mode designers légendaires archives personnelles impressionnantes. Pratique natation régulière détente créativité,.,. Végétarien pour événements allergie certains colorants textiles importante profession. Partenaire également mode styliste couple créatif industrie du coup, un peu. Pas enfants carrières exigeantes priorité totale,. Réseau contacts mode luxe extraordinaire clients potentiels célébrités influenceurs, si vous voulez,. Goût impeccable avant-gardiste recherche toujours innovation,. Rappeler février par exemple montrer pièces exclusives avant sortie très intéressé collaborations artistes designers pièces uniques capsules.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarien) et les allergies aux colorants textiles ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

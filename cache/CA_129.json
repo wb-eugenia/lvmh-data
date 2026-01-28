@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_129",
+  "language": "ES",
+  "tags": [
+    "sustainable_values",
+    "vegan",
+    "shopping_with_spouse"
+  ],
+  "invalid_tags": [
+    "architect_green"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Arquitecta estudio propio proyectos sostenibles",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'arquitecta estudio propio proyectos sostenibles' -> architect_green. Shopping with spouse -> shopping_with_spouse. Severe latex allergy detected -> latex_allergy with severity severe.",
+  "from_cache": false
+}

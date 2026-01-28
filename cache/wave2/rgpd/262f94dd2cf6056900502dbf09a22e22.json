@@ -1,0 +1,32 @@
+{
+  "ID": "CA_339",
+  "original_text": "Sra, por ejemplo,. sí,. Jiménez 44 años abogada derechos humanos ONG internacional nueva clienta potencial muy interesante, sí. un poco,. Busca piezas calidad durabilidad viajes sí misiones frecuentes zonas difíciles presupuesto 5K consciente pero valora inversión largo plazo. Estilo funcional elegante discreto no ostentoso que importante trabajo que campo veis,. un poco. Viaja constantemente África Asia América Latina ves misiones humanitarias,. en cierto modo,. Colecciona artesanía local comunidades trabaja apoya comercio justo. Practica meditación mindfulness retiros anuales India.,. Vegana estricta convicción ética profunda eventos crítico. Múltiples alergias medicamentos importante eventos médicos. Soltera sin hijos dedicación completa causa humanitaria, que. Mencionó red colegas ONG organizaciones podrían interesados nicho interesante clientes veis valores. Cliente única perfil aprecia calidad ética producción transparencia sí. Follow-up marzo mostrar opciones sostenibles responsables muy interesada cadena suministro ético impacto social producción.",
+  "anonymized_text": "Sra, por ejemplo,. sí,. Jiménez 44 años abogada derechos humanos ONG internacional nueva clienta potencial muy interesante, sí. un poco,. Busca piezas calidad durabilidad viajes sí misiones frecuentes zonas difíciles presupuesto 5K consciente pero valora inversión largo plazo. Estilo funcional elegante discreto no ostentoso que importante trabajo que campo veis,. un poco. Viaja constantemente África Asia América Latina ves misiones humanitarias,. en cierto modo,. Colecciona artesanía local comunidades trabaja apoya comercio justo. Practica meditación mindfulness retiros anuales India.,. Vegana estricta convicción ética profunda eventos crítico. Múltiples alergias medicamentos importante eventos médicos. Soltera sin hijos dedicación completa causa humanitaria, que. Mencionó red colegas ONG organizaciones podrían interesados nicho interesante clientes veis valores. Cliente única perfil aprecia calidad ética producción transparencia sí. Follow-up marzo mostrar opciones sostenibles responsables muy interesada cadena suministro ético impacto social producción.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "practica meditación mindfulness",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "múltiples alergias medicamentos",
+        "category": "health_physical",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne des pratiques de santé mentale (méditation mindfulness) et des allergies aux médicaments, ce qui le rend sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_292",
+  "language": "EN",
+  "tags": [
+    "legal_corporate",
+    "shopping_with_spouse",
+    "retirement_celebration",
+    "philanthropy",
+    "book_collector_rare"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "28K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Senior partners at a nationally recognized law firm",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession as senior partners in a law firm -> legal_corporate. Shopping together as a couple -> shopping_with_spouse. Planning a retirement celebration -> retirement_celebration. Interest in pro bono work and legal history books indicates philanthropy and book collector tags.",
+  "from_cache": false
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_105",
+  "original_text": "Frau und Herr Hoffmann, beide Anfang 60, treue Kunden seit 2014, in gewisser Weise,., wenn du willst,. Große Einkaufsession neue Saison plus Geschenke Kinder. Budget sehr flexibel besprochen 22K. Sie Professorin Literatur Universität, er Rechtsanwalt Partner großer Kanzlei,. Beide lieben Theater, Abonnenten mehrere Häuser, organisieren kulturelle Salons zuhause monatlich,. also,. Reisen gebildete Ziele Museen Kulturerbe, nächste Reise Griechenland archäologische Stätten.,. Sie sammelt antike Bücher erste Ausgaben, Auktionen regelmäßig,. Er spielt Cello Amateur Quartett Wochenenden. Beide Vegetarier seit Jahren. Keine Allergien. Tochter Ärztin heiratet Sommer. Sohn Journalist Berlin. Exzellente Kunden höchster Bildung, empfehlen viele Akademiker. Folgen April exklusive Vorschau.",
+  "anonymized_text": "Frau und Herr Hoffmann, beide Anfang 60, treue Kunden seit 2014, in gewisser Weise,., wenn du willst,. Große Einkaufsession neue Saison plus Geschenke Kinder. Budget sehr flexibel besprochen 22K. Sie Professorin Literatur Universität, er Rechtsanwalt Partner großer Kanzlei,. Beide lieben Theater, Abonnenten mehrere Häuser, organisieren kulturelle Salons zuhause monatlich,. also,. Reisen gebildete Ziele Museen Kulturerbe, nächste Reise Griechenland archäologische Stätten.,. Sie sammelt antike Bücher erste Ausgaben, Auktionen regelmäßig,. Er spielt Cello Amateur Quartett Wochenenden. Beide Vegetarier seit Jahren. Keine Allergien. Tochter Ärztin heiratet Sommer. Sohn Journalist Berlin. Exzellente Kunden höchster Bildung, empfehlen viele Akademiker. Folgen April exklusive Vorschau.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations partagées concernent des détails sur les clients, leurs professions, leurs intérêts et leur régime alimentaire, qui ne sont pas considérés comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

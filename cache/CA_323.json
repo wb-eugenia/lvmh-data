@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_323",
+  "language": "IT",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_child",
+    "vegetarian",
+    "wellness_yoga",
+    "book_collector_rare"
+  ],
+  "invalid_tags": [
+    "psychologist_clinical"
+  ],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "6K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Psicologa clinica",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'psicologa clinica' -> psychologist_clinical. Shopping with husband -> shopping_with_spouse. Gift for child inferred from family context. Vegetarian lifestyle noted.",
+  "from_cache": false
+}

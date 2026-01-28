@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_226",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "dust_allergy",
+    "gift_for_spouse"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "dust_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "chef projet grands travaux infrastructure",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'chef projet grands travaux infrastructure' -> entrepreneur_tech. Shopping with spouse -> shopping_with_spouse. Severe allergy to dust detected -> dust_allergy with severity severe.",
+  "from_cache": false
+}

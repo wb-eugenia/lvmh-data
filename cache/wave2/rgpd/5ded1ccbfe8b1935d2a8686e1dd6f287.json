@@ -1,0 +1,15 @@
+{
+  "ID": "CA_304",
+  "original_text": "Signor Ferretti 36 anni sviluppatore software AI startup successo nuovo cliente altissimo potenziale. Prima visita esplorazione brand budget molto aperto discusso 10K oggi più futuro., così. Stile tech moderno funzionale ma apprezza artigianalità tradizionale. Colleziona sneakers rare limitata edizione conosce valore esclusività.,. Viaggia frequente conferenze tech San Francisco Tokyo se Singapore. Pratica CrossFit quotidiano competizioni locali,. Fidanzata fashion blogger 500K followers possibile visibilità, più o meno. Nessuna se restrizione dieta allergia penicillina per eventi medici. Genitori anniversario 40 anni giugno regalo opportunità. Ottimo cliente nuovo segmento giovani tech ricchi,.,. Follow-up settimanale costruire relazione interessato innovazione materiali tech.",
+  "anonymized_text": "Signor Ferretti 36 anni sviluppatore software AI startup successo nuovo cliente altissimo potenziale. Prima visita esplorazione brand budget molto aperto discusso 10K oggi più futuro., così. Stile tech moderno funzionale ma apprezza artigianalità tradizionale. Colleziona sneakers rare limitata edizione conosce valore esclusività.,. Viaggia frequente conferenze tech San Francisco Tokyo se Singapore. Pratica CrossFit quotidiano competizioni locali,. Fidanzata fashion blogger 500K followers possibile visibilità, più o meno. Nessuna se restrizione dieta allergia penicillina per eventi medici. Genitori anniversario 40 anni giugno regalo opportunità. Ottimo cliente nuovo segmento giovani tech ricchi,.,. Follow-up settimanale costruire relazione interessato innovazione materiali tech.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le notes ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé physique (allergie à la pénicilline) sont acceptables pour le business, et il n'y a pas d'autres catégories sensibles détectées."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

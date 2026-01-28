@@ -1,0 +1,15 @@
+{
+  "ID": "CA_225",
+  "original_text": "Frau Klein, 46, Dermatologin ästhetische Medizin Praxis eigene, regelmäßige Kundin seit 2019 also,. Sucht Taschen Frühjahr Konferenzen Dermatologie Kosmetik häufig,.,. Budget 10K,. Stil elegant gepflegt Dermatologin Haut perfekt, bevorzugt helle Farben beige champagne rose,. Behandelt Patienten Hautprobleme ästhetische Medizin Botox Filler,. Sammelt Kosmetik historisch Parfums Vintage Schönheitsprodukte antik., gesehen. Reist Kongresse Dermatologie ästhetische Medizin weltweit Dubai Miami. Praktiziert Yoga Hautpflege Routine streng, Vorbild Patienten. sagen wir. Pescetarierin für Events,., in gewisser Weise. Allergie Duftstoffe wichtig Kosmetik Parfums Arbeit. Partner Plastischer Chirurg, Paar ästhetische Medizin. gesehen Kinder studieren Medizin Kosmetik Industrie möglicherweise. Familie Schönheit Gesundheit Werte,. Gute Kundin empfiehlt Patientinnen Kolleginnen also,.,. Follow-up September Herbstkollektion zeigen,.,. Interessiert Hautpflege Leder Behandlung Parallelen Pflege Produkte Langlebigkeit.",
+  "anonymized_text": "Frau Klein, 46, Dermatologin ästhetische Medizin Praxis eigene, regelmäßige Kundin seit 2019 also,. Sucht Taschen Frühjahr Konferenzen Dermatologie Kosmetik häufig,.,. Budget 10K,. Stil elegant gepflegt Dermatologin Haut perfekt, bevorzugt helle Farben beige champagne rose,. Behandelt Patienten Hautprobleme ästhetische Medizin Botox Filler,. Sammelt Kosmetik historisch Parfums Vintage Schönheitsprodukte antik., gesehen. Reist Kongresse Dermatologie ästhetische Medizin weltweit Dubai Miami. Praktiziert Yoga Hautpflege Routine streng, Vorbild Patienten. sagen wir. Pescetarierin für Events,., in gewisser Weise. Allergie Duftstoffe wichtig Kosmetik Parfums Arbeit. Partner Plastischer Chirurg, Paar ästhetische Medizin. gesehen Kinder studieren Medizin Kosmetik Industrie möglicherweise. Familie Schönheit Gesundheit Werte,. Gute Kundin empfiehlt Patientinnen Kolleginnen also,.,. Follow-up September Herbstkollektion zeigen,.,. Interessiert Hautpflege Leder Behandlung Parallelen Pflege Produkte Langlebigkeit.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (pescetarien), et les allergies aux parfums ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

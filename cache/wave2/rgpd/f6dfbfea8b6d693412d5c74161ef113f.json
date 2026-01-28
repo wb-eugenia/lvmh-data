@@ -1,0 +1,25 @@
+{
+  "ID": "CA_381",
+  "original_text": "Mme Morel 35 ans cheffe pâtisserie restaurant étoilé Michelin nouvelle cliente potentiel. Recherche sac élégant travail événements culinaires budget 6K, plus ou moins. raffiné créatif pâtissier cuirs tons pastel beige rose poudré unique.,. Crée desserts artistiques sculptures sucrées Instagram 200K followers pâtisserie art. Voyage recherche inspiration pâtisseries mondiales Tokyo que Paris. Collectionne moules pâtisserie anciens que cuivre étain historiques. Pratique yoga équilibre cuisine intense physiquement. par exemple Pescetarienne pour événements allergie fruits coque sévère cuisine.,. Compagnon chef cuisinier même restaurant couple gastronomie projettent ouvrir pâtisserie boutique année prochaine besoins. Réseau chefs pâtissiers critique gastronomique cliente créative monde culinaire haut gamme rappeler juin montrer nouveautés intéressée parallèles art culinaire maroquinerie précision artisanat.",
+  "anonymized_text": "Mme Morel 35 ans cheffe pâtisserie restaurant étoilé Michelin nouvelle cliente potentiel. Recherche sac élégant travail événements culinaires budget 6K, plus ou moins. raffiné créatif pâtissier cuirs tons pastel beige rose poudré unique.,. Crée desserts artistiques sculptures sucrées Instagram 200K followers pâtisserie art. Voyage recherche inspiration pâtisseries mondiales Tokyo que Paris. Collectionne moules pâtisserie anciens que cuivre étain historiques. Pratique yoga équilibre cuisine intense physiquement. par exemple Pescetarienne pour événements [RGPD_HEALTH_PHYSICAL_REDACTED] cuisine.,. Compagnon chef cuisinier même restaurant couple gastronomie projettent ouvrir pâtisserie boutique année prochaine besoins. Réseau chefs pâtissiers critique gastronomique cliente créative monde culinaire haut gamme rappeler juin montrer nouveautés intéressée parallèles art culinaire maroquinerie précision artisanat.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "allergie fruits coque sévère",
+        "category": "health_physical",
+        "severity": "high"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne une allergie sévère aux fruits à coque, ce qui est considéré comme une donnée de santé physique sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

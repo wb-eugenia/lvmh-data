@@ -1,0 +1,15 @@
+{
+  "ID": "CA_333",
+  "original_text": "Signora Bellini 38 anni violinista orchestra filarmonica nuova cliente potenziale interessante. Cerca borse viaggio tournée internazionali frequenti proteggere strumento prezioso budget 6K iniziale se. Stile elegante artistico classico preferisce tonalità calde beige cognac un po' bordeaux.,. Suona concerti sale prestigiose mondiali prossima tournée Asia tre mesi.,. Colleziona spartiti originali compositori classici autografi rari. se,. Pratica yoga flessibilità benessere meditazione concentrazione performance.,. Vegetariana scelta personale per eventi allergia polvere acari importante viaggio,. Marito direttore orchestra entrambi mondo musica classica. Figlia piccola 8 anni studia violino segue genitori. in qualche maniera, se. Cliente mondo arte cultura rete contatti musicisti eccellente. Follow-up marzo mostrare collezione viaggio resistente elegante interessata qualità artigianale durabilità piezzi investimento carriera lunga., così.",
+  "anonymized_text": "Signora Bellini 38 anni violinista orchestra filarmonica nuova cliente potenziale interessante. Cerca borse viaggio tournée internazionali frequenti proteggere strumento prezioso budget 6K iniziale se. Stile elegante artistico classico preferisce tonalità calde beige cognac un po' bordeaux.,. Suona concerti sale prestigiose mondiali prossima tournée Asia tre mesi.,. Colleziona spartiti originali compositori classici autografi rari. se,. Pratica yoga flessibilità benessere meditazione concentrazione performance.,. Vegetariana scelta personale per eventi allergia polvere acari importante viaggio,. Marito direttore orchestra entrambi mondo musica classica. Figlia piccola 8 anni studia violino segue genitori. in qualche maniera, se. Cliente mondo arte cultura rete contatti musicisti eccellente. Follow-up marzo mostrare collezione viaggio resistente elegante interessata qualità artigianale durabilità piezzi investimento carriera lunga., così.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le notes ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé physique (allergie à la poussière) sont acceptables pour le business, et il n'y a pas d'autres catégories sensibles détectées."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

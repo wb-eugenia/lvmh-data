@@ -1,0 +1,15 @@
+{
+  "ID": "CA_251",
+  "original_text": "Mme Renaud, 38 ans, directrice innovation R&D laboratoire pharmaceutique, nouvelle cliente potentiel élevé. Recherche sac professionnel moderne laboratoire conférences scientifiques. Budget 6K. scientifique moderne, cuir gris blanc minimaliste laboratoire.,. Dirige recherche nouveaux médicaments innovations thérapeutiques.,. Collectionne brevets que pharmaceutiques historiques découvertes médicales révolutionnaires. Pratique natation régulière, clarté mentale recherche, en gros,.,. Végane stricte convictions pour événements. Allergie produits chimiques laboratoire sensibilités.,. Compagnon chercheur également, couple scientifique,. Pas enfants recherche priorité découvertes futures, par exemple. Réseau chercheurs pharmaceutiques segment, si tu veux,.,. Cliente profil recherche innovation,.,. Rappeler août montrer collection,. Intéressée innovation matériaux technologie scientifique applications.,.",
+  "anonymized_text": "Mme Renaud, 38 ans, directrice innovation R&D laboratoire pharmaceutique, nouvelle cliente potentiel élevé. Recherche sac professionnel moderne laboratoire conférences scientifiques. Budget 6K. scientifique moderne, cuir gris blanc minimaliste laboratoire.,. Dirige recherche nouveaux médicaments innovations thérapeutiques.,. Collectionne brevets que pharmaceutiques historiques découvertes médicales révolutionnaires. Pratique natation régulière, clarté mentale recherche, en gros,.,. Végane stricte convictions pour événements. Allergie produits chimiques laboratoire sensibilités.,. Compagnon chercheur également, couple scientifique,. Pas enfants recherche priorité découvertes futures, par exemple. Réseau chercheurs pharmaceutiques segment, si tu veux,.,. Cliente profil recherche innovation,.,. Rappeler août montrer collection,. Intéressée innovation matériaux technologie scientifique applications.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé physique (allergies) sont liées à un contexte professionnel et ne sont pas considérées comme sensibles. Les autres éléments mentionnés (profession, régime alimentaire) ne relèvent pas des catégories sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

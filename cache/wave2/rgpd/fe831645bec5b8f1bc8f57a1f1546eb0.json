@@ -1,0 +1,15 @@
+{
+  "ID": "CA_210",
+  "original_text": "Herr und Frau Hoffmann, beide 48, regelmäßige Kunden seit 2018., gesehen. Einkauf Frühjahr Geschenke Eltern Schwiegereltern Geburtstage. Budget zusammen 16K flexibel. Er Ingenieur Automobilindustrie Elektrofahrzeuge Entwicklung, sie Ingenieurin erneuerbare Energien Beratung. Beide technische Welt Nachhaltigkeit Zukunft Mobilität Energie,. Reisen Konferenzen Technologie grün weltweit, nächste Tesla Werk Besichtigung USA, also.,. Er sammelt Modellautos historisch Elektroautos erste Prototypen. wenn du willst, wie,. Sie liebt Solarpanels Design ästhetisch Technologie schön. Er modern funktional schwarz grau Leder tech,. Sie elegant nachhaltig beige grün Töne Natur.,. Beide Veganer ethische ökologische Überzeugung für Events. Keine Allergien. Kinder studieren Ingenieurwissenschaften Umweltwissenschaften Tradition. Familie Innovation Nachhaltigkeit Werte stark., mehr oder weniger. Gute Kunden Tech-Segment wachsend wichtig. Sehr interessiert nachhaltige Materialien Innovation Produktion CO2-Fußabdruck minimieren. Follow-up August Privatvorschau. Möglicherweise Kooperation nachhaltige Events Boutique.,.",
+  "anonymized_text": "Herr und Frau Hoffmann, beide 48, regelmäßige Kunden seit 2018., gesehen. Einkauf Frühjahr Geschenke Eltern Schwiegereltern Geburtstage. Budget zusammen 16K flexibel. Er Ingenieur Automobilindustrie Elektrofahrzeuge Entwicklung, sie Ingenieurin erneuerbare Energien Beratung. Beide technische Welt Nachhaltigkeit Zukunft Mobilität Energie,. Reisen Konferenzen Technologie grün weltweit, nächste Tesla Werk Besichtigung USA, also.,. Er sammelt Modellautos historisch Elektroautos erste Prototypen. wenn du willst, wie,. Sie liebt Solarpanels Design ästhetisch Technologie schön. Er modern funktional schwarz grau Leder tech,. Sie elegant nachhaltig beige grün Töne Natur.,. Beide Veganer ethische ökologische Überzeugung für Events. Keine Allergien. Kinder studieren Ingenieurwissenschaften Umweltwissenschaften Tradition. Familie Innovation Nachhaltigkeit Werte stark., mehr oder weniger. Gute Kunden Tech-Segment wachsend wichtig. Sehr interessiert nachhaltige Materialien Innovation Produktion CO2-Fußabdruck minimieren. Follow-up August Privatvorschau. Möglicherweise Kooperation nachhaltige Events Boutique.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur les professions, les voyages, et les préférences alimentaires ne relèvent pas des données sensibles au sens de l'article 9 du RGPD."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

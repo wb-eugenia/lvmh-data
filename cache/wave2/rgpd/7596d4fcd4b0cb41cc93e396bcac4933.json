@@ -1,0 +1,15 @@
+{
+  "ID": "CA_396",
+  "original_text": "M,. Fontaine 36 ans chef sommelier hôtel palace cinq étoiles nouveau client potentiel,., par exemple. Cherche sac élégant travail cave service vins prestigieux budget 6K. raffiné sobre luxe hôtelier cuir bordeaux cognac tons vin. Gère cave exceptionnelle grands crus service clientèle internationale exigeante,. Collectionne étiquettes vins rares historiques collection oenologique. Pratique course pied marathons équilibre vie hôtellerie intense que. Pescetarien pour événements allergie fruits par exemple mer importante service traiteur événements. Compagne directrice restauration hôtel couple hôtellerie luxe pas enfants carrières hôtellerie horaires incompatibles famille. à peu près. Réseau sommeliers chefs hôteliers palace références client monde hôtellerie luxe segment rappeler septembre montrer nouveautés intéressé parallèles service luxe excellence attention détails maroquinerie.",
+  "anonymized_text": "M,. Fontaine 36 ans chef sommelier hôtel palace cinq étoiles nouveau client potentiel,., par exemple. Cherche sac élégant travail cave service vins prestigieux budget 6K. raffiné sobre luxe hôtelier cuir bordeaux cognac tons vin. Gère cave exceptionnelle grands crus service clientèle internationale exigeante,. Collectionne étiquettes vins rares historiques collection oenologique. Pratique course pied marathons équilibre vie hôtellerie intense que. Pescetarien pour événements allergie fruits par exemple mer importante service traiteur événements. Compagne directrice restauration hôtel couple hôtellerie luxe pas enfants carrières hôtellerie horaires incompatibles famille. à peu près. Réseau sommeliers chefs hôteliers palace références client monde hôtellerie luxe segment rappeler septembre montrer nouveautés intéressé parallèles service luxe excellence attention détails maroquinerie.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (pescetarien) et la situation familiale (pas d'enfants, mais sans conflit) ne sont pas considérées comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

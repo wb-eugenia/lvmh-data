@@ -1,0 +1,15 @@
+{
+  "ID": "CA_111",
+  "original_text": "Mme Girard, 56 ans, architecte paysagiste renommée, cliente régulière depuis 2020. Renouvelle sacs travail chantiers rendez-vous clients. Budget 4500€. naturel élégant terre, cuirs cognac beige vert olive., que,. Passionnée jardins botaniques, voyage étudier collections mondiales, que,. Collectionne livres anciens botanique horticulture. Pratique randonnée montagne régulière, prépare GR20 Corse été. Végétarienne stricte pour événements par exemple. Allergie pollen sévère printemps été,. Mari professeur université histoire, anniversaire juin. Fille architecte suit traces mère. Fils jardinier chef restaurant étoilé., que. Excellente cliente nature passionnée,. Rappeler avril preview printemps.,.",
+  "anonymized_text": "Mme Girard, 56 ans, architecte paysagiste renommée, cliente régulière depuis 2020. Renouvelle sacs travail chantiers rendez-vous clients. Budget 4500€. naturel élégant terre, cuirs cognac beige vert olive., que,. Passionnée jardins botaniques, voyage étudier collections mondiales, que,. Collectionne livres anciens botanique horticulture. Pratique randonnée montagne régulière, prépare GR20 Corse été. Végétarienne stricte pour événements par exemple. Allergie pollen sévère printemps été,. Mari professeur université histoire, anniversaire juin. Fille architecte suit traces mère. Fils jardinier chef restaurant étoilé., que. Excellente cliente nature passionnée,. Rappeler avril preview printemps.,.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé (allergie au pollen) sont considérées comme non sensibles dans le contexte donné, et les autres informations ne relèvent pas des catégories sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

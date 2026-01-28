@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_348",
+  "language": "IT",
+  "tags": [
+    "finance_banking",
+    "travel_frequent",
+    "pescatarian",
+    "shopping_with_spouse"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "8k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "shellfish_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Direttore finanziario",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'direttore finanziario' -> finance_banking. Frequent travel for work -> travel_frequent. Pescetariano lifestyle noted. Shopping context indicates spouse is involved. Severe allergy to shellfish detected.",
+  "from_cache": false
+}

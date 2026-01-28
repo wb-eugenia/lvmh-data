@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_344",
+  "language": "ES",
+  "tags": [
+    "creative_arts_music",
+    "shopping_alone",
+    "milestone_celebration",
+    "vegan",
+    "innovation_interest",
+    "budget_very_flexible"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "High",
+  "client_status": "Prospect",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Productor musical",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'productor musical' -> creative_arts_music. Shopping alone indicated. Celebrating success of an album -> milestone_celebration. Vegan lifestyle noted -> vegan tag. Budget is very flexible as mentioned.",
+  "from_cache": false
+}

@@ -1,0 +1,32 @@
+{
+  "ID": "CA_116",
+  "original_text": "M,. Leroy, 44 ans, journaliste reporter grands médias, client occasionnel depuis 2022. Achat sac voyage solide léger zones parfois difficiles. que,. Budget 4K,. par exemple fonctionnel discret, cuir noir marron. Voyage constamment reportages terrains conflits zones sensibles,. Passionné photographie, couvre événements mondiaux importants, que,. Collectionne appareils vintage Leica., un peu. Pratique boxe fitness maintien forme,. Végétarien pour événements. Allergie iode sévère fruits mer.,. Compagne journaliste aussi voyages ensemble souvent, opportunité future.,. Mentionné prix journalisme reçu récemment reconnaissance travail en quelque sorte. client niche aventurier professionnels extrêmes. Rappeler mars montrer pièces résistantes voyage.,.",
+  "anonymized_text": "M,. Leroy, 44 ans, journaliste reporter grands médias, client occasionnel depuis 2022. Achat sac voyage solide léger zones parfois difficiles. que,. Budget 4K,. par exemple fonctionnel discret, cuir noir marron. Voyage constamment reportages terrains [RGPD_FAMILY_CONFLICT_REDACTED],. Passionné photographie, couvre événements mondiaux importants, que,. Collectionne appareils vintage Leica., un peu. Pratique boxe fitness maintien forme,. Végétarien pour événements. [RGPD_HEALTH_PHYSICAL_REDACTED].,. Compagne journaliste aussi voyages ensemble souvent, opportunité future.,. Mentionné prix journalisme reçu récemment reconnaissance travail en quelque sorte. client niche aventurier professionnels extrêmes. Rappeler mars montrer pièces résistantes voyage.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergie iode sévère fruits mer",
+        "category": "health_physical",
+        "severity": "high"
+      },
+      {
+        "text": "conflits zones sensibles",
+        "category": "family_conflict",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des informations sur une allergie sévère, ce qui est une donnée de santé physique sensible. De plus, la mention de 'conflits zones sensibles' peut indiquer un contexte de conflit familial, ce qui est également sensible. Par conséquent, il n'est pas sûr de stocker ces informations."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

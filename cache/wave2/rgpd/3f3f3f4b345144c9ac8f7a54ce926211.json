@@ -1,0 +1,15 @@
+{
+  "ID": "CA_113",
+  "original_text": "Signora Romano, 47 anni, direttrice marketing multinazionale, che cliente occasionale dal 2021. Cerca borse nuove per lavoro viaggio frequente,. più o per esempio meno,. Budget 9K approssimativo. Stile professionale elegante moderno, preferenza nero navy grigio. Viaggia costante lavoro Europa Asia America, gestisce team global. Pratica running competitivo, maratone internazionali passione.,. Divorziata due anni fa senza figli, focalizzata carriera sviluppo personale, per esempio,. Colleziona fotografia bianco nero vintage. Pescetariana per eventi boutique, un po'. Nessuna allergia. Sorella architetto Milano opportunità riferimento. Genitori pensionati viaggio lusso frequente potenziale. Buona cliente professionale alto potere acquisto. Richiamare marzo mostrare collezione viaggio.",
+  "anonymized_text": "Signora Romano, 47 anni, direttrice marketing multinazionale, che cliente occasionale dal 2021. Cerca borse nuove per lavoro viaggio frequente,. più o per esempio meno,. Budget 9K approssimativo. Stile professionale elegante moderno, preferenza nero navy grigio. Viaggia costante lavoro Europa Asia America, gestisce team global. Pratica running competitivo, maratone internazionali passione.,. Divorziata due anni fa senza figli, focalizzata carriera sviluppo personale, per esempio,. Colleziona fotografia bianco nero vintage. Pescetariana per eventi boutique, un po'. Nessuna allergia. Sorella architetto Milano opportunità riferimento. Genitori pensionati viaggio lusso frequente potenziale. Buona cliente professionale alto potere acquisto. Richiamare marzo mostrare collezione viaggio.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le informations fournies ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les détails sur la profession, le statut marital sans conflit, et le régime alimentaire ne sont pas considérés comme sensibles."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

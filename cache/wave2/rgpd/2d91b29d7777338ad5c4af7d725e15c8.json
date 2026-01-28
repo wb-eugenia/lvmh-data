@@ -1,0 +1,25 @@
+{
+  "ID": "CA_181",
+  "original_text": "Mme Morel, 35 ans, cheffe pâtisserie restaurant étoilé Michelin, nouvelle cliente potentiel. Recherche sac élégant travail événements culinaires,., en gros. Budget 6K,.,. raffiné créatif pâtissier, cuirs tons pastel beige rose poudré unique.,. Crée desserts artistiques sculptures sucrées, Instagram 200K followers pâtisserie art,.,. Voyage recherche inspiration pâtisseries mondiales Tokyo Paris. Collectionne moules pâtisserie anciens cuivre étain historiques. Pratique yoga équilibre cuisine intense physiquement,. Pescetarienne pour événements. Allergie fruits coque sévère cuisine.,. Compagnon chef cuisinier même restaurant, couple gastronomie.,. Projettent ouvrir pâtisserie boutique année prochaine besoins,. Réseau chefs pâtissiers critique gastronomique. Cliente créative monde culinaire haut gamme. Rappeler juin montrer nouveautés. Intéressée parallèles art culinaire maroquinerie précision artisanat.,.",
+  "anonymized_text": "Mme Morel, 35 ans, cheffe pâtisserie restaurant étoilé Michelin, nouvelle cliente potentiel. Recherche sac élégant travail événements culinaires,., en gros. Budget 6K,.,. raffiné créatif pâtissier, cuirs tons pastel beige rose poudré unique.,. Crée desserts artistiques sculptures sucrées, Instagram 200K followers pâtisserie art,.,. Voyage recherche inspiration pâtisseries mondiales Tokyo Paris. Collectionne moules pâtisserie anciens cuivre étain historiques. Pratique yoga équilibre cuisine intense physiquement,. Pescetarienne pour événements. [RGPD_HEALTH_PHYSICAL_REDACTED].,. Compagnon chef cuisinier même restaurant, couple gastronomie.,. Projettent ouvrir pâtisserie boutique année prochaine besoins,. Réseau chefs pâtissiers critique gastronomique. Cliente créative monde culinaire haut gamme. Rappeler juin montrer nouveautés. Intéressée parallèles art culinaire maroquinerie précision artisanat.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Allergie fruits coque sévère cuisine",
+        "category": "health_physical",
+        "severity": "high"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient une mention d'une allergie alimentaire sévère, ce qui est considéré comme une donnée sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

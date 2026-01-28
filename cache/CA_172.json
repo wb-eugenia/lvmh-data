@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_172",
+  "language": "EN",
+  "tags": [
+    "medical_surgeon",
+    "medical_specialist",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "milestone_anniversary_25_plus",
+    "pescatarian",
+    "lactose_intolerance"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "20K",
+  "client_status": "VIP",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "lactose_intolerance": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "surgeon trauma center",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'surgeon trauma center' -> medical_surgeon. Shopping with spouse -> shopping_with_spouse. Gift for anniversary celebration -> gift_for_spouse + milestone_anniversary_25_plus. Pescatarian lifestyle noted, and lactose intolerance detected with default severity.",
+  "from_cache": false
+}

@@ -1,0 +1,15 @@
+{
+  "ID": "CA_301",
+  "original_text": "Mme Dupont, 39 ans, dentiste cabinet privé première visite. Recherche sac professionnel discret élégant, à peu près., que, par exemple. Budget 6K environ,. Cuir noir ou marine, hardware doré,., par exemple. Pratique natation compétition, prépare triathlon Nice en juin.,. Végétarienne stricte pour événements,. Allergie pollen sévère printemps,.,. Mari pharmacien, anniversaire avril opportunité cadeau, à peu près,. Deux enfants école primaire.,. Potentiel, quartier résidentiel aisé, recommandée par amie cliente,. Rappeler fin février pour nouveautés.",
+  "anonymized_text": "Mme Dupont, 39 ans, dentiste cabinet privé première visite. Recherche sac professionnel discret élégant, à peu près., que, par exemple. Budget 6K environ,. Cuir noir ou marine, hardware doré,., par exemple. Pratique natation compétition, prépare triathlon Nice en juin.,. Végétarienne stricte pour événements,. Allergie pollen sévère printemps,.,. Mari pharmacien, anniversaire avril opportunité cadeau, à peu près,. Deux enfants école primaire.,. Potentiel, quartier résidentiel aisé, recommandée par amie cliente,. Rappeler fin février pour nouveautés.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarienne stricte) et l'allergie au pollen ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

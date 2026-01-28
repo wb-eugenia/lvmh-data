@@ -1,0 +1,32 @@
+{
+  "ID": "CA_299",
+  "original_text": "Sra., alrededor de,. Ruiz, 43 años, psicóloga organizacional consultora empresas, nueva clienta potencial por ejemplo, que,. por ejemplo,. Busca bolsos profesionales trabajo consultoría empresas cultura organizacional. Presupuesto 7K inicial. ves. Estilo consultor profesional cálido, prefiere colores accesibles beige camel tierra. Asesora empresas cultura organizacional bienestar empleados clima laboral. Colecciona libros psicología ves organizacional management recursos humanos clásicos., sí,. Viaja empresas clientes consultoría worldwide coaching ejecutivos workshops,. Practica mindfulness meditación, enseña técnicas empresas bienestar corporativo. Vegetariana para eventos. por ejemplo,. Sin alergias, por ejemplo. que, sí. Pareja coach ejecutivo también, pareja consultoría organizacional completa, sí. Hijos adolescentes,. Red contactos consultores RRHH directores empresas buena. Cliente sector consultoría organizacional psicología,. Follow-up mayo mostrar colección. que. Interesada psicología imagen profesional presencia consultor confianza credibilidad clientes percepción.",
+  "anonymized_text": "Sra., alrededor de,. Ruiz, 43 años, psicóloga organizacional consultora empresas, nueva clienta potencial por ejemplo, que,. por ejemplo,. Busca bolsos profesionales trabajo consultoría empresas cultura organizacional. Presupuesto 7K inicial. ves. Estilo consultor profesional cálido, prefiere colores accesibles beige camel tierra. Asesora empresas cultura organizacional bienestar empleados clima laboral. Colecciona libros psicología ves organizacional management recursos humanos clásicos., sí,. Viaja empresas clientes consultoría worldwide coaching ejecutivos workshops,. Practica mindfulness meditación, enseña técnicas empresas bienestar corporativo. Vegetariana para eventos. por ejemplo,. Sin alergias, por ejemplo. que, sí. Pareja coach ejecutivo también, pareja consultoría organizacional completa, sí. Hijos adolescentes,. Red contactos consultores RRHH directores empresas buena. Cliente sector consultoría organizacional psicología,. Follow-up mayo mostrar colección. que. Interesada psicología imagen profesional presencia consultor confianza credibilidad clientes percepción.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "family_conflict"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "practica mindfulness meditación",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "pareja coach ejecutivo también",
+        "category": "family_conflict",
+        "severity": "low"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne des pratiques de santé mentale (mindfulness, méditation) qui peuvent être considérées comme sensibles. De plus, la mention d'une 'pareja coach ejecutivo' pourrait impliquer un contexte familial, bien que cela ne soit pas explicitement conflictuel. Cela nécessite une attention particulière en matière de stockage."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_mental",
+    "family_conflict"
+  ],
+  "safe_to_store": false
+}

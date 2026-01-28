@@ -1,0 +1,42 @@
+{
+  "ID": "CA_235",
+  "original_text": "Frau Schulz, 48, Rechtsanwältin Familienrecht Scheidungen, regelmäßige Kundin seit 2019,. Sucht Taschen Frühjahr Gerichtstermine Mandanten zahlreich. Budget 8K,. Stil professionell beruhigend Anwältin, bevorzugt warme Farben beige camel beruhigend. Berät Mandanten Scheidung Sorgerecht Familienangelegenheiten emotional., also,. Sammelt Familienrecht Urteile historisch Entwicklung Familienrecht Gesellschaft. Praktiziert Meditation Stressbewältigung Arbeit emotional belastend. Vegetarierin für Events. Keine Allergien, wie,. Partner Psychologe Paartherapie, Paar Familien helfen. Kinder erwachsen eigene Familien.,. Ausgezeichnete Kundin Rechtsgemeinschaft empfiehlt Kolleginnen Anwältinnen, gesehen,. Follow-up Oktober Herbstkollektion zeigen. Interessiert Psychologie Farben Materialien beruhigende Wirkung Mandanten Krisensituationen.,.",
+  "anonymized_text": "Frau Schulz, 48, Rechtsanwältin Familienrecht [RGPD_FAMILY_CONFLICT_REDACTED], regelmäßige Kundin seit 2019,. Sucht Taschen Frühjahr Gerichtstermine Mandanten zahlreich. Budget 8K,. Stil professionell beruhigend Anwältin, bevorzugt warme Farben beige camel beruhigend. Berät Mandanten Scheidung Sorgerecht Familienangelegenheiten emotional., also,. Sammelt Familienrecht Urteile historisch Entwicklung Familienrecht Gesellschaft. Praktiziert Meditation [RGPD_HEALTH_MENTAL_REDACTED] Arbeit [RGPD_HEALTH_MENTAL_REDACTED]. Vegetarierin für Events. Keine Allergien, wie,. Partner Psychologe [RGPD_HEALTH_MENTAL_REDACTED], Paar Familien helfen. Kinder erwachsen eigene Familien.,. Ausgezeichnete Kundin Rechtsgemeinschaft empfiehlt Kolleginnen Anwältinnen, gesehen,. Follow-up Oktober Herbstkollektion zeigen. Interessiert Psychologie Farben Materialien beruhigende Wirkung Mandanten Krisensituationen.,.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "family_conflict",
+      "health_mental"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Scheidungen",
+        "category": "family_conflict",
+        "severity": "medium"
+      },
+      {
+        "text": "Stressbewältigung",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "emotional belastend",
+        "category": "health_mental",
+        "severity": "medium"
+      },
+      {
+        "text": "Paartherapie",
+        "category": "health_mental",
+        "severity": "medium"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte contient des références à des conflits familiaux liés aux divorces et à des aspects de santé mentale, ce qui le rend sensible selon l'Article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "family_conflict",
+    "health_mental"
+  ],
+  "safe_to_store": false
+}

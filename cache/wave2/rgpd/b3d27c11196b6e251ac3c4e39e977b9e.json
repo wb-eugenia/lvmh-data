@@ -1,0 +1,15 @@
+{
+  "ID": "CA_271",
+  "original_text": "Mme Girard, 35 ans, ingénieure aérospatiale spatial satellites, nouvelle cliente potentiel,. Cherche sac professionnel moderne ingénierie conférences spatial,.,. Budget 5500€. ingénieur spatial tech, cuir noir gris hardware tech futuriste,.,. Travaille satellites constellation orbite communication spatial,. Collectionne maquettes fusées spatiales lanceurs historiques conquête,. Pratique parachutisme vol, passion altitude ciel. Végétarienne pour événements. Allergie altitude pression importante voyages montagne par exemple,. Compagnon ingénieur propulsion, couple aérospatial. Pas enfants carrières spatial exigeantes priorité. Réseau ingénieurs aérospatial startups spatial segment émergent. Cliente profil spatial tech innovation,.,. Rappeler décembre montrer collection. Très intéressée matériaux aérospatiaux innovation technologie transfert applications maroquinerie futur.",
+  "anonymized_text": "Mme Girard, 35 ans, ingénieure aérospatiale spatial satellites, nouvelle cliente potentiel,. Cherche sac professionnel moderne ingénierie conférences spatial,.,. Budget 5500€. ingénieur spatial tech, cuir noir gris hardware tech futuriste,.,. Travaille satellites constellation orbite communication spatial,. Collectionne maquettes fusées spatiales lanceurs historiques conquête,. Pratique parachutisme vol, passion altitude ciel. Végétarienne pour événements. Allergie altitude pression importante voyages montagne par exemple,. Compagnon ingénieur propulsion, couple aérospatial. Pas enfants carrières spatial exigeantes priorité. Réseau ingénieurs aérospatial startups spatial segment émergent. Cliente profil spatial tech innovation,.,. Rappeler décembre montrer collection. Très intéressée matériaux aérospatiaux innovation technologie transfert applications maroquinerie futur.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarienne) et l'allergie à l'altitude ne sont pas considérées comme sensibles dans ce contexte."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}

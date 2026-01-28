@@ -1,0 +1,35 @@
+{
+  "ID": "CA_260",
+  "original_text": "Herr und Frau Klein, beide 51, treue Kunden seit 2017.,. Großeinkauf Frühjahr Geschenke Silberhochzeit 25 Jahre Ehe Familie Freunde Feier,. Budget sehr flexibel besprochen 20K. Er Kardiologe Universitätsklinik Forschung Herzerkrankungen, sie Kardiologin auch Praxis gemeinsam. Beide Kardiologie Welt Herzen retten täglich Forschung klinisch., gesehen. Reisen Kongresse Kardiologie weltweit, nächste American Heart Association USA. Er sammelt Kardiologie Instrumente historisch Stethoskope EKG Maschinen antik.,. Sie liebt Herzkunst Anatomie ästhetisch Illustrationen medizinisch historisch. Er klassisch schwarz braun Leder funktional, also,. gesehen,. Sie elegant beige champagne rose gold feminine. Beide Pescetarier Herzgesundheit offensichtlich für Events,.,. wie Keine Allergien. Kinder studieren Medizin Kardiologie möglicherweise Tradition Familie.,. Familie Herzen Gesundheit Werte Leben retten,. Hervorragende Kunden medizinische Gemeinschaft Kardiologie gesehen empfehlen Kollegen Kardiologen. Follow-up Dezember Winterkollektion Privatvorschau,. Interessiert Herzhandwerk Passion Präzision Parallelen Kardiologie lebensrettend.",
+  "anonymized_text": "Herr und Frau Klein, beide 51, treue Kunden seit 2017.,. Großeinkauf Frühjahr Geschenke Silberhochzeit 25 Jahre Ehe Familie Freunde Feier,. Budget sehr flexibel besprochen 20K. Er [RGPD_HEALTH_PHYSICAL_REDACTED] Universitätsklinik Forschung [RGPD_HEALTH_PHYSICAL_REDACTED], sie [RGPD_HEALTH_PHYSICAL_REDACTED] auch Praxis gemeinsam. Beide Kardiologie Welt Herzen retten täglich Forschung klinisch., gesehen. Reisen Kongresse Kardiologie weltweit, nächste American Heart Association USA. Er sammelt Kardiologie Instrumente historisch Stethoskope EKG Maschinen antik.,. Sie liebt Herzkunst Anatomie ästhetisch Illustrationen medizinisch historisch. Er klassisch schwarz braun Leder funktional, also,. gesehen,. Sie elegant beige champagne rose gold feminine. Beide Pescetarier Herzgesundheit offensichtlich für Events,.,. wie Keine Allergien. Kinder studieren Medizin Kardiologie möglicherweise Tradition Familie.,. Familie Herzen Gesundheit Werte Leben retten,. Hervorragende Kunden medizinische Gemeinschaft Kardiologie gesehen empfehlen Kollegen [RGPD_HEALTH_PHYSICAL_REDACTED]n. Follow-up Dezember Winterkollektion Privatvorschau,. Interessiert Herzhandwerk Passion Präzision Parallelen Kardiologie lebensrettend.",
+  "rgpd_result": {
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "sensitive_spans": [
+      {
+        "text": "Kardiologe",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "Kardiologin",
+        "category": "health_physical",
+        "severity": "medium"
+      },
+      {
+        "text": "Herzerkrankungen",
+        "category": "health_physical",
+        "severity": "high"
+      }
+    ],
+    "safe_to_store": false,
+    "reasoning": "Le texte mentionne des professions médicales et des conditions de santé liées au cœur, ce qui est considéré comme des données sensibles selon l'article 9 du RGPD."
+  },
+  "contains_sensitive": true,
+  "categories_detected": [
+    "health_physical"
+  ],
+  "safe_to_store": false
+}

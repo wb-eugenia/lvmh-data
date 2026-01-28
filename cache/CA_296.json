@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_296",
+  "language": "FR",
+  "tags": [
+    "sustainable_values",
+    "vegetarian",
+    "shopping_with_spouse"
+  ],
+  "invalid_tags": [
+    "entrepreneur_landscape"
+  ],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "pollens_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "architecte paysagiste projets urbains durables",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'architecte paysagiste projets urbains durables' -> entrepreneur_landscape. Budget of 5500€ fits '5k-10k'. 'Compagne biologiste conservation' indicates shopping with spouse. 'Allergie pollens multiples importante' indicates severe allergy.",
+  "from_cache": false
+}

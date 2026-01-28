@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_201",
+  "language": "FR",
+  "tags": [
+    "legal_family",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "vegetarian",
+    "heritage_importance",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "graminees_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Notaire cabinet familial transmissions patrimoniales",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'notaire cabinet familial transmissions patrimoniales' -> legal_family. Shopping with husband -> shopping_with_spouse. Three children mentioned -> gift_for_child. Severe allergy to pollen -> graminées allergy with severity severe. Vegetarian lifestyle noted.",
+  "from_cache": false
+}

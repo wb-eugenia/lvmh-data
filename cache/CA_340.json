@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_340",
+  "language": "DE",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_child",
+    "anniversary_gift",
+    "sustainable_values",
+    "travel_frequent"
+  ],
+  "invalid_tags": [
+    "architect",
+    "landscape_architect"
+  ],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "19K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Architekt, Landschaftsarchitektin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'Architekt' and 'Landschaftsarchitektin' -> tags for architecture. Shopping together as a couple -> shopping_with_spouse. Anniversary gift for 20 years of marriage -> anniversary_gift. Children studying architecture -> gift_for_child. Interest in sustainable values and frequent travel noted.",
+  "from_cache": false
+}

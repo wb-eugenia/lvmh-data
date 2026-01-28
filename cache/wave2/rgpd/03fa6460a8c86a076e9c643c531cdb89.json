@@ -1,0 +1,15 @@
+{
+  "ID": "CA_324",
+  "original_text": "Sr. García y Sra. García pareja 38-40 años nuevos clientes alto potencial. Él fundador startup tecnología sí vendida recientemente ella diseñadora moda freelance. Celebran éxito financiero reciente quieren establecer guardarropa lujo presupuesto muy abierto discutido 18K compra inicial más ves o menos,. Él interesado piezas viaje trabajo que pequeña marroquinería ella quiere colección completa bolsos accesorios. Ambos mundo tech creativo red contactos jóvenes exitosos excelente. Viajan constante trabajo placer próximo viaje Bali retiro wellness.,. Él practica surf competiciones amateur costa ella yoga pilates diario instructora certificada.,. Ambos veganos convicción ética fuerte eventos crítico sin alergias sin hijos aún enfocados carreras. Excelente pareja joven éxito nuevo segmento clientela follow-up semanal construir relación interesados sostenibilidad transparencia producción.",
+  "anonymized_text": "Sr. García y Sra. García pareja 38-40 años nuevos clientes alto potencial. Él fundador startup tecnología sí vendida recientemente ella diseñadora moda freelance. Celebran éxito financiero reciente quieren establecer guardarropa lujo presupuesto muy abierto discutido 18K compra inicial más ves o menos,. Él interesado piezas viaje trabajo que pequeña marroquinería ella quiere colección completa bolsos accesorios. Ambos mundo tech creativo red contactos jóvenes exitosos excelente. Viajan constante trabajo placer próximo viaje Bali retiro wellness.,. Él practica surf competiciones amateur costa ella yoga pilates diario instructora certificada.,. Ambos veganos convicción ética fuerte eventos crítico sin alergias sin hijos aún enfocados carreras. Excelente pareja joven éxito nuevo segmento clientela follow-up semanal construir relación interesados sostenibilidad transparencia producción.",
+  "rgpd_result": {
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "sensitive_spans": [],
+    "safe_to_store": true,
+    "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur leur profession, leur régime alimentaire (végan), et leur situation familiale (sans enfants) ne sont pas considérées comme sensibles. De plus, il n'y a pas de mention de conflits familiaux, de santé mentale ou physique, de croyances religieuses, d'opinions politiques, d'orientation sexuelle ou d'origine ethnique."
+  },
+  "contains_sensitive": false,
+  "categories_detected": [],
+  "safe_to_store": true
+}
