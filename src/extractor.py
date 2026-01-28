@@ -169,6 +169,8 @@ class TagExtractor:
             "key_dates": result.get('key_dates', []),
             "dietary": result.get('dietary', []),
             "allergies": result.get('allergies', []),
+            "allergy_severity": result.get('allergy_severity', {}),
+            "relationship_context": result.get('relationship_context', {}),
             "referral_potential": result.get('referral_potential'),
             "profession": result.get('profession'),
             "mentioned_persons": result.get('mentioned_persons', []),

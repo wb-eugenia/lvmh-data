@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_038",
+  "language": "ES",
+  "tags": [
+    "medical_specialist",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "anniversary_gift",
+    "travel_frequent",
+    "photography_collector",
+    "vegetarian"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "cardióloga",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'cardióloga' -> medical_specialist. Shopping with husband -> shopping_with_spouse. Gift for daughter -> gift_for_child. Anniversary gift context -> anniversary_gift. Frequent travel for conferences -> travel_frequent. Interest in historical medical photography -> photography_collector. Strict vegetarianism noted -> vegetarian.",
+  "from_cache": false
+}

@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_034",
+  "language": "DE",
+  "tags": [
+    "medical_specialist",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "anniversary_gift",
+    "travel_frequent",
+    "art_collector"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "14K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Neurologe, Radiologin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Both are medical specialists -> medical_specialist. Shopping together as a couple -> shopping_with_spouse. Buying gifts for their daughter's wedding -> gift_for_child + anniversary_gift. Their interest in travel and art collecting is reflected in the tags.",
+  "from_cache": false
+}

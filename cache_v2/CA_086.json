@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_086",
+  "language": "EN",
+  "tags": [
+    "legal_corporate",
+    "shopping_with_parent",
+    "gift_for_parent",
+    "birthday_gift",
+    "opera_theater",
+    "travel_frequent",
+    "vegetarian",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [
+    "diplomat"
+  ],
+  "num_tags": 8,
+  "confidence": 0.95,
+  "budget_range": "18K",
+  "client_status": "multi_generational",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nut_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "parent"
+    ],
+    "gift_for": [
+      "parent"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "barrister QC",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'barrister QC' -> legal_corporate. Shopping with mother -> shopping_with_parent. Gift for mother's 75th birthday -> gift_for_parent + birthday_gift. Interest in theater and travel indicates lifestyle tags.",
+  "from_cache": false
+}

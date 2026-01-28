@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_100",
+  "language": "EN",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_child",
+    "graduation_gift",
+    "anniversary_gift",
+    "heritage_importance",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.97,
+  "budget_range": "35K+",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nut_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "retired senior diplomat, retired headmistress",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Clients are distinguished individuals with specific professions in public service and education. They are shopping together for graduation gifts for their grandchildren and an anniversary gift, indicating 'shopping_with_spouse' and 'gift_for_child'. The severe peanut allergy is noted, and their budget is exceptionally generous.",
+  "from_cache": false
+}

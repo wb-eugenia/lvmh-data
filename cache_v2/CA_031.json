@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_031",
+  "language": "FR",
+  "tags": [
+    "gift_for_sibling",
+    "birthday_gift",
+    "vegetarian",
+    "travel_frequent"
+  ],
+  "invalid_tags": [
+    "consultant_strategie"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "4K",
+  "client_status": "occasional_client",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "sibling"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Consultante stratégie",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'consultante stratégie' -> consultant_strategie. Gift for sister's birthday -> gift_for_sibling + birthday_gift. Sister is vegetarian and loves travel -> vegetarian + travel_frequent.",
+  "from_cache": false
+}

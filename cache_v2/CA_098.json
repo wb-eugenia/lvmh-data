@@ -1,0 +1,36 @@
+{
+  "client_id": "CA_098",
+  "language": "DE",
+  "tags": [
+    "legal_corporate",
+    "interior_design",
+    "opera_theater",
+    "pescatarian",
+    "artisan_craft_appreciation",
+    "seeks_unique_pieces",
+    "milestone_anniversary_25_plus"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "21K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Rechtsanwalt Partner große Kanzlei Frankfurt, Innenarchitektin eigenes Büro",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'Rechtsanwalt' and 'Innenarchitektin' -> legal_corporate and interior_design. Shopping with spouse for their 25th anniversary -> shopping_with_spouse and milestone_anniversary_25_plus. Nickel allergy detected -> moderate severity.",
+  "from_cache": false
+}

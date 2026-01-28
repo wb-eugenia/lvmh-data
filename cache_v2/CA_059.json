@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_059",
+  "language": "IT",
+  "tags": [
+    "legal_corporate",
+    "gift_for_friend",
+    "wedding_gift",
+    "travel_frequent",
+    "pescatarian",
+    "innovation_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "4K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "friend"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Avvocato societario",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'avvocato societario' -> legal_corporate. Gift for best friend -> gift_for_friend + wedding_gift. Client is a new customer -> first_visit. Preferences indicate a frequent traveler and pescatarian lifestyle.",
+  "from_cache": false
+}

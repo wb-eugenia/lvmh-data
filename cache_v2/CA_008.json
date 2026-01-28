@@ -1,0 +1,39 @@
+{
+  "client_id": "CA_008",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "gift_for_friend",
+    "milestone_celebration",
+    "wine_connoisseur",
+    "wellness_yoga"
+  ],
+  "invalid_tags": [
+    "marketing"
+  ],
+  "num_tags": 6,
+  "confidence": 0.9,
+  "budget_range": "10K",
+  "client_status": "Unknown",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "gluten_intolerance": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "friend"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Entrepreneur tech startup, chef de projet marketing",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'entrepreneur tech' and 'chef de projet marketing' -> tags for both. Shopping together as a couple -> shopping_with_spouse. Gifts for housewarming for family and friends -> gift_for_friend. Severe gluten allergy noted.",
+  "from_cache": false
+}

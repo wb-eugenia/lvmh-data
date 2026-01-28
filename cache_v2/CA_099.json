@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_099",
+  "language": "FR",
+  "tags": [
+    "legal_corporate",
+    "gift_for_spouse",
+    "milestone_celebration",
+    "vegetarian"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Notaire",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'notaire' -> legal_corporate. Gift for wife's Mother's Day -> gift_for_spouse + milestone_celebration. Vegetarian tag added due to wife's dietary preference.",
+  "from_cache": false
+}

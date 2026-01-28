@@ -1,0 +1,28 @@
+{
+  "client_id": "CA_042",
+  "language": "EN",
+  "tags": [
+    "philanthropy",
+    "creative_arts_music",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "philanthropy director foundation",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'philanthropy director foundation' aligns with the tag 'philanthropy'. Interest in classical music connects to 'creative_arts_music'. Frequent travel for cultural events indicates 'travel_frequent'. Budget is specified as 7K, fitting '5k-10k'. Regular client status is noted.",
+  "from_cache": false
+}

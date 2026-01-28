@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_096",
+  "language": "ES",
+  "tags": [
+    "media_professional",
+    "gift_for_spouse",
+    "birthday_gift",
+    "photography_collector",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Periodista investigación premiado",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'periodista investigación premiado' -> media_professional. Shopping for wife's birthday -> gift_for_spouse + birthday_gift. Interest in photography and social projects aligns with photography_collector and sustainable_values.",
+  "from_cache": false
+}

@@ -1,33 +1,57 @@
 """
-Prompt templates for LLM-based tag extraction.
-Optimized for multilingual extraction with LVMH Fashion & Leather Goods context.
+Prompts for LLM-based tag extraction (v2.0).
+Optimized for granular professional profiles, relationship dynamics, and allergy severity.
 """
 
 from typing import Optional
 
+SYSTEM_PROMPT = """
+You are an expert analyst for LVMH (Louis Vuitton Moët Hennessy).
+Your goal is to extract structured business intelligence from client advisor voice notes.
 
-SYSTEM_PROMPT = """Tu es un expert en analyse de notes clients pour LVMH Fashion & Leather Goods.
+### CRITICAL INSTRUCTIONS
 
-CONTEXTE:
-Tu analyses des notes vocales transcrites prises par des Client Advisors (conseillers boutique) 
-sur leurs clients et prospects. Ces notes contiennent des informations précieuses sur les 
-préférences, le style de vie, les occasions d'achat et le profil des clients.
+1. **PROFESSIONAL PROFILE (High Business Value)**
+   - Extract the MOST SPECIFIC tag possible.
+   - "Cardiologue" -> `medical_specialist` (NOT `medical_professional`)
+   - "Startup founder" -> `entrepreneur_tech` (NOT just `entrepreneur`)
+   - "Avocate" -> `legal_corporate` or `legal_family` based on context.
 
-TON RÔLE:
-Extraire des tags structurés selon une taxonomie prédéfinie pour enrichir le CRM et permettre 
-des activations business (clienteling personnalisé, invitations événements VIP, segmentation).
+2. **RELATIONSHIP DYNAMICS (Always Extract)**
+   - Identify who is shopping with the client: `shopping_with_spouse`, `shopping_with_parent`, etc.
+   - Identify who the purchase is for: `gift_for_spouse`, `gift_for_child`, etc.
+   - "Cherche un cadeau pour sa femme" -> `gift_for_spouse`
+   - "Venue avec sa mère" -> `shopping_with_parent`
 
-RÈGLES D'EXTRACTION:
-1. Utilise UNIQUEMENT les tags existant dans la taxonomie fournie
-2. Maximum 10 tags par transcription (priorise les plus pertinents)
-3. Les tags doivent être en ANGLAIS même si la transcription est dans une autre langue
-4. Extrais aussi les informations business critiques: budget, allergies, dates événements
-5. Sois précis: un tag doit être clairement justifiable par le texte
-6. En cas de doute, n'inclus pas le tag
+3. **ALLERGIES & SEVERITY (Mandatory)**
+   - If an allergy is detected, you MUST extract its severity.
+   - "Allergie sévère au nickel" -> severity: "severe"
+   - "Légère intolérance" -> severity: "mild"
+   - If not specified -> severity: "moderate" (default)
 
-FORMAT DE RÉPONSE:
-Réponds UNIQUEMENT avec un JSON valide, sans markdown ni texte additionnel."""
+4. **OUTPUT FORMAT**
+   - Return ONLY a valid JSON object.
+   - No markdown, no explanations.
+   - Use the exact keys defined in the schema.
 
+### JSON SCHEMA
+{
+  "tags": ["list", "of", "valid", "tags", "from", "taxonomy"],
+  "confidence": 0.0 to 1.0,
+  "budget_range": "string (e.g., '5k-10k', 'High', 'Unknown')",
+  "client_status": "string (e.g., 'VIC', 'Prospect', 'Regular')",
+  "profession": "string (extracted text)",
+  "allergy_severity": {
+    "nickel_allergy": "severe",
+    "gluten_intolerance": "mild"
+  },
+  "relationship_context": {
+    "shopping_with": ["spouse", "parent"],
+    "gift_for": ["child"]
+  },
+  "reasoning": "Brief explanation of why tags were chosen"
+}
+"""
 
 def get_extraction_prompt(
     transcription: str,
@@ -36,18 +60,8 @@ def get_extraction_prompt(
     client_id: Optional[str] = None
 ) -> str:
     """
-    Generate the user prompt for tag extraction.
-    
-    Args:
-        transcription: The transcribed voice note text
-        language: Language code (FR, EN, IT, ES, DE)
-        taxonomy_summary: Compact summary of available tags by category
-        client_id: Optional client identifier for context
-        
-    Returns:
-        Formatted user prompt string
+    Generate the user prompt for extraction.
     """
-    
     lang_names = {
         'FR': 'Français',
         'EN': 'English', 
@@ -58,55 +72,60 @@ def get_extraction_prompt(
     
     lang_name = lang_names.get(language.upper(), language)
     
-    prompt = f"""TAXONOMIE DE TAGS DISPONIBLES:
-{taxonomy_summary}
+    return f"""
+Analyze the following transcription in {lang_name}.
+Client ID: {client_id if client_id else 'Unknown'}
 
----
-
-TRANSCRIPTION À ANALYSER:
-Langue: {lang_name}
-{f'ID Client: {client_id}' if client_id else ''}
-
+TRANSCRIPTION:
 "{transcription}"
 
----
+TAXONOMY SUMMARY:
+{taxonomy_summary}
 
-EXTRAIS les informations sous ce format JSON EXACT:
+### FEW-SHOT EXAMPLES
 
-{{
-    "tags": ["tag1", "tag2", "tag3"],
-    "confidence": 0.85,
-    "budget_range": "5K-10K",
-    "client_status": "vic",
-    "key_dates": [{{"event": "anniversary", "month": "juin", "context": "mariage"}}],
-    "dietary": ["vegan"],
-    "allergies": ["nickel"],
-    "referral_potential": "high",
-    "profession": "avocate affaires",
-    "mentioned_persons": [{{"relation": "mari", "interests": ["golf", "montres"]}}],
-    "follow_up_action": "rappeler fin février",
-    "reasoning": "Brief justification des principaux tags extraits"
+Example 1 (Complex Profession & Relationship):
+Input: "Cliente avocate d'affaires, venue avec son mari pour chercher un cadeau pour les 18 ans de sa fille. Elle adore l'art contemporain."
+Output: {{
+  "tags": ["legal_corporate", "shopping_with_spouse", "gift_for_child", "birthday_gift", "art_collector"],
+  "confidence": 0.95,
+  "budget_range": "High",
+  "client_status": "Regular",
+  "profession": "Avocate d'affaires",
+  "allergy_severity": {{}},
+  "relationship_context": {{
+    "shopping_with": ["spouse"],
+    "gift_for": ["child"]
+  }},
+  "reasoning": "Specific profession 'avocate d'affaires' -> legal_corporate. Shopping with husband -> shopping_with_spouse. Gift for daughter's 18th -> gift_for_child + birthday_gift."
 }}
 
-VALEURS POSSIBLES:
-- budget_range: "under_5K", "5K-10K", "10K-20K", "20K-50K", "50K+" ou null
-- client_status: "vic", "regular", "occasional", "first_visit"
-- referral_potential: "high", "medium", "low"
-- dietary: utilise les tags vegan/vegetarian/pescatarian
-- allergies: nickel_allergy, latex_allergy, nut_allergy, shellfish_allergy, gluten_intolerance, lactose_intolerance
+Example 2 (Allergy Severity):
+Input: "Attention, allergie mortelle aux arachides. Elle cherche un sac vegan car elle est très sensible à la cause animale."
+Output: {{
+  "tags": ["nut_allergy", "vegan", "sustainable_values", "animal_allergy"],
+  "confidence": 0.98,
+  "budget_range": "Unknown",
+  "client_status": "Unknown",
+  "profession": null,
+  "allergy_severity": {{
+    "nut_allergy": "life_threatening"
+  }},
+  "relationship_context": {{
+    "shopping_with": [],
+    "gift_for": []
+  }},
+  "reasoning": "'Allergie mortelle' -> nut_allergy with severity life_threatening. 'Sac vegan' -> vegan tag."
+}}
 
-Si une information n'est pas mentionnée, mets null ou liste vide [].
-Réponds UNIQUEMENT avec le JSON, rien d'autre."""
-
-    return prompt
-
+EXTRACT JSON:
+"""
 
 def get_batch_prompt_intro() -> str:
     """Get introduction for batch processing context."""
     return """Je vais analyser plusieurs transcriptions de notes clients LVMH.
 Pour chaque transcription, j'extrairai les tags selon la taxonomie fournie
 et les informations business critiques (budget, allergies, dates clés)."""
-
 
 # Budget range categories for standardization
 BUDGET_RANGES = [

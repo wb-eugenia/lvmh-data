@@ -1,0 +1,31 @@
+{
+  "client_id": "CA_046",
+  "language": "FR",
+  "tags": [
+    "influencer_lifestyle",
+    "shopping_alone",
+    "sustainable_values",
+    "artisan_craft_appreciation",
+    "travel_frequent",
+    "wellness_yoga"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "10k-15k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "influenceuse lifestyle Instagram",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'influenceuse lifestyle Instagram' -> influencer_lifestyle. Shopping alone indicated. Values sustainability and artisan craftsmanship, enjoys travel and wellness activities.",
+  "from_cache": false
+}

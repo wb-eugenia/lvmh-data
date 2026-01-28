@@ -130,7 +130,7 @@ st.sidebar.markdown("---")
 
 # Status indicators
 if extractor:
-    st.sidebar.success("✅ Moteur IA chargé")
+    st.sidebar.success("✅ Moteur IA chargé (v2.0)")
     st.sidebar.caption(f"Modèle: {extractor.model}")
     st.sidebar.caption(f"Taxonomie: {extractor.taxonomy.num_tags} tags | {extractor.taxonomy.num_categories} catégories")
 else:
@@ -141,13 +141,13 @@ st.sidebar.markdown("---")
 # Navigation
 mode = st.sidebar.radio(
     "Mode de navigation",
-    ["🔍 Analyse en Direct", "📊 Dashboard Dataset", "⚙️ Configuration"],
+    ["🔍 Analyse en Direct", "📊 Dashboard Dataset", "⚙️ Configuration", "🌐 Espace Client 3D"],
     label_visibility="collapsed"
 )
 
 st.sidebar.markdown("---")
 st.sidebar.caption("LVMH Fashion & Leather Goods")
-st.sidebar.caption("Janvier 2026 • v1.0")
+st.sidebar.caption("Janvier 2026 • v2.0")
 
 # --- PAGE 1: LIVE ANALYSIS ---
 if mode == "🔍 Analyse en Direct":
@@ -244,13 +244,32 @@ if mode == "🔍 Analyse en Direct":
             col_a1, col_a2 = st.columns(2)
             
             with col_a1:
-                if result.get('allergies'):
-                    st.warning(f"⚠️ **Allergies:** {', '.join(result['allergies'])}")
+                # Allergies with severity
+                allergies = result.get('allergies', [])
+                severity_map = result.get('allergy_severity', {})
+                
+                if allergies:
+                    st.warning("⚠️ **Allergies & Santé**")
+                    for allergy in allergies:
+                        severity = severity_map.get(allergy, 'moderate')
+                        st.markdown(f"- **{allergy}** (Sévérité: `{severity}`)")
                 
                 if result.get('dietary'):
                     st.info(f"🥗 **Régimes alimentaires:** {', '.join(result['dietary'])}")
             
             with col_a2:
+                # Relationship Context
+                rel_context = result.get('relationship_context', {})
+                shopping_with = rel_context.get('shopping_with', [])
+                gift_for = rel_context.get('gift_for', [])
+                
+                if shopping_with or gift_for:
+                    st.success("👥 **Contexte Relationnel**")
+                    if shopping_with:
+                        st.markdown(f"**Accompagné(e) de:** {', '.join(shopping_with)}")
+                    if gift_for:
+                        st.markdown(f"**Cadeau pour:** {', '.join(gift_for)}")
+                
                 if result.get('profession'):
                     st.caption(f"👔 **Profession:** {result['profession']}")
                 
@@ -548,3 +567,112 @@ elif mode == "⚙️ Configuration":
     
     else:
         st.error(f"Impossible de charger la taxonomie: {taxonomy_error}")
+
+# --- PAGE 4: 3D CLIENT SPACE ---
+elif mode == "🌐 Espace Client 3D":
+    st.title("🌐 Espace Client 3D")
+    st.markdown("Visualisation sémantique de la base client.")
+    st.markdown("---")
+    
+    # Check if dataset is loaded
+    default_path = "outputs/wave1_tagged_dataset.xlsx"
+    df = None
+    
+    if os.path.exists(default_path):
+        try:
+            df = pd.read_excel(default_path)
+            # Parse tags if needed
+            if 'tags' in df.columns:
+                df['tags'] = df['tags'].apply(lambda x: 
+                    ast.literal_eval(x) if isinstance(x, str) and x.startswith('[') 
+                    else (x if isinstance(x, list) else [])
+                )
+        except Exception as e:
+            st.error(f"Erreur chargement dataset: {e}")
+    
+    if df is None:
+        st.warning("⚠️ Veuillez d'abord générer ou charger un dataset (Page Dashboard).")
+    else:
+        st.info(f"""
+        **Concept:** Cette visualisation projette chaque client dans un espace 3D basé sur le contenu de ses notes.
+        - Les points proches = clients aux profils similaires
+        - Les couleurs = clusters automatiques ou confiance
+        """)
+        
+        col_ctrl1, col_ctrl2 = st.columns([1, 2])
+        
+        with col_ctrl1:
+            st.subheader("Paramètres")
+            n_clusters = st.slider("Nombre de Clusters (Profils)", 2, 10, 6)
+            
+            # Estimate time
+            est_time = len(df) * 0.15
+            st.caption(f"Temps estimé: ~{est_time:.1f}s")
+            
+            generate_btn = st.button("🚀 Générer l'Espace 3D", use_container_width=True)
+            
+        with col_ctrl2:
+            if generate_btn:
+                with st.spinner("🧠 Analyse sémantique en cours (Embeddings + UMAP + KMeans)..."):
+                    try:
+                        from src.embedding_viz import EmbeddingVisualizer
+                        
+                        viz = EmbeddingVisualizer()
+                        
+                        # 1. Embeddings (Cached)
+                        embeddings = viz.generate_embeddings(df)
+                        
+                        # 2. UMAP
+                        coords = viz.reduce_dimensions(embeddings)
+                        
+                        # 3. Clustering
+                        clusters = viz.discover_profiles(embeddings, n_clusters=n_clusters)
+                        
+                        # 4. Viz
+                        fig = viz.create_interactive_viz(df, coords, clusters)
+                        
+                        # 5. Insights
+                        insights = viz.analyze_cluster_characteristics(df, clusters)
+                        
+                        # Save to session state to persist
+                        st.session_state['viz_fig'] = fig
+                        st.session_state['viz_insights'] = insights
+                        st.session_state['viz_generated'] = True
+                        
+                    except Exception as e:
+                        st.error(f"Erreur lors de la génération: {str(e)}")
+                        import traceback
+                        st.code(traceback.format_exc())
+        
+        # Display results if generated
+        if st.session_state.get('viz_generated'):
+            st.markdown("---")
+            st.plotly_chart(st.session_state['viz_fig'], use_container_width=True)
+            
+            # Download button
+            with open("outputs/client_space_3d.html", "rb") as f:
+                st.download_button(
+                    "📥 Télécharger la vue interactive (HTML)",
+                    f,
+                    "client_space_3d.html",
+                    "text/html"
+                )
+            
+            # Cluster Insights
+            st.markdown("### 🔍 Analyse des Profils Découverts")
+            
+            insights = st.session_state['viz_insights']
+            cols = st.columns(3)
+            
+            for idx, (name, data) in enumerate(insights.items()):
+                with cols[idx % 3]:
+                    with st.container(border=True):
+                        st.markdown(f"#### {name}")
+                        st.caption(f"{data['size']} clients")
+                        
+                        st.markdown("**Tags Dominants:**")
+                        for tag, count in data['top_tags'].items():
+                            st.markdown(f"- {tag} ({count})")
+                            
+                        st.markdown(f"**Budget:** {data['dominant_budget']}")
+                        st.progress(data['avg_confidence'], text=f"Confiance: {data['avg_confidence']:.0%}")

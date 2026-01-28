@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_029",
+  "language": "DE",
+  "tags": [
+    "entrepreneur_tech",
+    "shopping_with_spouse",
+    "wedding_gift",
+    "sustainable_values",
+    "nft_digital_art_collector"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "25k+",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "tech entrepreneur",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'tech entrepreneur' -> entrepreneur_tech. Shopping with partner -> shopping_with_spouse. Planning a wedding -> wedding_gift. Interest in sustainability and NFTs indicates sustainable_values and nft_digital_art_collector.",
+  "from_cache": false
+}

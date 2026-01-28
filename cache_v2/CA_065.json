@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_065",
+  "language": "DE",
+  "tags": [
+    "creative_arts_visual",
+    "shopping_with_parent",
+    "gift_for_child",
+    "promotion_celebration",
+    "sustainable_values",
+    "wellness_yoga",
+    "art_collector"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "8K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "parent"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Professorin Kunstgeschichte",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'Professorin Kunstgeschichte' -> creative_arts_visual. Shopping with mother -> shopping_with_parent. Gift for daughter's promotion -> gift_for_child + promotion_celebration. Daughter's interests in sustainable architecture and yoga align with sustainable_values and wellness_yoga tags. Latex allergy detected, severity set to moderate.",
+  "from_cache": false
+}

@@ -1,0 +1,34 @@
+{
+  "client_id": "CA_002",
+  "language": "EN",
+  "tags": [
+    "finance_investment",
+    "travel_frequent",
+    "pescatarian",
+    "shopping_with_spouse",
+    "gift_for_spouse"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "investment banker",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'investment banker' -> finance_investment. Frequent travel noted -> travel_frequent. Pescatarian diet mentioned -> pescatarian. Shopping with wife for her birthday -> shopping_with_spouse + gift_for_spouse. Budget around 5K indicates a specific range.",
+  "from_cache": false
+}

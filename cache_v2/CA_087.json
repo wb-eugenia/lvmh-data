@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_087",
+  "language": "FR",
+  "tags": [
+    "entrepreneur_hospitality",
+    "gift_for_business_associate",
+    "milestone_celebration",
+    "wine_connoisseur",
+    "gastronomy"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "10K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "business_associate"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Restaurateur étoilé Michelin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'restaurateur étoilé Michelin' -> entrepreneur_hospitality. Gifts for kitchen team -> gift_for_business_associate + milestone_celebration for the restaurant's recent achievement. Passion for gastronomy and wine -> wine_connoisseur + gastronomy.",
+  "from_cache": false
+}

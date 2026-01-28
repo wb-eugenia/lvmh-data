@@ -1,0 +1,40 @@
+{
+  "client_id": "CA_027",
+  "language": "EN",
+  "tags": [
+    "finance_investment",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "gift_for_business_associate",
+    "anniversary_gift",
+    "graduation_gift",
+    "interior_design",
+    "art_collector",
+    "travel_frequent",
+    "vegan"
+  ],
+  "invalid_tags": [],
+  "num_tags": 10,
+  "confidence": 0.95,
+  "budget_range": "20K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse",
+      "business_associate"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "hedge fund manager",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'hedge fund manager' -> finance_investment. Shopping with wife -> shopping_with_spouse. Gifts for wife and business associates -> gift_for_spouse + gift_for_business_associate. Anniversary and graduation gifts mentioned -> anniversary_gift + graduation_gift. Interest in contemporary art and interior design -> art_collector + interior_design. Vegan lifestyle noted.",
+  "from_cache": false
+}

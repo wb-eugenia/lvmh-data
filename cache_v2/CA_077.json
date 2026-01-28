@@ -1,0 +1,30 @@
+{
+  "client_id": "CA_077",
+  "language": "EN",
+  "tags": [
+    "entrepreneur_tech",
+    "tech_enthusiast",
+    "nft_digital_art_collector",
+    "travel_frequent",
+    "budget_very_flexible"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "15K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "venture capitalist tech startups",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'venture capitalist tech startups' -> entrepreneur_tech. Interest in technology and NFTs indicates tech_enthusiast and nft_digital_art_collector. Frequent travel aligns with travel_frequent. Budget is very flexible at 15K.",
+  "from_cache": false
+}

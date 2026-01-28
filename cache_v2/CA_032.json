@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_032",
+  "language": "EN",
+  "tags": [
+    "medical_surgeon",
+    "legal_corporate",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "wellness_yoga",
+    "art_collector",
+    "sustainable_values"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "17K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nut_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Plastic surgeon, Barrister specializing in corporate law",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Dr. Patel is a plastic surgeon -> medical_surgeon. Her husband is a barrister specializing in corporate law -> legal_corporate. They are shopping together -> shopping_with_spouse. They are looking for gifts for each other -> gift_for_spouse. Interest in wellness and art collecting aligns with wellness_yoga and art_collector tags. Severe peanut allergy noted.",
+  "from_cache": false
+}

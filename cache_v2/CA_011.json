@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_011",
+  "language": "IT",
+  "tags": [
+    "entrepreneur_tech",
+    "travel_frequent",
+    "nft_digital_art_collector",
+    "vegan",
+    "sustainable_values",
+    "artisan_craft_appreciation",
+    "innovation_interest"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.9,
+  "budget_range": "15K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "imprenditore crypto Bitcoin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'imprenditore crypto Bitcoin' -> entrepreneur_tech. Interest in travel and NFT art collection indicates 'travel_frequent' and 'nft_digital_art_collector'. Vegan choice reflects 'vegan' and 'sustainable_values'. No allergies mentioned.",
+  "from_cache": false
+}

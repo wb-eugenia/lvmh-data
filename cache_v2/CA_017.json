@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_017",
+  "language": "IT",
+  "tags": [
+    "creative_arts_visual",
+    "entrepreneur_fashion",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "travel_frequent",
+    "opera_theater",
+    "pescatarian"
+  ],
+  "invalid_tags": [],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "16K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "lactose_intolerance": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Gallerista arte contemporanea, imprenditore moda in pensione",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession includes 'gallerista arte contemporanea' and 'imprenditore moda in pensione' -> creative_arts_visual and entrepreneur_fashion. Shopping with spouse -> shopping_with_spouse. Gift for daughter -> gift_for_child. Frequent luxury travel and opera interest noted -> travel_frequent and opera_theater. Pescetarian lifestyle mentioned -> pescatarian. Severe lactose intolerance detected.",
+  "from_cache": false
+}

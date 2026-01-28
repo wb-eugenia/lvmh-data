@@ -1,0 +1,29 @@
+{
+  "client_id": "CA_047",
+  "language": "EN",
+  "tags": [
+    "corporate_executive_c_level",
+    "business_gift",
+    "vegan",
+    "custom_orders"
+  ],
+  "invalid_tags": [],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "20k-30k",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "CEO consulting firm, CFO tech company",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession as CEO and CFO indicates high-level corporate executives -> corporate_executive_c_level. Looking for business gifts -> business_gift. Mention of vegan dietary considerations -> vegan. Interest in bulk ordering and customization -> custom_orders.",
+  "from_cache": false
+}

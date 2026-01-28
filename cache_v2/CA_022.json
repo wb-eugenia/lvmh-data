@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_022",
+  "language": "EN",
+  "tags": [
+    "entrepreneur_tech",
+    "sailing",
+    "art_collector",
+    "vegan",
+    "sustainable_values",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "15K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "shellfish_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "sibling"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "startup founder",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'startup founder' -> entrepreneur_tech. Passion for sailing and collecting art -> sailing, art_collector tags. Vegan lifestyle choice noted -> vegan tag. Shellfish allergy noted with no severity specified -> moderate. Mention of younger brother getting married indicates a gift opportunity -> gift_for_sibling.",
+  "from_cache": false
+}

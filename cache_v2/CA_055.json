@@ -1,0 +1,30 @@
+{
+  "client_id": "CA_055",
+  "language": "ES",
+  "tags": [
+    "corporate_executive_c_level",
+    "sustainable_values",
+    "business_gift"
+  ],
+  "invalid_tags": [],
+  "num_tags": 3,
+  "confidence": 0.9,
+  "budget_range": "10k-15k",
+  "client_status": "occasional_client",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "business_associate"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "directora recursos humanos multinacional",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'directora recursos humanos multinacional' aligns with corporate_executive_c_level. The purchase is for business gifts for executives, indicating a corporate gifting context.",
+  "from_cache": false
+}

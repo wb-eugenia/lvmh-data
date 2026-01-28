@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_004",
+  "language": "FR",
+  "tags": [
+    "finance_banking",
+    "gift_for_child",
+    "birthday_gift",
+    "travel_frequent",
+    "photography_collector"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "1500€",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "ancien dirigeant bancaire",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'ancien dirigeant bancaire' -> finance_banking. Gift for son-in-law -> gift_for_child + birthday_gift for his birthday in February. Client is a regular since 2015.",
+  "from_cache": false
+}

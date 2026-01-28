@@ -1,0 +1,39 @@
+{
+  "client_id": "CA_089",
+  "language": "IT",
+  "tags": [
+    "finance_investment",
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "gift_for_parent",
+    "anniversary_gift",
+    "vegetarian"
+  ],
+  "invalid_tags": [],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "14K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse",
+      "parent"
+    ],
+    "gift_for": [
+      "spouse",
+      "parent"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "direttore banca investimenti",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'direttore banca investimenti' -> finance_investment. Shopping with wife and mother -> shopping_with_spouse + shopping_with_parent. Gifts for wife and mother -> gift_for_spouse + gift_for_parent. Anniversary gift context -> anniversary_gift. Both are vegetarian -> vegetarian.",
+  "from_cache": false
+}

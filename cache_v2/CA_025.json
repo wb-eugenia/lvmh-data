@@ -1,0 +1,27 @@
+{
+  "client_id": "CA_025",
+  "language": "FR",
+  "tags": [
+    "medical_specialist",
+    "leather_goods"
+  ],
+  "invalid_tags": [],
+  "num_tags": 2,
+  "confidence": 0.9,
+  "budget_range": "3500€",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "dentiste",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'dentiste' -> medical_specialist. Purchase of a professional work bag -> leather_goods. New client status indicated by 'nouvelle cliente'. No allergies mentioned.",
+  "from_cache": false
+}

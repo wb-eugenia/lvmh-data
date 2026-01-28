@@ -1,0 +1,35 @@
+{
+  "client_id": "CA_054",
+  "language": "IT",
+  "tags": [
+    "legal_corporate",
+    "gift_for_parent",
+    "anniversary_gift",
+    "travel_frequent"
+  ],
+  "invalid_tags": [
+    "pescetarian"
+  ],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "14K",
+  "client_status": "Regular",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "parent"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Avvocati",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'avvocati' -> legal_corporate. Shopping with spouse -> shopping_with_spouse. Gift for parents' anniversary -> gift_for_parent + anniversary_gift. Frequent travelers and pescetarian lifestyle noted.",
+  "from_cache": false
+}

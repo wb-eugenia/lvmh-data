@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_091",
+  "language": "FR",
+  "tags": [
+    "medical_specialist",
+    "gift_for_friend",
+    "wedding_gift",
+    "creative_arts_visual",
+    "vegan"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.9,
+  "budget_range": "4k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "friend"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Dentiste",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'dentiste' -> medical_specialist. Gift for best friend's wedding -> gift_for_friend + wedding_gift. Friend is a freelance graphic designer with a creative style -> creative_arts_visual. Mention of vegan lifestyle -> vegan.",
+  "from_cache": false
+}

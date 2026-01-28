@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_073",
+  "language": "IT",
+  "tags": [
+    "multi_generational",
+    "entrepreneur_fashion",
+    "creative_fashion_industry",
+    "sustainable_values",
+    "pescatarian",
+    "vegan",
+    "vegetarian",
+    "nickel_allergy"
+  ],
+  "invalid_tags": [],
+  "num_tags": 8,
+  "confidence": 0.95,
+  "budget_range": "24K",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "severe"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "parent"
+    ],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "Imprenditore moda",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Client is part of a multi-generational family with diverse professions in fashion and design. The budget is specified as 24K. The mother has a severe nickel allergy, and the family has various dietary preferences, indicating a focus on sustainable values.",
+  "from_cache": false
+}

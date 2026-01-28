@@ -1,0 +1,41 @@
+{
+  "client_id": "CA_037",
+  "language": "EN",
+  "tags": [
+    "shopping_with_parent",
+    "shopping_with_children",
+    "gift_for_child",
+    "birthday_gift",
+    "sustainable_values",
+    "vegetarian",
+    "vegan"
+  ],
+  "invalid_tags": [
+    "legal_environmental"
+  ],
+  "num_tags": 7,
+  "confidence": 0.95,
+  "budget_range": "19K",
+  "client_status": "multi_generational",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "latex_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "parent",
+      "children"
+    ],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "environmental lawyer",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Daughter is an 'environmental lawyer' -> legal_environmental. Shopping with mother and children -> shopping_with_parent + shopping_with_children. Gift for daughter's 70th birthday celebration -> birthday_gift. Daughter has a 'latex allergy' -> severity moderate.",
+  "from_cache": false
+}

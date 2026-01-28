@@ -1,0 +1,37 @@
+{
+  "client_id": "CA_093",
+  "language": "DE",
+  "tags": [
+    "shopping_with_spouse",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "travel_frequent",
+    "photography_collector",
+    "pescatarian"
+  ],
+  "invalid_tags": [
+    "pilot_international"
+  ],
+  "num_tags": 6,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Pilot Langstrecke internationale Airline",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'Pilot Langstrecke internationale Airline' -> pilot_international. Shopping with wife -> shopping_with_spouse. Gift for wife for anniversary -> gift_for_spouse + anniversary_gift. Both are pescatarians and travel frequently.",
+  "from_cache": false
+}

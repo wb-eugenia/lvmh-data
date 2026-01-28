@@ -1,0 +1,33 @@
+{
+  "client_id": "CA_013",
+  "language": "FR",
+  "tags": [
+    "gift_for_child",
+    "milestone_celebration",
+    "travel_frequent",
+    "vegetarian"
+  ],
+  "invalid_tags": [
+    "retired_ambassador"
+  ],
+  "num_tags": 4,
+  "confidence": 0.9,
+  "budget_range": "2500€",
+  "client_status": "VIC",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "child"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Ancien ambassadeur",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Client is a retired ambassador, indicating a specific profession. The purchase is a gift for his granddaughter, marking it as a milestone celebration. The granddaughter's lifestyle is noted as 'végétarienne' and 'voyage beaucoup professionnellement', leading to the tags 'vegetarian' and 'travel_frequent'.",
+  "from_cache": false
+}

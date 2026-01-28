@@ -1,0 +1,30 @@
+{
+  "client_id": "CA_020",
+  "language": "ES",
+  "tags": [
+    "influencer_lifestyle",
+    "shopping_alone",
+    "sustainable_values",
+    "artisan_craft_appreciation",
+    "travel_frequent"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "10k-12k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": []
+  },
+  "referral_potential": null,
+  "profession": "influencer moda lifestyle",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Specific profession 'influencer moda lifestyle' -> influencer_lifestyle. Shopping alone as it's her first visit -> shopping_alone. Interest in sustainability and artisan craft appreciation noted in the transcription.",
+  "from_cache": false
+}

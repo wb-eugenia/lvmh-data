@@ -1,0 +1,32 @@
+{
+  "client_id": "CA_045",
+  "language": "DE",
+  "tags": [
+    "creative_arts_music",
+    "gift_for_spouse",
+    "anniversary_gift",
+    "travel_frequent",
+    "vegetarian"
+  ],
+  "invalid_tags": [],
+  "num_tags": 5,
+  "confidence": 0.95,
+  "budget_range": "12K",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {},
+  "relationship_context": {
+    "shopping_with": [],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "Dirigent Symphonieorchester München",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'Dirigent Symphonieorchester München' -> creative_arts_music. Gift for 30th wedding anniversary for wife -> gift_for_spouse + anniversary_gift. Both are vegetarian and travel frequently for concerts.",
+  "from_cache": false
+}

@@ -1,0 +1,38 @@
+{
+  "client_id": "CA_068",
+  "language": "IT",
+  "tags": [
+    "gift_for_spouse",
+    "anniversary_gift",
+    "wine_connoisseur",
+    "artisan_craft_appreciation"
+  ],
+  "invalid_tags": [
+    "chef_stellato",
+    "pescetarian"
+  ],
+  "num_tags": 4,
+  "confidence": 0.95,
+  "budget_range": "5k-10k",
+  "client_status": "first_visit",
+  "key_dates": [],
+  "dietary": [],
+  "allergies": [],
+  "allergy_severity": {
+    "nickel_allergy": "moderate"
+  },
+  "relationship_context": {
+    "shopping_with": [
+      "spouse"
+    ],
+    "gift_for": [
+      "spouse"
+    ]
+  },
+  "referral_potential": null,
+  "profession": "chef stellato Michelin",
+  "mentioned_persons": [],
+  "follow_up_action": null,
+  "reasoning": "Profession 'chef stellato Michelin' indicates high culinary expertise -> tagged as chef_stellato. Shopping for anniversary gift for wife -> gift_for_spouse + anniversary_gift. Pescetarian lifestyle noted -> pescetarian tag. Wife's nickel allergy noted with default severity moderate.",
+  "from_cache": false
+}
