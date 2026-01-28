@@ -7,10 +7,11 @@ import re
 from typing import Dict, List
 import pandas as pd
 from tqdm import tqdm
+from difflib import SequenceMatcher
 
 
 class MultilingualTextCleaner:
-    """Supprime fillers verbaux multilingues des transcriptions"""
+    """Supprime fillers verbaux multilingues des transcriptions et déduplique les phrases répétées"""
     
     # Dictionnaires fillers par langue
     FILLERS = {
@@ -73,6 +74,76 @@ class MultilingualTextCleaner:
         ]
     }
     
+    def _remove_extra_chars(self, text: str) -> str:
+        """Réduit les répétitions de lettres et ponctuations.
+        
+        Exemples:
+            '!!!!' -> '!'
+            'beauuuuu' -> 'beau'
+        """
+        # Réduit ponctuations répétées
+        text = re.sub(r'([!?.]){2,}', r'\1', text)
+        
+        # Réduit lettres répétées (plus de 2 fois)
+        text = re.sub(r'([a-zA-Z])\1{2,}', r'\1', text)
+        
+        # Normalise espaces multiples
+        text = re.sub(r'\s+', ' ', text)
+        
+        return text.strip()
+    
+    def _is_similar(self, a: str, b: str, threshold: float = 0.85) -> bool:
+        """Vérifie si deux phrases sont sémantiquement proches via SequenceMatcher."""
+        return SequenceMatcher(None, a.lower(), b.lower()).ratio() > threshold
+    
+    def remove_duplicate_phrases(self, text: str, min_words: int = 3) -> tuple:
+        """Supprime les phrases/segments répétés dans le texte.
+        
+        Args:
+            text: Texte à analyser
+            min_words: Nombre minimum de mots pour considérer une répétition
+            
+        Returns:
+            tuple: (texte nettoyé, nombre de doublons supprimés)
+        """
+        if not text:
+            return text, 0
+        
+        # Sépare le texte en phrases (par ponctuation forte)
+        sentences = re.split(r'[.!?]+', text)
+        seen_phrases = set()
+        unique_sentences = []
+        duplicates_removed = 0
+        
+        for sentence in sentences:
+            sentence = sentence.strip()
+            if not sentence:
+                continue
+            
+            # Normalise pour comparaison (lowercase, espaces multiples)
+            normalized = re.sub(r'\s+', ' ', sentence.lower().strip())
+            
+            # Vérifie si la phrase a assez de mots
+            word_count = len(normalized.split())
+            
+            if word_count >= min_words:
+                # Vérifie si on a déjà vu cette phrase
+                if normalized not in seen_phrases:
+                    seen_phrases.add(normalized)
+                    unique_sentences.append(sentence)
+                else:
+                    duplicates_removed += 1
+            else:
+                # Les phrases courtes sont conservées sans vérification
+                unique_sentences.append(sentence)
+        
+        # Reconstruit le texte
+        cleaned_text = '. '.join(unique_sentences)
+        if cleaned_text and not cleaned_text.endswith('.'):
+            cleaned_text += '.'
+        
+        return cleaned_text, duplicates_removed
+    
     def clean_text(self, text: str, language: str) -> Dict:
         """Nettoie une transcription"""
         
@@ -113,6 +184,9 @@ class MultilingualTextCleaner:
         # Nettoie début/fin
         cleaned = cleaned.strip()
         
+        # Supprime les phrases dupliquées
+        cleaned, duplicates_count = self.remove_duplicate_phrases(cleaned, min_words=3)
+        
         # Compression ratio
         compression = len(cleaned) / len(text) if len(text) > 0 else 1.0
         
@@ -120,6 +194,7 @@ class MultilingualTextCleaner:
             'original': text,
             'cleaned': cleaned,
             'fillers_removed': fillers_count,
+            'duplicates_removed': duplicates_count,
             'compression_ratio': compression,
             'tokens_saved_estimate': int((len(text) - len(cleaned)) / 4)  # ~4 chars/token
         }
@@ -142,6 +217,7 @@ class MultilingualTextCleaner:
                 'Transcription_original': result['original'],
                 'Transcription': result['cleaned'],
                 'fillers_removed': result['fillers_removed'],
+                'duplicates_removed': result.get('duplicates_removed', 0),
                 'compression_ratio': result['compression_ratio'],
                 'tokens_saved': result['tokens_saved_estimate']
             })
