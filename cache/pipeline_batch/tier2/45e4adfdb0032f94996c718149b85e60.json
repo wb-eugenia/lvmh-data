@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1769692248.6400301,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "vegetarian",
+      "shopping_with_spouse",
+      "gift_for_friend",
+      "gift_for_spouse",
+      "gift_for_family",
+      "leather_goods",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Lissabon"
+    ],
+    "events": [
+      "Web Summit"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 18000,
+    "budget_max": 54000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse",
+        "friend",
+        "family"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "this_month",
+    "event_date": "2024-02-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_executive",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIC clients with flexible budget and specific occasion. Detailed professional background and lifestyle preferences provided. Some inference required for budget range and specific products.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_280",
+    "from_cache": false
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1769692248.5290194,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "vegetarian",
+      "tech_engineer",
+      "leather_goods",
+      "travel_frequent"
+    ],
+    "products_mentioned": [
+      "sac travail"
+    ],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 4400,
+    "budget_max": 6600,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": "2026-03-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_engineer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Budget explicite avec marge d'incertitude, profession et régime alimentaire identifiés, pas d'urgence détectée, date de rappel approximative",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_226",
+    "from_cache": false
+  }
+}

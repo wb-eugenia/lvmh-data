@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1769692248.6374848,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "pescatarian",
+      "travel_luggage",
+      "watches",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [
+      "borse viaggio",
+      "abbigliamento business elegante"
+    ],
+    "brands_mentioned": [],
+    "locations": [
+      "Milano",
+      "Parigi"
+    ],
+    "events": [
+      "Pitti"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 18000,
+    "budget_max": 60000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_executive",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP client with flexible budget, specific product needs, and detailed lifestyle information. No specific date or urgency mentioned.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_278",
+    "from_cache": false
+  }
+}

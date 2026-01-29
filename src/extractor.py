@@ -13,7 +13,7 @@ from typing import Dict, List, Optional, Any
 from pathlib import Path
 from datetime import datetime, timedelta
 
-from openai import AsyncOpenAI, OpenAI
+from mistralai import Mistral
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
@@ -33,18 +33,17 @@ class Tier3Enhanced:
     """
     
     # Model tiers
+    # Model tiers (Mistral Native)
     MODELS = {
-        'economy': 'gpt-4o-mini',        # $0.15/1M - Fallback
-        'standard': 'gpt-4o',            # $2.50/1M - Default
-        'premium': 'gpt-4-turbo',        # $10/1M - VIC Ultimate
-        'reasoning': 'o1-mini',          # $3/1M - Ambiguity
+        'economy': 'mistral-small-latest',       # Efficient for fallback
+        'standard': 'mistral-large-latest',      # Flagship (GPT-4 equivalent)
+        'premium': 'mistral-large-latest',       # Use Large for premium too
+        'reasoning': 'mistral-large-latest',     # Large handles reasoning well
     }
     
     COSTS_PER_1M_TOKENS = {
-        'gpt-4o-mini': 0.15,
-        'gpt-4o': 2.50,
-        'gpt-4-turbo': 10.00,
-        'o1-mini': 3.00
+        'mistral-small-latest': 0.2,   # Approx
+        'mistral-large-latest': 2.0,   # Approx
     }
     
     SYSTEM_PROMPT = """Tu es l'Expert LVMH PREMIUM pour l'analyse de notes vocales CA.
@@ -204,7 +203,7 @@ RÉPONDS UNIQUEMENT EN JSON VALIDE.
 
     def __init__(self, cache_dir: str = "cache/tier3"):
         self.taxonomy = TaxonomyManager()
-        self.client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
         
         # Concurrency limits
         self.semaphore = asyncio.Semaphore(10)
@@ -377,15 +376,14 @@ NOTE VOCALE:
 Mission: Extraction 4-Layer complète selon le System Prompt."""
 
             try:
-                response = await self.client.chat.completions.create(
+                response = await self.client.chat.complete_async(
                     model=model,
                     messages=[
                         {"role": "system", "content": self.SYSTEM_PROMPT.format(taxonomy_summary=taxonomy_summary)},
                         {"role": "user", "content": user_prompt}
                     ],
                     temperature=0.1,
-                    response_format={"type": "json_object"},
-                    timeout=45
+                    response_format={"type": "json_object"}
                 )
                 
                 content = response.choices[0].message.content
@@ -401,7 +399,7 @@ Mission: Extraction 4-Layer complète selon le System Prompt."""
                 return result
                 
             except Exception as e:
-                logger.error(f"Tier 3 extraction error: {e}")
+                logger.error(f"Tier 3 Mistral extraction error: {e}")
                 raise e
 
 # Alias for compatibility

@@ -1,19 +1,17 @@
 {
-  "cached_at": "2026-01-28T23:48:16.144518",
+  "cached_at": "2026-01-29T14:16:11.440037",
   "cache_key": "d0397ee89bc9ed5668be1d795562c0d0cf7b37cda3b799350d22e008e3e89533",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "world_traveler",
-      "art_collector",
-      "travel_frequent",
-      "pescatarian",
-      "museum_curator",
+      "spa_wellness",
       "art_lover",
+      "travel_frequent",
+      "museum_curator",
+      "pescatarian",
       "nickel_allergy",
-      "leather_goods",
-      "spa_wellness"
+      "leather_goods"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -23,9 +21,9 @@
     "budget_range": "5K-6K",
     "budget_min": 5000,
     "budget_max": 6000,
-    "budget_confidence": "inferred_strong",
+    "budget_confidence": "explicit",
     "budget_amount": null,
-    "client_status": "vic",
+    "client_status": "regular",
     "allergies": [
       "nickel_allergy"
     ],
@@ -41,7 +39,7 @@
     },
     "key_dates": [],
     "occasions": [],
-    "urgency": "not_urgent",
+    "urgency": "not_specified",
     "event_date": null,
     "days_until_event": null,
     "urgency_level": null,
@@ -66,12 +64,12 @@
       "objections": []
     },
     "risk_flags": {
-      "allergy_emergency": false,
+      "allergy_emergency": true,
       "rgpd_sensitive": false,
       "manual_review_required": false
     },
     "processing_notes": [
-      "Client is interested in artistic and sophisticated styles, with an emphasis on understated elegance. Her lifestyle and professional background suggest a preference for unique, possibly limited edition items."
+      "Client is interested in artist collaborations and limited editions, which could be an upsell opportunity."
     ],
     "profession": "museum_curator",
     "processing_tier": "tier3",
@@ -79,9 +77,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "The client is a VIC with a clear budget and specific style preferences. Her professional background and lifestyle suggest a high likelihood of purchase. The mention of a nickel allergy is critical for product selection.",
+    "reasoning": "The client is a regular and cultivated client with a clear budget and style preference. Nickel allergy is a critical factor for product selection. The client is interested in artistic and sophisticated styles, aligning with her profession and lifestyle.",
     "model_name": "gpt-4o",
-    "cost": 0.00634,
+    "cost": 0.0062525,
     "age": null,
     "gender": null
   }

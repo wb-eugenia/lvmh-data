@@ -1,17 +1,17 @@
 {
-  "cached_at": "2026-01-29T09:54:12.175183",
+  "cached_at": "2026-01-29T14:16:12.699189",
   "cache_key": "4e48bbbe3d11005f39e2592b812ff57031ff4881496c63abc15d0a647544d636",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "travel_frequent",
-      "music_lover",
+      "medical_specialist",
       "gluten_free",
+      "music_lover",
+      "travel_frequent",
       "professor",
       "sustainable_values",
-      "vegan",
-      "medical_specialist"
+      "vegan"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -54,8 +54,7 @@
       "brands_mentioned": [],
       "locations": [],
       "events": [
-        "Camino de Santiago",
-        "trek in Nepal"
+        "Camino de Santiago"
       ]
     },
     "implicit_signals": {
@@ -70,8 +69,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "Consider sustainable and vegan product lines due to dietary and ethical preferences.",
-      "Ensure gluten-free options are highlighted due to severe allergy."
+      "The clients' professional background and lifestyle suggest a preference for high-quality, ethically sourced products."
     ],
     "profession": "medical_specialist",
     "processing_tier": "tier3",
@@ -79,9 +77,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "The clients are first-time but high-potential customers with a clear interest in sustainable products and a significant budget. Their professional background and lifestyle suggest a strong purchase intent.",
+    "reasoning": "The clients are first-time but high-potential customers with a clear interest in sustainable products and a significant budget. Their professional and personal interests suggest a strong purchase intent.",
     "model_name": "gpt-4o",
-    "cost": 0.0061625000000000004,
+    "cost": 0.006135,
     "age": null,
     "gender": null
   }

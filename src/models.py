@@ -78,6 +78,7 @@ class ExtractionResult(BaseModel):
     processing_time_ms: float = Field(0.0, description="Processing time in milliseconds")
     
     rgpd_flag: bool = Field(False, description="Whether RGPD sensitive data was detected")
+    from_cache: bool = Field(False, description="Whether result came from cache")
     error: Optional[str] = Field(None, description="Error message if any")
     
     # Legacy fields for backward compatibility (optional)

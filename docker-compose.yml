@@ -1,20 +1,68 @@
 version: '3.8'
 
 services:
-  web:
-    build: .
+  # ============ API Backend ============
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
     ports:
-      - "8501:8501"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - "8000:8000"
     volumes:
+      - ./src:/app/src
+      - ./api:/app/api
+      - ./config:/app/config
       - ./outputs:/app/outputs
       - ./cache:/app/cache
       - ./logs:/app/logs
-      - ./data:/app/data
+    env_file: .env
+    environment:
+      - ENV=development
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+    command: uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+
+  # ============ Frontend Dev (HMR) ============
+  frontend-dev:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - api
+
+  # ============ Frontend Prod (Nginx) ============
+  frontend-prod:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    profiles:
+      - production
+
+  # ============ Legacy Streamlit (optional) ============
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./outputs:/app/outputs
+      - ./cache:/app/cache
+    env_file: .env
+    command: streamlit run app.py --server.address 0.0.0.0
+    profiles:
+      - legacy

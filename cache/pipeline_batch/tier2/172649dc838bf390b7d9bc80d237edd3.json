@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1769692248.4934661,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "shopping_with_spouse",
+      "pescatarian",
+      "jewelry",
+      "leather_goods",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "New York",
+      "London",
+      "Hong Kong",
+      "Singapore"
+    ],
+    "events": [
+      "charity_gala"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 22000,
+    "budget_max": 66000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "charity_gala"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.92,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with extensive financial backgrounds and high combined budget. Detailed professions and lifestyle information provided. Specific dietary restrictions and travel habits mentioned. High confidence due to comprehensive context and clear VIP status.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_202",
+    "from_cache": false
+  }
+}

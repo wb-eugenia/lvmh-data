@@ -1,0 +1,71 @@
+{
+  "_cached_at": 1769692248.4741602,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "retirement_gift",
+      "philanthropist",
+      "shopping_with_spouse",
+      "pescatarian",
+      "gift_for_children",
+      "gift_for_grandchildren",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [
+      "retirement_party"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 60000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "children",
+        "grandchildren"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "retirement"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "healthcare_executive",
+    "processing_tier": "tier2",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with high budget flexibility, detailed professional backgrounds, specific dietary needs, and clear lifestyle interests. High confidence due to comprehensive context provided.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_192",
+    "from_cache": false
+  }
+}

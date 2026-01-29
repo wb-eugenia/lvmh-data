@@ -1,16 +1,15 @@
 {
-  "cached_at": "2026-01-29T09:57:03.549723",
+  "cached_at": "2026-01-29T14:16:20.365723",
   "cache_key": "a53e5838a4da8adadbd52e47b4a461d4dca6b2e8980cf6671cb57280ed2bc2fe",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
+      "running",
       "travel_frequent",
-      "pescatarian",
       "gastronome",
-      "leather_goods",
-      "small_leather",
-      "running"
+      "pescatarian",
+      "leather_goods"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -63,7 +62,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "La cliente a un intérêt marqué pour l'artisanat, ce qui pourrait être exploité pour des recommandations de produits en cuir de haute qualité."
+      "La cliente est nouvelle et potentiellement très influente dans le monde culinaire, ce qui pourrait ouvrir des opportunités de marketing et de collaboration."
     ],
     "profession": "chef",
     "processing_tier": "tier3",
@@ -71,9 +70,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "La cliente est une nouvelle cliente potentielle avec un budget explicite de 5500€. Elle a une allergie sévère aux fruits à coque, ce qui nécessite une attention particulière. Elle est passionnée par l'artisanat culinaire et recherche un sac élégant pour un usage quotidien, en lien avec son métier de cheffe étoilée. Son intérêt pour les cuirs dans les tons terre et son réseau étendu dans le monde gastronomique sont des indicateurs de son statut et de ses préférences.",
+    "reasoning": "La cliente a un budget explicite et des préférences claires pour les cuirs de couleur terre. Elle a une allergie sévère aux fruits à coque, ce qui est critique dans son contexte professionnel. Elle est passionnée par l'artisanat culinaire et pourrait être intéressée par des produits de maroquinerie de haute qualité. Son réseau professionnel étendu dans le domaine gastronomique pourrait offrir des opportunités futures.",
     "model_name": "gpt-4o",
-    "cost": 0.006435,
+    "cost": 0.0063825,
     "age": null,
     "gender": null
   }

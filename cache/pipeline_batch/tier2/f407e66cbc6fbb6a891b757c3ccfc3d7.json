@@ -1,0 +1,69 @@
+{
+  "_cached_at": 1769692248.4418197,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "vegetarian",
+      "shopping_with_spouse",
+      "jewelry",
+      "gift_for_spouse",
+      "leather_goods",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "The Hague"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 21000,
+    "budget_max": 50000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "legal_lawyer",
+    "processing_tier": "tier2",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with explicit budget and detailed professional background. Clear occasion and dietary preferences mentioned. No specific products or brands cited.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_180",
+    "from_cache": false
+  }
+}

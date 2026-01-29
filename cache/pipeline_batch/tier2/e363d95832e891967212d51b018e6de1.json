@@ -1,0 +1,69 @@
+{
+  "_cached_at": 1769692248.7908883,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "vegetarian",
+      "shopping_with_spouse",
+      "gift_for_spouse",
+      "leather_goods",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Japan"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with a flexible budget and specific interests in design and architecture. No specific products mentioned, but a clear occasion and dietary preferences are noted.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_340",
+    "from_cache": false
+  }
+}

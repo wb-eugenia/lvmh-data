@@ -1,0 +1,66 @@
+{
+  "_cached_at": 1769692248.314947,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "vegan",
+      "philanthropist",
+      "travel_luggage",
+      "leather_goods",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "África",
+      "Asia",
+      "América Latina",
+      "India"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 5000,
+    "budget_max": 10000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "medication_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "legal_lawyer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client profile with explicit budget, detailed lifestyle and professional information, and specific dietary and allergy notes. No specific products or brands mentioned, but clear preferences for ethical and sustainable options.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_139",
+    "from_cache": false
+  }
+}

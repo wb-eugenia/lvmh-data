@@ -1,0 +1,53 @@
+{
+  "_cached_at": 1769692246.918817,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": null,
+    "budget_max": null,
+    "budget_confidence": null,
+    "budget_amount": 6000,
+    "client_status": null,
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier1",
+    "confidence": 0.75,
+    "processing_time_ms": 1.500844955444336,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": null,
+    "model_name": null,
+    "cost": 0.0,
+    "age": null,
+    "gender": "female",
+    "tier": 1,
+    "ID": "CA_373",
+    "from_cache": false
+  }
+}

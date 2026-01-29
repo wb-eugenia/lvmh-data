@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1769692248.373761,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_child",
+      "gift_for_parent",
+      "shopping_with_spouse",
+      "pescatarian",
+      "gift_for_friend",
+      "gift_for_spouse",
+      "leather_goods",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [
+      "private preview",
+      "anniversary celebration"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 60000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse",
+        "child",
+        "parent",
+        "friend"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": null,
+    "event_date": "2024-04-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with a flexible combined budget of 21K, inferred to be in the range of 20K-50K. They have specific tastes and preferences, with no allergies mentioned. The occasion is a major anniversary celebration, and they are planning to shop for various family members. The event date is inferred to be around April for the private preview.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_157",
+    "from_cache": false
+  }
+}

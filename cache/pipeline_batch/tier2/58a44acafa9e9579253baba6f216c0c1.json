@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1769692248.8765762,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_child",
+      "shopping_with_spouse",
+      "vegan",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Silicon Valley"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 69000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "child"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with explicit combined budget and flexible range. Detailed professional backgrounds and lifestyle preferences provided. No specific products or events mentioned, but strong context for future interactions.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_377",
+    "from_cache": false
+  }
+}

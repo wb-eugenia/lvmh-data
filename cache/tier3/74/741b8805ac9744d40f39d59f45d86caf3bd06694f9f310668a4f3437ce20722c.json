@@ -1,16 +1,15 @@
 {
-  "cached_at": "2026-01-29T09:57:35.166726",
+  "cached_at": "2026-01-29T14:16:30.736746",
   "cache_key": "741b8805ac9744d40f39d59f45d86caf3bd06694f9f310668a4f3437ce20722c",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "director",
-      "world_traveler",
-      "jet_setter",
-      "fashion_industry",
       "vegetarian",
-      "art_collector"
+      "accessories",
+      "art_collector",
+      "leather_goods",
+      "fashion_industry"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -66,7 +65,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "Client intéressé par des pièces exclusives et des collaborations artistiques, ce qui pourrait influencer le choix des produits à proposer."
+      "Le client est très impliqué dans l'industrie de la mode et recherche des pièces innovantes et avant-gardistes."
     ],
     "profession": "director",
     "processing_tier": "tier3",
@@ -74,9 +73,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "Le client est un VIP avec un budget flexible et un intérêt marqué pour l'innovation et les collaborations uniques. Son réseau dans l'industrie de la mode et son statut professionnel renforcent la probabilité d'un achat important.",
+    "reasoning": "Le client est un directeur artistique dans la haute couture, avec un réseau étendu dans l'industrie de la mode. Son budget est flexible, et il est intéressé par des pièces exclusives et des collaborations uniques. Son allergie aux colorants textiles est importante mais ne nécessite pas d'urgence vitale.",
     "model_name": "gpt-4o",
-    "cost": 0.006265,
+    "cost": 0.006294999999999999,
     "age": null,
     "gender": null
   }

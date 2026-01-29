@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1769692248.759981,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_parent",
+      "shopping_with_spouse",
+      "pescatarian",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Stati Uniti"
+    ],
+    "events": [
+      "conferenza diritti umani"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 17000,
+    "budget_max": 51000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "parent"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with high-profile professions and specific lifestyle preferences. Budget inferred as flexible and high due to their status and professions. Detailed personal and professional backgrounds provided, but no specific products or urgent dates mentioned.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_328",
+    "from_cache": false
+  }
+}

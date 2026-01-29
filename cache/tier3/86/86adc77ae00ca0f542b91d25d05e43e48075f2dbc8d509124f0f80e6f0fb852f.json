@@ -1,17 +1,16 @@
 {
-  "cached_at": "2026-01-29T09:56:42.254298",
+  "cached_at": "2026-01-29T14:16:20.537783",
   "cache_key": "86adc77ae00ca0f542b91d25d05e43e48075f2dbc8d509124f0f80e6f0fb852f",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "perfume_sensitivity",
+      "valentines_gift",
       "travel_frequent",
-      "pescatarian",
-      "fashion_industry",
-      "leather_goods",
       "art_collector",
-      "valentines_gift"
+      "creative_industry",
+      "leather_goods",
+      "fashion_industry"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -43,9 +42,9 @@
     "occasions": [
       "valentines_gift"
     ],
-    "urgency": "this_month",
+    "urgency": "this_week",
     "event_date": "2024-02-14",
-    "days_until_event": 30,
+    "days_until_event": 7,
     "urgency_level": null,
     "products": [],
     "entities": {
@@ -66,7 +65,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "Cliente con forte background creativo e connessioni nell'industria della moda e pubblicità, potenziale per referenze e collaborazioni."
+      "The client is deeply embedded in the creative and luxury advertising industry, with a strong interest in unique designer collaborations and innovative design."
     ],
     "profession": "creative_director",
     "processing_tier": "tier3",
@@ -74,9 +73,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "Il cliente è un VIP con un budget esplicitamente dichiarato e un forte interesse per il design innovativo e collaborazioni uniche. La sensibilità ai profumi è moderata e non richiede un'emergenza immediata.",
+    "reasoning": "The client is a VIP with a clear budget and specific needs for a Valentine's gift and spring collection renewal. The mention of the wife's perfume sensitivity and their pescatarian diet were noted for event considerations.",
     "model_name": "gpt-4o",
-    "cost": 0.0065125,
+    "cost": 0.006465,
     "age": null,
     "gender": null
   }

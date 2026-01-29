@@ -1,22 +1,22 @@
 {
-  "cached_at": "2026-01-29T09:56:29.963257",
+  "cached_at": "2026-01-29T14:16:14.817848",
   "cache_key": "6e5ee2e90d1ad5c65cf6f6950f85eeab744f88daa328f5a3e71aa7a637efe617",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "world_traveler",
-      "influencer",
-      "nut_allergy",
-      "travel_frequent",
+      "ready_to_wear",
+      "jet_setter",
+      "sneakers",
       "shoes",
       "fitness",
-      "womenswear",
+      "travel_frequent",
+      "world_traveler",
+      "sustainable_values",
       "professional_athlete",
-      "plant_based",
-      "sneakers",
-      "ready_to_wear",
+      "womenswear",
       "outerwear",
+      "influencer",
       "lifestyle_content_creator"
     ],
     "products_mentioned": [],
@@ -35,11 +35,11 @@
     ],
     "allergy_severity": "low",
     "dietary": [
-      "plant_based"
+      "vegan"
     ],
     "relationship_context": {
       "gift_for": [
-        "children"
+        "teenage_children"
       ],
       "shopping_with": [
         "advisor"
@@ -61,8 +61,7 @@
       "locations": [],
       "events": [
         "Olympics",
-        "World Cups",
-        "major tournaments"
+        "World Cups"
       ]
     },
     "implicit_signals": {
@@ -77,9 +76,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "Client is a former professional athlete, now a sports commentator.",
-      "Severe nut allergy noted as critical.",
-      "Significant social media presence with 800K followers."
+      "Client is a former professional athlete, now a sports commentator, requiring a wardrobe upgrade for a polished appearance on TV. She has a severe nut allergy and follows a plant-based diet. She is recently divorced and looking to reinvent her personal style."
     ],
     "profession": "sports_commentator",
     "processing_tier": "tier3",
@@ -87,9 +84,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "The client is a high potential new VIC with a clear budget and specific needs for her new career. Her severe nut allergy requires immediate attention. Her active lifestyle and social media presence indicate high purchase intent and urgency for regular updates.",
+    "reasoning": "The client is a high-potential new client with a clear budget and specific needs for her new career. Her severe nut allergy requires immediate attention. Her active lifestyle and social media presence offer significant brand visibility opportunities.",
     "model_name": "gpt-4o",
-    "cost": 0.0064625,
+    "cost": 0.00644,
     "age": null,
     "gender": null
   }

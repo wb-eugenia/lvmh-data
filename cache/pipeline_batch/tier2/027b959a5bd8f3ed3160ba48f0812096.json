@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1769692248.6196969,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "pescatarian",
+      "travel_luggage",
+      "leather_goods",
+      "travel_frequent"
+    ],
+    "products_mentioned": [
+      "borse professionali"
+    ],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [
+      "corporate eventi",
+      "lancio prodotti",
+      "presentazioni"
+    ],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 7500,
+    "budget_max": 12500,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "regular",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_executive",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Budget explicite, client régulier, profession tech executive, régime pescatarian, pas d'allergies, contexte professionnel détaillé",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_268",
+    "from_cache": false
+  }
+}

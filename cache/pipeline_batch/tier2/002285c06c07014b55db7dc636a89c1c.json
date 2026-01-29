@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1769692248.532537,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_child",
+      "ready_to_wear",
+      "gift_for_grandchild",
+      "small_leather",
+      "pescatarian",
+      "gift_for_friend",
+      "jewelry",
+      "gift_for_colleague",
+      "leather_goods",
+      "travel_frequent",
+      "shoes"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [
+      "Olympics",
+      "World Cups",
+      "major tournaments"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "child",
+        "grandchild",
+        "colleague",
+        "friend"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "celebration",
+      "milestone"
+    ],
+    "urgency": null,
+    "event_date": "2024-09-01",
+    "days_until_event": 245,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "medical_surgeon, medical_physician",
+    "processing_tier": "tier2",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with specific professions and detailed lifestyle information. Combined budget inferred as flexible range. Multiple gift occasions and dietary preferences mentioned. Specific follow-up date allows for days_until_event calculation.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_227",
+    "from_cache": false
+  }
+}

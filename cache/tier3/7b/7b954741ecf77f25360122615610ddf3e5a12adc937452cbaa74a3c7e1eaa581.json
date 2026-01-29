@@ -1,16 +1,17 @@
 {
-  "cached_at": "2026-01-29T09:56:21.372277",
+  "cached_at": "2026-01-29T14:16:19.670515",
   "cache_key": "7b954741ecf77f25360122615610ddf3e5a12adc937452cbaa74a3c7e1eaa581",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "professional_athlete",
-      "menswear",
-      "leather_goods",
       "travel_luggage",
       "ski",
-      "outerwear"
+      "menswear",
+      "professional_athlete",
+      "pescatarian",
+      "outerwear",
+      "leather_goods"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -42,7 +43,7 @@
     "occasions": [
       "wedding_anniversary"
     ],
-    "urgency": "none",
+    "urgency": "this_week",
     "event_date": "2026-05-01",
     "days_until_event": 93,
     "urgency_level": null,
@@ -69,7 +70,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "Client intéressé par des sacs en cuir noir navy pour usage professionnel, avec une préférence pour la robustesse et la fonctionnalité."
+      "Client régulier avec un réseau étendu dans le milieu sportif, ce qui peut offrir des opportunités de cross-sell."
     ],
     "profession": "medical_specialist",
     "processing_tier": "tier3",
@@ -77,9 +78,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "Le client est un VIC avec un budget explicite et des besoins spécifiques liés à sa profession et ses loisirs. L'allergie au latex est critique pour sa profession médicale.",
+    "reasoning": "Le client est un chirurgien orthopédiste avec des besoins spécifiques pour des sacs professionnels. Il a une allergie au latex qui est cruciale pour sa profession. Son budget est clairement défini et il a un intérêt marqué pour des produits robustes et fonctionnels.",
     "model_name": "gpt-4o",
-    "cost": 0.006205,
+    "cost": 0.0062775,
     "age": null,
     "gender": null
   }

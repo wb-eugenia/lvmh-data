@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1769692248.8212018,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "ready_to_wear",
+      "vegan",
+      "shopping_with_spouse",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Dubai",
+      "Miami",
+      "Singapore"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "50K+",
+    "budget_min": 50000,
+    "budget_max": null,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "entrepreneur_startup",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client potentiel à très haut potentiel avec un budget extrêmement flexible, inféré à plus de 50K en raison de son statut d'entrepreneur dans la technologie blockchain et de son succès entrepreneurial. Style de vie et préférences clairement définis, avec des voyages fréquents et un intérêt pour l'art et la technologie. Pas d'allergies mentionnées, mais un régime vegan strict. Relation avec une influenceuse fitness notable.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_354",
+    "from_cache": false
+  }
+}

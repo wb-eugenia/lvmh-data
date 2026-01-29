@@ -388,12 +388,8 @@ class PipelineBatchV2:
             
             async with self.semaphores[3]:
                 try:
-                    # TagExtractor.extract is sync, run in executor
-                    loop = asyncio.get_event_loop()
-                    extraction = await loop.run_in_executor(
-                        None, 
-                        lambda: self.tier3.extract(text, language, note)
-                    )
+                    # TagExtractor (Tier3Enhanced) is async, await directly
+                    extraction = await self.tier3.extract(text, language, client_status=None)
                     
                     # Convert to dict
                     if hasattr(extraction, 'model_dump'):
@@ -460,10 +456,15 @@ class PipelineBatchV2:
         note_id = note.get('ID', 'unknown')
         
         try:
-            loop = asyncio.get_event_loop()
-            extraction = await loop.run_in_executor(
-                None,
-                lambda: self.tier3.extract(text, language, note)
+            # Determine context for escalation
+            client_status = tier2_result.get('client_status')
+            escalation_reason = 'allergy_high' if tier2_result.get('allergy_severity') == 'high' else 'low_confidence'
+            
+            extraction = await self.tier3.extract(
+                text, 
+                language, 
+                client_status=str(client_status) if client_status else None,
+                escalation_reason=escalation_reason
             )
             
             if hasattr(extraction, 'model_dump'):

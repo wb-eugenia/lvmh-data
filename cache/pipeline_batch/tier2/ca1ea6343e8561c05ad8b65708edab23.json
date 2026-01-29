@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1769692248.8521285,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "nickel_allergy",
+      "ready_to_wear",
+      "pescatarian",
+      "travel_luggage",
+      "leather_goods",
+      "art_collector",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Paris",
+      "Mailand",
+      "New York",
+      "London"
+    ],
+    "events": [
+      "Fashion Weeks"
+    ],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 10000,
+    "budget_max": 20000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "regular",
+    "allergies": [
+      "nickel_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "fashion_week"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "Chefredakteurin",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client status and budget explicit, multiple locations and events mentioned, allergy severity inferred as medium due to lack of specific severity indicators",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "tier": 2,
+    "ID": "CA_365",
+    "from_cache": false
+  }
+}

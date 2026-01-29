@@ -300,12 +300,51 @@ class MultilingualTextCleaner:
             
         return cleaned_text, duplicates_removed
 
+    def _anonymize_pii(self, text: str) -> str:
+        """
+        Anonymisation des données personnelles (RGPD).
+        - Emails
+        - Téléphones (FR/Intl)
+        - Noms (Pattern Civilité + Nom)
+        """
+        # 1. EMAILS
+        email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        text = re.sub(email_pattern, '[EMAIL]', text)
+        
+        # 2. PHONES (Focus FR + Generic)
+        # Handle +33 (non-word boundary start) OR 0 (word boundary start)
+        # Matches: +33 6... | 06... | 0033 6...
+        phone_pattern = r'(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}\b'
+        text = re.sub(phone_pattern, '[PHONE]', text)
+        
+        # 3. NOMS PROPRES (Basés sur civilité)
+        # Add Mr. (with dot) and ensure robust matching
+        civilities = r'(?:M\.|Mme|Mlle|Mrs?|Ms|Monsieur|Madame|Dr|Prof\.|Mr\.)'
+        # Pattern: Civilité + Espace + Mot Majuscule (+ optionnel trait d'union Autre)
+        name_pattern = fr'\b{civilities}\s+[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+(?:[- ][A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+)?\b'
+        
+        def replace_name(match):
+            # Keep the civility, mask the name
+            full = match.group()
+            # Split by first space to separate civility
+            parts = full.split(maxsplit=1)
+            if len(parts) > 0:
+                return f"{parts[0]} [NAME]"
+            return "[NAME]"
+
+        text = re.sub(name_pattern, replace_name, text)
+        
+        return text
+
     def clean_text(self, text: str, language: str) -> Dict:
         """Pipeline complet de nettoyage."""
         if not text or not isinstance(text, str):
             return {'original': '', 'cleaned': '', 'fillers': 0, 'ratio': 1.0}
 
         self.current_lang = language
+        
+        # 0. Anonymisation PII (RGPD First!)
+        text = self._anonymize_pii(text)
         
         # 1. Protection données critiques
         processing_text, protected_zones = self._extract_protected_zones(text)
