@@ -211,5 +211,11 @@ lvmh-data/
 └── outputs/                # Résultats générés
 ```
 
+## 🔮 Futur & Roadmap V3
+
+Ce pipeline évolue constamment. Pour voir la vision stratégique 2026-2027 (Cloud Run, RAG Produit, Edge AI) :
+
+👉 **[Voir la Roadmap V3 Complète](docs/ROADMAP_V3.md)**
+
 ---
 **LVMH Data Office** - *Confidential & Proprietary*
