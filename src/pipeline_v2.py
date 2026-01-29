@@ -23,7 +23,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.smart_router import SmartRouterV2 as SmartRouter
 from src.tier1_rules import Tier1RulesEngine
 from src.tier1_rules import Tier1RulesEngine
-from src.tier2_groq import Tier2Groq  # New Groq Implementation
+from src.tier2_mistral import Tier2Mistral  # Mistral EU-Compliant
 
 
 from src.extractor import TagExtractor
@@ -52,15 +52,22 @@ class PipelineV2:
         self.results = []
         self.tier2_available = True
         self.text_cleaner = None  # Lazy load
+        
+        # Robust event loop management (compatible with other async frameworks)
+        try:
+            self._loop = asyncio.get_running_loop()
+        except RuntimeError:
+            self._loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self._loop)
     
     def _init_tier2(self):
-        """Lazy load Tier 2 Groq engine."""
+        """Lazy load Tier 2 Mistral engine."""
         if self.tier2 is None:
             try:
-                self.tier2 = Tier2Groq()
+                self.tier2 = Tier2Mistral()
                 self.tier2_available = True
             except Exception as e:
-                print(f"⚠️ Tier 2 Groq not available: {e}")
+                print(f"⚠️ Tier 2 Mistral not available: {e}")
                 self.tier2_available = False
     
 
@@ -116,15 +123,16 @@ class PipelineV2:
             needs_escalation = False
             escalation_reason = ""
             
-            # Check allergy severity
-            if result.get('allergy_severity') == 'high':
+            # OPTIMIZED: Allergies are now well-handled by Tier 2 Mistral
+            # Only escalate for VIP with critical allergies
+            if result.get('allergy_severity') == 'high' and result.get('client_status') in ['vic', 'ultimate']:
                 needs_escalation = True
-                escalation_reason = "Tier 2 detected HIGH severity allergy"
+                escalation_reason = "VIP client with HIGH severity allergy"
             
             # Check critical VIP (if Tier 2 flagged it as 'vic' or 'ultimate')
             if result.get('client_status') in ['vic', 'ultimate', 'platinum']:
-                # Optional: keep VIP in Tier 2 if confidence is high, but escalate for safety
-                if result.get('confidence', 0) < 0.9:
+                # Keep VIP in Tier 2 if confidence is good (>= 0.75)
+                if result.get('confidence', 0) < 0.75:  # Lowered from 0.9
                     needs_escalation = True
                     escalation_reason = "Tier 2 detected VIC/Ultimate with low confidence"
             
@@ -157,18 +165,18 @@ class PipelineV2:
         return extraction.model_dump()
     
     def _process_tier2(self, text: str, language: str) -> Dict:
-        """Process with Tier 2 Groq engine."""
+        """Process with Tier 2 Mistral engine."""
         self._init_tier2()
         
         if not self.tier2_available or self.tier2 is None:
-            # Fallback to Tier 1 if Groq not available
+            # Fallback to Tier 1 if Mistral not available
             return self._process_tier1(text, language)
         
-        # Groq is async, need to run it synchronously here
+        # Use persistent event loop (fixes 'Event loop is closed' error)
         try:
-             extraction = asyncio.run(self.tier2.extract(text, language))
+             extraction = self._loop.run_until_complete(self.tier2.extract(text, language))
         except Exception as e:
-             print(f"⚠️ Tier 2 Groq failed: {e}. Falling back.")
+             print(f"⚠️ Tier 2 Mistral failed: {e}. Falling back.")
              return self._process_tier1(text, language)
 
         # Convert dataclass or Pydantic model to dict
@@ -191,9 +199,10 @@ class PipelineV2:
                 escalation_reason=escalation_reason,
                 use_cache=self.use_cache
             )
-            
+        
+        # Use persistent event loop (consistent with Tier 2)
         try:
-             extraction = asyncio.run(run_tier3())
+             extraction = self._loop.run_until_complete(run_tier3())
         except Exception as e:
              print(f"⚠️ Tier 3 failed: {e}")
              # Return empty/error dict
@@ -220,7 +229,7 @@ class PipelineV2:
         
         print(f"🚀 PIPELINE V2 MULTI-TIER - {start_time.strftime('%H:%M:%S')}")
         print("="*60)
-        print("Tiers: Rules (0€) → Groq Llama 3 (0€) → GPT-4o-mini ($)")
+        print("Tiers: Rules (0€) → 🇫🇷 Mistral (0€) → GPT-4o-mini ($)")
         print("="*60)
         
         self.results = []
@@ -264,7 +273,7 @@ class PipelineV2:
         
         print(f"\n🔀 TIER DISTRIBUTION:")
         print(f"  Tier 1 (Rules):  {tier_counts[1]:>4} ({tier1_pct:>5.1f}%) - 0€")
-        print(f"  Tier 2 (Groq):   {tier_counts[2]:>4} ({tier2_pct:>5.1f}%) - 0€ (Beta)")
+        print(f"  Tier 2 (Mistral):{tier_counts[2]:>4} ({tier2_pct:>5.1f}%) - 0€ (EU)")
         print(f"  Tier 3 (GPT):    {tier_counts[3]:>4} ({tier3_pct:>5.1f}%) - ${tier_counts[3] * 0.0001:.4f}")
         
         print(f"\n💰 COST SAVINGS:")

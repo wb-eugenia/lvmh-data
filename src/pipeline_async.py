@@ -33,7 +33,7 @@ from src.models import PipelineOutput, RoutingDecision, ExtractionResult, RGPDRe
 from src.smart_router import SmartRouterV2
 from src.tier1_rules import Tier1RulesEngine
 from src.tier1_rules import Tier1RulesEngine
-from src.tier2_groq import Tier2Groq
+from src.tier2_mistral import Tier2Mistral
 from src.extractor import TagExtractor
 from src.rgpd_ollama import RGPDOllamaFilter
 from src.cache_manager import CacheManager
@@ -58,7 +58,7 @@ class AsyncPipeline:
         self.tier1 = Tier1RulesEngine()
         self.router = SmartRouterV2()
         self.tier1 = Tier1RulesEngine()
-        self.tier2 = Tier2Groq()
+        self.tier2 = Tier2Mistral()
         self.tier3 = TagExtractor() # Tier 3 is sync but we wrap it or use async client if available (using sync for now in thread)
         self.rgpd = RGPDOllamaFilter()
         

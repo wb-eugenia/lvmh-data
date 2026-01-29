@@ -1,0 +1,63 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "shopping_with_spouse",
+    "nickel_allergy",
+    "gift_for_self",
+    "art_collector",
+    "ready_to_wear",
+    "vegan"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Marrakech"
+  ],
+  "events": [],
+  "professions": [],
+  "budget_range": "5K-10K",
+  "budget_min": 5600,
+  "budget_max": 8400,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "occasional",
+  "allergies": [
+    "nickel_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegan"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "self"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "creative_designer",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Budget explicite, profession et statut client clairs, allergie et régime spécifiés, contexte relationnel et lifestyle détaillés",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

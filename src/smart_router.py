@@ -235,7 +235,8 @@ class SmartRouterV3:
             priority = 'high' if complexity.total < 90 else 'critical'
             fallback = None
         
-        if complexity.risk_flags >= 8:
+        # Only force Tier 3 for VERY critical RGPD (>=10 points, not 8)
+        if complexity.risk_flags >= 10:
             tier, confidence, priority = 3, 0.95, 'critical'
             complexity.factors.append("🚨 Critical risk → Force Tier 3")
         
@@ -248,9 +249,9 @@ class SmartRouterV3:
         has_vic_in_text = bool(re.search(r'\bVIC\b', text))
         client_status_from_meta = metadata.get('client_status')
         
-        if (client_status_from_meta in ['vic', 'ultimate', 'platinum'] or has_vic_in_text) and complexity.total > 40:
+        if (client_status_from_meta in ['vic', 'ultimate', 'platinum'] or has_vic_in_text) and complexity.total > 60:
             tier, priority = 3, 'critical'
-            complexity.factors.append("👑 VIC/Ultimate + Complex → Premium Tier 3")
+            complexity.factors.append("👑 VIC/Ultimate + Very Complex → Premium Tier 3")
         
         self.stats['total_routed'] += 1
         self.stats[f'tier{tier}'] += 1

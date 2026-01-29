@@ -1,0 +1,86 @@
+{
+  "cached_at": "2026-01-29T10:12:03.366645",
+  "cache_key": "5701b7aa12c704450cff0be9c576722478d0c4b994cd4ee3821be065e7faacc7",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "canvas_preference",
+      "leather_preference",
+      "professional_athlete",
+      "menswear",
+      "leather_goods",
+      "travel_luggage",
+      "ski",
+      "medical_specialist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "6K-7K",
+    "budget_min": 6000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "latex_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "next_month",
+    "event_date": "2026-05-01",
+    "days_until_event": 93,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": [
+        "championnat France ski mars"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client intéressé par des sacs en cuir noir ou navy pour un usage professionnel intensif."
+    ],
+    "profession": "medical_specialist",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un chirurgien orthopédiste avec un réseau étendu dans le milieu sportif, ce qui indique un statut VIC. L'allergie au latex est cruciale en raison de sa profession. Le budget est explicitement mentionné et l'intention d'achat est élevée pour des sacs professionnels.",
+    "model_name": "gpt-4o",
+    "cost": 0.00625,
+    "age": null,
+    "gender": null
+  }
+}

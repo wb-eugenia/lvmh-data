@@ -1,0 +1,61 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "shopping_with_spouse",
+    "vegetarian",
+    "leather_goods",
+    "gift_for_grandchildren"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "private preview"
+  ],
+  "professions": [],
+  "budget_range": "20K-50K",
+  "budget_min": 20000,
+  "budget_max": 60000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "grandchildren"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "retirement"
+  ],
+  "urgency": null,
+  "event_date": "2024-02-01",
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "academic_leadership",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with a combined budget of 24K which is very flexible, inferred to a higher range. No specific products mentioned but interest in spring collection. No allergies and both are vegetarians. Shopping for retirement celebrations and potential gifts for grandchildren. Follow-up planned for February for an exclusive private preview.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

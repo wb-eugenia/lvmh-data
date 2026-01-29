@@ -1,0 +1,69 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "gift_for_spouse",
+    "travel_frequent",
+    "pescatarian",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "gift_for_friend",
+    "leather_goods",
+    "travel_luggage",
+    "retirement_gift",
+    "art_collector"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "retirement celebration"
+  ],
+  "professions": [],
+  "budget_range": "50K+",
+  "budget_min": 50000,
+  "budget_max": null,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "spouse",
+      "child",
+      "friend"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "retirement",
+    "wedding_anniversary"
+  ],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "retired_ceo",
+  "processing_tier": "tier2",
+  "confidence": 0.95,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with significant wealth and a combined budget of 30K which is extremely flexible. They have a history of major purchases and a deep appreciation for heritage and quality. The context includes multiple gift-giving opportunities and a major retirement celebration event.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

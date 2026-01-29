@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1769679979.7086368,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "vegetarian",
+      "gift_for_spouse",
+      "leather_goods"
+    ],
+    "products_mentioned": [
+      "sac professionnel discret élégant"
+    ],
+    "brands_mentioned": [],
+    "locations": [
+      "Nice"
+    ],
+    "events": [
+      "triathlon"
+    ],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 4800,
+    "budget_max": 7200,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "fragrance_sensitivity"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "birthday"
+    ],
+    "urgency": null,
+    "event_date": "2024-04-15",
+    "days_until_event": 45,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "medical_dentist",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Budget explicite, profession et statut client identifiés, allergie sévère détectée, occasion et date inférées, contexte familial et lifestyle partiel",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_301",
+    "tier": 2,
+    "routing_reasons": [
+      "Allergy Severe: +12",
+      "Intent: Advisory: +15",
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

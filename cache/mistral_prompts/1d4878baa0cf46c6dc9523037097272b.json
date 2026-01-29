@@ -1,0 +1,65 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "gift_for_grandchild",
+    "shopping_with_spouse",
+    "gift_for_child",
+    "vegetarian",
+    "art_collector"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Silicon Valley"
+  ],
+  "events": [
+    "family celebration"
+  ],
+  "professions": [],
+  "budget_range": "50K+",
+  "budget_min": 50000,
+  "budget_max": null,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "child",
+      "grandchild"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding_anniversary"
+  ],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "tech_executive",
+  "processing_tier": "tier2",
+  "confidence": 0.95,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with significant wealth and flexible budget. Detailed information on professions, lifestyle, and family. High confidence due to comprehensive client history and clear context.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

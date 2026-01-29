@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1769677895.8950446,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "nickel_allergy",
+      "fashion_industry",
+      "creative_segment",
+      "art_lover",
+      "designer",
+      "vegan"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 5000,
+    "budget_max": 10000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "nickel_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "this_month",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Marrakech"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": true,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client is interested in unique, limited pieces and has a strong creative background. Consider showcasing innovative materials and artisan processes."
+    ],
+    "profession": "designer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The client is a fashion designer with a strong interest in avant-garde and creative pieces. She has a strict vegan lifestyle and a severe nickel allergy, which are critical considerations. Her budget is explicitly stated, and she is enthusiastic about unique and limited pieces, indicating a medium purchase intent.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_331",
+    "tier": 3,
+    "routing_reasons": [
+      "Allergy Medium: +6",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

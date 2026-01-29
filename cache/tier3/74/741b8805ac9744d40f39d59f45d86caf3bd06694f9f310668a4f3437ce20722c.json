@@ -1,0 +1,83 @@
+{
+  "cached_at": "2026-01-29T09:57:35.166726",
+  "cache_key": "741b8805ac9744d40f39d59f45d86caf3bd06694f9f310668a4f3437ce20722c",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "director",
+      "world_traveler",
+      "jet_setter",
+      "fashion_industry",
+      "vegetarian",
+      "art_collector"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 11000,
+    "budget_max": 20000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "textile_dye_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "team"
+      ],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "next_month",
+    "event_date": "2024-02-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "fashion weeks",
+        "capitals"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": true,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client intéressé par des pièces exclusives et des collaborations artistiques, ce qui pourrait influencer le choix des produits à proposer."
+    ],
+    "profession": "director",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un VIP avec un budget flexible et un intérêt marqué pour l'innovation et les collaborations uniques. Son réseau dans l'industrie de la mode et son statut professionnel renforcent la probabilité d'un achat important.",
+    "model_name": "gpt-4o",
+    "cost": 0.006265,
+    "age": null,
+    "gender": null
+  }
+}

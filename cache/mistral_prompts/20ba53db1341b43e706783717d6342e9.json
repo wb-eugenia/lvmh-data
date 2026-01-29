@@ -1,0 +1,69 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "shopping_with_spouse",
+    "gluten_free",
+    "gift_for_self",
+    "art_collector",
+    "vegan"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Cannes",
+    "Berlin",
+    "Venice",
+    "Sundance"
+  ],
+  "events": [
+    "Cannes Film Festival"
+  ],
+  "professions": [],
+  "budget_range": "20K-50K",
+  "budget_min": 20000,
+  "budget_max": 50000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "first_visit",
+  "allergies": [
+    "gluten_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegan"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "self"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "film_selection"
+  ],
+  "urgency": "today",
+  "event_date": "2023-05-24",
+  "days_until_event": 0,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "film_producer",
+  "processing_tier": "tier2",
+  "confidence": 0.92,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Client status inferred as first_visit with high potential. Budget inferred as very open and discussed at 16K today. Allergy severity marked as high due to the mention of severe gluten allergy. Dietary preference clearly stated as vegan. Travel and art collector tags added due to frequent travel to film festivals and collection of vintage movie posters. Urgency set to today as the budget was discussed today.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

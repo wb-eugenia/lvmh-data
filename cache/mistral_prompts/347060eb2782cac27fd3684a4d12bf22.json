@@ -1,0 +1,59 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "gift_for_parent",
+    "travel_frequent",
+    "pescatarian",
+    "shopping_with_spouse",
+    "leather_goods",
+    "art_collector",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [],
+  "professions": [],
+  "budget_range": "10K-20K",
+  "budget_min": 13600,
+  "budget_max": 20400,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "regular",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "parent"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": null,
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Budget inféré à partir du statut de client régulier et de la mention de flexibilité. Professions et régimes alimentaires clairement mentionnés. Pas de date spécifique ni d'urgence détectée.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

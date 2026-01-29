@@ -1,0 +1,92 @@
+{
+  "cached_at": "2026-01-29T09:58:11.351897",
+  "cache_key": "a138f51c660b24385ddf78c6dfae54b850bab4d8dad78ecbbc39ad4d82f678ef",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "latex_allergy",
+      "travel_frequent",
+      "yoga",
+      "jet_setter",
+      "art_collector",
+      "creative_industry",
+      "luxury_cars",
+      "vegan",
+      "film_producer"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "16K+",
+    "budget_min": 16000,
+    "budget_max": null,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "gluten_allergy"
+    ],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "partner"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "film_festival_celebration"
+    ],
+    "urgency": "this_week",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Cannes",
+        "Berlin",
+        "Venice",
+        "Sundance"
+      ],
+      "events": [
+        "Cannes Film Festival"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": true,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client is a new VIC with high potential in the entertainment segment, requiring careful relationship building and attention to dietary restrictions."
+    ],
+    "profession": "film_producer",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The client is a high-potential VIC with a strong interest in unique, artistic pieces and a significant budget. The severe gluten allergy is a critical factor, and the client's professional network offers substantial visibility potential.",
+    "model_name": "gpt-4o",
+    "cost": 0.006294999999999999,
+    "age": null,
+    "gender": null
+  }
+}

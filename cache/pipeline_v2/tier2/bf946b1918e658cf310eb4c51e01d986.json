@@ -1,0 +1,71 @@
+{
+  "_cached_at": 1769679979.7613373,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "nut_allergy",
+      "influencer",
+      "vegan",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Patagonie"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 6400,
+    "budget_max": 9600,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "nut_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "today",
+    "event_date": "2023-10-05",
+    "days_until_event": 0,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "influenceur",
+    "processing_tier": "tier2",
+    "confidence": 0.92,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client VIC potentiel avec budget explicite et urgence critique détectée. Allergie sévère identifiée. Contexte professionnel et opportunités de partenariat clairement mentionnés.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_306",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 50K: +15",
+      "Allergy Severe: +12",
+      "Urgent: +8"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

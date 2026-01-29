@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1769677722.130407,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "legal_general",
+      "travel_frequent",
+      "theater_lover",
+      "vegetarian",
+      "professor",
+      "wedding_gift",
+      "art_collector"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-25K",
+    "budget_min": 20000,
+    "budget_max": 25000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "daughter"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_gift"
+    ],
+    "urgency": "none",
+    "event_date": "2026-06-01",
+    "days_until_event": 124,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Griechenland",
+        "Berlin"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Les clients sont intéressés par des visites privées et des coopérations artisanales historiques, ce qui pourrait indiquer une opportunité pour des offres exclusives."
+    ],
+    "profession": "professor, legal_general",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Les clients sont des VIC avec un budget flexible autour de 22K, sans allergies, et avec un intérêt marqué pour les événements culturels et les voyages. Leur statut professionnel et leur engagement culturel suggèrent un haut niveau d'éducation et de sophistication.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_305",
+    "tier": 3,
+    "routing_reasons": [
+      "Budget 10K: +10",
+      "Escalated: Tier 2 detected VIC/Ultimate with low confidence"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

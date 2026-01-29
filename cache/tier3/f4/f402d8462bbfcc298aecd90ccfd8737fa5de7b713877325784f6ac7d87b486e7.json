@@ -1,0 +1,90 @@
+{
+  "cached_at": "2026-01-29T09:56:01.399263",
+  "cache_key": "f402d8462bbfcc298aecd90ccfd8737fa5de7b713877325784f6ac7d87b486e7",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "travel_frequent",
+      "jet_setter",
+      "music_lover",
+      "vegetarian",
+      "professor",
+      "leather_goods",
+      "art_collector",
+      "medical_specialist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-25K",
+    "budget_min": 21000,
+    "budget_max": 25000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "daughter",
+        "son"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "graduation_gift"
+    ],
+    "urgency": "this_spring",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Singapur",
+        "Malediven"
+      ],
+      "events": [
+        "Symposium",
+        "private Präsentation neue Kollektion"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "The clients have a strong interest in craftsmanship and historical traditions, which could be leveraged in product recommendations."
+    ],
+    "profession": "neurosurgeon",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are long-term VICs with a strong academic and professional background, indicating a high likelihood of purchase. Their interests and lifestyle suggest a high engagement with luxury products.",
+    "model_name": "gpt-4o",
+    "cost": 0.0064150000000000006,
+    "age": null,
+    "gender": null
+  }
+}

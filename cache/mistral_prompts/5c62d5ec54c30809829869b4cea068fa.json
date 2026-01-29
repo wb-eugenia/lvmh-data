@@ -1,0 +1,67 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "pescatarian",
+    "shopping_with_spouse",
+    "gift_for_colleague",
+    "art_collector",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Milano",
+    "Parigi"
+  ],
+  "events": [
+    "fashion shows",
+    "runway events",
+    "fashion weeks"
+  ],
+  "professions": [],
+  "budget_range": "20K-50K",
+  "budget_min": 20000,
+  "budget_max": 50000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [
+    "fabric_allergy"
+  ],
+  "allergy_severity": "medium",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "colleague"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": "2024-09-01",
+  "days_until_event": 154,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "creative_designer",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP client with flexible budget inferred from context. Specific details about profession, lifestyle, and preferences provided. Allergy severity assumed medium due to lack of specific severity mention.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

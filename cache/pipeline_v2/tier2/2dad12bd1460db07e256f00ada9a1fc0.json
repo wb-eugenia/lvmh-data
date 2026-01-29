@@ -1,0 +1,76 @@
+{
+  "_cached_at": 1769677980.1890938,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "philanthropist",
+      "gift_for_grandchild",
+      "travel_frequent",
+      "pescatarian",
+      "gift_for_child",
+      "leather_goods",
+      "art_collector"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Danube"
+    ],
+    "events": [
+      "fundraising galas"
+    ],
+    "professions": [],
+    "budget_range": "50K+",
+    "budget_min": 50000,
+    "budget_max": null,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "child",
+        "grandchild"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_executive",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with high budget flexibility and multiple gift opportunities. Detailed lifestyle and dietary information provided. Some inference required for specific product mentions and exact occasions.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_342",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12",
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

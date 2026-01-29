@@ -1,0 +1,69 @@
+{
+  "_cached_at": 1769676951.5811362,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_luggage",
+      "latex_allergy",
+      "vegan",
+      "ready_to_wear"
+    ],
+    "products_mentioned": [
+      "bolso trabajo"
+    ],
+    "brands_mentioned": [],
+    "locations": [
+      "Alpes"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "2K-5K",
+    "budget_min": 4000,
+    "budget_max": 6000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "latex_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "architect",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client status inferred as first_visit, budget inferred from initial mention of 5K, latex allergy detected with medium severity, vegan dietary preference, and interest in sustainable materials and professional work bag.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_129",
+    "tier": 2,
+    "routing_reasons": [
+      "Intent: Conditional: +8",
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

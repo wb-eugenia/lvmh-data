@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1769677830.5764935,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "travel_frequent",
+      "pescatarian",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 5600,
+    "budget_max": 8400,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian",
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "chef",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client potentiel excellent avec budget explicite et contexte détaillé sur la profession et les préférences alimentaires. Pas de date spécifique mentionnée.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_318",
+    "tier": 2,
+    "routing_reasons": [
+      "Intent: Negation: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

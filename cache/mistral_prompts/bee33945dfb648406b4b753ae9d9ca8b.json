@@ -1,0 +1,70 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "gift_for_spouse",
+    "philanthropist",
+    "travel_frequent",
+    "pescatarian",
+    "watches",
+    "shopping_with_spouse",
+    "lactose_intolerance",
+    "leather_goods",
+    "jewelry"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Cambodge",
+    "Thaïlande"
+  ],
+  "events": [
+    "galas bienfaisance annuels"
+  ],
+  "professions": [],
+  "budget_range": "30K-100K",
+  "budget_min": 30000,
+  "budget_max": 120000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [
+    "lactose_intolerance"
+  ],
+  "allergy_severity": "medium",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "spouse"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding_anniversary"
+  ],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": null,
+  "processing_tier": "tier2",
+  "confidence": 0.95,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with high budget flexibility, specific professions, dietary restrictions, and travel plans mentioned. Multiple interests in watches and jewelry, with a significant anniversary occasion.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

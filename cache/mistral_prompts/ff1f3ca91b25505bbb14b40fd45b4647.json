@@ -1,0 +1,58 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "leather_goods",
+    "travel_luggage",
+    "vegetarian",
+    "shopping_with_spouse"
+  ],
+  "products_mentioned": [
+    "sac voyage professionnel"
+  ],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [],
+  "professions": [],
+  "budget_range": "5K-10K",
+  "budget_min": 5000,
+  "budget_max": 5500,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "first_visit",
+  "allergies": [
+    "sun_allergy"
+  ],
+  "allergy_severity": "medium",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": "2024-09-01",
+  "days_until_event": 154,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "creative_designer",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Budget explicite, profession et statut client inférés, allergie détectée, contexte professionnel et personnel détaillé",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

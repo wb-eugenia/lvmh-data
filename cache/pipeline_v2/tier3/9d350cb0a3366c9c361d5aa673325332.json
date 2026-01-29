@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1769677748.9850225,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "travel_frequent",
+      "womenswear",
+      "leather_goods",
+      "pilates",
+      "vegan",
+      "medical_specialist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 5000,
+    "budget_max": 10000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "potential_vic",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "daughter"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "self_reward"
+    ],
+    "urgency": "next_month",
+    "event_date": "2024-02-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Miami",
+        "Dubai"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client is a new potential VIC with a strong professional network, indicating potential for referrals."
+    ],
+    "profession": "medical_specialist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The client is a high-potential new customer with a clear interest in high-quality, durable leather goods. Her profession and lifestyle suggest a strong likelihood of future purchases and referrals.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_309",
+    "tier": 3,
+    "routing_reasons": [
+      "🚨 Rgpd Legal: +10",
+      "🔒 RGPD detected → Force Tier 2+ (+30 pts)",
+      "🚨 Critical risk → Force Tier 3"
+    ],
+    "routing_confidence": 0.95,
+    "from_cache": false
+  }
+}

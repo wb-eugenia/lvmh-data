@@ -1,0 +1,83 @@
+{
+  "cached_at": "2026-01-29T09:57:19.595424",
+  "cache_key": "5e6d0faa096aefd587eb565af884676ad5e33219086289fe1f6efb48a44a4485",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "jet_setter",
+      "music_lover",
+      "producer",
+      "luxury_retail",
+      "vegan"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "14K+",
+    "budget_min": 14000,
+    "budget_max": null,
+    "budget_confidence": "inferred_weak",
+    "budget_amount": null,
+    "client_status": "potential_vic",
+    "allergies": [
+      "pollen_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "self"
+      ],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "career_milestone"
+    ],
+    "urgency": "flexible",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "California"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Le client a une forte présence sur les réseaux sociaux avec 2M de followers, ce qui pourrait être exploité pour des collaborations ou des partenariats."
+    ],
+    "profession": "producer",
+    "processing_tier": "tier3",
+    "confidence": 0.92,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un producteur musical avec un budget flexible et un intérêt pour des pièces de luxe pour célébrer un succès professionnel. Il a une allergie sévère au pollen et est vegan par conviction éthique. Son réseau étendu dans l'industrie musicale et sa présence sur les réseaux sociaux indiquent un potentiel de visibilité et de références.",
+    "model_name": "gpt-4o",
+    "cost": 0.00647,
+    "age": null,
+    "gender": null
+  }
+}

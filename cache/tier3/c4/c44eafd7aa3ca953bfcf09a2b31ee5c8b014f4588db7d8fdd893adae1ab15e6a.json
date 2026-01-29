@@ -1,16 +1,17 @@
 {
-  "cached_at": "2026-01-28T23:49:09.892972",
+  "cached_at": "2026-01-29T09:54:27.904812",
   "cache_key": "c44eafd7aa3ca953bfcf09a2b31ee5c8b014f4588db7d8fdd893adae1ab15e6a",
   "result": {
     "note_id": null,
     "client_id": null,
     "tags": [
       "world_traveler",
-      "architect",
-      "travel_frequent",
-      "art_lover",
+      "nature_lover",
       "vegetarian",
-      "leather_goods"
+      "architect",
+      "leather_goods",
+      "travel_luggage",
+      "art_lover"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -22,7 +23,7 @@
     "budget_max": 5000,
     "budget_confidence": "explicit",
     "budget_amount": null,
-    "client_status": "vic",
+    "client_status": "regular",
     "allergies": [
       "pollen_allergy"
     ],
@@ -42,9 +43,9 @@
     "occasions": [
       "birthday_gift"
     ],
-    "urgency": "this_month",
+    "urgency": "not_urgent",
     "event_date": "2026-06-01",
-    "days_until_event": 123,
+    "days_until_event": 124,
     "urgency_level": null,
     "products": [],
     "entities": {
@@ -53,15 +54,7 @@
       "locations": [
         "Corse"
       ],
-      "events": [
-        "GR20"
-      ],
-      "people_mentioned": [
-        "Mme Girard",
-        "Mari professeur université",
-        "Fille architecte",
-        "Fils jardinier chef restaurant étoilé"
-      ]
+      "events": []
     },
     "implicit_signals": {
       "purchase_intent": "high",
@@ -75,7 +68,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "La cliente a une allergie sévère au pollen, mais cela ne nécessite pas de drapeau d'urgence immédiat."
+      "Client régulière depuis 2020, passionnée par la nature et les jardins botaniques, prépare un voyage pour le GR20 en Corse."
     ],
     "profession": "architect",
     "processing_tier": "tier3",
@@ -83,9 +76,9 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "Mme Girard est une cliente régulière avec un budget clairement défini et des préférences précises pour des sacs en cuir dans des tons naturels. Son intérêt pour les jardins botaniques et les livres anciens indique une passion pour la nature et l'élégance, ce qui est cohérent avec ses choix de produits.",
+    "reasoning": "Mme Girard est une cliente régulière avec un budget clairement défini. Elle a des préférences spécifiques pour les couleurs naturelles et élégantes, et elle a une allergie sévère au pollen. Son intérêt pour les sacs de travail et son style de vie actif sont bien établis.",
     "model_name": "gpt-4o",
-    "cost": 0.0063100000000000005,
+    "cost": 0.006235,
     "age": null,
     "gender": null
   }

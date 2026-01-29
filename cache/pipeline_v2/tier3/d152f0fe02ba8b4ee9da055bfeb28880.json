@@ -1,0 +1,95 @@
+{
+  "_cached_at": 1769677706.1230698,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "music_lover",
+      "gluten_free",
+      "sustainable_values",
+      "vegan",
+      "medical_specialist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "12K-16K",
+    "budget_min": 12000,
+    "budget_max": 16000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "gluten_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "partner"
+      ],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "career_milestone"
+    ],
+    "urgency": "flexible",
+    "event_date": "2026-07-01",
+    "days_until_event": 154,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Camino Santiago",
+        "Nepal"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "The clients' interests in music and hiking, as well as their professional network, suggest potential for future engagement and upsell opportunities."
+    ],
+    "profession": "medical_specialist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are first-time customers with a high potential due to their professional status and interests. Their dietary preferences and severe gluten allergy are critical considerations. The budget is flexible around 14K, and they are interested in sustainable materials.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_302",
+    "tier": 3,
+    "routing_reasons": [
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1769677839.4649546,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_parent",
+      "travel_frequent",
+      "pescatarian",
+      "shopping_with_spouse",
+      "watches",
+      "leather_goods",
+      "ready_to_wear"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Luxembourg",
+      "Tanzania",
+      "Zürich"
+    ],
+    "events": [
+      "Safari Tanzania"
+    ],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 11200,
+    "budget_max": 16800,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "regular",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "parent"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Regular clients with flexible budget inferred from their status and spending habits. Professions and dietary preferences explicitly mentioned. Travel and lifestyle details extracted. No specific products or brands mentioned, but categories inferred from their preferences.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_320",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 10K: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

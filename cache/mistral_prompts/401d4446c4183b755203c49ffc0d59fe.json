@@ -1,0 +1,59 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "vegetarian",
+    "leather_goods",
+    "travel_luggage",
+    "pollen_allergy"
+  ],
+  "products_mentioned": [
+    "sacs travail"
+  ],
+  "brands_mentioned": [],
+  "locations": [
+    "Corse"
+  ],
+  "events": [],
+  "professions": [],
+  "budget_range": "2K-5K",
+  "budget_min": 3600,
+  "budget_max": 5400,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "regular",
+  "allergies": [
+    "pollen_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "architecte_paysagiste",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Budget explicite, profession et statut client clairs, allergie sévère détectée, régime végétarien mentionné, pas de date ou d'urgence spécifiques",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

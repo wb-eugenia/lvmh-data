@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1769678194.6710207,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "pescatarian",
+      "yoga",
+      "womenswear",
+      "gastronome",
+      "leather_goods",
+      "small_leather",
+      "allergy",
+      "art_lover",
+      "influencer",
+      "luxury_retail"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-7K",
+    "budget_min": 5000,
+    "budget_max": 7000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "nut_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "none",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Tokyo",
+        "Paris"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "La cliente est une nouvelle cliente potentielle avec un intérêt pour les produits de maroquinerie raffinés et créatifs, en lien avec son métier de cheffe pâtissière et son style de vie influent."
+    ],
+    "profession": "chef_patissier",
+    "processing_tier": "tier3",
+    "confidence": 0.97,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Mme Morel est une cliente potentielle avec un intérêt marqué pour des sacs élégants et uniques, en cuir, dans des tons pastel. Elle a une forte présence sur Instagram, ce qui indique un potentiel d'influence. Son allergie sévère aux fruits à coque nécessite une attention particulière.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_381",
+    "tier": 3,
+    "routing_reasons": [
+      "Budget 50K: +15",
+      "Allergy Severe: +12",
+      "Intent: Comparison: +12",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

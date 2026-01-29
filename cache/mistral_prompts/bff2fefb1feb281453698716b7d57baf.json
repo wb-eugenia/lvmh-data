@@ -1,0 +1,66 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "latex_allergy",
+    "travel_frequent",
+    "art_collector",
+    "ready_to_wear",
+    "gift_for_artist",
+    "vegan"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Basel",
+    "Frieze",
+    "Art Basel Miami Beach"
+  ],
+  "events": [
+    "private presentation"
+  ],
+  "professions": [],
+  "budget_range": "20K-50K",
+  "budget_min": 20000,
+  "budget_max": 50000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [
+    "latex_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegan"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "artist"
+    ],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding_anniversary"
+  ],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "director_fondation_art",
+  "processing_tier": "tier2",
+  "confidence": 0.95,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP client with high budget flexibility, clear lifestyle and dietary preferences, specific allergy mentioned, and strong professional background in the art world.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

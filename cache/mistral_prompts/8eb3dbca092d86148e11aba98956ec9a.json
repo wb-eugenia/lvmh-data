@@ -1,0 +1,55 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "pescatarian",
+    "leather_goods",
+    "travel_luggage",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "congresos gestión hospitalaria mundial"
+  ],
+  "professions": [],
+  "budget_range": "10K-20K",
+  "budget_min": 10000,
+  "budget_max": 20000,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "first_visit",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": "2024-04-01",
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "medical_executive",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Client status inferred as first_visit due to 'nuevo cliente potencial'. Budget range inferred from explicit mention of 10K. Profession inferred as medical_executive due to 'director operaciones hospital'. Dietary preference explicitly mentioned as pescatarian. No allergies mentioned. No specific products or brands mentioned. Events inferred from 'viaja congresos gestión hospitalaria mundial'.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

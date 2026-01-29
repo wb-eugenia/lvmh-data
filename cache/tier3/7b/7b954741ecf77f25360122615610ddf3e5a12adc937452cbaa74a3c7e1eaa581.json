@@ -1,0 +1,86 @@
+{
+  "cached_at": "2026-01-29T09:56:21.372277",
+  "cache_key": "7b954741ecf77f25360122615610ddf3e5a12adc937452cbaa74a3c7e1eaa581",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "professional_athlete",
+      "menswear",
+      "leather_goods",
+      "travel_luggage",
+      "ski",
+      "outerwear"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "6K-7K",
+    "budget_min": 6000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "latex_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "none",
+    "event_date": "2026-05-01",
+    "days_until_event": 93,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [
+        "sacs nouveaux collection printemps"
+      ],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": [
+        "championnat France ski alpin masters"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client intéressé par des sacs en cuir noir navy pour usage professionnel, avec une préférence pour la robustesse et la fonctionnalité."
+    ],
+    "profession": "medical_specialist",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un VIC avec un budget explicite et des besoins spécifiques liés à sa profession et ses loisirs. L'allergie au latex est critique pour sa profession médicale.",
+    "model_name": "gpt-4o",
+    "cost": 0.006205,
+    "age": null,
+    "gender": null
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "cached_at": "2026-01-29T10:14:29.900518",
+  "cache_key": "df57f12262b76d77c50c0422714102fddaebb5137adc11aa6e149c260ad43583",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "tech_enthusiast",
+      "professional_athlete",
+      "wedding_gift",
+      "vegetarian",
+      "travel_luggage",
+      "data_scientist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-7K",
+    "budget_min": 5000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "nut_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_gift"
+    ],
+    "urgency": "not_urgent",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": [],
+      "opportunities_upsell": [
+        "show durable travel collection"
+      ]
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client intéressé par la qualité et la fonctionnalité, mentionne un intérêt potentiel de ses collègues pour des produits similaires."
+    ],
+    "profession": "data_scientist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un nouveau prospect avec un profil tech analytique, intéressé par un sac de voyage fonctionnel et moderne. Il a une allergie sévère aux arachides, ce qui nécessite une attention particulière. Le budget est clairement défini à 6K.",
+    "model_name": "gpt-4o",
+    "cost": 0.0062475,
+    "age": null,
+    "gender": null
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "gift_for_spouse",
+    "travel_frequent",
+    "pescatarian",
+    "shopping_with_spouse",
+    "leather_goods",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [
+    "Munich",
+    "Shanghai",
+    "Rotterdam"
+  ],
+  "events": [
+    "Silberhochzeit"
+  ],
+  "professions": [],
+  "budget_range": "20K-50K",
+  "budget_min": 21000,
+  "budget_max": 52500,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "spouse"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding_anniversary"
+  ],
+  "urgency": "this_month",
+  "event_date": "2024-04-15",
+  "days_until_event": 15,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "entrepreneur_established",
+  "processing_tier": "tier2",
+  "confidence": 0.92,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with a flexible budget and specific occasion. Detailed professional and lifestyle information provided. Specific dietary preferences and no allergies mentioned. Urgency inferred from the planned event and follow-up timing.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1769677734.5353682,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "jet_setter",
+      "sustainable_values",
+      "influencer",
+      "luxury_cars",
+      "vegan",
+      "sports_extreme"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "8K-8K",
+    "budget_min": 8000,
+    "budget_max": 8000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "nut_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "today",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Patagonie"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": true,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Le client est intéressé par des partenariats potentiels et des événements de marque, ce qui pourrait être exploré pour renforcer la relation."
+    ],
+    "profession": "influencer",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un influenceur avec un large public, ce qui indique un potentiel de partenariat et d'achats réguliers. Son intérêt pour le storytelling et l'authenticité des matériaux montre une forte intention d'achat et un alignement avec les valeurs de la marque.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_306",
+    "tier": 3,
+    "routing_reasons": [
+      "Budget 50K: +15",
+      "Allergy Severe: +12",
+      "Urgent: +8",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

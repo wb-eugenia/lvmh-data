@@ -102,3 +102,48 @@ TOTAL COST: ${total_cost:.4f}
         self.total_output_tokens = 0
         self.call_count = 0
         self.by_step = {}
+
+    def to_dict(self, model: str = 'gpt-4o-mini') -> Dict:
+        """Convert current state to dictionary for persistence."""
+        from datetime import datetime
+        return {
+            'timestamp': datetime.now().isoformat(),
+            'model': model,
+            'call_count': self.call_count,
+            'total_input_tokens': self.total_input_tokens,
+            'total_output_tokens': self.total_output_tokens,
+            'total_cost_usd': self.get_total_cost(model),
+            'steps': self.by_step
+        }
+    
+    def export_to_csv(self, path: str = 'logs/cost_metrics.csv', model: str = 'gpt-4o-mini') -> str:
+        """
+        Export metrics to CSV for historical tracking.
+        Appends to existing file if it exists.
+        """
+        import csv
+        import os
+        from datetime import datetime
+        from pathlib import Path
+        
+        Path('logs').mkdir(exist_ok=True)
+        
+        data = {
+            'timestamp': datetime.now().isoformat(),
+            'model': model,
+            'call_count': self.call_count,
+            'input_tokens': self.total_input_tokens,
+            'output_tokens': self.total_output_tokens,
+            'total_cost_usd': round(self.get_total_cost(model), 6)
+        }
+        
+        file_exists = os.path.exists(path)
+        
+        with open(path, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=data.keys())
+            if not file_exists:
+                writer.writeheader()
+            writer.writerow(data)
+        
+        logger.info(f"📊 Metrics exported to {path}")
+        return path

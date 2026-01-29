@@ -55,7 +55,6 @@ class ExtractionResult(BaseModel):
     dietary: List[str] = Field(default_factory=list, description="Dietary restrictions")
     
     relationship_context: Dict[str, List[str]] = Field(default_factory=dict, description="Relationships (shopping_with, gift_for)")
-    relationship_context: Dict[str, List[str]] = Field(default_factory=dict, description="Relationships (shopping_with, gift_for)")
     key_dates: List[Dict[str, Any]] = Field(default_factory=list, description="Important dates mentioned")
     
     # Enhanced Fields

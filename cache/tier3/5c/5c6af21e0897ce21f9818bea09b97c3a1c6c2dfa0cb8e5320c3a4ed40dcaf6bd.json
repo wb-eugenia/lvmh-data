@@ -1,0 +1,85 @@
+{
+  "cached_at": "2026-01-29T10:05:38.892742",
+  "cache_key": "5c6af21e0897ce21f9818bea09b97c3a1c6c2dfa0cb8e5320c3a4ed40dcaf6bd",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "philanthropist",
+      "vip",
+      "womenswear",
+      "vegetarian",
+      "leather_goods",
+      "menswear",
+      "medical_specialist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-25K",
+    "budget_min": 20000,
+    "budget_max": 25000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse",
+        "family"
+      ],
+      "shopping_with": [
+        "together"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "not_specified",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": [
+        "pediatric conferences",
+        "fundraising galas"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "The clients' professions and philanthropic activities suggest potential for future collaborations or sponsorships."
+    ],
+    "profession": "medical_specialist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are long-term VIPs with a clear interest in high-quality, precise craftsmanship, paralleling their professional values. Their budget is flexible, indicating a willingness to spend slightly more if needed. Their professional and philanthropic activities suggest a high level of engagement and influence within their community.",
+    "model_name": "gpt-4o",
+    "cost": 0.006325000000000001,
+    "age": null,
+    "gender": null
+  }
+}

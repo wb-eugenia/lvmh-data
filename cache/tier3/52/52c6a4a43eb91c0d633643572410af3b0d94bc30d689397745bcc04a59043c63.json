@@ -1,0 +1,82 @@
+{
+  "cached_at": "2026-01-29T10:06:12.815889",
+  "cache_key": "52c6a4a43eb91c0d633643572410af3b0d94bc30d689397745bcc04a59043c63",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "tech_enthusiast",
+      "spa_wellness",
+      "product_manager",
+      "vegetarian",
+      "menswear",
+      "travel_luggage",
+      "gluten_intolerance",
+      "entrepreneur_tech"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-5K",
+    "budget_min": 5000,
+    "budget_max": 5000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "gluten_intolerance"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "companion"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "none",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Silicon Valley"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Le client est intéressé par des produits qui allient design et fonctionnalité, en lien avec son expertise en UX et design thinking."
+    ],
+    "profession": "product_manager",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un product manager dans le secteur tech, avec un intérêt marqué pour le design et l'innovation. Il a une allergie importante au gluten et suit un régime végétarien. Son budget est clairement défini à 5K pour un sac de voyage professionnel, et il est intéressé par des designs modernes et minimalistes.",
+    "model_name": "gpt-4o",
+    "cost": 0.0063349999999999995,
+    "age": null,
+    "gender": null
+  }
+}

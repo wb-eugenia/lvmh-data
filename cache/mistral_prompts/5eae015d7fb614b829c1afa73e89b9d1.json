@@ -1,0 +1,59 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "ready_to_wear",
+    "leather_goods",
+    "vegetarian"
+  ],
+  "products_mentioned": [
+    "sac travail professionnel"
+  ],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "mariage"
+  ],
+  "professions": [],
+  "budget_range": "2K-5K",
+  "budget_min": 3200,
+  "budget_max": 4800,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "first_visit",
+  "allergies": [
+    "pollen_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding"
+  ],
+  "urgency": null,
+  "event_date": "2024-09-01",
+  "days_until_event": 216,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "legal_lawyer",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Client status inferred as first_visit due to 'nouvelle cliente'. Budget range adjusted based on explicit mention of 4K. Allergy severity set to high due to 'sévère'. Event date for wedding set to September 2024, with days until calculated accordingly.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

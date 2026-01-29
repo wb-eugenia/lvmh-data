@@ -1,0 +1,86 @@
+{
+  "cached_at": "2026-01-29T10:06:36.810782",
+  "cache_key": "bcd98c1ece49079512735e1e8f5fe1bd1360550f0d22f0d70484d58854b67d47",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "digital_transformation",
+      "tech_enthusiast",
+      "world_traveler",
+      "travel_frequent",
+      "business_owner",
+      "vegetarian",
+      "wedding_anniversary",
+      "entrepreneur_tech"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "15K-20K",
+    "budget_min": 15000,
+    "budget_max": 20000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse",
+        "family",
+        "friends"
+      ],
+      "shopping_with": [
+        "together"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "spring",
+    "event_date": "2026-04-15",
+    "days_until_event": 77,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Web Summit Lisbon"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "The clients are interested in smart products and IoT, which aligns with their professional background and personal interests."
+    ],
+    "profession": "entrepreneur_tech",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are long-term VICs with a clear interest in technology and digital transformation, indicating a high purchase intent. Their professions and lifestyle suggest a strong affinity for modern, functional, and innovative products.",
+    "model_name": "gpt-4o",
+    "cost": 0.0063750000000000005,
+    "age": null,
+    "gender": null
+  }
+}

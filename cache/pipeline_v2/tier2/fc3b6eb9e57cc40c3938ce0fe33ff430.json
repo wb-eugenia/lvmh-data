@@ -1,0 +1,76 @@
+{
+  "_cached_at": 1769677499.4574633,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "shopping_with_spouse",
+      "gift_for_colleague",
+      "vegetarian",
+      "shopping_with_children",
+      "ready_to_wear",
+      "art_collector"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Viena",
+      "Berlin",
+      "New York"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 12000,
+    "budget_max": 24000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "colleague"
+      ],
+      "shopping_with": [
+        "spouse",
+        "children"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": "2024-09-01",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "director_orchestra",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client VIP avec budget explicite et flexible, informations détaillées sur le style et les préférences, mais pas de produits spécifiques mentionnés.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_254",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

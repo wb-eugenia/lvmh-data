@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1769679999.4716783,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gluten_free",
+      "wine_enthusiast",
+      "gift_for_children",
+      "shopping_with_spouse",
+      "art_collector",
+      "leather_goods",
+      "pescatarian",
+      "watches",
+      "travel_frequent",
+      "gift_for_grandchildren"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Mediterranean",
+      "Orient Express"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 23000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "gluten_sensitivity"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "children",
+        "grandchildren"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with high budget flexibility, multiple gift recipients, specific dietary restrictions, and detailed lifestyle preferences.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_334",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "_cached_at": 1769679976.7086074,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "shellfish_allergy",
+      "travel_frequent",
+      "vegan",
+      "travel_luggage",
+      "ready_to_wear"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Australia",
+      "Japan"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "2K-5K",
+    "budget_min": 4000,
+    "budget_max": 5000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "shellfish_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": null,
+    "event_date": "2024-06-01",
+    "days_until_event": 123,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "professional_dancer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Client status and budget explicit, allergy severity high, dietary preference clear, gift occasion and date inferred from context",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_127",
+    "tier": 2,
+    "routing_reasons": [
+      "Intent: Comparison: +12"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

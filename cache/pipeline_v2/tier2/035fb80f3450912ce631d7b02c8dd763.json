@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1769679999.3614647,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "art_collector",
+      "shellfish_allergy",
+      "ready_to_wear",
+      "vegan",
+      "travel_luggage",
+      "travel_frequent",
+      "gift_for_partner"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Australia",
+      "Japan"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "2K-5K",
+    "budget_min": 2000,
+    "budget_max": 5000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "shellfish_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "anniversary"
+    ],
+    "urgency": null,
+    "event_date": "2024-06-01",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "professional_dancer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "First visit client with explicit budget and clear professional background. Severe allergy detected. Future potential for higher budget inferred from context. Travel and performance needs identified.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_327",
+    "tier": 2,
+    "routing_reasons": [
+      "Intent: Negation: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

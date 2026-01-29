@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1769677204.3292766,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "tech_enthusiast",
+      "latex_allergy",
+      "pescatarian",
+      "jet_setter",
+      "fashion_industry",
+      "leather_goods",
+      "travel_luggage",
+      "photographer"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 7000,
+    "budget_max": 10000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "latex_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "companion"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "none",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [
+        "Hasselblad",
+        "Leica"
+      ],
+      "locations": [
+        "New York",
+        "Milan",
+        "Tokyo"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client intéressé par des sacs de voyage en cuir noir ou cognac, modernes et adaptés à son style de vie créatif et nomade."
+    ],
+    "profession": "photographer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un photographe de mode avec un budget explicite pour des sacs de voyage. Il a une allergie importante au latex et un style de vie très actif et créatif, ce qui influence ses préférences pour des produits esthétiques et fonctionnels.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_176",
+    "tier": 3,
+    "routing_reasons": [
+      "Budget 50K: +15",
+      "Allergy Medium: +6",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

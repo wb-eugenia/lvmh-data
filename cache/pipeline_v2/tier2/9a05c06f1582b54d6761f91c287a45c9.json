@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1769677062.2286897,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "travel_frequent",
+      "shopping_with_spouse",
+      "gift_for_child",
+      "vegetarian",
+      "leather_goods",
+      "travel_luggage",
+      "art_collector"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Peru"
+    ],
+    "events": [
+      "expedition celebration"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 18000,
+    "budget_max": 54000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse",
+        "child"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "this_month",
+    "event_date": "2026-03-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "academic_anthropology_archaeology",
+    "processing_tier": "tier2",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with high combined budget and specific preferences. Detailed professional and personal context provided, including travel plans and family information. Clear dietary preferences and shopping context.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_147",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

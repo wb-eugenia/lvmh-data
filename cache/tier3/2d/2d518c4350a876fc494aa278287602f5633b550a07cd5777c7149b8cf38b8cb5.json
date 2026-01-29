@@ -1,0 +1,75 @@
+{
+  "cached_at": "2026-01-29T10:02:30.738723",
+  "cache_key": "2d518c4350a876fc494aa278287602f5633b550a07cd5777c7149b8cf38b8cb5",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "tech_enthusiast",
+      "travel_frequent",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-5K",
+    "budget_min": 5000,
+    "budget_max": 5000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "metal_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "next_month",
+    "event_date": "2024-01-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Le client a un profil unique axé sur la sécurité et la technologie, ce qui pourrait nécessiter des recommandations de produits spécialisés."
+    ],
+    "profession": "tech_engineer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un ingénieur en cybersécurité avec un intérêt marqué pour la sécurité et la technologie. Il recherche un sac de voyage sécurisé, ce qui indique une forte intention d'achat. Son budget est clairement défini à 5K. L'allergie aux métaux est importante mais ne nécessite pas d'urgence vitale. Le client est intéressé par des produits innovants avec des fonctionnalités de sécurité avancées.",
+    "model_name": "gpt-4o",
+    "cost": 0.006235,
+    "age": null,
+    "gender": null
+  }
+}

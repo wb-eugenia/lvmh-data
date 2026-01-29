@@ -1,0 +1,71 @@
+{
+  "_cached_at": 1769677575.8554368,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "travel_frequent",
+      "pescatarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [
+      "private preview",
+      "fundraising galas"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 21000,
+    "budget_max": 42000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "medical_surgeon, medical_physician",
+    "processing_tier": "tier2",
+    "confidence": 0.92,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with specific professions and detailed context. Budget inferred from VIP status and mentioned flexibility. Clear occasion and dietary preferences. High confidence due to detailed client history and specific needs.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_277",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

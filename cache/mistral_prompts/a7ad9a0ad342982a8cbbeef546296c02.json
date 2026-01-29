@@ -1,0 +1,59 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "leather_goods",
+    "latex_allergy",
+    "pescatarian"
+  ],
+  "products_mentioned": [
+    "sacs nouveaux collection printemps"
+  ],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "championnat France"
+  ],
+  "professions": [],
+  "budget_range": "5K-10K",
+  "budget_min": 6500,
+  "budget_max": 6500,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "regular",
+  "allergies": [
+    "latex_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding_anniversary"
+  ],
+  "urgency": null,
+  "event_date": "2026-05-01",
+  "days_until_event": 92,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "medical_surgeon",
+  "processing_tier": "tier2",
+  "confidence": 0.92,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Extraction complète: profession, budget explicite, allergie, régime alimentaire, occasion, et contexte familial détaillé",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

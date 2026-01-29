@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1769678005.6637473,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "director",
+      "world_traveler",
+      "art_dealer",
+      "jet_setter",
+      "fashion_industry",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 11000,
+    "budget_max": 20000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "textile_dye_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "team"
+      ],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "career_milestone"
+    ],
+    "urgency": "none",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "fashion weeks",
+        "capitals"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Le client a un intérêt marqué pour les pièces exclusives et les collaborations artistiques, ce qui pourrait influencer les recommandations de produits."
+    ],
+    "profession": "director",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un directeur artistique dans la mode, avec un budget flexible et un intérêt pour les collaborations uniques. Son réseau et son statut VIP renforcent la probabilité d'un achat significatif.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_346",
+    "tier": 3,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Allergy Medium: +6",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

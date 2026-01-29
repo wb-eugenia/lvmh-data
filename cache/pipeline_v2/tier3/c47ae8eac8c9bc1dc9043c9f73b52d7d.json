@@ -1,15 +1,15 @@
 {
-  "_cached_at": 1769640567.018257,
+  "_cached_at": 1769676880.80442,
   "payload": {
     "note_id": null,
     "client_id": null,
     "tags": [
-      "vegan",
-      "sustainable_values",
-      "handbags",
-      "travel_luggage",
       "tech_enthusiast",
-      "leather_goods"
+      "leather_goods",
+      "travel_luggage",
+      "handbags",
+      "sustainable_values",
+      "vegan"
     ],
     "products_mentioned": [],
     "brands_mentioned": [],
@@ -25,7 +25,7 @@
     "allergies": [
       "nut_allergy"
     ],
-    "allergy_severity": "low",
+    "allergy_severity": "high",
     "dietary": [
       "vegan"
     ],
@@ -38,7 +38,9 @@
       ]
     },
     "key_dates": [],
-    "occasions": [],
+    "occasions": [
+      "future_gift_opportunities"
+    ],
     "urgency": "weekly_follow_up",
     "event_date": null,
     "days_until_event": null,
@@ -72,7 +74,7 @@
       "manual_review_required": false
     },
     "processing_notes": [
-      "Clients are first-time but ultra-high potential with a strong interest in establishing a luxury wardrobe post-liquidity event."
+      "Client is a high priority due to their potential for significant purchases and influence in the tech industry."
     ],
     "profession": "entrepreneur_tech",
     "processing_tier": "tier3",
@@ -80,7 +82,7 @@
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
     "error": null,
-    "reasoning": "The clients are high-profile with a significant budget and specific interests in sustainability and tech integration. Their professional background and lifestyle indicate a high likelihood of substantial purchases.",
+    "reasoning": "The clients are high-profile with a significant budget and specific interests in sustainability and innovation, indicating a strong purchase intent. The severe peanut allergy is a critical factor for product recommendations.",
     "model_name": "gpt-4o",
     "cost": 0.0001,
     "age": null,

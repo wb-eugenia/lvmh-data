@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1769677450.1482406,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "travel_frequent",
+      "wedding_gift",
+      "vegetarian",
+      "architect",
+      "art_collector",
+      "art_lover",
+      "designer"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-25K",
+    "budget_min": 20000,
+    "budget_max": 25000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "together"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "wedding_anniversary"
+    ],
+    "urgency": "this_spring",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": [
+        "silberne Hochzeit"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "The clients have a strong design and architecture background, influencing their preferences and purchase decisions."
+    ],
+    "profession": "architect",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are long-term VICs with a strong interest in design and architecture, indicating a high likelihood of purchase. Their professions and lifestyle suggest a high appreciation for quality and craftsmanship.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_240",
+    "tier": 3,
+    "routing_reasons": [
+      "Budget 10K: +10",
+      "Escalated: Tier 2 detected VIC/Ultimate with low confidence"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

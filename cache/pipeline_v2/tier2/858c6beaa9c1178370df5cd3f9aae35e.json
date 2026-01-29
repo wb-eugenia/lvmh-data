@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1769677808.1334743,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_partner",
+      "travel_frequent",
+      "art_collector",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Mailand",
+      "Wien",
+      "New York",
+      "Sydney"
+    ],
+    "events": [
+      "Met Opera Premiere"
+    ],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 13000,
+    "budget_max": 26000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "food_coloring_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "partner"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "birthday"
+    ],
+    "urgency": null,
+    "event_date": "2024-05",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "professional_singer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "First visit with high potential, flexible budget discussed, frequent travel, specific dietary and allergy information, and gift context mentioned.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_315",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 10K: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

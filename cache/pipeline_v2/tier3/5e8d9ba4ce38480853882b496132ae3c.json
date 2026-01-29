@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1769677298.5769415,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "equestrian",
+      "womenswear",
+      "vegetarian",
+      "leather_goods",
+      "notary",
+      "outerwear"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "7K-7K",
+    "budget_min": 7000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "pollen_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "this_month",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "La cliente est intéressée par des nouveautés automne et souhaite être rappelée en octobre."
+    ],
+    "profession": "notary",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "La cliente a exprimé un besoin clair pour un sac professionnel discret et luxueux, avec un budget explicite de 7K. Son statut de notaire et son intérêt pour la transmission patrimoniale et le savoir-faire artisanal suggèrent une forte intention d'achat. L'allergie sévère aux graminées et pollen est notée mais ne nécessite pas de drapeau d'urgence immédiat.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_201",
+    "tier": 3,
+    "routing_reasons": [
+      "Allergy Severe: +12",
+      "Allergy Medium: +6",
+      "Intent: Comparison: +12",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

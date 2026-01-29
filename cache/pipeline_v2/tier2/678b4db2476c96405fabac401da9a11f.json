@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1769679978.1755016,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "tech_engineer",
+      "shopping_with_spouse",
+      "leather_goods",
+      "vegetarian",
+      "travel_luggage"
+    ],
+    "products_mentioned": [
+      "sac voyage professionnel sécurisé"
+    ],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 4000,
+    "budget_max": 6000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "first_visit",
+    "allergies": [
+      "nickel_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "tech_engineer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Budget explicite, profession et allergie détectées, contexte tech sécurité unique",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_216",
+    "tier": 2,
+    "routing_reasons": [
+      "Allergy Medium: +6",
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

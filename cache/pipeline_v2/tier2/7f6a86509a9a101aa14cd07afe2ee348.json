@@ -1,0 +1,69 @@
+{
+  "_cached_at": 1769677493.4691532,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "shopping_with_spouse",
+      "leather_goods",
+      "ready_to_wear",
+      "vegan",
+      "wine_enthusiast"
+    ],
+    "products_mentioned": [
+      "sac professionnel moderne"
+    ],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-10K",
+    "budget_min": 5000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "new_client",
+    "allergies": [
+      "chemical_allergy"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": "2024-08-01",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "directrice_innovation_R&D",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Budget explicite, profession et statut client clairs, allergie et régime mentionnés, contexte professionnel détaillé",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_251",
+    "tier": 2,
+    "routing_reasons": [
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

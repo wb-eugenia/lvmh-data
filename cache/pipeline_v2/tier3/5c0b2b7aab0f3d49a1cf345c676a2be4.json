@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1769677375.7545757,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "womenswear",
+      "vegetarian",
+      "leather_goods",
+      "art_collector",
+      "art_lover"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "6K-7K",
+    "budget_min": 6000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "mold_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "next_month",
+    "event_date": "2024-02-01",
+    "days_until_event": 30,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "musée beaux-arts"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "La cliente est intéressée par des sacs en cuir dans des tons spécifiques qui correspondent à son environnement professionnel et culturel."
+    ],
+    "profession": "art_dealer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Mme Dubois est une nouvelle cliente potentielle avec un intérêt marqué pour les sacs élégants adaptés à son milieu professionnel et culturel. Son budget est clairement défini et elle a une allergie importante aux moisissures. Elle est très impliquée dans le monde de l'art, ce qui pourrait influencer ses choix de produits.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_221",
+    "tier": 3,
+    "routing_reasons": [
+      "Allergy Medium: +6",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

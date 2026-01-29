@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1769677845.374683,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "shopping_with_spouse",
+      "leather_goods",
+      "small_leather",
+      "ready_to_wear",
+      "vegan"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Bali"
+    ],
+    "events": [],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 18000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "regular",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": null,
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Budget inféré basé sur le statut de nouveaux clients à haut potentiel et la mention d'un budget très ouvert. Pas de date spécifique mentionnée, mais un voyage à Bali est prévu. Les professions et les modes de vie ont été identifiés clairement.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_324",
+    "tier": 2,
+    "routing_reasons": [
+      "Budget 10K: +10"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

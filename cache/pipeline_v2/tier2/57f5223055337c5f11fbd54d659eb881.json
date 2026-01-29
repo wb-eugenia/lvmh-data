@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1769676883.8804348,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "pescatarian",
+      "shopping_with_spouse",
+      "gift_for_family",
+      "gift_for_friend",
+      "leather_goods",
+      "art_collector",
+      "wine_enthusiast"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Rioja",
+      "Borgoña",
+      "Napa",
+      "Toscana",
+      "Nueva York"
+    ],
+    "events": [
+      "ARCO"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "lactose_intolerance"
+    ],
+    "allergy_severity": "medium",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "friend",
+        "family"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": null,
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "wine_producer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with inferred budget range due to flexibility. Detailed lifestyle and dietary preferences. Multiple locations and events mentioned. Some ambiguity in specific products and occasions.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_114",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

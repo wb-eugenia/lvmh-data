@@ -1,0 +1,76 @@
+{
+  "cached_at": "2026-01-29T10:07:00.096014",
+  "cache_key": "570664b466fdb895bbb29707050c33b81184b2c614e019c9ef97a9c3c5060908",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "leather_goods",
+      "menswear",
+      "construction_professional",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-7K",
+    "budget_min": 5000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "cement_dust"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "companion"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "next_month",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Le client est intéressé par des matériaux résistants aux conditions difficiles des chantiers."
+    ],
+    "profession": "tech_engineer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un ingénieur en construction avec des besoins spécifiques pour un sac de travail robuste. Il a une allergie sévère à la poussière de ciment, ce qui nécessite une attention particulière. Le budget est clairement défini à 6K.",
+    "model_name": "gpt-4o",
+    "cost": 0.0061975,
+    "age": null,
+    "gender": null
+  }
+}

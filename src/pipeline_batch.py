@@ -32,7 +32,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.smart_router import SmartRouterV3 as SmartRouter
 from src.tier1_rules import Tier1RulesEngine
-from src.tier2_groq import Tier2Groq
+from src.tier2_mistral import Tier2Mistral
 from src.extractor import TagExtractor
 from src.cache_manager import CacheManager
 from src.text_cleaner import MultilingualTextCleaner
@@ -72,13 +72,13 @@ class PipelineBatchV2:
         # Batch sizes (tunable based on rate limits)
         self.batch_sizes = {
             1: 100,  # Tier 1 = rules, très rapide
-            2: 10,   # Groq limit: concurrent requests
+            2: 50,   # Mistral: generous rate limits!
             3: 5,    # GPT-4 limit: stricter rate limits
         }
         
         # Concurrency semaphores
         self.semaphores = {
-            2: asyncio.Semaphore(10),  # Max 10 concurrent Groq calls
+            2: asyncio.Semaphore(50),  # Max 50 concurrent Mistral calls
             3: asyncio.Semaphore(5),   # Max 5 concurrent GPT-4 calls
         }
         
@@ -98,7 +98,7 @@ class PipelineBatchV2:
         """Lazy load Tier 2"""
         if self.tier2 is None:
             try:
-                self.tier2 = Tier2Groq()
+                self.tier2 = Tier2Mistral()
             except Exception as e:
                 print(f"⚠️ Tier 2 init failed: {e}")
                 self.tier2 = None
@@ -270,7 +270,7 @@ class PipelineBatchV2:
         return results
     
     # ─────────────────────────────────────────────────────────────
-    # Tier 2: Async Batches (Groq API)
+    # Tier 2: Async Batches (Mistral API)
     # ─────────────────────────────────────────────────────────────
     
     async def _process_tier2_batch(self, batch_group: BatchGroup) -> List[Dict]:

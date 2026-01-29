@@ -1,0 +1,62 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "travel_frequent",
+    "gift_for_child",
+    "vegetarian",
+    "leather_goods",
+    "art_collector",
+    "shellfish_allergy"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "family reunion"
+  ],
+  "professions": [],
+  "budget_range": "50K+",
+  "budget_min": 50000,
+  "budget_max": null,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [
+    "shellfish_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "child"
+    ],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [
+    "birthday"
+  ],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "medical_physician",
+  "processing_tier": "tier2",
+  "confidence": 0.95,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with high budget flexibility and specific preferences. Detailed lifestyle and professional information provided. Allergies and dietary restrictions noted. Multiple gift-giving occasions mentioned.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

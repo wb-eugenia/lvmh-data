@@ -1,0 +1,56 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "ready_to_wear",
+    "leather_goods",
+    "latex_allergy",
+    "vegetarian"
+  ],
+  "products_mentioned": [
+    "sac professionnel moderne"
+  ],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [],
+  "professions": [],
+  "budget_range": "5K-10K",
+  "budget_min": 5000,
+  "budget_max": 7000,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "first_visit",
+  "allergies": [
+    "latex_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "communication_corporate",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Budget explicite, profession identifiée, allergie détectée avec sévérité, régime alimentaire mentionné, contexte professionnel détaillé",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

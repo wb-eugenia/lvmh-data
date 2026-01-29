@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1769677695.0231755,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "professional",
+      "leather_goods",
+      "dentist",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-7K",
+    "budget_min": 5000,
+    "budget_max": 7000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vic",
+    "allergies": [
+      "pollen_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "birthday_gift"
+    ],
+    "urgency": "end_of_february",
+    "event_date": "2026-04-15",
+    "days_until_event": 77,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Nice"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client recommandé par une amie, potentiel pour fidélisation."
+    ],
+    "profession": "dentist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client a exprimé un besoin clair pour un sac professionnel avec des spécifications précises et a mentionné un budget explicite. L'allergie au pollen est notée mais ne nécessite pas de drapeau d'urgence.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_301",
+    "tier": 3,
+    "routing_reasons": [
+      "Allergy Severe: +12",
+      "Intent: Advisory: +15",
+      "⚠️ Negation context detected: +15",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

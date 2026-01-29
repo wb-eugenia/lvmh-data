@@ -1,0 +1,63 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "latex_allergy",
+    "travel_frequent",
+    "gift_for_artist",
+    "art_collector",
+    "ready_to_wear",
+    "jewelry",
+    "vegan"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "private_exhibition"
+  ],
+  "professions": [],
+  "budget_range": "20K-50K",
+  "budget_min": 18000,
+  "budget_max": 60000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [
+    "latex_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegan"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "artist"
+    ],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [
+    "private_exhibition"
+  ],
+  "urgency": null,
+  "event_date": "2024-04-01",
+  "days_until_event": 30,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "foundation_director",
+  "processing_tier": "tier2",
+  "confidence": 0.95,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP client with explicit budget range and specific event date. High severity allergy detected. Detailed lifestyle and professional context provided.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

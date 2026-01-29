@@ -1,0 +1,95 @@
+{
+  "_cached_at": 1769678050.7133179,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "director",
+      "travel_frequent",
+      "pescatarian",
+      "vip",
+      "jet_setter",
+      "nickel_allergy",
+      "art_collector",
+      "art_lover"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 10000,
+    "budget_max": 20000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "nickel_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "art_exhibition_opening"
+    ],
+    "urgency": "flexible",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Sorbona",
+        "Berlino"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client's profession and lifestyle suggest a high likelihood of interest in exclusive, limited edition art pieces."
+    ],
+    "profession": "director",
+    "processing_tier": "tier3",
+    "confidence": 0.98,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The client is a VIP with a strong interest in unique, statement art pieces and has a significant allergy to nickel. The budget is flexible, indicating potential for upsell opportunities.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_353",
+    "tier": 3,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Allergy Medium: +6",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

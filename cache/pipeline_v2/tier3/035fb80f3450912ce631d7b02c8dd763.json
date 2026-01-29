@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1769677867.7712915,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "art_lover",
+      "shoes",
+      "fitness",
+      "womenswear",
+      "travel_luggage",
+      "ready_to_wear",
+      "outerwear",
+      "vegan"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "4K-10K",
+    "budget_min": 4000,
+    "budget_max": 10000,
+    "budget_confidence": "inferred_weak",
+    "budget_amount": null,
+    "client_status": "new_client",
+    "allergies": [
+      "shellfish_allergy"
+    ],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "partner"
+      ],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "career_milestone",
+      "anniversary"
+    ],
+    "urgency": "this_week",
+    "event_date": "2026-06-01",
+    "days_until_event": 108,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Australia",
+        "Japan"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client is a new professional dancer with a focus on elegance and functionality, interested in durable and elegant pieces for an active lifestyle."
+    ],
+    "profession": "professional_dancer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The client is a professional dancer with a severe shellfish allergy, indicating a high need for allergy awareness. The budget is initially 4K but likely to increase, suggesting a growing interest and potential for future purchases.",
+    "model_name": "gpt-4o",
+    "cost": 0.0001,
+    "age": null,
+    "gender": null,
+    "extracted_by": "tier3_llm",
+    "ID": "CA_327",
+    "tier": 3,
+    "routing_reasons": [
+      "Intent: Negation: +10",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "_cached_at": 1769677314.4711163,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "shopping_with_spouse",
+      "gift_for_child",
+      "gift_for_colleague",
+      "vegetarian"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "Harvard Medical School"
+    ],
+    "events": [
+      "Harvard Medical School symposium",
+      "medical school graduation ceremony"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "child",
+        "colleague"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "graduation"
+    ],
+    "urgency": null,
+    "event_date": "2024-07-01",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "medical_physician",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with a combined budget of 21K which is very flexible. They are both in the medical field and have specific tastes and dietary preferences. They have multiple gift-giving opportunities and are planning a significant event.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_207",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

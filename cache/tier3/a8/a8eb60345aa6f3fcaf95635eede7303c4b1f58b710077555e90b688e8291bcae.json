@@ -1,0 +1,88 @@
+{
+  "cached_at": "2026-01-29T09:54:53.294614",
+  "cache_key": "a8eb60345aa6f3fcaf95635eede7303c4b1f58b710077555e90b688e8291bcae",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "latex_allergy",
+      "philanthropist",
+      "travel_frequent",
+      "spa_wellness",
+      "jet_setter",
+      "fashion_industry",
+      "art_collector",
+      "art_lover",
+      "luxury_retail",
+      "vegan"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K-15K",
+    "budget_min": 10000,
+    "budget_max": 15000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "latex_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegan"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "alone"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "none",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Miami",
+        "Basel",
+        "Hong Kong",
+        "París"
+      ],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": true,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "La cliente a une forte connexion avec le monde de l'art, ce qui pourrait offrir des opportunités de collaboration et de personnalisation de produits."
+    ],
+    "profession": "art_dealer",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "La cliente est une VIP avec un intérêt marqué pour l'art et les pièces uniques, ce qui indique une forte intention d'achat. Son budget est explicitement mentionné, et son allergie au latex est critique.",
+    "model_name": "gpt-4o",
+    "cost": 0.006449999999999999,
+    "age": null,
+    "gender": null
+  }
+}

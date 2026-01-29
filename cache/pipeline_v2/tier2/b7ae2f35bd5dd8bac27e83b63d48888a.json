@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1769679976.889277,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "gift_for_spouse",
+      "valentines_gift",
+      "leather_goods",
+      "ready_to_wear",
+      "pescatarian",
+      "travel_frequent"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "10K-20K",
+    "budget_min": 10000,
+    "budget_max": 20000,
+    "budget_confidence": "explicit",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "fragrance_sensitivity"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "spouse"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "valentines"
+    ],
+    "urgency": null,
+    "event_date": "2024-02-14",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "creative_designer",
+    "processing_tier": "tier2",
+    "confidence": 0.85,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP client with explicit budget and occasion. Allergies and dietary preferences mentioned. Some details inferred from context.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_138",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Allergy Medium: +6"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

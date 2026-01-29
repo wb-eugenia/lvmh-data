@@ -1,0 +1,63 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "gift_for_spouse",
+    "philanthropist",
+    "travel_frequent",
+    "pescatarian",
+    "gift_for_child",
+    "shoes",
+    "leather_goods",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "company IPO gala"
+  ],
+  "professions": [],
+  "budget_range": "50K+",
+  "budget_min": 50000,
+  "budget_max": null,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "vip",
+  "allergies": [],
+  "allergy_severity": "low",
+  "dietary": [
+    "pescatarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "child",
+      "spouse"
+    ],
+    "shopping_with": []
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding_anniversary"
+  ],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "entrepreneur_established",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "VIP clients with high budget flexibility and significant spending history. Multiple gift opportunities and dietary restrictions noted. High confidence due to detailed client background and specific event mentioned.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

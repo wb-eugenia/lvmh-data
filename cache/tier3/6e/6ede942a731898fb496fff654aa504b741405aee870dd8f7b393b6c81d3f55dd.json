@@ -1,0 +1,91 @@
+{
+  "cached_at": "2026-01-29T10:10:02.435943",
+  "cache_key": "6ede942a731898fb496fff654aa504b741405aee870dd8f7b393b6c81d3f55dd",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "travel_frequent",
+      "pescatarian",
+      "vip",
+      "gluten_free",
+      "art_collector",
+      "wine_enthusiast"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "15K-20K",
+    "budget_min": 15000,
+    "budget_max": 20000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [
+      "lactose_intolerance"
+    ],
+    "allergy_severity": "low",
+    "dietary": [
+      "pescatarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "family",
+        "friends"
+      ],
+      "shopping_with": [
+        "spouse"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [
+      "spring_season"
+    ],
+    "urgency": "flexible",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [
+        "Rioja",
+        "Borgoña",
+        "Napa",
+        "Toscana",
+        "Nueva York"
+      ],
+      "events": [
+        "ARCO"
+      ]
+    },
+    "implicit_signals": {
+      "purchase_intent": "high",
+      "urgency_implicit": false,
+      "sentiment": "enthusiastic",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "The clients have a strong connection to the wine industry and art, which may influence their purchasing decisions."
+    ],
+    "profession": "wine_industry",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "The clients are long-term VIPs with a strong interest in wine and art, indicating a high purchase intent. Their budget is flexible around 16K, and they have specific preferences for classic and modern styles.",
+    "model_name": "gpt-4o",
+    "cost": 0.006395,
+    "age": null,
+    "gender": null
+  }
+}

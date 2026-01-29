@@ -1,0 +1,60 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "journalist",
+    "travel_frequent",
+    "shopping_with_spouse",
+    "vegetarian",
+    "leather_goods",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [
+    "sac professionnel discret"
+  ],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [],
+  "professions": [],
+  "budget_range": "5K-10K",
+  "budget_min": 5000,
+  "budget_max": 5500,
+  "budget_confidence": "explicit",
+  "budget_amount": null,
+  "client_status": "regular",
+  "allergies": [
+    "material_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [],
+  "urgency": null,
+  "event_date": null,
+  "days_until_event": null,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "journalist",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Budget explicite, profession et régime alimentaire mentionnés, allergie détectée avec sévérité, contexte professionnel détaillé",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}

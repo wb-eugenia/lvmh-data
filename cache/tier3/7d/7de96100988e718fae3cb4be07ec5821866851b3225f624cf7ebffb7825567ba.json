@@ -1,0 +1,77 @@
+{
+  "cached_at": "2026-01-29T10:03:42.689949",
+  "cache_key": "7de96100988e718fae3cb4be07ec5821866851b3225f624cf7ebffb7825567ba",
+  "result": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "world_traveler",
+      "tech_enthusiast",
+      "vegetarian",
+      "travel_luggage",
+      "data_scientist"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [],
+    "events": [],
+    "professions": [],
+    "budget_range": "5K-7K",
+    "budget_min": 5000,
+    "budget_max": 7000,
+    "budget_confidence": "inferred_strong",
+    "budget_amount": null,
+    "client_status": "potential",
+    "allergies": [
+      "dust_mite_allergy"
+    ],
+    "allergy_severity": "high",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [],
+      "shopping_with": [
+        "partner"
+      ]
+    },
+    "key_dates": [],
+    "occasions": [],
+    "urgency": "none",
+    "event_date": null,
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {
+      "products_mentioned": [],
+      "brands_mentioned": [],
+      "locations": [],
+      "events": []
+    },
+    "implicit_signals": {
+      "purchase_intent": "medium",
+      "urgency_implicit": false,
+      "sentiment": "neutral",
+      "objections": []
+    },
+    "risk_flags": {
+      "allergy_emergency": false,
+      "rgpd_sensitive": false,
+      "manual_review_required": false
+    },
+    "processing_notes": [
+      "Client intéressé par l'intégration de l'IA dans les produits futurs, ce qui pourrait être une opportunité pour des offres personnalisées."
+    ],
+    "profession": "data_scientist",
+    "processing_tier": "tier3",
+    "confidence": 0.95,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "Le client est un nouveau potentiel avec un intérêt marqué pour les produits tech modernes et minimalistes. Son budget est clairement indiqué, et il a des préférences spécifiques pour le cuir noir ou gris avec un hardware minimaliste. Il n'y a pas d'urgence immédiate, mais un intérêt pour l'innovation future est exprimé.",
+    "model_name": "gpt-4o",
+    "cost": 0.006302499999999999,
+    "age": null,
+    "gender": null
+  }
+}

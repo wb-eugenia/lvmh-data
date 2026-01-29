@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1769677487.7136278,
+  "payload": {
+    "note_id": null,
+    "client_id": null,
+    "tags": [
+      "philanthropist",
+      "travel_frequent",
+      "gift_for_child",
+      "gift_for_colleague",
+      "vegetarian",
+      "leather_goods",
+      "legal_corporate"
+    ],
+    "products_mentioned": [],
+    "brands_mentioned": [],
+    "locations": [
+      "MIT"
+    ],
+    "events": [
+      "MIT symposium machine learning"
+    ],
+    "professions": [],
+    "budget_range": "20K-50K",
+    "budget_min": 20000,
+    "budget_max": 50000,
+    "budget_confidence": "inferred",
+    "budget_amount": null,
+    "client_status": "vip",
+    "allergies": [],
+    "allergy_severity": "low",
+    "dietary": [
+      "vegetarian"
+    ],
+    "relationship_context": {
+      "gift_for": [
+        "child",
+        "colleague"
+      ],
+      "shopping_with": []
+    },
+    "key_dates": [],
+    "occasions": [
+      "graduation"
+    ],
+    "urgency": null,
+    "event_date": "2024-11-01",
+    "days_until_event": null,
+    "urgency_level": null,
+    "products": [],
+    "entities": {},
+    "implicit_signals": {},
+    "risk_flags": {},
+    "processing_notes": [],
+    "profession": "dean_engineering_school",
+    "processing_tier": "tier2",
+    "confidence": 0.91,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "error": null,
+    "reasoning": "VIP clients with explicit flexible budget and clear context of shopping for spring collection and gifts. Detailed professional and lifestyle information provided.",
+    "model_name": "mistral-medium-latest",
+    "cost": 0.0,
+    "age": null,
+    "gender": null,
+    "ID": "CA_247",
+    "tier": 2,
+    "routing_reasons": [
+      "Vip: +12",
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12"
+    ],
+    "routing_confidence": 0.8,
+    "from_cache": false
+  }
+}

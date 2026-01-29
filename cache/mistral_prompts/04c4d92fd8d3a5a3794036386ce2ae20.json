@@ -1,0 +1,65 @@
+{
+  "note_id": null,
+  "client_id": null,
+  "tags": [
+    "shopping_with_spouse",
+    "vegetarian",
+    "leather_goods",
+    "gift_for_self",
+    "ready_to_wear"
+  ],
+  "products_mentioned": [
+    "Keepall"
+  ],
+  "brands_mentioned": [],
+  "locations": [],
+  "events": [
+    "mariage"
+  ],
+  "professions": [],
+  "budget_range": "5K-10K",
+  "budget_min": 4000,
+  "budget_max": 10000,
+  "budget_confidence": "inferred",
+  "budget_amount": null,
+  "client_status": "first_visit",
+  "allergies": [
+    "pollen_allergy"
+  ],
+  "allergy_severity": "high",
+  "dietary": [
+    "vegetarian"
+  ],
+  "relationship_context": {
+    "gift_for": [
+      "self"
+    ],
+    "shopping_with": [
+      "spouse"
+    ]
+  },
+  "key_dates": [],
+  "occasions": [
+    "wedding"
+  ],
+  "urgency": null,
+  "event_date": "2024-09-01",
+  "days_until_event": 215,
+  "urgency_level": null,
+  "products": [],
+  "entities": {},
+  "implicit_signals": {},
+  "risk_flags": {},
+  "processing_notes": [],
+  "profession": "legal_lawyer",
+  "processing_tier": "tier2",
+  "confidence": 0.85,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false,
+  "error": null,
+  "reasoning": "Client status inferred as first_visit due to 'nouvelle cliente'. Budget inferred from initial mention and potential high status. Allergy severity set to high due to 'sévère'. Wedding occasion inferred from 'mariage prévu septembre'.",
+  "model_name": "mistral-medium-latest",
+  "cost": 0.0,
+  "age": null,
+  "gender": null
+}
