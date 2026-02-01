@@ -47,7 +47,7 @@ class MultilingualTextCleaner:
             r'\b(en quelque sorte|en quelque manière|pour ainsi dire|en quelque façon)\b',
             r'\b(c\'est-à-dire|à peu près)\b', # "plus ou moins" moved to nuances
             r'\b(eh bien|enfin|bref|là|machin|chose|truc|style|genre)\b',
-            r'\b(si tu veux|si vous voulez|je veux dire)\b',
+            r'\b(si tu veux|si vous voulez|je veux dire|bonjour|salut|hello)\b',
         ],
         'EN': [
             r'\b(uh|um|er|ah|hmm|well|okay|ok|yeah|yep|right)\b',
@@ -352,6 +352,9 @@ class MultilingualTextCleaner:
         # 2. Normalisation caractères & variants fillers
         processing_text = self._remove_extra_chars(processing_text)
         processing_text = self._normalize_fillers_variants(processing_text, language)
+        
+        # 2b. Word-level deduplication (consecutive repeated words like "bonjour bonjour")
+        processing_text = re.sub(r'\b(\w+)(?:\s+\1\b)+', r'\1', processing_text, flags=re.IGNORECASE)
         
         fillers_count = 0
         

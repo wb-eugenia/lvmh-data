@@ -1,21 +1,19 @@
 {
-    "name": "lvmh-frontend-v2",
+    "name": "lvmh-pipeline-monitor",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "lint": "eslint .",
         "preview": "vite preview"
     },
     "dependencies": {
-        "canvas-confetti": "^1.9.2",
-        "framer-motion": "^12.29.2",
-        "lucide-react": "^0.446.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "recharts": "^2.12.7"
+        "framer-motion": "^11.11.11",
+        "lucide-react": "^0.446.0",
+        "canvas-confetti": "^1.9.2"
     },
     "devDependencies": {
         "@vitejs/plugin-react-swc": "^3.5.0",

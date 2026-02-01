@@ -15,8 +15,40 @@ export default function AdvisorView({ onBack }) {
     const [searchingClients, setSearchingClients] = useState(false)
 
     const [isProcessing, setIsProcessing] = useState(false)
+    const [currentStep, setCurrentStep] = useState(null)
     const [history, setHistory] = useState([])
     const [loadingHistory, setLoadingHistory] = useState(false)
+
+    // WebSocket for real-time pipeline visualization
+    useEffect(() => {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsUrl = `${protocol}//${window.location.host}/ws/pipeline`;
+        let ws;
+
+        const connect = () => {
+            ws = new WebSocket(wsUrl);
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'leaderboard') {
+                    // Update leaderboard with 'isMe' flag
+                    const enriched = data.data.map(adv => ({
+                        ...adv,
+                        isMe: adv.id === user.name
+                    }));
+                    setLeaderboard(enriched);
+                } else if (data.step) {
+                    console.log("WS Pipeline Step:", data.step);
+                    setCurrentStep(data.step);
+                }
+            };
+            ws.onclose = () => {
+                setTimeout(connect, 3000); // Reconnect
+            };
+        };
+
+        connect();
+        return () => ws?.close();
+    }, []);
 
     useEffect(() => {
         fetchLeaderboard()
@@ -210,11 +242,10 @@ export default function AdvisorView({ onBack }) {
     return (
         <div className="max-w-md mx-auto min-h-screen flex flex-col p-6 bg-lvmh-black text-white relative overflow-hidden">
             {/* Loading Overlay */}
-            {isProcessing && (
-                <div className="absolute inset-0 bg-black/80 z-50 flex flex-col items-center justify-center animate-in fade-in">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lvmh-gold mb-4"></div>
-                    <div className="text-lvmh-gold font-bold animate-pulse">Analyse Audio en cours...</div>
-                    <div className="text-xs text-lvmh-gray mt-2">Whisper Local & Pipeline V3</div>
+            {isProcessing && !isRecording && !currentResult && (
+                <div className="absolute inset-x-6 top-24 z-50 flex flex-col items-center justify-center animate-in fade-in duration-500">
+                    <div className="w-12 h-12 border-4 border-lvmh-gold border-t-transparent rounded-full animate-spin mb-4" />
+                    <div className="text-lvmh-gold font-bold tracking-widest uppercase text-[10px] animate-pulse">Intelligence Flow...</div>
                 </div>
             )}
 
@@ -295,15 +326,31 @@ export default function AdvisorView({ onBack }) {
 
                     {!currentResult ? (
                         <div className="flex-1 flex flex-col items-center justify-center text-center">
-                            <h2 className="gold-text text-3xl font-bold mb-2">
-                                {isRecording ? "À l'écoute..." : "Dictée Client"}
+                            <h2 className="gold-text text-4xl font-bold mb-4 tracking-tighter">
+                                {isRecording ? "Capture Live..." : "Insight Client"}
                             </h2>
-                            <p className="text-lvmh-gray mb-12">Décrivez l'interaction en quelques secondes</p>
+                            <p className="text-lvmh-gray text-xs uppercase tracking-[0.2em] mb-12">
+                                {isRecording ? "Le moteur Whisper vous écoute" : "Appuyez pour commencer"}
+                            </p>
 
-                            <button onClick={toggleRecord} className="btn-record mb-16 relative">
-                                {isRecording && <span className="absolute inset-0 rounded-full animate-ping bg-red-500/20"></span>}
-                                <Mic size={48} className={isRecording ? "text-red-500" : "text-white"} />
-                            </button>
+                            <div className="relative mb-16">
+                                {isRecording && (
+                                    <div className="absolute inset-0 rounded-full bg-red-500/20 animate-ping" />
+                                )}
+                                <button
+                                    onClick={toggleRecord}
+                                    className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : 'bg-white border-white/20 hover:scale-105'}`}
+                                >
+                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : "text-black"} />
+                                </button>
+
+                                {isRecording && (
+                                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-red-500 font-mono text-xs font-bold flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                                        LIVE RECORDING
+                                    </div>
+                                )}
+                            </div>
 
                             <div className="glass w-full p-5">
                                 <div className="flex items-center gap-2 text-lvmh-gold text-xs font-bold uppercase mb-4 tracking-widest leading-none">
@@ -335,6 +382,7 @@ export default function AdvisorView({ onBack }) {
                                 <div className="text-xs text-lvmh-gold font-bold mb-1 uppercase tracking-widest">Récompense</div>
                                 <div className="text-lg font-bold leading-tight">{currentResult.meta_analysis?.advisor_feedback || "Note traitée !"}</div>
                             </div>
+
 
                             <div className="mb-8">
                                 <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-2 font-bold">Transcription</div>

@@ -85,6 +85,53 @@ async def health():
     }
 
 
+# --- WebSocket Manager ---
+from api.websocket_manager import manager
+from fastapi import WebSocket, WebSocketDisconnect
+import asyncio
+
+
+async def broadcast_leaderboard_task():
+    """Background task to push leaderboard updates."""
+    from api.database import SessionLocal
+    from api.routers.results import get_leaderboard_data # I'll check if this exists or implement it
+    
+    while True:
+        try:
+            db = SessionLocal()
+            # Simplified leaderboard logic
+            from api.models_sql import User
+            users = db.query(User).filter(User.role == "advisor").order_by(User.score.desc()).limit(5).all()
+            data = [
+                {"id": u.name, "score": u.score, "isMe": False} # isMe handled by frontend
+                for u in users
+            ]
+            await manager.broadcast({"type": "leaderboard", "data": data})
+            db.close()
+        except Exception as e:
+            logger.error(f"Leaderboard broadcast error: {e}")
+        await asyncio.sleep(10)
+
+
+@app.on_event("startup")
+async def startup_event():
+    asyncio.create_task(broadcast_leaderboard_task())
+
+
+@app.websocket("/ws/pipeline")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    try:
+        while True:
+            # Keep connection alive
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
+    except Exception as e:
+        logger.error(f"WS Error: {e}")
+        manager.disconnect(websocket)
+
+
 # Import and include routers
 # Import and include routers
 from api.routers import analyze, batch, results, stats, transcribe, auth

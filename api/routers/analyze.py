@@ -80,12 +80,19 @@ async def analyze_note(
     try:
         pipeline = get_pipeline()
         
+        # Progress callback for WebSocket
+        from api.websocket_manager import manager
+        async def on_progress(data):
+            # Fallback for demo mode where current_user isn't injected
+            data["user_id"] = "demo_advisor"
+            await manager.broadcast(data)
+
         # Process note through pipeline
         result = await pipeline.process_note({
             'ID': f'API_{int(time.time())}',
             'Transcription': note.text,
             'Language': note.language
-        }, save_to_cache=False)
+        }, on_progress=on_progress, save_to_cache=False)
         
         if result is None:
             raise HTTPException(status_code=500, detail="Analysis failed to produce a result.")
