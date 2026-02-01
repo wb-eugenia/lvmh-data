@@ -1,66 +1,71 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "gift_for_spouse",
-    "travel_frequent",
-    "pescatarian",
-    "graduation_gift",
-    "leather_goods",
-    "art_collector",
-    "valentines_gift"
-  ],
-  "products_mentioned": [
-    "collezione borse primavera"
-  ],
-  "brands_mentioned": [],
-  "locations": [],
-  "events": [
-    "preview estate privata"
-  ],
-  "professions": [],
-  "budget_range": "10K-20K",
-  "budget_min": 10000,
-  "budget_max": 20000,
-  "budget_confidence": "explicit",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [
-    "fragrance_sensitivity"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "spouse"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "creative_designer",
+      "travel_frequent",
+      "art_collector",
+      "gift_for_spouse",
+      "pescatarian"
     ],
-    "shopping_with": []
+    "usage": [
+      "gift"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "grey",
+        "bold_colors"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": []
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "valentines",
-    "graduation"
-  ],
-  "urgency": null,
-  "event_date": "2024-02-14",
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "creative_designer",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "creative_designer",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [
+        "fragrance_sensitivity"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "valentines"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "high (10K-15K)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
+  "confidence": 0.85,
   "processing_tier": "tier2",
-  "confidence": 0.92,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP client with explicit budget and clear occasion. Detailed lifestyle and professional context provided. Allergies and dietary preferences mentioned. Multiple occasions identified.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

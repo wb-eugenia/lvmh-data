@@ -1,53 +1,90 @@
 {
-  "_cached_at": 1769640898.6215458,
+  "_cached_at": 1769906167.924529,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [],
-    "events": [],
-    "professions": [],
-    "budget_range": null,
-    "budget_min": null,
-    "budget_max": null,
-    "budget_confidence": null,
-    "budget_amount": null,
-    "client_status": null,
-    "allergies": [],
-    "allergy_severity": "low",
-    "dietary": [
-      "vegetarian"
-    ],
-    "relationship_context": {
-      "gift_for": [],
-      "shopping_with": []
+    "pilier_1_univers_produit": {
+      "categories": [
+        "beige_neutral",
+        "brown_cognac",
+        "luxury_service"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [
+          "brown_cognac",
+          "beige_neutral"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD1550161V/Q9L96A",
+          "name": "Bague Color Blossom  or jaune  or blanc  onyx et diamants",
+          "price": 3350.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-color-blossom-or-jaune-or-blanc-onyx-et-diamants-nvprod1550161v/Q9L96A",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD2070017V/Q9N92A",
+          "name": "Bague Color Blossom  or jaune  or blanc  cornaline et diamants",
+          "price": 3650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-color-blossom-or-jaune-or-blanc-cornaline-et-diamants-nvprod2070017v/Q9N92A",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD2070017V/Q9N92G",
+          "name": "Bague Color Blossom  or jaune  or blanc  cornaline et diamants",
+          "price": 3650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-color-blossom-or-jaune-or-blanc-cornaline-et-diamants-nvprod2070017v/Q9N92G",
+          "match_score": 0.49
+        }
+      ]
     },
-    "key_dates": [],
-    "occasions": [],
-    "urgency": null,
-    "event_date": null,
-    "days_until_event": null,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": null,
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "flexible_unknown (None)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.75,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.75,
     "processing_tier": "tier1",
-    "confidence": 0.6,
-    "processing_time_ms": 1.1830329895019531,
-    "rgpd_flag": false,
+    "extracted_by": null,
     "error": null,
-    "reasoning": null,
-    "model_name": null,
-    "cost": 0.0,
-    "age": null,
-    "gender": "female",
+    "from_cache": false,
+    "processing_time_ms": 4.2819976806640625,
+    "rgpd_flag": false,
     "tier": 1,
-    "ID": "CA_103",
-    "from_cache": false
+    "ID": "CA_103"
   }
 }

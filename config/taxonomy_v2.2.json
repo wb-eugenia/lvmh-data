@@ -42,7 +42,9 @@
             "scarves",
             "eyewear",
             "headwear",
-            "fragrance"
+            "fragrance",
+            "accessories",
+            "professional"
         ],
         "occasions": [
             "birthday_gift",
@@ -86,7 +88,16 @@
             "luxury_cars",
             "tech_enthusiast",
             "philanthropist",
-            "spa_wellness"
+            "spa_wellness",
+            "sports_swimming",
+            "sports_crossfit",
+            "tech_early_adopter",
+            "creative_designer",
+            "housewarming",
+            "sustainable",
+            "eco_conscious",
+            "sports_combat",
+            "wellness"
         ],
         "dietary": [
             "vegan",
@@ -158,15 +169,116 @@
             "diplomat",
             "influencer",
             "lifestyle_content_creator",
-            "sustainable_values"
+            "sustainable_values",
+            "tech_early_adopter",
+            "creative_designer",
+            "medical_dentist",
+            "medical_physician",
+            "entrepreneur_startup",
+            "legal_lawyer",
+            "architecte_paysagiste",
+            "influenceur",
+            "tech_executive",
+            "artist_painter",
+            "writer",
+            "medical_surgeon",
+            "entrepreneur_established"
+        ],
+        "context": [
+            "vip",
+            "vic",
+            "first_visit",
+            "regular",
+            "gift_for_spouse",
+            "gift_for_child",
+            "gift_for_parent",
+            "shopping_with_spouse",
+            "wedding",
+            "wedding_anniversary",
+            "luxury_service",
+            "customer_intent",
+            "ultimate",
+            "high_potential",
+            "high_net_worth",
+            "gift_for_friend",
+            "gift_for_colleague",
+            "gift_for_self"
+        ],
+        "budget": [
+            "entry_level",
+            "core",
+            "high",
+            "ultra_high",
+            "flexible_unknown"
+        ],
+        "materials": [
+            "smooth_leather",
+            "grained_leather",
+            "canvas",
+            "exotic",
+            "suede"
+        ],
+        "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "beige_neutral",
+            "bold_colors"
+        ],
+        "context_usage": [
+            "professional_work",
+            "travel",
+            "evening",
+            "casual_daily",
+            "gift"
         ]
     },
     "product_keywords": {
+        "luxury_service": [
+            "accueil",
+            "boutique",
+            "service",
+            "expérience",
+            "remplacement",
+            "réparation",
+            "entretien",
+            "nettoyage",
+            "merci",
+            "sourire",
+            "plaisir"
+        ],
+        "customer_intent": [
+            "chercher",
+            "besoin",
+            "aimerait",
+            "souhaite",
+            "demande",
+            "recherche",
+            "regarder",
+            "essayer",
+            "voir",
+            "passage",
+            "visite",
+            "appel",
+            "revoir"
+        ],
+        "professional": [
+            "travail",
+            "bureau",
+            "business",
+            "work",
+            "ordinateur",
+            "professionnel",
+            "conférence"
+        ],
         "leather_goods": [
             "sac",
             "bag",
             "borsa",
-            "tasche"
+            "tasche",
+            "handbag",
+            "cabas",
+            "tout-en-un"
         ],
         "small_leather": [
             "pochette",
@@ -176,7 +288,9 @@
             "portafoglio",
             "porte-cartes",
             "card holder",
-            "portacarte"
+            "portacarte",
+            "porte-monnaie",
+            "coin purse"
         ],
         "belts": [
             "ceinture",
@@ -190,13 +304,17 @@
             "valigia",
             "bagage",
             "trolley",
-            "carry-on"
+            "carry-on",
+            "malle",
+            "trunk"
         ],
         "watches": [
             "montre",
             "watch",
             "orologio",
-            "uhr"
+            "uhr",
+            "chronographe",
+            "timepiece"
         ],
         "jewelry": [
             "bijou",
@@ -207,25 +325,186 @@
             "collier",
             "necklace",
             "ring",
-            "bague"
+            "bague",
+            "boucle",
+            "earring",
+            "pendentif"
         ],
         "shoes": [
             "chaussure",
             "shoe",
             "scarpa",
-            "schuh"
+            "schuh",
+            "soulier",
+            "escarpin",
+            "talon",
+            "botte",
+            "boot",
+            "moccasin",
+            "derby",
+            "richelieu"
         ],
         "sneakers": [
             "sneaker",
             "basket",
-            "trainer"
+            "trainer",
+            "run away",
+            "time out"
         ],
         "fragrance": [
             "parfum",
             "perfume",
             "profumo",
             "cologne",
-            "eau de"
+            "eau de",
+            "senteur",
+            "fragrance"
+        ],
+        "ready_to_wear": [
+            "vêtement",
+            "habit",
+            "robe",
+            "dress",
+            "veste",
+            "jacket",
+            "manteau",
+            "coat",
+            "pantalon",
+            "trousers",
+            "chemise",
+            "shirt",
+            "blouson",
+            "jupe",
+            "skirt",
+            "pull",
+            "sweater"
+        ],
+        "accessories": [
+            "écharpe",
+            "scarf",
+            "foulard",
+            "cravate",
+            "tie",
+            "lunettes",
+            "glasses",
+            "sunglasses",
+            "chapeau",
+            "hat",
+            "bonnet",
+            "casquette",
+            "cap",
+            "gant",
+            "glove"
+        ],
+        "black": [
+            "noir",
+            "black",
+            "nero",
+            "schwarz"
+        ],
+        "brown_cognac": [
+            "marron",
+            "cognac",
+            "marrone"
+        ],
+        "navy": [
+            "marine",
+            "navy",
+            "bleu foncé"
+        ],
+        "beige_neutral": [
+            "beige",
+            "neutre",
+            "nude",
+            "naturel"
+        ],
+        "bold_colors": [
+            "rouge",
+            "vert",
+            "jaune",
+            "rose",
+            "fushia",
+            "bright"
+        ],
+        "smooth_leather": [
+            "cuir lisse",
+            "smooth leather"
+        ],
+        "grained_leather": [
+            "cuir grainé",
+            "grained leather",
+            "empreinte"
+        ],
+        "canvas": [
+            "toile",
+            "canvas",
+            "monogram",
+            "damier"
+        ],
+        "exotic": [
+            "croco",
+            "autruche",
+            "exotique",
+            "python",
+            "lézard"
+        ],
+        "suede": [
+            "daim",
+            "suede",
+            "veau velours"
+        ],
+        "entry_level": [
+            "petit budget",
+            "moins de 2000",
+            "under 2k"
+        ],
+        "core": [
+            "budget moyen",
+            "entre 2 et 5",
+            "2-5k"
+        ],
+        "high": [
+            "beau budget",
+            "haut de gamme",
+            "5-15k"
+        ],
+        "ultra_high": [
+            "sans limite",
+            "exceptionnel",
+            "plus de 15",
+            "over 15k"
+        ],
+        "flexible_unknown": [
+            "budget flexible",
+            "ouvert"
+        ],
+        "professional_work": [
+            "travail",
+            "bureau",
+            "meeting",
+            "rendez-vous pro"
+        ],
+        "travel": [
+            "voyage",
+            "déplacement",
+            "avion",
+            "vacances"
+        ],
+        "evening": [
+            "soirée",
+            "dîner",
+            "gala",
+            "événement"
+        ],
+        "casual_daily": [
+            "tous les jours",
+            "daily",
+            "quotidien"
+        ],
+        "gift": [
+            "cadeau",
+            "offrir",
+            "plaisir"
         ]
     },
     "severity_levels": {

@@ -18,13 +18,20 @@ from dotenv import load_dotenv
 from pydantic import ValidationError
 
 from src.taxonomy import TaxonomyManager
-from src.models import ExtractionResult
+from src.models import (
+    ExtractionResult, Pilier1Product, Pilier2Client, Pilier3Care, Pilier4Business,
+    MetaAnalysis, ProductPreferences, PurchaseContext, Profession, Lifestyle, Allergies
+)
 from src.resilience import safe_execution, retry_with_backoff
 from config.production import settings
 
 load_dotenv()
 
 logger = logging.getLogger(__name__)
+
+def safe_list(val):
+    """Helper to ensure list of strings."""
+    return [str(v) for v in val] if isinstance(val, list) else []
 
 class Tier3Enhanced:
     """
@@ -136,71 +143,7 @@ CONTEXTE MULTI-FACTEURS:
 
 RÈGLE OR: Combine TOUS les signaux pour inférer range précis
 
-═══════════════════════════════════════════════════════════════
-📤 FORMAT OUTPUT JSON (COMPREHENSIVE)
-═══════════════════════════════════════════════════════════════
-
-{{
-  "tags": ["tag1", "tag2", ...],
-  
-  "budget_range": "10K-20K",
-  "budget_min": 10000,
-  "budget_max": 20000,
-  "budget_confidence": "explicit|inferred_strong|inferred_weak",
-  "budget_reasoning": "...",
-  
-  "client_status": "vic",
-  "profession": "...",
-  
-  "allergies": [
-    {{
-      "allergen": "nickel_allergy",
-      "severity": "high",
-      "emergency_flag": true,
-      "notes": "..."
-    }}
-  ],
-  
-  "dietary": ["vegan", "gluten_free"],
-  
-  "relationship_context": {{
-    "gift_for": ["spouse"],
-    "shopping_with": ["alone"]
-  }},
-  
-  "occasions": ["wedding_anniversary"],
-  "urgency": "this_week",
-  "event_date": "2026-04-15",
-  "days_until_event": 77,
-  
-  "entities": {{
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [],
-    "events": []
-  }},
-  
-  "implicit_signals": {{
-    "purchase_intent": "high|medium|low",
-    "urgency_implicit": true,
-    "sentiment": "enthusiastic",
-    "objections": []
-  }},
-  
-  "risk_flags": {{
-    "allergy_emergency": true,
-    "rgpd_sensitive": false,
-    "manual_review_required": false
-  }},
-  
-  "confidence": 0.96,
-  "reasoning": "...",
-  "processing_notes": ["..."]
-}}
-
-RÉPONDS UNIQUEMENT EN JSON VALIDE.
 """
-
     def __init__(self, cache_dir: str = "cache/tier3"):
         self.taxonomy = TaxonomyManager()
         self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
@@ -288,65 +231,123 @@ RÉPONDS UNIQUEMENT EN JSON VALIDE.
         cost_per_1m = self.COSTS_PER_1M_TOKENS.get(model, 2.50)
         return (tokens_used / 1_000_000) * cost_per_1m
 
-    def _validate_extraction(self, result_dict: Dict, model: str, cost: float) -> ExtractionResult:
-        """Validate and sanitize dictionary into ExtractionResult."""
-        
-        # Helpers
-        def safe_list(val): return [str(v) for v in val] if isinstance(val, list) else []
-        def safe_str(val): return str(val).strip() if val else None
-        
-        # Core fields
-        tags = safe_list(result_dict.get('tags', []))
-        
-        # Reconstruct result
+    def _validate_extraction(self, data: Dict, model: str, cost: float) -> ExtractionResult:
+        """
+        Validate and sanitize dictionary into ExtractionResult (Taxonomy V2).
+        Handles mapping from LLM JSON output to Pydantic Models.
+        """
         try:
-            return ExtractionResult(
-                tags=tags,
-                budget_range=safe_str(result_dict.get('budget_range')),
-                budget_min=result_dict.get('budget_min'),
-                budget_max=result_dict.get('budget_max'),
-                budget_confidence=safe_str(result_dict.get('budget_confidence')),
-                
-                client_status=safe_str(result_dict.get('client_status')),
-                profession=safe_str(result_dict.get('profession')),
-                
-                allergies=[a.get('allergen') for a in result_dict.get('allergies', []) if isinstance(a, dict) and 'allergen' in a],
-                allergy_severity='high' if any(a.get('severity') == 'high' for a in result_dict.get('allergies', []) if isinstance(a, dict)) else 'low',
-                dietary=safe_list(result_dict.get('dietary', [])),
-                
-                relationship_context=result_dict.get('relationship_context', {}),
-                occasions=safe_list(result_dict.get('occasions', [])),
-                urgency=safe_str(result_dict.get('urgency')),
-                event_date=safe_str(result_dict.get('event_date')),
-                days_until_event=result_dict.get('days_until_event'),
-                
-                # New fields
-                entities=result_dict.get('entities', {}),
-                implicit_signals=result_dict.get('implicit_signals', {}),
-                risk_flags=result_dict.get('risk_flags', {}),
-                processing_notes=safe_list(result_dict.get('processing_notes', [])),
-                
-                confidence=float(result_dict.get('confidence', 0.85)),
-                reasoning=safe_str(result_dict.get('reasoning')),
-                
-                processing_tier="tier3",
-                extracted_by="tier3_gpt4",
-                model_name=model,
-                cost=cost
+            # Helper safely get nested dict
+            def get_d(d, k): return d.get(k, {}) if isinstance(d, dict) else {}
+            
+            # --- Pilier 1 ---
+            p1_data = get_d(data, 'pilier_1_univers_produit')
+            pref_data = get_d(p1_data, 'preferences')
+            
+            raw_cats = safe_list(p1_data.get('categories', []))
+            norm_cats = []
+            for t in raw_cats:
+                norm = self.taxonomy.normalize_tag(t)
+                if norm: norm_cats.append(norm)
+
+            p1 = Pilier1Product(
+                categories=norm_cats,
+                usage=safe_list(p1_data.get('usage', [])),
+                preferences=ProductPreferences(
+                    colors=safe_list(pref_data.get('colors', [])),
+                    styles=safe_list(pref_data.get('styles', [])),
+                    hardware=safe_list(pref_data.get('hardware', [])),
+                    materials=safe_list(pref_data.get('materials', []))
+                )
             )
-        except ValidationError as e:
-            logger.error(f"Validation error: {e}")
-            # Fallback
-            return ExtractionResult(
-                tags=tags,
-                confidence=0.5,
-                reasoning=f"Validation failed: {e}",
-                processing_tier="tier3",
-                extracted_by="tier3_fallback",
-                error=str(e)
+            
+            # --- Pilier 2 ---
+            p2_data = get_d(data, 'pilier_2_profil_client')
+            pc_data = get_d(p2_data, 'purchase_context')
+            prof_data = get_d(p2_data, 'profession')
+            life_data = get_d(p2_data, 'lifestyle')
+            
+            p2 = Pilier2Client(
+                purchase_context=PurchaseContext(
+                    type=pc_data.get('type'),
+                    behavior=pc_data.get('behavior')
+                ),
+                profession=Profession(
+                    sector=prof_data.get('sector'),
+                    status=prof_data.get('status')
+                ),
+                lifestyle=Lifestyle(
+                    passions=safe_list(life_data.get('passions', [])),
+                    family=life_data.get('family', 'Unknown')
+                )
+            )
+            
+            # --- Pilier 3 ---
+            p3_data = get_d(data, 'pilier_3_hospitalite_care')
+            alg_data = get_d(p3_data, 'allergies')
+            
+            p3 = Pilier3Care(
+                diet=safe_list(p3_data.get('diet', [])),
+                allergies=Allergies(
+                    food=safe_list(alg_data.get('food', [])),
+                    contact=safe_list(alg_data.get('contact', []))
+                ),
+                values=safe_list(p3_data.get('values', [])),
+                occasion=p3_data.get('occasion')
+            )
+            
+            # --- Pilier 4 ---
+            p4_data = get_d(data, 'pilier_4_action_business')
+            
+            p4 = Pilier4Business(
+                lead_temperature=p4_data.get('lead_temperature', 'Warm'),
+                next_best_action=p4_data.get('next_best_action'),
+                budget_potential=p4_data.get('budget_potential'),
+                urgency=p4_data.get('urgency')
+            )
+            
+            # --- Meta ---
+            meta_data = get_d(data, 'meta_analysis')
+            meta = MetaAnalysis(
+                confidence_score=float(meta_data.get('confidence_score', 0.8)),
+                missing_info=safe_list(meta_data.get('missing_info', [])),
+                risk_flags=safe_list(meta_data.get('risk_flags', []))
             )
 
-    @safe_execution(default_return=ExtractionResult(extracted_by="tier3_failed", processing_tier="tier3", confidence=0.0))
+            # Construct Final Result
+            return ExtractionResult(
+                pilier_1_univers_produit=p1,
+                pilier_2_profil_client=p2,
+                pilier_3_hospitalite_care=p3,
+                pilier_4_action_business=p4,
+                meta_analysis=meta,
+                
+                # Metadata
+                processing_tier="tier3",
+                confidence=meta.confidence_score,
+                rgpd_flag=len(meta.risk_flags) > 0,
+                from_cache=False
+            )
+            
+        except ValidationError as e:
+            logger.error(f"Validation error Pydantic: {e}")
+            raise e
+        except Exception as e:
+            logger.error(f"General validation error: {e}")
+            raise e
+
+    @safe_execution(default_return=ExtractionResult(
+        pilier_1_univers_produit=Pilier1Product(),
+        pilier_2_profil_client=Pilier2Client(),
+        pilier_3_hospitalite_care=Pilier3Care(),
+        pilier_4_action_business=Pilier4Business(),
+        meta_analysis=MetaAnalysis(confidence_score=0.0),
+        processing_tier="tier3",
+        extracted_by="tier3_failed",
+        confidence=0.0,
+        rgpd_flag=False,
+        from_cache=False
+    ))
     @retry_with_backoff(retries=3)
     async def extract(
         self,

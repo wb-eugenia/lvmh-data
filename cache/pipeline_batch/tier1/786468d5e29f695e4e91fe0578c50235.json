@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1769906170.5341327,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "luxury_service"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.57
+        },
+        {
+          "sku": "NVPROD3970115V/1AB782",
+          "name": "Manteau trois-quart à détails en cuir",
+          "price": 4850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-trois-quart-a-details-en-cuir-nvprod3970115v/1AB782",
+          "match_score": 0.56
+        },
+        {
+          "sku": "004672/J52312",
+          "name": "Bandoulière de sac Réglable en cuir naturel",
+          "price": 275.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bandouliere-de-sac-reglable-en-cuir-naturel-vvn-004672/J52312",
+          "match_score": 0.56
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "high (5K-10K)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier1",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 5.551815032958984,
+    "rgpd_flag": false,
+    "tier": 1,
+    "ID": "CA_325"
+  }
+}

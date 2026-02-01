@@ -1,0 +1,110 @@
+[
+    {
+        "sku": "M58700",
+        "name": "Capucines BB",
+        "category": "Leather Goods",
+        "material": "Taurillon Leather",
+        "color": "Black",
+        "description": "Full-grain Taurillon leather, distinctive flap, removable strap, top handle for hand or elbow carry. A timeless icon named after our first store.",
+        "price_eur": 5500
+    },
+    {
+        "sku": "M40995",
+        "name": "Neverfull MM",
+        "category": "Leather Goods",
+        "material": "Monogram Canvas",
+        "color": "Beige",
+        "description": "Legendary Monogram canvas, natural cowhide leather trim, spacious interior, side laces to cinch the bag. The ultimate everyday tote.",
+        "price_eur": 1500
+    },
+    {
+        "sku": "M53152",
+        "name": "Alma BB",
+        "category": "Leather Goods",
+        "material": "Monogram Canvas",
+        "color": "Brown",
+        "description": "Art Deco original, introduced in 1934. Compact size, padlock, keys, twin Toron handles. A charming classic.",
+        "price_eur": 1350
+    },
+    {
+        "sku": "M50280",
+        "name": "Twist MM",
+        "category": "Leather Goods",
+        "material": "Epi Leather",
+        "color": "Black",
+        "description": "Signature LV Twist lock, Epi grained leather, wave-shaped base, sliding chain strap for shoulder or cross-body carry.",
+        "price_eur": 3800
+    },
+    {
+        "sku": "M45320",
+        "name": "Onthego GM",
+        "category": "Leather Goods",
+        "material": "Giant Monogram Canvas",
+        "color": "Brown/Reverse",
+        "description": "Oversized Monogram pattern, square shape, plenty of room for work essentials. Two sets of handles for hand or shoulder style.",
+        "price_eur": 2400
+    },
+    {
+        "sku": "M30233",
+        "name": "Outdoor Messenger",
+        "category": "Men Leather Goods",
+        "material": "Taiga Leather / Monogram Eclipse",
+        "color": "Black",
+        "description": "Sporty hybrid design, Taiga leather mixed with Monogram Eclipse canvas. Silver-tone hardware, adjustable textile strap.",
+        "price_eur": 1700
+    },
+    {
+        "sku": "W1TA0010",
+        "name": "Tank Americaine",
+        "category": "Watches",
+        "material": "Steel",
+        "color": "Silver",
+        "description": "Elongated case, curve of the wrist, octagonal crown set with a synthetic blue spinel. Classic yet contemporary timepiece.",
+        "price_eur": 4800
+    },
+    {
+        "sku": "Q1D20Z",
+        "name": "Tambour Street Diver",
+        "category": "Watches",
+        "material": "Steel/Rubber",
+        "color": "Neon Black",
+        "description": "Swiss-made, diving function, sporty look with LVMH flair. Glow-in-the-dark indexes, interchangeable rubber strap.",
+        "price_eur": 5200
+    },
+    {
+        "sku": "N41358",
+        "name": "Neverfull MM (Damier)",
+        "category": "Leather Goods",
+        "material": "Damier Ebene Canvas",
+        "color": "Brown",
+        "description": "The checkerboard pattern version of the classic Neverfull. Red interior lining, rich chocolate leather trim.",
+        "price_eur": 1500
+    },
+    {
+        "sku": "M44813",
+        "name": "Multi Pochette Accessoires",
+        "category": "Leather Goods",
+        "material": "Monogram Canvas",
+        "color": "Khaki Strap",
+        "description": "Hybrid cross-body bag with multiple pockets and compartments. Includes a round coin purse and two detachable pouches.",
+        "price_eur": 2050
+    },
+    {
+        "sku": "CL001",
+        "name": "Coussin PM",
+        "category": "Leather Goods",
+        "material": "Lambskin",
+        "color": "Green",
+        "description": "Puffy lambskin embossed with Monogram pattern. Chunky edge chain, soft body, fashion-forward statement piece.",
+        "price_eur": 3200
+    },
+    {
+        "sku": "LP009",
+        "name": "Spell On You",
+        "category": "Perfume",
+        "material": "Liquid",
+        "color": "Pink",
+        "description": "Iris pallida from Florence, Rose from Grasse, Sambac Jasmine. A magnetic and romantic floral scent.",
+        "price_eur": 260
+    }
+]

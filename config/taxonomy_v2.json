@@ -1,0 +1,255 @@
+{
+    "meta": {
+        "version": "2.0",
+        "name": "Luxury Fashion Universal Taxonomy",
+        "description": "Taxonomie universelle pour le Luxe (Maroquinerie, Mode, Prêt-à-porter), compatible LVMH/Kering.",
+        "last_updated": "2026-01-31"
+    },
+    "pillars": {
+        "PILIER_1_UNIVERS_PRODUIT": {
+            "categories": {
+                "Leather_Goods": [
+                    "Handbag_Main",
+                    "Crossbody",
+                    "Tote",
+                    "Clutch_Evening",
+                    "Backpack",
+                    "Travel_Bag",
+                    "Briefcase",
+                    "Wallet",
+                    "Small_Leather_Goods"
+                ],
+                "Ready_to_Wear": [
+                    "Outerwear",
+                    "Dresses",
+                    "Suits_Tailoring",
+                    "Knitwear",
+                    "Shirts_Blouses",
+                    "Pants_Skirts"
+                ],
+                "Accessories_Complementary": [
+                    "Shoes",
+                    "Belts",
+                    "Scarves",
+                    "Jewelry",
+                    "Eyewear"
+                ],
+                "Typologie_Usage": [
+                    "Professional_Work",
+                    "Travel_Journey",
+                    "Evening_Formal",
+                    "Casual_Daily",
+                    "Special_Occasion"
+                ],
+                "Preferences_Esthetiques": {
+                    "Color_Palette": [
+                        "Neutrals_Classic",
+                        "Earth_Tones",
+                        "Pastels_Soft",
+                        "Bold_Statement"
+                    ],
+                    "Style_Direction": [
+                        "Classic_Timeless",
+                        "Modern_Minimalist",
+                        "Trendy_Fashion_Forward",
+                        "Artistic_Unique"
+                    ],
+                    "Hardware_Preference": [
+                        "Gold",
+                        "Silver",
+                        "Rose_Gold",
+                        "No_Preference"
+                    ]
+                },
+                "Caracteristiques_Matieres": {
+                    "Leather_Type": [
+                        "Smooth_Soft",
+                        "Grained_Textured",
+                        "Patent",
+                        "Suede_Nubuck",
+                        "Exotic_Precious"
+                    ],
+                    "Fabric_Materials": [
+                        "Wool_Cashmere",
+                        "Silk",
+                        "Cotton_Linen",
+                        "Technical_Performance"
+                    ]
+                }
+            }
+        },
+        "PILIER_2_PROFIL_CLIENT": {
+            "categories": {
+                "Contexte_Achat": {
+                    "Purchase_Type": [
+                        "Self_Purchase",
+                        "Gift_for_Partner",
+                        "Gift_for_Family",
+                        "Gift_for_Friend"
+                    ],
+                    "Buying_Behavior": [
+                        "New_Client",
+                        "Occasional",
+                        "Regular",
+                        "VIP",
+                        "Ultra_VIP"
+                    ]
+                },
+                "Profil_Professionnel": {
+                    "Sector": [
+                        "Medical_Healthcare",
+                        "Legal_Finance",
+                        "Arts_Culture_Media",
+                        "Tech_Innovation",
+                        "Business_Entrepreneur",
+                        "Education_Academia",
+                        "Private_Retired"
+                    ],
+                    "Professional_Status": [
+                        "Executive_C_Level",
+                        "Professional_Expert",
+                        "Creative_Artistic",
+                        "Entrepreneur_Founder"
+                    ]
+                },
+                "Lifestyle_Interets": {
+                    "Passions": [
+                        "Art_Design",
+                        "Sports_Active",
+                        "Travel_Explorer",
+                        "Gastronomy_Wine",
+                        "Music_Performance",
+                        "Nature_Outdoors"
+                    ],
+                    "Social_Activity": [
+                        "Entertains_Frequently",
+                        "Attends_Events",
+                        "Travels_Business",
+                        "Travels_Leisure"
+                    ]
+                },
+                "Contexte_Familial": {
+                    "Relationship_Status": [
+                        "Single",
+                        "Couple",
+                        "Married_Partnership",
+                        "Unknown"
+                    ],
+                    "Family_Composition": [
+                        "No_Children",
+                        "Young_Children",
+                        "Teenagers",
+                        "Adult_Children",
+                        "Grandchildren"
+                    ]
+                }
+            }
+        },
+        "PILIER_3_HOSPITALITE_CARE": {
+            "categories": {
+                "Regime_Alimentaire": [
+                    "Vegetarian",
+                    "Vegan",
+                    "Pescatarian",
+                    "Gluten_Free",
+                    "Halal",
+                    "Kosher",
+                    "No_Alcohol",
+                    "No_Restrictions"
+                ],
+                "Allergies_Sensibilites": {
+                    "Food_Allergies": [
+                        "Nuts_Peanuts",
+                        "Shellfish",
+                        "Dairy_Lactose",
+                        "Gluten_Celiac"
+                    ],
+                    "Environmental": [
+                        "Pollen_Flowers",
+                        "Fragrance_Scent",
+                        "Chemical_Sensitivity"
+                    ],
+                    "Material_Contact": [
+                        "Latex",
+                        "Nickel_Metal",
+                        "None"
+                    ]
+                },
+                "Valeurs_Ethiques": [
+                    "Sustainability_Focus",
+                    "Animal_Welfare",
+                    "Artisan_Craft",
+                    "Local_Heritage"
+                ],
+                "Occasion_Achat": {
+                    "Personal_Milestone": [
+                        "Birthday",
+                        "Anniversary",
+                        "Wedding",
+                        "Graduation"
+                    ],
+                    "Professional_Success": [
+                        "Promotion",
+                        "Bonus_Grant",
+                        "Business_Success"
+                    ],
+                    "Seasonal_Event": [
+                        "Holiday_Season",
+                        "Travel_Preparation",
+                        "Season_Change"
+                    ],
+                    "Self_Care": [
+                        "Treat_Myself",
+                        "Wardrobe_Update"
+                    ]
+                }
+            }
+        },
+        "PILIER_4_ACTION_BUSINESS": {
+            "categories": {
+                "Temperature_Lead": [
+                    "Hot",
+                    "Warm",
+                    "Discovery",
+                    "Nurturing",
+                    "Recovery"
+                ],
+                "Action_Prioritaire": [
+                    "Send_Product_Proposal",
+                    "Book_Private_Appointment",
+                    "Notify_Stock_Arrival",
+                    "Schedule_Follow_Up",
+                    "Send_Gift_Attention",
+                    "Escalate_to_Manager"
+                ],
+                "Potentiel_Budget": [
+                    "Ultra_High",
+                    "High",
+                    "Core",
+                    "Entry",
+                    "Flexible_Unknown"
+                ],
+                "Timing_Urgency": [
+                    "Immediate",
+                    "Short_Term",
+                    "Medium_Term",
+                    "Long_Term",
+                    "Seasonal_Trigger"
+                ],
+                "Referencement_Reseau": {
+                    "Referral_Source": [
+                        "Friend_Client",
+                        "Professional_Network",
+                        "Social_Media",
+                        "Walk_In"
+                    ],
+                    "Referral_Potential": [
+                        "High",
+                        "Medium",
+                        "Low"
+                    ]
+                }
+            }
+        }
+    }
+}

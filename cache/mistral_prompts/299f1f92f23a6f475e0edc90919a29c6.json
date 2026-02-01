@@ -1,68 +1,71 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "shopping_with_spouse",
-    "vegan",
-    "gluten_free",
-    "gift_for_nieces_nephews",
-    "gift_for_self",
-    "travel_frequent"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "Nepal"
-  ],
-  "events": [
-    "private viewing"
-  ],
-  "professions": [],
-  "budget_range": "10K-20K",
-  "budget_min": 14000,
-  "budget_max": 21000,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "first_visit",
-  "allergies": [
-    "gluten_allergy"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "vegan",
-    "gluten_free"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "self",
-      "nieces_nephews"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "medical_physician",
+      "first_visit",
+      "vegan",
+      "gluten_free",
+      "wine_enthusiast",
+      "travel_frequent",
+      "philanthropist",
+      "eco_conscious",
+      "gift_for_spouse",
+      "gift_for_nieces_nephews",
+      "wedding_anniversary"
     ],
-    "shopping_with": [
-      "spouse"
-    ]
+    "usage": [],
+    "preferences": {
+      "colors": [],
+      "styles": [],
+      "hardware": [],
+      "materials": []
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "wedding_anniversary"
-  ],
-  "urgency": null,
-  "event_date": "2026-07-01",
-  "days_until_event": 153,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "medical_physician",
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "first_visit"
+    },
+    "profession": {
+      "sector": "medical_physician",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegan",
+      "gluten_free"
+    ],
+    "allergies": {
+      "food": [
+        "gluten_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "wedding_anniversary"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "First visit with high potential, multiple gift contexts, clear dietary restrictions, and a specific budget range mentioned as flexible. The anniversary date is inferred based on typical annual patterns.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

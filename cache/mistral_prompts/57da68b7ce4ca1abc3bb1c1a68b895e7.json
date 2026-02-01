@@ -1,66 +1,78 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "travel_frequent",
-    "pescatarian",
-    "shopping_with_spouse",
-    "leather_goods",
-    "art_collector",
-    "ready_to_wear",
-    "jewelry"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "New York",
-    "London",
-    "Hong Kong",
-    "Singapore"
-  ],
-  "events": [
-    "charity_gala"
-  ],
-  "professions": [],
-  "budget_range": "20K-50K",
-  "budget_min": 22000,
-  "budget_max": 66000,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [],
-  "allergy_severity": "low",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [],
-    "shopping_with": [
-      "spouse"
-    ]
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "travel_frequent",
+      "art_collector",
+      "pescatarian",
+      "gift_for_self",
+      "shopping_with_spouse",
+      "leather_goods",
+      "jewelry",
+      "ready_to_wear",
+      "shoes",
+      "accessories"
+    ],
+    "usage": [
+      "professional_work",
+      "evening"
+    ],
+    "preferences": {
+      "colors": [
+        "navy",
+        "black",
+        "beige",
+        "rose_gold"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "charity_gala"
-  ],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": null,
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Self",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "finance_banker",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "charity_gala"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (20K-50K)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.95,
+    "missing_info": [],
+    "risk_flags": []
+  },
+  "confidence": 0.95,
   "processing_tier": "tier2",
-  "confidence": 0.92,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP clients with extensive financial backgrounds and high combined budget. Detailed professions and lifestyle information provided. Specific dietary restrictions and travel habits mentioned. High confidence due to comprehensive context and clear VIP status.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

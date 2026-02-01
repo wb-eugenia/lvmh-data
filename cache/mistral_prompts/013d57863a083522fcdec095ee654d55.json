@@ -1,62 +1,72 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "journalist",
-    "travel_frequent",
-    "shopping_with_spouse",
-    "vegetarian",
-    "leather_goods",
-    "travel_luggage"
-  ],
-  "products_mentioned": [
-    "sac voyage"
-  ],
-  "brands_mentioned": [
-    "Leica"
-  ],
-  "locations": [],
-  "events": [],
-  "professions": [],
-  "budget_range": "2K-5K",
-  "budget_min": 3200,
-  "budget_max": 4800,
-  "budget_confidence": "explicit",
-  "budget_amount": null,
-  "client_status": "occasional",
-  "allergies": [
-    "iodine_allergy"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "vegetarian"
-  ],
-  "relationship_context": {
-    "gift_for": [],
-    "shopping_with": [
-      "spouse"
-    ]
+  "pilier_1_univers_produit": {
+    "categories": [
+      "leather_goods",
+      "travel_luggage",
+      "journalist",
+      "travel_frequent",
+      "vegetarian"
+    ],
+    "usage": [
+      "travel",
+      "professional_work"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "brown_cognac"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "journalist",
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "occasional"
+    },
+    "profession": {
+      "sector": "journalist",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegetarian"
+    ],
+    "allergies": {
+      "food": [
+        "iodine_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": null
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "None (2K-5K)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "Budget explicite, profession et contexte voyage clair, allergie sévère détectée, informations client complètes",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

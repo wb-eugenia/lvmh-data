@@ -26,7 +26,14 @@ from pathlib import Path
 from mistralai import Mistral
 from dotenv import load_dotenv
 
-from src.models import ExtractionResult
+from src.models import (
+    ExtractionResult, Pilier1Product, Pilier2Client, Pilier3Care, Pilier4Business,
+    MetaAnalysis, ProductPreferences, PurchaseContext, Profession, Lifestyle, Allergies
+)
+
+# ... (Previous code)
+
+
 from src.resilience import safe_execution, retry_with_backoff
 from src.taxonomy import TaxonomyManager
 
@@ -114,21 +121,38 @@ DATES:
 - Flag "past" si date passée
 
 ═══════════════════════════════════════════════════════════════
-💰 BUDGET (Smart Inference!)
+💰 BUDGET & TIERS (Smart Inference!)
 ═══════════════════════════════════════════════════════════════
+
+RANGES & TIERS:
+- under_2K (entry_level)
+- 2K-5K (core)
+- 5K-15K (high)
+- 15K+ (ultra_high)
+- flexible_unknown
 
 EXPLICITE:
 - "5000€", "5K", "entre 5 et 10K" → Extract montant exact
 
 IMPLICITE (INFÉRENCE REQUISE):
-- "flexible" + VIC → 10K-50K
-- "ouvert" + VIP → 20K-100K
+- "flexible" + VIC → 15K+
+- "ouvert" + VIP → 15K+
 - "sans limite" → 50K+
-- "budget serré" → under_5K
+- "budget serré" → under_2K
 - Pas de mention budget + first_visit → 2K-5K
 
-RANGES:
-- under_2K, 2K-5K, 5K-10K, 10K-20K, 20K-50K, 50K+
+═══════════════════════════════════════════════════════════════
+🎨 PRÉFÉRENCES (Layer 1.5)
+═══════════════════════════════════════════════════════════════
+
+COULEURS:
+- black, brown_cognac, navy, beige_neutral, bold_colors
+
+MATÉRIAUX:
+- smooth_leather, grained_leather, canvas, exotic, suede
+
+USAGE:
+- professional_work, travel, evening, casual_daily, gift
 
 ═══════════════════════════════════════════════════════════════
 🏷️ ENTITÉS DYNAMIQUES (Layer 2 - NOUVEAU!)
@@ -178,10 +202,15 @@ EXTRAIS ÉGALEMENT:
 {
   "tags": ["tag1", "tag2", ...],              // Layer 1 core tags
   
-  "budget_range": "5K-10K",                    // Range standard
+  "budget_tier": "high",                       // entry_level, core, high, ultra_high
+  "budget_range": "5K-15K",                    // Range standard
   "budget_min": 5000,                          // Min (si inféré)
-  "budget_max": 10000,                         // Max (si inféré)
+  "budget_max": 15000,                         // Max (si inféré)
   "budget_confidence": "explicit|inferred",    // Type extraction
+  
+  "materials": ["smooth_leather"],             // Liste matériaux
+  "colors": ["black"],                         // Liste couleurs
+  "usage_context": ["professional_work"],      // Usage principal
   
   "client_status": "vic",                      // Statut
   "profession": "avocate",                     // Profession exacte
@@ -462,7 +491,18 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
         except Exception as e:
             logger.warning(f"Cache write error: {e}")
 
-    @safe_execution(default_return=ExtractionResult(extracted_by="tier2_mistral_fallback", processing_tier="tier2", confidence=0.0))
+    @safe_execution(default_return=ExtractionResult(
+        pilier_1_univers_produit=Pilier1Product(),
+        pilier_2_profil_client=Pilier2Client(),
+        pilier_3_hospitalite_care=Pilier3Care(),
+        pilier_4_action_business=Pilier4Business(),
+        meta_analysis=MetaAnalysis(confidence_score=0.0),
+        processing_tier="tier2",
+        extracted_by="tier2_mistral_fallback",
+        confidence=0.0,
+        rgpd_flag=False,
+        from_cache=False
+    ))
     @retry_with_backoff(retries=2)
     async def extract(self, text: str, language: str = 'FR') -> ExtractionResult:
         """
@@ -539,136 +579,115 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
             raise e
 
     def _format_result_safe(self, result_dict: Dict) -> ExtractionResult:
-        """Robust formatting with defensive type checks everywhere."""
+        """Robust formatting for Taxonomie V2 (4 Piliers)."""
         
         # Helpers
-        def safe_list_extract(value, default: List = None) -> List:
-            if default is None: default = []
-            if value is None: return default
-            if isinstance(value, list): return [v for v in value if isinstance(v, str)]
-            if isinstance(value, str): return [value] if value.strip() else default
-            if isinstance(value, dict):
-                res = []
-                for v in value.values():
-                    if isinstance(v, list): res.extend([i for i in v if isinstance(i, str)])
-                    elif isinstance(v, str): res.append(v)
-                return res
-            return default
-
-        def safe_string_extract(value, default: str = None) -> Optional[str]:
-            if value is None: return default
-            if isinstance(value, str): return value.strip() if value.strip() else default
-            if isinstance(value, (int, float)): return str(value)
-            return default
-
-        def safe_int_extract(value, default: int = None) -> Optional[int]:
-            if value is None: return default
-            if isinstance(value, int): return value
-            if isinstance(value, float): return int(value)
-            if isinstance(value, str):
-                try: return int(value.replace(',', '').replace('€', '').replace('K', '000').strip())
-                except: return default
-            return default
-
-        def safe_float_extract(value, default: float = 0.75, min_val: float = 0.0, max_val: float = 1.0) -> float:
-            if value is None: return default
-            if isinstance(value, (int, float)): return max(min_val, min(max_val, float(value)))
-            if isinstance(value, str):
-                try:
-                    val = float(value.strip('%').replace(',', '.'))
-                    if val > 1.0: val = val / 100.0
-                    return max(min_val, min(max_val, val))
-                except: return default
-            return default
-
+        def get_d(d, k): return d.get(k, {}) if isinstance(d, dict) else {}
+        def safe_list(val): return [str(v) for v in val] if isinstance(val, list) else []
+        def safe_str(val): return str(val).strip() if val else None
+        
         try:
-            # Tags & Relations
-            raw_tags = safe_list_extract(result_dict.get('tags'), [])
-            rel_context = result_dict.get('relationship_context', {})
+            # Map simplified Tier 2 JSON to strict V2 Models
+            # Note: Tier 2 prompt might still return flat JSON if we didn't update the prompt.
+            # Ideally we should update the prompt too, but for now we map flat -> structured.
             
-            clean_rel_context = {}
-            if isinstance(rel_context, dict):
-                gift_for = safe_list_extract(rel_context.get('gift_for'))
-                shopping_with = safe_list_extract(rel_context.get('shopping_with'))
-                clean_rel_context = {'gift_for': gift_for, 'shopping_with': shopping_with}
+            # --- Taxonomy Routing ---
+            raw_tags = safe_list(result_dict.get('tags', []))
+            categories = []
+            occasions = safe_list(result_dict.get('occasions', []))
+            
+            for t in raw_tags:
+                norm = self.taxonomy.normalize_tag(t)
+                if not norm: continue
                 
-                for r in gift_for: raw_tags.append(f'gift_for_{r}')
-                for r in shopping_with: raw_tags.append(f'shopping_with_{r}')
+                # If it's in core_tags['occasions'], move it there
+                if norm in self.taxonomy.get_category_tags('occasions'):
+                    if norm not in occasions: occasions.append(norm)
+                # If it's in core_tags['context'] (like VIP, urgencies if any), route accordingly
+                elif norm in self.taxonomy.get_category_tags('context'):
+                    # Context tags can stay in categories for now as "contextual tags"
+                    categories.append(norm)
+                else:
+                    categories.append(norm)
+
+            # --- Pilier 1 ---
+            p1 = Pilier1Product(
+                categories=categories, 
+                usage=safe_list(result_dict.get('usage_context', [])),
+                preferences=ProductPreferences(
+                    colors=safe_list(result_dict.get('colors', [])),
+                    materials=safe_list(result_dict.get('materials', []))
+                )
+            )
             
-            # Validate tags
-            valid_tags = []
-            for tag in raw_tags:
-                normalized = self.taxonomy.normalize_tag(tag)
-                if normalized:
-                    valid_tags.append(normalized)
-                elif tag.startswith(('gift_for_', 'shopping_with_')):
-                    valid_tags.append(tag)
+            # --- Pilier 2 ---
+            p2 = Pilier2Client(
+                purchase_context=PurchaseContext(
+                    type="Self" if "self" in str(result_dict) else "Gift",
+                    behavior=safe_str(result_dict.get('client_status'))
+                ),
+                profession=Profession(
+                    sector=safe_str(result_dict.get('profession'))
+                ),
+                lifestyle=Lifestyle()
+            )
+            
+            # --- Pilier 3 ---
+            p3 = Pilier3Care(
+                diet=safe_list(result_dict.get('dietary', [])),
+                allergies=Allergies(
+                    food=[a for a in safe_list(result_dict.get('allergies', []))]
+                ),
+                occasion=occasions[0] if occasions else None
+            )
+            
+            # --- Pilier 4 ---
+            urgency = safe_str(result_dict.get('urgency'))
+            # If urgency is a valid tag (like this_month), normalize it
+            if urgency:
+                 norm_urg = self.taxonomy.normalize_tag(urgency)
+                 if norm_urg: urgency = norm_urg
 
-            # Budget
-            budget_range = safe_string_extract(result_dict.get('budget_range'))
-            budget_min = safe_int_extract(result_dict.get('budget_min'))
-            budget_max = safe_int_extract(result_dict.get('budget_max'))
-            budget_confidence = safe_string_extract(result_dict.get('budget_confidence'), 'unknown')
-
-            # Client
-            client_status = safe_string_extract(result_dict.get('client_status'))
-            profession = safe_string_extract(result_dict.get('profession'))
-
-            # Health
-            allergies = safe_list_extract(result_dict.get('allergies'), [])
-            sev = safe_string_extract(result_dict.get('allergy_severity'), 'low')
-            allergy_severity = sev if sev in ['low', 'medium', 'high'] else 'medium'
-            dietary = safe_list_extract(result_dict.get('dietary'), [])
-
-            # Temporal
-            occasions = safe_list_extract(result_dict.get('occasions'), [])
-            urgency = safe_string_extract(result_dict.get('urgency'))
-            event_date = safe_string_extract(result_dict.get('event_date'))
-            days_until = safe_int_extract(result_dict.get('days_until_event'))
-
-            # Layer 2
-            products_mentioned = safe_list_extract(result_dict.get('products_mentioned'), [])
-            brands_mentioned = safe_list_extract(result_dict.get('brands_mentioned'), [])
-            locations = safe_list_extract(result_dict.get('locations'), [])
-            events = safe_list_extract(result_dict.get('events'), [])
-
-            # Metadata
-            confidence = safe_float_extract(result_dict.get('confidence'), 0.85)
-            reasoning = safe_string_extract(result_dict.get('reasoning'), 'No reasoning provided')
-
-            return ExtractionResult(
-                tags=list(set(valid_tags)),
-                brief_summary=reasoning[:100], # compatibility
-                budget_range=budget_range,
-                budget_min=budget_min,
-                budget_max=budget_max,
-                budget_confidence=budget_confidence,
-                client_status=client_status,
-                profession=profession,
-                allergies=allergies,
-                allergy_severity=allergy_severity,
-                dietary=dietary,
-                occasions=occasions,
+            p4 = Pilier4Business(
+                lead_temperature="Warm",
                 urgency=urgency,
-                event_date=event_date,
-                days_until_event=days_until,
-                products_mentioned=products_mentioned,
-                brands_mentioned=brands_mentioned,
-                locations=locations,
-                events=events,
-                relationship_context=clean_rel_context,
-                confidence=confidence,
-                reasoning=reasoning,
+                budget_potential=f"{safe_str(result_dict.get('budget_tier'))} ({safe_str(result_dict.get('budget_range'))})"
+            )
+            
+            # --- Meta ---
+            conf = float(result_dict.get('confidence', 0.8))
+            meta = MetaAnalysis(confidence_score=conf)
+            
+            return ExtractionResult(
+                pilier_1_univers_produit=p1,
+                pilier_2_profil_client=p2,
+                pilier_3_hospitalite_care=p3,
+                pilier_4_action_business=p4,
+                meta_analysis=meta,
+                
+                # Metadata
                 processing_tier="tier2",
-                extracted_by="tier2_mistral",
-                model_name=self.model,
-                cost=0.0  # Free tier!
+                confidence=conf,
+                rgpd_flag=False,
+                from_cache=False,
+                error=None
             )
 
         except Exception as e:
-            logger.error(f"Fatal error formatting Mistral result: {e}")
-            logger.error(f"Raw result_dict: {result_dict}")
-            raise e
+            logger.error(f"Error formatting Tier 2 result: {e}")
+            # Minimal fallback
+            return ExtractionResult(
+                pilier_1_univers_produit=Pilier1Product(),
+                pilier_2_profil_client=Pilier2Client(),
+                pilier_3_hospitalite_care=Pilier3Care(),
+                pilier_4_action_business=Pilier4Business(),
+                meta_analysis=MetaAnalysis(confidence_score=0.0),
+                processing_tier="tier2",
+                confidence=0.0,
+                error=str(e),
+                from_cache=False,
+                rgpd_flag=False
+            )
 
     def get_metrics_summary(self) -> Dict:
         """Get metrics summary."""

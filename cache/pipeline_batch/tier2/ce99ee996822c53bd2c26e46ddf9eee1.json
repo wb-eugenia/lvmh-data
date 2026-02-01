@@ -1,0 +1,108 @@
+{
+  "_cached_at": 1769906221.792441,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "regular",
+        "creative_designer",
+        "travel_frequent",
+        "art_collector",
+        "gift_for_parents",
+        "pescatarian",
+        "latex_allergy",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories"
+      ],
+      "usage": [
+        "professional_work",
+        "travel",
+        "gift"
+      ],
+      "preferences": {
+        "colors": [
+          "black",
+          "navy",
+          "grey",
+          "beige",
+          "champagne"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": [
+          "smooth_leather"
+        ]
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD590322V/M99463",
+          "name": "Hamac par Atelier Oï",
+          "price": 38000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/hamac-par-atelier-oi-nvprod590322v/M99463",
+          "match_score": 0.37
+        },
+        {
+          "sku": "NVPROD4340055V/GI0816",
+          "name": "Théière motif doré",
+          "price": 980.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/theiere-motif-dore-s00-nvprod4340055v/GI0816",
+          "match_score": 0.37
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "['finance_banker', 'creative_designer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "latex_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "birthday"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_132"
+  }
+}

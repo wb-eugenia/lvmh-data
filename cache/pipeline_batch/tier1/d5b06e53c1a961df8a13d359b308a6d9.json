@@ -1,53 +1,89 @@
 {
-  "_cached_at": 1769692246.6641393,
+  "_cached_at": 1769906168.4086566,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [
-      "leather_goods"
-    ],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [],
-    "events": [],
-    "professions": [],
-    "budget_range": "10K-20K",
-    "budget_min": null,
-    "budget_max": null,
-    "budget_confidence": null,
-    "budget_amount": 9000,
-    "client_status": null,
-    "allergies": [],
-    "allergy_severity": "low",
-    "dietary": [],
-    "relationship_context": {
-      "gift_for": [],
-      "shopping_with": []
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories",
+        "leather_goods",
+        "black",
+        "navy"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [
+          "black",
+          "navy"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD4880006V/1AFC43",
+          "name": "Haut arrondi en cuir synthétique",
+          "price": 2700.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/haut-arrondi-en-cuir-synthetique-nvprod4880006v/1AFC43",
+          "match_score": 0.6
+        },
+        {
+          "sku": "NVPROD3970116V/1AB77U",
+          "name": "Manteau à double boutonnage et détails en cuir",
+          "price": 4650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-a-double-boutonnage-et-details-en-cuir-nvprod3970116v/1AB77U",
+          "match_score": 0.59
+        }
+      ]
     },
-    "key_dates": [],
-    "occasions": [],
-    "urgency": null,
-    "event_date": null,
-    "days_until_event": null,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": null,
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "high (10K-20K)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.9,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.9,
     "processing_tier": "tier1",
-    "confidence": 0.8,
-    "processing_time_ms": 1.8491744995117188,
-    "rgpd_flag": false,
+    "extracted_by": null,
     "error": null,
-    "reasoning": null,
-    "model_name": null,
-    "cost": 0.0,
-    "age": null,
-    "gender": null,
+    "from_cache": false,
+    "processing_time_ms": 5.344629287719727,
+    "rgpd_flag": false,
     "tier": 1,
-    "ID": "CA_145",
-    "from_cache": false
+    "ID": "CA_145"
   }
 }

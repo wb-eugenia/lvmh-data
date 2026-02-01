@@ -1,0 +1,85 @@
+{
+  "_cached_at": 1769906168.4731486,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "flexible_unknown (None)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.65,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.65,
+    "processing_tier": "tier1",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 4.433393478393555,
+    "rgpd_flag": false,
+    "tier": 1,
+    "ID": "CA_149"
+  }
+}

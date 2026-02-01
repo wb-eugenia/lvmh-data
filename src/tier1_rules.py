@@ -15,12 +15,15 @@ Enhanced with:
 
 import re
 import time
-from typing import Dict, List, Optional, Tuple, Any
+from typing import List, Dict, Tuple, Optional, Any
+from src.models import (
+    ExtractionResult, Pilier1Product, Pilier2Client, Pilier3Care, Pilier4Business,
+    MetaAnalysis, ProductPreferences, PurchaseContext, Profession, Lifestyle, Allergies
+)
 from datetime import datetime
 from dateutil import parser as date_parser
 from functools import lru_cache
 
-from src.models import ExtractionResult
 from src.resilience import safe_execution
 from src.taxonomy import TaxonomyManager
 
@@ -131,9 +134,34 @@ class Tier1RulesEngine:
 
     # --- DEMOGRAPHICS ---
     STATUS_PATTERNS = {
-        'vic': r'\bVIC\b', 'vip': r'\bVIP\b', 'ultimate': r'\bultimate\b',
+        'vic': r'\bVIC\b', 'vip': r'\bVIP\b', 'ultimate': r'\b(ultimate|UHNWI?)\b',
         'first_visit': r'(première\s+visite|first\s+(?:time|visit))',
         'regular': r'(client\s+régulier|regular\s+client)',
+    }
+
+    # 🎨 PRÉFÉRENCES & USAGE
+    COLOR_PATTERNS = {
+        'black': [r'noir', r'black', r'nero', r'schwarz'],
+        'brown_cognac': [r'marron', r'cognac', r'marrone', r'brun'],
+        'navy': [r'marine', r'navy', r'bleu fonc'],
+        'beige_neutral': [r'beige', r'neutre', r'nude', r'naturel'],
+        'bold_colors': [r'rouge', r'vert', r'jaune', r'rose', r'fushia', r'vive']
+    }
+    
+    MATERIAL_PATTERNS = {
+        'smooth_leather': [r'cuir lisse', r'smooth leather'],
+        'grained_leather': [r'cuir grainé', r'grained leather', r'empreinte'],
+        'canvas': [r'toile', r'canvas', r'monogram', r'damier'],
+        'exotic': [r'croco', r'autruche', r'exotique', r'python', r'lézard'],
+        'suede': [r'daim', r'suede', r'veau velours']
+    }
+    
+    USAGE_PATTERNS = {
+        'professional_work': [r'travail', r'bureau', r'meeting', r'rendez-vous pro', r'pro\b'],
+        'travel': [r'voyage', r'déplacement', r'avion', r'vacances'],
+        'evening': [r'soirée', r'dîner', r'gala', r'événement'],
+        'casual_daily': [r'tous les jours', r'daily', r'quotidien'],
+        'gift': [r'cadeau\b', r'offrir', r'plaisir']
     }
     
     AGE_PATTERNS = [
@@ -189,6 +217,11 @@ class Tier1RulesEngine:
         for k, pats in self.DIETARY.items():
             compiled['dietary'][k] = [re.compile(p, re.I) for p in pats]
             
+        # Severity
+        compiled['severity'] = {}
+        for k, pats in self.SEVERITY_PATTERNS.items():
+            compiled['severity'][k] = [re.compile(p, re.I) for p in pats]
+            
         # Relations & Occasions
         for k, pats in self.RELATION_PATTERNS.items():
             compiled['relations'][k] = [re.compile(p, re.I) for p in pats]
@@ -197,6 +230,11 @@ class Tier1RulesEngine:
         for k, pats in self.OCCASIONS.items():
             compiled['occasions'][k] = [re.compile(p, re.I) for p in pats]
             
+        # 🎨 New Enrichment Patterns
+        compiled['colors'] = {k: [re.compile(p, re.I) for p in pats] for k, pats in self.COLOR_PATTERNS.items()}
+        compiled['materials'] = {k: [re.compile(p, re.I) for p in pats] for k, pats in self.MATERIAL_PATTERNS.items()}
+        compiled['usage'] = {k: [re.compile(p, re.I) for p in pats] for k, pats in self.USAGE_PATTERNS.items()}
+
         return compiled
 
     # =========================================================================
@@ -293,47 +331,150 @@ class Tier1RulesEngine:
             elif max_b < 50000: range_label = '20K-50K'
             else: range_label = '50K+'
             
+        # Determine Tier
+        tier = 'flexible_unknown'
+        if max_b:
+            if max_b < 2000: tier = 'entry_level'
+            elif max_b < 5000: tier = 'core'
+            elif max_b < 15000: tier = 'high'
+            else: tier = 'ultra_high'
+
         return {
             'amount': amount,
             'min': min_b,
             'max': max_b,
             'range': range_label,
+            'tier': tier,
             'confidence': confidence
         }
 
-    def extract_allergies_health(self, text: str) -> Tuple[List[Dict], List[str]]:
-        """Extract allergies with severity and dietary restrictions."""
-        allergies = []
-        dietary = []
+    @safe_execution(default_return=ExtractionResult(
+        pilier_1_univers_produit=Pilier1Product(),
+        pilier_2_profil_client=Pilier2Client(),
+        pilier_3_hospitalite_care=Pilier3Care(),
+        pilier_4_action_business=Pilier4Business(),
+        meta_analysis=MetaAnalysis(confidence_score=0.0),
+        processing_tier="tier1",
+        extracted_by="tier1_rules_fallback",
+        confidence=0.0,
+        rgpd_flag=False,
+        from_cache=False
+    ))
+    def extract(self, text: str, language: str = 'FR') -> ExtractionResult:
+        """
+        Extraction rapide par Regex (Tier 1).
+        Retourne une structure compatible Taxonomie V2 (4 Piliers).
+        """
+        start_time = time.time()
+        self.stats['processed'] += 1
         
-        # Allergies
-        for type_name, patterns in self._compiled_patterns['allergies'].items():
+        # 1. Tags & Products
+        tags = self.extract_taxonomy_tags(text)
+        
+        # 2. Relations & Gender (Context Aware)
+        relations = self.extract_relations(text)
+        gender_data = self.extract_context_aware_gender(text, relations)
+        
+        # 3. Status
+        client_status = None
+        for status, pattern in self._compiled_patterns['status'].items():
+            if pattern.search(text):
+                client_status = status
+                break
+        
+        # 4. Budget (Smart Inference)
+        budget_data = self.infer_budget(text, client_status)
+        
+        # 5. Health & Safety
+        allergies_list = []
+        for allergen, patterns in self._compiled_patterns['allergies'].items():
             for p in patterns:
-                match = p.search(text)
-                if match:
-                    # Detect severity in context (±50 chars)
-                    start, end = max(0, match.start()-50), min(len(text), match.end()+50)
-                    context = text[start:end].lower()
-                    
-                    severity = 'low'
-                    for sev_level, sev_pats in self.SEVERITY_PATTERNS.items():
-                        if any(re.search(sp, context) for sp in sev_pats):
-                            severity = sev_level
+                if p.search(text):
+                    # Severity check
+                    sev = 'low'
+                    for s_level, s_pats in self._compiled_patterns['severity'].items():
+                        if any(sp.search(text) for sp in s_pats):
+                            sev = s_level
                             break
-                    
-                    allergies.append({
-                        'allergen': type_name, 
-                        'severity': severity,
-                        'matched': match.group()
-                    })
-                    break # Only one match per type needed
-        
-        # Dietary
-        for type_name, patterns in self._compiled_patterns['dietary'].items():
+                    allergies_list.append({'allergen': allergen, 'severity': sev})
+                    break
+
+        dietary = []
+        for diet_type, patterns in self._compiled_patterns['dietary'].items():
             if any(p.search(text) for p in patterns):
-                dietary.append(type_name)
-                
-        return allergies, dietary
+                dietary.append(diet_type)
+
+        allergies_simple = [a['allergen'] for a in allergies_list]
+        severity = next((a['severity'] for a in allergies_list if a['severity'] == 'high'), 'low')
+        
+        # 6. Temporal
+        temporal = self.extract_temporal(text)
+        
+        # 7. Preferences & Usage
+        found_colors = [k for k, pats in self._compiled_patterns['colors'].items() if any(p.search(text) for p in pats)]
+        found_materials = [k for k, pats in self._compiled_patterns['materials'].items() if any(p.search(text) for p in pats)]
+        found_usage = [k for k, pats in self._compiled_patterns['usage'].items() if any(p.search(text) for p in pats)]
+
+        # 8. Merge Tags
+        all_tags = list(set(tags + relations['gift_for'] + relations['shopping_with'] + temporal['occasions']))
+        
+        # 9. Result Construction
+        # Determine Purchase Context based on relations
+        purchase_type = "Gift" if relations['gift_for'] else "Self"
+        
+        # Pilier construction
+        p1 = Pilier1Product(
+            categories=tags, 
+            usage=found_usage, 
+            preferences=ProductPreferences(
+                colors=found_colors,
+                materials=found_materials
+            )
+        )
+        p2 = Pilier2Client(
+            purchase_context=PurchaseContext(type=purchase_type),
+            profession=Profession(),
+            lifestyle=Lifestyle(),
+            status=client_status
+        )
+        p3 = Pilier3Care(
+            allergies=Allergies(food=dietary, contact=allergies_simple), # Basic mapping
+            occasion=temporal['occasions'][0] if temporal['occasions'] else None
+        )
+        p4 = Pilier4Business(
+            urgency=temporal['urgency'],
+            lead_temperature="Warm" if temporal['urgency'] == 'high' else "Discovery",
+            budget_potential=f"{budget_data['tier']} ({budget_data['range']})"
+        )
+        
+        # Meta
+        res_data = {
+            'tags': all_tags,
+            'budget_confidence': budget_data['confidence'],
+            'client_status': client_status,
+            'allergies': allergies_simple,
+            'occasions': temporal['occasions']
+        }
+        confidence = self.calculate_confidence(res_data)
+        
+        meta = MetaAnalysis(confidence_score=confidence)
+        
+        processing_time = (time.time() - start_time) * 1000
+        
+        return ExtractionResult(
+            pilier_1_univers_produit=p1,
+            pilier_2_profil_client=p2,
+            pilier_3_hospitalite_care=p3,
+            pilier_4_action_business=p4,
+            meta_analysis=meta,
+            
+            # Metadata legacy/compat
+            processing_tier='tier1',
+            confidence=confidence,
+            processing_time_ms=processing_time,
+            rgpd_flag=False,
+            from_cache=False
+        )
 
     def extract_temporal(self, text: str) -> Dict:
         """Extract occasions, dates and urgency."""
@@ -398,83 +539,7 @@ class Tier1RulesEngine:
         
         return min(score, 0.95)
 
-    # =========================================================================
-    # 4. MAIN EXECUTION
-    # =========================================================================
 
-    @safe_execution(default_return=ExtractionResult(extracted_by="tier1_rules", processing_tier="tier1", confidence=0.0))
-    def extract(self, text: str, language: str = 'FR') -> ExtractionResult:
-        """Main Pipeline execution."""
-        start_time = time.time()
-        self.stats['processed'] += 1
-        
-        # 1. Tags & Products
-        tags = self.extract_taxonomy_tags(text)
-        
-        # 2. Relations & Gender (Context Aware)
-        relations = self.extract_relations(text)
-        gender_data = self.extract_context_aware_gender(text, relations)
-        
-        # 3. Status
-        client_status = None
-        for status, pattern in self._compiled_patterns['status'].items():
-            if pattern.search(text):
-                client_status = status
-                break
-        
-        # 4. Budget (Smart Inference)
-        budget_data = self.infer_budget(text, client_status)
-        
-        # 5. Health & Safety
-        allergies_list, dietary = self.extract_allergies_health(text)
-        allergies_simple = [a['allergen'] for a in allergies_list]
-        severity = next((a['severity'] for a in allergies_list if a['severity'] == 'high'), 'low')
-        
-        # 6. Temporal
-        temporal = self.extract_temporal(text)
-        
-        # 7. Merge Tags
-        all_tags = list(set(tags + relations['gift_for'] + relations['shopping_with'] + temporal['occasions']))
-        
-        # 8. Result Construction
-        res_data = {
-            'tags': all_tags,
-            'budget_confidence': budget_data['confidence'],
-            'client_status': client_status,
-            'allergies': allergies_simple,
-            'occasions': temporal['occasions']
-        }
-        
-        confidence = self.calculate_confidence(res_data)
-        
-        return ExtractionResult(
-            tags=all_tags,
-            budget_range=budget_data['range'],
-            budget_amount=budget_data['amount'],
-            client_status=client_status,
-            profession=None, # Too complex for Regex usually
-            
-            # Demographics
-            gender=gender_data['client_gender'] if gender_data else None,
-            
-            # Health
-            allergies=allergies_simple,
-            allergy_severity=severity,
-            dietary=dietary,
-            
-            # Relationships & Context
-            relationship_context={
-                'gift_for': relations['gift_for'],
-                'shopping_with': relations['shopping_with']
-            },
-            
-            # Metadata
-            processing_tier="tier1",
-            confidence=confidence,
-            extracted_by="tier1_rules_enhanced",
-            processing_time_ms=(time.time() - start_time) * 1000,
-            cost=0.0
-        )
 
 if __name__ == "__main__":
     engine = Tier1RulesEngine()

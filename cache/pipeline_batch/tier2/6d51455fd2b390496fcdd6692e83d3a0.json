@@ -1,69 +1,73 @@
 {
-  "_cached_at": 1769692248.6951277,
+  "_cached_at": 1769906507.6613057,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [
-      "ready_to_wear",
-      "gift_for_parent",
-      "tech_engineer",
-      "leather_goods",
-      "art_collector",
-      "travel_frequent",
-      "shoes"
-    ],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [
-      "San Francisco",
-      "Tokyo",
-      "Singapore"
-    ],
-    "events": [],
-    "professions": [],
-    "budget_range": "20K-50K",
-    "budget_min": 20000,
-    "budget_max": 50000,
-    "budget_confidence": "inferred",
-    "budget_amount": null,
-    "client_status": "first_visit",
-    "allergies": [
-      "penicillin_allergy"
-    ],
-    "allergy_severity": "medium",
-    "dietary": [],
-    "relationship_context": {
-      "gift_for": [
-        "parent"
+    "pilier_1_univers_produit": {
+      "categories": [
+        "first_visit",
+        "tech_engineer",
+        "entrepreneur_startup",
+        "travel_frequent",
+        "sports_crossfit",
+        "art_collector",
+        "gift_for_parents",
+        "wedding_anniversary"
       ],
-      "shopping_with": []
+      "usage": [
+        "casual_daily",
+        "professional_work"
+      ],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
     },
-    "key_dates": [],
-    "occasions": [
-      "wedding_anniversary"
-    ],
-    "urgency": null,
-    "event_date": "2024-06-01",
-    "days_until_event": 153,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": "tech_engineer",
-    "processing_tier": "tier2",
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "tech_engineer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "penicillina_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
     "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
-    "error": null,
-    "reasoning": "Client status and budget inferred from context. Multiple relevant tags extracted including lifestyle and interests. Event date calculated based on current date and mentioned anniversary in June.",
-    "model_name": "mistral-medium-latest",
-    "cost": 0.0,
-    "age": null,
-    "gender": null,
     "tier": 2,
-    "ID": "CA_304",
-    "from_cache": false
+    "ID": "CA_304"
   }
 }

@@ -24,7 +24,8 @@ class CircuitBreaker:
     If failure_threshold is reached, the circuit opens for recovery_timeout seconds.
     """
     
-    def __init__(self, failure_threshold: int = 5, recovery_timeout: int = 60):
+    def __init__(self, failure_threshold: int = 15,
+    recovery_timeout: int = 45):
         self.failure_threshold = failure_threshold
         self.recovery_timeout = recovery_timeout
         self.failures = 0
@@ -89,8 +90,8 @@ def safe_execution(default_return: Any = None, log_error: bool = True):
 
 def retry_with_backoff(
     retries: int = 3, 
-    base_delay: float = 1.0, 
-    max_delay: float = 10.0,
+    base_delay: float = 2.0, 
+    max_delay: float = 60.0,
     exceptions: tuple = (Exception,)
 ):
     """

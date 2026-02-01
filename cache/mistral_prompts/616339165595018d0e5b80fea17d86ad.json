@@ -1,63 +1,68 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "latex_allergy",
-    "travel_frequent",
-    "gift_for_artist",
-    "art_collector",
-    "ready_to_wear",
-    "jewelry",
-    "vegan"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [],
-  "events": [
-    "private_exhibition"
-  ],
-  "professions": [],
-  "budget_range": "20K-50K",
-  "budget_min": 18000,
-  "budget_max": 60000,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [
-    "latex_allergy"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "vegan"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "artist"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "art_collector",
+      "travel_frequent",
+      "vegan",
+      "latex_allergy",
+      "watches",
+      "jewelry",
+      "ready_to_wear",
+      "accessories"
     ],
-    "shopping_with": []
+    "usage": [],
+    "preferences": {
+      "colors": [],
+      "styles": [],
+      "hardware": [],
+      "materials": []
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "private_exhibition"
-  ],
-  "urgency": null,
-  "event_date": "2024-04-01",
-  "days_until_event": 30,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "foundation_director",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "directora fundación arte contemporáneo",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegan"
+    ],
+    "allergies": {
+      "food": [
+        "latex_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": null
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
+  "confidence": 0.85,
   "processing_tier": "tier2",
-  "confidence": 0.95,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP client with explicit budget range and specific event date. High severity allergy detected. Detailed lifestyle and professional context provided.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

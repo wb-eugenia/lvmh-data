@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1769906557.928996,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "creative_designer",
+        "travel_frequent",
+        "art_collector",
+        "vegan",
+        "nickel_allergy"
+      ],
+      "usage": [
+        "professional_work",
+        "travel"
+      ],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD460004V/RN0003",
+          "name": "Livre Travel Book Hawaï - Édition des artistes",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-hawai-edition-des-artistes-nvprod460004v/RN0003",
+          "match_score": 0.53
+        },
+        {
+          "sku": "NVPROD990237V/RN0007",
+          "name": "Livre Travel Book Route 66 – Édition de l’artiste",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-route-66-edition-de-l-artiste-nvprod990237v/RN0007",
+          "match_score": 0.52
+        },
+        {
+          "sku": "NVPROD460005V/RN0004",
+          "name": "Livre Travel Book Mexique - Édition des artistes",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-mexique-edition-des-artistes-nvprod460005v/RN0004",
+          "match_score": 0.52
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "occasional"
+      },
+      "profession": {
+        "sector": "creative_designer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "nickel_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "None (5K-15K)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_331"
+  }
+}

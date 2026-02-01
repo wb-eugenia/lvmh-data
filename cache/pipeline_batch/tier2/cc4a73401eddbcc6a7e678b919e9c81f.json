@@ -1,76 +1,109 @@
 {
-  "_cached_at": 1769692248.6721394,
+  "_cached_at": 1769906491.137468,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [
-      "gift_for_child",
-      "ready_to_wear",
-      "retirement_gift",
-      "shopping_with_spouse",
-      "pescatarian",
-      "gift_for_friend",
-      "jewelry",
-      "gift_for_spouse",
-      "gift_for_colleague",
-      "leather_goods",
-      "travel_frequent"
-    ],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [],
-    "events": [
-      "retirement celebration"
-    ],
-    "professions": [],
-    "budget_range": "50K+",
-    "budget_min": 50000,
-    "budget_max": null,
-    "budget_confidence": "inferred",
-    "budget_amount": null,
-    "client_status": "vip",
-    "allergies": [],
-    "allergy_severity": "low",
-    "dietary": [
-      "pescatarian"
-    ],
-    "relationship_context": {
-      "gift_for": [
-        "spouse",
-        "child",
-        "friend",
-        "colleague"
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "legal_lawyer",
+        "travel_frequent",
+        "art_collector",
+        "philanthropist",
+        "pescatarian",
+        "gift_for_spouse",
+        "gift_for_child",
+        "gift_for_friend",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories",
+        "jewelry"
       ],
-      "shopping_with": [
-        "spouse"
+      "usage": [
+        "professional_work",
+        "travel",
+        "evening"
+      ],
+      "preferences": {
+        "colors": [
+          "navy",
+          "black",
+          "brown",
+          "beige",
+          "rose_gold"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": [
+          "smooth_leather"
+        ]
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4810043V/M01445",
+          "name": "Porte-clés Vivienne On The Court",
+          "price": 390.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-cles-vivienne-on-the-court-s00-nvprod4810043v/M01445",
+          "match_score": 0.44
+        },
+        {
+          "sku": "NVPROD4700044V/1AC11R",
+          "name": "Pull court en maille côtelée fine",
+          "price": 1500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pull-court-en-maille-cotelee-fine-nvprod4700044v/1AC11R",
+          "match_score": 0.41
+        },
+        {
+          "sku": "NVPROD4700044V/1AC11T",
+          "name": "Pull court en maille côtelée fine",
+          "price": 1500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pull-court-en-maille-cotelee-fine-nvprod4700044v/1AC11T",
+          "match_score": 0.41
+        }
       ]
     },
-    "key_dates": [],
-    "occasions": [
-      "retirement"
-    ],
-    "urgency": null,
-    "event_date": null,
-    "days_until_event": null,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": "legal_lawyer",
-    "processing_tier": "tier2",
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "legal_lawyer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "retirement"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (20K-50K)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
     "confidence": 0.95,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
-    "error": null,
-    "reasoning": "VIP clients with considerable wealth and a combined budget of 28K which is extremely flexible. They are retired senior partners from a law firm, indicating a high social and professional status. Their interests and preferences are well-detailed, including travel, fashion preferences, and dietary habits. The context provides a rich background for personalized service and future interactions.",
-    "model_name": "mistral-medium-latest",
-    "cost": 0.0,
-    "age": null,
-    "gender": null,
     "tier": 2,
-    "ID": "CA_292",
-    "from_cache": false
+    "ID": "CA_292"
   }
 }

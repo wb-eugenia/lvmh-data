@@ -1,0 +1,107 @@
+{
+  "_cached_at": 1769906317.873611,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "leather_goods",
+        "travel_frequent",
+        "philanthropist",
+        "tech_early_adopter",
+        "pescatarian",
+        "professional_work",
+        "gift_for_child",
+        "gift_for_spouse",
+        "wedding_anniversary",
+        "ultra_high"
+      ],
+      "usage": [
+        "professional_work",
+        "travel",
+        "gift"
+      ],
+      "preferences": {
+        "colors": [
+          "black",
+          "brown_cognac",
+          "grey",
+          "champagne",
+          "rose_gold"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": [
+          "smooth_leather"
+        ]
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.66
+        },
+        {
+          "sku": "NVPROD4480023V/1AC2TX",
+          "name": "Jupe en cuir à motif vichy",
+          "price": 3800.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-en-cuir-a-motif-vichy-nvprod4480023v/1AC2TX",
+          "match_score": 0.64
+        },
+        {
+          "sku": "NVPROD4480018V/1AC3W7",
+          "name": "Veste en cuir à motif vichy et bretelles",
+          "price": 12000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-en-cuir-a-motif-vichy-et-bretelles-nvprod4480018v/1AC3W7",
+          "match_score": 0.64
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "['founder_ceo', 'coo']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "business_milestone"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (50K+)",
+      "urgency": "this_month"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.95,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_182"
+  }
+}

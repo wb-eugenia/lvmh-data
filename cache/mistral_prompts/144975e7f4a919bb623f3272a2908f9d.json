@@ -1,65 +1,79 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "gift_for_parent",
-    "travel_frequent",
-    "pescatarian",
-    "shopping_with_spouse",
-    "watches",
-    "leather_goods",
-    "ready_to_wear"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "Luxembourg",
-    "Tanzania",
-    "Zürich"
-  ],
-  "events": [
-    "Safari Tanzania"
-  ],
-  "professions": [],
-  "budget_range": "10K-20K",
-  "budget_min": 11200,
-  "budget_max": 16800,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "regular",
-  "allergies": [],
-  "allergy_severity": "low",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "parent"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "regular",
+      "travel_frequent",
+      "wine_enthusiast",
+      "art_collector",
+      "pescatarian",
+      "leather_goods",
+      "watches",
+      "ready_to_wear",
+      "accessories"
     ],
-    "shopping_with": [
-      "spouse"
-    ]
+    "usage": [
+      "professional_work",
+      "travel",
+      "gift"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "brown_cognac",
+        "grey",
+        "beige_neutral",
+        "rose",
+        "gold"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": null,
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "regular"
+    },
+    "profession": {
+      "sector": "['finance_banker', 'creative_designer']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "graduation"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "Regular clients with flexible budget inferred from their status and spending habits. Professions and dietary preferences explicitly mentioned. Travel and lifestyle details extracted. No specific products or brands mentioned, but categories inferred from their preferences.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

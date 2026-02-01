@@ -36,6 +36,8 @@ from src.tier2_mistral import Tier2Mistral
 from src.extractor import TagExtractor
 from src.cache_manager import CacheManager
 from src.text_cleaner import MultilingualTextCleaner
+from src.bigquery_client import BigQueryManager
+from src.product_matcher import ProductMatcher
 
 
 @dataclass
@@ -59,12 +61,16 @@ class PipelineBatchV2:
     Performance: 300 notes in ~90s (10x faster than sequential!)
     """
     
-    def __init__(self, use_cache: bool = True):
+    def __init__(self, use_cache: bool = True, use_bq: bool = False):
         self.router = SmartRouter()
         self.tier1 = Tier1RulesEngine()
         self.tier2 = None  # Lazy load
         self.tier3 = None  # Lazy load
         self.text_cleaner = None  # Lazy load
+        self.matcher = None      # Lazy load (RAG)
+        
+        # BigQuery (Optional)
+        self.bq_manager = BigQueryManager() if use_bq else None
         
         self.cache = CacheManager('cache/pipeline_batch') if use_cache else None
         self.use_cache = use_cache
@@ -78,8 +84,8 @@ class PipelineBatchV2:
         
         # Concurrency semaphores
         self.semaphores = {
-            2: asyncio.Semaphore(50),  # Max 50 concurrent Mistral calls
-            3: asyncio.Semaphore(5),   # Max 5 concurrent GPT-4 calls
+            2: asyncio.Semaphore(2),   # Reduced from 50 to 5, further reduced to 2 to avoid Rate Limit
+            3: asyncio.Semaphore(2),   # Reduced to 2 (Mistral Large strict limits)
         }
         
         self.stats = {
@@ -93,6 +99,13 @@ class PipelineBatchV2:
             'cache_hits': 0,
             'escalations': 0,
         }
+        self.recommender = None # Lazy load
+
+    def _init_recommender(self):
+        """Lazy load recommender engine"""
+        if self.recommender is None:
+            from src.recommender import RecommenderEngine
+            self.recommender = RecommenderEngine()
     
     def _init_tier2(self):
         """Lazy load Tier 2"""
@@ -115,6 +128,11 @@ class PipelineBatchV2:
                 self.text_cleaner = MultilingualTextCleaner(use_embeddings=False)
             except:
                 self.text_cleaner = None
+
+    def _init_matcher(self):
+        """Lazy load RAG matcher"""
+        if self.matcher is None:
+            self.matcher = ProductMatcher()  # Will check for index file automatically
     
     def _clean_text(self, text: str, language: str) -> str:
         """Clean text if cleaner available"""
@@ -260,6 +278,34 @@ class PipelineBatchV2:
             result['ID'] = note.get('ID', 'unknown')
             result['from_cache'] = False
             
+            # --- RAG ENRICHMENT (Tier 1) ---
+            self._init_matcher()
+            if self.matcher and self.matcher.enabled:
+                tags = result.get('tags', []) # Legacy key kept by V2 model
+                
+                # Extract categories from V2 structure if available
+                p1 = result.get('pilier_1_univers_produit', {})
+                categories = p1.get('categories', []) if isinstance(p1, dict) else []
+                
+                # Build Query
+                query_parts = []
+                if categories: query_parts.extend(categories[:2])
+                if tags: query_parts.extend(tags[:3])
+                
+                # Fallback: simple text search if no tags
+                if not query_parts:
+                    query_parts = [text[:100]]
+
+                rag_query = " ".join(query_parts)
+                matched = self.matcher.match(rag_query)
+                
+                if matched:
+                    if 'pilier_1_univers_produit' in result and isinstance(result['pilier_1_univers_produit'], dict):
+                        result['pilier_1_univers_produit']['matched_products'] = matched
+                    else:
+                        result['matched_products'] = matched
+            # -------------------------------
+            
             # Cache
             if self.cache:
                 self.cache.save(cache_key, 'tier1', result)
@@ -304,16 +350,41 @@ class PipelineBatchV2:
                     extraction = await self.tier2.extract(text, language)
                     
                     # Convert to dict
-                    if hasattr(extraction, '__dict__'):
-                        result = {k: v for k, v in extraction.__dict__.items()}
-                    elif hasattr(extraction, 'model_dump'):
+                    if hasattr(extraction, 'model_dump'):
                         result = extraction.model_dump()
+                    elif hasattr(extraction, '__dict__'):
+                        result = {k: v for k, v in extraction.__dict__.items()}
                     else:
                         result = dict(extraction)
                     
                     result['tier'] = 2
                     result['ID'] = note_id
                     result['from_cache'] = False
+                    
+                    # --- RAG ENRICHMENT (Tier 2) ---
+                    self._init_matcher()
+                    if self.matcher and self.matcher.enabled:
+                        tags = result.get('tags', [])
+                        p1 = result.get('pilier_1_univers_produit', {})
+                        categories = p1.get('categories', []) if isinstance(p1, dict) else []
+                        
+                        query_parts = []
+                        if categories: query_parts.extend(categories[:2])
+                        if tags: query_parts.extend(tags[:3])
+                        
+                        # Fallback
+                        if not query_parts:
+                            query_parts = [text[:100]]
+
+                        rag_query = " ".join(query_parts)
+                        matched = self.matcher.match(rag_query)
+                        
+                        if matched:
+                            if 'pilier_1_univers_produit' in result and isinstance(result['pilier_1_univers_produit'], dict):
+                                result['pilier_1_univers_produit']['matched_products'] = matched
+                            else:
+                                result['matched_products'] = matched
+                    # -------------------------------
                     
                     # Check if needs escalation
                     if self._needs_escalation(result):
@@ -330,12 +401,15 @@ class PipelineBatchV2:
                 except Exception as e:
                     print(f"  ❌ Tier 2 error for {note_id}: {e}")
                     # Fallback to tier 1
-                    extraction = self.tier1.extract(text, language)
-                    result = extraction.model_dump() if hasattr(extraction, 'model_dump') else dict(extraction)
-                    result['tier'] = 1
-                    result['ID'] = note_id
-                    result['error'] = str(e)
-                    return result
+                    try:
+                        extraction = self.tier1.extract(text, language)
+                        result = extraction.model_dump() if hasattr(extraction, 'model_dump') else dict(extraction)
+                        result['tier'] = 1
+                        result['ID'] = note_id
+                        result['error'] = f"Fallback from T2: {str(e)}"
+                        return result
+                    except Exception as e2:
+                        return {'tier': 0, 'ID': note_id, 'error': f"Double failure: {e}, {e2}"}
         
         # Process all in parallel with semaphore control
         tasks = [
@@ -399,6 +473,45 @@ class PipelineBatchV2:
                     else:
                         result = dict(extraction)
                     
+                    # -----------------------------------
+                    # RAG ENRICHMENT (New!)
+                    # -----------------------------------
+                    self._init_matcher()
+                    if self.matcher.enabled:
+                        # Construct query from tags + categories
+                        # Ex: "Maroquinerie Sac noir élégant"
+                        tags = result.get('tags', [])
+                        pilier1 = result.get('pilier_1_univers_produit', {})
+                        
+                        # Handle new Pydantic structure vs dict
+                        if hasattr(pilier1, 'categories'):
+                            categories = pilier1.categories
+                        elif isinstance(pilier1, dict):
+                            categories = pilier1.get('categories', [])
+                        else:
+                            categories = []
+                            
+                        # Build semantic query
+                        query_parts = []
+                        if categories: query_parts.extend(categories[:2])
+                        if tags: query_parts.extend(tags[:3])
+                        
+                        # Fallback to text if tags are poor
+                        if not query_parts:
+                            query_parts = [text[:100]] # Use start of transcription
+                            
+                        rag_query = " ".join(query_parts)
+                        
+                        matched = self.matcher.match(rag_query)
+                        
+                        # Inject into result
+                        if matched:
+                            if 'pilier_1_univers_produit' in result and isinstance(result['pilier_1_univers_produit'], dict):
+                                result['pilier_1_univers_produit']['matched_products'] = matched
+                            else:
+                                # Legacy fallback
+                                result['matched_products'] = matched
+
                     result['tier'] = 3
                     result['ID'] = note_id
                     result['from_cache'] = False
@@ -505,11 +618,28 @@ class PipelineBatchV2:
                     results_map[note_id] = result
         
         # Rebuild in original order
+        self._init_recommender()
         ordered_results = []
         for note in original_notes:
             note_id = note.get('ID', 'unknown')
             if note_id in results_map:
-                ordered_results.append(results_map[note_id])
+                res = results_map[note_id]
+                
+                # Apply Recommendation Engine (NBA)
+                if self.recommender and 'pilier_4_action_business' in res:
+                    try:
+                        # Convert dict to model for processing if needed, or process as dict
+                        # For simplicity, we assume result is already structured as ExtractionResult or similar
+                        # Recommender works on models, so let's convert back and forth if necessary
+                        # Actually, Tier 1/2/3 return dicts or models. Let's be safe.
+                        from src.models import ExtractionResult
+                        ext = ExtractionResult(**res)
+                        ext_with_nba = self.recommender.generate_recommendation(ext)
+                        res = ext_with_nba.model_dump()
+                    except Exception as e:
+                        print(f"  ⚠️ Recommendation failed for {note_id}: {e}")
+                
+                ordered_results.append(res)
             else:
                 ordered_results.append({
                     'ID': note_id,
@@ -573,6 +703,28 @@ class PipelineBatchV2:
         print(f"Avg per note: {elapsed_total/len(notes):.0f}ms")
         print(f"{'='*70}\n")
         
+        # PHASE 5: BigQuery Stream
+        if self.bq_manager and self.bq_manager.enabled:
+             print("\n📍 PHASE 5: Streaming to BigQuery...")
+             self.bq_manager.insert_rows(final_results)
+             
+        # PHASE 6: ML Learning (Self-Optimization)
+        print("\n📍 PHASE 6: Updating ML Router Learning...")
+        for (note, decision), result in zip(decisions, final_results):
+            # Only learn from non-cached results for higher quality feedback
+            if result.get('from_cache'): continue
+            
+            text = note.get('_cleaned_text', note.get('Transcription', ''))
+            self.router.record_feedback(
+                text=text,
+                predicted_tier=decision.tier,
+                executed_tier=decision.tier, # Tier we first attempted
+                confidence_achieved=result.get('confidence', 0.0),
+                was_escalated='escalated_from' in result,
+                final_tier=result.get('tier'),
+                final_confidence=result.get('confidence', 0.0)
+            )
+            
         return final_results
     
     def run(self, df: pd.DataFrame) -> List[Dict]:
@@ -594,6 +746,7 @@ def main():
     parser.add_argument('-n', '--num_notes', type=int, default=50, help='Number of notes to process')
     parser.add_argument('--no-cache', action='store_true', help='Disable caching')
     parser.add_argument('--input', type=str, default='data/processed/LVMH_Notes_CA101-400_cleaned.csv')
+    parser.add_argument('--bq', action='store_true', help='Enable BigQuery export')
     args = parser.parse_args()
     
     print(f"""
@@ -619,7 +772,10 @@ Expected Speedup: 10x faster than sequential!
     print(f"📂 Loaded {len(df)} notes from {input_path}")
     
     # Initialize pipeline
-    pipeline = PipelineBatchV2(use_cache=not args.no_cache)
+    pipeline = PipelineBatchV2(
+        use_cache=not args.no_cache,
+        use_bq=args.bq
+    )
     
     # Run!
     results = pipeline.run(df)

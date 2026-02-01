@@ -107,16 +107,48 @@ class TaxonomyManager:
             
         # 2. Known aliases (Manual mapping for common hallucinations)
         aliases = {
+            # Occasions
+            'birthday': 'birthday_gift',
+            'wedding': 'wedding_gift',
+            'valentines': 'valentines_gift',
+            'anniversary': 'wedding_anniversary',
+            'christmas': 'christmas_gift',
+            
+            # Professions
             'tech_entrepreneur': 'entrepreneur_tech',
-            'fashion_designer': 'designer',
-            'interior_designer': 'designer',
+            'medical_executive': 'medical_specialist',
+            'creative_writer': 'writer',
+            'fashion_designer': 'creative_designer',
+            'interior_designer': 'creative_designer',
             'real_estate_agent': 'real_estate',
-            'business_man': 'business_owner',
-            'business_woman': 'business_owner',
-            'student': 'coming_of_age', # Proxy
+            'lawyer': 'legal_lawyer',
+            'doctor': 'medical_physician',
+            
+            # Lifestyle
+            'sports_boxing': 'sports_combat',
+            'sports_golf': 'golf',
+            'sports_tennis': 'tennis',
+            'sustainable': 'eco_conscious',
+            
+            # Status
+            'ultra_high_potential': 'ultimate',
+            'high_net_worth': 'high_potential',
+            'regular_customer': 'regular',
+            
+            # Context & Service
+            'passage': 'luxury_service',
+            'visit': 'luxury_service',
+            'revoir': 'luxury_service',
+            'maintenance': 'luxury_service',
+            
+            # Professions
+            'wealth_manager': 'finance_banker',
+            'startup': 'entrepreneur_startup',
+            'ceo': 'entrepreneur_established',
+            'executive': 'entrepreneur_established'
         }
-        if tag in aliases:
-            return aliases[tag]
+        if tag.lower() in aliases:
+            return aliases[tag.lower()]
             
         # 3. Fuzzy match
         core_tags = self.get_core_tags()

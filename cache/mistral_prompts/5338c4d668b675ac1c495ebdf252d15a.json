@@ -1,60 +1,75 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "tech_engineer",
-    "gift_for_parent",
-    "vegan",
-    "travel_frequent"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [
-    "Tesla"
-  ],
-  "locations": [
-    "USA"
-  ],
-  "events": [],
-  "professions": [],
-  "budget_range": "10K-20K",
-  "budget_min": 12800,
-  "budget_max": 24000,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "regular",
-  "allergies": [],
-  "allergy_severity": "low",
-  "dietary": [
-    "vegan"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "parent"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "regular",
+      "gift_for_parents",
+      "tech_engineer",
+      "travel_frequent",
+      "eco_conscious",
+      "vegan",
+      "leather_goods",
+      "accessories"
     ],
-    "shopping_with": []
+    "usage": [
+      "professional_work",
+      "gift"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "grey",
+        "beige",
+        "green"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "birthday"
-  ],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": null,
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "regular"
+    },
+    "profession": {
+      "sector": "['tech_engineer', 'tech_engineer']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegan"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "birthday"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "Budget inféré basé sur flexibilité et statut client. Professions et intérêts clairement mentionnés. Régime vegan et valeurs écologiques identifiées. Pas de date spécifique ni d'urgence mentionnée.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

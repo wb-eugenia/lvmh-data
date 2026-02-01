@@ -1,61 +1,74 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "gift_for_parent",
-    "travel_frequent",
-    "pescatarian",
-    "shopping_with_spouse",
-    "art_collector"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "Stati Uniti"
-  ],
-  "events": [
-    "conferenza diritti umani"
-  ],
-  "professions": [],
-  "budget_range": "20K-50K",
-  "budget_min": 17000,
-  "budget_max": 51000,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [],
-  "allergy_severity": "low",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "parent"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "legal_lawyer",
+      "creative_designer",
+      "travel_frequent",
+      "art_collector",
+      "pescatarian",
+      "gift_for_parent",
+      "wedding_anniversary"
     ],
-    "shopping_with": [
-      "spouse"
-    ]
+    "usage": [
+      "professional_work",
+      "travel"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "navy",
+        "grey",
+        "beige_neutral",
+        "bold_colors"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": []
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": null,
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "['legal_lawyer', 'creative_designer']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "wedding_anniversary"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP clients with high-profile professions and specific lifestyle preferences. Budget inferred as flexible and high due to their status and professions. Detailed personal and professional backgrounds provided, but no specific products or urgent dates mentioned.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

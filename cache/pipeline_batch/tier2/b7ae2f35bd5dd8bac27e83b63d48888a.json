@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1769906231.462823,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {},
+      "matched_products": [
+        {
+          "sku": "NVPROD4710024V/M79376",
+          "name": "Couverture LV Ice",
+          "price": 1250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-lv-ice-s00-nvprod4710024v/M79376",
+          "match_score": 0.44
+        },
+        {
+          "sku": "NVPROD4710023V/M79375",
+          "name": "Oreiller LV Ice",
+          "price": 595.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/oreiller-lv-ice-s00-nvprod4710023v/M79375",
+          "match_score": 0.44
+        },
+        {
+          "sku": "NVPROD1730173V/M74353",
+          "name": "Écharpe Cold Reykjavik",
+          "price": 2000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/echarpe-cold-reykjavik-s00-nvprod1730173v/M74353",
+          "match_score": 0.42
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {},
+      "profession": {},
+      "lifestyle": {}
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {},
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.0,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.0,
+    "processing_tier": "tier2",
+    "extracted_by": "tier2_mistral_fallback",
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_138"
+  }
+}

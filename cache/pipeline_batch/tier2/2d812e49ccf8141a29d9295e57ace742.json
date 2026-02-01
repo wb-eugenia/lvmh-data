@@ -1,67 +1,96 @@
 {
-  "_cached_at": 1769692248.8441312,
+  "_cached_at": 1769906623.5760753,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [
-      "vegan",
-      "shopping_with_spouse",
-      "travel_luggage",
-      "leather_goods",
-      "art_collector",
-      "travel_frequent"
-    ],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [
-      "Africa",
-      "Middle East",
-      "Asia",
-      "India"
-    ],
-    "events": [],
-    "professions": [],
-    "budget_range": "5K-10K",
-    "budget_min": 5000,
-    "budget_max": 7000,
-    "budget_confidence": "explicit",
-    "budget_amount": null,
-    "client_status": "first_visit",
-    "allergies": [],
-    "allergy_severity": "low",
-    "dietary": [
-      "vegan"
-    ],
-    "relationship_context": {
-      "gift_for": [],
-      "shopping_with": [
-        "spouse"
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "travel",
+        "professional_work",
+        "vegan",
+        "art_collector",
+        "travel_frequent",
+        "yoga",
+        "first_visit",
+        "legal_lawyer"
+      ],
+      "usage": [
+        "professional_work",
+        "travel"
+      ],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.57
+        },
+        {
+          "sku": "NVPROD3970116V/1AB77U",
+          "name": "Manteau à double boutonnage et détails en cuir",
+          "price": 4650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-a-double-boutonnage-et-details-en-cuir-nvprod3970116v/1AB77U",
+          "match_score": 0.57
+        },
+        {
+          "sku": "NVPROD4230038V/1ABDN7",
+          "name": "Robe longue évasée en cuir à lanières",
+          "price": 15100.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/robe-longue-evasee-en-cuir-a-lanieres-nvprod4230038v/1ABDN7",
+          "match_score": 0.57
+        }
       ]
     },
-    "key_dates": [],
-    "occasions": [],
-    "urgency": null,
-    "event_date": "2024-04-01",
-    "days_until_event": null,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": "legal_lawyer",
-    "processing_tier": "tier2",
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "legal_lawyer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "high (5K-15K)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
     "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
-    "error": null,
-    "reasoning": "Client profile with explicit budget and detailed lifestyle information. No specific products or brands mentioned. Urgency and specific event date not provided.",
-    "model_name": "mistral-medium-latest",
-    "cost": 0.0,
-    "age": null,
-    "gender": null,
     "tier": 2,
-    "ID": "CA_363",
-    "from_cache": false
+    "ID": "CA_363"
   }
 }

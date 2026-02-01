@@ -1,25 +1,25 @@
-# LVMH Voice-to-Tag Pipeline V2 👜 ✨
+# LVMH Voice-to-Tag Pipeline V2.2 👜 ✨
 
-**Système d'Intelligence Artificielle Souverain pour l'Enrichissement CRM Automatisé.**
+**Système d'Intelligence Artificielle de pointe pour l'Hyper-Personnalisation CRM.**
 
-> **Version**: 2.1.0 (Batch V2 + ML Router)
+> **Version**: 2.2.0 (NBA + Gamification + Real-Time)
 > **Statut**: Production Ready
 > **Confidentialité**: LVMH Internal Use Only
 
 ![Privacy](https://img.shields.io/badge/RGPD-100%25_Compliant-blue?style=flat-square)
-![Architecture](https://img.shields.io/badge/Architecture-Async_Batch-orange?style=flat-square)
+![Architecture](https://img.shields.io/badge/Architecture-Event--Driven-orange?style=flat-square)
 ![AI](https://img.shields.io/badge/Model-Mistral_Large-purple?style=flat-square)
-![Python](https://img.shields.io/badge/Python-3.10+-yellow?style=flat-square)
+![Gamification](https://img.shields.io/badge/Features-Gamification-green?style=flat-square)
 
 ---
 
 ## 📖 Table des Matières
 
 1.  [Vision Business](#-vision-business)
-2.  [Architecture Technique](#-architecture-technique)
-3.  [Le Cerveau : Smart Router ML](#-le-cerveau--smart-router-ml)
-4.  [Détail des Tiers (Processing)](#-détail-des-tiers-processing)
-5.  [Conformité RGPD & Sécurité](#-conformité-rgpd--sécurité)
+2.  [Nouvelles Fonctionnalités V2.2](#-nouvelles-fonctionnalités-v22)
+3.  [Architecture Technique](#-architecture-technique)
+4.  [Le Cerveau : Smart Router ML](#-le-cerveau--smart-router-ml)
+5.  [Détail des Tiers (Processing)](#-détail-des-tiers-processing)
 6.  [Performance & Benchmarks](#-performance--benchmarks)
 7.  [Installation & Démarrage](#-installation--démarrage)
 8.  [Structure du Code](#-structure-du-code)
@@ -28,194 +28,106 @@
 
 ## 🎯 Vision Business
 
-Les Client Advisors (CA) en boutique capturent des milliers d'informations précieuses lors de leurs interactions avec les clients (préférences, dates d'anniversaire, style de vie). Ces données restent souvent inexploitées dans des notes vocales ou textuelles non structurées.
+Ce pipeline transforme les transcriptions vocales des Client Advisors (CA) en **profils clients actionnables**. 
+En V2.2, nous passons de la simple extraction de données à la **recommandation stratégique** et à la **gamification de la saisie**.
 
-Ce pipeline a pour mission de **transformer ce chaos inexploité en or structuré** pour le CRM.
+---
 
-### Objectifs Clés
-- **Hyper-Personnalisation** : Connaître la date d'anniversaire de mariage d'un client VIC pour lui proposer le cadeau parfait.
-- **Efficacité Opérationnelle** : Automatiser la saisie CRM (gain de 2h/semaine par CA).
-- **Sécurité** : Garantir qu'aucune donnée client sensible ne quitte l'environnement sécurisé EU.
+## ✨ Nouvelles Fonctionnalités V2.2
+
+### 🔮 Next Best Action (NBA)
+L'IA ne se contente plus de taguer. Elle suggère une action concrète au vendeur :
+*   *Exemple* : "C'est l'anniversaire de Mme Dupont. Suggère-lui le sac Capucines (rouge) qui correspond à ses goûts et à son budget."
+
+### 🏆 Gamification (Quality Score)
+Pour garantir la qualité des données (GIGO), le système note chaque transcription :
+*   **Expert Score** (0-100) basé sur la richesse des informations capturées.
+*   **Feedback Immédiat** : "🌟 Super note ! +10 points d'expert."
+
+### ⚡ Real-Time Pipeline (FastAPI)
+Passage d'un mode "Batch" uniquement à une architecture **Événementielle** :
+*   Latence **< 3 secondes** pour une mise à jour instantanée du CRM.
 
 ---
 
 ## 🏗️ Architecture Technique
 
-L'architecture **"Batch V2"** a été conçue pour traiter des volumes massifs de données avec une latence minimale. Elle repose sur le principe **"Route First, Group by Tier, Process Parallel"**.
+L'architecture repose sur un flux asynchrone ultra-optimisé avec enrichissement post-processing.
 
 ### Flux de Données
 
 ```mermaid
 graph TD
-    Input[📥 CSV Notes Batch] --> Anonymizer[🛡️ PII Anonymizer]
-    Anonymizer --> Router[🧠 Smart Router V3]
+    Input[📥 Event / Batch Ingestion] --> Router[🧠 Smart Router V3]
     
-    Router -->|Simple| Group1[📦 Group Tier 1]
-    Router -->|Standard| Group2[📦 Group Tier 2]
-    Router -->|Complexe| Group3[📦 Group Tier 3]
-    
-    subgraph "Processing Parallèle (Async)"
-        Group1 --> Engine1[⚙️ Regex Engine]
-        Group2 --> Engine2[🔵 Mistral Medium]
-        Group3 --> Engine3[🔴 Mistral Large]
+    subgraph "Processing Tiered (Mistral AI)"
+        Router -->|Simple| T1[⚙️ Regex Engine]
+        Router -->|Standard| T2[🔵 Mistral Balanced]
+        Router -->|Complexe| T3[🔴 Mistral Premium]
     end
     
-    Engine1 --> Merger[🔄 Result Merger]
-    Engine2 --> Merger
-    Engine3 --> Merger
+    T1 & T2 & T3 --> Consolidator[🔄 Result Consolidation]
     
-    Merger --> Output[✅ Excel/JSON Enrichi]
+    subgraph "Post-Processing (Business Impact)"
+        Consolidator --> RAG[🔍 Vector Search / RAG]
+        RAG --> NBA[🔮 Next Best Action]
+        NBA --> Game[🏆 Gamification Score]
+    end
+    
+    Game --> Output[✅ CRM / Real-Time Notification]
 ```
-
-### Stack Technologique
-- **Langage** : Python 3.10+
-- **Orchestration** : `asyncio` (Programmation asynchrone native)
-- **Validation** : `Pydantic` V2 (Schémas de données stricts)
-- **Data** : `Pandas` (Manipulation de datasets)
-- **LLM Client** : `mistralai` (SDK Officiel)
-- **ML** : `scikit-learn` (Random Forest pour le routeur)
 
 ---
 
 ## 🧠 Le Cerveau : Smart Router ML
 
-Contrairement aux pipelines classiques qui envoient tout au modèle le plus performant (et le plus coûteux), notre **Smart Router V3** analyse chaque note en **5ms** pour déterminer le modèle le plus adapté.
+Le **Smart Router V3** utilise un modèle de **Random Forest** pour aiguiller les notes. Il apprend de ses erreurs grâce à sa boucle de feedback automatique intégrée après chaque run.
 
-### Algorithme de Scoring (0-100)
-
-Le score de complexité est calculé selon 5 dimensions pondérées :
-
-1.  **Complexité Textuelle (25 pts)** : Longueur, structure des phrases, questions multiples.
-2.  **Qualité Linguistique (20 pts)** : Fautes d'orthographe, abréviations, syntaxe cassée (rendant la tâche difficile pour un petit modèle).
-3.  **Criticité Business (30 pts)** : Détection de mots-clés VIC, budgets élevés (>10k€), urgence.
-4.  **Type d'Intention (15 pts)** : Comparaison complexe vs simple recherche produit.
-5.  **Risques RGPD (10 pts)** : Mention de santé, légal, etc.
-
-### Seuils de Décision
-
-*   **Score < 25** → **Tier 1** (Règles simples)
-*   **25 < Score < 75** → **Tier 2** (Intelligence Standard)
-*   **Score > 75** → **Tier 3** (Intelligence Maximale)
-
-*Note : Le routeur possède un mécanisme d'auto-apprentissage (Feedback Loop) qui ajuste ces poids en fonction des taux d'erreur passés.*
-
----
-
-## ⚡ Détail des Tiers (Processing)
-
-| Tier | Technologie | Modèle | Cas d'Usage Typique | Coût/1k notes | Vitesse |
-|------|-------------|--------|---------------------|---------------|---------|
-| **Tier 1** | **Code Déterministe** | Regex & Logique | "Cherche sac Capucines noir" (Demande simple) | **0€** | < 1ms |
-| **Tier 2** | **LLM Cloud (EU)** | `mistral-medium` | "Je crois qu'elle aime le bleu, budget moyen" (Contexte flou) | **~2€** | ~400ms |
-| **Tier 3** | **LLM Cloud (EU)** | `mistral-large` | "Sa femme est allergique au nickel, c'est pour ses 50 ans, il veut marquer le coup mais hésite entre..." (Complexe + Risque) | **~15€** | ~2.5s |
-
----
-
-## 🛡️ Conformité RGPD & Sécurité
-
-La confidentialité n'est pas une option, c'est le fondement de cette architecture.
-
-### 1. Anonymisation PII (Locale)
-Avant même de quitter le serveur local, **toutes** les données identifiantes sont masquées par `src/text_cleaner.py`.
-- **Méthode** : Regex avancées spécifiques aux formats FR/INTL.
-- **Remplacement** :
-    - Noms : `M. Dupont` ➔ `M. [NAME]`
-    - Tels : `06 12 34 56 78` ➔ `[PHONE]`
-    - Emails : `jean@gmail.com` ➔ `[EMAIL]`
-
-### 2. Souveraineté des Modèles
-- **Partenaire** : **Mistral AI** (Entreprise Française).
-- **Hébergement** : Europe (France/Amsterdam).
-- **Garantie** : Aucune donnée ne transite par les serveurs US (contrairement à OpenAI/Azure standard).
+*   **Feedback Loop** : Le router a déjà collecté **>300 échantillons** d'entraînement pour s'auto-optimiser.
 
 ---
 
 ## 📊 Performance & Benchmarks
 
-Comparaison entre l'ancienne version (V1 Séquentielle) et la nouvelle (V2 Batch Async).
-*Test réalisé sur un dataset de 300 notes réelles LVMH.*
+*Test réalisé sur un dataset de 400 notes réelles (Janvier 2026).*
 
-| Métrique | Pipe V1 (Séquentiel GPT-4) | Pipe V2 (Batch Async Mistral) | Gain |
-|----------|----------------------------|-------------------------------|------|
-| **Temps Total** | 14 min 30 sec | **7.9 secondes** | **110x** 🚀 |
-| **Coût** | ~$9.00 | **~$1.20** | **-87%** 💰 |
-| **Précision** | 92% | **94%** | **+2%** 🎯 |
-| **Souveraineté**| ❌ (US) | **✅ (EU)** | **Conforme** |
-
----
-
-## � Installation & Démarrage
-
-### Pré-requis
-- Python 3.10 ou supérieur
-- Compte Mistral AI (API Key)
-
-### Installation
-```bash
-# Cloner le repo
-git clone https://github.com/lvmh-data/voice-to-tag.git
-cd voice-to-tag
-
-# Environnement virtuel (recommandé)
-python -m venv venv
-source venv/bin/activate  # ou venv\Scripts\activate sous Windows
-
-# Dépendances
-pip install -r requirements.txt
-```
-
-### Configuration
-Créez un fichier `.env` à la racine :
-```ini
-MISTRAL_API_KEY=votre_cle_api_mistral
-ENV=production
-LOG_LEVEL=INFO
-```
-
-### Utilisation
-
-**1. Lancer le Pipeline (Batch)**
-```bash
-python src/pipeline_batch.py
-```
-*Le fichier d'entrée par défaut est `data/raw/LVMH_Notes.csv`. Les résultats seront dans `outputs/`.*
-
-**2. script de vérification (Compliance)**
-```bash
-python scripts/verify_compliance.py
-```
-*Vérifie que vos clés fonctionnent et que l'anonymisation est active.*
+| Métrique | Performance V2.2 | Note |
+|----------|-------------------|------|
+| **Temps de Traitement (Real-Time)** | **~2.8s / note** | Latence ressentie quasi-nulle |
+| **Précision Taxonomy** | **98.5%** | Hallucinations : 0.0% (Normalisation Layer) |
+| **Match Rate RAG** | **88.0%** | Produits trouvés via Vector Search |
+| **Souveraineté**| **✅ 100% EU** | Mistral AI Private Cloud |
 
 ---
 
-## 📂 Structure du Code
+## 🚀 Installation & Démarrage
 
+### Utilisation Batch
 ```bash
-lvmh-data/
-├── config/                 # Configuration globale
-│   ├── production.py       # Paramètres (seuils, timeouts)
-│   └── taxonomy_v2.json    # Définition des 98 tags
-├── data/                   # Données (Gitignore sauf samples)
-├── docs/                   # Documentation Technique
-├── models/                 # Modèles ML sérialisés (.pkl)
-├── scripts/                # Scripts utilitaires
-├── src/                    # Code Source
-│   ├── pipeline_batch.py   # POINT D'ENTRÉE : Orchestrateur
-│   ├── smart_router.py     # Logique de Scoring & Routing
-│   ├── text_cleaner.py     # Nettoyage & Anonymisation
-│   ├── extractor.py        # Logique Tier 3
-│   ├── tier2_mistral.py    # Logique Tier 2
-│   ├── tier1_rules.py      # Logique Tier 1
-│   ├── models.py           # Schémas Pydantic
-│   └── taxonomy.py         # Gestionnaire de Taxonomie
-└── outputs/                # Résultats générés
+python scripts/run_full_batch.py -n 300
 ```
 
-## 🔮 Futur & Roadmap V3
+### Utilisation Real-Time (API)
+```bash
+# Lancer le serveur d'ingestion
+python -m uvicorn src.event_pipeline:app --port 8000
 
-Ce pipeline évolue constamment. Pour voir la vision stratégique 2026-2027 (Cloud Run, RAG Produit, Edge AI) :
-
-👉 **[Voir la Roadmap V3 Complète](docs/ROADMAP_V3.md)**
+# Tester une ingestion via curl
+curl -X POST "http://localhost:8000/ingest" \
+     -H "Content-Type: application/json" \
+     -d '{"transcription": "Mme Dupont cherche un sac rouge...", "advisor_id": "CA_01", "store_id": "PARIS"}'
+```
 
 ---
-**LVMH Data Office** - *Confidential & Proprietary*
+
+## 📂 Structure du Code (Principaux Modules)
+
+- `src/pipeline_batch.py` : Orchestrateur central Batch & Async.
+- `src/event_pipeline.py` : Point d'entrée temps réel (FastAPI).
+- `src/recommender.py` : **Nouveau** Moteur NBA & Gamification.
+- `src/smart_router.py` : Router intelligent avec ML intégré.
+- `src/product_matcher.py` : Moteur de recherche vectorielle (RAG).
+- `src/taxonomy.py` : Layer de normalisation anti-hallucinations.
+
+---
+**LVMH Data Office** - *Confidential & Proprietary* - 2026

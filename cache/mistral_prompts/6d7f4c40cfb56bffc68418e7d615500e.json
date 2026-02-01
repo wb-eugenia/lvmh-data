@@ -1,63 +1,71 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "gift_for_spouse",
-    "travel_frequent",
-    "shellfish_allergy",
-    "travel_luggage",
-    "ready_to_wear",
-    "vegan"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "Australia",
-    "Japan"
-  ],
-  "events": [],
-  "professions": [],
-  "budget_range": "2K-5K",
-  "budget_min": 4000,
-  "budget_max": 5000,
-  "budget_confidence": "explicit",
-  "budget_amount": null,
-  "client_status": "first_visit",
-  "allergies": [
-    "shellfish_allergy"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "vegan"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "spouse"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "ready_to_wear",
+      "travel_luggage",
+      "accessories",
+      "professional_work",
+      "travel_frequent",
+      "vegan",
+      "shellfish_allergy",
+      "gift_for_spouse",
+      "wedding_anniversary"
     ],
-    "shopping_with": []
+    "usage": [
+      "professional_work",
+      "travel"
+    ],
+    "preferences": {
+      "colors": [],
+      "styles": [],
+      "hardware": [],
+      "materials": []
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "wedding_anniversary"
-  ],
-  "urgency": null,
-  "event_date": "2024-06-01",
-  "days_until_event": 123,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "professional_dancer",
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "regular"
+    },
+    "profession": {
+      "sector": "professional_dancer",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegan"
+    ],
+    "allergies": {
+      "food": [
+        "shellfish_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "wedding_anniversary"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "high (5K-15K)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "Client status and budget explicit, allergy severity high, dietary preference clear, gift occasion and date inferred from context",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

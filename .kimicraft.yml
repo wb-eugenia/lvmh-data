@@ -1,0 +1,34 @@
+project_name: C:\Users\walid\Cursor - Projects\EugeniaSchool\lvmh-data
+stack:
+  frontend: react
+  database: postgresql
+  ai: openai
+folders: {}
+conventions:
+  naming:
+    functions: camelCase
+    components: PascalCase
+    variables: camelCase
+    files: PascalCase
+  style:
+    python: pep8
+    javascript: eslint
+  documentation: jsdoc
+  errorHandling: try-catch
+external_apis:
+  - cloudflare
+  - openai
+  - github
+deployment:
+  platform: unknown
+  ci_cd: github-actions
+maintenance:
+  daily:
+    - update_dependencies
+    - run_security_scan
+  weekly:
+    - analyze_performance
+    - update_docs
+  monthly:
+    - dependency_audit
+    - performance_review

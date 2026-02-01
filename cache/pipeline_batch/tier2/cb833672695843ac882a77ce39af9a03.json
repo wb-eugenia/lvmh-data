@@ -1,69 +1,104 @@
 {
-  "_cached_at": 1769692248.5869865,
+  "_cached_at": 1769906423.2643123,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [
-      "vegetarian",
-      "gift_for_friends",
-      "gift_for_family",
-      "leather_goods",
-      "travel_frequent"
-    ],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [
-      "Hannover",
-      "Chicago",
-      "Tokyo"
-    ],
-    "events": [],
-    "professions": [],
-    "budget_range": "10K-20K",
-    "budget_min": 14400,
-    "budget_max": 21600,
-    "budget_confidence": "inferred",
-    "budget_amount": null,
-    "client_status": "vip",
-    "allergies": [],
-    "allergy_severity": "low",
-    "dietary": [
-      "vegetarian"
-    ],
-    "relationship_context": {
-      "gift_for": [
-        "family",
-        "friends"
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "entrepreneur_established",
+        "travel_frequent",
+        "vegetarian",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories",
+        "gift_for_family",
+        "gift_for_friend",
+        "wedding_anniversary"
       ],
-      "shopping_with": []
+      "usage": [
+        "professional_work",
+        "travel"
+      ],
+      "preferences": {
+        "colors": [
+          "black",
+          "brown_cognac",
+          "beige_neutral",
+          "navy"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": [
+          "smooth_leather"
+        ]
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4620081V/1ABJQR",
+          "name": "Gilet business en laine",
+          "price": 990.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/gilet-business-en-laine-nvprod4620081v/1ABJQR",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD3740059V/P01730",
+          "name": "Organizer de poche My LV Heritage",
+          "price": 470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+          "match_score": 0.38
+        },
+        {
+          "sku": "NVPROD3740056V/P01729",
+          "name": "Organizer de poche My LV Heritage",
+          "price": 470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-nvprod3740056v/P01729",
+          "match_score": 0.37
+        }
+      ]
     },
-    "key_dates": [],
-    "occasions": [
-      "birthday",
-      "wedding_anniversary"
-    ],
-    "urgency": null,
-    "event_date": null,
-    "days_until_event": null,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": "entrepreneur_established",
-    "processing_tier": "tier2",
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "entrepreneur_established",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "birthday"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
     "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
     "processing_time_ms": 0.0,
     "rgpd_flag": false,
-    "error": null,
-    "reasoning": "Budget inferred from VIC status and flexible mention. Client status inferred from long-term loyalty and high budget. Vegetarian dietary preference explicitly mentioned. No allergies reported. Multiple gift occasions and recipients identified. Locations and professions extracted from context.",
-    "model_name": "mistral-medium-latest",
-    "cost": 0.0,
-    "age": null,
-    "gender": null,
     "tier": 2,
-    "ID": "CA_250",
-    "from_cache": false
+    "ID": "CA_250"
   }
 }

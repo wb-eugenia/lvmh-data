@@ -1,28 +1,37 @@
+# LVMH Cloud Run Dockerfile
+# Optimized for Production (API Mode)
+
 FROM python:3.11-slim
 
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies
+# Prevent Python from writing pyc files and buffering stdout
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# Install system dependencies (lightweight)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy application source code
+# We copy src, api, and config explicitly to keep image clean, or just copy . if .dockerignore is good
 COPY . .
 
-# Create necessary directories
-RUN mkdir -p outputs cache logs data/processed
+# Create non-root user for security (Cloud Run best practice)
+RUN addgroup --system appgroup && adduser --system --group appuser
+USER appuser
 
-# Expose Streamlit port
-EXPOSE 8501
+# Cloud Run injects PORT environment variable (default 8080)
+ENV PORT=8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8501/_stcore/health || exit 1
-
-# Run Streamlit
-CMD ["streamlit", "run", "app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+# Run FastAPI with Uvicorn
+# Uses the PORT environment variable
+CMD sh -c "uvicorn api.main:app --host 0.0.0.0 --port ${PORT} --workers 2"

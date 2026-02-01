@@ -1,68 +1,81 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "travel_frequent",
-    "pescatarian",
-    "shopping_with_spouse",
-    "watches",
-    "gluten_free",
-    "leather_goods",
-    "art_collector",
-    "gift_for_grandchildren",
-    "gift_for_children",
-    "wine_enthusiast"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "Mediterranean",
-    "Orient Express"
-  ],
-  "events": [],
-  "professions": [],
-  "budget_range": "20K-50K",
-  "budget_min": 23000,
-  "budget_max": 50000,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [
-    "gluten_sensitivity"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "children",
-      "grandchildren"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "travel_frequent",
+      "wine_enthusiast",
+      "pescatarian",
+      "gluten_free",
+      "gift_for_child",
+      "gift_for_friend",
+      "wedding_anniversary",
+      "watches",
+      "jewelry",
+      "leather_goods",
+      "accessories"
     ],
-    "shopping_with": [
-      "spouse"
-    ]
+    "usage": [
+      "travel",
+      "professional_work",
+      "evening"
+    ],
+    "preferences": {
+      "colors": [
+        "brown_cognac",
+        "beige_neutral"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": null,
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "['entrepreneur_established', 'creative_designer']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian",
+      "gluten_free"
+    ],
+    "allergies": {
+      "food": [
+        "gluten_sensitivity"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "birthday"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.95,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.95,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP clients with high budget flexibility, multiple gift recipients, specific dietary restrictions, and detailed lifestyle preferences.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

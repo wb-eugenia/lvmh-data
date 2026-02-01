@@ -1,129 +1,131 @@
 """
-Pydantic models for strict type checking and data validation across the pipeline.
+Pydantic models for strict type checking and data validation.
+Aligned with Universal Luxury Taxonomy V2.
 """
 
-from typing import List, Dict, Optional, Literal, Any
+from typing import List, Dict, Optional, Literal, Any, Union
 from pydantic import BaseModel, Field, validator
 from datetime import datetime
 
+# ==========================================
+# PILIER 1: UNIVERS PRODUIT
+# ==========================================
 
-class RGPDResult(BaseModel):
-    """Result from RGPD analysis."""
-    contains_sensitive: bool = Field(..., description="Whether sensitive data was detected")
-    categories_detected: List[str] = Field(default_factory=list, description="List of sensitive categories found")
-    sensitive_spans: List[Dict[str, Any]] = Field(default_factory=list, description="Specific spans of sensitive text")
-    safe_to_store: bool = Field(True, description="Whether the data is safe to store")
-    severity: Literal['none', 'low', 'medium', 'high'] = Field('none', description="Severity of RGPD risk")
-    reasoning: str = Field("", description="Explanation for the classification")
-    anonymized_text: Optional[str] = Field(None, description="Text with sensitive parts redacted")
+class ProductPreferences(BaseModel):
+    colors: List[str] = Field(default_factory=list)
+    styles: List[str] = Field(default_factory=list)
+    hardware: List[str] = Field(default_factory=list)
+    materials: List[str] = Field(default_factory=list)
 
+class Pilier1Product(BaseModel):
+    categories: List[str] = Field(default_factory=list, description="Leather_Goods, Handbag_Main...")
+    usage: List[str] = Field(default_factory=list, description="Professional, Travel...")
+    preferences: ProductPreferences = Field(default_factory=dict)
+    
+    # RAG Enrichment (New!)
+    matched_products: List[Dict[str, Any]] = Field(default_factory=list, description="SKUs identified via Vector Search")
 
-class RoutingDecision(BaseModel):
-    """Result of the routing logic."""
-    tier: Literal[1, 2, 3] = Field(..., description="Selected processing tier")
-    reasons: List[str] = Field(default_factory=list, description="Reasons for routing decision")
-    confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence in routing decision")
-    priority: Literal['low', 'medium', 'high'] = Field('medium', description="Processing priority")
+# ==========================================
+# PILIER 2: PROFIL CLIENT
+# ==========================================
 
+class PurchaseContext(BaseModel):
+    type: Optional[str] = Field(None, description="Self_Purchase, Gift...")
+    behavior: Optional[str] = Field(None, description="VIP, Regular...")
+
+class Profession(BaseModel):
+    sector: Optional[str] = Field(None)
+    status: Optional[str] = Field(None)
+
+class Lifestyle(BaseModel):
+    passions: List[str] = Field(default_factory=list)
+    family: Optional[str] = Field("Unknown")
+
+class Pilier2Client(BaseModel):
+    purchase_context: PurchaseContext = Field(default_factory=dict)
+    profession: Profession = Field(default_factory=dict)
+    lifestyle: Lifestyle = Field(default_factory=dict)
+
+# ==========================================
+# PILIER 3: HOSPITALITE & CARE
+# ==========================================
+
+class Allergies(BaseModel):
+    food: List[str] = Field(default_factory=list)
+    contact: List[str] = Field(default_factory=list)
+
+class Pilier3Care(BaseModel):
+    diet: List[str] = Field(default_factory=list)
+    allergies: Allergies = Field(default_factory=dict)
+    values: List[str] = Field(default_factory=list)
+    occasion: Optional[str] = Field(None)
+
+# ==========================================
+# PILIER 4: ACTION BUSINESS
+# ==========================================
+
+class NextBestAction(BaseModel):
+    action_type: str = Field(description="gift_suggestion, follow_up, invitation, apology...")
+    description: str = Field(description="Human readable recommendation for the CA")
+    priority: Literal["Low", "Medium", "High", "Critical"] = Field("Medium")
+    target_products: List[str] = Field(default_factory=list, description="Recommended SKUs or categories")
+    deadline: Optional[str] = Field(None, description="ISO date or relative string")
+
+class Pilier4Business(BaseModel):
+    lead_temperature: Optional[str] = Field("Warm")
+    next_best_action: Optional[NextBestAction] = Field(None)
+    budget_potential: Optional[str] = Field(None)
+    urgency: Optional[str] = Field(None)
+
+# ==========================================
+# META & WRAPPER
+# ==========================================
+
+class MetaAnalysis(BaseModel):
+    confidence_score: float = Field(0.0)
+    missing_info: List[str] = Field(default_factory=list)
+    risk_flags: List[str] = Field(default_factory=list)
+    
+    # Gamification
+    quality_score: float = Field(0.0, description="0-100 score for data richness")
+    advisor_feedback: Optional[str] = Field(None, description="Gamified feedback for the advisor")
 
 class ExtractionResult(BaseModel):
-    """Unified result from any extraction tier (1, 2, or 3) with strict validation."""
+    """Unified result matching the 4-Pillar JSON structure."""
     
-    note_id: Optional[str] = Field(None, description="ID of the note being processed")
-    client_id: Optional[str] = Field(None, description="Client ID if available")
-    
-    # Layer 1: Core tags
-    tags: List[str] = Field(default_factory=list, description="Extracted tags")
-    
-    # Layer 2: Entities
-    products_mentioned: List[str] = Field(default_factory=list, description="Specific products mentioned")
-    brands_mentioned: List[str] = Field(default_factory=list, description="Brands mentioned")
-    locations: List[str] = Field(default_factory=list, description="Locations mentioned")
-    events: List[str] = Field(default_factory=list, description="Events mentioned")
-    professions: List[str] = Field(default_factory=list, description="Client professions")
-    
-    # Structured data
-    budget_range: Optional[str] = Field(None, description="Budget range (e.g., '5K-10K')")
-    budget_min: Optional[int] = Field(None, description="Minimum inferred budget")
-    budget_max: Optional[int] = Field(None, description="Maximum inferred budget")
-    budget_confidence: Optional[str] = Field(None, description="Confidence in budget (explicit vs inferred)")
-    budget_amount: Optional[int] = Field(None, description="Specific budget amount if found")
-    client_status: Optional[str] = Field(None, description="Client status (VIC, VIP, regular, etc.)")
-    
-    allergies: List[str] = Field(default_factory=list, description="List of allergies")
-    allergy_severity: Literal['low', 'medium', 'high'] = Field('low', description="Severity of allergies")
-    dietary: List[str] = Field(default_factory=list, description="Dietary restrictions")
-    
-    relationship_context: Dict[str, List[str]] = Field(default_factory=dict, description="Relationships (shopping_with, gift_for)")
-    key_dates: List[Dict[str, Any]] = Field(default_factory=list, description="Important dates mentioned")
-    
-    # Enhanced Fields
-    occasions: List[str] = Field(default_factory=list, description="Occasions (wedding, birthday)")
-    urgency: Optional[str] = Field(None, description="Urgency level")
-    event_date: Optional[str] = Field(None, description="Date of event (YYYY-MM-DD)")
-    days_until_event: Optional[int] = Field(None, description="Days until event")
-    urgency_level: Optional[str] = Field(None, description="Calculated urgency level")
-    products: List[Dict[str, Any]] = Field(default_factory=list, description="Detailed product list")
-    
-    # Layer 2/3/4 Enhanced
-    entities: Dict[str, Any] = Field(default_factory=dict, description="Layer 2: Dyanmic Entities")
-    implicit_signals: Dict[str, Any] = Field(default_factory=dict, description="Layer 3: Implicit signals")
-    risk_flags: Dict[str, Any] = Field(default_factory=dict, description="Layer 4: Risk signals")
-    processing_notes: List[str] = Field(default_factory=list, description="Processing directives")
-    profession: Optional[str] = Field(None, description="Profession if extracted by regex")
-    
-    # Metadata
-    processing_tier: Literal['tier1', 'tier2', 'tier3'] = Field(..., description="Tier that processed this result")
-    confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence score of extraction")
-    processing_time_ms: float = Field(0.0, description="Processing time in milliseconds")
-    
-    rgpd_flag: bool = Field(False, description="Whether RGPD sensitive data was detected")
-    from_cache: bool = Field(False, description="Whether result came from cache")
-    error: Optional[str] = Field(None, description="Error message if any")
-    
-    # Legacy fields for backward compatibility (optional)
-    reasoning: Optional[str] = Field(None, description="Reasoning for extraction")
-    model_name: Optional[str] = Field(None, description="Specific model used")
-    cost: float = Field(0.0, description="Cost of processing")
-    
-    age: Optional[int] = Field(None, description="Client age")
-    gender: Optional[str] = Field(None, description="Client gender")
+    pilier_1_univers_produit: Pilier1Product
+    pilier_2_profil_client: Pilier2Client
+    pilier_3_hospitalite_care: Pilier3Care
+    pilier_4_action_business: Pilier4Business
+    meta_analysis: MetaAnalysis
 
-    @validator('tags')
-    def tags_valid(cls, v):
-        """Validate tags against taxonomy."""
-        # Lazy import to avoid circular dependency
-        from src.taxonomy import TaxonomyManager
-        
-        taxonomy = TaxonomyManager()
-        valid_tags = []
-        # invalid = [] # Commented out stricter check for now
-        
-        for tag in v:
-            # Try normalize first
-            normalized = taxonomy.normalize_tag(tag)
-            if normalized:
-                valid_tags.append(normalized)
-            else:
-                # Allow all enhanced tags from Tier 1 Enhanced
-                # because `tags` is often used as a catch-all
-                valid_tags.append(tag)
-        
-        return list(set(valid_tags))
+    # Metadata fields
+    confidence: float = 0.0
+    processing_tier: str = "unknown"
+    extracted_by: Optional[str] = None
+    error: Optional[str] = None
+    from_cache: bool = False
+    processing_time_ms: float = 0.0
+    rgpd_flag: bool = False
 
+    # Legacy fields wrapper (for backward compatibility if needed)
+    @property
+    def tags(self) -> List[str]:
+        """Flatten specific categories as tags for legacy systems"""
+        return (
+            self.pilier_1_univers_produit.categories + 
+            [self.pilier_4_action_business.next_best_action or ""]
+        )
+
+# ==========================================
+# PIPELINE OUTPUT
+# ==========================================
 
 class PipelineOutput(BaseModel):
-    """Final output for a processed note."""
-    id: str = Field(..., description="Note ID")
-    original_text: str = Field(..., description="Original transcription")
-    processed_text: str = Field(..., description="Cleaned/Anonymized text")
-    language: str = Field("FR", description="Language code")
+    id: str
+    processed_text: str
     timestamp: datetime = Field(default_factory=datetime.now)
-    
-    routing: RoutingDecision
-    rgpd: RGPDResult
     extraction: ExtractionResult
-    
-    processing_time_ms: float = Field(0.0, description="Total processing time in ms")
-    error: Optional[str] = Field(None, description="Error message if failed")
-    from_cache: bool = Field(False, description="Whether result came from cache")
+    tier: int
+    processing_time_ms: float = 0.0
+

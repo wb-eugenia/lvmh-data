@@ -1,51 +1,81 @@
 {
-  "_cached_at": 1769692246.886137,
+  "_cached_at": 1769906170.6484034,
   "payload": {
-    "note_id": null,
-    "client_id": null,
-    "tags": [],
-    "products_mentioned": [],
-    "brands_mentioned": [],
-    "locations": [],
-    "events": [],
-    "professions": [],
-    "budget_range": "10K-20K",
-    "budget_min": null,
-    "budget_max": null,
-    "budget_confidence": null,
-    "budget_amount": 9000,
-    "client_status": null,
-    "allergies": [],
-    "allergy_severity": "low",
-    "dietary": [],
-    "relationship_context": {
-      "gift_for": [],
-      "shopping_with": []
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3390042V/GI0578",
+          "name": "Malle Speaker PM",
+          "price": 8250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-speaker-pm-s00-nvprod3390042v/GI0578",
+          "match_score": 0.37
+        },
+        {
+          "sku": "NVPROD4670098V/M82879",
+          "name": "Organizer de poche",
+          "price": 505.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82879",
+          "match_score": 0.37
+        },
+        {
+          "sku": "NVPROD4670098V/M82878",
+          "name": "Organizer de poche",
+          "price": 505.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82878",
+          "match_score": 0.37
+        }
+      ]
     },
-    "key_dates": [],
-    "occasions": [],
-    "urgency": null,
-    "event_date": null,
-    "days_until_event": null,
-    "urgency_level": null,
-    "products": [],
-    "entities": {},
-    "implicit_signals": {},
-    "risk_flags": {},
-    "processing_notes": [],
-    "profession": null,
-    "processing_tier": "tier1",
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "high (10K-20K)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.75,
+      "missing_info": [],
+      "risk_flags": []
+    },
     "confidence": 0.75,
-    "processing_time_ms": 1.2977123260498047,
-    "rgpd_flag": false,
+    "processing_tier": "tier1",
+    "extracted_by": null,
     "error": null,
-    "reasoning": null,
-    "model_name": null,
-    "cost": 0.0,
-    "age": null,
-    "gender": null,
+    "from_cache": false,
+    "processing_time_ms": 4.421472549438477,
+    "rgpd_flag": false,
     "tier": 1,
-    "ID": "CA_335",
-    "from_cache": false
+    "ID": "CA_335"
   }
 }

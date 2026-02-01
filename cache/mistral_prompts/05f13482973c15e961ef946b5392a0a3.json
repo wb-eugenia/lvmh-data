@@ -1,67 +1,75 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "latex_allergy",
-    "travel_frequent",
-    "pescatarian",
-    "shopping_with_spouse",
-    "leather_goods",
-    "travel_luggage"
-  ],
-  "products_mentioned": [
-    "sacs voyage"
-  ],
-  "brands_mentioned": [
-    "Hasselblad",
-    "Leica"
-  ],
-  "locations": [
-    "New York",
-    "Milan",
-    "Tokyo"
-  ],
-  "events": [],
-  "professions": [],
-  "budget_range": "5K-10K",
-  "budget_min": 5000,
-  "budget_max": 10000,
-  "budget_confidence": "explicit",
-  "budget_amount": null,
-  "client_status": "first_visit",
-  "allergies": [
-    "latex_allergy"
-  ],
-  "allergy_severity": "high",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [],
-    "shopping_with": [
-      "spouse"
-    ]
+  "pilier_1_univers_produit": {
+    "categories": [
+      "travel_luggage",
+      "leather_goods",
+      "professional_work",
+      "travel_frequent",
+      "latex_allergy",
+      "pescatarian",
+      "first_visit",
+      "creative_designer"
+    ],
+    "usage": [
+      "professional_work",
+      "travel"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "brown_cognac"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "photographe",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "first_visit"
+    },
+    "profession": {
+      "sector": "photographe",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [
+        "latex_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": null
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "high (5K-15K)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
+  "confidence": 0.85,
   "processing_tier": "tier2",
-  "confidence": 0.92,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "extracted_by": null,
   "error": null,
-  "reasoning": "Extraction complète: budget explicite + profession + allergie + régime + lieux + marques mentionnées",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

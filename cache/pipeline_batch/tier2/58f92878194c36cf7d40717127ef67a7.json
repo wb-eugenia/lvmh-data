@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1769906396.217416,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "travel_luggage",
+        "tech_executive",
+        "vegetarian"
+      ],
+      "usage": [
+        "professional_work",
+        "travel"
+      ],
+      "preferences": {
+        "colors": [
+          "black",
+          "grey"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": [
+          "smooth_leather"
+        ]
+      },
+      "matched_products": [
+        {
+          "sku": "012565/M67224",
+          "name": "Porte-clés Leather Rope",
+          "price": 285.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-cles-leather-rope-s00-012565/M67224",
+          "match_score": 0.57
+        },
+        {
+          "sku": "NVPROD1270431V/R08502",
+          "name": "Livre Travellers' Tales Bags Unpacked  version anglaise",
+          "price": 125.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travellers-tales-bags-unpacked-version-anglaise-nvprod1270431v/R08502",
+          "match_score": 0.56
+        },
+        {
+          "sku": "NVPROD4630013V/1AFBWI",
+          "name": "Pantalon cargo en laine",
+          "price": 990.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-cargo-technique-nvprod4630013v/1AFBWI",
+          "match_score": 0.56
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "tech_executive",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "dust_mite_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "high (5K-15K)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_236"
+  }
+}

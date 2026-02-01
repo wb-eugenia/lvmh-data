@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1769906249.7977023,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {},
+      "matched_products": [
+        {
+          "sku": "NVPROD3820022V/R96819",
+          "name": "Tabouret d'appoint Belt par Atelier Oï",
+          "price": 8500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tabouret-dappoint-belt-par-atelier-oi-nvprod3820022v/R96819",
+          "match_score": 0.45
+        },
+        {
+          "sku": "NVPROD4400012V/R95200",
+          "name": "Tabouret d'appoint Belt par Atelier Oï",
+          "price": 8500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tabouret-dappoint-belt-par-atelier-oi-nvprod4400012v/R95200",
+          "match_score": 0.44
+        },
+        {
+          "sku": "NVPROD3740059V/P01730",
+          "name": "Organizer de poche My LV Heritage",
+          "price": 470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+          "match_score": 0.44
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {},
+      "profession": {},
+      "lifestyle": {}
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {},
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.0,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.0,
+    "processing_tier": "tier2",
+    "extracted_by": "tier2_mistral_fallback",
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_146"
+  }
+}

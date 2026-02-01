@@ -1,0 +1,83 @@
+{
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "leather_goods",
+      "ready_to_wear",
+      "jewelry",
+      "travel_luggage",
+      "accessories",
+      "travel_frequent",
+      "art_collector",
+      "pescatarian",
+      "gift_for_child",
+      "gift_for_friend",
+      "wedding_anniversary"
+    ],
+    "usage": [
+      "professional_work",
+      "travel",
+      "evening",
+      "gift"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "navy",
+        "beige",
+        "champagne",
+        "rose_gold"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather",
+        "grained_leather"
+      ]
+    },
+    "matched_products": []
+  },
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "['retired_ceo', 'retired_cfo']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "retirement"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (30K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.95,
+    "missing_info": [],
+    "risk_flags": []
+  },
+  "confidence": 0.95,
+  "processing_tier": "tier2",
+  "extracted_by": null,
+  "error": null,
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
+}

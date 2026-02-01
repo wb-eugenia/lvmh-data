@@ -1,67 +1,77 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "travel_frequent",
-    "shopping_with_spouse",
-    "gift_for_colleague",
-    "vegetarian",
-    "leather_goods",
-    "travel_luggage",
-    "art_collector",
-    "ready_to_wear"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [
-    "Frankfurt",
-    "London"
-  ],
-  "events": [
-    "Book Expo"
-  ],
-  "professions": [],
-  "budget_range": "10K-20K",
-  "budget_min": 12800,
-  "budget_max": 19200,
-  "budget_confidence": "inferred",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [],
-  "allergy_severity": "low",
-  "dietary": [
-    "vegetarian"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "colleague"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "leather_goods",
+      "ready_to_wear",
+      "accessories",
+      "gift_for_colleague",
+      "travel_frequent",
+      "vegetarian",
+      "art_collector",
+      "professional_work"
     ],
-    "shopping_with": [
-      "spouse"
-    ]
+    "usage": [
+      "professional_work",
+      "travel"
+    ],
+    "preferences": {
+      "colors": [
+        "beige",
+        "champagne",
+        "gold",
+        "black",
+        "brown"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "wedding_anniversary"
-  ],
-  "urgency": "this_month",
-  "event_date": "2024-04-01",
-  "days_until_event": 7,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "publisher",
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "publisher",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegetarian"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": null
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP client with inferred budget range based on flexible budget mention. Vegetarian dietary preference noted. Travel and art collector tags added due to frequent travel and manuscript collection. Urgency set to this_month due to April follow-up mention.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }

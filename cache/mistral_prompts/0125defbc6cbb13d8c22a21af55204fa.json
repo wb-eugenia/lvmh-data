@@ -1,60 +1,75 @@
 {
-  "note_id": null,
-  "client_id": null,
-  "tags": [
-    "gift_for_spouse",
-    "travel_frequent",
-    "pescatarian",
-    "shopping_with_spouse",
-    "leather_goods",
-    "art_collector"
-  ],
-  "products_mentioned": [],
-  "brands_mentioned": [],
-  "locations": [],
-  "events": [],
-  "professions": [],
-  "budget_range": "20K-50K",
-  "budget_min": 20000,
-  "budget_max": 50000,
-  "budget_confidence": "explicit",
-  "budget_amount": null,
-  "client_status": "vip",
-  "allergies": [],
-  "allergy_severity": "low",
-  "dietary": [
-    "pescatarian"
-  ],
-  "relationship_context": {
-    "gift_for": [
-      "spouse"
+  "pilier_1_univers_produit": {
+    "categories": [
+      "vip",
+      "travel_frequent",
+      "art_collector",
+      "professional_work",
+      "pescatarian",
+      "gift_for_spouse",
+      "wedding_anniversary"
     ],
-    "shopping_with": [
-      "spouse"
-    ]
+    "usage": [
+      "professional_work",
+      "travel"
+    ],
+    "preferences": {
+      "colors": [
+        "black",
+        "brown_cognac",
+        "beige_neutral",
+        "grey",
+        "champagne"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
   },
-  "key_dates": [],
-  "occasions": [
-    "wedding_anniversary"
-  ],
-  "urgency": null,
-  "event_date": null,
-  "days_until_event": null,
-  "urgency_level": null,
-  "products": [],
-  "entities": {},
-  "implicit_signals": {},
-  "risk_flags": {},
-  "processing_notes": [],
-  "profession": "entrepreneur_established",
-  "processing_tier": "tier2",
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "['tech_executive', 'entrepreneur_established']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "wedding_anniversary"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.85,
+    "missing_info": [],
+    "risk_flags": []
+  },
   "confidence": 0.85,
-  "processing_time_ms": 0.0,
-  "rgpd_flag": false,
+  "processing_tier": "tier2",
+  "extracted_by": null,
   "error": null,
-  "reasoning": "VIP clients with explicit budget and clear context of wedding anniversary gifts. No specific products mentioned but clear preferences for leather goods. No allergies or specific events mentioned.",
-  "model_name": "mistral-medium-latest",
-  "cost": 0.0,
-  "age": null,
-  "gender": null
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
 }
