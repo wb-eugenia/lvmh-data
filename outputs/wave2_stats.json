@@ -1,0 +1,11 @@
+{
+  "notes_processed": 300,
+  "total_tags": 1369,
+  "avg_tags_per_note": 4.5633333333333335,
+  "duration_seconds": 433.179134,
+  "cache_stats": {
+    "hits": 241,
+    "misses": 59
+  },
+  "cost": 0.0084282
+}

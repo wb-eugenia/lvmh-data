@@ -1,0 +1,3901 @@
+[
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "first_visit",
+        "vegetarian",
+        "pollen_allergy",
+        "sports_equestrian",
+        "sports_swimming",
+        "medical_dentist"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.56
+        },
+        {
+          "sku": "NVPROD3970174V/1AB6Y1",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6Y1",
+          "match_score": 0.53
+        },
+        {
+          "sku": "NVPROD3970116V/1AB77U",
+          "name": "Manteau à double boutonnage et détails en cuir",
+          "price": 4650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-a-double-boutonnage-et-details-en-cuir-nvprod3970116v/1AB77U",
+          "match_score": 0.53
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "medical_dentist",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "pollen_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "2K-5K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_101",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "medical_physician",
+        "first_visit",
+        "vegan",
+        "gluten_free",
+        "wedding_anniversary",
+        "sustainable",
+        "gift_for_nieces_nephews"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "medical_physician",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan",
+        "gluten_free"
+      ],
+      "allergies": {
+        "food": [
+          "gluten_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_102",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "000017/R21065",
+          "name": "Couverture Agenda de Bureau",
+          "price": 455.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-agenda-de-bureau-damier-ebene-000017/R21065",
+          "match_score": 0.38
+        },
+        {
+          "sku": "000003/R20974",
+          "name": "Couverture Agenda de Bureau",
+          "price": 455.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-agenda-de-bureau-damier-graphite-000003/R20974",
+          "match_score": 0.37
+        },
+        {
+          "sku": "NVPROD4830047V/1AFANL",
+          "name": "Surchemise en maille de coton",
+          "price": 1350.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/surchemise-en-maille-de-coton-nvprod4830047v/1AFANL",
+          "match_score": 0.36
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.6,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_103",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "tech_executive",
+        "entrepreneur_startup",
+        "travel_frequent",
+        "sports_crossfit",
+        "first_visit",
+        "gift_for_parents",
+        "wedding_anniversary"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "tech_executive",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "penicillin_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-100K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_104",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vic",
+        "travel_frequent",
+        "art_collector",
+        "vegetarian",
+        "wedding",
+        "gift_for_child"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3930139V/M77970",
+          "name": "Set LV Travel",
+          "price": 1850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/set-lv-travel-nvprod3930139v/M77970",
+          "match_score": 0.48
+        },
+        {
+          "sku": "NVPROD3950487V/M46326",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950487v/M46326",
+          "match_score": 0.45
+        },
+        {
+          "sku": "NVPROD3950488V/M46357",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950488v/M46357",
+          "match_score": 0.45
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vic"
+      },
+      "profession": {
+        "sector": "['legal_lawyer', 'professor']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_105",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "travel_luggage",
+        "accessories",
+        "travel_frequent",
+        "sports_equestrian",
+        "vegan",
+        "first_visit",
+        "nickel_allergy"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3930139V/M77970",
+          "name": "Set LV Travel",
+          "price": 1850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/set-lv-travel-nvprod3930139v/M77970",
+          "match_score": 0.56
+        },
+        {
+          "sku": "NVPROD1270431V/R08502",
+          "name": "Livre Travellers' Tales Bags Unpacked  version anglaise",
+          "price": 125.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travellers-tales-bags-unpacked-version-anglaise-nvprod1270431v/R08502",
+          "match_score": 0.55
+        },
+        {
+          "sku": "NVPROD3950487V/M46326",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950487v/M46326",
+          "match_score": 0.52
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "influenceur",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "nut_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "today"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_106",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.43
+        },
+        {
+          "sku": "NVPROD110016V/R08339",
+          "name": "Livre Peter Marino Art Architecture - Édition Deluxe",
+          "price": 300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-peter-marino-art-architecture-edition-deluxe-nvprod110016v/R08339",
+          "match_score": 0.38
+        },
+        {
+          "sku": "NVPROD110014V/RN0001",
+          "name": "Livre Portfolio de photographies  par Jean Larivière - Volume 2",
+          "price": 6000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-portfolio-de-photographies-par-jean-lariviere-volume-2-nvprod110014v/RN0001",
+          "match_score": 0.37
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": null,
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 3,
+    "ID": "CA_107",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "leather_goods",
+        "travel_luggage",
+        "vegetarian",
+        "lactose_intolerance",
+        "shopping_with_spouse",
+        "gift_for_daughter",
+        "gift_for_son",
+        "art_collector",
+        "travel_frequent",
+        "creative_writer",
+        "tech_executive"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.66
+        },
+        {
+          "sku": "NVPROD4480023V/1AC2TX",
+          "name": "Jupe en cuir à motif vichy",
+          "price": 3800.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-en-cuir-a-motif-vichy-nvprod4480023v/1AC2TX",
+          "match_score": 0.64
+        },
+        {
+          "sku": "NVPROD4480018V/1AC3W7",
+          "name": "Veste en cuir à motif vichy et bretelles",
+          "price": 12000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-en-cuir-a-motif-vichy-et-bretelles-nvprod4480018v/1AC3W7",
+          "match_score": 0.64
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "writer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "lactose_intolerance"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_108",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3160076V/M45811",
+          "name": "Sac Grand Palais",
+          "price": 2700.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-grand-palais-monogram-empreinte-nvprod3160076v/M45811",
+          "match_score": 0.38
+        },
+        {
+          "sku": "NVPROD4380090V/M46488",
+          "name": "Sac Trianon PM",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-trianon-pm-monogram-empreinte-nvprod4380090v/M46488",
+          "match_score": 0.38
+        },
+        {
+          "sku": "NVPROD4380090V/M46503",
+          "name": "Sac Trianon PM",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-trianon-pm-monogram-empreinte-nvprod4380090v/M46503",
+          "match_score": 0.38
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": null,
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 3,
+    "ID": "CA_109",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "entrepreneur_startup",
+        "ready_to_wear",
+        "art_collector",
+        "travel_frequent",
+        "vegan",
+        "eco_conscious",
+        "wedding",
+        "wedding_anniversary"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4830038V/1AFACQ",
+          "name": "Pantalon workwear en denim",
+          "price": 1400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-denim-nvprod4830038v/1AFACQ",
+          "match_score": 0.51
+        },
+        {
+          "sku": "NVPROD4830038V/1AFACV",
+          "name": "Pantalon workwear en denim",
+          "price": 1400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-denim-nvprod4830038v/1AFACV",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD3950575V/1AAT6V",
+          "name": "Pantalon workwear",
+          "price": 1610.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-nvprod3950575v/1AAT6V",
+          "match_score": 0.48
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "entrepreneur_startup",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": "today"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_110",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "regular",
+        "vegetarian",
+        "travel_frequent",
+        "art_collector",
+        "allergies"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "architecte_paysagiste",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "pollen_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "2K-5K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_111",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "first_visit",
+        "entrepreneur_established",
+        "finance_wealth_manager",
+        "travel_frequent",
+        "tech_early_adopter",
+        "eco_conscious",
+        "vegetarian",
+        "nickel_allergy",
+        "gift_for_child",
+        "leather_goods",
+        "ready_to_wear",
+        "travel_luggage",
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "entrepreneur_established",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "nut_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "50K+",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_112",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_113",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "wine_enthusiast",
+        "travel_frequent",
+        "art_collector",
+        "pescatarian",
+        "gift_for_family",
+        "gift_for_friends"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "009839/M21825",
+          "name": "Boite Champagne",
+          "price": 25000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/boite-champagne-monogram-canvas-009839/M21825",
+          "match_score": 0.56
+        },
+        {
+          "sku": "NVPROD3690001V/M20309",
+          "name": "Coffret Champagne",
+          "price": 16000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/coffret-champagne-monogram-nvprod3690001v/M20309",
+          "match_score": 0.55
+        },
+        {
+          "sku": "NVPROD2440123V/Z1358E",
+          "name": "Lunettes de soleil 1.1 Millionaires à verres transparents",
+          "price": 595.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/lunettes-de-soleil-11-millionaires-a-verres-transparents-s00-nvprod2440123v/Z1358E",
+          "match_score": 0.42
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "wine_producer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "lactose_intolerance"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "spring_season"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.9,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_114",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "regular",
+        "ready_to_wear",
+        "travel_luggage",
+        "jewelry",
+        "vegetarian",
+        "travel_frequent",
+        "art_collector",
+        "gift_for_spouse"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4830038V/1AFACV",
+          "name": "Pantalon workwear en denim",
+          "price": 1400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-denim-nvprod4830038v/1AFACV",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD4830038V/1AFACQ",
+          "name": "Pantalon workwear en denim",
+          "price": 1400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-denim-nvprod4830038v/1AFACQ",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD4830056V/1AFATC",
+          "name": "Pantalon workwear en coton",
+          "price": 1100.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-coton-nvprod4830056v/1AFATC",
+          "match_score": 0.49
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "opera_singer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "food_coloring_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "birthday"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_115",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "travel_luggage",
+        "leather_goods",
+        "journalist",
+        "occasional",
+        "vegetarian",
+        "iodine_allergy",
+        "seafood_allergy",
+        "shopping_with_spouse"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4230038V/1ABDN7",
+          "name": "Robe longue évasée en cuir à lanières",
+          "price": 15100.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/robe-longue-evasee-en-cuir-a-lanieres-nvprod4230038v/1ABDN7",
+          "match_score": 0.59
+        },
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.58
+        },
+        {
+          "sku": "NVPROD3970116V/1AB77U",
+          "name": "Manteau à double boutonnage et détails en cuir",
+          "price": 4650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-a-double-boutonnage-et-details-en-cuir-nvprod3970116v/1AB77U",
+          "match_score": 0.58
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "occasional"
+      },
+      "profession": {
+        "sector": "journalist",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "iodine_allergy",
+          "seafood_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "2K-5K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_116",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "gift_for_spouse",
+        "wedding_anniversary",
+        "travel_frequent",
+        "vegetarian"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3430011V/M00616",
+          "name": "Bijou de sac et porte-clés Valentines Day Illustré",
+          "price": 250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-valentines-day-illustre-s00-nvprod3430011v/M00616",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD2130162V/M76202",
+          "name": "Carré Tribute To 90",
+          "price": 460.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/carre-tribute-to-90-s00-nvprod2130162v/M76202",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4480127V/Z2027W",
+          "name": "Lunettes de soleil carrées 1.1 Millionaires",
+          "price": 670.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/lunettes-de-soleil-carrees-11-millionaires-s00-nvprod4480127v/Z2027W",
+          "match_score": 0.43
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "['academic_philosopher', 'literature_critic']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.92,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_117",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_118",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "art_collector",
+        "travel_frequent",
+        "vegan",
+        "latex_allergy",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.57
+        },
+        {
+          "sku": "008765/R07639",
+          "name": "Livre de Seydou Keïta  Édition Collector",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-de-seydou-keita-edition-collector-008765/R07639",
+          "match_score": 0.5
+        },
+        {
+          "sku": "NVPROD110014V/RN0001",
+          "name": "Livre Portfolio de photographies  par Jean Larivière - Volume 2",
+          "price": 6000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-portfolio-de-photographies-par-jean-lariviere-volume-2-nvprod110014v/RN0001",
+          "match_score": 0.49
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "art_gallery_owner",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "latex_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_119",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "regular",
+        "travel_frequent",
+        "pescatarian",
+        "watches",
+        "leather_goods",
+        "gift_for_parent",
+        "finance_banker",
+        "creative_designer"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3930139V/M77970",
+          "name": "Set LV Travel",
+          "price": 1850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/set-lv-travel-nvprod3930139v/M77970",
+          "match_score": 0.44
+        },
+        {
+          "sku": "NVPROD3950488V/M46357",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950488v/M46357",
+          "match_score": 0.4
+        },
+        {
+          "sku": "NVPROD3950487V/M46326",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950487v/M46326",
+          "match_score": 0.4
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "['finance_banker', 'creative_designer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_120",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories",
+        "watches",
+        "leather_goods"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4390037V/MP321Y",
+          "name": "Ceinture LV Eyelets",
+          "price": 1130.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-eyelets-belt-s00-nvprod4390037v/MP321Y",
+          "match_score": 0.43
+        },
+        {
+          "sku": "NVPROD3230184V/M00607",
+          "name": "Boucles d'oreilles Nanogram Tag",
+          "price": 400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-nanogram-tag-s00-nvprod3230184v/M00607",
+          "match_score": 0.43
+        },
+        {
+          "sku": "NVPROD3020074V/M00397",
+          "name": "Boucles d'oreilles Nanogram",
+          "price": 360.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-nanogram-s00-nvprod3020074v/M00397",
+          "match_score": 0.43
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegan"
+        ],
+        "contact": [
+          "nickel_allergy"
+        ]
+      },
+      "values": [],
+      "occasion": "wedding"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_121",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "leather_goods",
+        "travel_luggage",
+        "wine_enthusiast",
+        "art_collector",
+        "travel_frequent",
+        "sports_golf",
+        "philanthropist",
+        "pescatarian",
+        "gift_for_spouse",
+        "gift_for_child",
+        "gift_for_friend",
+        "shopping_with_spouse",
+        "housewarming",
+        "this_month",
+        "this_weekend"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.66
+        },
+        {
+          "sku": "NVPROD4480023V/1AC2TX",
+          "name": "Jupe en cuir à motif vichy",
+          "price": 3800.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-en-cuir-a-motif-vichy-nvprod4480023v/1AC2TX",
+          "match_score": 0.64
+        },
+        {
+          "sku": "NVPROD4480018V/1AC3W7",
+          "name": "Veste en cuir à motif vichy et bretelles",
+          "price": 12000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-en-cuir-a-motif-vichy-et-bretelles-nvprod4480018v/1AC3W7",
+          "match_score": 0.64
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "retired_hedge_fund_manager",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "housewarming"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "50K+",
+      "urgency": "this_month"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_122",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_123",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "entrepreneur_established",
+        "creative_designer",
+        "tech_executive",
+        "travel_frequent",
+        "sports_surf",
+        "eco_conscious",
+        "vegan",
+        "first_visit"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4360009V/1ABJ7E",
+          "name": "Short carpenter en denim",
+          "price": 1250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/short-carpenter-en-denim-nvprod4360009v/1ABJ7E",
+          "match_score": 0.37
+        },
+        {
+          "sku": "NVPROD4620081V/1ABJQR",
+          "name": "Gilet business en laine",
+          "price": 990.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/gilet-business-en-laine-nvprod4620081v/1ABJQR",
+          "match_score": 0.37
+        },
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.36
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "['tech_engineer', 'creative_designer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_124",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.63
+        },
+        {
+          "sku": "NVPROD4880006V/1AFC43",
+          "name": "Haut arrondi en cuir synthétique",
+          "price": 2700.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/haut-arrondi-en-cuir-synthetique-nvprod4880006v/1AFC43",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD3970116V/1AB77U",
+          "name": "Manteau à double boutonnage et détails en cuir",
+          "price": 4650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-a-double-boutonnage-et-details-en-cuir-nvprod3970116v/1AB77U",
+          "match_score": 0.61
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_125",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "wedding_anniversary",
+        "medical_physician",
+        "philanthropist",
+        "travel_frequent",
+        "watches",
+        "jewelry",
+        "leather_goods",
+        "pescatarian",
+        "lactose_intolerance"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3570126V/Q93840",
+          "name": "Collier pendentif Vivienne Celebration  or jaune  or blanc  titane  diamants et pierres précieuses colorées",
+          "price": 38500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-celebration-or-jaune-or-blanc-titane-diamants-et-pierres-precieuses-colorees-nvprod3570126v/Q93840",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD3430011V/M00616",
+          "name": "Bijou de sac et porte-clés Valentines Day Illustré",
+          "price": 250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-valentines-day-illustre-s00-nvprod3430011v/M00616",
+          "match_score": 0.36
+        },
+        {
+          "sku": "NVPROD3740060V/P01731",
+          "name": "Couverture passeport My LV Heritage",
+          "price": 425.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-passeport-my-lv-heritage-monogram-eclipse-nvprod3740060v/P01731",
+          "match_score": 0.35
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "medical_physician",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "lactose_intolerance"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_126",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "ready_to_wear",
+        "accessories",
+        "travel_luggage",
+        "vegan",
+        "shellfish_allergy",
+        "regular",
+        "gift_for_spouse",
+        "wedding_anniversary"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4830038V/1AFACQ",
+          "name": "Pantalon workwear en denim",
+          "price": 1400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-denim-nvprod4830038v/1AFACQ",
+          "match_score": 0.58
+        },
+        {
+          "sku": "NVPROD4830056V/1AFATC",
+          "name": "Pantalon workwear en coton",
+          "price": 1100.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-coton-nvprod4830056v/1AFATC",
+          "match_score": 0.55
+        },
+        {
+          "sku": "NVPROD4890028V/1AFDFN",
+          "name": "Pantalon de tailleur à sequins effet écailles",
+          "price": 8500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-de-tailleur-a-sequins-effet-ecailles-nvprod4890028v/1AFDFN",
+          "match_score": 0.54
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "professional_dancer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "shellfish_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "2K-5K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_127",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "legal_lawyer",
+        "travel_frequent",
+        "art_collector",
+        "pescatarian",
+        "gift_for_parents",
+        "shopping_with_spouse"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4810043V/M01445",
+          "name": "Porte-clés Vivienne On The Court",
+          "price": 390.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-cles-vivienne-on-the-court-s00-nvprod4810043v/M01445",
+          "match_score": 0.44
+        },
+        {
+          "sku": "NVPROD4700044V/1AC11R",
+          "name": "Pull court en maille côtelée fine",
+          "price": 1500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pull-court-en-maille-cotelee-fine-nvprod4700044v/1AC11R",
+          "match_score": 0.41
+        },
+        {
+          "sku": "NVPROD4700044V/1AC11T",
+          "name": "Pull court en maille côtelée fine",
+          "price": 1500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pull-court-en-maille-cotelee-fine-nvprod4700044v/1AC11T",
+          "match_score": 0.41
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "['legal_lawyer', 'creative_designer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_128",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "ready_to_wear",
+        "travel_luggage",
+        "eco_conscious",
+        "travel_frequent",
+        "vegan",
+        "latex_allergy",
+        "first_visit"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3570023V/1AA4K2",
+          "name": "Pantalon de survêtement en cuir",
+          "price": 4150.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-de-survetement-en-cuir-nvprod3570023v/1AA4K2",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD4830056V/1AFATC",
+          "name": "Pantalon workwear en coton",
+          "price": 1100.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-coton-nvprod4830056v/1AFATC",
+          "match_score": 0.6
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "architect",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "latex_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "2K-5K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_129",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "gift_for_child",
+        "travel_frequent",
+        "art_collector",
+        "vegetarian",
+        "vic",
+        "medical_surgeon",
+        "professor"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4260089V/GI034D",
+          "name": "Babies en cuir",
+          "price": 380.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/babies-en-cuir-s00-nvprod4260089v/GI034D",
+          "match_score": 0.58
+        },
+        {
+          "sku": "NVPROD4750043V/GI084D",
+          "name": "Babies en cuir",
+          "price": 380.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/babies-en-cuir-s00-nvprod4750043v/GI084D",
+          "match_score": 0.58
+        },
+        {
+          "sku": "NVPROD4260089V/GI035D",
+          "name": "Babies en cuir",
+          "price": 380.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/babies-en-cuir-s00-nvprod4260089v/GI035D",
+          "match_score": 0.58
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vic"
+      },
+      "profession": {
+        "sector": "medical_surgeon",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "graduation"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_130",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "watches"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "000727/M47530",
+          "name": "Étui 3 montres",
+          "price": 950.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/etui-3-montres-monogram-canvas-000727/M47530",
+          "match_score": 0.4
+        },
+        {
+          "sku": "NVPROD700025V/R15436",
+          "name": "Watch Strap",
+          "price": 355.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/watch-strap-nvprod700025v/R15436",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD4320117V/M01186",
+          "name": "Boucles d'oreilles Monogram Play",
+          "price": 410.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-monogram-play-s00-nvprod4320117v/M01186",
+          "match_score": 0.38
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegan"
+        ],
+        "contact": [
+          "nickel_allergy"
+        ]
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8500000000000001,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_131",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "regular",
+        "finance_banker",
+        "creative_designer",
+        "travel_frequent",
+        "art_collector",
+        "pescatarian",
+        "latex_allergy",
+        "gift_for_parent",
+        "birthday"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "['investment_banker', 'interior_designer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "latex_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "birthday"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_132",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_133",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "travel_frequent",
+        "watches",
+        "leather_goods",
+        "jewelry",
+        "gift_for_child",
+        "gift_for_grandchild",
+        "pescatarian",
+        "gluten_free",
+        "entrepreneur_established",
+        "art_collector",
+        "wine_enthusiast"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3930139V/M77970",
+          "name": "Set LV Travel",
+          "price": 1850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/set-lv-travel-nvprod3930139v/M77970",
+          "match_score": 0.51
+        },
+        {
+          "sku": "NVPROD3950487V/M46326",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950487v/M46326",
+          "match_score": 0.5
+        },
+        {
+          "sku": "NVPROD3950488V/M46357",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950488v/M46357",
+          "match_score": 0.49
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "['entrepreneur_established', 'creative_designer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "gluten_intolerance"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_134",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.75,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_135",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "medical_surgeon",
+        "travel_frequent",
+        "sports_equestrian",
+        "pescatarian",
+        "latex_allergy",
+        "regular",
+        "gift_for_spouse",
+        "wedding_anniversary"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2540297V/1A8H38",
+          "name": "Legging imprimé en tissu technique 2054",
+          "price": 790.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/legging-imprime-en-tissu-technique-2054-nvprod2540297v/1A8H38",
+          "match_score": 0.47
+        },
+        {
+          "sku": "004672/J52312",
+          "name": "Bandoulière de sac Réglable en cuir naturel",
+          "price": 275.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bandouliere-de-sac-reglable-en-cuir-naturel-vvn-004672/J52312",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "regular"
+      },
+      "profession": {
+        "sector": "medical_surgeon",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "latex_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.92,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_136",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": null,
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 3,
+    "ID": "CA_137",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "creative_designer",
+        "leather_goods",
+        "gift_for_spouse",
+        "valentines",
+        "travel_frequent",
+        "pescatarian",
+        "fragrance_sensitivity",
+        "art_collector"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3740059V/P01730",
+          "name": "Organizer de poche My LV Heritage",
+          "price": 470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.48
+        },
+        {
+          "sku": "NVPROD590322V/M99463",
+          "name": "Hamac par Atelier Oï",
+          "price": 38000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/hamac-par-atelier-oi-nvprod590322v/M99463",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "creative_designer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "fragrance_sensitivity"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "valentines"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_138",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "legal_lawyer",
+        "travel_frequent",
+        "vegan",
+        "eco_conscious",
+        "first_visit",
+        "leather_goods",
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3930139V/M77970",
+          "name": "Set LV Travel",
+          "price": 1850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/set-lv-travel-nvprod3930139v/M77970",
+          "match_score": 0.42
+        },
+        {
+          "sku": "NVPROD3950487V/M46326",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950487v/M46326",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD3950488V/M46357",
+          "name": "Sac Travel",
+          "price": 3200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-travel-monogram-empreinte-nvprod3950488v/M46357",
+          "match_score": 0.38
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "legal_lawyer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "medication_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_139",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "wedding_anniversary",
+        "travel_frequent",
+        "art_collector",
+        "eco_conscious",
+        "vegetarian",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories",
+        "gift_for_spouse"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3570126V/Q93840",
+          "name": "Collier pendentif Vivienne Celebration  or jaune  or blanc  titane  diamants et pierres précieuses colorées",
+          "price": 38500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-celebration-or-jaune-or-blanc-titane-diamants-et-pierres-precieuses-colorees-nvprod3570126v/Q93840",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD3430011V/M00616",
+          "name": "Bijou de sac et porte-clés Valentines Day Illustré",
+          "price": 250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-valentines-day-illustre-s00-nvprod3430011v/M00616",
+          "match_score": 0.36
+        },
+        {
+          "sku": "NVPROD3740060V/P01731",
+          "name": "Couverture passeport My LV Heritage",
+          "price": 425.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-passeport-my-lv-heritage-monogram-eclipse-nvprod3740060v/P01731",
+          "match_score": 0.35
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "entrepreneur_established",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_140",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "ready_to_wear",
+        "travel_luggage",
+        "first_visit",
+        "travel_frequent",
+        "art_collector",
+        "eco_conscious",
+        "pescatarian",
+        "nut_allergy"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3570023V/1AA4K2",
+          "name": "Pantalon de survêtement en cuir",
+          "price": 4150.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-de-survetement-en-cuir-nvprod3570023v/1AA4K2",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD4830056V/1AFATC",
+          "name": "Pantalon workwear en coton",
+          "price": 1100.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-coton-nvprod4830056v/1AFATC",
+          "match_score": 0.6
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "chef_restaurant",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "nut_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_141",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "leather_goods",
+        "travel_luggage",
+        "art_collector",
+        "travel_frequent",
+        "philanthropist",
+        "pescatarian",
+        "gift_for_child",
+        "gift_for_grandchild",
+        "entrepreneur_established",
+        "shopping_with_spouse"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.66
+        },
+        {
+          "sku": "NVPROD4480023V/1AC2TX",
+          "name": "Jupe en cuir à motif vichy",
+          "price": 3800.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-en-cuir-a-motif-vichy-nvprod4480023v/1AC2TX",
+          "match_score": 0.64
+        },
+        {
+          "sku": "NVPROD4480018V/1AC3W7",
+          "name": "Veste en cuir à motif vichy et bretelles",
+          "price": 12000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-en-cuir-a-motif-vichy-et-bretelles-nvprod4480018v/1AC3W7",
+          "match_score": 0.64
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "CEO",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "50K+",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.95,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_142",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_143",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "first_visit",
+        "vegan",
+        "travel_frequent",
+        "sports_surf",
+        "art_collector",
+        "tech_early_adopter",
+        "gift_for_spouse"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "music_producer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "pollen_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "celebration"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_144",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories",
+        "leather_goods"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.61
+        },
+        {
+          "sku": "NVPROD4880006V/1AFC43",
+          "name": "Haut arrondi en cuir synthétique",
+          "price": 2700.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/haut-arrondi-en-cuir-synthetique-nvprod4880006v/1AFC43",
+          "match_score": 0.6
+        },
+        {
+          "sku": "NVPROD3970116V/1AB77U",
+          "name": "Manteau à double boutonnage et détails en cuir",
+          "price": 4650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-a-double-boutonnage-et-details-en-cuir-nvprod3970116v/1AB77U",
+          "match_score": 0.59
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_145",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "creative_designer",
+        "accessories",
+        "gift_for_colleague",
+        "travel_frequent",
+        "eco_conscious",
+        "vegetarian",
+        "textile_dye_allergy"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3740059V/P01730",
+          "name": "Organizer de poche My LV Heritage",
+          "price": 470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.48
+        },
+        {
+          "sku": "NVPROD590322V/M99463",
+          "name": "Hamac par Atelier Oï",
+          "price": 38000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/hamac-par-atelier-oi-nvprod590322v/M99463",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "creative_designer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "textile_dye_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "10K-20K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.92,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_146",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "leather_goods",
+        "travel_luggage",
+        "accessories",
+        "gift_for_family",
+        "travel_frequent",
+        "vegetarian",
+        "regular"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.66
+        },
+        {
+          "sku": "NVPROD4480023V/1AC2TX",
+          "name": "Jupe en cuir à motif vichy",
+          "price": 3800.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-en-cuir-a-motif-vichy-nvprod4480023v/1AC2TX",
+          "match_score": 0.64
+        },
+        {
+          "sku": "NVPROD4480018V/1AC3W7",
+          "name": "Veste en cuir à motif vichy et bretelles",
+          "price": 12000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-en-cuir-a-motif-vichy-et-bretelles-nvprod4480018v/1AC3W7",
+          "match_score": 0.64
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "academic",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "expedition"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": "this_month"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.91,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_147",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "000162/M53012",
+          "name": "President",
+          "price": 8600.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/president-monogram-000162/M53012",
+          "match_score": 0.48
+        },
+        {
+          "sku": "NVPROD830055V/M33441",
+          "name": "Porte-documents Business",
+          "price": 2850.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-documents-business-taiga-nvprod830055v/M33441",
+          "match_score": 0.45
+        },
+        {
+          "sku": "NVPROD4670098V/M82878",
+          "name": "Organizer de poche",
+          "price": 505.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82878",
+          "match_score": 0.44
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "5K-10K",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.75,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_148",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD2220098V/1A7X9P",
+          "name": "Pantalon technique élastiqué",
+          "price": 750.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-technique-elastique-nvprod2220098v/1A7X9P",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD4160105V/1AB5ID",
+          "name": "Tee-shirt brodé LV Multi-Tools",
+          "price": 740.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/tee-shirt-brode-lv-multi-tools-nvprod4160105v/1AB5ID",
+          "match_score": 0.47
+        },
+        {
+          "sku": "NVPROD2800048V/M46568",
+          "name": "Multi Pochette Accessoires",
+          "price": 2300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/multi-pochette-accessoires-nvprod2800048v/M46568",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.65,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 1,
+    "ID": "CA_149",
+    "from_cache": false
+  },
+  {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vic",
+        "wedding_anniversary",
+        "travel_frequent",
+        "art_collector",
+        "pescatarian",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3570126V/Q93840",
+          "name": "Collier pendentif Vivienne Celebration  or jaune  or blanc  titane  diamants et pierres précieuses colorées",
+          "price": 38500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-celebration-or-jaune-or-blanc-titane-diamants-et-pierres-precieuses-colorees-nvprod3570126v/Q93840",
+          "match_score": 0.4
+        },
+        {
+          "sku": "NVPROD3430011V/M00616",
+          "name": "Bijou de sac et porte-clés Valentines Day Illustré",
+          "price": 250.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-valentines-day-illustre-s00-nvprod3430011v/M00616",
+          "match_score": 0.39
+        },
+        {
+          "sku": "NVPROD3740060V/P01731",
+          "name": "Couverture passeport My LV Heritage",
+          "price": 425.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-passeport-my-lv-heritage-monogram-eclipse-nvprod3740060v/P01731",
+          "match_score": 0.36
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vic"
+      },
+      "profession": {
+        "sector": "entrepreneur_established",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "20K-50K",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "tier": 2,
+    "ID": "CA_150",
+    "from_cache": false
+  }
+]

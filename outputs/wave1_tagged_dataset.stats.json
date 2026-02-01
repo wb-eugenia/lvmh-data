@@ -1,0 +1,60 @@
+{
+  "total_processed": 100,
+  "total_tags_extracted": 726,
+  "unique_tags_used": 55,
+  "avg_tags_per_note": 7.26,
+  "avg_confidence": 0.888,
+  "from_cache": 5,
+  "top_10_tags": [
+    [
+      "frequent_traveler_leisure",
+      67
+    ],
+    [
+      "high_referral_potential",
+      65
+    ],
+    [
+      "vegetarian",
+      40
+    ],
+    [
+      "personalization_interest",
+      35
+    ],
+    [
+      "art_collector",
+      34
+    ],
+    [
+      "leather_work",
+      32
+    ],
+    [
+      "regular_client",
+      29
+    ],
+    [
+      "anniversary_gift",
+      27
+    ],
+    [
+      "frequent_traveler_business",
+      26
+    ],
+    [
+      "pescatarian",
+      26
+    ]
+  ],
+  "tags_by_category": {
+    "PURCHASE_OCCASIONS": 74,
+    "LIFESTYLE": 182,
+    "PRODUCT_PREFERENCES": 155,
+    "CLIENT_PROFILE": 142,
+    "SENSITIVITIES": 135,
+    "HEALTH_ALLERGIES": 22,
+    "PROFESSIONAL_PROFILE": 16
+  },
+  "exported_at": "2026-01-21T10:43:33.219393"
+}

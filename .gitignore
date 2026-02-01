@@ -1,6 +1,14 @@
 # Environment
 .env
 
+# Node.js
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -8,10 +16,9 @@ __pycache__/
 .Python
 *.egg-info/
 .eggs/
-dist/
-build/
 venv/
 .venv/
+test/
 
 # IDE
 .idea/
@@ -23,18 +30,19 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Outputs (keep structure but ignore generated files)
-outputs/*.xlsx
-outputs/*.json
-!outputs/.gitkeep
+# Outputs
+output/*.csv
+output/*.xlsx
+output/*.json
+!output/.gitkeep
 
-# Auto Claude data directory
+# Auto Claude (Antigravity)
 .auto-claude/
-
-# Auto Claude generated files
 .auto-claude-security.json
 .auto-claude-status
 .claude_settings.json
 .worktrees/
 .security-key
 logs/security/
+brain/
+

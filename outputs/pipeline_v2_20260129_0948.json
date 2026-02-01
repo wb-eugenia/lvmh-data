@@ -1,0 +1,500 @@
+[
+  {
+    "ID":"CA_101",
+    "Date":"2026-01-21",
+    "Duration":"28 min",
+    "Language":"FR",
+    "Transcription":"Mme Fontaine, 39 ans, dentiste cabinet privé, première visite. , en quelque manière, du coup. Recherche sac professionnel discret élégant,,. Budget 3500€,, en gros. ,,. Cuir noir marine préféré, hardw...",
+    "note_id":null,
+    "client_id":null,
+    "tags":[
+      "vegetarian",
+      "leather_goods",
+      "gift_for_spouse"
+    ],
+    "products_mentioned":[
+      "sac professionnel discret élégant"
+    ],
+    "brands_mentioned":[
+
+    ],
+    "locations":[
+      "Nice"
+    ],
+    "events":[
+      "triathlon"
+    ],
+    "professions":[
+
+    ],
+    "budget_range":"2K-5K",
+    "budget_min":2800.0,
+    "budget_max":4200.0,
+    "budget_confidence":"explicit",
+    "budget_amount":null,
+    "client_status":"first_visit",
+    "allergies":[
+
+    ],
+    "allergy_severity":"low",
+    "dietary":[
+      "vegetarian"
+    ],
+    "relationship_context":{
+      "gift_for":[
+        "spouse"
+      ],
+      "shopping_with":[
+
+      ]
+    },
+    "key_dates":[
+
+    ],
+    "occasions":[
+
+    ],
+    "urgency":null,
+    "event_date":null,
+    "days_until_event":null,
+    "urgency_level":null,
+    "products":[
+
+    ],
+    "entities":{
+
+    },
+    "implicit_signals":{
+
+    },
+    "risk_flags":{
+
+    },
+    "processing_notes":[
+
+    ],
+    "profession":"medical_dentist",
+    "processing_tier":"tier2",
+    "confidence":0.85,
+    "processing_time_ms":0.0,
+    "rgpd_flag":false,
+    "error":null,
+    "reasoning":"Budget explicite, profession et régime clairement mentionnés, pas de date précise",
+    "model_name":"mistral-medium-latest",
+    "cost":0.0,
+    "age":null,
+    "gender":null,
+    "tier":2,
+    "routing_reasons":[
+      "Allergy Severe: +12",
+      "Intent: Advisory: +15",
+      "⚠️ Negation context detected: +15"
+    ],
+    "routing_confidence":0.8,
+    "from_cache":true,
+    "extracted_by":null
+  },
+  {
+    "ID":"CA_102",
+    "Date":"2026-01-21",
+    "Duration":"42 min",
+    "Language":"EN",
+    "Transcription":"Dr. Mitchell and partner, both 44, oncologists teaching hospital, first time customers excellent potential. Looking for multiple pieces celebrate research grant received. ,,. Combined budget 14K flexi...",
+    "note_id":null,
+    "client_id":null,
+    "tags":[
+      "gluten_free",
+      "professor",
+      "sustainable_values",
+      "medical_specialist",
+      "vegan",
+      "music_lover",
+      "travel_frequent"
+    ],
+    "products_mentioned":[
+
+    ],
+    "brands_mentioned":[
+
+    ],
+    "locations":[
+
+    ],
+    "events":[
+
+    ],
+    "professions":[
+
+    ],
+    "budget_range":"14K-18K",
+    "budget_min":14000.0,
+    "budget_max":18000.0,
+    "budget_confidence":"inferred_strong",
+    "budget_amount":null,
+    "client_status":"vic",
+    "allergies":[
+      "gluten_intolerance"
+    ],
+    "allergy_severity":"high",
+    "dietary":[
+      "vegan",
+      "gluten_free"
+    ],
+    "relationship_context":{
+      "gift_for":[
+        "partner"
+      ],
+      "shopping_with":[
+        "partner"
+      ]
+    },
+    "key_dates":[
+
+    ],
+    "occasions":[
+      "career_milestone"
+    ],
+    "urgency":"follow_up_march",
+    "event_date":null,
+    "days_until_event":null,
+    "urgency_level":null,
+    "products":[
+
+    ],
+    "entities":{
+      "products_mentioned":[
+
+      ],
+      "brands_mentioned":[
+
+      ],
+      "locations":[
+
+      ],
+      "events":[
+        "Camino de Santiago",
+        "trek Nepal"
+      ]
+    },
+    "implicit_signals":{
+      "purchase_intent":"high",
+      "urgency_implicit":false,
+      "sentiment":"enthusiastic",
+      "objections":[
+
+      ]
+    },
+    "risk_flags":{
+      "allergy_emergency":true,
+      "rgpd_sensitive":false,
+      "manual_review_required":false
+    },
+    "processing_notes":[
+      "The clients' interests in music and travel, as well as their dietary restrictions, are key factors in tailoring product recommendations."
+    ],
+    "profession":"medical_specialist",
+    "processing_tier":"tier3",
+    "confidence":0.97,
+    "processing_time_ms":0.0,
+    "rgpd_flag":false,
+    "error":null,
+    "reasoning":"The clients are first-time but high-potential customers with a clear interest in sustainable products and a significant budget. Their professional background and lifestyle preferences provide strong indicators of their purchasing intent and potential for future engagement.",
+    "model_name":"gpt-4o",
+    "cost":0.0001,
+    "age":null,
+    "gender":null,
+    "tier":3,
+    "routing_reasons":[
+      "Budget 10K: +10",
+      "Budget Vague: +8",
+      "Intent: Comparison: +12",
+      "Escalated: Tier 2 detected HIGH severity allergy"
+    ],
+    "routing_confidence":0.8,
+    "from_cache":false,
+    "extracted_by":"tier3_llm"
+  },
+  {
+    "ID":"CA_103",
+    "Date":"2026-01-22",
+    "Duration":"33 min",
+    "Language":"ES",
+    "Transcription":"Sr veis. Ruiz, 51 años, director cine documentales, cliente ocasional desde 2021,. aproximadamente. Busca regalo esposa 48 cumpleaños próximo mes. Presupuesto 6K aproximado. por ahí, un tantito,. Ella...",
+    "note_id":null,
+    "client_id":null,
+    "tags":[
+
+    ],
+    "products_mentioned":[
+
+    ],
+    "brands_mentioned":[
+
+    ],
+    "locations":[
+
+    ],
+    "events":[
+
+    ],
+    "professions":[
+
+    ],
+    "budget_range":null,
+    "budget_min":null,
+    "budget_max":null,
+    "budget_confidence":null,
+    "budget_amount":null,
+    "client_status":null,
+    "allergies":[
+
+    ],
+    "allergy_severity":"low",
+    "dietary":[
+      "vegetarian"
+    ],
+    "relationship_context":{
+      "gift_for":[
+
+      ],
+      "shopping_with":[
+
+      ]
+    },
+    "key_dates":[
+
+    ],
+    "occasions":[
+
+    ],
+    "urgency":null,
+    "event_date":null,
+    "days_until_event":null,
+    "urgency_level":null,
+    "products":[
+
+    ],
+    "entities":{
+
+    },
+    "implicit_signals":{
+
+    },
+    "risk_flags":{
+
+    },
+    "processing_notes":[
+
+    ],
+    "profession":null,
+    "processing_tier":"tier1",
+    "confidence":0.6,
+    "processing_time_ms":1.0695457458,
+    "rgpd_flag":false,
+    "error":null,
+    "reasoning":null,
+    "model_name":null,
+    "cost":0.0,
+    "age":null,
+    "gender":"female",
+    "tier":1,
+    "routing_reasons":[
+
+    ],
+    "routing_confidence":0.85,
+    "from_cache":true,
+    "extracted_by":null
+  },
+  {
+    "ID":"CA_104",
+    "Date":"2026-01-22",
+    "Duration":"25 min",
+    "Language":"IT",
+    "Transcription":"Signor Ferretti, 36 anni, sviluppatore software AI startup così successo, nuovo cliente altissimo potenziale. così,, pressappoco. Prima bene visita esplorazione brand. piuttosto. Budget in qualche man...",
+    "note_id":null,
+    "client_id":null,
+    "tags":[
+      "art_collector",
+      "gift_for_genitori",
+      "travel_frequent"
+    ],
+    "products_mentioned":[
+
+    ],
+    "brands_mentioned":[
+
+    ],
+    "locations":[
+      "San Francisco",
+      "Tokyo",
+      "Singapore"
+    ],
+    "events":[
+
+    ],
+    "professions":[
+
+    ],
+    "budget_range":"10K+",
+    "budget_min":10000.0,
+    "budget_max":null,
+    "budget_confidence":"inferred",
+    "budget_amount":null,
+    "client_status":"new",
+    "allergies":[
+      "penicillina_allergy"
+    ],
+    "allergy_severity":"medium",
+    "dietary":[
+
+    ],
+    "relationship_context":{
+      "gift_for":[
+        "genitori"
+      ],
+      "shopping_with":[
+
+      ]
+    },
+    "key_dates":[
+
+    ],
+    "occasions":[
+      "anniversario_genitori"
+    ],
+    "urgency":null,
+    "event_date":"2026-06-01",
+    "days_until_event":null,
+    "urgency_level":null,
+    "products":[
+
+    ],
+    "entities":{
+
+    },
+    "implicit_signals":{
+
+    },
+    "risk_flags":{
+
+    },
+    "processing_notes":[
+
+    ],
+    "profession":"tech_executive",
+    "processing_tier":"tier2",
+    "confidence":0.85,
+    "processing_time_ms":0.0,
+    "rgpd_flag":false,
+    "error":null,
+    "reasoning":"Nuovo cliente con alto potenziale, informazioni sulla professione e sugli interessi, budget aperto e possibilità di follow-up settimanale",
+    "model_name":"llama-3.3-70b-versatile",
+    "cost":0.0,
+    "age":null,
+    "gender":null,
+    "tier":2,
+    "routing_reasons":[
+      "Budget 10K: +10",
+      "Budget 50K: +15"
+    ],
+    "routing_confidence":0.8,
+    "from_cache":true,
+    "extracted_by":null
+  },
+  {
+    "ID":"CA_105",
+    "Date":"2026-01-23",
+    "Duration":"48 min",
+    "Language":"DE",
+    "Transcription":"Frau und Herr Hoffmann, beide etwa Anfang 60, treue Kunden seit 2014, in gewisser Weise,. ein wenig, ziemlich wenn du willst,. Große Einkaufsession neue zum Beispiel Saison plus Geschenke Kinder. Budg...",
+    "note_id":null,
+    "client_id":null,
+    "tags":[
+      "gift_for_sohn",
+      "professor",
+      "gift_for_tochter",
+      "vegetarian",
+      "shopping_with_frau_und_herr_hoffmann"
+    ],
+    "products_mentioned":[
+
+    ],
+    "brands_mentioned":[
+
+    ],
+    "locations":[
+      "griechenland"
+    ],
+    "events":[
+      "exklusive_vorschau"
+    ],
+    "professions":[
+
+    ],
+    "budget_range":"10K-50K",
+    "budget_min":22000.0,
+    "budget_max":25000.0,
+    "budget_confidence":"explicit",
+    "budget_amount":null,
+    "client_status":"vip",
+    "allergies":[
+
+    ],
+    "allergy_severity":"low",
+    "dietary":[
+      "vegetarier"
+    ],
+    "relationship_context":{
+      "gift_for":[
+        "tochter",
+        "sohn"
+      ],
+      "shopping_with":[
+        "frau_und_herr_hoffmann"
+      ]
+    },
+    "key_dates":[
+
+    ],
+    "occasions":[
+      "tochter_hochzeit"
+    ],
+    "urgency":null,
+    "event_date":null,
+    "days_until_event":null,
+    "urgency_level":null,
+    "products":[
+
+    ],
+    "entities":{
+
+    },
+    "implicit_signals":{
+
+    },
+    "risk_flags":{
+
+    },
+    "processing_notes":[
+
+    ],
+    "profession":"professorin_literatur",
+    "processing_tier":"tier2",
+    "confidence":0.95,
+    "processing_time_ms":0.0,
+    "rgpd_flag":false,
+    "error":null,
+    "reasoning":"Exzellente Kunden mit hoher Bildung, klare Angaben zu Budget und Anlässen, keine Allergien oder Unstimmigkeiten",
+    "model_name":"llama-3.3-70b-versatile",
+    "cost":0.0,
+    "age":null,
+    "gender":null,
+    "tier":2,
+    "routing_reasons":[
+      "Budget 10K: +10"
+    ],
+    "routing_confidence":0.8,
+    "from_cache":true,
+    "extracted_by":null
+  }
+]

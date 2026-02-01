@@ -1,0 +1,15 @@
+{
+  "total_notes": 300,
+  "notes_with_sensitive_data": 102,
+  "percentage_sensitive": 34.0,
+  "categories_breakdown": {
+    "health_physical": 72,
+    "health_mental": 38,
+    "family_conflict": 46,
+    "ethnic_origin": 1,
+    "religion": 1,
+    "political": 3,
+    "sexual_orientation": 1
+  },
+  "compliance_status": "REQUIRES_REVIEW"
+}
