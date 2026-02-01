@@ -7,6 +7,8 @@ export default function ManagerView({ onBack }) {
     const [stats, setStats] = useState({ total_notes: 0, avg_quality: 0, tier_distribution: { 1: 0, 2: 0, 3: 0 } })
     const [leaderboard, setLeaderboard] = useState([])
     const [history, setHistory] = useState([])
+    const [rgpdStats, setRgpdStats] = useState(null)
+    const [costStats, setCostStats] = useState(null)
 
     const tabs = [
         { id: 'overview', name: 'Overview', icon: LayoutDashboard },
@@ -21,7 +23,7 @@ export default function ManagerView({ onBack }) {
 
     const fetchData = async () => {
         try {
-            const sRes = await fetch('/api/stats')
+            const sRes = await fetch('/api/stats/overview')
             setStats(await sRes.json())
 
             const lRes = await fetch('/api/leaderboard')
@@ -29,7 +31,13 @@ export default function ManagerView({ onBack }) {
 
             const hRes = await fetch('/api/search?q=')
             const hData = await hRes.json()
-            setHistory(hData.results)
+            setHistory(hData.results || [])
+
+            const rRes = await fetch('/api/stats/rgpd')
+            setRgpdStats(await rRes.json())
+
+            const cRes = await fetch('/api/stats/cost')
+            setCostStats(await cRes.json())
         } catch (e) { console.error(e) }
     }
 
@@ -86,9 +94,9 @@ export default function ManagerView({ onBack }) {
                     <div className="space-y-10 animate-in fade-in duration-500">
                         {/* KPI Cards */}
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            <KPICard title="Notes Totales" value={stats.total_notes} trend="+12% vs hier" />
-                            <KPICard title="Qualité Moyenne" value={`${stats.avg_quality}%`} trend="Mode: Expert 🌟" gold />
-                            <KPICard title="Alertes VIP" value={history.filter(x => x.tier === 3).length} trend="À traiter urgent" red />
+                            <KPICard title="Notes Totales" value={stats?.total_notes || 0} trend="+12% vs hier" />
+                            <KPICard title="Qualité Moyenne" value={`${stats?.avg_quality || 0}%`} trend="Mode: Expert 🌟" gold />
+                            <KPICard title="Alertes VIP" value={history?.filter(x => x?.tier === 3)?.length || 0} trend="À traiter urgent" red />
                             <KPICard title="Notes/CA/Jour" value="4.7" trend="Cible: 5.0 🚀" />
                         </div>
 
@@ -168,7 +176,7 @@ export default function ManagerView({ onBack }) {
                             <h3 className="text-2xl font-black">Segment Discovery (Tier 3)</h3>
                         </div>
                         <div className="grid grid-cols-1 gap-4">
-                            {history.filter(x => x.tier === 3).map((r, i) => (
+                            {(history || []).filter(x => x.tier === 3).map((r, i) => (
                                 <div key={i} className="glass p-6 border-l-4 border-red-500 hover:bg-white/5 transition-all">
                                     <div className="flex justify-between items-start mb-4">
                                         <span className="text-xl font-bold">{r.ID}</span>
@@ -177,10 +185,59 @@ export default function ManagerView({ onBack }) {
                                     <p className="text-lvmh-gray text-sm mb-4">"{r.Transcription?.substring(0, 100)}..."</p>
                                     <div className="bg-white/5 p-4 rounded-lg border border-white/5">
                                         <div className="text-[10px] text-lvmh-gold uppercase font-bold mb-2">Opportunité détectée</div>
-                                        <div className="font-medium">{r.pilier_4_action_business.next_best_action?.description}</div>
+                                        <div className="font-medium">{r.pilier_4_action_business?.next_best_action?.description || "Analyse approfondie requise"}</div>
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                )}
+
+                {currentTab === 'quality' && (
+                    <div className="space-y-10 animate-in slide-in-from-right duration-500">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            {/* ROI CARD */}
+                            <div className="glass p-8">
+                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-green-500">💰 Performance & ROI</h3>
+                                <div className="space-y-6">
+                                    <div>
+                                        <div className="text-xs text-lvmh-gray uppercase mb-1">Coût Total Cloud (Est.)</div>
+                                        <div className="text-3xl font-black">${costStats?.total_cost || 0}</div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="bg-white/5 p-4 rounded-lg">
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Economies</div>
+                                            <div className="text-lg font-bold text-green-500">{costStats?.roi_metrics?.savings || "0%"}</div>
+                                        </div>
+                                        <div className="bg-white/5 p-4 rounded-lg">
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Coût / Note</div>
+                                            <div className="text-lg font-bold">${costStats?.roi_metrics?.cost_per_note || 0}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* RGPD CARD */}
+                            <div className="glass p-8">
+                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-red-400">🛡️ Conformité RGPD</h3>
+                                <div className="space-y-6">
+                                    <div className="flex justify-between items-end">
+                                        <div>
+                                            <div className="text-xs text-lvmh-gray uppercase mb-1">Données Sensibles Détectées</div>
+                                            <div className="text-3xl font-black">{rgpdStats?.sensitive_count || 0}</div>
+                                        </div>
+                                        <div className="text-sm font-bold text-red-400 mb-1">{rgpdStats?.sensitive_rate || 0}% du flux</div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {rgpdStats?.categories && Object.entries(rgpdStats.categories).map(([cat, count]) => (
+                                            <div key={cat} className="flex justify-between items-center text-sm py-2 border-b border-white/5">
+                                                <span className="text-lvmh-gray">{cat}</span>
+                                                <span className="font-bold">{count}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}

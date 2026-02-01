@@ -64,6 +64,21 @@ class RoutingInfo(BaseModel):
     reason: Optional[str] = None
 
 
+class MetaAnalysis(BaseModel):
+    """Meta analysis info."""
+    quality_score: float = 0.0
+    advisor_feedback: Optional[str] = None
+    missing_info: List[str] = Field(default_factory=list)
+    risk_flags: List[str] = Field(default_factory=list)
+
+
+class LeaderboardEntry(BaseModel):
+    """Leaderboard entry."""
+    id: str
+    notes: int
+    score: int
+
+
 class ExtractionResult(BaseModel):
     """Full extraction result."""
     id: str
@@ -71,6 +86,9 @@ class ExtractionResult(BaseModel):
     extraction: ExtractionTags = Field(default_factory=ExtractionTags)
     routing: RoutingInfo
     rgpd: RGPDInfo = Field(default_factory=RGPDInfo)
+    meta_analysis: MetaAnalysis = Field(default_factory=MetaAnalysis)
+    processed_text: Optional[str] = None
+    original_text: Optional[str] = None
     processing_time_ms: float
     cache_hit: bool = False
     model_used: Optional[str] = None

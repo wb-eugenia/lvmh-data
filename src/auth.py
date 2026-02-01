@@ -1,9 +1,21 @@
 """
-Mock LVMH SSO & RBAC for UI demo.
+LVMH SSO & RBAC with JWT and Database Persistence.
 """
 from typing import Optional, List
 from pydantic import BaseModel
-from fastapi import Header, HTTPException
+from fastapi import Header, HTTPException, Depends
+from sqlalchemy.orm import Session
+from passlib.context import CryptContext
+from jose import JWTError, jwt
+from datetime import datetime, timedelta
+from src.database import SessionLocal, User
+
+# JWT Config
+SECRET_KEY = "lvmh_secret_key_change_in_prod"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 # 24 Hours
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class UserProfile(BaseModel):
     id: str
@@ -11,24 +23,53 @@ class UserProfile(BaseModel):
     role: str # 'CA', 'Manager', 'Admin'
     boutique_id: str
 
-# Mock Database
-MOCK_USERS = {
-    "token_aurelie": UserProfile(id="CA_001", name="Aurélie Dupont", role="CA", boutique_id="PARIS_RIVOLI"),
-    "token_julien": UserProfile(id="CA_002", name="Julien Martin", role="CA", boutique_id="PARIS_RIVOLI"),
-    "token_manager": UserProfile(id="MGR_001", name="Marc Lefebvre", role="Manager", boutique_id="PARIS_RIVOLI"),
-}
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-async def get_current_user(authorization: str = Header(None)) -> UserProfile:
-    """Mock dependency to get user from token"""
-    if not authorization or not authorization.startswith("Bearer "):
-        # For demo purposes, we fallback to Aurélie if no token
-        return MOCK_USERS["token_aurelie"]
-        
-    token = authorization.replace("Bearer ", "")
-    if token in MOCK_USERS:
-        return MOCK_USERS[token]
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+async def get_current_user(authorization: str = Header(None), db: Session = Depends(get_db)) -> UserProfile:
+    """Validate JWT and fetch user from DB"""
+    user_id = None
     
-    raise HTTPException(status_code=401, detail="Invalid token")
+    if not authorization:
+        # Fallback for easier testing/demo
+        user_id = "CA_001"
+    elif authorization.startswith("Bearer "):
+        token = authorization.replace("Bearer ", "")
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            user_id = payload.get("sub")
+        except JWTError:
+            raise HTTPException(status_code=401, detail="Invalid token")
+
+    if not user_id:
+         raise HTTPException(status_code=401, detail="Not authenticated")
+
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found")
+        
+    return UserProfile(
+        id=user.id, 
+        name=user.full_name, 
+        role=user.role, 
+        boutique_id=user.store_id
+    )
 
 def check_role(user: UserProfile, allowed_roles: List[str]):
     if user.role not in allowed_roles:

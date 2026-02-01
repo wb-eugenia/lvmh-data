@@ -121,11 +121,32 @@ class ExtractionResult(BaseModel):
 # PIPELINE OUTPUT
 # ==========================================
 
+class RoutingDecision(BaseModel):
+    tier: int
+    reasons: List[str] = Field(default_factory=list)
+    confidence: float = 0.0
+    priority: str = "Medium"
+
+class RGPDResult(BaseModel):
+    contains_sensitive: bool = False
+    categories_detected: List[str] = Field(default_factory=list)
+    safe_to_store: bool = True
+    severity: str = "low"
+    reasoning: Optional[str] = None
+    anonymized_text: Optional[str] = None
+
 class PipelineOutput(BaseModel):
     id: str
+    original_text: Optional[str] = None
     processed_text: str
+    language: str = "FR"
     timestamp: datetime = Field(default_factory=datetime.now)
-    extraction: ExtractionResult
-    tier: int
+    
+    routing: RoutingDecision
+    rgpd: RGPDResult
+    extraction: Optional[ExtractionResult] = None # Make optional to handle failures
+    
+    tier: Optional[int] = None # Legacy/Shortcut
     processing_time_ms: float = 0.0
+    from_cache: bool = False
 

@@ -35,7 +35,7 @@ from src.tier1_rules import Tier1RulesEngine
 from src.tier1_rules import Tier1RulesEngine
 from src.tier2_mistral import Tier2Mistral
 from src.extractor import TagExtractor
-from src.rgpd_ollama import RGPDOllamaFilter
+from src.text_cleaner import MultilingualTextCleaner, HAS_EMBEDDINGS
 from src.cache_manager import CacheManager
 from src.dlq_manager import DeadLetterQueue
 from src.resilience import safe_execution
@@ -56,11 +56,9 @@ class AsyncPipeline:
     def __init__(self, use_cache: bool = True):
         self.router = SmartRouterV2()
         self.tier1 = Tier1RulesEngine()
-        self.router = SmartRouterV2()
-        self.tier1 = Tier1RulesEngine()
         self.tier2 = Tier2Mistral()
-        self.tier3 = TagExtractor() # Tier 3 is sync but we wrap it or use async client if available (using sync for now in thread)
-        self.rgpd = RGPDOllamaFilter()
+        self.tier3 = TagExtractor()
+        self.cleaner = MultilingualTextCleaner(use_embeddings=False) # Keep it light by default
         
         self.cache = CacheManager() if use_cache else None
         self.dlq = DeadLetterQueue()
@@ -81,15 +79,20 @@ class AsyncPipeline:
             'start_time': None
         }
 
-    async def process_note(self, note: Dict) -> Optional[PipelineOutput]:
+    async def process_note(self, note: Dict, **kwargs) -> Optional[PipelineOutput]:
         """
         Process a single note through the pipeline.
         """
         async with self.semaphore:
             start_time = time.time()
             note_id = str(note.get('ID', 'unknown'))
-            text = note.get('Transcription') or ''  # Handle None or missing
+            raw_text = note.get('Transcription') or ''  # Handle None or missing
             language = note.get('Language', 'FR') or 'FR'
+
+            # 0. Data Cleaning
+            clean_res = self.cleaner.clean_text(raw_text, language)
+            text = clean_res['cleaned']
+            logger.info(f"🧹 Cleaned text: '{text}' (saved {clean_res.get('tokens_saved_estimate', 0)} tokens)")
             
             try:
                 # 1. Check Cache
@@ -99,21 +102,8 @@ class AsyncPipeline:
                         # Reconstruct PipelineOutput from dict
                         return PipelineOutput(**cached_data)
 
-                # 2. RGPD Check (Async wrap)
-                loop = asyncio.get_event_loop()
-                rgpd_result = await loop.run_in_executor(
-                    None, 
-                    lambda: self.rgpd.detect(text, language)
-                )
-                
-                # 3. Routing
+                # 2. Routing (RGPD Check moved to cleaner)
                 decision = self.router.route(text, language, note)
-                
-                # Force Tier 3 if RGPD sensitive
-                if rgpd_result.contains_sensitive:
-                    if decision.tier < 3:
-                        decision.tier = 3
-                        decision.reasons.insert(0, f"RGPD Sensitive: {rgpd_result.categories_detected}")
                 
                 # 4. Extraction
                 extraction_result = None
@@ -127,32 +117,42 @@ class AsyncPipeline:
                         extraction_result = await self.tier2.extract(text, language)
                     
                     # Safety Fallback
-                    if extraction_result.allergy_severity == 'high' or \
-                       (extraction_result.client_status in ['vic', 'ultimate'] and extraction_result.confidence < 0.9):
-                        
-                        logger.info(f"⚠️ Escalating Note {note_id} to Tier 3")
+                    client_status = getattr(extraction_result.pilier_2_profil_client.purchase_context, 'behavior', None) if extraction_result else None
+                    
+                    # Check if we should escalate
+                    should_escalate = False
+                    if extraction_result:
+                        if extraction_result.confidence < 0.85:
+                            should_escalate = True
+                        elif client_status in ['vic', 'ultimate'] and extraction_result.confidence < 0.95:
+                            should_escalate = True
+                    
+                    if should_escalate:
+                        logger.info(f"⚠️ Escalating Note {note_id} to Tier 3 (Safety/Confidence)")
                         decision.tier = 3
-                        decision.reasons.append("Escalated from Tier 2 (Safety)")
-                        # Fallthrough to Tier 3
+                        decision.reasons.append("Escalated from Tier 2 (Safety/Confidence)")
                         extraction_result = None
                     else:
                         self.stats['tier2'] += 1
                 
                 if decision.tier == 3 or extraction_result is None:
-                    # Run Tier 3 (Sync in thread pool) with Semaphore
+                    # Run Tier 3 (Async now supported by Tier 3)
                     async with self.openai_semaphore:
-                        loop = asyncio.get_event_loop()
-                        extraction_result = await loop.run_in_executor(
-                            None, 
-                            lambda: self.tier3.extract(text, language, client_id=note_id, use_cache=False)
+                        # Tier 3 is now async capable, await directly
+                        extraction_result = await self.tier3.extract(
+                            text, 
+                            language, 
+                            client_status=None, # Or pass if known
+                            escalation_reason=decision.reasons[-1] if decision.reasons else None,
+                            use_cache=False
                         )
                     self.stats['tier3'] += 1
 
                 # 5. Build Output
                 output = PipelineOutput(
                     id=note_id,
-                    original_text=text,
-                    processed_text=rgpd_result.anonymized_text or text,
+                    original_text=raw_text,
+                    processed_text=text,
                     language=language,
                     timestamp=datetime.now(),
                     routing=RoutingDecision(
@@ -162,12 +162,11 @@ class AsyncPipeline:
                         priority=decision.priority
                     ),
                     rgpd=RGPDResult(
-                        contains_sensitive=rgpd_result.contains_sensitive,
-                        categories_detected=rgpd_result.categories_detected,
-                        safe_to_store=rgpd_result.safe_to_store,
-                        severity=rgpd_result.severity,
-                        reasoning=rgpd_result.reasoning,
-                        anonymized_text=rgpd_result.anonymized_text
+                        contains_sensitive=False, # Handled by cleaner
+                        categories_detected=[],
+                        safe_to_store=True,
+                        severity="low",
+                        anonymized_text=text
                     ),
                     extraction=extraction_result,
                     processing_time_ms=(time.time() - start_time) * 1000,
@@ -175,7 +174,8 @@ class AsyncPipeline:
                 )
                 
                 # 6. Cache Result
-                if self.cache:
+                # 6. Cache Result
+                if self.cache and kwargs.get('save_to_cache', True):
                     # Use json() to handle datetime serialization, then load back to dict
                     serialized = json.loads(output.json())
                     self.cache.save(

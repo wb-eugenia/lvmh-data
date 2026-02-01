@@ -16,8 +16,14 @@ from slowapi.util import get_remote_address
 # Add parent path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
-from api.schemas import NoteInput, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo
+from api.schemas import NoteInput, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo, MetaAnalysis
 from src.pipeline_async import AsyncPipeline
+from api.routers.auth import get_current_user
+from api.models_sql import User, Note, Client
+from api.database import get_db
+from sqlalchemy.orm import Session
+from fastapi import Depends
+import json
 
 logger = logging.getLogger("lvmh-api.analyze")
 router = APIRouter()
@@ -40,12 +46,35 @@ def get_pipeline() -> AsyncPipeline:
 
 @router.post("/analyze", response_model=ExtractionResult)
 @limiter.limit("30/minute")
-async def analyze_note(note: NoteInput, request: Request):
+async def analyze_note(
+    note: NoteInput, 
+    request: Request, 
+    db: Session = Depends(get_db),
+    # current_user: User = Depends(get_current_user) # Uncomment to enforce strict auth
+):
     """
     Analyze a single client note and extract structured tags.
-    
-    Rate limited to 30 requests per minute per IP.
     """
+    # For now, if no auth header, get default advisor "Sophie" for smooth dev experience
+    # In prod, uncomment dependency above
+    current_user = None
+    auth_header = request.headers.get("Authorization")
+    if auth_header:
+        try:
+            token = auth_header.split(" ")[1]
+            logger.info(f"Analyzing with token: {token[:10]}...")
+            from api.routers.auth import get_current_user
+            current_user = await get_current_user(token, db)
+        except:
+            pass
+    
+    if not current_user:
+        # Fallback to first advisor found (Demo Mode)
+        current_user = db.query(User).filter(User.role == "advisor").first()
+        logger.warning(f"No auth user found, falling back to demo user: {current_user.email if current_user else 'None'}")
+    else:
+        logger.info(f"Authenticated user: {current_user.email} (ID: {current_user.id})")
+
     start_time = time.time()
     
     try:
@@ -56,38 +85,117 @@ async def analyze_note(note: NoteInput, request: Request):
             'ID': f'API_{int(time.time())}',
             'Transcription': note.text,
             'Language': note.language
-        })
+        }, save_to_cache=False)
         
+        if result is None:
+            raise HTTPException(status_code=500, detail="Analysis failed to produce a result.")
+            
         processing_time = (time.time() - start_time) * 1000
+        ext = result.extraction
         
-        # Build response
+        # Build response with mapping from 4-Pillar to API schema
+        # === PERSISTENCE ===
+        try:
+            if current_user:
+                # 1. Update Score
+                points = 10
+                if ext.meta_analysis.quality_score > 0.8: points += 5
+                current_user.score += points
+                
+                # 2. Get/Create Client (Simple logic: if VIC/Ultimate mentioned or just 'Standard')
+                client_name = "Client Inconnu"
+                if ext.pilier_2_profil_client.purchase_context.behavior in ["vic", "ultimate"]:
+                    client_name = "Client VIP"
+                
+                # Find or create a generic client for this demo
+                client = db.query(Client).filter(Client.name == client_name).first()
+                if not client:
+                    client = Client(name=client_name, vic_status="Standard")
+                    db.add(client)
+                    db.commit()
+                    db.refresh(client)
+                
+                # 3. Save Note
+                new_note = Note(
+                    advisor_id=current_user.id,
+                    client_id=client.id,
+                    transcription=result.processed_text,
+                    analysis_json=json.dumps(result.model_dump(), default=str),
+                    points_awarded=points
+                )
+                db.add(new_note)
+                db.commit()
+                logger.info(f"💾 Note saved for user {current_user.email} (+{points} pts)")
+        except Exception as e:
+            logger.error(f"Persistence error: {e}")
+
         return ExtractionResult(
             id=result.id,
-            tags=result.extraction.tags if hasattr(result.extraction, 'tags') else [],
+            tags=ext.tags if ext else [],
             extraction=ExtractionTags(
-                brand=getattr(result.extraction, 'brand', None),
-                product_category=getattr(result.extraction, 'product_category', None),
-                product_type=getattr(result.extraction, 'product_type', None),
-                vip_status=getattr(result.extraction, 'vip_status', None),
-                budget_range=getattr(result.extraction, 'budget_range', None),
-                occasion=getattr(result.extraction, 'occasion', None),
-                preferences=getattr(result.extraction, 'preferences', [])
+                brand=None, # Not explicitly in new 4-pillar categories yet
+                product_category=", ".join(ext.pilier_1_univers_produit.categories) if ext else None,
+                product_type=None,
+                vip_status=ext.pilier_2_profil_client.purchase_context.behavior if ext else None,
+                budget_range=ext.pilier_4_business.budget_potential if hasattr(ext, 'pilier_4_business') and ext.pilier_4_business else (ext.pilier_4_action_business.budget_potential if hasattr(ext, 'pilier_4_action_business') and ext.pilier_4_action_business else None),
+                occasion=ext.pilier_3_hospitalite_care.occasion if ext else None,
+                preferences=(ext.pilier_1_univers_produit.preferences.colors + ext.pilier_1_univers_produit.preferences.materials) if ext else []
             ),
             routing=RoutingInfo(
                 tier=result.routing.tier,
                 confidence=result.routing.confidence,
-                reason=getattr(result.routing, 'reason', None)
+                reason=", ".join(result.routing.reasons)
             ),
             rgpd=RGPDInfo(
-                contains_sensitive=result.rgpd.contains_sensitive if hasattr(result, 'rgpd') else False,
-                categories_detected=getattr(result.rgpd, 'categories_detected', []) if hasattr(result, 'rgpd') else [],
-                anonymized_text=getattr(result.rgpd, 'anonymized_text', None) if hasattr(result, 'rgpd') else None
+                contains_sensitive=result.rgpd.contains_sensitive,
+                categories_detected=result.rgpd.categories_detected,
+                anonymized_text=result.rgpd.anonymized_text
             ),
+            meta_analysis=MetaAnalysis(
+                quality_score=ext.meta_analysis.quality_score if ext else 0.0,
+                advisor_feedback=ext.meta_analysis.advisor_feedback if ext else None,
+                missing_info=ext.meta_analysis.missing_info if ext else [],
+                risk_flags=ext.meta_analysis.risk_flags if ext else []
+            ),
+            processed_text=result.processed_text,
+            original_text=result.original_text,
             processing_time_ms=processing_time,
-            cache_hit=getattr(result, 'cache_hit', False),
-            model_used=getattr(result, 'model_used', None)
+            cache_hit=result.from_cache,
+            model_used=getattr(result, 'model_used', "hybrid")
         )
         
     except Exception as e:
         logger.error(f"Analysis error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/history")
+async def get_history(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """Fetch history of notes for current user."""
+    auth_header = request.headers.get("Authorization")
+    if not auth_header:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    
+    try:
+        from api.routers.auth import get_current_user
+        token = auth_header.split(" ")[1]
+        user = await get_current_user(token, db)
+        
+        notes = db.query(Note).filter(Note.advisor_id == user.id).order_by(Note.timestamp.desc()).all()
+        
+        # Simple serialization
+        return [
+            {
+                "id": n.id,
+                "date": n.timestamp.isoformat(),
+                "transcription": n.transcription,
+                "points": n.points_awarded,
+                "client": n.client.name if n.client else "Inconnu"
+            }
+            for n in notes
+        ]
+    except Exception as e:
+        logger.error(f"History fetch error: {e}")
+        return []

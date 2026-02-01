@@ -1,33 +1,16 @@
-# Git
-.git
-.gitignore
-.github
-
-# Python
 __pycache__
 *.pyc
 *.pyo
-*.pyd
-*.Python
-*.env
-venv/
-.venv/
-env/
-pip-log.txt
-.pytest_cache
-
-# Data & Outputs
-data/
-outputs/
-output/
-cache/
-logs/
-
-# IDE
+venv
+.venv
+node_modules
+.git
+.github
 .vscode
 .idea
-.cursor
-
-# OS
-.DS_Store
-Thumbs.db
+*.log
+output/
+dist/
+target/
+frontend-v2/node_modules
+frontend-v2/dist

@@ -9,11 +9,15 @@ from typing import Optional, List
 from pathlib import Path
 
 import pandas as pd
-from fastapi import APIRouter, Query, HTTPException
+from api.database import get_db
+from api.models_sql import User, Note, Client
+from sqlalchemy.orm import Session
+from fastapi import APIRouter, Query, HTTPException, Depends
+import json
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
-from api.schemas import PaginatedResults, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo
+from api.schemas import PaginatedResults, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo, MetaAnalysis
 
 logger = logging.getLogger("lvmh-api.results")
 router = APIRouter()
@@ -134,20 +138,65 @@ async def get_results(
     )
 
 
+@router.get("/search")
+async def search_notes(
+    q: Optional[str] = Query(""),
+    db: Session = Depends(get_db)
+):
+    """Search notes in SQL database."""
+    query = db.query(Note)
+    if q:
+        query = query.filter(Note.transcription.ilike(f"%{q}%"))
+    
+    notes = query.order_by(Note.timestamp.desc()).limit(50).all()
+    
+    results = []
+    for n in notes:
+        try:
+            analysis = json.loads(n.analysis_json)
+            # Flatten some fields for the UI
+            item = {
+                "id": n.id,
+                "ID": f"N{n.id}", # UI expects ID
+                "Transcription": n.transcription,
+                "tier": analysis.get('routing', {}).get('tier', 1),
+                "pilier_4_action_business": analysis.get('extraction', {}).get('pilier_4_action_business', {}),
+                "advisor": n.advisor.full_name if n.advisor else "Inconnu",
+                "client": n.client.name if n.client else "Inconnu",
+                "timestamp": n.timestamp.isoformat()
+            }
+            results.append(item)
+        except:
+            pass
+            
+    return {"results": results}
+
+@router.get("/clients/search")
+async def search_clients(
+    q: Optional[str] = Query(""),
+    db: Session = Depends(get_db)
+):
+    """Search clients in SQL database."""
+    query = db.query(Client)
+    if q:
+        query = query.filter(Client.name.ilike(f"%{q}%"))
+    
+    clients = query.limit(20).all()
+    return [
+        {
+            "id": c.id,
+            "name": c.name,
+            "vic_status": c.vic_status,
+            "total_notes": len(c.notes)
+        }
+        for c in clients
+    ]
+
 @router.get("/results/{note_id}")
-async def get_result_detail(note_id: str):
-    """Get full details for a specific note."""
-    
-    df = load_latest_results()
-    
-    if df.empty:
-        raise HTTPException(404, "No results found")
-    
-    # Find note
-    id_col = 'id' if 'id' in df.columns else 'ID'
-    row = df[df[id_col].astype(str) == note_id]
-    
-    if row.empty:
+async def get_result_detail(note_id: int, db: Session = Depends(get_db)):
+    """Get full details for a specific note from SQL."""
+    note = db.query(Note).filter(Note.id == note_id).first()
+    if not note:
         raise HTTPException(404, f"Note {note_id} not found")
     
-    return row.iloc[0].to_dict()
+    return json.loads(note.analysis_json)
