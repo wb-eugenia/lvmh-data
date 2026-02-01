@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LVMH Voice-to-Tag Mobile</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        .mobile-container {
+            max-width: 450px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .record-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .leaderboard-mini {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .result-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--lvmh-black);
+            z-index: 100;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .badge-premium {
+            background: var(--lvmh-gold);
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="mobile-container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <div style="font-size: 10px; color: var(--lvmh-gold)">LVMH PARIS RIVOLI</div>
+                <div style="font-weight: 700;">{{ user.name }}</div>
+            </div>
+            <div class="glass" style="padding: 5px 12px; border-radius: 10px;">{{ user.score }} pts</div>
+        </div>
+
+        <!-- Search -->
+        <input type="text" class="search-bar" placeholder="🔍 Rechercher un client..." v-model="searchQuery"
+            @keyup.enter="search">
+
+        <!-- Main Flow -->
+        <div v-if="!currentResult" class="record-section">
+            <h2 class="gold-text" style="font-size: 24px; margin-bottom: 10px;">{{ isRecording ? 'À l\'écoute...' :
+                'Dictée Client' }}</h2>
+            <p style="color: var(--lvmh-gray); margin-bottom: 40px;">Décrivez l'interaction en quelques secondes</p>
+
+            <div class="btn-record" @click="toggleRecord">
+                <svg viewBox="0 0 24 24" width="60" height="60" fill="white">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                    <path
+                        d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                </svg>
+            </div>
+
+            <div class="leaderboard-mini glass" style="padding: 15px; margin-top: 50px;">
+                <div style="font-size: 12px; color: var(--lvmh-gold); margin-bottom: 10px; text-transform: uppercase;">
+                    Leaderboard Live</div>
+                <div class="row" v-for="(adv, i) in leaderboard.slice(0,3)" :key="adv.id">
+                    <span>{{ i+1 }}. {{ adv.id }}</span>
+                    <span style="font-weight: bold;">{{ adv.score }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result View -->
+        <div v-if="currentResult" class="result-overlay">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 class="gold-text" style="font-size: 28px;">Expertise IA</h2>
+                <button @click="currentResult = null"
+                    style="background: none; border: none; color: white; font-size: 24px;">✕</button>
+            </div>
+
+            <div class="glass card-nba" style="background: rgba(212, 175, 55, 0.1);">
+                <div style="font-size: 14px; color: var(--lvmh-gold); margin-bottom: 5px;">RÉCOMPENSE</div>
+                <div style="font-size: 20px; font-weight: bold;">{{ currentResult.meta_analysis.advisor_feedback }}
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <div style="color: var(--lvmh-gray); font-size: 12px; text-transform: uppercase;">Profil Extrait</div>
+                <div style="font-size: 22px; margin: 10px 0;">{{ currentResult.ID }} <span
+                        class="badge badge-premium">VIP</span></div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <span v-for="tag in currentResult.pilier_1_univers_produit.categories" class="badge"
+                        style="background: rgba(255,255,255,0.1)">{{ tag }}</span>
+                </div>
+            </div>
+
+            <div v-if="currentResult.pilier_4_action_business.next_best_action" style="margin-top: 40px;">
+                <div style="color: var(--lvmh-gold); font-size: 12px; text-transform: uppercase;">🚀 Next Best Action
+                </div>
+                <div class="glass" style="padding: 20px; margin-top: 10px; border-left: 4px solid #4CAF50;">
+                    <div style="font-weight: 700; margin-bottom: 10px;">{{
+                        currentResult.pilier_4_action_business.next_best_action.description }}</div>
+                    <div v-if="currentResult.pilier_4_action_business.next_best_action.target_products.length"
+                        style="font-size: 14px; color: var(--lvmh-gray);">
+                        Suggérer : {{ currentResult.pilier_4_action_business.next_best_action.target_products.join(', ')
+                        }}
+                    </div>
+                </div>
+                <button class="btn-record"
+                    style="width: 100%; height: 60px; border-radius: 12px; margin-top: 20px; font-weight: 700;">PLANIFIER
+                    ACTION</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const user = ref({ name: "Aurélie Dupont", score: 245 });
+                const isRecording = ref(false);
+                const currentResult = ref(null);
+                const leaderboard = ref([]);
+                const searchQuery = ref("");
+
+                const fetchLeaderboard = async () => {
+                    try {
+                        const res = await fetch('http://127.0.0.1:8000/api/leaderboard');
+                        leaderboard.value = await res.json();
+                    } catch (e) { }
+                };
+
+                // Live WebSocket Heartbeat
+                const initWS = () => {
+                    const ws = new WebSocket('ws://127.0.0.1:8000/ws/leaderboard');
+                    ws.onmessage = (event) => {
+                        leaderboard.value = JSON.parse(event.data);
+                    };
+                    ws.onclose = () => setTimeout(initWS, 5000); // Auto-reconnect
+                };
+
+                const search = async () => {
+                    if (!searchQuery.value) return;
+                    try {
+                        const res = await fetch(`http://127.0.0.1:8000/api/search?q=${searchQuery.value}`);
+                        const data = await res.json();
+                        if (data.results && data.results.length > 0) {
+                            currentResult.value = data.results[0];
+                        } else {
+                            alert("Aucun client trouvé");
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    }
+                };
+
+                const toggleRecord = async () => {
+                    isRecording.value = !isRecording.value;
+                    if (!isRecording.value) {
+                        // Simuler ingestion
+                        const mockNotes = [
+                            "Mme Dupont cherche un sac rouge pour son anniversaire demain.",
+                            "M. Martin veut voir les nouvelles montres, il a un gros budget.",
+                            "Mlle Lopez s'intéresse au cuir exotique pour un cadeau."
+                        ];
+                        const text = mockNotes[Math.floor(Math.random() * mockNotes.length)];
+
+                        try {
+                            const res = await fetch('http://127.0.0.1:8000/ingest', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    transcription: text,
+                                    advisor_id: "CA_001",
+                                    store_id: "PARIS_RIVOLI"
+                                })
+                            });
+                            const data = await res.json();
+                            currentResult.value = data.data;
+                            if (currentResult.value.meta_analysis.quality_score >= 80) {
+                                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#D4AF37', '#ffffff'] });
+                            }
+                        } catch (e) {
+                            alert("Erreur API (Vérifiez qu'uvicorn est lancé)");
+                        }
+                    }
+                };
+
+                onMounted(() => {
+                    fetchLeaderboard();
+                    initWS();
+                });
+
+                return { user, isRecording, currentResult, leaderboard, toggleRecord, searchQuery, search };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

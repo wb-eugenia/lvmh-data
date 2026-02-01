@@ -162,8 +162,8 @@ class PipelineBatchV2:
             text = self._clean_text(raw_text, language)
             note['_cleaned_text'] = text  # Store for later use
             
-            # Route
-            decision = self.router.route(text, language, note)
+            # Route (ML Enhanced)
+            decision = self.router.route_ml(text, language, note)
             decisions.append((note, decision))
         
         elapsed_ms = (time.time() - start) * 1000
@@ -628,14 +628,13 @@ class PipelineBatchV2:
                 # Apply Recommendation Engine (NBA)
                 if self.recommender and 'pilier_4_action_business' in res:
                     try:
-                        # Convert dict to model for processing if needed, or process as dict
-                        # For simplicity, we assume result is already structured as ExtractionResult or similar
-                        # Recommender works on models, so let's convert back and forth if necessary
-                        # Actually, Tier 1/2/3 return dicts or models. Let's be safe.
                         from src.models import ExtractionResult
+                        current_tier = res.get('tier')
                         ext = ExtractionResult(**res)
                         ext_with_nba = self.recommender.generate_recommendation(ext)
                         res = ext_with_nba.model_dump()
+                        if current_tier:
+                            res['tier'] = current_tier
                     except Exception as e:
                         print(f"  ⚠️ Recommendation failed for {note_id}: {e}")
                 

@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #1A1A1A;
+    color: white;
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+}
+
+.gold-text {
+    background: linear-gradient(to right, #D4AF37, #F5E0A3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.btn-record {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 9999px;
+    background: linear-gradient(to bottom right, #D4AF37, #B8860B);
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
