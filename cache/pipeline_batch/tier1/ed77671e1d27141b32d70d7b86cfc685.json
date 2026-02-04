@@ -1,11 +1,11 @@
 {
-  "_cached_at": 1769906167.924529,
+  "_cached_at": 1770194700.0885208,
   "payload": {
     "pilier_1_univers_produit": {
       "categories": [
-        "beige_neutral",
+        "luxury_service",
         "brown_cognac",
-        "luxury_service"
+        "beige_neutral"
       ],
       "usage": [],
       "preferences": {
@@ -19,25 +19,25 @@
       },
       "matched_products": [
         {
-          "sku": "NVPROD1550161V/Q9L96A",
-          "name": "Bague Color Blossom  or jaune  or blanc  onyx et diamants",
-          "price": 3350.0,
-          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-color-blossom-or-jaune-or-blanc-onyx-et-diamants-nvprod1550161v/Q9L96A",
-          "match_score": 0.49
+          "sku": "NVPROD3650092V/Q06174",
+          "name": "Manchette d'oreille Idylle Blossom  or rose et diamants - Vendue à l'unité",
+          "price": 3150.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/manchette-doreille-idylle-blossom-or-rose-et-diamants-vendue-a-lunite-nvprod3650092v/Q06174",
+          "match_score": 0.52
         },
         {
-          "sku": "NVPROD2070017V/Q9N92A",
-          "name": "Bague Color Blossom  or jaune  or blanc  cornaline et diamants",
-          "price": 3650.0,
-          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-color-blossom-or-jaune-or-blanc-cornaline-et-diamants-nvprod2070017v/Q9N92A",
-          "match_score": 0.49
+          "sku": "NVPROD3650082V/Q06168",
+          "name": "Puce d'oreille Idylle Blossom  or jaune et diamants - Vendue à l'unité",
+          "price": 2470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/puce-doreille-idylle-blossom-or-jaune-et-diamants-vendue-a-lunite-nvprod3650082v/Q06168",
+          "match_score": 0.51
         },
         {
-          "sku": "NVPROD2070017V/Q9N92G",
-          "name": "Bague Color Blossom  or jaune  or blanc  cornaline et diamants",
-          "price": 3650.0,
-          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-color-blossom-or-jaune-or-blanc-cornaline-et-diamants-nvprod2070017v/Q9N92G",
-          "match_score": 0.49
+          "sku": "NVPROD3650084V/Q06169",
+          "name": "Puce d'oreille Idylle Blossom  or rose et diamants - Vendue à l'unité",
+          "price": 2470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/puce-doreille-idylle-blossom-or-rose-et-diamants-vendue-a-lunite-nvprod3650084v/Q06169",
+          "match_score": 0.51
         }
       ]
     },
@@ -75,14 +75,16 @@
     "meta_analysis": {
       "confidence_score": 0.75,
       "missing_info": [],
-      "risk_flags": []
+      "risk_flags": [],
+      "quality_score": 0.0,
+      "advisor_feedback": null
     },
     "confidence": 0.75,
     "processing_tier": "tier1",
     "extracted_by": null,
     "error": null,
     "from_cache": false,
-    "processing_time_ms": 4.2819976806640625,
+    "processing_time_ms": 2.035379409790039,
     "rgpd_flag": false,
     "tier": 1,
     "ID": "CA_103"

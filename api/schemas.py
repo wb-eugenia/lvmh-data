@@ -80,13 +80,20 @@ class LeaderboardEntry(BaseModel):
 
 
 class ExtractionResult(BaseModel):
-    """Full extraction result."""
+    """Full extraction result with 4-pillar taxonomy."""
     id: str
     tags: List[str] = Field(default_factory=list)
     extraction: ExtractionTags = Field(default_factory=ExtractionTags)
     routing: RoutingInfo
     rgpd: RGPDInfo = Field(default_factory=RGPDInfo)
     meta_analysis: MetaAnalysis = Field(default_factory=MetaAnalysis)
+    
+    # 4-Pillar Taxonomy (Optional for detailed UI)
+    pilier_1_univers_produit: Optional[Dict[str, Any]] = None
+    pilier_2_profil_client: Optional[Dict[str, Any]] = None
+    pilier_3_hospitalite_care: Optional[Dict[str, Any]] = None
+    pilier_4_action_business: Optional[Dict[str, Any]] = None
+    
     processed_text: Optional[str] = None
     original_text: Optional[str] = None
     processing_time_ms: float

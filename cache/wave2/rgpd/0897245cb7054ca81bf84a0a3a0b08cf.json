@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193801.9553282,
+  "payload": {
+    "ID": "CA_161",
+    "original_text": "Mme [NAME], 40 ans, sommelière chef cave restaurant trois étoiles, nouvelle cliente potentiel excellent. ,. Recherche sac élégant usage professionnel événements vins. Budget 5500€,, un tantinet. raffiné discret, cuirs tons vin bordeaux cognac naturels. Travaille vins grands crus, voyage régions viticoles mondiales Bourgogne Toscane Napa, par exemple,. Collectionne tire-bouchons anciens collection historique impressionnante. ,,. Pratique course pied marathons, équilibre vie intense restaurant. un tantinet,,. Pescetarienne pour événements,,. Allergie sulfites certains vins importante profession un tantinet,. , un petit peu,. Compagnon par exemple chef pâtissier même restaurant, couple gastronomie haut niveau. Planifient ouvrir cave vins année prochaine besoins futurs. , en fait. Réseau sommeliers chefs cavistes étendu bonnes références, par exemple. ,,. Cliente créative monde gastronomique vin,,. Rappeler avril montrer nouveautés,. ,. Intéressée parallèles vieillissement cuir vieillissement vin patine temps. ,,.",
+    "anonymized_text": "Mme [NAME], 40 ans, sommelière chef cave restaurant trois étoiles, nouvelle cliente potentiel excellent. ,. Recherche sac élégant usage professionnel événements vins. Budget 5500€,, un tantinet. raffiné discret, cuirs tons vin bordeaux cognac naturels. Travaille vins grands crus, voyage régions viticoles mondiales Bourgogne Toscane Napa, par exemple,. Collectionne tire-bouchons anciens collection historique impressionnante. ,,. Pratique course pied marathons, équilibre vie intense restaurant. un tantinet,,. Pescetarienne pour événements,,. Allergie sulfites certains vins importante profession un tantinet,. , un petit peu,. Compagnon par exemple chef pâtissier même restaurant, couple gastronomie haut niveau. Planifient ouvrir cave vins année prochaine besoins futurs. , en fait. Réseau sommeliers chefs cavistes étendu bonnes références, par exemple. ,,. Cliente créative monde gastronomique vin,,. Rappeler avril montrer nouveautés,. ,. Intéressée parallèles vieillissement cuir vieillissement vin patine temps. ,,.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (pescetarienne) et les allergies alimentaires (sulfites) sont considérées comme non sensibles dans ce contexte."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search } from 'lucide-react'
+import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText } from 'lucide-react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
 
 export default function ManagerView({ onBack }) {
@@ -10,16 +10,72 @@ export default function ManagerView({ onBack }) {
     const [rgpdStats, setRgpdStats] = useState(null)
     const [costStats, setCostStats] = useState(null)
 
+    // CSV Results State
+    const [csvFiles, setCsvFiles] = useState([])
+    const [csvData, setCsvData] = useState([])
+    const [selectedCsv, setSelectedCsv] = useState('')
+    const [loadingCsv, setLoadingCsv] = useState(false)
+    const [csvTotal, setCsvTotal] = useState(0)
+
     const tabs = [
         { id: 'overview', name: 'Overview', icon: LayoutDashboard },
         { id: 'leaderboard', name: 'Leaderboard', icon: Trophy },
         { id: 'vip', name: 'Clients VIP', icon: Star },
-        { id: 'quality', name: 'Qualité Notes', icon: Users }
+        { id: 'quality', name: 'Qualité Notes', icon: Users },
+        { id: 'csv', name: 'Résultats CSV', icon: FileText }
     ]
 
     useEffect(() => {
         fetchData()
     }, [])
+
+    useEffect(() => {
+        if (currentTab === 'csv') {
+            loadCsvFiles()
+        }
+    }, [currentTab])
+
+    const loadCsvFiles = async () => {
+        setLoadingCsv(true)
+        try {
+            const res = await fetch('/api/batch-results')
+            if (res.ok) {
+                const data = await res.json()
+                setCsvFiles(data.files || [])
+                if (data.files?.length > 0 && !selectedCsv) {
+                    setSelectedCsv(data.files[0])
+                    loadCsvData(data.files[0])
+                }
+            }
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setLoadingCsv(false)
+        }
+    }
+
+    const loadCsvData = async (filename) => {
+        if (!filename) return
+        setLoadingCsv(true)
+        try {
+            const res = await fetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
+            if (res.ok) {
+                const data = await res.json()
+                setCsvData(data.data || [])
+                setCsvTotal(data.total || 0)
+            }
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setLoadingCsv(false)
+        }
+    }
+
+    const handleCsvSelect = (e) => {
+        const file = e.target.value
+        setSelectedCsv(file)
+        loadCsvData(file)
+    }
 
     const fetchData = async () => {
         try {
@@ -183,9 +239,34 @@ export default function ManagerView({ onBack }) {
                                         <span className="text-xs bg-red-500/20 text-red-500 px-3 py-1 rounded-full font-bold">ALERTE MISTRAL</span>
                                     </div>
                                     <p className="text-lvmh-gray text-sm mb-4">"{r.Transcription?.substring(0, 100)}..."</p>
-                                    <div className="bg-white/5 p-4 rounded-lg border border-white/5">
-                                        <div className="text-[10px] text-lvmh-gold uppercase font-bold mb-2">Opportunité détectée</div>
-                                        <div className="font-medium">{r.pilier_4_action_business?.next_best_action?.description || "Analyse approfondie requise"}</div>
+
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {(r.tags || []).map(tag => (
+                                            <span key={tag} className="text-[10px] bg-white/5 border border-white/10 px-2 py-0.5 rounded text-lvmh-gray uppercase">
+                                                {tag.replace('_', ' ')}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="bg-white/5 p-4 rounded-lg border border-white/5 space-y-4">
+                                        <div>
+                                            <div className="text-[10px] text-lvmh-gold uppercase font-bold mb-2 tracking-widest">🚀 Opportunité NBA</div>
+                                            <div className="font-medium text-sm">{r.pilier_4_action_business?.next_best_action?.description || "Analyse approfondie requise"}</div>
+                                        </div>
+
+                                        {r.matched_products?.length > 0 && (
+                                            <div className="pt-3 border-t border-white/5">
+                                                <div className="text-[10px] text-lvmh-gray uppercase font-bold mb-2 tracking-widest">🛍️ Produits Catalogués (RAG)</div>
+                                                <div className="flex gap-2 overflow-x-auto pb-1">
+                                                    {r.matched_products.slice(0, 3).map((prod, pi) => (
+                                                        <div key={pi} className="flex-shrink-0 bg-lvmh-black border border-white/5 p-2 rounded text-[10px]">
+                                                            <div className="font-bold text-lvmh-gold">{prod.name || prod.ID}</div>
+                                                            <div className="text-[9px] text-lvmh-gray">{prod.category}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}
@@ -239,6 +320,87 @@ export default function ManagerView({ onBack }) {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                )}
+
+                {/* CSV RESULTS TAB */}
+                {currentTab === 'csv' && (
+                    <div className="space-y-6 animate-in slide-in-from-right duration-500">
+                        <div className="flex justify-between items-center">
+                            <h3 className="text-2xl font-black gold-text flex items-center gap-2">
+                                <FileText size={24} /> Résultats Batch CSV
+                            </h3>
+                            <span className="text-sm text-lvmh-gray">{csvTotal} résultats</span>
+                        </div>
+
+                        {/* File Selector */}
+                        <div className="glass p-6">
+                            <label className="text-xs text-lvmh-gray uppercase tracking-widest font-bold mb-3 block">Sélectionner un fichier</label>
+                            <select
+                                value={selectedCsv}
+                                onChange={handleCsvSelect}
+                                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all appearance-none cursor-pointer"
+                            >
+                                {csvFiles.map(file => (
+                                    <option key={file} value={file} className="bg-lvmh-black">{file}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {loadingCsv ? (
+                            <div className="flex justify-center py-20">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lvmh-gold"></div>
+                            </div>
+                        ) : (
+                            <div className="glass overflow-hidden">
+                                <table className="w-full text-left">
+                                    <thead className="text-lvmh-gray text-xs uppercase tracking-widest border-b border-white/10 bg-white/5">
+                                        <tr>
+                                            <th className="p-4">ID</th>
+                                            <th className="p-4">Tags</th>
+                                            <th className="p-4">Tier</th>
+                                            <th className="p-4">Budget</th>
+                                            <th className="p-4 text-right">Confidence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/5">
+                                        {csvData.length > 0 ? csvData.map((row, i) => (
+                                            <tr key={i} className="hover:bg-white/5 transition-colors">
+                                                <td className="p-4 font-bold">{row.id}</td>
+                                                <td className="p-4">
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {(row.tags || []).slice(0, 3).map((tag, ti) => (
+                                                            <span key={ti} className="text-[9px] bg-white/10 px-2 py-0.5 rounded text-lvmh-gray uppercase">
+                                                                {tag.replace(/_/g, ' ')}
+                                                            </span>
+                                                        ))}
+                                                        {(row.tags || []).length > 3 && (
+                                                            <span className="text-[9px] text-lvmh-gray">+{row.tags.length - 3}</span>
+                                                        )}
+                                                    </div>
+                                                </td>
+                                                <td className="p-4">
+                                                    <span className={`text-[10px] px-2 py-1 rounded-full font-bold ${row.tier === 1 ? 'bg-white/10 text-white' :
+                                                            row.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
+                                                                'bg-red-500/20 text-red-500'
+                                                        }`}>
+                                                        TIER {row.tier}
+                                                    </span>
+                                                </td>
+                                                <td className="p-4 text-sm text-lvmh-gray">{row.budget_range || 'N/A'}</td>
+                                                <td className="p-4 text-right font-bold text-lvmh-gold">{Math.round(row.confidence * 100)}%</td>
+                                            </tr>
+                                        )) : (
+                                            <tr>
+                                                <td colSpan={5} className="p-10 text-center text-lvmh-gray italic">
+                                                    Aucun résultat dans ce fichier
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

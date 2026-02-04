@@ -32,9 +32,10 @@ function AppContent() {
     if (view === 'login') return <LoginView />
 
     // Role Enforcement (Optional: redirect advisor trying to access manager view)
-    if (view === 'manager' && user?.role !== 'manager') {
-        return <div className="h-screen flex items-center justify-center text-white">Accès Réservé au Manager</div>
-    }
+    // Role Enforcement (Disabled for smoother demo flow)
+    // if (view === 'manager' && user?.role !== 'manager') {
+    //    return <div className="h-screen flex items-center justify-center text-white">Accès Réservé au Manager</div>
+    // }
 
     return (
         <div className="min-h-screen">

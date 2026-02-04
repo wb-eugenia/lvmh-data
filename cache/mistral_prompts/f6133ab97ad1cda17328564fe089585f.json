@@ -1,7 +1,7 @@
 {
   "pilier_1_univers_produit": {
     "categories": [
-      "tech_executive",
+      "tech_engineer",
       "entrepreneur_startup",
       "travel_frequent",
       "sports_crossfit",
@@ -27,7 +27,7 @@
       "behavior": "first_visit"
     },
     "profession": {
-      "sector": "tech_executive",
+      "sector": "tech_engineer",
       "status": null
     },
     "lifestyle": {

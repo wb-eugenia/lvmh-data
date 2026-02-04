@@ -1,0 +1,28 @@
+{
+  "_cached_at": 1770193753.8740213,
+  "payload": {
+    "ID": "CA_141",
+    "original_text": "Mme un tantinet Blanc, 37 ans, cheffe restaurant gastronomique étoile Michelin, nouvelle cliente potentiel excellent,. , que,. Recherche sac élégant usage quotidien par exemple restaurant événements culinaires. , plus ou moins, pour ainsi dire. Budget 5500€. moderne raffiné, préfère cuirs ton terre beige camel cognac. , si vous voulez,. Cuisine créative influence asiatique, voyage Asie régulièrement inspiration nouvelles techniques,. Collectionne par exemple couteaux japonais artisanaux forgés, passionnée artisanat culinaire. Pratique course pied maintien forme stress gestion cuisine,. Pescetarienne pour événements. Allergie fruits coque sévère critique cuisine. Compagnon sommelier restaurant ensemble, couple restauration haut gamme un tantinet,,. ,. Planifie ouvrir deuxième restaurant année prochaine, besoins futurs probables,. ,. Mentionné réseau chefs critiques gastronomiques un tantinet étendu, bonnes références que potentielles. Cliente créative monde culinaire, apprécie qualité artisanat. un tantinet. Rappeler mars montrer nouveautés, par exemple,. , on que va dire. Intéressée parallèles artisanat culinaire maroquinier.",
+    "anonymized_text": "Mme un tantinet Blanc, 37 ans, cheffe restaurant gastronomique étoile Michelin, nouvelle cliente potentiel excellent,. , que,. Recherche sac élégant usage quotidien par exemple restaurant événements culinaires. , plus ou moins, pour ainsi dire. Budget 5500€. moderne raffiné, préfère cuirs ton terre beige camel cognac. , si vous voulez,. Cuisine créative influence asiatique, voyage Asie régulièrement inspiration nouvelles techniques,. Collectionne par exemple couteaux japonais artisanaux forgés, passionnée artisanat culinaire. Pratique course pied maintien forme stress gestion cuisine,. Pescetarienne pour événements. [RGPD_HEALTH_PHYSICAL_REDACTED] critique cuisine. Compagnon sommelier restaurant ensemble, couple restauration haut gamme un tantinet,,. ,. Planifie ouvrir deuxième restaurant année prochaine, besoins futurs probables,. ,. Mentionné réseau chefs critiques gastronomiques un tantinet étendu, bonnes références que potentielles. Cliente créative monde culinaire, apprécie qualité artisanat. un tantinet. Rappeler mars montrer nouveautés, par exemple,. , on que va dire. Intéressée parallèles artisanat culinaire maroquinier.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "Allergie fruits coque sévère",
+          "category": "health_physical",
+          "severity": "high"
+        }
+      ],
+      "safe_to_store": true,
+      "reasoning": "L'allergie aux fruits à coque est considérée comme une donnée de santé physique sensible selon l'Article 9 du RGPD. Cependant, elle est pertinente pour le business, ce qui permet de la stocker."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "safe_to_store": true
+  }
+}

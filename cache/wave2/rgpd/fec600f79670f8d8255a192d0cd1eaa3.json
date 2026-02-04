@@ -1,0 +1,28 @@
+{
+  "_cached_at": 1770193804.347531,
+  "payload": {
+    "ID": "CA_162",
+    "original_text": "Dr., or so,. Thompson, 59, cardiologist private practice, Mrs, I see. Thompson, 57, former professor mathematics retired, so VIP clients since 2015, pretty much, or so. Major shopping session spring collection plus gifts children grandchildren multiple birthdays,,. Budget extremely flexible discussed 24K purchases. He medical world highest level, published researcher conferences worldwide frequent. ,. She academic mathematics, volunteers educational nonprofits retirement. Both love classical music opera, to some extent season tickets multiple venues, travel opera festivals,. ,, something. He collects medical history books rare pretty much editions, library professional quality approximately, as it were. She passionate quilting traditional crafts, pieces exhibited craft more or less shows in a way. He prefers classic timeless brown cognac leather professional. She elegant sophisticated beige champagne rose gold feminine,,. know, as it were,. Both vegetarian decades for events,, so. in some way He has shellfish allergy important, or so. approximately. Three adult children successful careers lawyer architect physician, six grandchildren growing constantly gift opportunities. let or so me see,. Family strong values education achievement more or less celebration traditions in some way. Exceptional clients lifetime value highest tier, referred countless medical academic friends colleagues, pretty much. I see,. more or less Deeply appreciate heritage craftsmanship historical significance invest quality in a way, I see. ,, I see something. Follow up monthly personalized curated selections pretty much. Planning major family reunion summer lake house, boutique event collaboration opportunity. ,.",
+    "anonymized_text": "Dr., or so,. Thompson, 59, cardiologist private practice, Mrs, I see. Thompson, 57, former professor mathematics retired, so VIP clients since 2015, pretty much, or so. Major shopping session spring collection plus gifts children grandchildren multiple birthdays,,. Budget extremely flexible discussed 24K purchases. He medical world highest level, published researcher conferences worldwide frequent. ,. She academic mathematics, volunteers educational nonprofits retirement. Both love classical music opera, to some extent season tickets multiple venues, travel opera festivals,. ,, something. He collects medical history books rare pretty much editions, library professional quality approximately, as it were. She passionate quilting traditional crafts, pieces exhibited craft more or less shows in a way. He prefers classic timeless brown cognac leather professional. She elegant sophisticated beige champagne rose gold feminine,,. know, as it were,. Both vegetarian decades for events,, so. in some way He has [RGPD_HEALTH_PHYSICAL_REDACTED] important, or so. approximately. Three adult children successful careers lawyer architect physician, six grandchildren growing constantly gift opportunities. let or so me see,. Family strong values education achievement more or less celebration traditions in some way. Exceptional clients lifetime value highest tier, referred countless medical academic friends colleagues, pretty much. I see,. more or less Deeply appreciate heritage craftsmanship historical significance invest quality in a way, I see. ,, I see something. Follow up monthly personalized curated selections pretty much. Planning major family reunion summer lake house, boutique event collaboration opportunity. ,.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "shellfish allergy",
+          "category": "health_physical",
+          "severity": "low"
+        }
+      ],
+      "safe_to_store": true,
+      "reasoning": "The text contains a mention of a shellfish allergy, which is acceptable for business purposes. No other sensitive data categories were detected."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "safe_to_store": true
+  }
+}

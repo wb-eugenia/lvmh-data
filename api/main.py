@@ -133,13 +133,11 @@ async def websocket_endpoint(websocket: WebSocket):
 
 
 # Import and include routers
-# Import and include routers
 from api.routers import analyze, batch, results, stats, transcribe, auth
 
 app.include_router(analyze.router, prefix="/api", tags=["Analyze"])
 app.include_router(batch.router, prefix="/api", tags=["Batch"])
 app.include_router(results.router, prefix="/api", tags=["Results"])
-app.include_router(stats.router, prefix="/api", tags=["Stats"])
 app.include_router(stats.router, prefix="/api", tags=["Stats"])
 app.include_router(transcribe.router, prefix="/api", tags=["Transcribe"])
 app.include_router(auth.router, prefix="/api/auth", tags=["Auth"])

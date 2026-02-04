@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History } from 'lucide-react'
+import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import confetti from 'canvas-confetti'
 
@@ -10,7 +10,7 @@ export default function AdvisorView({ onBack }) {
     const [leaderboard, setLeaderboard] = useState([])
     const [searchQuery, setSearchQuery] = useState("")
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [activeView, setActiveView] = useState("record") // 'record', 'history', 'search'
+    const [activeView, setActiveView] = useState("record") // 'record', 'history', 'search', 'csv'
     const [clientResults, setClientResults] = useState([])
     const [searchingClients, setSearchingClients] = useState(false)
 
@@ -18,6 +18,13 @@ export default function AdvisorView({ onBack }) {
     const [currentStep, setCurrentStep] = useState(null)
     const [history, setHistory] = useState([])
     const [loadingHistory, setLoadingHistory] = useState(false)
+
+    // CSV Results State
+    const [csvFiles, setCsvFiles] = useState([])
+    const [csvData, setCsvData] = useState([])
+    const [selectedCsv, setSelectedCsv] = useState('')
+    const [loadingCsv, setLoadingCsv] = useState(false)
+    const [csvTotal, setCsvTotal] = useState(0)
 
     // WebSocket for real-time pipeline visualization
     useEffect(() => {
@@ -68,7 +75,52 @@ export default function AdvisorView({ onBack }) {
         if (activeView === 'history') {
             loadHistory()
         }
+        if (activeView === 'csv') {
+            loadCsvFiles()
+        }
     }, [activeView])
+
+    const loadCsvFiles = async () => {
+        setLoadingCsv(true)
+        try {
+            const res = await fetch('/api/batch-results')
+            if (res.ok) {
+                const data = await res.json()
+                setCsvFiles(data.files || [])
+                if (data.files?.length > 0 && !selectedCsv) {
+                    setSelectedCsv(data.files[0])
+                    loadCsvData(data.files[0])
+                }
+            }
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setLoadingCsv(false)
+        }
+    }
+
+    const loadCsvData = async (filename) => {
+        if (!filename) return
+        setLoadingCsv(true)
+        try {
+            const res = await fetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
+            if (res.ok) {
+                const data = await res.json()
+                setCsvData(data.data || [])
+                setCsvTotal(data.total || 0)
+            }
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setLoadingCsv(false)
+        }
+    }
+
+    const handleCsvSelect = (e) => {
+        const file = e.target.value
+        setSelectedCsv(file)
+        loadCsvData(file)
+    }
 
     const loadHistory = async () => {
         setLoadingHistory(true)
@@ -285,6 +337,10 @@ export default function AdvisorView({ onBack }) {
                                 <Search size={20} className={activeView === 'search' ? 'text-lvmh-gold' : ''} />
                                 <span>Rechercher</span>
                             </button>
+                            <button onClick={() => handleMenuNavigation('csv')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'csv' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
+                                <FileText size={20} className={activeView === 'csv' ? 'text-lvmh-gold' : ''} />
+                                <span>Résultats CSV</span>
+                            </button>
                         </nav>
 
                         <button onClick={handleLogout} className="w-full flex items-center gap-4 p-4 hover:bg-red-500/10 text-red-400 rounded-xl transition-colors text-left mt-auto">
@@ -398,11 +454,25 @@ export default function AdvisorView({ onBack }) {
                                     <span className="bg-lvmh-gold text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg">VIP</span>
                                 </div>
 
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2 mb-6">
                                     {currentResult.pilier_1_univers_produit?.categories?.map(tag => (
                                         <span key={tag} className="bg-white/10 px-3 py-1 rounded-full text-xs font-medium border border-white/5">{tag}</span>
                                     ))}
                                 </div>
+
+                                {currentResult.pilier_1_univers_produit?.matched_products?.length > 0 && (
+                                    <div className="mb-0">
+                                        <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-3 font-bold">🛍️ Produits Catalogués</div>
+                                        <div className="flex gap-3 overflow-x-auto pb-4">
+                                            {currentResult.pilier_1_univers_produit.matched_products.map((prod, pi) => (
+                                                <div key={pi} className="flex-shrink-0 w-32 glass p-3 border-lvmh-gold/20">
+                                                    <div className="text-[10px] font-black text-lvmh-gold mb-1 truncate">{prod.name || prod.ID}</div>
+                                                    <div className="text-[9px] text-lvmh-gray uppercase tracking-tighter">{prod.category}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             {currentResult.pilier_4_action_business?.next_best_action && (
@@ -510,6 +580,76 @@ export default function AdvisorView({ onBack }) {
                                 </div>
                             )}
                         </div>
+                    )}
+                </div>
+            )}
+
+            {/* CSV RESULTS VIEW */}
+            {activeView === 'csv' && (
+                <div className="flex-1 overflow-y-auto animate-in fade-in">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                        <FileText size={24} className="text-lvmh-gold" />
+                        Résultats CSV
+                    </h2>
+
+                    {/* File Selector */}
+                    <div className="mb-6">
+                        <label className="text-xs text-lvmh-gray uppercase tracking-widest font-bold mb-2 block">Fichier</label>
+                        <select
+                            value={selectedCsv}
+                            onChange={handleCsvSelect}
+                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all appearance-none cursor-pointer"
+                        >
+                            {csvFiles.map(file => (
+                                <option key={file} value={file} className="bg-lvmh-black">{file}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {loadingCsv ? (
+                        <div className="flex justify-center py-10">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="text-xs text-lvmh-gray mb-4">{csvTotal} résultats</div>
+                            <div className="space-y-3">
+                                {csvData.length > 0 ? csvData.map((row, i) => (
+                                    <div key={i} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <span className="font-bold text-white">{row.id}</span>
+                                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${row.tier === 1 ? 'bg-white/10 text-white' :
+                                                    row.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
+                                                        'bg-red-500/20 text-red-500'
+                                                }`}>
+                                                TIER {row.tier}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-wrap gap-1 mb-2">
+                                            {(row.tags || []).slice(0, 4).map((tag, ti) => (
+                                                <span key={ti} className="text-[9px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-lvmh-gray uppercase">
+                                                    {tag.replace(/_/g, ' ')}
+                                                </span>
+                                            ))}
+                                            {(row.tags || []).length > 4 && (
+                                                <span className="text-[9px] text-lvmh-gray">+{row.tags.length - 4}</span>
+                                            )}
+                                        </div>
+                                        <div className="flex justify-between items-center text-xs">
+                                            <span className="text-lvmh-gray">{row.budget_range || 'Budget N/A'}</span>
+                                            <span className="text-lvmh-gold font-bold">{Math.round(row.confidence * 100)}%</span>
+                                        </div>
+                                        {row.reasoning && (
+                                            <p className="text-[10px] text-lvmh-gray mt-2 italic line-clamp-2">"{row.reasoning}"</p>
+                                        )}
+                                    </div>
+                                )) : (
+                                    <div className="text-center text-lvmh-gray text-sm py-10 italic">
+                                        Aucun résultat dans ce fichier
+                                    </div>
+                                )}
+                            </div>
+                        </>
                     )}
                 </div>
             )}

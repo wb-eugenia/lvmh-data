@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193722.7993886,
+  "payload": {
+    "ID": "CA_128",
+    "original_text": "Signor e Signora Conti, entrambi 50 anni, clienti fedeli dal 2016. bene,. Shopping sessione primavera più regali genitori che entrambi lati più o meno famiglia un tantino. Budget combinato 17K flessibile circa,. piuttosto, in pratica se, per esempio. Lui avvocato penalista casi alto profilo, lei giornalista investigativa televisione. se,. Entrambi professioni intense pubbliche, necessitano presentazione impeccabile sempre. Viaggiano frequente lavoro, recente viaggio Stati Uniti conferenza diritti umani. un po', più o meno,. Lui colleziona libri diritto prime edizioni, bibliofilo serio. un pochino. Lei appassionata fotografia un po' documentaria, espone lavori gallerie occasionalmente, in pratica, pressappoco. all'incirca,. un po' Lui preferisce sobrio elegante nero blu scuro. Lei moderno sofisticato grigio beige bordeaux. Entrambi pescetariani per eventi boutique, così. Nessuna allergia se,. , se. Figlia avvocato segue padre, figlio fotografo professionista viaggi. Coppia valori forti giustizia verità, eccellente reputazione, se. Rete contatti professionisti alto livello ampia più o meno, più o meno. Richiamare aprile anteprima estate privata, all'incirca,. bene, in un certo che senso, un tantino. Interessati storie artigiani tradizioni dietro pezzi. pressappoco.",
+    "anonymized_text": "Signor e Signora Conti, entrambi 50 anni, clienti fedeli dal 2016. bene,. Shopping sessione primavera più regali genitori che entrambi lati più o meno famiglia un tantino. Budget combinato 17K flessibile circa,. piuttosto, in pratica se, per esempio. Lui avvocato penalista casi alto profilo, lei giornalista investigativa televisione. se,. Entrambi professioni intense pubbliche, necessitano presentazione impeccabile sempre. Viaggiano frequente lavoro, recente viaggio Stati Uniti conferenza diritti umani. un po', più o meno,. Lui colleziona libri diritto prime edizioni, bibliofilo serio. un pochino. Lei appassionata fotografia un po' documentaria, espone lavori gallerie occasionalmente, in pratica, pressappoco. all'incirca,. un po' Lui preferisce sobrio elegante nero blu scuro. Lei moderno sofisticato grigio beige bordeaux. Entrambi pescetariani per eventi boutique, così. Nessuna allergia se,. , se. Figlia avvocato segue padre, figlio fotografo professionista viaggi. Coppia valori forti giustizia verità, eccellente reputazione, se. Rete contatti professionisti alto livello ampia più o meno, più o meno. Richiamare aprile anteprima estate privata, all'incirca,. bene, in un certo che senso, un tantino. Interessati storie artigiani tradizioni dietro pezzi. pressappoco.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Le note clients ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des professions, des préférences alimentaires et des détails sur des voyages, mais ne révèlent pas de données sensibles telles que la santé mentale, la santé physique, des conflits familiaux, des croyances religieuses, des opinions politiques, une orientation sexuelle ou une origine ethnique."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

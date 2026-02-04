@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193697.5086305,
+  "payload": {
+    "ID": "CA_120",
+    "original_text": "Herr und Frau Zimmermann, beide 46, regelmäßige Kunden seit 2019. Einkauf Frühjahrskollektion plus Geschenke Eltern beide Seiten. zum Beispiel. Budget zusammen 14K flexibel etwa,. Er Investmentbanker Luxembourg, sie Innenarchitektin eigenes Studio, circa. Beide reisen häufig geschäftlich privat, planen Safari Tansania Sommer so. circa,, in gewisser ziemlich Weise. Er sammelt moderne Uhren limitierte Editionen, kennt Wert Handwerk. ein Tick. Sie liebt skandinavisches Design, minimalistisch funktional so ungefähr,. Er bevorzugt klassisch schwarz braun Leder. Sie modern grau beige rose gold Hardware. Beide Pescetarier für Events. Keine Allergien,,. Sohn studiert Ingenieurwissenschaften ETH ein wenig Zürich, so ungefähr Tochter Gymnasium Abitur nächstes Jahr so Geschenkgelegenheit mehr oder weniger, also,. Solide Kunden mittlere obere Preissegment, kaufen zweimal Jahr regelmäßig, ungefähr. , mehr oder weniger. Follow-up April zeigen Sommerkollektion.",
+    "anonymized_text": "Herr und Frau Zimmermann, beide 46, regelmäßige Kunden seit 2019. Einkauf Frühjahrskollektion plus Geschenke Eltern beide Seiten. zum Beispiel. Budget zusammen 14K flexibel etwa,. Er Investmentbanker Luxembourg, sie Innenarchitektin eigenes Studio, circa. Beide reisen häufig geschäftlich privat, planen Safari Tansania Sommer so. circa,, in gewisser ziemlich Weise. Er sammelt moderne Uhren limitierte Editionen, kennt Wert Handwerk. ein Tick. Sie liebt skandinavisches Design, minimalistisch funktional so ungefähr,. Er bevorzugt klassisch schwarz braun Leder. Sie modern grau beige rose gold Hardware. Beide Pescetarier für Events. Keine Allergien,,. Sohn studiert Ingenieurwissenschaften ETH ein wenig Zürich, so ungefähr Tochter Gymnasium Abitur nächstes Jahr so Geschenkgelegenheit mehr oder weniger, also,. Solide Kunden mittlere obere Preissegment, kaufen zweimal Jahr regelmäßig, ungefähr. , mehr oder weniger. Follow-up April zeigen Sommerkollektion.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations partagées concernent des préférences d'achat et des détails sur la famille sans mentionner de conflits, de croyances, ou d'orientations sensibles."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

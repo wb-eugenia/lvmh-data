@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1769906176.3422523,
+  "_cached_at": 1770194705.9791808,
   "payload": {
     "pilier_1_univers_produit": {
       "categories": [
@@ -9,11 +9,8 @@
         "gluten_free",
         "wine_enthusiast",
         "travel_frequent",
-        "philanthropist",
         "eco_conscious",
-        "gift_for_spouse",
-        "gift_for_nieces_nephews",
-        "wedding_anniversary"
+        "gift_for_nieces_nephews"
       ],
       "usage": [],
       "preferences": {
@@ -50,18 +47,20 @@
         "contact": []
       },
       "values": [],
-      "occasion": "wedding_anniversary"
+      "occasion": "anniversary"
     },
     "pilier_4_action_business": {
       "lead_temperature": "Warm",
       "next_best_action": null,
-      "budget_potential": "ultra_high (15K+)",
+      "budget_potential": "high (10K-20K)",
       "urgency": null
     },
     "meta_analysis": {
       "confidence_score": 0.85,
       "missing_info": [],
-      "risk_flags": []
+      "risk_flags": [],
+      "quality_score": 0.0,
+      "advisor_feedback": null
     },
     "confidence": 0.85,
     "processing_tier": "tier2",

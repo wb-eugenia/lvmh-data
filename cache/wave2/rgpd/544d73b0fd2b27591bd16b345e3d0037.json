@@ -1,0 +1,28 @@
+{
+  "_cached_at": 1770193738.980122,
+  "payload": {
+    "ID": "CA_134",
+    "original_text": "Sr sí. un tantito más o menos. Vega por ejemplo y Sra. Vega, pareja 60-62 años, clientes VIP excelentes desde 2014. ,, un poco. Shopping sesión grande colección primavera más regalos hijos nietos múltiples ocasiones más o menos, sí. Presupuesto muy flexible discutido 23K. por ejemplo. Él empresario construcción retirado, ella decoradora en alguna forma interiores aún activa proyectos selectos por ejemplo, un poco, más o menos. Ambos aman viajar lujo, cruceros exclusivos reciente Mediterráneo, por ejemplo próximo viaje Orient Express, aproximadamente, más o menos. Él colecciona relojes lujo mecánicos, conoce artesanía valor ejemplo, en un poquito alguna forma, si queréis. Ella apasionada antigüedades muebles época, asiste subastas importante regularmente,. en cierto modo. Él prefiere clásico atemporal marrón cognac cuero. Ella elegante sofisticada en alguna forma beige champagne hardware por ejemplo oro rosa. Ambos pescetarianos para eventos boutique más o menos. Él intolerancia gluten importante por ahí, más o menos,. Tres hijos adultos todos exitosos profesionales, cinco nietos oportunidades regalos constantes. Familia unida valores tradicionales, celebraciones frecuentes. Excelentes clientes lealtad absoluta, referido innumerables amigos mismo nivel socioeconómico,, veis. Follow-up que mensual selecciones curadas un poquito personalizadas. Aprecian profundamente herencia artesanal historia detrás cada pieza.",
+    "anonymized_text": "Sr sí. un tantito más o menos. Vega por ejemplo y Sra. Vega, pareja 60-62 años, clientes VIP excelentes desde 2014. ,, un poco. Shopping sesión grande colección primavera más regalos hijos nietos múltiples ocasiones más o menos, sí. Presupuesto muy flexible discutido 23K. por ejemplo. Él empresario construcción retirado, ella decoradora en alguna forma interiores aún activa proyectos selectos por ejemplo, un poco, más o menos. Ambos aman viajar lujo, cruceros exclusivos reciente Mediterráneo, por ejemplo próximo viaje Orient Express, aproximadamente, más o menos. Él colecciona relojes lujo mecánicos, conoce artesanía valor ejemplo, en un poquito alguna forma, si queréis. Ella apasionada antigüedades muebles época, asiste subastas importante regularmente,. en cierto modo. Él prefiere clásico atemporal marrón cognac cuero. Ella elegante sofisticada en alguna forma beige champagne hardware por ejemplo oro rosa. Ambos pescetarianos para eventos boutique más o menos. Él [RGPD_HEALTH_PHYSICAL_REDACTED] importante por ahí, más o menos,. Tres hijos adultos todos exitosos profesionales, cinco nietos oportunidades regalos constantes. Familia unida valores tradicionales, celebraciones frecuentes. Excelentes clientes lealtad absoluta, referido innumerables amigos mismo nivel socioeconómico,, veis. Follow-up que mensual selecciones curadas un poquito personalizadas. Aprecian profundamente herencia artesanal historia detrás cada pieza.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "intolerancia gluten",
+          "category": "health_physical",
+          "severity": "low"
+        }
+      ],
+      "safe_to_store": true,
+      "reasoning": "L'intolérance au gluten est mentionnée, mais elle est considérée comme une donnée non sensible dans le cadre des allergies alimentaires. Aucune autre donnée sensible n'est détectée."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "safe_to_store": true
+  }
+}

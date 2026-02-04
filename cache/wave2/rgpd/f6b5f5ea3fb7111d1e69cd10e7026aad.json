@@ -1,0 +1,28 @@
+{
+  "_cached_at": 1770193704.3461637,
+  "payload": {
+    "ID": "CA_122",
+    "original_text": "Mr. Roberts, 62, retired hedge fund manager, Mrs. Roberts, 59, former gallerist, VIP clients since 2013 or so,. ,,. Major shopping session celebrate sold London home moving permanently Provence I about see,, so. Budget very flexible discussed 25K+ purchases gifts,. He collects rare wines, building serious cellar new French something property, attends major auctions. She passionate Impressionist art, something visits museums constantly, volunteers museum board,. so. Both love opera, season tickets multiple houses, planning Salzburg Festival summer,,. Travel frequently cultural luxury, recent trip Japan cultural immersion, so. He prefers classic timeless brown cognac leather. ,. She elegant sophisticated beige champagne rose gold. Both pescatarian for events. He has gout condition, dietary restrictions important I see,,. Two adult children London New York, grandchildren gift opportunities frequent. Exceptional lifetime value clients, referred numerous wealthy friends. Follow up monthly curated selections. pretty much. Interested in heritage craftsmanship historical pieces. more or less, to some extent, sort more or less of. Planning housewarming party France autumn, boutique event opportunity.",
+    "anonymized_text": "Mr. Roberts, 62, retired hedge fund manager, Mrs. Roberts, 59, former gallerist, VIP clients since 2013 or so,. ,,. Major shopping session celebrate sold London home moving permanently Provence I about see,, so. Budget very flexible discussed 25K+ purchases gifts,. He collects rare wines, building serious cellar new French something property, attends major auctions. She passionate Impressionist art, something visits museums constantly, volunteers museum board,. so. Both love opera, season tickets multiple houses, planning Salzburg Festival summer,,. Travel frequently cultural luxury, recent trip Japan cultural immersion, so. He prefers classic timeless brown cognac leather. ,. She elegant sophisticated beige champagne rose gold. Both pescatarian for events. He has [RGPD_HEALTH_PHYSICAL_REDACTED], dietary restrictions important I see,,. Two adult children London New York, grandchildren gift opportunities frequent. Exceptional lifetime value clients, referred numerous wealthy friends. Follow up monthly curated selections. pretty much. Interested in heritage craftsmanship historical pieces. more or less, to some extent, sort more or less of. Planning housewarming party France autumn, boutique event opportunity.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "gout condition",
+          "category": "health_physical",
+          "severity": "medium"
+        }
+      ],
+      "safe_to_store": false,
+      "reasoning": "The text contains a reference to a health condition (gout), which falls under the category of sensitive data as per Article 9 of the GDPR."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "safe_to_store": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193778.2213495,
+  "payload": {
+    "ID": "CA_151",
+    "original_text": "Mme [NAME], 34 ans, plus ou moins avocate fiscaliste cabinet d'affaires, nouvelle cliente potentiel élevé. Cherche sac travail professionnel rendez-vous clients tribunaux,,. Budget 4K initial. , __KEEP_PLUTÔT__. sobre élégant juridique, cuir noir navy hardware argent discret. Travaille un tantinet dossiers fiscalité internationale, clients grandes entreprises. Collectionne éditions rares codes juridiques historiques, bibliophile passionnée, je veux un tantinet dire. en quelque sorte. Pratique équitation weekly, membre club hippique,. Végétarienne pour événements. , un petit peu,. Allergie pollen arbres printemps sévère tu vois. ,,. Fiancé banquier investissement, mariage prévu septembre opportunité à peu près. eh bien,,. Pas enfants prévus bientôt carrières priorité. Mentionné réseau collègues avocats cabinet pourrait intéresser. Bonne cliente jeune professionnelle droit. Rappeler avril nouveautés.",
+    "anonymized_text": "Mme [NAME], 34 ans, plus ou moins avocate fiscaliste cabinet d'affaires, nouvelle cliente potentiel élevé. Cherche sac travail professionnel rendez-vous clients tribunaux,,. Budget 4K initial. , __KEEP_PLUTÔT__. sobre élégant juridique, cuir noir navy hardware argent discret. Travaille un tantinet dossiers fiscalité internationale, clients grandes entreprises. Collectionne éditions rares codes juridiques historiques, bibliophile passionnée, je veux un tantinet dire. en quelque sorte. Pratique équitation weekly, membre club hippique,. Végétarienne pour événements. , un petit peu,. Allergie pollen arbres printemps sévère tu vois. ,,. Fiancé banquier investissement, mariage prévu septembre opportunité à peu près. eh bien,,. Pas enfants prévus bientôt carrières priorité. Mentionné réseau collègues avocats cabinet pourrait intéresser. Bonne cliente jeune professionnelle droit. Rappeler avril nouveautés.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végétarienne), et l'allergie au pollen ne sont pas considérées comme sensibles dans ce contexte."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

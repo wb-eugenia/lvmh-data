@@ -164,6 +164,10 @@ async def analyze_note(
                 missing_info=ext.meta_analysis.missing_info if ext else [],
                 risk_flags=ext.meta_analysis.risk_flags if ext else []
             ),
+            pilier_1_univers_produit=ext.pilier_1_univers_produit.model_dump() if ext else {},
+            pilier_2_profil_client=ext.pilier_2_profil_client.model_dump() if ext else {},
+            pilier_3_hospitalite_care=ext.pilier_3_hospitalite_care.model_dump() if ext else {},
+            pilier_4_action_business=ext.pilier_4_action_business.model_dump() if ext else {},
             processed_text=result.processed_text,
             original_text=result.original_text,
             processing_time_ms=processing_time,

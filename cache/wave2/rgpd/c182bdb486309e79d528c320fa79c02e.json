@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193643.2145596,
+  "payload": {
+    "ID": "CA_101",
+    "original_text": "Mme [NAME], 39 ans, dentiste cabinet privé, première visite. , en quelque manière, du coup. Recherche sac professionnel discret élégant,,. Budget 3500€,, en gros. ,,. Cuir noir marine préféré, hardware doré rose,,. Pratique natation compétition, prépare triathlon Nice juin. Végétarienne stricte événements. Allergie pollen sévère printemps,,. ,, par exemple. Mari pharmacien, anniversaire avril opportunité. Deux enfants école primaire. ,. Potentiel quartier résidentiel, recommandée amie cliente. Rappeler fin février nouveautés.",
+    "anonymized_text": "Mme [NAME], 39 ans, dentiste cabinet privé, première visite. , en quelque manière, du coup. Recherche sac professionnel discret élégant,,. Budget 3500€,, en gros. ,,. Cuir noir marine préféré, hardware doré rose,,. Pratique natation compétition, prépare triathlon Nice juin. Végétarienne stricte événements. Allergie pollen sévère printemps,,. ,, par exemple. Mari pharmacien, anniversaire avril opportunité. Deux enfants école primaire. ,. Potentiel quartier résidentiel, recommandée amie cliente. Rappeler fin février nouveautés.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Aucune donnée sensible détectée selon les catégories définies. Les informations sur la profession, le régime alimentaire végétarien et l'allergie au pollen ne sont pas considérées comme sensibles dans le cadre du RGPD."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

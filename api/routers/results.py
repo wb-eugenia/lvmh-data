@@ -22,6 +22,78 @@ from api.schemas import PaginatedResults, ExtractionResult, ExtractionTags, Rout
 logger = logging.getLogger("lvmh-api.results")
 router = APIRouter()
 
+# === Batch CSV Results ===
+OUTPUT_DIR = (Path(__file__).parent.parent.parent / "output").resolve()
+
+@router.get("/batch-results")
+async def get_batch_results(
+    file: Optional[str] = Query(None),
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100)
+):
+    """
+    List available batch CSV files or load data from a specific file.
+    """
+    logger.info(f"🔍 Checking batch results in: {OUTPUT_DIR}")
+    
+    if not OUTPUT_DIR.exists():
+        logger.warning(f"⚠️ Output directory not found: {OUTPUT_DIR}")
+        return {"files": [], "data": [], "total": 0, "page": page}
+    
+    # List all CSV files
+    csv_files = sorted(
+        [f.name for f in OUTPUT_DIR.glob("*.csv")],
+        key=lambda x: x,
+        reverse=True  # Most recent first
+    )
+    
+    logger.info(f"📂 Found {len(csv_files)} CSV files")
+    
+    # If no file specified, just return the list
+    if not file:
+        return {"files": csv_files, "data": [], "total": 0, "page": page}
+    
+    # Load specific file
+    file_path = OUTPUT_DIR / file
+    if not file_path.exists():
+        raise HTTPException(404, f"File {file} not found")
+    
+    try:
+        df = pd.read_csv(file_path)
+        
+        # Pagination
+        total = len(df)
+        start = (page - 1) * limit
+        end = start + limit
+        page_df = df.iloc[start:end]
+        
+        # Convert to list of dicts, handling NaN values
+        data = []
+        for _, row in page_df.iterrows():
+            item = {
+                "id": str(row.get("ID", row.get("note_id", ""))),
+                "tags": parse_list_column(row.get("tags", [])),
+                "tier": int(row.get("tier", 1)) if pd.notna(row.get("tier")) else 1,
+                "budget_range": row.get("budget_range", "") if pd.notna(row.get("budget_range")) else "",
+                "confidence": float(row.get("confidence", 0)) if pd.notna(row.get("confidence")) else 0,
+                "client_status": row.get("client_status", "") if pd.notna(row.get("client_status")) else "",
+                "processing_tier": row.get("processing_tier", "") if pd.notna(row.get("processing_tier")) else "",
+                "reasoning": row.get("reasoning", "") if pd.notna(row.get("reasoning")) else ""
+            }
+            data.append(item)
+        
+        return {
+            "files": csv_files,
+            "data": data,
+            "total": total,
+            "page": page,
+            "total_pages": (total + limit - 1) // limit
+        }
+        
+    except Exception as e:
+        logger.error(f"Error loading CSV {file}: {e}")
+        raise HTTPException(500, f"Error loading file: {str(e)}")
+
 # Default outputs directory
 OUTPUTS_DIR = Path(__file__).parent.parent.parent / "outputs"
 
@@ -161,9 +233,12 @@ async def search_notes(
                 "Transcription": n.transcription,
                 "tier": analysis.get('routing', {}).get('tier', 1),
                 "pilier_4_action_business": analysis.get('extraction', {}).get('pilier_4_action_business', {}),
+                "pilier_1_univers_produit": analysis.get('extraction', {}).get('pilier_1_univers_produit', {}),
                 "advisor": n.advisor.full_name if n.advisor else "Inconnu",
                 "client": n.client.name if n.client else "Inconnu",
-                "timestamp": n.timestamp.isoformat()
+                "timestamp": n.timestamp.isoformat(),
+                "tags": analysis.get('extraction', {}).get('pilier_1_univers_produit', {}).get('categories', []),
+                "matched_products": analysis.get('extraction', {}).get('pilier_1_univers_produit', {}).get('matched_products', [])
             }
             results.append(item)
         except:
@@ -200,3 +275,5 @@ async def get_result_detail(note_id: int, db: Session = Depends(get_db)):
         raise HTTPException(404, f"Note {note_id} not found")
     
     return json.loads(note.analysis_json)
+
+

@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193729.5516534,
+  "payload": {
+    "ID": "CA_131",
+    "original_text": "Mme [NAME], 42 ans, créatrice mode marque propre succès croissant, cliente occasionnelle depuis 2021,,. Recherche pièces inspiration designs également usage personnel. Budget 7K environ. ,, un petit peu. avant-gardiste créatif, aime pousser limites conventions. Lance nouvelle collection automne, voyage recherche inspiration Marrakech prochainement,. Collectionne tissus vintage marchés puces monde entier. Pratique danse contemporaine, performances artistiques occasionnelles,, par exemple. Végane stricte convictions éthiques fortes événements à peu près,. ,, en quelque sorte. Allergie nickel importante hardware,,. ,,. Compagne également monde mode styliste, couple créatif dynamique,,. Pas enfants choix carrières priorité. Mentionne nombreux contacts industrie mode pourraient être intéressés. Bonne cliente segment créatif mode émergent. Rappeler mars montrer pièces uniques limitées. par exemple Très intéressée processus création artisans innovation matériaux.",
+    "anonymized_text": "Mme [NAME], 42 ans, créatrice mode marque propre succès croissant, cliente occasionnelle depuis 2021,,. Recherche pièces inspiration designs également usage personnel. Budget 7K environ. ,, un petit peu. avant-gardiste créatif, aime pousser limites conventions. Lance nouvelle collection automne, voyage recherche inspiration Marrakech prochainement,. Collectionne tissus vintage marchés puces monde entier. Pratique danse contemporaine, performances artistiques occasionnelles,, par exemple. Végane stricte convictions éthiques fortes événements à peu près,. ,, en quelque sorte. Allergie nickel importante hardware,,. ,,. Compagne également monde mode styliste, couple créatif dynamique,,. Pas enfants choix carrières priorité. Mentionne nombreux contacts industrie mode pourraient être intéressés. Bonne cliente segment créatif mode émergent. Rappeler mars montrer pièces uniques limitées. par exemple Très intéressée processus création artisans innovation matériaux.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé physique (allergie au nickel) sont acceptables pour le business, et les autres éléments mentionnés (régime végan, profession, situation familiale sans conflit) ne relèvent pas des catégories sensibles."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

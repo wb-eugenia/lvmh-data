@@ -1,0 +1,28 @@
+{
+  "_cached_at": 1770193780.0787916,
+  "payload": {
+    "ID": "CA_152",
+    "original_text": "Mr what, approximately. , I see. Jackson, 48, film producer independent films festival circuit, new client very high potential,,. or so. Looking for pieces celebrate recent film Cannes selection official competition. Budget very open discussed 16K today. Style creative artistic but appreciates craftsmanship quality. Works with auteur directors, produces award-winning more or less films, travels all what major festivals Berlin Venice Sundance, more or less. Collects vintage movie posters iconic films, apartment cinema museum. Practices meditation daily creative process, yoga flexibility. ,,. Vegan ethical conviction strong for events. Severe gluten allergy critical. what, in some way,. Partner also film industry cinematographer, couple creative power. ,,. No children focused careers film world completely. in some way, so. Network contacts film industry extraordinary, celebrities directors producers, excellent visibility potential,, in a manner of speaking. or so. Very interested unique pieces limited editions artist collaborations. Follow up weekly build relationship, I suppose,. Transformational client entertainment segment luxury.",
+    "anonymized_text": "Mr what, approximately. , I see. Jackson, 48, film producer independent films festival circuit, new client very high potential,,. or so. Looking for pieces celebrate recent film Cannes selection official competition. Budget very open discussed 16K today. Style creative artistic but appreciates craftsmanship quality. Works with auteur directors, produces award-winning more or less films, travels all what major festivals Berlin Venice Sundance, more or less. Collects vintage movie posters iconic films, apartment cinema museum. Practices meditation daily creative process, yoga flexibility. ,,. Vegan ethical conviction strong for events. [RGPD_HEALTH_PHYSICAL_REDACTED]. what, in some way,. Partner also film industry cinematographer, couple creative power. ,,. No children focused careers film world completely. in some way, so. Network contacts film industry extraordinary, celebrities directors producers, excellent visibility potential,, in a manner of speaking. or so. Very interested unique pieces limited editions artist collaborations. Follow up weekly build relationship, I suppose,. Transformational client entertainment segment luxury.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "Severe gluten allergy critical",
+          "category": "health_physical",
+          "severity": "high"
+        }
+      ],
+      "safe_to_store": false,
+      "reasoning": "The text contains a severe gluten allergy, which is classified as a health-related sensitive data under Article 9 of the GDPR."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical"
+    ],
+    "safe_to_store": false
+  }
+}

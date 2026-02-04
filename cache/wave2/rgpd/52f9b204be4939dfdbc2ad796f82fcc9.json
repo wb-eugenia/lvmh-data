@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193732.6864386,
+  "payload": {
+    "ID": "CA_132",
+    "original_text": "Mr.,, I see. and Mrs. Lee, both 52, regular clients since 2018,,. He's investment banker private equity, she's interior designer high-end residential projects. Shopping new season plus gifts something parents both sides upcoming birthdays. in some way Combined budget 15K flexible. roughly. Both travel frequently work pleasure, planning river cruise Europe summer cultural immersion I mean,, to some extent. He collects contemporary photography, building serious collection emerging artists. pretty much,, to some extent. She passionate Mid-Century modern design, home featured approximately architecture magazines. in a manner of speaking,. He prefers classic understated black navy leather. She I see modern sophisticated grey beige champagne hardware something,, what. , in some way,. Both pescatarian for events,, something. something,. She has latex allergy important or so let's see,, more or less. , pretty much what. Son studying economics Oxford, daughter architect graduate school Columbia. Family strong Asian heritage, celebrate in a manner of speaking traditional holidays, gift opportunities. Excellent clients consistent purchasing, refer friends professional network. Follow up March private preview spring collection, let's in a manner of speaking see. Interested in craftsmanship quality materials lasting investment pieces. pretty much.",
+    "anonymized_text": "Mr.,, I see. and Mrs. Lee, both 52, regular clients since 2018,,. He's investment banker private equity, she's interior designer high-end residential projects. Shopping new season plus gifts something parents both sides upcoming birthdays. in some way Combined budget 15K flexible. roughly. Both travel frequently work pleasure, planning river cruise Europe summer cultural immersion I mean,, to some extent. He collects contemporary photography, building serious collection emerging artists. pretty much,, to some extent. She passionate Mid-Century modern design, home featured approximately architecture magazines. in a manner of speaking,. He prefers classic understated black navy leather. She I see modern sophisticated grey beige champagne hardware something,, what. , in some way,. Both pescatarian for events,, something. something,. She has latex allergy important or so let's see,, more or less. , pretty much what. Son studying economics Oxford, daughter architect graduate school Columbia. Family strong Asian heritage, celebrate in a manner of speaking traditional holidays, gift opportunities. Excellent clients consistent purchasing, refer friends professional network. Follow up March private preview spring collection, let's in a manner of speaking see. Interested in craftsmanship quality materials lasting investment pieces. pretty much.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses clients' professions, interests, and a latex allergy, which is acceptable for business purposes. There are no mentions of health issues, family conflicts, religious beliefs, political opinions, sexual orientation, or ethnic origin that would be considered sensitive."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

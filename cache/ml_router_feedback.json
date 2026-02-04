@@ -5614,5 +5614,185 @@
     "final_confidence": 0.8,
     "label": 1,
     "timestamp": "2026-02-01T02:12:35.584657"
+  },
+  {
+    "features": [
+      5.0,
+      0.0,
+      12.0,
+      15,
+      0.0,
+      62
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.860933"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      18.0,
+      12,
+      0.0,
+      117
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.874959"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      120
+    ],
+    "predicted_tier": 1,
+    "executed_tier": 1,
+    "confidence_achieved": 0.75,
+    "was_escalated": false,
+    "final_tier": 1,
+    "final_confidence": 0.75,
+    "label": 1,
+    "timestamp": "2026-02-04T09:45:21.886092"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      25.0,
+      0.0,
+      0.0,
+      115
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.900806"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      111
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.913036"
+  },
+  {
+    "features": [
+      5.0,
+      0.0,
+      30.0,
+      0.0,
+      0.0,
+      92
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.929634"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      0.0,
+      12,
+      10.0,
+      139
+    ],
+    "predicted_tier": 3,
+    "executed_tier": 3,
+    "confidence_achieved": 0.8,
+    "was_escalated": false,
+    "final_tier": 3,
+    "final_confidence": 0.8,
+    "label": 3,
+    "timestamp": "2026-02-04T09:45:21.942807"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      22.0,
+      0.0,
+      0.0,
+      118
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.956200"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      10.0,
+      110
+    ],
+    "predicted_tier": 3,
+    "executed_tier": 3,
+    "confidence_achieved": 0.8,
+    "was_escalated": false,
+    "final_tier": 3,
+    "final_confidence": 0.8,
+    "label": 3,
+    "timestamp": "2026-02-04T09:45:21.969431"
+  },
+  {
+    "features": [
+      10.0,
+      0.0,
+      10.0,
+      0.0,
+      0.0,
+      103
+    ],
+    "predicted_tier": 2,
+    "executed_tier": 2,
+    "confidence_achieved": 0.85,
+    "was_escalated": false,
+    "final_tier": 2,
+    "final_confidence": 0.85,
+    "label": 2,
+    "timestamp": "2026-02-04T09:45:21.982731"
   }
 ]

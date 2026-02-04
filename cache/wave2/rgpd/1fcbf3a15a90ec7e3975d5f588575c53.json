@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1770193663.5233016,
+  "payload": {
+    "ID": "CA_107",
+    "original_text": "Mrs. Patterson, 53, museum curator contemporary art, regular client since 2019 or so, approximately. Looking for new handbag versatile work events. Budget 5-6K. in a manner of in some way speaking. Style to some extent artistic sophisticated something understated elegance,. , sort or so of. Curates major exhibitions, travels internationally art fairs Basel Venice Miami. Collects minimalist sculptures, home featured design magazines kind of,. Divorced two years ago, redefining personal style freedom. in some way. I see Practices tai chi daily, wellness retreats quarterly Bali. I see,. Pescatarian diet for events,, something. Nickel allergy important hardware. more or less, so,. Adult son architect New York, daughter studying art history Sorbonne. Plans retirement three years, building art collection seriously in some way,,. ,. Excellent cultivated client, refers museum colleagues. Follow up May preview summer collection. Interested artist collaborations limited editions. pretty much.",
+    "anonymized_text": "Mrs. Patterson, 53, museum curator contemporary art, regular client since 2019 or so, approximately. Looking for new handbag versatile work events. Budget 5-6K. in a manner of in some way speaking. Style to some extent artistic sophisticated something understated elegance,. , sort or so of. Curates major exhibitions, travels internationally art fairs Basel Venice Miami. Collects minimalist sculptures, home featured design magazines kind of,. [RGPD_FAMILY_CONFLICT_REDACTED], redefining personal style freedom. in some way. I see [RGPD_HEALTH_PHYSICAL_REDACTED], [RGPD_HEALTH_PHYSICAL_REDACTED]. I see,. Pescatarian diet for events,, something. [RGPD_HEALTH_PHYSICAL_REDACTED] important hardware. more or less, so,. Adult son architect New York, daughter studying art history Sorbonne. Plans retirement three years, building art collection seriously in some way,,. ,. Excellent cultivated client, refers museum colleagues. Follow up May preview summer collection. Interested artist collaborations limited editions. pretty much.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical",
+        "family_conflict"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "Divorced two years ago",
+          "category": "family_conflict",
+          "severity": "medium"
+        },
+        {
+          "text": "Practices tai chi daily",
+          "category": "health_physical",
+          "severity": "low"
+        },
+        {
+          "text": "wellness retreats quarterly Bali",
+          "category": "health_physical",
+          "severity": "low"
+        },
+        {
+          "text": "Nickel allergy",
+          "category": "health_physical",
+          "severity": "low"
+        }
+      ],
+      "safe_to_store": false,
+      "reasoning": "The text contains references to a family conflict (divorce) and health-related information (tai chi practice, wellness retreats, and nickel allergy), which are considered sensitive under Article 9 of the GDPR."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_physical",
+      "family_conflict"
+    ],
+    "safe_to_store": false
+  }
+}

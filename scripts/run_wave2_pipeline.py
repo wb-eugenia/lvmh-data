@@ -53,7 +53,7 @@ def run_wave2_pipeline(
     """
     
     start_time = datetime.now()
-    print(f"🚀 WAVE 2 PIPELINE STARTED - {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"[START] WAVE 2 PIPELINE STARTED - {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
     print("="*60)
     
     # Create directories
@@ -62,46 +62,46 @@ def run_wave2_pipeline(
     Path('data/processed').mkdir(parents=True, exist_ok=True)
     
     # Initialize components
-    print("\n📦 Initializing components...")
+    print("\n[INFO] Initializing components...")
     cleaner = MultilingualTextCleaner()
     cache = CacheManager('cache/wave2')
     cost_tracker = CostTracker()
     
     try:
         rgpd_filter = RGPDFilter()
-        print("  ✅ RGPD Filter ready")
+        print("  [OK] RGPD Filter ready")
     except Exception as e:
-        print(f"  ❌ RGPD Filter error: {e}")
+        print(f"  [ERROR] RGPD Filter error: {e}")
         rgpd_filter = None
     
     try:
         extractor = TagExtractor()
-        print("  ✅ Tag Extractor ready")
+        print("  [OK] Tag Extractor ready")
     except Exception as e:
-        print(f"  ❌ Tag Extractor error: {e}")
+        print(f"  [ERROR] Tag Extractor error: {e}")
         return
     
     # STEP 1: Load raw data
-    print(f"\n📂 STEP 1: Loading {input_file}...")
+    print(f"\n[STEP 1] Loading {input_file}...")
     try:
         df_raw = pd.read_csv(input_file)
-        print(f"  ✅ Loaded {len(df_raw)} notes")
+        print(f"  [OK] Loaded {len(df_raw)} notes")
         logger.info(f"Loaded {len(df_raw)} notes from {input_file}")
     except FileNotFoundError:
-        print(f"  ❌ File not found: {input_file}")
+        print(f"  [ERROR] File not found: {input_file}")
         return
     
     # STEP 2: Clean fillers
-    print("\n🧹 STEP 2: Cleaning fillers...")
+    print("\n[STEP 2] Cleaning fillers...")
     df_cleaned = cleaner.clean_dataset(df_raw)
     
     # Save cleaned data
     cleaned_file = 'data/processed/LVMH_Notes_CA101-400_cleaned.csv'
     df_cleaned.to_csv(cleaned_file, index=False)
-    print(f"  ✅ Saved cleaned data to {cleaned_file}")
+    print(f"  [OK] Saved cleaned data to {cleaned_file}")
     
     # STEP 3 & 4: RGPD + Extraction
-    print("\n🔒 STEP 3-4: RGPD Filter + Tag Extraction...")
+    print("\n[STEP 3-4] RGPD Filter + Tag Extraction...")
     results = []
     rgpd_results = []
     
@@ -169,7 +169,7 @@ def run_wave2_pipeline(
             
         except Exception as e:
             logger.error(f"Failed {note_id}: {str(e)}")
-            print(f"\n  ⚠️ Error on {note_id}: {e}")
+            print(f"\n  [WARNING] Error on {note_id}: {e}")
             continue
         
         # Checkpoint
@@ -179,7 +179,7 @@ def run_wave2_pipeline(
             logger.info(f"Checkpoint saved: {idx+1} notes")
     
     # STEP 5: Export
-    print("\n💾 STEP 5: Exporting results...")
+    print("\n[STEP 5] Exporting results...")
     df_output = pd.DataFrame(results)
     
     # Convert lists to strings for Excel compatibility
@@ -198,21 +198,21 @@ def run_wave2_pipeline(
     df_output.to_parquet(f'{base_name}.parquet', index=False)
     df_output.to_json(f'{base_name}.json', orient='records', indent=2, force_ascii=False)
     
-    print(f"  ✅ Exported to {base_name}.[xlsx|csv|parquet|json]")
+    print(f"  [OK] Exported to {base_name}.[xlsx|csv|parquet|json]")
     
     # RGPD Report
     if rgpd_filter and rgpd_results:
         rgpd_report = rgpd_filter.generate_report(rgpd_results)
         with open(f'{output_dir}/wave2_rgpd_report.json', 'w') as f:
             json.dump(rgpd_report, f, indent=2)
-        print(f"  ✅ RGPD Report: {output_dir}/wave2_rgpd_report.json")
+        print(f"  [OK] RGPD Report: {output_dir}/wave2_rgpd_report.json")
     
     # Final stats
     end_time = datetime.now()
     duration = (end_time - start_time).total_seconds()
     
     print("\n" + "="*60)
-    print("📊 PIPELINE COMPLETE")
+    print("[DONE] PIPELINE COMPLETE")
     print("="*60)
     print(f"Notes processed: {len(results)}")
     print(f"Total tags: {sum(r['tags_count'] for r in results)}")
