@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText } from 'lucide-react'
+import React, { useState, useEffect, useRef } from 'react'
+import { Mic, Search, Trophy, X, CheckCircle, LogOut, History, Sparkles, User, Clock, Tag, TrendingUp, Star, Gift, Award, Target, Zap, Medal, ThumbsUp } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import confetti from 'canvas-confetti'
 
@@ -9,117 +9,84 @@ export default function AdvisorView({ onBack }) {
     const [currentResult, setCurrentResult] = useState(null)
     const [leaderboard, setLeaderboard] = useState([])
     const [searchQuery, setSearchQuery] = useState("")
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [activeView, setActiveView] = useState("record") // 'record', 'history', 'search', 'csv'
-    const [clientResults, setClientResults] = useState([])
-    const [searchingClients, setSearchingClients] = useState(false)
-
+    const [activeView, setActiveView] = useState("record")
     const [isProcessing, setIsProcessing] = useState(false)
-    const [currentStep, setCurrentStep] = useState(null)
     const [history, setHistory] = useState([])
     const [loadingHistory, setLoadingHistory] = useState(false)
+    const [mediaRecorder, setMediaRecorder] = useState(null)
 
-    // CSV Results State
-    const [csvFiles, setCsvFiles] = useState([])
-    const [csvData, setCsvData] = useState([])
-    const [selectedCsv, setSelectedCsv] = useState('')
-    const [loadingCsv, setLoadingCsv] = useState(false)
-    const [csvTotal, setCsvTotal] = useState(0)
+    // Calculate stats - Focus on QUALITY not quantity
+    const avgClarity = history.length > 0
+        ? Math.round(history.reduce((a, b) => a + (b.quality_score || 0.75), 0) / history.length * 100)
+        : 0
+    const bestNote = history.length > 0
+        ? Math.round(Math.max(...history.map(h => h.quality_score || 0.75)) * 100)
+        : 0
+    const highQualityNotes = history.filter(h => (h.quality_score || 0.75) >= 0.8).length
 
-    // WebSocket for real-time pipeline visualization
+    const stats = {
+        todayNotes: history.filter(h => new Date(h.date).toDateString() === new Date().toDateString()).length,
+        weekNotes: history.length,
+        totalPoints: user.points || user.score || 0,
+        avgClarity,
+        bestNote,
+        highQualityNotes,
+        level: Math.floor((user.points || 0) / 100) + 1,
+        nextLevel: 100 - ((user.points || 0) % 100)
+    }
+
+    // Achievements - Focus on QUALITY
+    const achievements = [
+        { id: 1, name: "Premier Pas", desc: "Première note enregistrée", icon: Star, unlocked: history.length >= 1, color: "text-yellow-400" },
+        { id: 2, name: "Clarté Bronze", desc: "Note avec 75%+ de clarté", icon: ThumbsUp, unlocked: bestNote >= 75, color: "text-amber-600" },
+        { id: 3, name: "Clarté Argent", desc: "Note avec 85%+ de clarté", icon: Award, unlocked: bestNote >= 85, color: "text-gray-300" },
+        { id: 4, name: "Clarté Or", desc: "Note avec 95%+ de clarté", icon: Trophy, unlocked: bestNote >= 95, color: "text-[#D4AF37]" },
+        { id: 5, name: "Expert", desc: "10 notes à 80%+ de clarté", icon: Zap, unlocked: highQualityNotes >= 10, color: "text-purple-400" },
+        { id: 6, name: "Top Vendeur", desc: "Rang #1 du classement", icon: Medal, unlocked: false, color: "text-[#D4AF37]" },
+    ]
+
+    // WebSocket for real-time updates
     useEffect(() => {
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsUrl = `${protocol}//${window.location.host}/ws/pipeline`;
-        let ws;
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+        const wsUrl = `${protocol}//${window.location.host}/ws/pipeline`
+        let ws
 
         const connect = () => {
-            ws = new WebSocket(wsUrl);
+            ws = new WebSocket(wsUrl)
             ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
+                const data = JSON.parse(event.data)
                 if (data.type === 'leaderboard') {
-                    // Update leaderboard with 'isMe' flag
                     const enriched = data.data.map(adv => ({
                         ...adv,
                         isMe: adv.id === user.name
-                    }));
-                    setLeaderboard(enriched);
-                } else if (data.step) {
-                    console.log("WS Pipeline Step:", data.step);
-                    setCurrentStep(data.step);
+                    }))
+                    setLeaderboard(enriched)
                 }
-            };
-            ws.onclose = () => {
-                setTimeout(connect, 3000); // Reconnect
-            };
-        };
+            }
+            ws.onclose = () => setTimeout(connect, 3000)
+        }
 
-        connect();
-        return () => ws?.close();
-    }, []);
+        connect()
+        return () => ws?.close()
+    }, [])
 
     useEffect(() => {
         fetchLeaderboard()
+        loadHistory()
     }, [user])
 
     const fetchLeaderboard = async () => {
         try {
-            const realData = [
-                { id: user.name, score: user.points || user.score || 0, isMe: true }
-            ]
-            setLeaderboard(realData)
+            // Mock leaderboard for demo
+            const mockData = [
+                { id: user.name, score: user.points || user.score || 0, isMe: true },
+                { id: "Marie Dupont", score: 890, isMe: false },
+                { id: "Jean Martin", score: 720, isMe: false },
+                { id: "Sophie Bernard", score: 650, isMe: false },
+                { id: "Pierre Leblanc", score: 580, isMe: false },
+            ].sort((a, b) => b.score - a.score)
+            setLeaderboard(mockData)
         } catch (e) { }
-    }
-
-    // Fetch history when view changes to history
-    useEffect(() => {
-        if (activeView === 'history') {
-            loadHistory()
-        }
-        if (activeView === 'csv') {
-            loadCsvFiles()
-        }
-    }, [activeView])
-
-    const loadCsvFiles = async () => {
-        setLoadingCsv(true)
-        try {
-            const res = await fetch('/api/batch-results')
-            if (res.ok) {
-                const data = await res.json()
-                setCsvFiles(data.files || [])
-                if (data.files?.length > 0 && !selectedCsv) {
-                    setSelectedCsv(data.files[0])
-                    loadCsvData(data.files[0])
-                }
-            }
-        } catch (e) {
-            console.error(e)
-        } finally {
-            setLoadingCsv(false)
-        }
-    }
-
-    const loadCsvData = async (filename) => {
-        if (!filename) return
-        setLoadingCsv(true)
-        try {
-            const res = await fetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
-            if (res.ok) {
-                const data = await res.json()
-                setCsvData(data.data || [])
-                setCsvTotal(data.total || 0)
-            }
-        } catch (e) {
-            console.error(e)
-        } finally {
-            setLoadingCsv(false)
-        }
-    }
-
-    const handleCsvSelect = (e) => {
-        const file = e.target.value
-        setSelectedCsv(file)
-        loadCsvData(file)
     }
 
     const loadHistory = async () => {
@@ -129,84 +96,18 @@ export default function AdvisorView({ onBack }) {
             const res = await fetch('/api/history', {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
-            if (res.ok) {
-                const data = await res.json()
-                setHistory(data)
-            }
-        } catch (e) {
-            console.error(e)
-        } finally {
-            setLoadingHistory(false)
-        }
-    }
-
-    const handleMenuNavigation = (view) => {
-        setActiveView(view)
-        setIsMenuOpen(false)
-        if (view === 'search') {
-            setSearchQuery("")
-            setClientResults([])
-        }
-    }
-
-    const handleViewDetail = (note) => {
-        // We might need to fetch full JSON if not in history
-        if (note.analysis_json) {
-            setCurrentResult(JSON.parse(note.analysis_json))
-        } else {
-            // If it's the history list, we can fetch detail
-            fetchNoteDetail(note.id)
-        }
-    }
-
-    const fetchNoteDetail = async (id) => {
-        setIsProcessing(true)
-        try {
-            const res = await fetch(`/api/results/${id}`)
-            if (res.ok) {
-                const data = await res.json()
-                setCurrentResult(data)
-            }
+            if (res.ok) setHistory(await res.json())
         } catch (e) { console.error(e) }
-        finally { setIsProcessing(false) }
+        finally { setLoadingHistory(false) }
     }
-
-    const searchClients = async (query) => {
-        if (!query) {
-            setClientResults([])
-            return
-        }
-        setSearchingClients(true)
-        try {
-            const res = await fetch(`/api/clients/search?q=${query}`)
-            if (res.ok) {
-                const data = await res.json()
-                setClientResults(data)
-            }
-        } catch (e) { console.error(e) }
-        finally { setSearchingClients(false) }
-    }
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (activeView === 'search') {
-                searchClients(searchQuery)
-            }
-        }, 300)
-        return () => clearTimeout(timer)
-    }, [searchQuery, activeView])
 
     const handleLogout = () => {
         logout()
-        onBack() // Redirects to landing/login
+        onBack()
     }
-
-    const [mediaRecorder, setMediaRecorder] = useState(null)
-    const [audioChunks, setAudioChunks] = useState([])
 
     const toggleRecord = async () => {
         if (!isRecording) {
-            // Start Recording
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
                 const recorder = new MediaRecorder(stream)
@@ -214,51 +115,37 @@ export default function AdvisorView({ onBack }) {
 
                 recorder.ondataavailable = (e) => chunks.push(e.data)
                 recorder.onstop = async () => {
-                    setIsProcessing(true) // Start loading
-                    // Use webm which is standard for MediaRecorder in Chrome/Firefox
+                    setIsProcessing(true)
                     const blob = new Blob(chunks, { type: 'audio/webm' })
                     await processAudio(blob)
-                    setIsProcessing(false) // Stop loading
+                    setIsProcessing(false)
                 }
 
                 recorder.start()
                 setMediaRecorder(recorder)
                 setIsRecording(true)
             } catch (err) {
-                alert("Microphone accès refusé")
+                alert("Accès microphone refusé")
             }
         } else {
-            // Stop Recording
             mediaRecorder.stop()
             setIsRecording(false)
         }
     }
 
     const processAudio = async (audioBlob) => {
-        // ... (processAudio code remains similar but we handle errors inside)
-        // 1. Transcribe (Whisper)
         const formData = new FormData()
-        // OpenAI requires a filename with extension to detect format
         formData.append('file', audioBlob, 'recording.webm')
 
         try {
-            const transRes = await fetch('/api/transcribe', {
-                method: 'POST',
-                body: formData // No headers for multipart
-            })
+            const transRes = await fetch('/api/transcribe', { method: 'POST', body: formData })
             if (!transRes.ok) throw new Error("Transcription failed")
 
             const { transcription } = await transRes.json()
-
-            // 2. Intelligence Pipeline
-            // Get token from auth context/local storage if needed for Auth header
             const token = localStorage.getItem('token')
             const res = await fetch('/api/analyze', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({
                     text: transcription,
                     language: 'FR',
@@ -271,388 +158,494 @@ export default function AdvisorView({ onBack }) {
             const data = await res.json()
             setCurrentResult(data)
 
-            // Refresh leaderboard to update score locally (optimistic or re-fetch)
             const newScore = (user.points || user.score || 0) + (data.meta_analysis?.quality_score > 0.8 ? 15 : 10)
             updateUser({ score: newScore, points: newScore })
-            // fetchLeaderboard will run via useEffect dependency on `user`
 
             if (data.meta_analysis?.quality_score >= 80) {
-                confetti({
-                    particleCount: 150,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#D4AF37', '#ffffff']
-                })
+                confetti({ particleCount: 100, spread: 60, origin: { y: 0.6 }, colors: ['#D4AF37', '#FFFFFF'] })
             }
+
+            loadHistory()
         } catch (e) {
-            alert("Erreur système : " + e.message)
+            alert("Erreur : " + e.message)
         } finally {
             setIsProcessing(false)
         }
     }
 
+    // Filter history by search
+    const filteredHistory = searchQuery
+        ? history.filter(h =>
+            h.client?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            h.transcription?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : history
+
+    // ═══════════════════════════════════════════════════════════════
+    // RENDER
+    // ═══════════════════════════════════════════════════════════════
+
     return (
-        <div className="max-w-md mx-auto min-h-screen flex flex-col p-6 bg-lvmh-black text-white relative overflow-hidden">
-            {/* Loading Overlay */}
-            {isProcessing && !isRecording && !currentResult && (
-                <div className="absolute inset-x-6 top-24 z-50 flex flex-col items-center justify-center animate-in fade-in duration-500">
-                    <div className="w-12 h-12 border-4 border-lvmh-gold border-t-transparent rounded-full animate-spin mb-4" />
-                    <div className="text-lvmh-gold font-bold tracking-widest uppercase text-[10px] animate-pulse">Intelligence Flow...</div>
+        <div className="min-h-screen bg-[#0D1A2D] text-white flex">
+            {/* LVMH Chevron Pattern Background */}
+            <div className="lvmh-pattern" />
+
+            {/* ═══ SIDEBAR ═══ */}
+            <aside className="sidebar">
+                {/* Logo */}
+                <div className="mb-6 w-10 h-10 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#B8960C] flex items-center justify-center text-[#0D1A2D] font-bold">
+                    L
                 </div>
-            )}
 
-            {/* Menu Drawer */}
-            {isMenuOpen && (
-                <div className="absolute inset-0 z-40 flex">
-                    {/* Backdrop */}
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in" onClick={() => setIsMenuOpen(false)}></div>
-
-                    {/* Drawer Content */}
-                    <div className="relative w-3/4 max-w-sm bg-[#1a1a1a] shadow-2xl h-full p-6 animate-in slide-in-from-left duration-300 border-r border-white/10 flex flex-col">
-                        <div className="mb-8 pt-4">
-                            <h2 className="text-2xl font-didot text-lvmh-gold mb-1">LVMH</h2>
-                            <p className="text-xs text-gray-400 uppercase tracking-widest">Assistant Vendeur</p>
-                        </div>
-
-                        <div className="flex items-center gap-4 mb-8 p-4 glass rounded-xl">
-                            <div className="w-12 h-12 rounded-full bg-lvmh-gold flex items-center justify-center text-black font-bold text-xl">
-                                {user.name.charAt(0)}
-                            </div>
-                            <div>
-                                <div className="font-bold">{user.name}</div>
-                                <div className="text-xs text-lvmh-gold">{user.store || "Boutique Paris"}</div>
-                            </div>
-                        </div>
-
-                        <nav className="space-y-2 flex-1">
-                            <button onClick={() => handleMenuNavigation('record')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'record' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <Mic size={20} className={activeView === 'record' ? 'text-lvmh-gold' : ''} />
-                                <span>Nouvelle Dictée</span>
-                            </button>
-                            <button onClick={() => handleMenuNavigation('history')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'history' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <History size={20} className={activeView === 'history' ? 'text-lvmh-gold' : ''} />
-                                <span>Mes Enregistrements</span>
-                            </button>
-                            <button onClick={() => handleMenuNavigation('search')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'search' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <Search size={20} className={activeView === 'search' ? 'text-lvmh-gold' : ''} />
-                                <span>Rechercher</span>
-                            </button>
-                            <button onClick={() => handleMenuNavigation('csv')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'csv' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <FileText size={20} className={activeView === 'csv' ? 'text-lvmh-gold' : ''} />
-                                <span>Résultats CSV</span>
-                            </button>
-                        </nav>
-
-                        <button onClick={handleLogout} className="w-full flex items-center gap-4 p-4 hover:bg-red-500/10 text-red-400 rounded-xl transition-colors text-left mt-auto">
-                            <LogOut size={20} />
-                            <span>Déconnexion</span>
-                        </button>
-                    </div>
+                {/* Nav items - Only 3 now */}
+                <div className="flex-1 flex flex-col gap-1">
+                    <button
+                        onClick={() => setActiveView('record')}
+                        className={`sidebar-item ${activeView === 'record' ? 'active' : ''}`}
+                        title="Enregistrer"
+                    >
+                        <Mic size={20} strokeWidth={1.5} />
+                    </button>
+                    <button
+                        onClick={() => setActiveView('stats')}
+                        className={`sidebar-item ${activeView === 'stats' ? 'active' : ''}`}
+                        title="Statistiques"
+                    >
+                        <Trophy size={20} strokeWidth={1.5} />
+                    </button>
+                    <button
+                        onClick={() => setActiveView('history')}
+                        className={`sidebar-item ${activeView === 'history' ? 'active' : ''}`}
+                        title="Historique"
+                    >
+                        <History size={20} strokeWidth={1.5} />
+                    </button>
                 </div>
-            )}
 
-            <div className="flex justify-between items-center mb-6 relative z-10">
-                <button onClick={() => setIsMenuOpen(true)} className="p-2 -ml-2 hover:text-lvmh-gold transition-colors">
-                    <Menu size={24} />
-                    {/* Notification dot example */}
-                    {/* <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span> */}
+                {/* Logout */}
+                <button onClick={handleLogout} className="sidebar-item hover:!text-red-400" title="Déconnexion">
+                    <LogOut size={20} strokeWidth={1.5} />
                 </button>
-                <div className="text-center">
-                    <div className="text-[10px] text-lvmh-gold uppercase tracking-tighter">{user.store || "LVMH Paris Rivoli"}</div>
-                    <div className="font-bold text-sm">{user.name}</div>
-                </div>
-                <div className="glass px-3 py-1 text-sm font-bold text-lvmh-gold">{user.points || user.score || 0} pts</div>
-            </div>
+            </aside>
 
-            {/* VIEWS */}
+            {/* ═══ MAIN CONTENT ═══ */}
+            <main className="flex-1 flex flex-col max-w-4xl mx-auto w-full p-8 relative z-10">
 
-            {/* RECORD VIEW */}
-            {activeView === 'record' && (
-                <>
-                    <div className="relative mb-6">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lvmh-gray" size={18} />
-                        <input
-                            type="text"
-                            placeholder="Rechercher un client..."
-                            className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
+                {/* Header */}
+                <header className="flex justify-between items-center mb-8">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1D2E4A] to-[#152238] border border-white/10 flex items-center justify-center">
+                            <User size={20} className="text-white/70" />
+                        </div>
+                        <div>
+                            <div className="text-subtitle">{user.store || "CHAMPS-ÉLYSÉES"}</div>
+                            <div className="text-lg font-medium">{user.name}</div>
+                        </div>
                     </div>
+                    <div className="flex items-center gap-3">
+                        <div className="badge flex items-center gap-1.5">
+                            <ThumbsUp size={12} className="text-green-400" />
+                            <span>{stats.avgClarity}% clarté</span>
+                        </div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#E5C45C] rounded-lg blur-sm opacity-50 group-hover:opacity-75 transition-opacity" />
+                            <div className="relative bg-gradient-to-r from-[#D4AF37] to-[#E5C45C] text-[#0D1A2D] font-semibold px-5 py-2 rounded-lg flex items-center gap-2">
+                                <Star size={14} fill="#0D1A2D" />
+                                <span style={{ fontFamily: "'Playfair Display', serif" }}>{stats.totalPoints}</span>
+                                <span className="text-xs opacity-70">pts</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
 
-                    {!currentResult ? (
-                        <div className="flex-1 flex flex-col items-center justify-center text-center">
-                            <h2 className="gold-text text-4xl font-bold mb-4 tracking-tighter">
-                                {isRecording ? "Capture Live..." : "Insight Client"}
-                            </h2>
-                            <p className="text-lvmh-gray text-xs uppercase tracking-[0.2em] mb-12">
-                                {isRecording ? "Le moteur Whisper vous écoute" : "Appuyez pour commencer"}
+                {/* Loading State */}
+                {isProcessing && (
+                    <div className="fixed inset-0 bg-[#0D1A2D]/95 z-50 flex flex-col items-center justify-center fade-in">
+                        <div className="relative mb-6">
+                            <div className="w-20 h-20 rounded-full border-2 border-[#D4AF37]/30 flex items-center justify-center">
+                                <Mic size={32} className="text-[#D4AF37]" />
+                            </div>
+                            <div className="absolute inset-0 rounded-full border-2 border-[#D4AF37] border-t-transparent animate-spin" />
+                        </div>
+                        <div className="text-title text-xl mb-2">Analyse en cours</div>
+                        <div className="text-body">Notre IA traite votre enregistrement...</div>
+                    </div>
+                )}
+
+                {/* ═══════════════════════════════════════════════════════════════
+                    RECORD VIEW - Clean, focused on the action
+                ═══════════════════════════════════════════════════════════════ */}
+                {activeView === 'record' && !currentResult && (
+                    <div className="flex-1 flex items-center justify-center fade-in">
+                        {/* Main Record Card - Contains Everything */}
+                        <div className="card p-10 max-w-xl w-full text-center">
+                            {/* Title */}
+                            <h1 className="text-title text-4xl mb-2">
+                                {isRecording ? "Enregistrement..." : "Nouvelle Note"}
+                            </h1>
+                            <p className="text-body mb-10">
+                                {isRecording
+                                    ? "Décrivez les préférences et besoins du client"
+                                    : "Appuyez sur le micro pour capturer une note client"}
                             </p>
 
-                            <div className="relative mb-16">
+                            {/* Record Button */}
+                            <div className="relative inline-block mb-10">
                                 {isRecording && (
-                                    <div className="absolute inset-0 rounded-full bg-red-500/20 animate-ping" />
+                                    <>
+                                        <div className="absolute inset-[-32px] rounded-full bg-[#D4AF37]/5 animate-ping" style={{ animationDuration: '2s' }} />
+                                        <div className="absolute inset-[-20px] rounded-full bg-[#D4AF37]/10" />
+                                        <div className="absolute inset-[-10px] rounded-full bg-[#D4AF37]/15" />
+                                    </>
                                 )}
                                 <button
                                     onClick={toggleRecord}
-                                    className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : 'bg-white border-white/20 hover:scale-105'}`}
+                                    className={`w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300
+                                        ${isRecording
+                                            ? 'bg-[#D4AF37] text-[#0D1A2D] scale-110'
+                                            : 'bg-transparent border-2 border-white/30 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10'
+                                        }`}
                                 >
-                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : "text-black"} />
+                                    <Mic size={36} strokeWidth={1.5} />
                                 </button>
-
-                                {isRecording && (
-                                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-red-500 font-mono text-xs font-bold flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                                        LIVE RECORDING
-                                    </div>
-                                )}
                             </div>
 
-                            <div className="glass w-full p-5">
-                                <div className="flex items-center gap-2 text-lvmh-gold text-xs font-bold uppercase mb-4 tracking-widest leading-none">
-                                    <Trophy size={14} /> Leaderboard Live
-                                </div>
-                                <div className="space-y-3">
-                                    {leaderboard.length > 0 ? leaderboard.map((adv, i) => (
-                                        <div key={i} className={`flex justify-between py-2 border-b border-white/5 last:border-0 items-center ${adv.isMe ? 'bg-white/5 -mx-2 px-2 rounded' : ''}`}>
-                                            <span className="text-sm font-medium flex items-center gap-2">
-                                                {i + 1}. {adv.id} {adv.isMe && <span className="text-[10px] bg-lvmh-gold text-black px-1 rounded font-bold">MOI</span>}
-                                            </span>
-                                            <span className="font-bold text-sm text-lvmh-gold">{adv.score} pts</span>
-                                        </div>
-                                    )) : (
-                                        <div className="text-center text-xs text-lvmh-gray py-4">Aucune donnée</div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="fixed inset-0 bg-lvmh-black z-50 p-6 overflow-y-auto animate-in slide-in-from-bottom duration-500">
-                            {/* RESULT MODAL (Same as before) */}
-                            <div className="flex justify-between items-center mb-8">
-                                <h2 className="gold-text text-3xl font-bold">Expertise IA</h2>
-                                <button onClick={() => setCurrentResult(null)} className="p-2"><X size={32} /></button>
-                            </div>
-
-                            <div className="glass p-5 border-l-4 border-lvmh-gold mb-8 bg-lvmh-gold/5">
-                                <div className="text-xs text-lvmh-gold font-bold mb-1 uppercase tracking-widest">Récompense</div>
-                                <div className="text-lg font-bold leading-tight">{currentResult.meta_analysis?.advisor_feedback || "Note traitée !"}</div>
-                            </div>
-
-
-                            <div className="mb-8">
-                                <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-2 font-bold">Transcription</div>
-                                <div className="glass p-4 text-sm text-lvmh-gray italic">
-                                    "{currentResult.processed_text || currentResult.original_text || "..."}"
-                                </div>
-                            </div>
-
-                            <div className="mb-10">
-                                <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-2 font-bold">Profil Extrait</div>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="text-2xl font-bold">{currentResult.ID}</span>
-                                    <span className="bg-lvmh-gold text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg">VIP</span>
-                                </div>
-
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {currentResult.pilier_1_univers_produit?.categories?.map(tag => (
-                                        <span key={tag} className="bg-white/10 px-3 py-1 rounded-full text-xs font-medium border border-white/5">{tag}</span>
+                            {/* Voice Wave */}
+                            {isRecording && (
+                                <div className="flex justify-center items-end gap-1 h-8 mb-8">
+                                    {[...Array(16)].map((_, i) => (
+                                        <div
+                                            key={i}
+                                            className="w-1 bg-gradient-to-t from-[#D4AF37] to-[#D4AF37]/50 rounded-full"
+                                            style={{
+                                                height: `${8 + Math.random() * 24}px`,
+                                                animation: 'pulse 0.5s ease-in-out infinite',
+                                                animationDelay: `${i * 0.05}s`
+                                            }}
+                                        />
                                     ))}
                                 </div>
+                            )}
 
-                                {currentResult.pilier_1_univers_produit?.matched_products?.length > 0 && (
-                                    <div className="mb-0">
-                                        <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-3 font-bold">🛍️ Produits Catalogués</div>
-                                        <div className="flex gap-3 overflow-x-auto pb-4">
-                                            {currentResult.pilier_1_univers_produit.matched_products.map((prod, pi) => (
-                                                <div key={pi} className="flex-shrink-0 w-32 glass p-3 border-lvmh-gold/20">
-                                                    <div className="text-[10px] font-black text-lvmh-gold mb-1 truncate">{prod.name || prod.ID}</div>
-                                                    <div className="text-[9px] text-lvmh-gray uppercase tracking-tighter">{prod.category}</div>
-                                                </div>
-                                            ))}
-                                        </div>
+                            {/* Stats Row - Inside Card */}
+                            <div className="border-t border-white/10 pt-6 mt-6">
+                                <div className="flex items-center justify-center gap-10">
+                                    <div>
+                                        <div className="text-2xl font-semibold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{stats.todayNotes}</div>
+                                        <div className="text-caption">Aujourd'hui</div>
                                     </div>
-                                )}
+                                    <div className="w-px h-10 bg-white/10" />
+                                    <div>
+                                        <div className="text-2xl font-semibold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{stats.weekNotes}</div>
+                                        <div className="text-caption">Cette semaine</div>
+                                    </div>
+                                    <div className="w-px h-10 bg-white/10" />
+                                    <div>
+                                        <div className="text-2xl font-semibold text-[#D4AF37]" style={{ fontFamily: "'Playfair Display', serif" }}>Niv. {stats.level}</div>
+                                        <div className="text-caption">{stats.nextLevel} pts → Niv. {stats.level + 1}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* ═══════════════════════════════════════════════════════════════
+                    RESULT VIEW
+                ═══════════════════════════════════════════════════════════════ */}
+                {currentResult && (
+                    <div className="fixed inset-0 bg-[#0D1A2D] z-50 overflow-y-auto fade-in">
+                        <div className="lvmh-pattern" />
+                        <div className="max-w-2xl mx-auto p-8 relative z-10">
+                            {/* Header */}
+                            <div className="flex justify-between items-center mb-10">
+                                <div>
+                                    <div className="text-subtitle text-[#D4AF37] mb-1">ANALYSE COMPLÈTE</div>
+                                    <h2 className="text-title">Résultat</h2>
+                                </div>
+                                <button onClick={() => setCurrentResult(null)} className="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all">
+                                    <X size={20} />
+                                </button>
                             </div>
 
-                            {currentResult.pilier_4_action_business?.next_best_action && (
-                                <div className="mb-10">
-                                    <div className="text-[10px] text-lvmh-gold uppercase tracking-widest mb-3 font-bold">🚀 Next Best Action</div>
-                                    <div className="glass p-6 border-l-4 border-green-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                                        <div className="font-bold mb-3 text-lg">{currentResult.pilier_4_action_business.next_best_action?.description}</div>
-                                        {currentResult.pilier_4_action_business.next_best_action?.target_products?.length > 0 && (
-                                            <div className="text-sm text-lvmh-gray italic">
-                                                Suggérer : <span className="text-white font-medium italic underline decoration-lvmh-gold/50">{currentResult.pilier_4_action_business.next_best_action.target_products.join(', ')}</span>
-                                            </div>
-                                        )}
+                            {/* Score Card */}
+                            <div className="card border-l-4 border-l-[#D4AF37] mb-6">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-14 h-14 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center">
+                                            <Sparkles size={24} className="text-[#D4AF37]" />
+                                        </div>
+                                        <div>
+                                            <div className="text-subtitle">RÉCOMPENSE</div>
+                                            <div className="text-lg font-medium">+{currentResult.meta_analysis?.quality_score > 0.8 ? 15 : 10} points</div>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="text-3xl font-bold text-[#D4AF37]">
+                                            {Math.round((currentResult.meta_analysis?.quality_score || 0.8) * 100)}%
+                                        </div>
+                                        <div className="text-caption">Qualité</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Feedback */}
+                            <div className="card mb-6">
+                                <div className="text-subtitle mb-2">FEEDBACK IA</div>
+                                <p className="text-body">
+                                    {currentResult.meta_analysis?.advisor_feedback || "Note enregistrée avec succès !"}
+                                </p>
+                            </div>
+
+                            {/* Transcription */}
+                            <div className="card mb-6">
+                                <div className="text-subtitle mb-2">TRANSCRIPTION</div>
+                                <p className="text-body italic bg-white/5 p-4 rounded-lg">
+                                    "{currentResult.processed_text || currentResult.original_text || "..."}"
+                                </p>
+                            </div>
+
+                            {/* Tags */}
+                            {currentResult.pilier_1_univers_produit?.categories && (
+                                <div className="card mb-6">
+                                    <div className="flex items-center gap-2 text-subtitle mb-3">
+                                        <Tag size={14} /> TAGS EXTRAITS
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {currentResult.pilier_1_univers_produit.categories.map(tag => (
+                                            <span key={tag} className="badge">{tag}</span>
+                                        ))}
                                     </div>
                                 </div>
                             )}
 
-                            <button onClick={() => setCurrentResult(null)} className="w-full bg-lvmh-gold text-black font-black py-4 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest">
-                                <CheckCircle size={20} aria-hidden="true" />
-                                Terminer
+                            {/* Next Best Action */}
+                            {currentResult.pilier_4_action_business?.next_best_action && (
+                                <div className="card border-l-4 border-l-green-500 mb-8">
+                                    <div className="flex items-center gap-2 text-subtitle text-green-400 mb-2">
+                                        <Gift size={14} /> ACTION RECOMMANDÉE
+                                    </div>
+                                    <p className="text-body">
+                                        {currentResult.pilier_4_action_business.next_best_action?.description}
+                                    </p>
+                                </div>
+                            )}
+
+                            <button
+                                onClick={() => setCurrentResult(null)}
+                                className="btn-primary w-full flex items-center justify-center gap-2"
+                            >
+                                <CheckCircle size={18} />
+                                Continuer
                             </button>
                         </div>
-                    )}
-                </>
-            )}
-
-            {/* HISTORY VIEW */}
-            {activeView === 'history' && (
-                <div className="flex-1 overflow-y-auto animate-in fade-in">
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <History size={24} className="text-lvmh-gold" />
-                        Historique
-                    </h2>
-                    {loadingHistory ? (
-                        <div className="text-center py-10 text-lvmh-gray">Chargement...</div>
-                    ) : (
-                        <div className="space-y-4">
-                            {history.length > 0 ? history.map(note => (
-                                <div key={note.id} onClick={() => handleViewDetail(note)} className="glass p-4 border-l-2 border-lvmh-gold cursor-pointer hover:bg-white/10 transition-colors">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <span className="font-bold text-white">{note.client}</span>
-                                        <span className="text-xs text-lvmh-gray">{new Date(note.date).toLocaleDateString()}</span>
-                                    </div>
-                                    <p className="text-sm text-gray-400 line-clamp-2 mb-2">"{note.transcription}"</p>
-                                    <div className="flex justify-end">
-                                        <span className="text-xs font-bold text-lvmh-gold">+{note.points} pts</span>
-                                    </div>
-                                </div>
-                            )) : (
-                                <div className="text-center py-10 text-lvmh-gray italic">Aucun enregistrement</div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            )}
-
-            {/* SEARCH VIEW */}
-            {activeView === 'search' && (
-                <div className="flex-1 animate-in fade-in">
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <Search size={24} className="text-lvmh-gold" />
-                        Recherche Client
-                    </h2>
-                    <div className="relative mb-6">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lvmh-gray" size={18} />
-                        <input
-                            type="text"
-                            placeholder="Nom du client..."
-                            className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            autoFocus
-                        />
                     </div>
+                )}
 
-                    {searchingClients ? (
-                        <div className="flex justify-center py-10">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
-                        </div>
-                    ) : (
-                        <div className="space-y-4">
-                            {clientResults.length > 0 ? clientResults.map(client => (
-                                <div key={client.id} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
-                                    <div className="flex justify-between items-center">
-                                        <div>
-                                            <div className="font-bold text-white flex items-center gap-2">
-                                                {client.name}
-                                                {client.vic_status !== 'Standard' && <span className="text-[10px] bg-lvmh-gold text-black px-1 rounded font-black">{client.vic_status}</span>}
-                                            </div>
-                                            <div className="text-xs text-lvmh-gray">{client.total_notes} enregistrements</div>
-                                        </div>
-                                        <button onClick={() => { setActiveView('record'); setSearchQuery(client.name); }} className="text-lvmh-gold text-xs font-bold uppercase hover:underline">
-                                            Nouvelle dictée
-                                        </button>
+                {/* ═══════════════════════════════════════════════════════════════
+                    STATS VIEW - Gamification
+                ═══════════════════════════════════════════════════════════════ */}
+                {activeView === 'stats' && (
+                    <div className="flex-1 fade-in">
+                        <h2 className="text-title mb-8">Vos Statistiques</h2>
+
+                        {/* Level Progress */}
+                        <div className="card mb-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#B8960C] flex items-center justify-center text-[#0D1A2D] text-2xl font-bold">
+                                        {stats.level}
+                                    </div>
+                                    <div>
+                                        <div className="text-xl font-semibold">Niveau {stats.level}</div>
+                                        <div className="text-body">{stats.nextLevel} pts pour le niveau suivant</div>
                                     </div>
                                 </div>
-                            )) : searchQuery.length > 2 && (
-                                <div className="text-center text-lvmh-gray text-sm mt-10">
-                                    Aucun client trouvé pour "{searchQuery}".
+                                <div className="text-right">
+                                    <div className="text-3xl font-bold text-[#D4AF37]">{stats.totalPoints}</div>
+                                    <div className="text-caption">Points totaux</div>
                                 </div>
-                            )}
-
-                            {!searchQuery && (
-                                <div className="text-center text-lvmh-gray text-sm mt-10">
-                                    Entrez un nom pour rechercher dans la base CRM LVMH.
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            )}
-
-            {/* CSV RESULTS VIEW */}
-            {activeView === 'csv' && (
-                <div className="flex-1 overflow-y-auto animate-in fade-in">
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <FileText size={24} className="text-lvmh-gold" />
-                        Résultats CSV
-                    </h2>
-
-                    {/* File Selector */}
-                    <div className="mb-6">
-                        <label className="text-xs text-lvmh-gray uppercase tracking-widest font-bold mb-2 block">Fichier</label>
-                        <select
-                            value={selectedCsv}
-                            onChange={handleCsvSelect}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all appearance-none cursor-pointer"
-                        >
-                            {csvFiles.map(file => (
-                                <option key={file} value={file} className="bg-lvmh-black">{file}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {loadingCsv ? (
-                        <div className="flex justify-center py-10">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
-                        </div>
-                    ) : (
-                        <>
-                            <div className="text-xs text-lvmh-gray mb-4">{csvTotal} résultats</div>
-                            <div className="space-y-3">
-                                {csvData.length > 0 ? csvData.map((row, i) => (
-                                    <div key={i} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <span className="font-bold text-white">{row.id}</span>
-                                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${row.tier === 1 ? 'bg-white/10 text-white' :
-                                                    row.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
-                                                        'bg-red-500/20 text-red-500'
-                                                }`}>
-                                                TIER {row.tier}
-                                            </span>
-                                        </div>
-                                        <div className="flex flex-wrap gap-1 mb-2">
-                                            {(row.tags || []).slice(0, 4).map((tag, ti) => (
-                                                <span key={ti} className="text-[9px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-lvmh-gray uppercase">
-                                                    {tag.replace(/_/g, ' ')}
-                                                </span>
-                                            ))}
-                                            {(row.tags || []).length > 4 && (
-                                                <span className="text-[9px] text-lvmh-gray">+{row.tags.length - 4}</span>
-                                            )}
-                                        </div>
-                                        <div className="flex justify-between items-center text-xs">
-                                            <span className="text-lvmh-gray">{row.budget_range || 'Budget N/A'}</span>
-                                            <span className="text-lvmh-gold font-bold">{Math.round(row.confidence * 100)}%</span>
-                                        </div>
-                                        {row.reasoning && (
-                                            <p className="text-[10px] text-lvmh-gray mt-2 italic line-clamp-2">"{row.reasoning}"</p>
-                                        )}
-                                    </div>
-                                )) : (
-                                    <div className="text-center text-lvmh-gray text-sm py-10 italic">
-                                        Aucun résultat dans ce fichier
-                                    </div>
-                                )}
                             </div>
-                        </>
-                    )}
-                </div>
-            )}
-        </div>
+                            {/* Progress bar */}
+                            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                                <div
+                                    className="h-full bg-gradient-to-r from-[#D4AF37] to-[#E5C45C] rounded-full transition-all duration-500"
+                                    style={{ width: `${((100 - stats.nextLevel) / 100) * 100}%` }}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Stats Grid */}
+                        <div className="grid grid-cols-3 gap-4 mb-8">
+                            <div className="card text-center">
+                                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-green-500/10 flex items-center justify-center">
+                                    <ThumbsUp size={24} className="text-green-400" />
+                                </div>
+                                <div className="text-2xl font-bold">{stats.avgClarity}%</div>
+                                <div className="text-caption">Clarté moyenne</div>
+                            </div>
+                            <div className="card text-center">
+                                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center">
+                                    <Star size={24} className="text-[#D4AF37]" />
+                                </div>
+                                <div className="text-2xl font-bold">{stats.bestNote}%</div>
+                                <div className="text-caption">Meilleure note</div>
+                            </div>
+                            <div className="card text-center">
+                                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                                    <Zap size={24} className="text-purple-400" />
+                                </div>
+                                <div className="text-2xl font-bold">{stats.highQualityNotes}</div>
+                                <div className="text-caption">Notes 80%+</div>
+                            </div>
+                        </div>
+
+                        {/* Achievements */}
+                        <div className="mb-8">
+                            <div className="text-subtitle mb-4">SUCCÈS</div>
+                            <div className="grid grid-cols-2 gap-3">
+                                {achievements.map(ach => (
+                                    <div
+                                        key={ach.id}
+                                        className={`card flex items-center gap-4 ${ach.unlocked ? '' : 'opacity-40'}`}
+                                    >
+                                        <div className={`w-12 h-12 rounded-xl ${ach.unlocked ? 'bg-white/10' : 'bg-white/5'} flex items-center justify-center`}>
+                                            <ach.icon size={22} className={ach.unlocked ? ach.color : 'text-white/30'} />
+                                        </div>
+                                        <div>
+                                            <div className="font-medium flex items-center gap-2">
+                                                {ach.name}
+                                                {ach.unlocked && <CheckCircle size={14} className="text-green-400" />}
+                                            </div>
+                                            <div className="text-caption">{ach.desc}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Leaderboard */}
+                        <div>
+                            <div className="text-subtitle mb-4">CLASSEMENT MAGASIN</div>
+                            <div className="card">
+                                <div className="space-y-2">
+                                    {leaderboard.map((adv, i) => (
+                                        <div
+                                            key={i}
+                                            className={`flex justify-between items-center p-3 rounded-lg transition-all ${adv.isMe
+                                                ? 'bg-[#D4AF37]/10 border border-[#D4AF37]/20'
+                                                : 'hover:bg-white/5'
+                                                }`}
+                                        >
+                                            <span className="flex items-center gap-3">
+                                                <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${i === 0 ? 'bg-[#D4AF37] text-[#0D1A2D]' :
+                                                    i === 1 ? 'bg-gray-400 text-[#0D1A2D]' :
+                                                        i === 2 ? 'bg-amber-700 text-white' :
+                                                            'bg-white/10'
+                                                    }`}>
+                                                    {i + 1}
+                                                </span>
+                                                <span className="font-medium">{adv.id}</span>
+                                                {adv.isMe && <span className="text-[10px] text-[#D4AF37] font-medium px-2 py-0.5 bg-[#D4AF37]/10 rounded">VOUS</span>}
+                                            </span>
+                                            <span className="font-semibold">{adv.score} pts</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+                }
+
+                {/* ═══════════════════════════════════════════════════════════════
+                    HISTORY VIEW - With integrated search
+                ═══════════════════════════════════════════════════════════════ */}
+                {
+                    activeView === 'history' && (
+                        <div className="flex-1 fade-in">
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="text-title">Historique</h2>
+                                <div className="badge">{history.length} notes</div>
+                            </div>
+
+                            {/* Integrated Search */}
+                            <div className="card p-4 mb-6">
+                                <div className="relative">
+                                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#718096]" size={18} />
+                                    <input
+                                        type="text"
+                                        placeholder="Rechercher par client ou contenu..."
+                                        className="input pl-12"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+
+                            {loadingHistory ? (
+                                <div className="flex justify-center py-12">
+                                    <div className="spinner-white" />
+                                </div>
+                            ) : (
+                                <div className="space-y-3">
+                                    {filteredHistory.length > 0 ? filteredHistory.map((note, idx) => (
+                                        <div key={note.id || idx} className="card hover:border-[#D4AF37]/30 transition-all cursor-pointer group">
+                                            <div className="flex items-start gap-4">
+                                                {/* Avatar */}
+                                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D2E4A] to-[#152238] border border-white/10 flex items-center justify-center flex-shrink-0">
+                                                    <User size={18} className="text-white/50" />
+                                                </div>
+
+                                                {/* Content */}
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center justify-between mb-2">
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="font-medium">{note.client || 'Client Inconnu'}</span>
+                                                            {note.vic_status && note.vic_status !== 'Standard' && (
+                                                                <span className="badge text-[10px] py-0.5 bg-[#D4AF37]/10 text-[#D4AF37]">{note.vic_status}</span>
+                                                            )}
+                                                        </div>
+                                                        <span className="text-caption flex items-center gap-1">
+                                                            <Clock size={12} />
+                                                            {new Date(note.date).toLocaleDateString('fr-FR')}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-body line-clamp-2 mb-3">"{note.transcription}"</p>
+
+                                                    {/* Tags & Points */}
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex gap-2">
+                                                            {(note.tags || []).slice(0, 3).map((tag, i) => (
+                                                                <span key={i} className="badge text-[10px] py-0.5">{tag}</span>
+                                                            ))}
+                                                        </div>
+                                                        <span className="text-sm font-semibold text-[#D4AF37] group-hover:scale-110 transition-transform">
+                                                            +{note.points || 10} pts
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )) : searchQuery ? (
+                                        <div className="card text-center py-12">
+                                            <Search size={40} className="mx-auto mb-4 text-white/20" />
+                                            <div className="text-lg font-medium mb-2">Aucun résultat</div>
+                                            <div className="text-body">Aucune note trouvée pour "{searchQuery}"</div>
+                                        </div>
+                                    ) : (
+                                        <div className="card text-center py-12">
+                                            <History size={40} className="mx-auto mb-4 text-white/20" />
+                                            <div className="text-lg font-medium mb-2">Aucun enregistrement</div>
+                                            <div className="text-body">Commencez par créer une note client</div>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    )
+                }
+            </main >
+        </div >
     )
 }

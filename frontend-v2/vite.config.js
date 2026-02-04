@@ -7,12 +7,12 @@ export default defineConfig({
     server: {
         port: 3000,
         proxy: {
-            '/api': 'http://localhost:8001',
+            '/api': 'http://localhost:8000',
             '/ws': {
-                target: 'ws://localhost:8001',
+                target: 'ws://localhost:8000',
                 ws: true
             },
-            '/ingest': 'http://localhost:8001'
+            '/ingest': 'http://localhost:8000'
         }
     }
 })

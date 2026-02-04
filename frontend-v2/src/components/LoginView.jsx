@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { User, Lock, Sparkles, AlertCircle } from 'lucide-react';
+import { User, Lock, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function LoginView() {
     const { login } = useAuth();
@@ -28,70 +28,84 @@ export default function LoginView() {
     };
 
     return (
-        <div className="min-h-screen bg-lvmh-black text-white flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1549488344-c7052fb51f22?q=80&w=2670&auto=format&fit=crop')] bg-cover opacity-20 pointer-events-none"></div>
+        <div className="min-h-screen bg-[#0D1A2D] text-white flex items-center justify-center p-6">
+            {/* LVMH Pattern Background */}
+            <div className="lvmh-pattern" />
 
-            <div className="w-full max-w-md glass p-10 relative z-10 animate-in fade-in zoom-in duration-500">
-                <div className="text-center mb-10">
-                    <h1 className="text-4xl font-didot mb-2">LVMH</h1>
-                    <p className="text-lvmh-gold uppercase tracking-widest text-xs">Excellence Retail & Clienteling</p>
+            <div className="w-full max-w-sm relative z-10 fade-in">
+                {/* Logo */}
+                <div className="text-center mb-12">
+                    <div className="text-4xl font-light tracking-tight mb-2">LVMH</div>
+                    <div className="text-subtitle">CLIENTELING ASSISTANT</div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-lvmh-gray mb-2">Identifiant LVMH</label>
-                        <div className="relative">
-                            <User className="absolute left-4 top-3.5 text-lvmh-gold/50" size={18} />
-                            <input
-                                type="text"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="advisor@lvmh.com"
-                                className="w-full bg-white/5 border border-white/10 rounded-sm py-3 pl-12 pr-4 text-white placeholder-white/20 focus:outline-none focus:border-lvmh-gold transition-colors"
-                            />
+                {/* Login Card */}
+                <div className="card p-8">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        {/* Email */}
+                        <div>
+                            <label className="text-subtitle block mb-2">IDENTIFIANT</label>
+                            <div className="relative">
+                                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-[#718096]" size={18} />
+                                <input
+                                    type="text"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="advisor@lvmh.com"
+                                    className="input pl-12"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-lvmh-gray mb-2">Mot de Passe</label>
-                        <div className="relative">
-                            <Lock className="absolute left-4 top-3.5 text-lvmh-gold/50" size={18} />
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
-                                className="w-full bg-white/5 border border-white/10 rounded-sm py-3 pl-12 pr-4 text-white placeholder-white/20 focus:outline-none focus:border-lvmh-gold transition-colors"
-                            />
+                        {/* Password */}
+                        <div>
+                            <label className="text-subtitle block mb-2">MOT DE PASSE</label>
+                            <div className="relative">
+                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#718096]" size={18} />
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="••••••••"
+                                    className="input pl-12"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    {error && (
-                        <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 p-3 rounded">
-                            <AlertCircle size={16} /> {error}
-                        </div>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full bg-lvmh-gold text-black font-bold py-4 uppercase tracking-widest hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
-                    >
-                        {isLoading ? (
-                            <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-                        ) : (
-                            <>
-                                <Sparkles size={18} /> Connexion
-                            </>
+                        {/* Error */}
+                        {error && (
+                            <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 p-3 rounded-lg fade-in">
+                                <AlertCircle size={16} />
+                                <span>{error}</span>
+                            </div>
                         )}
-                    </button>
 
-                    <div className="text-center text-xs text-lvmh-gray mt-4">
-                        <p>Demo Credentials:</p>
-                        <p>Advisor: advisor@lvmh.com / lvmh</p>
-                        <p>Manager: manager@lvmh.com / lvmh</p>
+                        {/* Submit */}
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="btn-primary w-full flex justify-center items-center gap-2"
+                        >
+                            {isLoading ? (
+                                <div className="spinner" />
+                            ) : (
+                                <>
+                                    Connexion
+                                    <ArrowRight size={18} />
+                                </>
+                            )}
+                        </button>
+                    </form>
+                </div>
+
+                {/* Demo credentials */}
+                <div className="mt-8 text-center">
+                    <p className="text-caption mb-2">Comptes de démonstration</p>
+                    <div className="card inline-block px-4 py-3">
+                        <p className="text-caption"><span className="text-white">advisor@lvmh.com</span> / lvmh</p>
+                        <p className="text-caption"><span className="text-white">manager@lvmh.com</span> / lvmh</p>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );
