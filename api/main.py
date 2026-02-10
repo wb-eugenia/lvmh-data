@@ -59,7 +59,7 @@ app = FastAPI(
 # Dynamic CORS
 ALLOWED_ORIGINS = os.getenv(
     "CORS_ORIGINS",
-    "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173"
+    "http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:3001,http://127.0.0.1:3002,http://127.0.0.1:5173"
 ).split(",")
 
 app.add_middleware(
@@ -133,7 +133,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
 
 # Import and include routers
-from api.routers import analyze, batch, results, stats, transcribe, auth
+from api.routers import analyze, batch, results, stats, transcribe, auth, streaming, feedback, dashboard
 
 app.include_router(analyze.router, prefix="/api", tags=["Analyze"])
 app.include_router(batch.router, prefix="/api", tags=["Batch"])
@@ -141,3 +141,6 @@ app.include_router(results.router, prefix="/api", tags=["Results"])
 app.include_router(stats.router, prefix="/api", tags=["Stats"])
 app.include_router(transcribe.router, prefix="/api", tags=["Transcribe"])
 app.include_router(auth.router, prefix="/api/auth", tags=["Auth"])
+app.include_router(streaming.router, prefix="/api", tags=["Streaming"])
+app.include_router(feedback.router, prefix="/api", tags=["Feedback"])
+app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])

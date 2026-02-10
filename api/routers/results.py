@@ -277,3 +277,88 @@ async def get_result_detail(note_id: int, db: Session = Depends(get_db)):
     return json.loads(note.analysis_json)
 
 
+@router.get("/recordings")
+async def get_all_recordings(
+    db: Session = Depends(get_db),
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+    search: Optional[str] = None,
+    advisor_id: Optional[int] = None,
+    tier: Optional[int] = None
+):
+    """
+    Get all recordings for manager view with full pipeline results.
+    Includes: transcription, tags, RAG products, NBA, advisor info.
+    """
+    query = db.query(Note).join(User).join(Client)
+    
+    # Apply filters
+    if search:
+        query = query.filter(Note.transcription.ilike(f"%{search}%"))
+    
+    if advisor_id:
+        query = query.filter(Note.advisor_id == advisor_id)
+    
+    # Get total count before pagination
+    total = query.count()
+    
+    # Apply pagination
+    notes = query.order_by(Note.timestamp.desc()).offset((page - 1) * limit).limit(limit).all()
+    
+    recordings = []
+    for note in notes:
+        try:
+            analysis = json.loads(note.analysis_json) if note.analysis_json else {}
+            routing = analysis.get('routing', {})
+            extraction = analysis.get('extraction', {})
+            
+            # Filter by tier if specified
+            note_tier = routing.get('tier', 1)
+            if tier and note_tier != tier:
+                continue
+            
+            # Extract tags from pilier 1 categories if tags not present
+            p1 = extraction.get('pilier_1_univers_produit', {})
+            tags = extraction.get('tags', []) or p1.get('categories', [])
+            
+            recordings.append({
+                "id": note.id,
+                "advisor": {
+                    "id": note.advisor.id if note.advisor else None,
+                    "name": note.advisor.full_name if note.advisor else "Inconnu",
+                    "store": note.advisor.store if note.advisor else None
+                },
+                "client": {
+                    "id": note.client.id if note.client else None,
+                    "name": note.client.name if note.client else "Inconnu",
+                    "vic_status": note.client.vic_status if note.client else "Standard"
+                },
+                "timestamp": note.timestamp.isoformat(),
+                "transcription": note.transcription,
+                "points_awarded": note.points_awarded,
+                "tier": note_tier,
+                "confidence": routing.get('confidence', 0),
+                "tags": tags,
+                "pilier_1_univers_produit": p1,
+                "pilier_2_profil_client": extraction.get('pilier_2_profil_client', {}),
+                "pilier_3_hospitalite_care": extraction.get('pilier_3_hospitalite_care', {}),
+                "pilier_4_action_business": extraction.get('pilier_4_action_business', {}),
+                "matched_products": extraction.get('pilier_1_univers_produit', {}).get('matched_products', []),
+                "next_best_action": extraction.get('pilier_4_action_business', {}).get('next_best_action', {}),
+                "rgpd": analysis.get('rgpd', {}),
+                "meta_analysis": extraction.get('meta_analysis', {}),
+                "processing_time_ms": analysis.get('processing_time_ms', 0)
+            })
+        except Exception as e:
+            logger.error(f"Error parsing note {note.id}: {e}")
+            continue
+    
+    return {
+        "recordings": recordings,
+        "total": total,
+        "page": page,
+        "limit": limit,
+        "total_pages": (total + limit - 1) // limit
+    }
+
+

@@ -367,7 +367,7 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
             self.temperature = 0.15
             
         # Robustness Config
-        self.timeout_seconds = 15  # Optimized: was 20s, Mistral is fast enough
+        self.timeout_seconds = 10  # Optimized: was 15s, reduced for faster response
         self.circuit_breaker = {
             'failures': 0,
             'last_failure': None,
@@ -503,7 +503,7 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
         rgpd_flag=False,
         from_cache=False
     ))
-    @retry_with_backoff(retries=2)
+    @retry_with_backoff(retries=1)
     async def extract(self, text: str, language: str = 'FR') -> ExtractionResult:
         """
         Async extraction with Timeout, Circuit Breaker, Caching, and Metrics.
