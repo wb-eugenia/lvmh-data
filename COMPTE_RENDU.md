@@ -306,3 +306,29 @@ Résultat: 19 passed, 1 skipped (UMAP), 2 deselected (integration), 3 warnings (
 $env:RUN_INTEGRATION_TESTS=1; python -m pytest -q -m "integration" -p no:cacheprovider
 ```
 Résultat: 2 passed, 20 deselected, 3 warnings (Swig).
+
+
+---
+
+# Compte Rendu - Metrics & Ops
+
+**Date:** 2026-02-10  
+**Version:** 2.4.3
+
+## Actions r?alis?es (1?6)
+- **Metrics r?elles**: dashboard branch? sur la base (notes), calculs de succ?s, tiers, temps moyen, co?ts estim?s, qualit? via feedback.
+- **ML Router**: feedback persist? en base, endpoint de training bas? sur feedbacks labellis?s (actual tier ou routing_correct).
+- **Semantic Cache**: endpoint de pr?chauffe `/api/dashboard/cache/warm` sur notes r?centes.
+- **Streaming**: SSE connect? au `AsyncPipeline` (progress r?el + r?sultat final).
+- **Feedback**: stockage SQL (`feedback` table) + stats & recent bas?s DB.
+- **Tests**: ajout tests API (dashboard, feedback, data-cleaning, streaming).
+
+## Correctifs compl?mentaires
+- `data-cleaning/preview`: remplacement des NaN par `null` pour compat JSON.
+- `DATABASE_URL` env support?e pour tests/isolations locales.
+
+## Tests ex?cut?s
+```
+python -m pytest -q -m "not integration" -p no:cacheprovider
+```
+R?sultat: **26 passed, 1 skipped (UMAP), 2 deselected**

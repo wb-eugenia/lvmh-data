@@ -199,7 +199,7 @@ async def data_cleaning_preview(file: UploadFile = File(...)):
     return {
         "columns": list(df.columns),
         "row_count": len(df),
-        "sample": df.head(3).to_dict('records')
+        "sample": df.head(3).where(pd.notna(df), None).to_dict('records')
     }
 
 
