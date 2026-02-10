@@ -1,33 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --bg-0: #0b0a09;
+    --bg-1: #11100f;
+    --panel: rgba(255, 255, 255, 0.06);
+    --panel-strong: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.12);
+    --muted: #a69f96;
+    --gold: #d4af37;
+    --gold-soft: #f5e0a3;
+}
+
 body {
-    background-color: #1A1A1A;
-    color: white;
+    background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(212, 175, 55, 0.18), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(255, 255, 255, 0.06), transparent 60%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+    color: #f3eee6;
     margin: 0;
-    font-family: Inter, system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
+    letter-spacing: 0.01em;
 }
 
 .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--panel);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
     border-radius: 1rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 .gold-text {
-    background: linear-gradient(to right, #D4AF37, #F5E0A3);
+    background: linear-gradient(120deg, var(--gold), var(--gold-soft));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+.data-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.data-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
 }
 
 .btn-record {
     width: 8rem;
     height: 8rem;
     border-radius: 9999px;
-    background: linear-gradient(to bottom right, #D4AF37, #B8860B);
+    background: linear-gradient(to bottom right, #d4af37, #b8860b);
     border: 8px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;

@@ -273,3 +273,36 @@ Resultat: 2 passed, 20 deselected, 3 warnings (Swig).
   - Semantic cache: entries_count=94, misses=4
 - Incidents: timeouts Mistral observes sur certaines notes (retry + reprise OK)
 - Note Windows: sans `PYTHONIOENCODING=utf-8`, `print` emoji cause `UnicodeEncodeError`.
+
+---
+
+# Compte Rendu - UI & Lisibilité
+
+**Date:** 2026-02-10  
+**Version:** 2.4.2
+
+## UI / Lisibilité
+- ManagerView: correction du rendu Enregistrements (ternaires, vue liste/détail), labels normalisés, RGPD/NBA/RAG clarifiés, séparateur conseiller.
+- AdvisorView: refonte du modal "Expertise IA" (synthèse, KPIs, piliers, RAG, NBA) pour lecture plus directe.
+- Typo/branding: headings Landing/Login alignés sur `font-display`, import des polices (Manrope/Playfair/JetBrains).
+- Build frontend: correction du libellé "← Retour à la liste" (évite l'erreur JSX).
+- Build bundle: découpage des chunks Vite (react/motion/icons/charts/confetti) pour réduire la taille du bundle principal.
+
+## Correctifs tests
+- `tests/test_embedding_viz.py`: DummyModel déterministe (hash -> RNG) pour stabiliser le test de cache.
+
+## Tests exécutés
+```
+npm run build
+```
+Résultat: OK (chunks séparés, plus d'avertissement de taille).
+
+```
+python -m pytest -q -m "not integration" -p no:cacheprovider
+```
+Résultat: 19 passed, 1 skipped (UMAP), 2 deselected (integration), 3 warnings (Swig).
+
+```
+$env:RUN_INTEGRATION_TESTS=1; python -m pytest -q -m "integration" -p no:cacheprovider
+```
+Résultat: 2 passed, 20 deselected, 3 warnings (Swig).

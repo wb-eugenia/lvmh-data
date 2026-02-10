@@ -19,7 +19,10 @@ module.exports = {
                 junior: '#CD7F32',
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                sans: ['Manrope', 'system-ui', 'sans-serif'],
+                display: ['"Playfair Display"', 'serif'],
+                didot: ['"Playfair Display"', 'serif'],
+                mono: ['"JetBrains Mono"', 'monospace'],
             },
         },
     },

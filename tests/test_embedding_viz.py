@@ -3,13 +3,20 @@ import pandas as pd
 import numpy as np
 import os
 import shutil
+import hashlib
 from src.embedding_viz import EmbeddingVisualizer
 from src.embedding_cache import EmbeddingCache
 
 # Simple dummy encoder to avoid downloading models during tests
 class DummyModel:
     def encode(self, texts, show_progress_bar=False, batch_size=32):
-        return np.random.rand(len(texts), 384)
+        embeddings = []
+        for text in texts:
+            digest = hashlib.md5(str(text).encode("utf-8")).digest()
+            seed = int.from_bytes(digest[:4], "little")
+            rng = np.random.default_rng(seed)
+            embeddings.append(rng.random(384))
+        return np.vstack(embeddings)
 
 # Setup fixture for temporary cache
 @pytest.fixture

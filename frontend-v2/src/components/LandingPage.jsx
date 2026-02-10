@@ -5,7 +5,7 @@ export default function LandingPage({ onNavigate }) {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-6">
             <div className="text-center mb-12">
-                <h1 className="text-gold-text text-4xl font-bold mb-2">LVMH VOICE-TO-TAG</h1>
+                <h1 className="gold-text text-4xl font-display font-bold mb-2">LVMH VOICE-TO-TAG</h1>
                 <p className="text-lvmh-gray uppercase tracking-widest text-sm">Intelligence Artificielle Native</p>
             </div>
 

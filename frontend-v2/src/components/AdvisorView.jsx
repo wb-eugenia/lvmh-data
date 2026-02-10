@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText } from 'lucide-react'
+import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ShoppingBag, Lightbulb } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import confetti from 'canvas-confetti'
 
@@ -25,6 +25,36 @@ export default function AdvisorView({ onBack }) {
     const [selectedCsv, setSelectedCsv] = useState('')
     const [loadingCsv, setLoadingCsv] = useState(false)
     const [csvTotal, setCsvTotal] = useState(0)
+
+    const formatPercent = (value) => {
+        if (value === null || value === undefined || Number.isNaN(value)) return '—'
+        const normalized = value <= 1 ? value * 100 : value
+        return `${Math.round(normalized)}%`
+    }
+
+    const formatCurrency = (value) => {
+        if (value === null || value === undefined || Number.isNaN(value)) return '—'
+        try {
+            return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)
+        } catch {
+            return `${value}€`
+        }
+    }
+
+    const resultId = currentResult?.ID || currentResult?.id || 'Client'
+    const resultRouting = currentResult?.routing || {}
+    const resultRgpd = currentResult?.rgpd || {}
+    const resultMeta = currentResult?.meta_analysis || {}
+    const resultP1 = currentResult?.pilier_1_univers_produit || {}
+    const resultP2 = currentResult?.pilier_2_profil_client || {}
+    const resultP3 = currentResult?.pilier_3_hospitalite_care || {}
+    const resultP4 = currentResult?.pilier_4_action_business || {}
+    const resultTags = currentResult?.tags || []
+    const resultAllergies = [
+        ...(resultP3?.allergies?.food || []),
+        ...(resultP3?.allergies?.contact || [])
+    ]
+    const vipStatus = currentResult?.extraction?.vip_status || resultP2?.purchase_context?.behavior
 
     // WebSocket for real-time pipeline visualization
     useEffect(() => {
@@ -428,68 +458,253 @@ export default function AdvisorView({ onBack }) {
                         </div>
                     ) : (
                         <div className="fixed inset-0 bg-lvmh-black z-50 p-6 overflow-y-auto animate-in slide-in-from-bottom duration-500">
-                            {/* RESULT MODAL (Same as before) */}
-                            <div className="flex justify-between items-center mb-8">
-                                <h2 className="gold-text text-3xl font-bold">Expertise IA</h2>
+                            <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
+                                <div>
+                                    <h2 className="gold-text text-3xl font-display font-black">Expertise IA</h2>
+                                    <p className="text-sm text-lvmh-gray">Synthèse client et recommandations</p>
+                                </div>
                                 <button onClick={() => setCurrentResult(null)} className="p-2"><X size={32} /></button>
                             </div>
 
                             <div className="glass p-5 border-l-4 border-lvmh-gold mb-8 bg-lvmh-gold/5">
-                                <div className="text-xs text-lvmh-gold font-bold mb-1 uppercase tracking-widest">Récompense</div>
-                                <div className="text-lg font-bold leading-tight">{currentResult.meta_analysis?.advisor_feedback || "Note traitée !"}</div>
+                                <div className="data-label">Récompense</div>
+                                <div className="text-lg font-bold leading-tight">{resultMeta?.advisor_feedback || "Note traitée !"}</div>
                             </div>
 
-
-                            <div className="mb-8">
-                                <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-2 font-bold">Transcription</div>
-                                <div className="glass p-4 text-sm text-lvmh-gray italic">
-                                    "{currentResult.processed_text || currentResult.original_text || "..."}"
-                                </div>
-                            </div>
-
-                            <div className="mb-10">
-                                <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-2 font-bold">Profil Extrait</div>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="text-2xl font-bold">{currentResult.ID}</span>
-                                    <span className="bg-lvmh-gold text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg">VIP</span>
-                                </div>
-
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {currentResult.pilier_1_univers_produit?.categories?.map(tag => (
-                                        <span key={tag} className="bg-white/10 px-3 py-1 rounded-full text-xs font-medium border border-white/5">{tag}</span>
-                                    ))}
-                                </div>
-
-                                {currentResult.pilier_1_univers_produit?.matched_products?.length > 0 && (
-                                    <div className="mb-0">
-                                        <div className="text-[10px] text-lvmh-gray uppercase tracking-widest mb-3 font-bold">🛍️ Produits Catalogués</div>
-                                        <div className="flex gap-3 overflow-x-auto pb-4">
-                                            {currentResult.pilier_1_univers_produit.matched_products.map((prod, pi) => (
-                                                <div key={pi} className="flex-shrink-0 w-32 glass p-3 border-lvmh-gold/20">
-                                                    <div className="text-[10px] font-black text-lvmh-gold mb-1 truncate">{prod.name || prod.ID}</div>
-                                                    <div className="text-[9px] text-lvmh-gray uppercase tracking-tighter">{prod.category}</div>
-                                                </div>
-                                            ))}
+                            <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
+                                <div className="glass p-6 border-l-4 border-lvmh-gold">
+                                    <div className="flex flex-wrap items-start justify-between gap-4">
+                                        <div>
+                                            <div className="data-label">Client</div>
+                                            <div className="text-2xl font-display gold-text">{resultId}</div>
+                                            <div className="mt-2 flex flex-wrap gap-2">
+                                                {vipStatus && (
+                                                    <span className="text-[10px] px-2 py-1 rounded-full bg-lvmh-gold/20 text-lvmh-gold">
+                                                        {String(vipStatus).toUpperCase()}
+                                                    </span>
+                                                )}
+                                                <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-lvmh-gray">
+                                                    Tier {resultRouting.tier || '—'}
+                                                </span>
+                                                <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-lvmh-gray">
+                                                    Confiance {formatPercent(resultRouting.confidence ?? currentResult?.confidence)}
+                                                </span>
+                                                {currentResult?.cache_hit && (
+                                                    <span className="text-[10px] px-2 py-1 rounded-full bg-green-500/20 text-green-300">
+                                                        Cache
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="data-label">Modèle</div>
+                                            <div className="text-sm font-semibold">{currentResult?.model_used || '—'}</div>
+                                            <div className="text-xs text-lvmh-gray">Traitement {Math.round(currentResult?.processing_time_ms || 0)}ms</div>
                                         </div>
                                     </div>
-                                )}
+
+                                    <div className="mt-6">
+                                        <div className="data-label">Transcription</div>
+                                        <div className="bg-white/5 p-4 rounded-lg text-sm leading-relaxed">
+                                            "{currentResult?.processed_text || currentResult?.original_text || "..."}"
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-6">
+                                        <div className="data-label">Tags</div>
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {resultTags.length ? (
+                                                <>
+                                                    {resultTags.slice(0, 12).map((tag, i) => (
+                                                        <span key={i} className="text-xs bg-lvmh-gold/15 text-lvmh-gold px-2 py-1 rounded-full">
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                    {resultTags.length > 12 && (
+                                                        <span className="text-xs text-lvmh-gray">+{resultTags.length - 12}</span>
+                                                    )}
+                                                </>
+                                            ) : (
+                                                <span className="text-xs text-lvmh-gray">Aucun tag</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="glass p-4">
+                                            <div className="data-label">Qualité</div>
+                                            <div className="text-xl font-semibold">{formatPercent(resultMeta?.quality_score)}</div>
+                                            <div className="text-xs text-lvmh-gray">
+                                                Confiance {formatPercent(resultRouting.confidence ?? currentResult?.confidence)}
+                                            </div>
+                                        </div>
+                                        <div className="glass p-4">
+                                            <div className="data-label">Budget</div>
+                                            <div className="text-lg font-semibold">{resultP4?.budget_potential || 'N/A'}</div>
+                                            <div className="text-xs text-lvmh-gray">
+                                                {resultP4?.budget_specific ? formatCurrency(resultP4.budget_specific) : 'Budget spécifique N/A'}
+                                            </div>
+                                        </div>
+                                        <div className="glass p-4">
+                                            <div className="data-label">RGPD</div>
+                                            <div className={`text-sm font-semibold ${resultRgpd?.contains_sensitive ? 'text-red-400' : 'text-green-400'}`}>
+                                                {resultRgpd?.contains_sensitive ? 'Sensibles détectées' : 'Conforme'}
+                                            </div>
+                                            <div className="text-xs text-lvmh-gray">
+                                                {resultRgpd?.categories_detected?.length ? resultRgpd.categories_detected.join(', ') : 'Aucune catégorie'}
+                                            </div>
+                                        </div>
+                                        <div className="glass p-4">
+                                            <div className="data-label">Traitement</div>
+                                            <div className="text-lg font-semibold">{Math.round(currentResult?.processing_time_ms || 0)}ms</div>
+                                            <div className="text-xs text-lvmh-gray">
+                                                {currentResult?.model_used || 'Modèle inconnu'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            {currentResult.pilier_4_action_business?.next_best_action && (
-                                <div className="mb-10">
-                                    <div className="text-[10px] text-lvmh-gold uppercase tracking-widest mb-3 font-bold">🚀 Next Best Action</div>
-                                    <div className="glass p-6 border-l-4 border-green-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                                        <div className="font-bold mb-3 text-lg">{currentResult.pilier_4_action_business.next_best_action?.description}</div>
-                                        {currentResult.pilier_4_action_business.next_best_action?.target_products?.length > 0 && (
-                                            <div className="text-sm text-lvmh-gray italic">
-                                                Suggérer : <span className="text-white font-medium italic underline decoration-lvmh-gold/50">{currentResult.pilier_4_action_business.next_best_action.target_products.join(', ')}</span>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+                                <div className="glass p-6">
+                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 1 - Univers Produit</h4>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <div className="data-label">Catégories</div>
+                                            <div className="mt-2 flex flex-wrap gap-2">
+                                                {(resultP1.categories || []).length ? resultP1.categories.map((cat, i) => (
+                                                    <span key={i} className="text-xs bg-white/10 px-2 py-1 rounded">{cat}</span>
+                                                )) : <span className="text-xs text-lvmh-gray">N/A</span>}
                                             </div>
-                                        )}
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Produits mentionnés</div>
+                                            <div className="mt-2 text-sm text-lvmh-gray">{(resultP1.produits_mentionnes || []).join(', ') || 'N/A'}</div>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <div className="data-label">Couleurs</div>
+                                                <div className="text-sm text-lvmh-gray">{(resultP1.preferences?.colors || []).join(', ') || 'N/A'}</div>
+                                            </div>
+                                            <div>
+                                                <div className="data-label">Matières</div>
+                                                <div className="text-sm text-lvmh-gray">{(resultP1.preferences?.materials || []).join(', ') || 'N/A'}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass p-6">
+                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 2 - Profil Client</h4>
+                                    <div className="space-y-3 text-sm">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <div className="data-label">Type d'achat</div>
+                                                <div className="text-sm text-lvmh-gray">{resultP2?.purchase_context?.type || 'N/A'}</div>
+                                            </div>
+                                            <div>
+                                                <div className="data-label">Comportement</div>
+                                                <div className="text-sm text-lvmh-gray">{resultP2?.purchase_context?.behavior || 'N/A'}</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Profession</div>
+                                            <div className="text-sm text-lvmh-gray">{resultP2?.profession?.sector || resultP2?.profession?.status || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Lifestyle</div>
+                                            <div className="text-sm text-lvmh-gray">{resultP2?.lifestyle?.family || 'N/A'}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass p-6">
+                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 3 - Hospitalité & Care</h4>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <div className="data-label">Allergies</div>
+                                            <div className={`text-sm ${resultAllergies.length ? 'text-red-400' : 'text-green-400'}`}>
+                                                {resultAllergies.length ? resultAllergies.join(', ') : 'Aucune détectée'}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Régime</div>
+                                            <div className="text-sm text-lvmh-gray">{(resultP3?.diet || []).join(', ') || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Occasion</div>
+                                            <div className="text-sm text-lvmh-gray">{resultP3?.occasion || 'N/A'}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass p-6">
+                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 4 - Action Business</h4>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <div className="data-label">Budget</div>
+                                            <div className="text-sm text-lvmh-gray">{resultP4?.budget_potential || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Urgence</div>
+                                            <div className="text-sm text-lvmh-gray">{resultP4?.urgency || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div className="data-label">Température du lead</div>
+                                            <div className="text-sm text-lvmh-gray">{resultP4?.lead_temperature || 'N/A'}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {resultP1?.matched_products?.length > 0 && (
+                                <div className="glass p-6 mt-6">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <ShoppingBag size={20} className="text-lvmh-gold" />
+                                        <h4 className="font-display font-bold">Produits recommandés (RAG)</h4>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        {resultP1.matched_products.map((product, i) => (
+                                            <div key={i} className="bg-white/5 p-4 rounded-lg border border-white/10">
+                                                <div className="font-bold text-lvmh-gold mb-1">{product.name || product.ID}</div>
+                                                <div className="text-xs text-lvmh-gray uppercase">{product.category || 'Catégorie'}</div>
+                                                {product.description && (
+                                                    <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
+                                                )}
+                                                {product.match_score && (
+                                                    <div className="text-[10px] text-lvmh-gray mt-3">Score {Math.round(product.match_score * 100)}%</div>
+                                                )}
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             )}
 
-                            <button onClick={() => setCurrentResult(null)} className="w-full bg-lvmh-gold text-black font-black py-4 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest">
+                            {resultP4?.next_best_action && (
+                                <div className="glass p-6 border-l-4 border-green-500 mt-6">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <Lightbulb size={20} className="text-green-500" />
+                                        <h4 className="font-display font-bold">Next Best Action</h4>
+                                    </div>
+                                    <p className="text-sm mb-4">{resultP4.next_best_action.description || 'Action recommandée'}</p>
+                                    {resultP4.next_best_action.target_products?.length > 0 && (
+                                        <div>
+                                            <div className="data-label mb-2">Produits suggérés</div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {resultP4.next_best_action.target_products.map((p, i) => (
+                                                    <span key={i} className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
+                                                        {p}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            <button onClick={() => setCurrentResult(null)} className="w-full bg-lvmh-gold text-black font-black py-4 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6">
                                 <CheckCircle size={20} aria-hidden="true" />
                                 Terminer
                             </button>

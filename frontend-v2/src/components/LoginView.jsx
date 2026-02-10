@@ -33,7 +33,7 @@ export default function LoginView() {
 
             <div className="w-full max-w-md glass p-10 relative z-10 animate-in fade-in zoom-in duration-500">
                 <div className="text-center mb-10">
-                    <h1 className="text-4xl font-didot mb-2">LVMH</h1>
+                    <h1 className="text-4xl font-display mb-2">LVMH</h1>
                     <p className="text-lvmh-gold uppercase tracking-widest text-xs">Excellence Retail & Clienteling</p>
                 </div>
 
