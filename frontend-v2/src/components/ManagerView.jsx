@@ -6,6 +6,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recha
 export default function ManagerView({ onBack }) {
     const [currentTab, setCurrentTab] = useState('overview')
     const [stats, setStats] = useState({ total_notes: 0, avg_quality: 0, tier_distribution: { 1: 0, 2: 0, 3: 0 } })
+    const [dashboardMetrics, setDashboardMetrics] = useState(null)
+    const [dashboardSummary, setDashboardSummary] = useState(null)
     const [leaderboard, setLeaderboard] = useState([])
     const [history, setHistory] = useState([])
     const [rgpdStats, setRgpdStats] = useState(null)
@@ -55,6 +57,22 @@ export default function ManagerView({ onBack }) {
     const formatDateTime = (value) => {
         if (!value) return '—'
         return new Date(value).toLocaleString('fr-FR')
+    }
+
+    const normalizeTierDistribution = (dist) => {
+        if (!dist) return { 1: 0, 2: 0, 3: 0 }
+        if (typeof dist.tier1 !== 'undefined' || typeof dist.tier2 !== 'undefined' || typeof dist.tier3 !== 'undefined') {
+            return {
+                1: dist.tier1 || 0,
+                2: dist.tier2 || 0,
+                3: dist.tier3 || 0
+            }
+        }
+        return {
+            1: dist[1] || 0,
+            2: dist[2] || 0,
+            3: dist[3] || 0
+        }
     }
 
     const tabs = [
@@ -265,27 +283,58 @@ export default function ManagerView({ onBack }) {
     const fetchData = async () => {
         try {
             const sRes = await fetch('/api/stats/overview')
-            setStats(await sRes.json())
+            if (sRes.ok) {
+                setStats(await sRes.json())
+            }
 
             const lRes = await fetch('/api/leaderboard')
-            setLeaderboard(await lRes.json())
+            if (lRes.ok) {
+                setLeaderboard(await lRes.json())
+            }
 
             const hRes = await fetch('/api/search?q=')
-            const hData = await hRes.json()
-            setHistory(hData.results || [])
+            if (hRes.ok) {
+                const hData = await hRes.json()
+                setHistory(hData.results || [])
+            }
 
             const rRes = await fetch('/api/stats/rgpd')
-            setRgpdStats(await rRes.json())
+            if (rRes.ok) {
+                setRgpdStats(await rRes.json())
+            }
 
             const cRes = await fetch('/api/stats/cost')
-            setCostStats(await cRes.json())
+            if (cRes.ok) {
+                setCostStats(await cRes.json())
+            }
+
+            const dRes = await fetch('/api/dashboard/metrics')
+            if (dRes.ok) {
+                setDashboardMetrics(await dRes.json())
+            }
+
+            const dsRes = await fetch('/api/dashboard/metrics/summary')
+            if (dsRes.ok) {
+                setDashboardSummary(await dsRes.json())
+            }
         } catch (e) { console.error(e) }
     }
 
+    const pipelineStats = dashboardMetrics?.pipeline_stats || {}
+    const qualityStats = dashboardMetrics?.quality_metrics || {}
+    const mergedCostStats = dashboardMetrics?.cost_stats || costStats
+    const tierDistribution = normalizeTierDistribution(pipelineStats?.tier_distribution || stats?.tier_distribution)
+    const processedToday = dashboardSummary?.summary?.processed_today
+    const notesPerAdvisor = processedToday && leaderboard?.length ? (processedToday / leaderboard.length).toFixed(1) : '—'
+    const avgQuality = qualityStats?.accuracy_rate ?? stats?.avg_quality ?? 0
+    const totalCost = mergedCostStats?.total_cost_eur ?? mergedCostStats?.total_cost ?? 0
+    const costPerNote = mergedCostStats?.cost_per_note ?? mergedCostStats?.roi_metrics?.cost_per_note ?? 0
+    const savingsRate = mergedCostStats?.roi_metrics?.savings || '—'
+
     const chartData = [
-        { name: 'Tier 1', value: stats?.tier_distribution?.[1] || 0, color: '#888888' },
-        { name: 'Tier 2', value: stats?.tier_distribution?.[2] || 0, color: '#D4AF37' },
-        { name: 'Tier 3', value: stats?.tier_distribution?.[3] || 0, color: '#FF5252' }
+        { name: 'Tier 1', value: tierDistribution?.[1] || 0, color: '#888888' },
+        { name: 'Tier 2', value: tierDistribution?.[2] || 0, color: '#D4AF37' },
+        { name: 'Tier 3', value: tierDistribution?.[3] || 0, color: '#FF5252' }
     ]
 
     const selectedP1 = selectedRecording?.pilier_1_univers_produit || {}
@@ -742,10 +791,10 @@ export default function ManagerView({ onBack }) {
                     <div className="space-y-10 animate-in fade-in duration-500">
                         {/* KPI Cards */}
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            <KPICard title="Notes Totales" value={stats?.total_notes || 0} trend="+12% vs hier" />
-                            <KPICard title="Qualité Moyenne" value={`${stats?.avg_quality || 0}%`} trend="Mode: Expert 🌟" gold />
+                            <KPICard title="Notes Totales" value={pipelineStats?.total_processed ?? stats?.total_notes ?? 0} trend={`Aujourd'hui: ${processedToday ?? 0}`} />
+                            <KPICard title="Qualité Moyenne" value={`${Math.round(avgQuality || 0)}%`} trend="Mode: Expert 🌟" gold />
                             <KPICard title="Alertes VIP" value={history?.filter(x => x?.tier === 3)?.length || 0} trend="À traiter urgent" red />
-                            <KPICard title="Notes/CA/Jour" value="4.7" trend="Cible: 5.0 🚀" />
+                            <KPICard title="Notes/CA/Jour" value={notesPerAdvisor} trend="Cible: 5.0 🚀" />
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -875,16 +924,16 @@ export default function ManagerView({ onBack }) {
                                 <div className="space-y-6">
                                     <div>
                                         <div className="text-xs text-lvmh-gray uppercase mb-1">Coût Total Cloud (Est.)</div>
-                                        <div className="text-3xl font-display font-black">${costStats?.total_cost || 0}</div>
+                                        <div className="text-3xl font-display font-black">{formatCurrency(totalCost)}</div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="bg-white/5 p-4 rounded-lg">
                                             <div className="text-[10px] text-lvmh-gray uppercase">Economies</div>
-                                            <div className="text-lg font-bold text-green-500">{costStats?.roi_metrics?.savings || "0%"}</div>
+                                            <div className="text-lg font-bold text-green-500">{savingsRate}</div>
                                         </div>
                                         <div className="bg-white/5 p-4 rounded-lg">
                                             <div className="text-[10px] text-lvmh-gray uppercase">Coût / Note</div>
-                                            <div className="text-lg font-bold">${costStats?.roi_metrics?.cost_per_note || 0}</div>
+                                            <div className="text-lg font-bold">{formatCurrency(costPerNote)}</div>
                                         </div>
                                     </div>
                                 </div>

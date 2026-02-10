@@ -41,6 +41,11 @@ export default function AdvisorView({ onBack }) {
         }
     }
 
+    const normalizeScore = (value) => {
+        if (value === null || value === undefined || Number.isNaN(value)) return 0
+        return value <= 1 ? value * 100 : value
+    }
+
     const resultId = currentResult?.ID || currentResult?.id || 'Client'
     const resultRouting = currentResult?.routing || {}
     const resultRgpd = currentResult?.rgpd || {}
@@ -302,11 +307,12 @@ export default function AdvisorView({ onBack }) {
             setCurrentResult(data)
 
             // Refresh leaderboard to update score locally (optimistic or re-fetch)
-            const newScore = (user.points || user.score || 0) + (data.meta_analysis?.quality_score > 0.8 ? 15 : 10)
+            const qualityScore = normalizeScore(data.meta_analysis?.quality_score || 0)
+            const newScore = (user.points || user.score || 0) + (qualityScore >= 80 ? 15 : 10)
             updateUser({ score: newScore, points: newScore })
             // fetchLeaderboard will run via useEffect dependency on `user`
 
-            if (data.meta_analysis?.quality_score >= 80) {
+            if (qualityScore >= 80) {
                 confetti({
                     particleCount: 150,
                     spread: 70,
