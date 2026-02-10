@@ -36,6 +36,15 @@ output/*.xlsx
 output/*.json
 !output/.gitkeep
 
+# Runtime caches / local data
+cache/
+tests/temp_cache/
+tests/temp_cache_debug/
+*.db
+*.sqlite
+*.sqlite3
+cleaned_*.csv
+
 # Auto Claude (Antigravity)
 .auto-claude/
 .auto-claude-security.json
