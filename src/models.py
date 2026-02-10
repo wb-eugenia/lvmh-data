@@ -19,8 +19,9 @@ class ProductPreferences(BaseModel):
 
 class Pilier1Product(BaseModel):
     categories: List[str] = Field(default_factory=list, description="Leather_Goods, Handbag_Main...")
+    produits_mentionnes: List[str] = Field(default_factory=list, description="LV Products mentioned by name")
     usage: List[str] = Field(default_factory=list, description="Professional, Travel...")
-    preferences: ProductPreferences = Field(default_factory=dict)
+    preferences: ProductPreferences = Field(default_factory=ProductPreferences)
     
     # RAG Enrichment (New!)
     matched_products: List[Dict[str, Any]] = Field(default_factory=list, description="SKUs identified via Vector Search")
@@ -42,9 +43,9 @@ class Lifestyle(BaseModel):
     family: Optional[str] = Field("Unknown")
 
 class Pilier2Client(BaseModel):
-    purchase_context: PurchaseContext = Field(default_factory=dict)
-    profession: Profession = Field(default_factory=dict)
-    lifestyle: Lifestyle = Field(default_factory=dict)
+    purchase_context: PurchaseContext = Field(default_factory=PurchaseContext)
+    profession: Profession = Field(default_factory=Profession)
+    lifestyle: Lifestyle = Field(default_factory=Lifestyle)
 
 # ==========================================
 # PILIER 3: HOSPITALITE & CARE
@@ -56,7 +57,7 @@ class Allergies(BaseModel):
 
 class Pilier3Care(BaseModel):
     diet: List[str] = Field(default_factory=list)
-    allergies: Allergies = Field(default_factory=dict)
+    allergies: Allergies = Field(default_factory=Allergies)
     values: List[str] = Field(default_factory=list)
     occasion: Optional[str] = Field(None)
 
@@ -75,6 +76,7 @@ class Pilier4Business(BaseModel):
     lead_temperature: Optional[str] = Field("Warm")
     next_best_action: Optional[NextBestAction] = Field(None)
     budget_potential: Optional[str] = Field(None)
+    budget_specific: Optional[int] = Field(None, description="Exact budget amount in EUR")
     urgency: Optional[str] = Field(None)
 
 # ==========================================
@@ -88,6 +90,7 @@ class MetaAnalysis(BaseModel):
     
     # Gamification
     quality_score: float = Field(0.0, description="0-100 score for data richness")
+    completeness_score: float = Field(0.0, description="0-100 score for data completeness")
     advisor_feedback: Optional[str] = Field(None, description="Gamified feedback for the advisor")
 
 class ExtractionResult(BaseModel):

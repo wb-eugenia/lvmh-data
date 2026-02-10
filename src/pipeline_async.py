@@ -32,13 +32,14 @@ from config.production import settings
 from src.models import PipelineOutput, RoutingDecision, ExtractionResult, RGPDResult
 from src.smart_router import SmartRouterV2
 from src.tier1_rules import Tier1RulesEngine
-from src.tier1_rules import Tier1RulesEngine
 from src.tier2_mistral import Tier2Mistral
 from src.extractor import TagExtractor
 from src.text_cleaner import MultilingualTextCleaner, HAS_EMBEDDINGS
 from src.cache_manager import CacheManager
 from src.dlq_manager import DeadLetterQueue
 from src.resilience import safe_execution
+from src.semantic_cache import SemanticCache
+from src.cross_validator import CrossValidator
 
 # Configure logging
 logging.basicConfig(
@@ -53,14 +54,18 @@ class AsyncPipeline:
     Production-ready Async Pipeline.
     """
     
-    def __init__(self, use_cache: bool = True):
+    def __init__(self, use_cache: bool = True, use_semantic_cache: bool = True, use_cross_validation: bool = True):
         self.router = SmartRouterV2()
         self.tier1 = Tier1RulesEngine()
         self.tier2 = Tier2Mistral()
         self.tier3 = TagExtractor()
         self.cleaner = MultilingualTextCleaner(use_embeddings=False) # Keep it light by default
         
+        # Caching systems
         self.cache = CacheManager() if use_cache else None
+        self.semantic_cache = SemanticCache() if use_semantic_cache and HAS_EMBEDDINGS else None
+        self.cross_validator = CrossValidator() if use_cross_validation else None
+        
         self.dlq = DeadLetterQueue()
         
         # Concurrency control
@@ -76,6 +81,8 @@ class AsyncPipeline:
             'tier1': 0,
             'tier2': 0,
             'tier3': 0,
+            'semantic_cache_hits': 0,
+            'cross_validated': 0,
             'start_time': None
         }
 
@@ -109,7 +116,7 @@ class AsyncPipeline:
             logger.info(f"Summary: Cleaned text: '{text}' (saved {tokens_saved} tokens)")
             
             try:
-                # 1. Check Cache
+                # 1. Check Exact Match Cache
                 if self.cache:
                     cached_data = self.cache.load(self.cache.get_cache_key(text, 'pipeline_v3'), 'pipeline_v3')
                     if cached_data:
@@ -117,8 +124,18 @@ class AsyncPipeline:
                         await safe_progress({"step": "done"})
                         # Reconstruct PipelineOutput from dict
                         return PipelineOutput(**cached_data)
+                
+                # 2. Check Semantic Cache (similarity-based)
+                if self.semantic_cache:
+                    semantic_result = self.semantic_cache.get(text, language)
+                    if semantic_result:
+                        await safe_progress({"step": "semantic_cache_hit", "similarity": semantic_result.get('_cache_metadata', {}).get('similarity', 0)})
+                        await safe_progress({"step": "done"})
+                        self.stats['semantic_cache_hits'] += 1
+                        # Convert dict back to PipelineOutput
+                        return PipelineOutput(**semantic_result)
 
-                # 2. Routing (Use ML Router)
+                # 3. Routing (Use ML Router)
                 decision = self.router.route_ml(text, language, note)
                 await safe_progress({
                     "step": "routing", 
@@ -128,48 +145,100 @@ class AsyncPipeline:
                     "engine": "Machine Learning" if any("ML" in r for r in decision.reasons) else "Heuristic Engine"
                 })
                 
-                # 4. Extraction
-                extraction_result = None
+                # 4. Extraction with Cross-Validation
+                tier_results = {}
+                tier_confidences = {}
                 
-                if decision.tier == 1:
-                    extraction_result = self.tier1.extract(text, language)
-                    self.stats['tier1'] += 1
-                    
-                elif decision.tier == 2:
+                # Always run Tier 1 for baseline (fast, cheap)
+                await safe_progress({"step": "tier1_extraction"})
+                tier1_result = self.tier1.extract(text, language)
+                if tier1_result:
+                    tier_results[1] = tier1_result.model_dump() if hasattr(tier1_result, 'model_dump') else tier1_result
+                    tier_confidences[1] = getattr(tier1_result, 'confidence', 0.7)
+                self.stats['tier1'] += 1
+                
+                # Run Tier 2 if routed
+                if decision.tier >= 2:
+                    await safe_progress({"step": "tier2_extraction"})
                     async with self.ollama_semaphore:
-                        extraction_result = await self.tier2.extract(text, language)
+                        tier2_result = await self.tier2.extract(text, language)
                     
-                    # Safety Fallback
-                    client_status = getattr(extraction_result.pilier_2_profil_client.purchase_context, 'behavior', None) if extraction_result else None
+                    if tier2_result:
+                        tier_results[2] = tier2_result.model_dump() if hasattr(tier2_result, 'model_dump') else tier2_result
+                        tier_confidences[2] = getattr(tier2_result, 'confidence', 0.85)
                     
-                    # Check if we should escalate
+                    # Check if we should escalate to Tier 3
+                    client_status = getattr(tier2_result.pilier_2_profil_client.purchase_context, 'behavior', None) if tier2_result else None
                     should_escalate = False
-                    if extraction_result:
-                        if extraction_result.confidence < 0.85:
+                    
+                    if tier2_result:
+                        if tier2_result.confidence < 0.85:
                             should_escalate = True
-                        elif client_status in ['vic', 'ultimate'] and extraction_result.confidence < 0.95:
+                        elif client_status in ['vic', 'ultimate'] and tier2_result.confidence < 0.95:
                             should_escalate = True
                     
                     if should_escalate:
                         logger.info(f"Summary: Escalating Note {note_id} to Tier 3 (Safety/Confidence)")
                         decision.tier = 3
                         decision.reasons.append("Escalated from Tier 2 (Safety/Confidence)")
-                        extraction_result = None
                     else:
                         self.stats['tier2'] += 1
                 
-                if decision.tier == 3 or extraction_result is None:
-                    # Run Tier 3 (Async now supported by Tier 3)
+                # Run Tier 3 if routed
+                if decision.tier >= 3:
+                    await safe_progress({"step": "tier3_extraction"})
                     async with self.openai_semaphore:
-                        # Tier 3 is now async capable, await directly
-                        extraction_result = await self.tier3.extract(
+                        tier3_result = await self.tier3.extract(
                             text, 
                             language, 
-                            client_status=None, # Or pass if known
+                            client_status=None,
                             escalation_reason=decision.reasons[-1] if decision.reasons else None,
                             use_cache=False
                         )
+                    
+                    if tier3_result:
+                        tier_results[3] = tier3_result.model_dump() if hasattr(tier3_result, 'model_dump') else tier3_result
+                        tier_confidences[3] = getattr(tier3_result, 'confidence', 0.95)
                     self.stats['tier3'] += 1
+                
+                # Cross-Validation: Merge results from all tiers
+                if self.cross_validator and len(tier_results) > 1:
+                    await safe_progress({"step": "cross_validation", "tiers": list(tier_results.keys())})
+                    
+                    validation = self.cross_validator.validate(tier_results, tier_confidences)
+                    
+                    # Log validation insights
+                    if validation.validation_notes:
+                        for note in validation.validation_notes:
+                            logger.info(f"Cross-Validation: {note}")
+                    
+                    # Reconstruct extraction result from merged data
+                    # Use the highest tier result as base, override with merged fields
+                    base_tier = max(tier_results.keys())
+                    from src.models import ExtractionResult
+                    
+                    # Convert merged dict back to ExtractionResult
+                    try:
+                        merged_result = validation.merged_result
+                        # Add metadata about validation
+                        merged_result['_validation'] = {
+                            'agreement_score': validation.agreement_score,
+                            'dominant_tier': validation.dominant_tier,
+                            'tiers_used': list(tier_results.keys())
+                        }
+                        extraction_result = ExtractionResult(**merged_result)
+                        self.stats['cross_validated'] += 1
+                    except Exception as e:
+                        logger.warning(f"Cross-validation reconstruction failed: {e}, using Tier {base_tier} result")
+                        extraction_result = tier_results[base_tier]
+                        if isinstance(extraction_result, dict):
+                            extraction_result = ExtractionResult(**extraction_result)
+                else:
+                    # Use single tier result
+                    extraction_result = tier_results.get(decision.tier) or tier_results.get(max(tier_results.keys()))
+                    if isinstance(extraction_result, dict):
+                        from src.models import ExtractionResult
+                        extraction_result = ExtractionResult(**extraction_result)
 
                 # Progress after extraction to show count
                 if extraction_result:
@@ -215,10 +284,10 @@ class AsyncPipeline:
                         priority=decision.priority
                     ),
                     rgpd=RGPDResult(
-                        contains_sensitive=False, # Handled by cleaner
-                        categories_detected=[],
+                        contains_sensitive=any(t in text for t in ['[EMAIL]', '[PHONE]', '[CARTE]', '[NAME]', '[RIB]', '[CVC]', '[CARTE_VITALE]', '[DNI]', '[NIF]', '[PASSPORT]', '[SSN]', '[FISCAL]']),
+                        categories_detected=[t for t in ['[EMAIL]', '[PHONE]', '[CARTE]', '[NAME]', '[RIB]', '[CVC]', '[CARTE_VITALE]', '[DNI]', '[NIF]', '[PASSPORT]', '[SSN]', '[FISCAL]'] if t in text],
                         safe_to_store=True,
-                        severity="low",
+                        severity="low" if not any(t in text for t in ['[CARTE]', '[RIB]', '[SSN]', '[CARTE_VITALE]']) else "medium",
                         anonymized_text=text
                     ),
                     extraction=extraction_result,
@@ -226,15 +295,24 @@ class AsyncPipeline:
                     from_cache=False
                 )
                 
-                # 6. Cache Result
-                # 6. Cache Result
+                # 8. Cache Results
+                # 8a. Exact Match Cache
                 if self.cache and kwargs.get('save_to_cache', True):
-                    # Use json() to handle datetime serialization, then load back to dict
-                    serialized = json.loads(output.json())
+                    serialized = output.model_dump(mode="json")
                     self.cache.save(
                         self.cache.get_cache_key(text, 'pipeline_v3'), 
                         'pipeline_v3', 
                         serialized
+                    )
+                
+                # 8b. Semantic Cache (for similarity-based retrieval)
+                if self.semantic_cache and kwargs.get('save_to_cache', True):
+                    result_dict = output.model_dump() if hasattr(output, 'model_dump') else json.loads(output.json())
+                    self.semantic_cache.store(
+                        text=text,
+                        result=result_dict,
+                        tier_used=decision.tier,
+                        language=language
                     )
                 
                 self.stats['success'] += 1
@@ -276,9 +354,11 @@ class AsyncPipeline:
     def get_summary(self) -> Dict:
         """Get execution summary."""
         duration = time.time() - (self.stats['start_time'] or time.time())
-        return {
+        total_processed = self.stats['success'] + self.stats['failed']
+        
+        summary = {
             "duration_seconds": round(duration, 2),
-            "processed": len(self.stats) - 4, # rough approx
+            "processed": total_processed,
             "success": self.stats['success'],
             "failed": self.stats['failed'],
             "tiers": {
@@ -287,6 +367,19 @@ class AsyncPipeline:
                 "tier3": self.stats['tier3']
             }
         }
+        
+        # Add semantic cache stats
+        if self.semantic_cache:
+            cache_stats = self.semantic_cache.get_stats()
+            summary['semantic_cache'] = cache_stats
+        
+        # Add cross-validation stats
+        summary['cross_validation'] = {
+            'enabled': self.cross_validator is not None,
+            'notes_merged': self.stats.get('cross_validated', 0)
+        }
+        
+        return summary
 
 if __name__ == "__main__":
     # Test run

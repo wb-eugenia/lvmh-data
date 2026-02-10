@@ -9,7 +9,7 @@ run:
 	streamlit run app.py
 
 test:
-	pytest tests/ -v
+	python -m pytest tests/ -v
 
 lint:
 	flake8 src/ scripts/ --max-line-length=120

@@ -36,13 +36,23 @@ class Tier1RulesEngine:
     
     # --- BUDGET PATTERNS ---
     BUDGET_REGEX = [
-        # French
+        # French - Range patterns (NEW)
+        (r'budget\s*(?:de|:)?\s*(\d{3,5})\s*[-à]\s*(\d{3,5})\s*(?:€|euros?)?',
+         lambda m: (int(m.group(1)) + int(m.group(2))) // 2),  # Average of range
+        (r'budget\s*(?:de|:)?\s*(\d{1,2})\s*[kK]\s*[-à]\s*(\d{1,2})\s*[kK]',
+         lambda m: (int(m.group(1)) + int(m.group(2))) * 500),  # Average in thousands
+        
+        # French - Exact 4-5 digit amounts (avoid 5000 -> 500000)
+        (r'budget\s*(?:de|:)?\s*(\d{4,5})\s*(?:euros?)?',
+         lambda m: int(m.group(1))),
+
+        # French - Standard patterns
         (r'budget\s*(?:de|:)?\s*(\d{1,3})[\s,]?(\d{3})?\s*(?:€|euros?)?', 
          lambda m: int(m.group(1)) * 1000 + int(m.group(2) or 0)),
         (r'budget\s*(?:de|:)?\s*(\d+)\s*[kK]', lambda m: int(m.group(1)) * 1000),
         (r'(\d+)\s*[kK]\s*(?:€|euros?)?\s*(?:de\s+)?budget', lambda m: int(m.group(1)) * 1000),
         (r'entre\s*(\d+)\s*(?:et|à)\s*(\d+)\s*[kK]', 
-         lambda m: (int(m.group(1)) + int(m.group(2))) * 500), # Average
+         lambda m: (int(m.group(1)) + int(m.group(2))) * 500),
         (r'(\d{4,5})\s*(?:€|euros?)', lambda m: int(m.group(1))),
         
         # English
@@ -156,6 +166,29 @@ class Tier1RulesEngine:
         'suede': [r'daim', r'suede', r'veau velours']
     }
     
+    # --- LV SPECIFIC PRODUCTS ---
+    LV_PRODUCT_PATTERNS = {
+        'speedy': r'\b[Ss]peedy\s*(\d{2,3})?\b',
+        'neverfull': r'\b[Nn]everfull\b',
+        'capucines': r'\b[Cc]apucines\b',
+        'onthego': r'\b[Oo]n\s*-?\s*[Tt]he\s*-?\s*[Gg]o\b',
+        'alma': r'\b[Aa]lma\b',
+        'pochette': r'\b[Pp]ochette\s*(?:[Aa]ccessoires|[Mm]etis)?\b',
+        'keepall': r'\b[Kk]eepall\b',
+        'noe': r'\b[Nn]o[ée]\b',
+        'petite_malle': r'\b[Pp]etite\s+[Mm]alle\b',
+        'steamer': r'\b[Ss]teamer\b',
+        'sac_plat': r'\b[Ss]ac\s+[Pp]lat\b',
+    }
+    
+    LV_MATERIAL_PATTERNS = {
+        'monogram_canvas': r'\b[Mm]onogram\s*(?:[Cc]anvas)?\b',
+        'damier_ebene': r'\b[Dd]amier\s*[ée]b[eè]ne\b',
+        'damier_azur': r'\b[Dd]amier\s*[Aa]zur\b',
+        'epi_leather': r'\b[ée]pi\b',
+        'taurillon_leather': r'\b[Tt]aurillon\b',
+    }
+    
     USAGE_PATTERNS = {
         'professional_work': [r'travail', r'bureau', r'meeting', r'rendez-vous pro', r'pro\b'],
         'travel': [r'voyage', r'déplacement', r'avion', r'vacances'],
@@ -192,7 +225,7 @@ class Tier1RulesEngine:
             'keywords': {}, 'budget': [], 'status': {}, 
             'allergies': {}, 'dietary': {}, 'occasions': {},
             'relations': {}, 'companions': {}, 'urgency': [],
-            'gender': {}
+            'gender': {}, 'lv_products': {}, 'lv_materials': {}
         }
         
         # Taxonomy Keywords
@@ -234,6 +267,10 @@ class Tier1RulesEngine:
         compiled['colors'] = {k: [re.compile(p, re.I) for p in pats] for k, pats in self.COLOR_PATTERNS.items()}
         compiled['materials'] = {k: [re.compile(p, re.I) for p in pats] for k, pats in self.MATERIAL_PATTERNS.items()}
         compiled['usage'] = {k: [re.compile(p, re.I) for p in pats] for k, pats in self.USAGE_PATTERNS.items()}
+        
+        # LV Specific Patterns
+        compiled['lv_products'] = {k: re.compile(p, re.I) for k, p in self.LV_PRODUCT_PATTERNS.items()}
+        compiled['lv_materials'] = {k: re.compile(p, re.I) for k, p in self.LV_MATERIAL_PATTERNS.items()}
 
         return compiled
 
@@ -414,8 +451,13 @@ class Tier1RulesEngine:
         found_colors = [k for k, pats in self._compiled_patterns['colors'].items() if any(p.search(text) for p in pats)]
         found_materials = [k for k, pats in self._compiled_patterns['materials'].items() if any(p.search(text) for p in pats)]
         found_usage = [k for k, pats in self._compiled_patterns['usage'].items() if any(p.search(text) for p in pats)]
+        
+        # Extract LV specific products
+        lv_products_found = [k for k, p in self._compiled_patterns['lv_products'].items() if p.search(text)]
+        lv_materials_found = [k for k, p in self._compiled_patterns['lv_materials'].items() if p.search(text)]
 
         # 8. Merge Tags
+        all_tags = list(set(tags + relations['gift_for'] + relations['shopping_with'] + temporal['occasions'] + lv_products_found))
         all_tags = list(set(tags + relations['gift_for'] + relations['shopping_with'] + temporal['occasions']))
         
         # 9. Result Construction
@@ -425,10 +467,11 @@ class Tier1RulesEngine:
         # Pilier construction
         p1 = Pilier1Product(
             categories=tags, 
+            produits_mentionnes=lv_products_found,
             usage=found_usage, 
             preferences=ProductPreferences(
                 colors=found_colors,
-                materials=found_materials
+                materials=found_materials + lv_materials_found
             )
         )
         p2 = Pilier2Client(
@@ -444,7 +487,8 @@ class Tier1RulesEngine:
         p4 = Pilier4Business(
             urgency=temporal['urgency'],
             lead_temperature="Warm" if temporal['urgency'] == 'high' else "Discovery",
-            budget_potential=f"{budget_data['tier']} ({budget_data['range']})"
+            budget_potential=f"{budget_data['tier']} ({budget_data['range']})",
+            budget_specific=budget_data.get('amount')
         )
         
         # Meta
@@ -457,7 +501,19 @@ class Tier1RulesEngine:
         }
         confidence = self.calculate_confidence(res_data)
         
-        meta = MetaAnalysis(confidence_score=confidence)
+        # Calculate quality and completeness scores
+        quality_score = self._calculate_quality_score(res_data)
+        completeness_score = self._calculate_completeness_score(res_data)
+        missing_info = self._detect_missing_info(res_data)
+        
+        meta = MetaAnalysis(
+            confidence_score=confidence,
+            quality_score=quality_score,
+            completeness_score=completeness_score,
+            missing_info=missing_info,
+            risk_flags=[],  # Could be populated based on specific rules
+            advisor_feedback=self._generate_feedback(quality_score, missing_info)
+        )
         
         processing_time = (time.time() - start_time) * 1000
         
@@ -538,7 +594,72 @@ class Tier1RulesEngine:
         if data.get('occasions'): score += 0.05
         
         return min(score, 0.95)
-
+    
+    def _calculate_quality_score(self, data: Dict) -> float:
+        """Calculate quality score based on data richness (0-1)."""
+        score = 0.0
+        
+        # Check for key data points
+        if data.get('budget', {}).get('amount'):
+            score += 0.25
+        if data.get('client_status'):
+            score += 0.15
+        if data.get('occasions'):
+            score += 0.15
+        if data.get('preferences', {}).get('colors'):
+            score += 0.15
+        if data.get('preferences', {}).get('materials'):
+            score += 0.15
+        if data.get('usage'):
+            score += 0.15
+            
+        return min(score, 1.0)
+    
+    def _calculate_completeness_score(self, data: Dict) -> float:
+        """Calculate completeness score for the 4 pillars (0-1)."""
+        score = 0.0
+        
+        # Pilier 1: Product info
+        if data.get('categories'):
+            score += 0.25
+            
+        # Pilier 2: Client profile
+        if data.get('purchase_type'):
+            score += 0.25
+            
+        # Pilier 3: Care info (optional but good to have)
+        if not data.get('allergies'):
+            score += 0.25  # Knowing there are no allergies is also info
+            
+        # Pilier 4: Business action
+        if data.get('budget', {}).get('amount'):
+            score += 0.25
+            
+        return score
+    
+    def _detect_missing_info(self, data: Dict) -> List[str]:
+        """Detect what information is missing."""
+        missing = []
+        
+        if not data.get('budget', {}).get('amount'):
+            missing.append("Budget non spécifié")
+        if not data.get('client_status'):
+            missing.append("Statut client inconnu")
+        if not data.get('occasions'):
+            missing.append("Occasion non mentionnée")
+        if not data.get('purchase_type'):
+            missing.append("Type d'achat indéterminé")
+            
+        return missing
+    
+    def _generate_feedback(self, quality_score: float, missing_info: List[str]) -> str:
+        """Generate gamified feedback for the advisor."""
+        if quality_score > 0.8:
+            return "✨ Note excellente ! Tous les éléments clés sont présents."
+        elif quality_score > 0.5:
+            return f"👍 Bonne note. Pour améliorer : {', '.join(missing_info[:2])}."
+        else:
+            return f"📝 Note à compléter. Manque : {', '.join(missing_info[:3])}."
 
 
 if __name__ == "__main__":

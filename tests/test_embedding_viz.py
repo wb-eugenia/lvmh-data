@@ -6,6 +6,11 @@ import shutil
 from src.embedding_viz import EmbeddingVisualizer
 from src.embedding_cache import EmbeddingCache
 
+# Simple dummy encoder to avoid downloading models during tests
+class DummyModel:
+    def encode(self, texts, show_progress_bar=False, batch_size=32):
+        return np.random.rand(len(texts), 384)
+
 # Setup fixture for temporary cache
 @pytest.fixture
 def temp_cache_dir():
@@ -27,6 +32,7 @@ def test_embeddings_generation(temp_cache_dir):
     # Here we use the default but it might be slow on first run. 
     # For CI/CD we would mock SentenceTransformer.
     viz = EmbeddingVisualizer()
+    viz._model = DummyModel()
     viz.cache = EmbeddingCache(cache_dir=temp_cache_dir)
     
     embeddings = viz.generate_embeddings(df)
@@ -41,6 +47,8 @@ def test_embeddings_generation(temp_cache_dir):
 
 def test_umap_reduction():
     """Test réduction UMAP"""
+    if os.getenv("RUN_SLOW_TESTS") != "1":
+        pytest.skip("UMAP is slow to initialize. Set RUN_SLOW_TESTS=1 to run.")
     # Create random embeddings
     embeddings = np.random.rand(10, 384)
     

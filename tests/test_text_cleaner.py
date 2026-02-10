@@ -24,7 +24,8 @@ class TestFrenchCleaning:
         
         assert "euh" not in result['cleaned'].lower()
         assert "hum" not in result['cleaned'].lower()
-        assert "Mme Martin" in result['cleaned']
+        assert "Mme [NAME]" in result['cleaned']
+        assert "Martin" not in result['cleaned']
         assert "45 ans" in result['cleaned']
         assert "5K" in result['cleaned']
     

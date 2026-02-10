@@ -23,6 +23,80 @@ except ImportError:
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+class PIIEnforcer:
+    """
+    Couche PII avancée pour la détection et le masquage des données sensibles.
+    Supporte 5 pays : FR, UK, ES, IT, DE
+    """
+    
+    PATTERNS = {
+        # IMPORTANT: IBAN avant carte bancaire pour éviter que l'IBAN soit partiellement masqué
+        # IBAN: supporte formats avec/sans espaces, jusqu'à 34 caractères alphanumériques après le code pays
+        'iban': (r'\b[A-Z]{2}\d{2}\s?(?:[A-Z0-9]{4}\s?){1,7}[A-Z0-9]{0,4}\b', '[RIB]'),
+        # Cartes et paiement (patterns plus stricts)
+        # Supporte: 4111111111111111, 4111 1111 1111 1111, 3782 8224 6310 005X (Amex avec masque)
+        # Pattern strict: commence par un chiffre, pas par une lettre (évite de matcher dans IBAN)
+        'carte_bancaire': (r'(?<![A-Z])\b(?:\d{4}[\s-]){2,3}[\dX]{4,6}\b|\b\d{15,16}\b', '[CARTE]'),
+        'cvc': (r'\b(?:CVC|CVV|crypto)\s*:?\s*\d{3,4}\b', '[CVC]'),
+        'exp': (r'\b(?:exp|expiration|expir|cad|valable|Ablauf)[\s:]*\d{2}[\/\-]?\d{2,4}\b', '[DATE_EXP]'),
+        
+        # Documents d'identité
+        'ssn_us': (r'\b\d{3}-\d{2}-\d{4}\b', '[SSN]'),
+        'numero_secu_fr': (r'\b[12]\s?\d{2}\s?\d{2}\s?(?:0\d|[1-9]\d)\s?\d{3}\s?\d{3}\s?(?:0\d|1[0-8])\b', '[SECU]'),
+        'carte_vitale_fr': (r'\b1(?:\s*\d){12,15}\b', '[CARTE_VITALE]'),
+        'dni_es': (r'\b\d{8}[A-Z]\b', '[DNI]'),
+        'nif_es': (r'\b[XYZA-Z]\d{7,8}[A-Z]\b', '[NIF]'),
+        'codice_fiscale_it': (r'\b[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]\b', '[FISCAL]'),
+        'passport': (r'\b(?:passport|passeport|pasaporte)[\s:]+[A-Z]{1,2}\d{6,9}\b', '[PASSPORT]'),
+        'personalausweis': (r'\b[A-Z]\d{2}[A-Z]\d{2}\w{1}\d{1}\b', '[ID]'),
+        
+        # Codes et références
+        'code_porte': (r'\b(?:code|gate|porta|codigo|digicode|Türcode|buzzer|interphone)\s*(?:porte|entry|acces|porta|puerta)?\s*:?\s*\d{3,6}\b', '[CODE]'),
+        'client_vip': (r'\b(?:VIP|client)\s*#?\s*\d{4,8}\b', '[VIP_ID]'),
+        'produit_lv': (r'\b(?:LV|Louis Vuitton)-?[A-Z0-9-]{3,15}\b', '[PRODUIT_LV]'),
+        
+        # Adresses (patterns français) - must be before generic number patterns
+        'adresse_paris': (r'\b\d{1,3}\s+(?:rue|avenue|boulevard|place|allée|chemin|impasse|champs?)\s+[\w\s\-\']+\d{5}\s+(?:Paris|Lyon|Marseille|Bordeaux|Lille|Nantes|Strasbourg|Nice|Toulouse)\b', '[ADRESSE]'),
+        'adresse_livraison': (r'(?:livraison|expédition|ship)\s+(?:à|a|au|aux|urgente)?\s*:?\s*\d{1,3}\s+[\w\s\-\']+(?:\d{5})?', '[ADRESSE_LIVRAISON]'),
+        'adresse_complete': (r'\d{1,3}\s+(?:Champs[-\s]Elysées|Avenue\s+\w+|Rue\s+\w+|Boulevard\s+\w+)\s*,?\s*\d{5}\s+\w+', '[ADRESSE_COMPLETE]'),
+        
+        # Téléphones internationaux (stricts avec indicatifs)
+        'phone_fr': (r'(?:\+33|0)[1-9](?:\s?\d{2}){4}', '[PHONE]'),
+        'phone_es': (r'\+34\d{9}', '[PHONE]'),
+        'phone_it': (r'\+39\d{9,10}', '[PHONE]'),
+        'phone_de': (r'\+49\d{10,11}', '[PHONE]'),
+        'phone_uk': (r'\+44\d{10,11}', '[PHONE]'),
+    }
+    
+    @classmethod
+    def clean(cls, text: str, audit: bool = False) -> str:
+        """
+        Applique les patterns PII.
+        Si audit=True, retourne aussi le compte par type PII.
+        """
+        pii_counts = {}
+        for name, (pattern, mask) in cls.PATTERNS.items():
+            matches = re.findall(pattern, text, flags=re.IGNORECASE)
+            if matches:
+                pii_counts[name] = len(matches)
+            text = re.sub(pattern, mask, text, flags=re.IGNORECASE)
+        
+        if audit:
+            return text, pii_counts
+        return text
+    
+    @classmethod
+    def get_audit_report(cls, text: str) -> Dict:
+        """Génère un rapport RGPD détaillé"""
+        _, counts = cls.clean(text, audit=True)
+        return {
+            'total_pii_detected': sum(counts.values()),
+            'pii_by_type': counts,
+            'risk_level': 'HIGH' if sum(counts.values()) > 5 else 'MEDIUM' if sum(counts.values()) > 0 else 'LOW'
+        }
+
+
 class MultilingualTextCleaner:
     """
     Nettoyeur de texte avancé :
@@ -334,20 +408,33 @@ class MultilingualTextCleaner:
 
         text = re.sub(name_pattern, replace_name, text)
         
+        # 4. PII AVANCÉ via PIIEnforcer (cartes, IBAN, CVC, carte vitale, etc.)
+        text = PIIEnforcer.clean(text)
+        
         return text
 
     def clean_text(self, text: str, language: str) -> Dict:
         """Pipeline complet de nettoyage."""
         if not text or not isinstance(text, str):
-            return {'original': '', 'cleaned': '', 'fillers': 0, 'ratio': 1.0}
+            return {
+                'original': '',
+                'cleaned': '',
+                'fillers_removed': 0,
+                'duplicates_removed': 0,
+                'compression_ratio': 1.0,
+                'tokens_saved_estimate': 0
+            }
 
         self.current_lang = language
+        language_supported = language in self.PURE_FILLERS or language in self.BUSINESS_NUANCES
         
-        # 0. Anonymisation PII (RGPD First!)
-        text = self._anonymize_pii(text)
-        
-        # 1. Protection données critiques
+        # 0. Protection données critiques D'ABORD (montants, dates, produits)
+        # Cela évite que le PII anonymization ne corrompe les montants
         processing_text, protected_zones = self._extract_protected_zones(text)
+        
+        # 1. Anonymisation PII (sur le texte avec placeholders)
+        # Les placeholders __AMOUNT_X__ etc ne seront pas affectés par les patterns PII
+        processing_text = self._anonymize_pii(processing_text)
         
         # 2. Normalisation caractères & variants fillers
         processing_text = self._remove_extra_chars(processing_text)
@@ -409,7 +496,10 @@ class MultilingualTextCleaner:
         processing_text = processing_text.strip()
         
         # 6. Deduplication (Semantic/Fuzzy)
-        processing_text, dupe_count = self.remove_duplicate_phrases(processing_text)
+        if language_supported:
+            processing_text, dupe_count = self.remove_duplicate_phrases(processing_text)
+        else:
+            dupe_count = 0
         
         # 7. Restore Protected Zones
         final_text = self._restore_protected_zones(processing_text, protected_zones)

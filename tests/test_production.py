@@ -7,6 +7,7 @@ import asyncio
 import json
 import os
 import sys
+import pytest
 from pathlib import Path
 
 # Add project root to path
@@ -16,7 +17,22 @@ from src.pipeline_async import AsyncPipeline
 from src.models import PipelineOutput
 from config.production import settings
 
+
+def _integration_enabled() -> bool:
+    return os.getenv("RUN_INTEGRATION_TESTS") == "1"
+
+@pytest.mark.integration
+@pytest.mark.asyncio
 async def test_async_pipeline():
+    if not _integration_enabled():
+        pytest.skip("Integration tests disabled. Set RUN_INTEGRATION_TESTS=1.")
+    missing = []
+    if not os.getenv("MISTRAL_API_KEY"):
+        missing.append("MISTRAL_API_KEY")
+    if not os.getenv("OPENAI_API_KEY"):
+        missing.append("OPENAI_API_KEY")
+    if missing:
+        pytest.skip(f"Missing API keys: {', '.join(missing)}")
     print("🚀 TESTING ASYNC PIPELINE (PRODUCTION MODE)\n")
     
     # Initialize Pipeline

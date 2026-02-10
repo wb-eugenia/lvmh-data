@@ -101,7 +101,9 @@ class CacheManager:
         
         result = compute_fn()
         # Ensure result is dict (if Pydantic model, convert)
-        if hasattr(result, 'dict'):
+        if hasattr(result, 'model_dump'):
+            payload = result.model_dump(mode='json')
+        elif hasattr(result, 'dict'):
             payload = result.dict()
         else:
             payload = result
