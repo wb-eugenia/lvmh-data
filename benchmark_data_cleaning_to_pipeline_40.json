@@ -1,0 +1,62 @@
+{
+  "input_file": "data\\raw\\generated_notes_dirty_40.csv",
+  "cleaning_report": {
+    "original_rows": 40,
+    "original_columns": [
+      "ID",
+      "Transcription",
+      "Language",
+      "Date",
+      "Duration",
+      "Length"
+    ],
+    "duplicates_removed": 0,
+    "empty_rows_removed": 0,
+    "rows_cleaned": 40,
+    "details": [
+      "Nettoyé 40 transcriptions avec la pipeline LVMH",
+      "Supprimé 85 mots de remplissage (euh, bah, etc.)"
+    ],
+    "text_column_used": "Transcription",
+    "final_rows": 40,
+    "final_columns": [
+      "ID",
+      "Transcription",
+      "Language",
+      "Date",
+      "Duration",
+      "Length"
+    ],
+    "rows_removed_total": 0,
+    "reduction_percent": 0.0
+  },
+  "cleaned_rows_for_pipeline": 40,
+  "pipeline_success": 40,
+  "pipeline_failed": 0,
+  "pipeline_summary": {
+    "duration_seconds": 87.21,
+    "processed": 40,
+    "success": 40,
+    "failed": 0,
+    "tiers": {
+      "tier1": 3,
+      "tier2": 37,
+      "tier3": 0
+    },
+    "tiers_executed": {
+      "tier1": 40,
+      "tier2": 37,
+      "tier3": 0
+    },
+    "cross_validation": {
+      "enabled": true,
+      "notes_merged": 37
+    },
+    "rag": {
+      "attempted": 40,
+      "hits": 37,
+      "hit_rate": 92.5,
+      "disabled": 0
+    }
+  }
+}

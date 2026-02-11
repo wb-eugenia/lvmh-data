@@ -163,45 +163,45 @@ Le design est volontairement **tiered** pour équilibrer:
 ## 5) Benchmarks qualité récents (100 notes, run live)
 
 ## 5.1 Pipeline directe
-Fichier: `benchmark_quality_100_pipeline_live.json`
+Fichier: `benchmark_quality_100_pipeline_prod_ready.json`
 - Notes demandées: 100
 - Notes traitées: 100
 - Succès: 100%
-- Durée: 296.18s
-- Throughput: 20.26 notes/min
-- Qualité moyenne: 60.5
-- Confiance moyenne: 0.9137
-- Tags moyens: 11.39
+- Durée: 207.31s
+- Throughput: 28.94 notes/min
+- Qualité moyenne: 83.99
+- Confiance moyenne: 0.9192
+- Tags moyens: 12.2
 - Notes sans tags: 0%
+- Invalid tags rate: 0.0%
 - RAG hit rate: 90%
-- RGPD sensible: 18%
+- RGPD sensible: 16%
 - NBA présent: 100%
+- p95 latence: 2956.15 ms
+- p99 latence: 3143.79 ms
+- Max latence: 3924.58 ms
+- SLO: PASS (`scripts/check_slo.py`)
 
 ## 5.2 API 8080 + parité frontend
-Fichier: `benchmark_api_frontend_parity_100_live.json`
-- Notes demandées: 100
-- Succès API: 100
+Fichier: `benchmark_api_frontend_parity_20_latest.json`
+- Notes demandées: 20
+- Succès API: 20
 - Échecs API: 0
-- Durée: 283.21s
-- Throughput: 21.19 notes/min
-- Qualité moyenne API: 61.95
-- Tags moyens API: 12.2
-- RAG hit rate API: 90%
+- Tier match rate: 100.0%
+- RGPD match rate: 100.0%
+- Avg tag jaccard: 1.0
+- Min/Max tag jaccard: 1.0 / 1.0
 - Checks frontend:
   - missing_required_fields: 0
   - invalid_quality_range: 0
 
 ## 5.3 Delta pipeline vs API
-- Success rate: 100% vs 100%
-- Delta qualité moyenne: 1.45
-- Delta tags moyens: 0.81
-- Delta RAG hit rate: 0.0
+- Sur l’échantillon de parité actuel, les sorties utiles au frontend sont identiques au payload API.
 
 Interprétation:
-- Le pipeline est stable.
-- Le front reçoit une structure cohérente.
-- Écart qualité/tags attendu possible selon chemin exact et timing provider.
-- Le run API a utilisé majoritairement Tier 2 (96%), alors que le run pipeline direct a escaladé 9 notes en Tier 3.
+- Le pipeline est stable et au-dessus du seuil de qualité cible.
+- Le front reçoit une structure cohérente et exploitable sans transformation additionnelle.
+- Le pipeline reste majoritairement Tier 2 (96%), avec Tier 1 pour les notes simples.
 
 ---
 
@@ -211,12 +211,13 @@ Interprétation:
   - 5 passed
 
 - `python -m pytest -q -m "not integration" -p no:cacheprovider`
-  - 40 passed, 1 skipped, 2 deselected
+  - 44 passed, 1 skipped, 2 deselected
 
 - Ciblés ML/Cleaning/RAG (déjà exécutés durant la passe):
   - `tests/test_smart_router_ml_safety.py`
   - `tests/test_text_cleaner.py`
   - `tests/test_pipeline_rag.py`
+  - `tests/test_recommender_quality.py`
 
 ---
 
@@ -258,8 +259,8 @@ Interprétation:
 - `JWT_SECRET_KEY` doit être défini avec secret fort en environnement de déploiement.
 
 2. **Temps de réponse providers**:
-- timeouts Mistral observés ponctuellement (la résilience fonctionne, mais latence variable).
-- à monitorer avec alerting SLO.
+- variabilité possible selon charge provider externe.
+- latence observée sur run 100 notes reste sous seuil (p95 < 3s), mais monitoring SLO doit rester actif.
 
 3. **Base de données**:
 - SQLite ok pour dev/PoC.

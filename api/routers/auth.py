@@ -3,17 +3,32 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import Optional
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+import os
 
 from ..database import get_db, engine
 from ..models_sql import Base, User
 from ..auth_utils import verify_password, create_access_token, get_password_hash
 
-# Create tables if not exist (simple migration)
-Base.metadata.create_all(bind=engine)
-
 router = APIRouter()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+
+
+def _env_flag(name: str, default: str = "false") -> bool:
+    return os.getenv(name, default).strip().lower() in {"1", "true", "yes", "on"}
+
+
+APP_ENV = os.getenv("ENV", os.getenv("APP_ENV", "development")).lower()
+DEFAULT_DEMO_ENABLED = "false" if APP_ENV in {"production", "prod"} else "true"
+ALLOW_DEMO_ACCOUNTS = _env_flag("ALLOW_DEMO_ACCOUNTS", DEFAULT_DEMO_ENABLED)
+ALLOW_SEED_ENDPOINT = _env_flag("ALLOW_SEED_ENDPOINT", "false")
+DEMO_PASSWORD = os.getenv("DEMO_PASSWORD", "lvmh")
+DEFAULT_AUTO_SCHEMA = "false" if APP_ENV in {"production", "prod"} else "true"
+AUTO_CREATE_SCHEMA = _env_flag("AUTO_CREATE_SCHEMA", DEFAULT_AUTO_SCHEMA)
+
+# Dev convenience only. In production, prefer Alembic migrations.
+if AUTO_CREATE_SCHEMA:
+    Base.metadata.create_all(bind=engine)
 
 class Token(BaseModel):
     access_token: str
@@ -33,7 +48,7 @@ class UserCreate(BaseModel):
 @router.post("/login", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     # Auto-seed Demo Users on first login if missing
-    if form_data.username in ["advisor@lvmh.com", "manager@lvmh.com"]:
+    if ALLOW_DEMO_ACCOUNTS and form_data.username in ["advisor@lvmh.com", "manager@lvmh.com"]:
         existing = db.query(User).filter(User.email == form_data.username).first()
         if not existing:
             # Create on the fly
@@ -41,7 +56,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
             name = "Jean Dupont" if role == "manager" else "Sophie Martin"
             store = "Paris HQ" if role == "manager" else "Champs-Élysées"
             
-            hashed = get_password_hash("lvmh")
+            hashed = get_password_hash(DEMO_PASSWORD)
             new_user = User(
                 email=form_data.username, 
                 hashed_password=hashed, 
@@ -75,9 +90,12 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 @router.post("/seed")
 async def seed_users(db: Session = Depends(get_db)):
     """Seed initial users for testing."""
+    if not ALLOW_SEED_ENDPOINT:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Seed endpoint disabled")
+
     users = [
-        {"email": "advisor@lvmh.com", "password": "lvmh", "full_name": "Sophie Martin", "role": "advisor", "store": "Champs-Élysées"},
-        {"email": "manager@lvmh.com", "password": "lvmh", "full_name": "Jean Dupont", "role": "manager", "store": "Paris HQ"},
+        {"email": "advisor@lvmh.com", "password": DEMO_PASSWORD, "full_name": "Sophie Martin", "role": "advisor", "store": "Champs-Élysées"},
+        {"email": "manager@lvmh.com", "password": DEMO_PASSWORD, "full_name": "Jean Dupont", "role": "manager", "store": "Paris HQ"},
     ]
     
     created = []

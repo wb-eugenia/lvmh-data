@@ -9,7 +9,7 @@ from datetime import datetime
 
 # ============== Input Schemas ==============
 
-SUPPORTED_LANGUAGES = {'FR', 'EN', 'IT', 'ES', 'DE'}
+SUPPORTED_LANGUAGES = {'FR', 'EN', 'IT', 'ES', 'DE', 'AUTO'}
 LANGUAGE_ALIASES = {
     'FR-FR': 'FR',
     'EN-US': 'EN',
@@ -28,9 +28,9 @@ class NoteInput(BaseModel):
         max_length=10000,
         description="Note transcription text"
     )
-    language: Literal['FR', 'EN', 'IT', 'ES', 'DE'] = Field(
+    language: Literal['FR', 'EN', 'IT', 'ES', 'DE', 'AUTO'] = Field(
         default='FR',
-        description="Language of the transcription (unsupported values fallback to FR)"
+        description="Language of the transcription. Use AUTO to detect from text."
     )
     
     @field_validator('text')

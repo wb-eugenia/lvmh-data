@@ -54,7 +54,7 @@ def parse_args():
     parser.add_argument(
         "--taxonomy", "-t",
         type=str,
-        default="config/taxonomy_v1.json",
+        default="config/taxonomy_v2.2.json",
         help="Taxonomy JSON file path"
     )
     

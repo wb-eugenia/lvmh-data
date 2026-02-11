@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from api.schemas import NoteInput, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo, MetaAnalysis
 from src.pipeline_async import AsyncPipeline
+from src.language_utils import detect_language
 from api.routers.auth import get_current_user
 from api.models_sql import User, Note, Client
 from api.database import get_db
@@ -69,10 +70,14 @@ async def analyze_note(
             await manager.broadcast(data)
 
         # Process note through pipeline
+        note_language = note.language
+        if note_language == "AUTO":
+            note_language = detect_language(note.text, fallback="FR")
+
         result = await pipeline.process_note({
             'ID': f'API_{int(time.time())}',
             'Transcription': note.text,
-            'Language': note.language
+            'Language': note_language
         }, on_progress=on_progress, save_to_cache=False)
         
         if result is None:

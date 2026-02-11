@@ -1,4 +1,4 @@
-.PHONY: install run test clean pipeline docker
+.PHONY: install run test clean pipeline docker benchmark-quality benchmark-parity check-slo backup-db db-upgrade db-downgrade db-stamp go-live-check
 
 # ===== SETUP =====
 install:
@@ -23,6 +23,30 @@ pipeline:
 
 pipeline-nocache:
 	python scripts/run_wave2_pipeline.py --no-cache
+
+benchmark-quality:
+	python scripts/benchmark_quality_pipeline.py --dataset LVMH_Realistic_Merged_CA001-100.csv --limit 100
+
+benchmark-parity:
+	python scripts/benchmark_api_frontend_parity.py --limit 20 --output-json benchmark_api_frontend_parity_20_latest.json
+
+check-slo:
+	python scripts/check_slo.py --benchmark benchmark_quality_100_pipeline_prod_ready.json
+
+backup-db:
+	python scripts/backup_db.py --output-dir backups
+
+db-upgrade:
+	alembic upgrade head
+
+db-downgrade:
+	alembic downgrade -1
+
+db-stamp:
+	alembic stamp head
+
+go-live-check:
+	python scripts/go_live_checklist.py --benchmark benchmark_quality_100_pipeline_prod_ready.json
 
 compare:
 	python scripts/compare_waves.py

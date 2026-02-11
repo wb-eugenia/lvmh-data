@@ -4,7 +4,7 @@
   "successful_notes": 100,
   "failed_notes": 0,
   "pipeline_summary": {
-    "duration_seconds": 207.31,
+    "duration_seconds": 350.33,
     "processed": 100,
     "success": 100,
     "failed": 0,
@@ -30,24 +30,24 @@
     }
   },
   "quality_metrics": {
-    "avg_quality_score": 83.99,
+    "avg_quality_score": 83.98,
     "avg_extraction_confidence": 0.9192,
-    "avg_tags_per_note": 12.2,
+    "avg_tags_per_note": 12.14,
     "notes_without_tags": 0,
     "invalid_tags_total": 0,
     "invalid_tags_rate_pct": 0.0,
     "notes_with_invalid_tags": 0,
-    "avg_processing_time_ms": 2039.878,
-    "p50_processing_time_ms": 1907.6,
-    "p95_processing_time_ms": 2956.15,
-    "p99_processing_time_ms": 3143.79,
-    "max_processing_time_ms": 3924.58,
-    "avg_processing_time_ms_excl_top_1pct": 2020.84,
-    "avg_char_reduction_pct": 0.4513
+    "avg_processing_time_ms": 3460.888,
+    "p50_processing_time_ms": 2106.55,
+    "p95_processing_time_ms": 3031.74,
+    "p99_processing_time_ms": 5095.9,
+    "max_processing_time_ms": 130222.82,
+    "avg_processing_time_ms_excl_top_1pct": 2180.464,
+    "avg_char_reduction_pct": 0.449
   },
   "rgpd_metrics": {
-    "notes_with_sensitive_data": 16,
-    "sensitive_rate_pct": 16.0
+    "notes_with_sensitive_data": 19,
+    "sensitive_rate_pct": 19.0
   },
   "rag_metrics": {
     "attempted": 100,
@@ -55,5 +55,5 @@
     "hit_rate_pct": 90.0,
     "notes_with_matched_products": 90
   },
-  "output_metrics_csv": "output/benchmark_quality_100_notes_metrics.csv"
+  "output_metrics_csv": "output/benchmark_quality_100_notes_metrics_after_contextual_scoring.csv"
 }

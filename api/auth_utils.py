@@ -13,9 +13,16 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 hours
 
 logger = logging.getLogger(__name__)
 
-if SECRET_KEY == DEFAULT_INSECURE_SECRET and os.getenv("ENV", "development").lower() == "production":
-    logger.error("JWT_SECRET_KEY is not configured in production environment.")
-    raise RuntimeError("JWT_SECRET_KEY must be configured in production.")
+APP_ENV = os.getenv("ENV", os.getenv("APP_ENV", os.getenv("PYTHON_ENV", "development"))).lower()
+IS_PROD_LIKE = APP_ENV in {"production", "prod", "staging"}
+
+if IS_PROD_LIKE and (not SECRET_KEY or SECRET_KEY == DEFAULT_INSECURE_SECRET):
+    logger.error("JWT_SECRET_KEY is not configured in %s environment.", APP_ENV)
+    raise RuntimeError("JWT_SECRET_KEY must be configured in production-like environments.")
+
+if IS_PROD_LIKE and len(SECRET_KEY) < 32:
+    logger.error("JWT_SECRET_KEY is too short for %s environment.", APP_ENV)
+    raise RuntimeError("JWT_SECRET_KEY must be at least 32 characters in production-like environments.")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", truncate_error=True)
 

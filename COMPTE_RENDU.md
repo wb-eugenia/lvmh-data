@@ -351,31 +351,32 @@ R?sultat: **26 passed, 1 skipped (UMAP), 2 deselected**
 - `python -m pytest -q tests/test_api_auth_enforcement.py tests/test_pipeline_rgpd.py -p no:cacheprovider`
   - Resultat: **5 passed**
 - `python -m pytest -q -m "not integration" -p no:cacheprovider`
-  - Resultat: **40 passed, 1 skipped, 2 deselected**
+  - Resultat: **44 passed, 1 skipped, 2 deselected**
 
 ## Benchmark qualite reelle (100 notes)
-- Fichier: `benchmark_quality_100_pipeline_live.json`
+- Fichier: `benchmark_quality_100_pipeline_prod_ready.json`
 - Notes: **100/100 succes**
-- Throughput: **20.26 notes/min**
-- Qualite moyenne: **60.5**
-- Tags moyens: **11.39** (0% notes sans tags)
+- Throughput: **28.94 notes/min**
+- Qualite moyenne: **83.99**
+- Tags moyens: **12.2** (0% notes sans tags)
+- Invalid tags: **0.0%**
 - RAG hit rate: **90%**
-- RGPD sensibles detectees: **18%**
+- RGPD sensibles detectees: **16%**
 - NBA present: **100%**
+- p95 latence: **2956.15 ms**
+- p99 latence: **3143.79 ms**
+- max latence: **3924.58 ms**
+- SLO check: **PASS**
 
-## Parite API / Frontend (100 notes sur :8080)
-- Fichier: `benchmark_api_frontend_parity_100_live.json`
-- API success: **100/100**
-- Throughput: **21.19 notes/min**
-- Qualite moyenne API: **61.95**
-- Tags moyens API: **12.2**
+## Parite API / Frontend (echantillon live sur :8080)
+- Fichier: `benchmark_api_frontend_parity_20_latest.json`
+- API success: **20/20**
+- tier_match_rate_pct: **100.0**
+- rgpd_match_rate_pct: **100.0**
+- avg_tag_jaccard: **1.0**
 - Checks frontend:
   - missing_required_fields: **0**
   - invalid_quality_range: **0**
-- Delta vs benchmark pipeline:
-  - quality delta abs: **1.45**
-  - tag_count delta abs: **0.81**
-  - rag_hit_rate delta abs: **0.0**
 
 ## Etat des composants
 - ML Router: **actif** (`ml_enabled=true`, `feedback_samples=406`, threshold=0.7).
@@ -387,3 +388,87 @@ R?sultat: **26 passed, 1 skipped (UMAP), 2 deselected**
 1. Ajouter monitoring/alerte sur timeouts Mistral (timeouts observes pendant benchmark, pipeline resiliente mais latence variable).
 2. Definir et injecter un `JWT_SECRET_KEY` fort en env de deploy (obligatoire).
 3. Ajouter un benchmark de regression journalier (100 notes) en CI pour surveiller quality/tags/rag.
+
+---
+
+# Compte Rendu - Prod Hardening + Qualite Reelle
+
+**Date:** 2026-02-11  
+**Version:** 2.5.1
+
+## Hardening applique (code)
+- `api/routers/auth.py`
+  - Demo auto-seed controle par `ALLOW_DEMO_ACCOUNTS` (defaut off en prod, on en dev).
+  - Endpoint `/api/auth/seed` protege via `ALLOW_SEED_ENDPOINT` (off par defaut).
+  - Mot de passe demo configurable via `DEMO_PASSWORD`.
+- `api/auth_utils.py` + `src/auth.py`
+  - `JWT_SECRET_KEY` obligatoire en environnement prod-like (`production|prod|staging`).
+  - Verification longueur minimale (>= 32 caracteres) en prod-like.
+- `api/database.py` + `src/database.py`
+  - Support propre SQLite/Postgres via `DATABASE_URL`.
+  - `check_same_thread` uniquement pour SQLite.
+- `src/pipeline_async.py`
+  - Correction metriques tiers:
+    - `tiers` = tier final utilise par note.
+    - `tiers_executed` = tiers effectivement executes.
+  - Reset des compteurs stats a chaque `process_batch` (evite accumulation entre runs).
+
+## Frontend prod-ready (Cloudflare Pages)
+- Nouveau helper `frontend-v2/src/lib/api.js`:
+  - `apiFetch()` via `VITE_API_BASE_URL`.
+  - `wsUrl()` via `VITE_WS_BASE_URL` ou derive de `VITE_API_BASE_URL`.
+- Migration fetch centralisee:
+  - `frontend-v2/src/context/AuthContext.jsx`
+  - `frontend-v2/src/components/AdvisorView.jsx`
+  - `frontend-v2/src/components/ManagerView.jsx`
+  - `frontend-v2/src/components/DebugAnalyzer.jsx`
+- `frontend-v2/vite.config.js`
+  - Proxy dev configurable via `VITE_BACKEND_PROXY_TARGET`.
+- Variables documentees:
+  - `.env.example`
+  - `frontend-v2/.env.example`
+
+## Validation executee
+- Backend tests:
+  - `python -m pytest -q -m "not integration" -p no:cacheprovider`
+  - Resultat: **44 passed, 1 skipped, 2 deselected**
+- Frontend build:
+  - `npm run build` (dans `frontend-v2`)
+  - Resultat: **OK**
+
+## Benchmark qualite 100 notes (run reel)
+- Fichier: `benchmark_quality_100_pipeline_prod_ready.json`
+- CSV detail: `output/benchmark_quality_100_notes_metrics.csv`
+- Resultats:
+  - `input_notes`: 100
+  - `successful_notes`: 100
+  - `failed_notes`: 0
+  - `avg_quality_score`: 83.99
+  - `avg_extraction_confidence`: 0.9192
+  - `avg_tags_per_note`: 12.2
+  - `notes_without_tags`: 0
+  - `invalid_tags_rate_pct`: 0.0
+  - `rag hit rate`: 90.0%
+  - `rgpd sensitive rate`: 16.0%
+  - `p95_processing_time_ms`: 2956.15
+  - `max_processing_time_ms`: 3924.58
+  - `tiers (final)`: tier1=4, tier2=96, tier3=0
+  - `tiers_executed`: tier1=100, tier2=96, tier3=0
+  - `SLO check`: PASS (`python scripts/check_slo.py --benchmark benchmark_quality_100_pipeline_prod_ready.json`)
+
+## Parite API (frontend consume) vs pipeline
+- Fichier: `benchmark_api_frontend_parity_20_latest.json`
+- Resultats:
+  - `api_success`: 20/20
+  - `tier_match_rate_pct`: 100.0
+  - `rgpd_match_rate_pct`: 100.0
+  - `avg_tag_jaccard`: 1.0
+- Conclusion: la structure et les valeurs utiles au frontend sont alignees avec la pipeline sur l'echantillon teste.
+
+## Data cleaning -> pipeline (chaine complete)
+- Fichier: `benchmark_data_cleaning_to_pipeline_40.json`
+- Source: `data/raw/generated_notes_dirty_40.csv`
+- Resultats:
+  - Nettoyage: 40/40 lignes nettoyees, 85 fillers retires.
+  - Pipeline apres nettoyage: 40/40 succes.
+  - RAG: 37/40 hits (92.5%).

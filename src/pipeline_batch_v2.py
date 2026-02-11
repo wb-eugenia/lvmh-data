@@ -631,7 +631,10 @@ class PipelineBatchV2:
                         from src.models import ExtractionResult
                         current_tier = res.get('tier')
                         ext = ExtractionResult(**res)
-                        ext_with_nba = self.recommender.generate_recommendation(ext)
+                        ext_with_nba = self.recommender.generate_recommendation(
+                            ext,
+                            source_text=note.get('Transcription', '')
+                        )
                         res = ext_with_nba.model_dump()
                         if current_tier:
                             res['tier'] = current_tier

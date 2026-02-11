@@ -3,6 +3,7 @@ Next Best Action Recommender Engine.
 Transforms extracted tags and context into actionable business suggestions.
 """
 
+import re
 from typing import List, Dict, Optional, Any
 from src.models import ExtractionResult, Pilier4Business, NextBestAction
 import logging
@@ -18,7 +19,7 @@ class RecommenderEngine:
         # Could load business rules from a JSON config eventually
         pass
     
-    def generate_recommendation(self, extraction: ExtractionResult) -> ExtractionResult:
+    def generate_recommendation(self, extraction: ExtractionResult, source_text: Optional[str] = None) -> ExtractionResult:
         """
         Processes an extraction result and populates the next_best_action field.
         """
@@ -96,41 +97,186 @@ class RecommenderEngine:
             p4.next_best_action = action
             
         # --- GAMIFICATION (Super Note Score) ---
-        self._calculate_gamification(extraction)
+        self._calculate_gamification(extraction, source_text=source_text)
             
         return extraction
 
-    def _calculate_gamification(self, extraction: ExtractionResult):
-        """Calculates a quality score based on richness across pillars."""
-        score = 0
-        points = []
-        
-        p1 = extraction.pilier_1_univers_produit
-        p2 = extraction.pilier_2_profil_client
-        p3 = extraction.pilier_3_hospitalite_care
-        
-        # Pillar 1 Richness
-        if p1.categories: score += 20; points.append("Categories")
-        if p1.usage: score += 10; points.append("Usage")
-        if p1.preferences.colors or p1.preferences.materials: score += 15; points.append("Prefs")
-        
-        # Pillar 2 Richness
-        if p2.purchase_context.type: score += 10; points.append("Context")
-        if p2.profession.sector: score += 10; points.append("Profession")
-        
-        # Pillar 3 Richness
-        if p3.occasion: score += 20; points.append("Occasion")
-        if p3.allergies.food or p3.allergies.contact: score += 15; points.append("Health/Allergy")
+    def _has_any(self, values: List[str]) -> bool:
+        return any(isinstance(value, str) and value.strip() for value in values)
 
-        final_score = min(score, 100)
-        extraction.meta_analysis.quality_score = float(final_score)
+    def _has_products(self, extraction: ExtractionResult) -> bool:
+        return bool(extraction.pilier_1_univers_produit.matched_products)
+
+    def _has_usage(self, extraction: ExtractionResult) -> bool:
+        return self._has_any(extraction.pilier_1_univers_produit.usage)
+
+    def _has_preferences(self, extraction: ExtractionResult) -> bool:
+        prefs = extraction.pilier_1_univers_produit.preferences
+        return (
+            self._has_any(prefs.colors)
+            or self._has_any(prefs.materials)
+            or self._has_any(prefs.styles)
+            or self._has_any(prefs.hardware)
+        )
+
+    def _has_context(self, extraction: ExtractionResult) -> bool:
+        context = extraction.pilier_2_profil_client.purchase_context
+        return bool((context.type or "").strip() or (context.behavior or "").strip())
+
+    def _has_profession(self, extraction: ExtractionResult) -> bool:
+        profession = extraction.pilier_2_profil_client.profession
+        return bool((profession.sector or "").strip() or (profession.status or "").strip())
+
+    def _has_occasion(self, extraction: ExtractionResult) -> bool:
+        return bool((extraction.pilier_3_hospitalite_care.occasion or "").strip())
+
+    def _has_care_details(self, extraction: ExtractionResult) -> bool:
+        p3 = extraction.pilier_3_hospitalite_care
+        return (
+            self._has_any(p3.allergies.food)
+            or self._has_any(p3.allergies.contact)
+            or self._has_any(p3.diet)
+            or self._has_any(p3.values)
+        )
+
+    def _has_budget(self, extraction: ExtractionResult) -> bool:
+        p4 = extraction.pilier_4_action_business
+        return bool(
+            (p4.budget_potential or "").strip()
+            or p4.budget_specific is not None
+            or (p4.urgency or "").strip()
+        )
+
+    def _text_signals(self, source_text: str) -> Dict[str, bool]:
+        text = (source_text or "").lower()
+        word_count = len(re.findall(r"\w+", text))
+
+        def has_any(words: List[str]) -> bool:
+            return any(word in text for word in words)
+
+        return {
+            "long_note": word_count >= 18,
+            "usage_signal": has_any(
+                [
+                    "travail", "work", "bureau", "office", "voyage", "travel",
+                    "daily", "quotidien", "soir", "evening", "meeting",
+                ]
+            ),
+            "preference_signal": has_any(
+                [
+                    "couleur", "color", "matiere", "material", "cuir",
+                    "leather", "canvas", "monogram", "damier", "style",
+                ]
+            ),
+            "budget_signal": has_any(
+                [
+                    "budget", "euro", "eur", "k", "€", "prix", "price",
+                ]
+            ),
+            "profession_signal": has_any(
+                [
+                    "docteur", "doctor", "avocat", "lawyer", "ceo", "cfo",
+                    "manager", "directeur", "entrepreneur", "founder",
+                    "architecte", "architect", "ingenieur", "engineer",
+                    "professeur", "professor",
+                ]
+            ),
+            "occasion_signal": has_any(
+                [
+                    "cadeau", "gift", "anniversaire", "birthday", "wedding",
+                    "mariage", "christmas", "noel", "valentin", "valentine",
+                    "fete", "mother", "father",
+                ]
+            ),
+            "care_signal": has_any(
+                [
+                    "allerg", "allergy", "vegan", "vegetar", "gluten",
+                    "halal", "kosher", "intolerance", "lactose",
+                ]
+            ),
+        }
+
+    def _calculate_gamification(self, extraction: ExtractionResult, source_text: Optional[str] = None):
+        """Calculates a context-aware quality score based on expected information richness."""
+        p1 = extraction.pilier_1_univers_produit
+        signals = self._text_signals(source_text or "")
+
+        components = {
+            "categories": {
+                "weight": 20,
+                "expected": True,
+                "present": bool(p1.categories),
+            },
+            "context": {
+                "weight": 15,
+                "expected": True,
+                "present": self._has_context(extraction),
+            },
+            "usage": {
+                "weight": 10,
+                "expected": signals["long_note"] or signals["usage_signal"],
+                "present": self._has_usage(extraction),
+            },
+            "preferences": {
+                "weight": 15,
+                "expected": signals["long_note"] or signals["preference_signal"],
+                "present": self._has_preferences(extraction),
+            },
+            "budget": {
+                "weight": 10,
+                "expected": signals["budget_signal"] or signals["long_note"],
+                "present": self._has_budget(extraction),
+            },
+            "profession": {
+                "weight": 10,
+                "expected": signals["profession_signal"],
+                "present": self._has_profession(extraction),
+            },
+            "occasion": {
+                "weight": 10,
+                "expected": signals["occasion_signal"],
+                "present": self._has_occasion(extraction),
+            },
+            "care": {
+                "weight": 10,
+                "expected": signals["care_signal"],
+                "present": self._has_care_details(extraction),
+            },
+            "rag": {
+                "weight": 10,
+                "expected": bool(p1.categories),
+                "present": self._has_products(extraction),
+            },
+        }
+
+        expected_weight = 0
+        earned_weight = 0
+        missing_sections: List[str] = []
+
+        for name, component in components.items():
+            if component["expected"]:
+                expected_weight += component["weight"]
+                if component["present"]:
+                    earned_weight += component["weight"]
+                else:
+                    missing_sections.append(name)
+
+        # Prevent inflated scores on very short notes.
+        word_count = len(re.findall(r"\w+", source_text or ""))
+        length_factor = min(1.0, max(0.0, word_count / 18.0))
+        floor = 0.72 + 0.28 * length_factor
+
+        raw_score = (earned_weight / expected_weight * 100.0) if expected_weight > 0 else 0.0
+        final_score = max(0.0, min(100.0, raw_score * floor))
+        extraction.meta_analysis.quality_score = float(round(final_score, 2))
         
         # Gamified feedback
         if final_score >= 80:
-            feedback = "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+            feedback = "Super note: profil client tres complet et exploitable en CRM."
         elif final_score >= 50:
-            feedback = "👍 Bonne note ! Ton profil client s'enrichit bien."
+            feedback = "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
         else:
-            feedback = "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+            top_missing = ", ".join(missing_sections[:3]) if missing_sections else "contexte client"
+            feedback = f"Note a enrichir: ajoute des details sur {top_missing}."
             
         extraction.meta_analysis.advisor_feedback = feedback

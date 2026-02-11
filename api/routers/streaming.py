@@ -13,6 +13,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from src.pipeline_async import AsyncPipeline
+from src.language_utils import detect_language
 
 logger = logging.getLogger("lvmh-api.streaming")
 router = APIRouter()
@@ -47,7 +48,7 @@ async def generate_streaming_results(
     note = {
         "ID": f"STREAM_{int(start_time)}",
         "Transcription": text,
-        "Language": language
+        "Language": detect_language(text, fallback="FR") if str(language).upper() == "AUTO" else language
     }
 
     pipeline = AsyncPipeline(use_semantic_cache=False)

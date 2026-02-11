@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText, Mic, Play, Pause, Tag, ShoppingBag, Zap, Sparkles, Trash2, Terminal } from 'lucide-react'
 import DebugAnalyzer from './DebugAnalyzer'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
+import { apiFetch } from '../lib/api'
 
 export default function ManagerView({ onBack }) {
     const [currentTab, setCurrentTab] = useState('overview')
@@ -113,7 +114,7 @@ export default function ManagerView({ onBack }) {
             const formData = new FormData()
             formData.append('file', file)
             
-            const res = await fetch('/api/data-cleaning/preview', {
+            const res = await apiFetch('/api/data-cleaning/preview', {
                 method: 'POST',
                 body: formData
             })
@@ -166,7 +167,7 @@ export default function ManagerView({ onBack }) {
             
             console.log('Sending formData with text_column:', selectedColumn)
             
-            const res = await fetch('/api/data-cleaning', {
+            const res = await apiFetch('/api/data-cleaning', {
                 method: 'POST',
                 body: formData
             })
@@ -213,7 +214,7 @@ export default function ManagerView({ onBack }) {
             if (recordingsFilter !== 'all') params.append('tier', recordingsFilter.replace('tier', ''))
             
             console.log('Fetching recordings...', params.toString())
-            const res = await fetch(`/api/recordings?${params}`, {
+            const res = await apiFetch(`/api/recordings?${params}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -241,7 +242,7 @@ export default function ManagerView({ onBack }) {
     const loadCsvFiles = async () => {
         setLoadingCsv(true)
         try {
-            const res = await fetch('/api/batch-results')
+            const res = await apiFetch('/api/batch-results')
             if (res.ok) {
                 const data = await res.json()
                 setCsvFiles(data.files || [])
@@ -261,7 +262,7 @@ export default function ManagerView({ onBack }) {
         if (!filename) return
         setLoadingCsv(true)
         try {
-            const res = await fetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
+            const res = await apiFetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
             if (res.ok) {
                 const data = await res.json()
                 setCsvData(data.data || [])
@@ -282,38 +283,38 @@ export default function ManagerView({ onBack }) {
 
     const fetchData = async () => {
         try {
-            const sRes = await fetch('/api/stats/overview')
+            const sRes = await apiFetch('/api/stats/overview')
             if (sRes.ok) {
                 setStats(await sRes.json())
             }
 
-            const lRes = await fetch('/api/leaderboard')
+            const lRes = await apiFetch('/api/leaderboard')
             if (lRes.ok) {
                 setLeaderboard(await lRes.json())
             }
 
-            const hRes = await fetch('/api/search?q=')
+            const hRes = await apiFetch('/api/search?q=')
             if (hRes.ok) {
                 const hData = await hRes.json()
                 setHistory(hData.results || [])
             }
 
-            const rRes = await fetch('/api/stats/rgpd')
+            const rRes = await apiFetch('/api/stats/rgpd')
             if (rRes.ok) {
                 setRgpdStats(await rRes.json())
             }
 
-            const cRes = await fetch('/api/stats/cost')
+            const cRes = await apiFetch('/api/stats/cost')
             if (cRes.ok) {
                 setCostStats(await cRes.json())
             }
 
-            const dRes = await fetch('/api/dashboard/metrics')
+            const dRes = await apiFetch('/api/dashboard/metrics')
             if (dRes.ok) {
                 setDashboardMetrics(await dRes.json())
             }
 
-            const dsRes = await fetch('/api/dashboard/metrics/summary')
+            const dsRes = await apiFetch('/api/dashboard/metrics/summary')
             if (dsRes.ok) {
                 setDashboardSummary(await dsRes.json())
             }

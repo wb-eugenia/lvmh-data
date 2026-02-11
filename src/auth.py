@@ -15,6 +15,10 @@ from src.database import SessionLocal, User
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "CHANGE_ME_IN_PROD")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 # 24 Hours
+APP_ENV = os.getenv("ENV", os.getenv("APP_ENV", os.getenv("PYTHON_ENV", "development"))).lower()
+
+if APP_ENV in {"production", "prod", "staging"} and (SECRET_KEY == "CHANGE_ME_IN_PROD" or len(SECRET_KEY) < 32):
+    raise RuntimeError("JWT_SECRET_KEY must be configured with at least 32 chars in production-like environments.")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

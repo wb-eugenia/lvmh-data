@@ -19,11 +19,18 @@ export default function PipelineVisualizer({ isProcessing, currentStep, result }
             else if (currentStep === 'routing') setActiveStepIndex(1);
             else if (currentStep.startsWith('tier')) setActiveStepIndex(2);
             else if (currentStep === 'rag') setActiveStepIndex(3);
-            else if (currentStep === 'done') setActiveStepIndex(5);
+            else if (currentStep === 'done') setActiveStepIndex(STEPS.length - 1);
         } else if (!isProcessing) {
             setActiveStepIndex(-1);
         }
     }, [currentStep, isProcessing]);
+
+    const normalizeScore = (value) => {
+        if (value === null || value === undefined || Number.isNaN(value)) return 0;
+        return value <= 1 ? value * 100 : value;
+    };
+
+    const qualityScore = normalizeScore(result?.meta_analysis?.quality_score);
 
     if (!isProcessing && !result) return null;
 
@@ -109,7 +116,7 @@ export default function PipelineVisualizer({ isProcessing, currentStep, result }
                             </div>
                             <div>
                                 <div className="text-[10px] text-lvmh-gray uppercase font-bold tracking-widest">Score de Qualité</div>
-                                <div className="text-xl font-bold text-white">{(result.meta_analysis?.quality_score * 100 || 85).toFixed(0)}% <span className="text-lvmh-gold text-sm">+20 pts</span></div>
+                                <div className="text-xl font-bold text-white">{(qualityScore || 85).toFixed(0)}% <span className="text-lvmh-gold text-sm">+20 pts</span></div>
                             </div>
                         </div>
 

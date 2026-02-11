@@ -113,6 +113,9 @@ class AsyncPipeline:
             'tier1': 0,
             'tier2': 0,
             'tier3': 0,
+            'tier1_exec': 0,
+            'tier2_exec': 0,
+            'tier3_exec': 0,
             'semantic_cache_hits': 0,
             'cross_validated': 0,
             'rag_attempted': 0,
@@ -152,6 +155,7 @@ class AsyncPipeline:
             note_id = str(note.get('ID', 'unknown'))
             raw_text = note.get('Transcription') or ''  # Handle None or missing
             language = note.get('Language', 'FR') or 'FR'
+            timeout_budget = max(5, int(settings.processing_timeout_seconds))
 
             # Helper for safe progress reporting
             async def safe_progress(step_data):
@@ -162,6 +166,18 @@ class AsyncPipeline:
                         await on_progress(payload)
                     except Exception as pe:
                         logger.warning(f"Progress report failed for step {step_data.get('step')}: {pe}")
+
+            def remaining_budget_seconds() -> float:
+                return timeout_budget - (time.time() - start_time)
+
+            def budget_exhausted(buffer_seconds: float = 0.0) -> bool:
+                return remaining_budget_seconds() <= buffer_seconds
+
+            async def run_with_semaphore_timeout(semaphore: asyncio.Semaphore, coro_factory, timeout_seconds: float):
+                async def runner():
+                    async with semaphore:
+                        return await coro_factory()
+                return await asyncio.wait_for(runner(), timeout=timeout_seconds)
 
             # 0. Data Cleaning
             await safe_progress({"step": "cleaning", "tokens_saved": 0})
@@ -274,13 +290,32 @@ class AsyncPipeline:
                 if tier1_result:
                     tier_results[1] = tier1_result.model_dump() if hasattr(tier1_result, 'model_dump') else tier1_result
                     tier_confidences[1] = getattr(tier1_result, 'confidence', 0.7)
-                self.stats['tier1'] += 1
+                self.stats['tier1_exec'] += 1
                 
                 # Run Tier 2 if routed
                 if decision.tier >= 2:
                     await safe_progress({"step": "tier2_extraction"})
-                    async with self.ollama_semaphore:
-                        tier2_result = await self.tier2.extract(text, language)
+                    tier2_result = None
+                    if budget_exhausted(buffer_seconds=3):
+                        decision.tier = 1
+                        decision.reasons.append("Timeout budget reached before Tier 2")
+                        logger.warning("Note %s skipped Tier 2 due timeout budget", note_id)
+                    else:
+                        try:
+                            tier2_timeout = max(3.0, min(remaining_budget_seconds(), float(timeout_budget)))
+                            tier2_result = await run_with_semaphore_timeout(
+                                self.ollama_semaphore,
+                                lambda: self.tier2.extract(text, language),
+                                timeout_seconds=tier2_timeout
+                            )
+                        except asyncio.TimeoutError:
+                            logger.warning("Tier 2 timed out for note %s after %.1fs", note_id, tier2_timeout)
+                            decision.tier = 1
+                            decision.reasons.append("Tier 2 timeout")
+                        except Exception as tier2_err:
+                            logger.warning("Tier 2 failed for note %s: %s", note_id, tier2_err)
+                            decision.tier = 1
+                            decision.reasons.append("Tier 2 failure")
                     
                     if tier2_result:
                         tier_results[2] = tier2_result.model_dump() if hasattr(tier2_result, 'model_dump') else tier2_result
@@ -301,24 +336,43 @@ class AsyncPipeline:
                         decision.tier = 3
                         decision.reasons.append("Escalated from Tier 2 (Safety/Confidence)")
                     else:
-                        self.stats['tier2'] += 1
+                        self.stats['tier2_exec'] += 1
                 
                 # Run Tier 3 if routed
                 if decision.tier >= 3:
                     await safe_progress({"step": "tier3_extraction"})
-                    async with self.openai_semaphore:
-                        tier3_result = await self.tier3.extract(
-                            text, 
-                            language, 
-                            client_status=None,
-                            escalation_reason=decision.reasons[-1] if decision.reasons else None,
-                            use_cache=False
-                        )
+                    tier3_result = None
+                    if budget_exhausted(buffer_seconds=3):
+                        decision.tier = 2 if 2 in tier_results else 1
+                        decision.reasons.append("Timeout budget reached before Tier 3")
+                        logger.warning("Note %s skipped Tier 3 due timeout budget", note_id)
+                    else:
+                        try:
+                            tier3_timeout = max(3.0, min(remaining_budget_seconds(), float(timeout_budget)))
+                            tier3_result = await run_with_semaphore_timeout(
+                                self.openai_semaphore,
+                                lambda: self.tier3.extract(
+                                    text,
+                                    language,
+                                    client_status=None,
+                                    escalation_reason=decision.reasons[-1] if decision.reasons else None,
+                                    use_cache=False
+                                ),
+                                timeout_seconds=tier3_timeout
+                            )
+                        except asyncio.TimeoutError:
+                            decision.tier = 2 if 2 in tier_results else 1
+                            decision.reasons.append("Tier 3 timeout")
+                            logger.warning("Tier 3 timed out for note %s after %.1fs", note_id, tier3_timeout)
+                        except Exception as tier3_err:
+                            decision.tier = 2 if 2 in tier_results else 1
+                            decision.reasons.append("Tier 3 failure")
+                            logger.warning("Tier 3 failed for note %s: %s", note_id, tier3_err)
                     
                     if tier3_result:
                         tier_results[3] = tier3_result.model_dump() if hasattr(tier3_result, 'model_dump') else tier3_result
                         tier_confidences[3] = getattr(tier3_result, 'confidence', 0.95)
-                    self.stats['tier3'] += 1
+                    self.stats['tier3_exec'] += 1
                 
                 # Cross-Validation: Merge results from all tiers
                 if self.cross_validator and len(tier_results) > 1:
@@ -364,6 +418,8 @@ class AsyncPipeline:
                     if decision.tier in tier_results
                     else (max(tier_results.keys()) if tier_results else decision.tier)
                 )
+                if final_tier_used in (1, 2, 3):
+                    self.stats[f'tier{final_tier_used}'] += 1
 
                 # 5. RAG (real product matching)
                 if extraction_result:
@@ -371,7 +427,10 @@ class AsyncPipeline:
                         self.stats['rag_attempted'] += 1
                         rag_matches = []
 
-                        if self.matcher and getattr(self.matcher, 'enabled', False):
+                        if budget_exhausted(buffer_seconds=1.5):
+                            self.stats['rag_disabled'] += 1
+                            await safe_progress({"step": "rag", "status": "skipped_timeout_budget", "matches": 0})
+                        elif self.matcher and getattr(self.matcher, 'enabled', False):
                             rag_matches = self.matcher.match(text, top_k=3, threshold=0.35)
                             extraction_result.pilier_1_univers_produit.matched_products = rag_matches
                             if rag_matches:
@@ -391,7 +450,10 @@ class AsyncPipeline:
                 # 6. Enrich extraction with NBA recommendation and unified quality scoring.
                 if extraction_result:
                     try:
-                        extraction_result = self.recommender.generate_recommendation(extraction_result)
+                        extraction_result = self.recommender.generate_recommendation(
+                            extraction_result,
+                            source_text=text
+                        )
                     except Exception as rec_err:
                         logger.warning(f"Recommender enrichment failed for note {note_id}: {rec_err}")
 
@@ -510,7 +572,23 @@ class AsyncPipeline:
         Process a batch of notes concurrently.
         """
         self.stats['start_time'] = time.time()
-        self.stats['processed'] = 0
+        for key in (
+            'processed',
+            'success',
+            'failed',
+            'tier1',
+            'tier2',
+            'tier3',
+            'tier1_exec',
+            'tier2_exec',
+            'tier3_exec',
+            'semantic_cache_hits',
+            'cross_validated',
+            'rag_attempted',
+            'rag_hits',
+            'rag_disabled',
+        ):
+            self.stats[key] = 0
         
         tasks = [self.process_note(note) for note in notes]
         
@@ -536,7 +614,12 @@ class AsyncPipeline:
                 "tier1": self.stats['tier1'],
                 "tier2": self.stats['tier2'],
                 "tier3": self.stats['tier3']
-            }
+            },
+            "tiers_executed": {
+                "tier1": self.stats.get('tier1_exec', 0),
+                "tier2": self.stats.get('tier2_exec', 0),
+                "tier3": self.stats.get('tier3_exec', 0)
+            },
         }
         
         # Add semantic cache stats

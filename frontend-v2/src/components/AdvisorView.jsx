@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ShoppingBag, Lightbulb } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import { apiFetch, wsUrl } from '../lib/api'
 import confetti from 'canvas-confetti'
+import PipelineVisualizer from './PipelineVisualizer'
 
 export default function AdvisorView({ onBack }) {
     const { user, logout, updateUser } = useAuth()
@@ -63,12 +65,11 @@ export default function AdvisorView({ onBack }) {
 
     // WebSocket for real-time pipeline visualization
     useEffect(() => {
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsUrl = `${protocol}//${window.location.host}/ws/pipeline`;
+        const socketUrl = wsUrl('/ws/pipeline')
         let ws;
 
         const connect = () => {
-            ws = new WebSocket(wsUrl);
+            ws = new WebSocket(socketUrl);
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 if (data.type === 'leaderboard') {
@@ -118,7 +119,7 @@ export default function AdvisorView({ onBack }) {
     const loadCsvFiles = async () => {
         setLoadingCsv(true)
         try {
-            const res = await fetch('/api/batch-results')
+            const res = await apiFetch('/api/batch-results')
             if (res.ok) {
                 const data = await res.json()
                 setCsvFiles(data.files || [])
@@ -138,7 +139,7 @@ export default function AdvisorView({ onBack }) {
         if (!filename) return
         setLoadingCsv(true)
         try {
-            const res = await fetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
+            const res = await apiFetch(`/api/batch-results?file=${encodeURIComponent(filename)}`)
             if (res.ok) {
                 const data = await res.json()
                 setCsvData(data.data || [])
@@ -161,7 +162,7 @@ export default function AdvisorView({ onBack }) {
         setLoadingHistory(true)
         try {
             const token = localStorage.getItem('token')
-            const res = await fetch('/api/history', {
+            const res = await apiFetch('/api/history', {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
             if (res.ok) {
@@ -197,7 +198,7 @@ export default function AdvisorView({ onBack }) {
     const fetchNoteDetail = async (id) => {
         setIsProcessing(true)
         try {
-            const res = await fetch(`/api/results/${id}`)
+            const res = await apiFetch(`/api/results/${id}`)
             if (res.ok) {
                 const data = await res.json()
                 setCurrentResult(data)
@@ -213,7 +214,7 @@ export default function AdvisorView({ onBack }) {
         }
         setSearchingClients(true)
         try {
-            const res = await fetch(`/api/clients/search?q=${query}`)
+            const res = await apiFetch(`/api/clients/search?q=${query}`)
             if (res.ok) {
                 const data = await res.json()
                 setClientResults(data)
@@ -277,7 +278,7 @@ export default function AdvisorView({ onBack }) {
         formData.append('file', audioBlob, 'recording.webm')
 
         try {
-            const transRes = await fetch('/api/transcribe', {
+            const transRes = await apiFetch('/api/transcribe', {
                 method: 'POST',
                 body: formData // No headers for multipart
             })
@@ -288,7 +289,7 @@ export default function AdvisorView({ onBack }) {
             // 2. Intelligence Pipeline
             // Get token from auth context/local storage if needed for Auth header
             const token = localStorage.getItem('token')
-            const res = await fetch('/api/analyze', {
+            const res = await apiFetch('/api/analyze', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -413,6 +414,14 @@ export default function AdvisorView({ onBack }) {
                             className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <PipelineVisualizer
+                            isProcessing={isProcessing}
+                            currentStep={currentStep}
+                            result={currentResult}
                         />
                     </div>
 

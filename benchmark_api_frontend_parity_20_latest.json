@@ -1,0 +1,12 @@
+{
+  "input_notes": 20,
+  "api_success": 20,
+  "api_errors": [],
+  "tier_match_rate_pct": 100.0,
+  "rgpd_match_rate_pct": 100.0,
+  "avg_tag_jaccard": 1.0,
+  "min_tag_jaccard": 1.0,
+  "max_tag_jaccard": 1.0,
+  "missing_required_fields": 0,
+  "invalid_quality_range": 0
+}
