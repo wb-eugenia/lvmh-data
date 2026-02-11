@@ -29,4 +29,27 @@ export const wsUrl = (path) => {
     return `${protocol}//${window.location.host}${normalizedPath}`;
 };
 
-export const apiFetch = (path, options) => fetch(apiUrl(path), options);
+const buildHeadersWithAuth = (headers) => {
+    const token = localStorage.getItem("token");
+    if (!token) return headers;
+
+    if (headers instanceof Headers) {
+        if (!headers.has("Authorization")) {
+            headers.set("Authorization", `Bearer ${token}`);
+        }
+        return headers;
+    }
+
+    const merged = { ...(headers || {}) };
+    const hasAuthorization = Object.keys(merged).some((key) => key.toLowerCase() === "authorization");
+    if (!hasAuthorization) {
+        merged.Authorization = `Bearer ${token}`;
+    }
+    return merged;
+};
+
+export const apiFetch = (path, options = {}) => {
+    const nextOptions = { ...options };
+    nextOptions.headers = buildHeadersWithAuth(options.headers);
+    return fetch(apiUrl(path), nextOptions);
+};

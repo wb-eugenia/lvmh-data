@@ -35,7 +35,7 @@ _pipeline = None
 def get_pipeline():
     global _pipeline
     if _pipeline is None:
-        _pipeline = AsyncPipeline(use_cache=True)
+        _pipeline = AsyncPipeline(use_cache=True, use_semantic_cache=False, use_cross_validation=True)
     return _pipeline
 
 

@@ -52,6 +52,9 @@ class Settings(BaseModel):
     cache_enabled: bool = True
     cache_dir: str = "cache/pipeline_v2"
     cache_ttl_seconds: int = 86400
+    cache_key_salt: str = Field(
+        default_factory=lambda: os.getenv("CACHE_KEY_SALT", "pipeline_v2.3_taxonomy_v2.2")
+    )
     
     # Monitoring
     log_level: Literal['DEBUG', 'INFO', 'WARNING', 'ERROR'] = 'INFO'

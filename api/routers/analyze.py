@@ -40,7 +40,7 @@ def get_pipeline() -> AsyncPipeline:
     """Get or create pipeline instance."""
     global _pipeline
     if _pipeline is None:
-        _pipeline = AsyncPipeline(use_cache=True)
+        _pipeline = AsyncPipeline(use_cache=True, use_semantic_cache=False, use_cross_validation=True)
         logger.info("Pipeline initialized")
     return _pipeline
 

@@ -1,17 +1,19 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
-from pydantic import BaseModel
-from typing import Optional
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import os
+from typing import Callable, Iterable, Optional
 
-from ..database import get_db, engine
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from pydantic import BaseModel
+from sqlalchemy.orm import Session
+
+from ..auth_utils import create_access_token, get_password_hash, verify_password
+from ..database import engine, get_db
 from ..models_sql import Base, User
-from ..auth_utils import verify_password, create_access_token, get_password_hash
 
 router = APIRouter()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+VALID_ROLES = {"advisor", "manager", "admin"}
 
 
 def _env_flag(name: str, default: str = "false") -> bool:
@@ -30,6 +32,7 @@ AUTO_CREATE_SCHEMA = _env_flag("AUTO_CREATE_SCHEMA", DEFAULT_AUTO_SCHEMA)
 if AUTO_CREATE_SCHEMA:
     Base.metadata.create_all(bind=engine)
 
+
 class Token(BaseModel):
     access_token: str
     token_type: str
@@ -38,6 +41,7 @@ class Token(BaseModel):
     points: int
     store: Optional[str] = None
 
+
 class UserCreate(BaseModel):
     email: str
     password: str
@@ -45,24 +49,61 @@ class UserCreate(BaseModel):
     role: str
     store: Optional[str] = None
 
+
+def _normalize_roles(roles: Iterable[str]) -> set[str]:
+    return {
+        str(role).strip().lower()
+        for role in roles
+        if str(role).strip()
+    }
+
+
+def require_roles(*allowed_roles: str) -> Callable:
+    normalized_roles = _normalize_roles(allowed_roles)
+    if not normalized_roles:
+        raise ValueError("At least one role must be provided to require_roles().")
+
+    async def _require(current_user: User = Depends(get_current_user)) -> User:
+        current_role = str(current_user.role or "").strip().lower()
+        if current_role not in normalized_roles:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=f"Access denied for role '{current_user.role}'. Required: {sorted(normalized_roles)}",
+            )
+        return current_user
+
+    return _require
+
+
 @router.post("/login", response_model=Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    # Auto-seed Demo Users on first login if missing
-    if ALLOW_DEMO_ACCOUNTS and form_data.username in ["advisor@lvmh.com", "manager@lvmh.com"]:
+async def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db),
+):
+    # Auto-seed demo users on first login if missing.
+    if ALLOW_DEMO_ACCOUNTS and form_data.username in {"advisor@lvmh.com", "manager@lvmh.com", "admin@lvmh.com"}:
         existing = db.query(User).filter(User.email == form_data.username).first()
         if not existing:
-            # Create on the fly
-            role = "manager" if "manager" in form_data.username else "advisor"
-            name = "Jean Dupont" if role == "manager" else "Sophie Martin"
-            store = "Paris HQ" if role == "manager" else "Champs-Élysées"
-            
+            if "admin" in form_data.username:
+                role = "admin"
+                name = "Alexandre Admin"
+                store = "Global HQ"
+            elif "manager" in form_data.username:
+                role = "manager"
+                name = "Jean Dupont"
+                store = "Paris HQ"
+            else:
+                role = "advisor"
+                name = "Sophie Martin"
+                store = "Champs-Elysees"
+
             hashed = get_password_hash(DEMO_PASSWORD)
             new_user = User(
-                email=form_data.username, 
-                hashed_password=hashed, 
-                full_name=name, 
-                role=role, 
-                store=store
+                email=form_data.username,
+                hashed_password=hashed,
+                full_name=name,
+                role=role,
+                store=store,
             )
             db.add(new_user)
             db.commit()
@@ -75,17 +116,18 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
+
     access_token = create_access_token(data={"sub": user.email, "role": user.role, "id": user.id})
-    
+
     return {
-        "access_token": access_token, 
+        "access_token": access_token,
         "token_type": "bearer",
         "role": user.role,
         "name": user.full_name,
         "points": user.score,
-        "store": user.store
+        "store": user.store,
     }
+
 
 @router.post("/seed")
 async def seed_users(db: Session = Depends(get_db)):
@@ -94,27 +136,55 @@ async def seed_users(db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Seed endpoint disabled")
 
     users = [
-        {"email": "advisor@lvmh.com", "password": DEMO_PASSWORD, "full_name": "Sophie Martin", "role": "advisor", "store": "Champs-Élysées"},
-        {"email": "manager@lvmh.com", "password": DEMO_PASSWORD, "full_name": "Jean Dupont", "role": "manager", "store": "Paris HQ"},
+        {
+            "email": "advisor@lvmh.com",
+            "password": DEMO_PASSWORD,
+            "full_name": "Sophie Martin",
+            "role": "advisor",
+            "store": "Champs-Elysees",
+        },
+        {
+            "email": "manager@lvmh.com",
+            "password": DEMO_PASSWORD,
+            "full_name": "Jean Dupont",
+            "role": "manager",
+            "store": "Paris HQ",
+        },
+        {
+            "email": "admin@lvmh.com",
+            "password": DEMO_PASSWORD,
+            "full_name": "Alexandre Admin",
+            "role": "admin",
+            "store": "Global HQ",
+        },
     ]
-    
+
     created = []
-    for u in users:
-        db_user = db.query(User).filter(User.email == u["email"]).first()
-        if not db_user:
-            hashed = get_password_hash(u["password"])
-            new_user = User(email=u["email"], hashed_password=hashed, full_name=u["full_name"], role=u["role"], store=u["store"])
-            db.add(new_user)
-            db.commit()
-            db.refresh(new_user)
-            created.append(new_user.email)
-            
+    for user_payload in users:
+        db_user = db.query(User).filter(User.email == user_payload["email"]).first()
+        if db_user:
+            continue
+        hashed = get_password_hash(user_payload["password"])
+        new_user = User(
+            email=user_payload["email"],
+            hashed_password=hashed,
+            full_name=user_payload["full_name"],
+            role=user_payload["role"],
+            store=user_payload["store"],
+        )
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        created.append(new_user.email)
+
     return {"message": "Users created", "users": created}
+
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     from jose import JWTError, jwt
-    from ..auth_utils import SECRET_KEY, ALGORITHM
-    
+
+    from ..auth_utils import ALGORITHM, SECRET_KEY
+
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -127,8 +197,15 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
             raise credentials_exception
     except JWTError:
         raise credentials_exception
-        
+
     user = db.query(User).filter(User.email == email).first()
     if user is None:
         raise credentials_exception
+
+    user_role = str(user.role or "").strip().lower()
+    if user_role not in VALID_ROLES:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"Unsupported role '{user.role}'",
+        )
     return user

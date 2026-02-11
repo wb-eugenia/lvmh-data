@@ -1,9 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { lazy, Suspense, useState, useEffect } from 'react'
 import LandingPage from './components/LandingPage'
-import AdvisorView from './components/AdvisorView'
-import ManagerView from './components/ManagerView'
 import LoginView from './components/LoginView'
 import { AuthProvider, useAuth } from './context/AuthContext'
+
+const AdvisorView = lazy(() => import('./components/AdvisorView'))
+const ManagerView = lazy(() => import('./components/ManagerView'))
+const AdminView = lazy(() => import('./components/AdminView'))
+const PipelineView = lazy(() => import('./components/PipelineView'))
+
+const viewByPath = (path) => {
+    const normalizedPath = (path || '/').replace(/\/+$/, '') || '/'
+    if (normalizedPath === '/login') return 'login'
+    if (normalizedPath === '/advisor') return 'advisor'
+    if (normalizedPath === '/manager') return 'manager'
+    if (normalizedPath === '/admin') return 'admin'
+    if (normalizedPath === '/pipeline') return 'pipeline'
+    return 'landing'
+}
+
+const pathByView = (view) => {
+    if (view === 'login') return '/login'
+    if (view === 'advisor') return '/advisor'
+    if (view === 'manager') return '/manager'
+    if (view === 'admin') return '/admin'
+    if (view === 'pipeline') return '/pipeline'
+    return '/'
+}
 
 function AppContent() {
     // Determine view from URL or state
@@ -11,17 +33,15 @@ function AppContent() {
     const { user, loading } = useAuth()
 
     useEffect(() => {
-        // Simple URL routing simulation
-        const path = window.location.pathname
-        if (path === '/login') setView('login')
-        else if (path === '/advisor') setView('advisor')
-        else if (path === '/manager') setView('manager')
+        const syncViewFromUrl = () => setView(viewByPath(window.location.pathname))
+        syncViewFromUrl()
+        window.addEventListener('popstate', syncViewFromUrl)
+        return () => window.removeEventListener('popstate', syncViewFromUrl)
     }, [])
 
     const navigate = (newView) => {
         setView(newView)
-        // Optional: Update URL without reload
-        window.history.pushState({}, '', newView === 'landing' ? '/' : `/${newView}`)
+        window.history.pushState({}, '', pathByView(newView))
     }
 
     if (loading) return <div className="h-screen bg-black text-white flex items-center justify-center">Chargement...</div>
@@ -29,20 +49,36 @@ function AppContent() {
     // Protected Routes
     if (view === 'advisor' && !user) return <LoginView />
     if (view === 'manager' && !user) return <LoginView />
+    if (view === 'admin' && !user) return <LoginView />
     if (view === 'login') return <LoginView />
-
-    // Role Enforcement (Optional: redirect advisor trying to access manager view)
-    // Role Enforcement (Disabled for smoother demo flow)
-    // if (view === 'manager' && user?.role !== 'manager') {
-    //    return <div className="h-screen flex items-center justify-center text-white">Accès Réservé au Manager</div>
-    // }
+    if (view === 'admin' && user?.role !== 'admin') {
+        return (
+            <div className="h-screen bg-black text-white flex items-center justify-center p-6">
+                <div className="glass p-8 max-w-md text-center">
+                    <div className="text-lvmh-gold text-sm uppercase tracking-widest mb-3">Acces restreint</div>
+                    <h2 className="text-2xl font-display font-bold mb-2">Admin Total</h2>
+                    <p className="text-lvmh-gray text-sm">Cette vue est reservee au role admin.</p>
+                    <button
+                        onClick={() => navigate('landing')}
+                        className="mt-6 px-5 py-2 rounded-lg bg-lvmh-gold text-black font-bold text-sm hover:bg-lvmh-gold/90 transition-colors"
+                    >
+                        Retour
+                    </button>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="min-h-screen">
-            {view === 'landing' && <LandingPage onNavigate={navigate} />}
-            {view === 'advisor' && <AdvisorView onBack={() => navigate('landing')} />}
-            {view === 'manager' && <ManagerView onBack={() => navigate('landing')} />}
-            {view === 'login' && <LoginView />}
+            <Suspense fallback={<div className="h-screen bg-black text-white flex items-center justify-center">Chargement...</div>}>
+                {view === 'landing' && <LandingPage onNavigate={navigate} />}
+                {view === 'advisor' && <AdvisorView onBack={() => navigate('landing')} />}
+                {view === 'manager' && <ManagerView onBack={() => navigate('landing')} />}
+                {view === 'admin' && <AdminView onBack={() => navigate('landing')} />}
+                {view === 'pipeline' && <PipelineView onBack={() => navigate('landing')} />}
+                {view === 'login' && <LoginView />}
+            </Suspense>
         </div>
     )
 }
@@ -56,3 +92,5 @@ function App() {
 }
 
 export default App
+
+

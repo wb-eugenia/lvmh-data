@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float, Text, DateTime
+from sqlalchemy import Boolean, CheckConstraint, Column, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from .database import Base
@@ -6,12 +6,18 @@ from .database import Base
 
 class User(Base):
     __tablename__ = "users"
+    __table_args__ = (
+        CheckConstraint(
+            "role IN ('advisor', 'manager', 'admin')",
+            name="ck_users_role_valid",
+        ),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     full_name = Column(String)
-    role = Column(String) # "advisor", "manager"
+    role = Column(String, nullable=False, default="advisor") # "advisor", "manager", "admin"
     score = Column(Integer, default=0)
     store = Column(String, nullable=True)
 
@@ -43,6 +49,7 @@ class Note(Base):
 
     advisor = relationship("User", back_populates="notes")
     client = relationship("Client", back_populates="notes")
+    opportunity_action = relationship("OpportunityAction", back_populates="note", uselist=False)
 
 
 class Feedback(Base):
@@ -61,3 +68,30 @@ class Feedback(Base):
     actual_tier = Column(Integer, nullable=True)
     routing_correct = Column(Boolean, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+
+class OpportunityAction(Base):
+    __tablename__ = "opportunity_actions"
+    __table_args__ = (
+        UniqueConstraint("note_id", name="uq_opportunity_actions_note"),
+        CheckConstraint(
+            "status IN ('open', 'planned', 'done')",
+            name="ck_opportunity_actions_status_valid",
+        ),
+        CheckConstraint(
+            "action_type IN ('open', 'call', 'schedule', 'assign', 'other')",
+            name="ck_opportunity_actions_type_valid",
+        ),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    note_id = Column(Integer, ForeignKey("notes.id"), nullable=False, index=True)
+    manager_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    action_type = Column(String, nullable=False, default="open")
+    status = Column(String, nullable=False, default="open")
+    details = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    note = relationship("Note", back_populates="opportunity_action")
+    manager = relationship("User")

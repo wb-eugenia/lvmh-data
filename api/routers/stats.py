@@ -7,25 +7,38 @@ import sys
 import json
 import hashlib
 import logging
-from typing import Dict, Any, List
+from datetime import datetime, timedelta, timezone
+from typing import Dict, Any, Optional
 from pathlib import Path
-from collections import Counter
 
 import pandas as pd
 from api.database import get_db
 from api.models_sql import User, Note, Client
+from api.routers.auth import require_roles
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Response, Depends
-import json
+from fastapi import APIRouter, Depends, Query
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from api.schemas import OverviewStats, TierStats, RGPDStats, CostStats, LeaderboardEntry
 
 logger = logging.getLogger("lvmh-api.stats")
-router = APIRouter()
+router = APIRouter(
+    dependencies=[Depends(require_roles("manager", "admin"))]
+)
 
 OUTPUTS_DIR = Path(__file__).parent.parent.parent / "outputs"
+
+
+def _utcnow_naive() -> datetime:
+    return datetime.now(timezone.utc).replace(tzinfo=None)
+
+
+def _apply_note_window(query, *, days: Optional[int]) -> Any:
+    if days is None:
+        return query
+    cutoff = _utcnow_naive() - timedelta(days=days)
+    return query.filter(Note.timestamp >= cutoff)
 
 
 def load_latest_results() -> pd.DataFrame:
@@ -53,9 +66,13 @@ def generate_etag(data: Dict[str, Any]) -> str:
 
 @router.get("/stats")
 @router.get("/stats/overview")
-async def get_overview_stats(db: Session = Depends(get_db)):
+async def get_overview_stats(
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    db: Session = Depends(get_db),
+):
     """Get dashboard overview statistics from SQL DB."""
-    total_notes = db.query(Note).count()
+    notes_query = _apply_note_window(db.query(Note), days=days)
+    total_notes = notes_query.count()
     
     if total_notes == 0:
         return {
@@ -66,11 +83,11 @@ async def get_overview_stats(db: Session = Depends(get_db)):
     
     # Calculate avg quality (simplified for demo based on points)
     # If 15 pts = 100%, 10 pts = 66%
-    avg_points = db.query(Note.points_awarded).all()
+    avg_points = _apply_note_window(db.query(Note.points_awarded), days=days).all()
     avg_quality = (sum(p[0] for p in avg_points) / (total_notes * 15)) * 100 if total_notes > 0 else 0
     
     # Tier distribution from JSON in DB
-    notes = db.query(Note.analysis_json).all()
+    notes = _apply_note_window(db.query(Note.analysis_json), days=days).all()
     tiers = [1, 2, 3]
     distribution = {t: 0 for t in tiers}
     
@@ -90,9 +107,12 @@ async def get_overview_stats(db: Session = Depends(get_db)):
 
 
 @router.get("/stats/rgpd")
-async def get_rgpd_stats(db: Session = Depends(get_db)):
+async def get_rgpd_stats(
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    db: Session = Depends(get_db),
+):
     """Get RGPD statistics from SQL DB."""
-    notes = db.query(Note.analysis_json).all()
+    notes = _apply_note_window(db.query(Note.analysis_json), days=days).all()
     total = len(notes)
     
     if total == 0:
@@ -123,9 +143,12 @@ async def get_rgpd_stats(db: Session = Depends(get_db)):
 
 
 @router.get("/stats/cost")
-async def get_cost_stats(db: Session = Depends(get_db)):
+async def get_cost_stats(
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    db: Session = Depends(get_db),
+):
     """Get cost and ROI statistics from SQL DB."""
-    notes = db.query(Note.analysis_json).all()
+    notes = _apply_note_window(db.query(Note.analysis_json), days=days).all()
     total = len(notes)
     
     # Cost per tier (estimated in USD)

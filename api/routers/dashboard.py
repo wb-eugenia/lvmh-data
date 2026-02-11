@@ -5,26 +5,34 @@ Dashboard Router - Monitoring et m?triques en temps r?el
 import os
 import json
 import logging
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+import csv
+import io
+import re
+from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, List, Optional
 from pathlib import Path
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Query
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from api.database import get_db
-from api.models_sql import Note, Feedback
+from api.models_sql import Feedback, Note, OpportunityAction, User
+from api.routers.auth import require_roles
 from config.production import settings
 
 logger = logging.getLogger("lvmh-api.dashboard")
-router = APIRouter()
+router = APIRouter(
+    dependencies=[Depends(require_roles("manager", "admin"))]
+)
 MIN_FEEDBACK_FOR_ACCURACY_ALERT = 10
 
 
 class SystemMetrics(BaseModel):
     """System-wide metrics"""
     timestamp: str
+    window: Dict[str, Optional[str]]
     pipeline_stats: Dict
     cache_stats: Dict
     cost_stats: Dict
@@ -32,11 +40,418 @@ class SystemMetrics(BaseModel):
     alerts: List[str]
 
 
+class OpportunityActionUpsertPayload(BaseModel):
+    note_id: int
+    action_type: str
+    status: str
+    details: Optional[str] = None
+
+
 _metrics_history: List[Dict] = []
+ALLOWED_ACTION_TYPES = {"open", "call", "schedule", "assign", "other"}
+ALLOWED_ACTION_STATUS = {"open", "planned", "done"}
+ALLOWED_OPPORTUNITY_PRIORITY_FILTER = {"all", "urgent", "vip", "tier3"}
+ALLOWED_OPPORTUNITY_SORT = {"priority", "recent", "budget", "urgency"}
+ALLOWED_OPPORTUNITY_WINDOW = {"all", "today", "7d", "30d"}
+
+
+def _utcnow_naive() -> datetime:
+    return datetime.now(timezone.utc).replace(tzinfo=None)
+
+
+def _resolve_time_window(
+    *,
+    days: Optional[int] = None,
+    date_from: Optional[datetime] = None,
+    date_to: Optional[datetime] = None,
+) -> tuple[Optional[datetime], Optional[datetime]]:
+    end_ts = date_to
+    start_ts = date_from
+
+    if end_ts is None and (start_ts is not None or days is not None):
+        end_ts = _utcnow_naive()
+
+    if start_ts is None and days is not None:
+        if end_ts is None:
+            end_ts = _utcnow_naive()
+        start_ts = end_ts - timedelta(days=days)
+
+    if start_ts and end_ts and start_ts > end_ts:
+        raise HTTPException(status_code=400, detail="date_from must be <= date_to")
+
+    return start_ts, end_ts
+
+
+def _window_payload(start_ts: Optional[datetime], end_ts: Optional[datetime], days: Optional[int]) -> Dict[str, Optional[str]]:
+    return {
+        "days": str(days) if days is not None else None,
+        "date_from": start_ts.isoformat() if start_ts else None,
+        "date_to": end_ts.isoformat() if end_ts else None,
+    }
+
+
+def _apply_time_filter(query, column, start_ts: Optional[datetime], end_ts: Optional[datetime]):
+    if start_ts is not None:
+        query = query.filter(column >= start_ts)
+    if end_ts is not None:
+        query = query.filter(column <= end_ts)
+    return query
+
+
+def _parse_note_ids_csv(note_ids: Optional[str]) -> Optional[List[int]]:
+    if not note_ids:
+        return None
+
+    parsed: List[int] = []
+    for raw in note_ids.split(","):
+        token = raw.strip()
+        if not token:
+            continue
+        if not token.isdigit():
+            raise HTTPException(status_code=400, detail=f"Invalid note_id value '{token}'")
+        parsed.append(int(token))
+    return parsed or None
+
+
+def _normalize_action_type(value: str) -> str:
+    normalized = str(value or "").strip().lower()
+    if normalized not in ALLOWED_ACTION_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid action_type '{value}'. Allowed: {sorted(ALLOWED_ACTION_TYPES)}",
+        )
+    return normalized
+
+
+def _normalize_action_status(value: str) -> str:
+    normalized = str(value or "").strip().lower()
+    if normalized not in ALLOWED_ACTION_STATUS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid status '{value}'. Allowed: {sorted(ALLOWED_ACTION_STATUS)}",
+        )
+    return normalized
+
+
+def _normalize_opportunity_priority(value: str) -> str:
+    normalized = str(value or "").strip().lower()
+    if normalized not in ALLOWED_OPPORTUNITY_PRIORITY_FILTER:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid priority '{value}'. Allowed: {sorted(ALLOWED_OPPORTUNITY_PRIORITY_FILTER)}",
+        )
+    return normalized
+
+
+def _normalize_opportunity_sort(value: str) -> str:
+    normalized = str(value or "").strip().lower()
+    if normalized not in ALLOWED_OPPORTUNITY_SORT:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid sort '{value}'. Allowed: {sorted(ALLOWED_OPPORTUNITY_SORT)}",
+        )
+    return normalized
+
+
+def _normalize_opportunity_window(value: str) -> str:
+    normalized = str(value or "").strip().lower()
+    if normalized not in ALLOWED_OPPORTUNITY_WINDOW:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid window '{value}'. Allowed: {sorted(ALLOWED_OPPORTUNITY_WINDOW)}",
+        )
+    return normalized
+
+
+def _extract_budget_value(value: Any) -> Optional[float]:
+    if isinstance(value, (int, float)):
+        numeric = float(value)
+        if numeric > 0:
+            return numeric
+        return None
+
+    if value in (None, ""):
+        return None
+
+    text = str(value).lower()
+    matches = re.findall(r"(\d+(?:[.,]\d+)?)\s*(k|m)?", text)
+    if not matches:
+        return None
+
+    parsed: List[float] = []
+    for amount_raw, suffix in matches:
+        amount = float(amount_raw.replace(",", "."))
+        if suffix == "m":
+            amount *= 1_000_000
+        elif suffix == "k":
+            amount *= 1_000
+        if amount > 0:
+            parsed.append(amount)
+
+    if not parsed:
+        return None
+    return max(parsed)
+
+
+def _normalize_urgency(value: Any) -> tuple[int, str]:
+    text = str(value or "").strip().lower()
+    if not text:
+        return 1, "Low"
+
+    if (
+        "urgent" in text
+        or "high" in text
+        or "immediat" in text
+        or "crit" in text
+        or "hot" in text
+    ):
+        return 3, "High"
+
+    if (
+        "medium" in text
+        or "modere" in text
+        or "normal" in text
+        or "moyen" in text
+    ):
+        return 2, "Medium"
+
+    return 1, "Low"
+
+
+def _format_confidence_label(raw_confidence: Any) -> str:
+    if not isinstance(raw_confidence, (int, float)):
+        return "-"
+    confidence = float(raw_confidence)
+    if confidence <= 1:
+        confidence *= 100
+    return f"{round(confidence)}%"
+
+
+def _get_action_label(action_status: str, action_type: str) -> str:
+    if action_status == "done":
+        return "Action finalisee"
+    if action_type == "call":
+        return "Appel planifie"
+    if action_type == "schedule":
+        return "Rappel planifie"
+    if action_status == "planned":
+        return "Action planifiee"
+    return "Action en cours"
+
+
+def _build_opportunity_row(note: Note) -> Dict[str, Any]:
+    data = _safe_json_load(note.analysis_json) or {}
+    extraction = data.get("extraction", {}) if isinstance(data, dict) else {}
+    if not isinstance(extraction, dict):
+        extraction = {}
+    routing = data.get("routing", {}) if isinstance(data, dict) else {}
+    if not isinstance(routing, dict):
+        routing = {}
+
+    p4 = extraction.get("pilier_4_action_business", {})
+    if not isinstance(p4, dict):
+        p4 = {}
+
+    urgency_level, urgency_label = _normalize_urgency(
+        p4.get("urgency") or p4.get("priority") or p4.get("lead_temperature")
+    )
+    budget_value = _extract_budget_value(p4.get("budget_specific") or p4.get("budget_potential"))
+    budget_label = (
+        p4.get("budget_specific")
+        or p4.get("budget_potential")
+        or (f"{int(budget_value)}" if budget_value is not None else "-")
+    )
+
+    next_action_value = p4.get("next_best_action")
+    next_action = None
+    if isinstance(next_action_value, dict):
+        next_action = (
+            next_action_value.get("description")
+            or next_action_value.get("title")
+            or next_action_value.get("label")
+        )
+    elif isinstance(next_action_value, str):
+        next_action = next_action_value
+
+    if not next_action and isinstance(data, dict):
+        root_nba = data.get("next_best_action")
+        if isinstance(root_nba, dict):
+            next_action = root_nba.get("description") or root_nba.get("title")
+        elif isinstance(root_nba, str):
+            next_action = root_nba
+
+    if not next_action:
+        next_action = "Relance conseiller recommandee."
+
+    tier_raw = routing.get("tier", 1)
+    try:
+        tier = int(tier_raw)
+    except Exception:
+        tier = 1
+    if tier not in (1, 2, 3):
+        tier = 1
+
+    raw_confidence = routing.get("confidence")
+    confidence_numeric = float(raw_confidence) if isinstance(raw_confidence, (int, float)) else 0.0
+    confidence_ratio = confidence_numeric if confidence_numeric <= 1 else confidence_numeric / 100.0
+
+    vip_label = (note.client.vic_status if note.client else None) or "Standard"
+    is_vip = vip_label != "Standard"
+
+    tier_score = 30 if tier == 3 else 18 if tier == 2 else 8
+    urgency_score = urgency_level * 15
+    vip_score = 25 if is_vip else 0
+    budget_score = min(35.0, budget_value / 2000.0) if budget_value else 0.0
+    confidence_score = round(confidence_ratio * 12)
+    priority_score = round(tier_score + urgency_score + vip_score + budget_score + confidence_score)
+
+    action = note.opportunity_action
+    action_status = (str(action.status).strip().lower() if action and action.status else "open")
+    action_type = (str(action.action_type).strip().lower() if action and action.action_type else "")
+    action_label = _get_action_label(action_status, action_type)
+
+    advisor_name = "Inconnu"
+    advisor_store = "N/A"
+    if note.advisor:
+        advisor_name = note.advisor.full_name or note.advisor.email or "Inconnu"
+        advisor_store = note.advisor.store or "N/A"
+
+    row = {
+        "note_id": note.id,
+        "timestamp": note.timestamp.isoformat() if note.timestamp else None,
+        "client_name": (note.client.name if note.client else None) or "Client inconnu",
+        "advisor_name": advisor_name,
+        "advisor_store": advisor_store,
+        "vip_label": vip_label,
+        "is_vip": is_vip,
+        "tier": tier,
+        "urgency_level": urgency_level,
+        "urgency": urgency_label,
+        "next_action": str(next_action),
+        "budget_value": budget_value,
+        "budget_label": str(budget_label) if budget_label is not None else "-",
+        "confidence": _format_confidence_label(raw_confidence),
+        "priority_score": priority_score,
+        "action_status": action_status,
+        "action_type": action_type,
+        "action_label": action_label,
+        "action_updated_at": action.updated_at.isoformat() if action and action.updated_at else None,
+        "manager_name": (action.manager.full_name or action.manager.email) if action and action.manager else None,
+    }
+    row["_timestamp_dt"] = note.timestamp
+    row["_search_blob"] = (
+        f"{row['client_name']} {row['advisor_name']} {row['next_action']} "
+        f"{row['vip_label']} {row['budget_label']}"
+    ).lower()
+    return row
+
+
+def _flatten_for_csv(prefix: str, value: Any, rows: List[tuple[str, Any]]) -> None:
+    if isinstance(value, dict):
+        for key, nested in value.items():
+            next_prefix = f"{prefix}.{key}" if prefix else str(key)
+            _flatten_for_csv(next_prefix, nested, rows)
+        return
+    if isinstance(value, list):
+        rows.append((prefix, "; ".join(str(item) for item in value)))
+        return
+    rows.append((prefix, value))
+
+
+def _get_cost_per_tier() -> Dict[int, float]:
+    try:
+        from src.smart_router import SmartRouterV2
+
+        raw_costs = getattr(SmartRouterV2, "TIER_COSTS", {1: 0.0001, 2: 0.002, 3: 0.015})
+        return {
+            1: float(raw_costs.get(1, 0.0001)),
+            2: float(raw_costs.get(2, 0.002)),
+            3: float(raw_costs.get(3, 0.015)),
+        }
+    except Exception:
+        return {1: 0.0001, 2: 0.002, 3: 0.015}
+
+
+def _normalize_str_list(values: Any) -> List[str]:
+    if not isinstance(values, list):
+        return []
+    normalized: List[str] = []
+    for value in values:
+        if isinstance(value, (str, int, float)):
+            item = str(value).strip()
+            if item:
+                normalized.append(item)
+    return normalized
+
+
+def _extract_audio_sources(payload: Any, path: str = "") -> List[Dict[str, str]]:
+    """Best effort extraction of audio/recording URLs or file paths from nested payload."""
+    hits: List[Dict[str, str]] = []
+    if isinstance(payload, dict):
+        for key, value in payload.items():
+            next_path = f"{path}.{key}" if path else str(key)
+            key_l = str(key).lower()
+
+            if isinstance(value, str):
+                value_l = value.lower()
+                key_has_audio_hint = any(token in key_l for token in ("audio", "record", "media", "source"))
+                value_has_audio_hint = value_l.endswith((".mp3", ".wav", ".m4a", ".ogg", ".webm", ".aac", ".flac"))
+                if key_has_audio_hint or value_has_audio_hint:
+                    hits.append(
+                        {
+                            "path": next_path,
+                            "value": value,
+                        }
+                    )
+            else:
+                hits.extend(_extract_audio_sources(value, next_path))
+    elif isinstance(payload, list):
+        for idx, value in enumerate(payload):
+            next_path = f"{path}[{idx}]"
+            hits.extend(_extract_audio_sources(value, next_path))
+    return hits
+
+
+def _derive_tags(extraction: Dict[str, Any]) -> List[str]:
+    explicit = _normalize_str_list(extraction.get("tags"))
+    if explicit:
+        return explicit
+
+    p1 = extraction.get("pilier_1_univers_produit", {}) if isinstance(extraction, dict) else {}
+    p2 = extraction.get("pilier_2_profil_client", {}) if isinstance(extraction, dict) else {}
+    p3 = extraction.get("pilier_3_hospitalite_care", {}) if isinstance(extraction, dict) else {}
+    p4 = extraction.get("pilier_4_action_business", {}) if isinstance(extraction, dict) else {}
+
+    combined: List[str] = []
+    combined.extend(_normalize_str_list(p1.get("categories")))
+    combined.extend(_normalize_str_list(p1.get("styles")))
+    preferences = p1.get("preferences", {}) if isinstance(p1, dict) else {}
+    combined.extend(_normalize_str_list(preferences.get("colors")))
+    combined.extend(_normalize_str_list(preferences.get("materials")))
+    purchase_context = p2.get("purchase_context", {}) if isinstance(p2, dict) else {}
+    combined.extend(_normalize_str_list(purchase_context.get("events")))
+    combined.extend(_normalize_str_list(p3.get("allergies")))
+    combined.extend(_normalize_str_list(p3.get("preferred_contact")))
+    combined.extend(_normalize_str_list(p4.get("follow_up_actions")))
+
+    # De-duplicate while preserving order.
+    seen = set()
+    deduped: List[str] = []
+    for item in combined:
+        key = item.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(item)
+    return deduped
 
 
 def _safe_json_load(value: Optional[str]) -> Optional[Dict]:
     if not value:
+        return None
+    try:
+        return json.loads(value)
+    except Exception:
         return None
 
 
@@ -57,15 +472,16 @@ def _tag_overlap_score(predicted: Optional[List[str]], corrected: Optional[List[
     if not union:
         return 1.0
     return len(pred_set & corr_set) / len(union)
-    try:
-        return json.loads(value)
-    except Exception:
-        return None
 
 
-def _get_pipeline_stats(db: Session) -> Dict:
+def _get_pipeline_stats(
+    db: Session,
+    start_ts: Optional[datetime] = None,
+    end_ts: Optional[datetime] = None,
+) -> Dict:
     """Get current pipeline statistics from DB"""
-    notes = db.query(Note).all()
+    notes_query = _apply_time_filter(db.query(Note), Note.timestamp, start_ts, end_ts)
+    notes = notes_query.all()
     total = len(notes)
 
     if total == 0:
@@ -166,16 +582,16 @@ def _get_cache_stats() -> Dict:
     }
 
 
-def _get_cost_stats(db: Session) -> Dict:
+def _get_cost_stats(
+    db: Session,
+    start_ts: Optional[datetime] = None,
+    end_ts: Optional[datetime] = None,
+) -> Dict:
     """Get cost tracking statistics"""
-    # Use tier costs from SmartRouter if available
-    try:
-        from src.smart_router import SmartRouterV2
-        cost_per_tier = getattr(SmartRouterV2, "TIER_COSTS", {1: 0.0001, 2: 0.002, 3: 0.015})
-    except Exception:
-        cost_per_tier = {1: 0.0001, 2: 0.002, 3: 0.015}
+    cost_per_tier = _get_cost_per_tier()
 
-    notes = db.query(Note).all()
+    notes_query = _apply_time_filter(db.query(Note), Note.timestamp, start_ts, end_ts)
+    notes = notes_query.all()
     total = len(notes)
 
     tier_costs = {1: 0.0, 2: 0.0, 3: 0.0}
@@ -203,9 +619,134 @@ def _get_cost_stats(db: Session) -> Dict:
     }
 
 
-def _get_quality_metrics(db: Session) -> Dict:
+def _build_daily_series(
+    db: Session,
+    start_ts: datetime,
+    end_ts: datetime,
+) -> List[Dict[str, Any]]:
+    cost_per_tier = _get_cost_per_tier()
+    notes = _apply_time_filter(db.query(Note), Note.timestamp, start_ts, end_ts).all()
+    feedback_rows = _apply_time_filter(db.query(Feedback), Feedback.created_at, start_ts, end_ts).all()
+
+    daily: Dict[str, Dict[str, Any]] = {}
+    day_cursor = start_ts.date()
+    end_date = end_ts.date()
+    while day_cursor <= end_date:
+        key = day_cursor.isoformat()
+        daily[key] = {
+            "date": key,
+            "notes_processed": 0,
+            "parsed_notes": 0,
+            "processing_time_sum_ms": 0.0,
+            "processing_time_count": 0,
+            "cost_eur": 0.0,
+            "tier_distribution": {"tier1": 0, "tier2": 0, "tier3": 0},
+            "feedback_count": 0,
+            "accuracy_overlap_sum": 0.0,
+            "alerts": [],
+        }
+        day_cursor += timedelta(days=1)
+
+    for note in notes:
+        if not note.timestamp:
+            continue
+        key = note.timestamp.date().isoformat()
+        if key not in daily:
+            continue
+        bucket = daily[key]
+        bucket["notes_processed"] += 1
+
+        data = _safe_json_load(note.analysis_json) or {}
+        if data:
+            bucket["parsed_notes"] += 1
+
+        routing = data.get("routing", {})
+        tier = int(routing.get("tier", 1))
+        if tier == 1:
+            bucket["tier_distribution"]["tier1"] += 1
+        elif tier == 2:
+            bucket["tier_distribution"]["tier2"] += 1
+        elif tier == 3:
+            bucket["tier_distribution"]["tier3"] += 1
+        else:
+            bucket["tier_distribution"]["tier1"] += 1
+            tier = 1
+
+        pt = data.get("processing_time_ms")
+        if isinstance(pt, (int, float)):
+            bucket["processing_time_sum_ms"] += float(pt)
+            bucket["processing_time_count"] += 1
+
+        bucket["cost_eur"] += float(cost_per_tier.get(tier, cost_per_tier[1]))
+
+    for row in feedback_rows:
+        if not row.created_at:
+            continue
+        key = row.created_at.date().isoformat()
+        if key not in daily:
+            continue
+        bucket = daily[key]
+        predicted = _safe_json_load(row.predicted_tags_json) or []
+        corrected = _safe_json_load(row.corrected_tags_json) or []
+        bucket["feedback_count"] += 1
+        bucket["accuracy_overlap_sum"] += _tag_overlap_score(predicted, corrected)
+
+    series: List[Dict[str, Any]] = []
+    for key in sorted(daily.keys()):
+        bucket = daily[key]
+        notes_processed = int(bucket["notes_processed"])
+        parsed_notes = int(bucket["parsed_notes"])
+        feedback_count = int(bucket["feedback_count"])
+        avg_processing = (
+            bucket["processing_time_sum_ms"] / bucket["processing_time_count"]
+            if bucket["processing_time_count"] > 0
+            else 0.0
+        )
+        success_rate = (parsed_notes / notes_processed * 100) if notes_processed > 0 else 0.0
+        accuracy_rate = (
+            round(bucket["accuracy_overlap_sum"] / feedback_count * 100, 1)
+            if feedback_count > 0
+            else None
+        )
+
+        pipeline_snapshot = {
+            "avg_processing_time_ms": round(avg_processing, 1),
+            "success_rate": round(success_rate, 1),
+        }
+        cost_snapshot = {"total_cost_eur": round(float(bucket["cost_eur"]), 4)}
+        quality_snapshot = {
+            "accuracy_rate": accuracy_rate,
+            "total_feedback": feedback_count,
+            "accuracy_available": feedback_count > 0,
+        }
+        alerts = _check_alerts(pipeline_snapshot, cost_snapshot, quality_snapshot)
+
+        series.append(
+            {
+                "date": key,
+                "notes_processed": notes_processed,
+                "success_rate": pipeline_snapshot["success_rate"],
+                "avg_processing_time_ms": pipeline_snapshot["avg_processing_time_ms"],
+                "cost_eur": cost_snapshot["total_cost_eur"],
+                "feedback_count": feedback_count,
+                "accuracy_rate": accuracy_rate,
+                "alerts_count": len(alerts),
+                "has_alerts": len(alerts) > 0,
+                "tier_distribution": bucket["tier_distribution"],
+            }
+        )
+
+    return series
+
+
+def _get_quality_metrics(
+    db: Session,
+    start_ts: Optional[datetime] = None,
+    end_ts: Optional[datetime] = None,
+) -> Dict:
     """Get quality metrics from feedback"""
-    rows = db.query(Feedback).all()
+    rows_query = _apply_time_filter(db.query(Feedback), Feedback.created_at, start_ts, end_ts)
+    rows = rows_query.all()
     if not rows:
         return {
             "accuracy_rate": None,
@@ -268,16 +809,30 @@ def _check_alerts(pipeline_stats: Dict, cost_stats: Dict, quality: Dict) -> List
 
 
 @router.get("/metrics", response_model=SystemMetrics)
-async def get_metrics(db: Session = Depends(get_db)) -> SystemMetrics:
+async def get_metrics(
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    date_from: Optional[datetime] = Query(default=None),
+    date_to: Optional[datetime] = Query(default=None),
+    db: Session = Depends(get_db),
+) -> SystemMetrics:
     """Get complete system metrics"""
-    pipeline_stats = _get_pipeline_stats(db)
+    start_ts, end_ts = _resolve_time_window(days=days, date_from=date_from, date_to=date_to)
+
+    if start_ts is None and end_ts is None:
+        pipeline_stats = _get_pipeline_stats(db)
+        cost_stats = _get_cost_stats(db)
+        quality_metrics = _get_quality_metrics(db)
+    else:
+        pipeline_stats = _get_pipeline_stats(db, start_ts=start_ts, end_ts=end_ts)
+        cost_stats = _get_cost_stats(db, start_ts=start_ts, end_ts=end_ts)
+        quality_metrics = _get_quality_metrics(db, start_ts=start_ts, end_ts=end_ts)
+
     cache_stats = _get_cache_stats()
-    cost_stats = _get_cost_stats(db)
-    quality_metrics = _get_quality_metrics(db)
     alerts = _check_alerts(pipeline_stats, cost_stats, quality_metrics)
 
     metrics = SystemMetrics(
         timestamp=datetime.now().isoformat(),
+        window=_window_payload(start_ts, end_ts, days),
         pipeline_stats=pipeline_stats,
         cache_stats=cache_stats,
         cost_stats=cost_stats,
@@ -323,11 +878,24 @@ async def get_metrics_history(
 
 
 @router.get("/metrics/summary")
-async def get_summary(db: Session = Depends(get_db)):
+async def get_summary(
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    date_from: Optional[datetime] = Query(default=None),
+    date_to: Optional[datetime] = Query(default=None),
+    db: Session = Depends(get_db),
+):
     """Get executive summary of system health"""
-    pipeline = _get_pipeline_stats(db)
-    quality = _get_quality_metrics(db)
-    cost = _get_cost_stats(db)
+    start_ts, end_ts = _resolve_time_window(days=days, date_from=date_from, date_to=date_to)
+
+    if start_ts is None and end_ts is None:
+        pipeline = _get_pipeline_stats(db)
+        quality = _get_quality_metrics(db)
+        cost = _get_cost_stats(db)
+    else:
+        pipeline = _get_pipeline_stats(db, start_ts=start_ts, end_ts=end_ts)
+        quality = _get_quality_metrics(db, start_ts=start_ts, end_ts=end_ts)
+        cost = _get_cost_stats(db, start_ts=start_ts, end_ts=end_ts)
+
     alerts = _check_alerts(pipeline, cost, quality)
 
     health_score = 100
@@ -352,12 +920,15 @@ async def get_summary(db: Session = Depends(get_db)):
     # Notes processed today
     today = datetime.now().date()
     processed_today = db.query(Note).filter(Note.timestamp >= datetime(today.year, today.month, today.day)).count()
+    processed_in_window = _apply_time_filter(db.query(Note), Note.timestamp, start_ts, end_ts).count()
 
     return {
         "health_score": health_score,
         "health_status": "healthy" if health_score > 80 else "warning" if health_score > 60 else "critical",
+        "window": _window_payload(start_ts, end_ts, days),
         "summary": {
             "processed_today": processed_today,
+            "processed_in_window": processed_in_window,
             "success_rate": success_rate,
             "accuracy": quality.get("accuracy_rate"),
             "accuracy_available": bool(quality.get("accuracy_available", False)),
@@ -369,8 +940,583 @@ async def get_summary(db: Session = Depends(get_db)):
     }
 
 
+@router.get("/metrics/timeseries")
+async def get_metrics_timeseries(
+    days: Optional[int] = Query(default=30, ge=1, le=365),
+    date_from: Optional[datetime] = Query(default=None),
+    date_to: Optional[datetime] = Query(default=None),
+    db: Session = Depends(get_db),
+):
+    """Get daily trend series for admin monitoring charts."""
+    effective_days = days or 30
+    start_ts, end_ts = _resolve_time_window(days=effective_days, date_from=date_from, date_to=date_to)
+    if start_ts is None or end_ts is None:
+        end_ts = _utcnow_naive()
+        start_ts = end_ts - timedelta(days=effective_days)
+
+    series = _build_daily_series(db, start_ts=start_ts, end_ts=end_ts)
+    totals = {
+        "notes_processed": sum(item.get("notes_processed", 0) for item in series),
+        "cost_eur": round(sum(item.get("cost_eur", 0.0) for item in series), 4),
+        "alerts_count": sum(item.get("alerts_count", 0) for item in series),
+        "avg_processing_time_ms": round(
+            sum(item.get("avg_processing_time_ms", 0.0) for item in series) / len(series),
+            1,
+        ) if series else 0.0,
+    }
+
+    return {
+        "window": _window_payload(start_ts, end_ts, effective_days),
+        "series": series,
+        "totals": totals,
+    }
+
+
+@router.get("/opportunities/actions")
+async def get_opportunity_actions(
+    status: Optional[str] = Query(default=None, pattern="^(open|planned|done)$"),
+    note_ids: Optional[str] = Query(default=None),
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    limit: int = Query(default=500, ge=1, le=2000),
+    db: Session = Depends(get_db),
+):
+    """List persisted opportunity actions for manager command center."""
+    normalized_status = _normalize_action_status(status) if status else None
+    parsed_note_ids = _parse_note_ids_csv(note_ids)
+
+    query = db.query(OpportunityAction)
+    if parsed_note_ids:
+        query = query.filter(OpportunityAction.note_id.in_(parsed_note_ids))
+    if normalized_status:
+        query = query.filter(OpportunityAction.status == normalized_status)
+    if days is not None:
+        cutoff = _utcnow_naive() - timedelta(days=days)
+        query = query.join(Note, OpportunityAction.note_id == Note.id).filter(Note.timestamp >= cutoff)
+
+    rows = query.order_by(OpportunityAction.updated_at.desc()).limit(limit).all()
+    actions = []
+    for row in rows:
+        actions.append(
+            {
+                "id": row.id,
+                "note_id": row.note_id,
+                "manager_id": row.manager_id,
+                "manager_name": (row.manager.full_name or row.manager.email) if row.manager else None,
+                "action_type": row.action_type,
+                "status": row.status,
+                "details": row.details,
+                "created_at": row.created_at.isoformat() if row.created_at else None,
+                "updated_at": row.updated_at.isoformat() if row.updated_at else None,
+            }
+        )
+
+    return {"actions": actions, "count": len(actions)}
+
+
+@router.post("/opportunities/actions")
+async def upsert_opportunity_action(
+    payload: OpportunityActionUpsertPayload,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("manager", "admin")),
+):
+    """Create or update a manager action for one note."""
+    normalized_action_type = _normalize_action_type(payload.action_type)
+    normalized_status = _normalize_action_status(payload.status)
+    details = str(payload.details).strip() if payload.details else None
+
+    note = db.query(Note).filter(Note.id == payload.note_id).first()
+    if note is None:
+        raise HTTPException(status_code=404, detail=f"Note {payload.note_id} not found")
+
+    now = _utcnow_naive()
+    action = db.query(OpportunityAction).filter(OpportunityAction.note_id == payload.note_id).first()
+    if action is None:
+        action = OpportunityAction(
+            note_id=payload.note_id,
+            manager_id=current_user.id,
+            action_type=normalized_action_type,
+            status=normalized_status,
+            details=details,
+            created_at=now,
+            updated_at=now,
+        )
+        db.add(action)
+    else:
+        action.manager_id = current_user.id
+        action.action_type = normalized_action_type
+        action.status = normalized_status
+        action.details = details
+        action.updated_at = now
+
+    db.commit()
+    db.refresh(action)
+
+    return {
+        "status": "ok",
+        "action": {
+            "id": action.id,
+            "note_id": action.note_id,
+            "manager_id": action.manager_id,
+            "manager_name": (action.manager.full_name or action.manager.email) if action.manager else None,
+            "action_type": action.action_type,
+            "status": action.status,
+            "details": action.details,
+            "created_at": action.created_at.isoformat() if action.created_at else None,
+            "updated_at": action.updated_at.isoformat() if action.updated_at else None,
+        },
+    }
+
+
+@router.get("/opportunities/export")
+async def export_opportunities(
+    format: str = Query(default="csv", pattern="^(json|csv)$"),
+    window: str = Query(default="all", pattern="^(all|today|7d|30d)$"),
+    priority: str = Query(default="all", pattern="^(all|urgent|vip|tier3)$"),
+    advisor: Optional[str] = Query(default=None),
+    action_status: str = Query(default="all", pattern="^(all|open|planned|done)$"),
+    search: Optional[str] = Query(default=None),
+    sort: str = Query(default="priority", pattern="^(priority|recent|budget|urgency)$"),
+    limit: int = Query(default=200, ge=1, le=5000),
+    note_ids: Optional[str] = Query(default=None),
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("manager", "admin")),
+):
+    """Export manager opportunity board rows using active frontend filters."""
+    normalized_window = _normalize_opportunity_window(window)
+    normalized_priority = _normalize_opportunity_priority(priority)
+    normalized_sort = _normalize_opportunity_sort(sort)
+    normalized_action_status = action_status.strip().lower()
+    parsed_note_ids = _parse_note_ids_csv(note_ids)
+    advisor_filter = (advisor or "").strip().lower()
+    search_filter = (search or "").strip().lower()
+
+    # Resolve time scope from explicit days or named window.
+    effective_days = days
+    if effective_days is None:
+        if normalized_window == "today":
+            effective_days = 1
+        elif normalized_window == "7d":
+            effective_days = 7
+        elif normalized_window == "30d":
+            effective_days = 30
+    start_ts, end_ts = _resolve_time_window(days=effective_days, date_from=None, date_to=None)
+
+    notes_query = (
+        db.query(Note)
+        .options(
+            joinedload(Note.advisor),
+            joinedload(Note.client),
+            joinedload(Note.opportunity_action).joinedload(OpportunityAction.manager),
+        )
+    )
+    notes_query = _apply_time_filter(notes_query, Note.timestamp, start_ts, end_ts)
+    if parsed_note_ids:
+        notes_query = notes_query.filter(Note.id.in_(parsed_note_ids))
+
+    # Pull enough candidates before in-memory filtering/sorting.
+    source_limit = min(max(limit * 10, 500), 5000)
+    notes = notes_query.order_by(Note.timestamp.desc()).limit(source_limit).all()
+
+    rows: List[Dict[str, Any]] = []
+    for note in notes:
+        row = _build_opportunity_row(note)
+
+        if advisor_filter and advisor_filter != "all":
+            if row["advisor_name"].strip().lower() != advisor_filter:
+                continue
+
+        if normalized_priority == "urgent" and int(row["urgency_level"]) != 3:
+            continue
+        if normalized_priority == "vip" and not bool(row["is_vip"]):
+            continue
+        if normalized_priority == "tier3" and int(row["tier"]) != 3:
+            continue
+
+        status = row["action_status"]
+        if normalized_action_status == "open" and status != "open":
+            continue
+        if normalized_action_status == "planned" and status != "planned":
+            continue
+        if normalized_action_status == "done" and status != "done":
+            continue
+
+        if search_filter and search_filter not in row["_search_blob"]:
+            continue
+
+        rows.append(row)
+
+    if normalized_sort == "recent":
+        rows.sort(key=lambda item: item.get("_timestamp_dt") or datetime.min, reverse=True)
+    elif normalized_sort == "budget":
+        rows.sort(key=lambda item: float(item.get("budget_value") or 0.0), reverse=True)
+    elif normalized_sort == "urgency":
+        rows.sort(
+            key=lambda item: (int(item.get("urgency_level") or 1), int(item.get("priority_score") or 0)),
+            reverse=True,
+        )
+    else:
+        rows.sort(key=lambda item: int(item.get("priority_score") or 0), reverse=True)
+
+    total_filtered = len(rows)
+    rows = rows[:limit]
+    for idx, row in enumerate(rows, start=1):
+        row["row_index"] = idx
+        row.pop("_search_blob", None)
+        row.pop("_timestamp_dt", None)
+
+    payload = {
+        "generated_at": _utcnow_naive().isoformat(),
+        "filters": {
+            "window": normalized_window,
+            "days": effective_days,
+            "priority": normalized_priority,
+            "advisor": advisor if advisor else "all",
+            "action_status": normalized_action_status,
+            "search": search or "",
+            "sort": normalized_sort,
+            "limit": limit,
+            "note_ids": parsed_note_ids or [],
+        },
+        "totals": {
+            "source_candidates": len(notes),
+            "filtered": total_filtered,
+            "returned": len(rows),
+        },
+        "rows": rows,
+        "exported_by": current_user.email,
+    }
+
+    timestamp_slug = _utcnow_naive().strftime("%Y%m%d_%H%M%S")
+    if format == "json":
+        headers = {"Content-Disposition": f'attachment; filename="manager_opportunities_{timestamp_slug}.json"'}
+        return JSONResponse(content=payload, headers=headers)
+
+    buffer = io.StringIO()
+    writer = csv.writer(buffer)
+    columns = [
+        "row_index",
+        "note_id",
+        "timestamp",
+        "client_name",
+        "advisor_name",
+        "advisor_store",
+        "vip_label",
+        "tier",
+        "urgency",
+        "priority_score",
+        "budget_value",
+        "budget_label",
+        "confidence",
+        "next_action",
+        "action_status",
+        "action_type",
+        "action_label",
+        "action_updated_at",
+        "manager_name",
+    ]
+    writer.writerow(columns)
+    for row in rows:
+        writer.writerow([row.get(column) for column in columns])
+
+    return Response(
+        content=buffer.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="manager_opportunities_{timestamp_slug}.csv"'},
+    )
+
+
+@router.get("/metrics/day-details")
+async def get_metrics_day_details(
+    date: str = Query(..., pattern=r"^\d{4}-\d{2}-\d{2}$"),
+    limit: int = Query(default=30, ge=1, le=300),
+    db: Session = Depends(get_db),
+):
+    """Get detailed notes list and KPIs for one specific day."""
+    try:
+        day_start = datetime.strptime(date, "%Y-%m-%d")
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD.")
+
+    day_end = day_start + timedelta(days=1)
+    notes = (
+        db.query(Note)
+        .filter(Note.timestamp >= day_start, Note.timestamp < day_end)
+        .order_by(Note.timestamp.desc())
+        .all()
+    )
+    feedback_rows = (
+        db.query(Feedback)
+        .filter(Feedback.created_at >= day_start, Feedback.created_at < day_end)
+        .all()
+    )
+    cost_per_tier = _get_cost_per_tier()
+
+    parsed_notes = 0
+    total_processing_time = 0.0
+    processing_count = 0
+    tier_distribution = {"tier1": 0, "tier2": 0, "tier3": 0}
+    total_cost = 0.0
+
+    for note in notes:
+        data = _safe_json_load(note.analysis_json) or {}
+        if data:
+            parsed_notes += 1
+        routing = data.get("routing", {})
+        tier = int(routing.get("tier", 1))
+        if tier == 1:
+            tier_distribution["tier1"] += 1
+        elif tier == 2:
+            tier_distribution["tier2"] += 1
+        elif tier == 3:
+            tier_distribution["tier3"] += 1
+        else:
+            tier = 1
+            tier_distribution["tier1"] += 1
+
+        total_cost += float(cost_per_tier.get(tier, cost_per_tier[1]))
+
+        pt = data.get("processing_time_ms")
+        if isinstance(pt, (int, float)):
+            total_processing_time += float(pt)
+            processing_count += 1
+
+    feedback_count = len(feedback_rows)
+    accuracy_rate = None
+    if feedback_count > 0:
+        overlap_sum = 0.0
+        for row in feedback_rows:
+            predicted = _safe_json_load(row.predicted_tags_json) or []
+            corrected = _safe_json_load(row.corrected_tags_json) or []
+            overlap_sum += _tag_overlap_score(predicted, corrected)
+        accuracy_rate = round(overlap_sum / feedback_count * 100, 1)
+
+    avg_processing = (total_processing_time / processing_count) if processing_count > 0 else 0.0
+    total_notes = len(notes)
+    success_rate = (parsed_notes / total_notes * 100) if total_notes > 0 else 0.0
+
+    alerts = _check_alerts(
+        pipeline_stats={
+            "avg_processing_time_ms": round(avg_processing, 1),
+            "success_rate": round(success_rate, 1),
+        },
+        cost_stats={"total_cost_eur": round(total_cost, 4)},
+        quality={
+            "accuracy_rate": accuracy_rate,
+            "total_feedback": feedback_count,
+            "accuracy_available": feedback_count > 0,
+        },
+    )
+
+    limited_notes = notes[:limit]
+    notes_rows: List[Dict[str, Any]] = []
+    for note in limited_notes:
+        data = _safe_json_load(note.analysis_json) or {}
+        routing = data.get("routing", {})
+        tier = int(routing.get("tier", 1))
+        confidence = routing.get("confidence")
+        processing_time_ms = data.get("processing_time_ms")
+        advisor_name = None
+        if note.advisor:
+            advisor_name = note.advisor.full_name or note.advisor.email
+
+        raw_preview = note.transcription or data.get("processed_text") or ""
+        preview = " ".join(str(raw_preview).split())
+        if len(preview) > 220:
+            preview = f"{preview[:220]}..."
+
+        notes_rows.append(
+            {
+                "note_id": note.id,
+                "timestamp": note.timestamp.isoformat() if note.timestamp else None,
+                "advisor_name": advisor_name,
+                "tier": tier,
+                "confidence": round(float(confidence), 3) if isinstance(confidence, (int, float)) else None,
+                "processing_time_ms": round(float(processing_time_ms), 1) if isinstance(processing_time_ms, (int, float)) else None,
+                "from_cache": bool(data.get("from_cache") or data.get("cache_hit")),
+                "quality_score": data.get("quality_score"),
+                "transcription_preview": preview,
+            }
+        )
+
+    return {
+        "date": date,
+        "summary": {
+            "total_notes": total_notes,
+            "returned_notes": len(notes_rows),
+            "success_rate": round(success_rate, 1),
+            "avg_processing_time_ms": round(avg_processing, 1),
+            "cost_eur": round(total_cost, 4),
+            "feedback_count": feedback_count,
+            "accuracy_rate": accuracy_rate,
+            "tier_distribution": tier_distribution,
+            "alerts_count": len(alerts),
+            "alerts": alerts,
+        },
+        "notes": notes_rows,
+    }
+
+
+@router.get("/metrics/note-details/{note_id}")
+async def get_metrics_note_details(
+    note_id: int,
+    db: Session = Depends(get_db),
+):
+    """Get full detail payload for one note (for admin drilldown modal)."""
+    note = db.query(Note).filter(Note.id == note_id).first()
+    if not note:
+        raise HTTPException(status_code=404, detail=f"Note {note_id} not found")
+
+    data = _safe_json_load(note.analysis_json) or {}
+    extraction = data.get("extraction", {}) if isinstance(data, dict) else {}
+    if not isinstance(extraction, dict):
+        extraction = {}
+
+    routing = data.get("routing", {}) if isinstance(data, dict) else {}
+    if not isinstance(routing, dict):
+        routing = {}
+
+    rgpd = data.get("rgpd", {}) if isinstance(data, dict) else {}
+    if not isinstance(rgpd, dict):
+        rgpd = {}
+
+    p1 = extraction.get("pilier_1_univers_produit", {}) if isinstance(extraction, dict) else {}
+    p2 = extraction.get("pilier_2_profil_client", {}) if isinstance(extraction, dict) else {}
+    p3 = extraction.get("pilier_3_hospitalite_care", {}) if isinstance(extraction, dict) else {}
+    p4 = extraction.get("pilier_4_action_business", {}) if isinstance(extraction, dict) else {}
+    meta = extraction.get("meta_analysis", {}) if isinstance(extraction, dict) else {}
+
+    if not isinstance(p1, dict):
+        p1 = {}
+    if not isinstance(p2, dict):
+        p2 = {}
+    if not isinstance(p3, dict):
+        p3 = {}
+    if not isinstance(p4, dict):
+        p4 = {}
+    if not isinstance(meta, dict):
+        meta = {}
+
+    matched_products = p1.get("matched_products")
+    if not isinstance(matched_products, list):
+        matched_products = []
+
+    nba = p4.get("next_best_action")
+    if not isinstance(nba, dict):
+        nba = {}
+
+    tags = _derive_tags(extraction)
+    audio_sources = _extract_audio_sources(data)[:5]
+
+    raw_preview = note.transcription or data.get("processed_text") or ""
+    preview = " ".join(str(raw_preview).split())
+    if len(preview) > 300:
+        preview = f"{preview[:300]}..."
+
+    return {
+        "note": {
+            "id": note.id,
+            "timestamp": note.timestamp.isoformat() if note.timestamp else None,
+            "advisor": {
+                "id": note.advisor.id if note.advisor else None,
+                "name": (note.advisor.full_name if note.advisor else None) or (note.advisor.email if note.advisor else None),
+                "store": note.advisor.store if note.advisor else None,
+            },
+            "client": {
+                "id": note.client.id if note.client else None,
+                "name": note.client.name if note.client else None,
+                "vic_status": note.client.vic_status if note.client else None,
+            },
+            "points_awarded": note.points_awarded,
+            "transcription_preview": preview,
+            "transcription": note.transcription or data.get("processed_text") or "",
+        },
+        "routing": {
+            "tier": int(routing.get("tier", 1)),
+            "confidence": routing.get("confidence"),
+            "reasons": routing.get("reasons", []),
+        },
+        "quality": {
+            "quality_score": meta.get("quality_score"),
+            "advisor_feedback": meta.get("advisor_feedback"),
+            "missing_info": meta.get("missing_info", []),
+            "risk_flags": meta.get("risk_flags", []),
+        },
+        "rgpd": rgpd,
+        "tags": tags,
+        "next_best_action": nba,
+        "matched_products": matched_products,
+        "pillars": {
+            "pilier_1_univers_produit": p1,
+            "pilier_2_profil_client": p2,
+            "pilier_3_hospitalite_care": p3,
+            "pilier_4_action_business": p4,
+        },
+        "audio": {
+            "available": len(audio_sources) > 0,
+            "sources": audio_sources,
+        },
+    }
+
+
+@router.get("/metrics/export")
+async def export_metrics(
+    format: str = Query(default="json", pattern="^(json|csv)$"),
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    date_from: Optional[datetime] = Query(default=None),
+    date_to: Optional[datetime] = Query(default=None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
+    """Export filtered metrics payload as JSON or CSV."""
+    start_ts, end_ts = _resolve_time_window(days=days, date_from=date_from, date_to=date_to)
+
+    if start_ts is None and end_ts is None:
+        pipeline_stats = _get_pipeline_stats(db)
+        cost_stats = _get_cost_stats(db)
+        quality_metrics = _get_quality_metrics(db)
+    else:
+        pipeline_stats = _get_pipeline_stats(db, start_ts=start_ts, end_ts=end_ts)
+        cost_stats = _get_cost_stats(db, start_ts=start_ts, end_ts=end_ts)
+        quality_metrics = _get_quality_metrics(db, start_ts=start_ts, end_ts=end_ts)
+
+    cache_stats = _get_cache_stats()
+    alerts = _check_alerts(pipeline_stats, cost_stats, quality_metrics)
+    window = _window_payload(start_ts, end_ts, days)
+    generated_at = _utcnow_naive().isoformat()
+
+    payload = {
+        "generated_at": generated_at,
+        "window": window,
+        "pipeline_stats": pipeline_stats,
+        "cache_stats": cache_stats,
+        "cost_stats": cost_stats,
+        "quality_metrics": quality_metrics,
+        "alerts": alerts,
+        "exported_by": current_user.email,
+    }
+
+    timestamp_slug = _utcnow_naive().strftime("%Y%m%d_%H%M%S")
+    if format == "json":
+        headers = {"Content-Disposition": f'attachment; filename="admin_metrics_{timestamp_slug}.json"'}
+        return JSONResponse(content=payload, headers=headers)
+
+    rows: List[tuple[str, Any]] = []
+    _flatten_for_csv("", payload, rows)
+    buffer = io.StringIO()
+    writer = csv.writer(buffer)
+    writer.writerow(["metric", "value"])
+    writer.writerows(rows)
+
+    return Response(
+        content=buffer.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="admin_metrics_{timestamp_slug}.csv"'},
+    )
+
+
 @router.get("/components/status")
-async def get_component_status():
+async def get_component_status(current_user: User = Depends(require_roles("admin"))):
     """Get status of all pipeline components"""
     components = {}
 
@@ -414,7 +1560,11 @@ async def get_component_status():
 
 
 @router.post("/cache/warm")
-async def warm_semantic_cache(limit: int = 200, db: Session = Depends(get_db)):
+async def warm_semantic_cache(
+    limit: int = 200,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
     """Warm semantic cache from recent notes"""
     try:
         from src.semantic_cache import SemanticCache

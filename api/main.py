@@ -1,4 +1,4 @@
-﻿"""
+"""
 LVMH Voice-to-Tag API
 FastAPI backend for React frontend.
 """
@@ -403,7 +403,7 @@ async def broadcast_leaderboard_task():
                 .limit(5)
                 .all()
             )
-            data = [{"id": u.name, "score": u.score, "isMe": False} for u in users]
+            data = [{"id": (u.full_name or u.email.split("@")[0]), "score": u.score, "isMe": False} for u in users]
             await manager.broadcast({"type": "leaderboard", "data": data})
             db.close()
         except Exception as exc:

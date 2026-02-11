@@ -60,7 +60,7 @@ export default function LoginView() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                                 className="w-full bg-white/5 border border-white/10 rounded-sm py-3 pl-12 pr-4 text-white placeholder-white/20 focus:outline-none focus:border-lvmh-gold transition-colors"
                             />
                         </div>
@@ -90,6 +90,7 @@ export default function LoginView() {
                         <p>Demo Credentials:</p>
                         <p>Advisor: advisor@lvmh.com / lvmh</p>
                         <p>Manager: manager@lvmh.com / lvmh</p>
+                        <p>Admin: admin@lvmh.com / lvmh</p>
                     </div>
                 </form>
             </div>

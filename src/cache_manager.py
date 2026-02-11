@@ -28,6 +28,8 @@ class CacheManager:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.stats = {'hits': 0, 'misses': 0}
         self.ttl = settings.cache_ttl_seconds
+        # Salt cache keys by pipeline/taxonomy version to prevent stale-cache drift in production.
+        self.key_salt = settings.cache_key_salt
     
     def _normalize_text(self, text: str) -> str:
         """Normalize text for consistent hashing."""
@@ -42,7 +44,7 @@ class CacheManager:
     def get_cache_key(self, text: str, step: str) -> str:
         """Generate MD5 hash of normalized text + step name."""
         normalized = self._normalize_text(text)
-        content = f"{step}:{normalized}"
+        content = f"{self.key_salt}:{step}:{normalized}"
         return hashlib.md5(content.encode('utf-8')).hexdigest()
     
     def _get_path(self, cache_key: str, step: str) -> Path:

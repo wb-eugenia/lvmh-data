@@ -68,6 +68,8 @@ def _load_valid_tags(taxonomy_path: str) -> set[str]:
 def _is_valid_tag(tag: str, valid_tags: set[str]) -> bool:
     if tag in valid_tags:
         return True
+    if tag.startswith("action:"):
+        return True
     if tag.startswith("shopping_with_") or tag.startswith("gift_for_"):
         return True
     return False
@@ -240,7 +242,14 @@ def _run_once(
     status_counts = {
         str(k): int(v) for k, v in df["status_code"].fillna("exception").value_counts().to_dict().items()
     }
-    http_5xx = int(df["status_code"].apply(lambda x: isinstance(x, (int, float)) and 500 <= int(x) <= 599).sum())
+    def _is_http_5xx(value: Any) -> bool:
+        try:
+            code = int(value)
+            return 500 <= code <= 599
+        except Exception:
+            return False
+
+    http_5xx = int(df["status_code"].apply(_is_http_5xx).sum())
 
     worst = ok_df.sort_values(by=["quality_score", "tags_count"], ascending=[True, True]).head(10)
     worst_notes = [

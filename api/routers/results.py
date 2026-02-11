@@ -11,6 +11,7 @@ from pathlib import Path
 import pandas as pd
 from api.database import get_db
 from api.models_sql import User, Note, Client
+from api.routers.auth import require_roles
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Query, HTTPException, Depends
 import json
@@ -34,10 +35,10 @@ async def get_batch_results(
     """
     List available batch CSV files or load data from a specific file.
     """
-    logger.info(f"🔍 Checking batch results in: {OUTPUT_DIR}")
+    logger.info(f"ðŸ” Checking batch results in: {OUTPUT_DIR}")
     
     if not OUTPUT_DIR.exists():
-        logger.warning(f"⚠️ Output directory not found: {OUTPUT_DIR}")
+        logger.warning(f"âš ï¸ Output directory not found: {OUTPUT_DIR}")
         return {"files": [], "data": [], "total": 0, "page": page}
     
     # List all CSV files
@@ -47,7 +48,7 @@ async def get_batch_results(
         reverse=True  # Most recent first
     )
     
-    logger.info(f"📂 Found {len(csv_files)} CSV files")
+    logger.info(f"ðŸ“‚ Found {len(csv_files)} CSV files")
     
     # If no file specified, just return the list
     if not file:
@@ -213,7 +214,8 @@ async def get_results(
 @router.get("/search")
 async def search_notes(
     q: Optional[str] = Query(""),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("manager", "admin")),
 ):
     """Search notes in SQL database."""
     query = db.query(Note)
@@ -280,6 +282,7 @@ async def get_result_detail(note_id: int, db: Session = Depends(get_db)):
 @router.get("/recordings")
 async def get_all_recordings(
     db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("manager", "admin")),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
     search: Optional[str] = None,

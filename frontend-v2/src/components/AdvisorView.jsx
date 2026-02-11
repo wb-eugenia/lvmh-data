@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowLeft, Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ShoppingBag, Lightbulb } from 'lucide-react'
+import { Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ChevronDown, ChevronRight, Filter } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { apiFetch, wsUrl } from '../lib/api'
 import confetti from 'canvas-confetti'
@@ -27,19 +27,36 @@ export default function AdvisorView({ onBack }) {
     const [selectedCsv, setSelectedCsv] = useState('')
     const [loadingCsv, setLoadingCsv] = useState(false)
     const [csvTotal, setCsvTotal] = useState(0)
+    const [toast, setToast] = useState(null)
+    const [isReviewingTranscription, setIsReviewingTranscription] = useState(false)
+    const [transcriptionDraft, setTranscriptionDraft] = useState('')
+    const [historyFilter, setHistoryFilter] = useState('all')
+    const [searchOnlyVip, setSearchOnlyVip] = useState(false)
+    const [expandedSections, setExpandedSections] = useState({
+        product: true,
+        profile: false,
+        hospitality: false,
+        business: true,
+        rag: true,
+        nba: true
+    })
+    const [pipelineProgress, setPipelineProgress] = useState(null)
+    const [pipelineSocketState, setPipelineSocketState] = useState('connecting')
+    const [pipelineStartedAt, setPipelineStartedAt] = useState(null)
+    const [pipelineElapsedMs, setPipelineElapsedMs] = useState(0)
 
     const formatPercent = (value) => {
-        if (value === null || value === undefined || Number.isNaN(value)) return '—'
+        if (value === null || value === undefined || Number.isNaN(value)) return '-'
         const normalized = value <= 1 ? value * 100 : value
         return `${Math.round(normalized)}%`
     }
 
     const formatCurrency = (value) => {
-        if (value === null || value === undefined || Number.isNaN(value)) return '—'
+        if (value === null || value === undefined || Number.isNaN(value)) return '-'
         try {
             return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)
         } catch {
-            return `${value}€`
+            return `${value} EUR`
         }
     }
 
@@ -62,36 +79,146 @@ export default function AdvisorView({ onBack }) {
         ...(resultP3?.allergies?.contact || [])
     ]
     const vipStatus = currentResult?.extraction?.vip_status || resultP2?.purchase_context?.behavior
+    const recordingStatus = isRecording
+        ? {
+            label: 'Enregistrement',
+            helper: 'Appuyez pour arreter la dictee',
+            tone: 'text-red-400',
+            border: 'border-red-500/40',
+            badge: 'bg-red-500/20 text-red-300'
+        }
+        : isReviewingTranscription
+            ? {
+                label: 'Validation',
+                helper: 'Verifier puis lancer l analyse',
+                tone: 'text-lvmh-gold',
+                border: 'border-lvmh-gold/40',
+                badge: 'bg-lvmh-gold/20 text-lvmh-gold'
+            }
+        : isProcessing
+            ? {
+                label: 'Analyse',
+                helper: 'La pipeline traite la note',
+                tone: 'text-lvmh-gold',
+                border: 'border-lvmh-gold/40',
+                badge: 'bg-lvmh-gold/20 text-lvmh-gold'
+            }
+            : currentResult
+                ? {
+                    label: 'Termine',
+                    helper: 'Resultat disponible',
+                    tone: 'text-green-400',
+                    border: 'border-green-500/40',
+                    badge: 'bg-green-500/20 text-green-300'
+                }
+                : {
+                    label: 'Pret',
+                    helper: 'Appuyez pour demarrer une dictee',
+                    tone: 'text-white',
+                    border: 'border-white/10',
+                    badge: 'bg-white/10 text-white'
+                }
+    const primaryRecordLabel = isRecording ? 'Arreter la dictee' : 'Demarrer la dictee'
+    const summaryBudget = resultP4?.budget_potential || (resultP4?.budget_specific ? formatCurrency(resultP4.budget_specific) : '-')
+    const summaryUrgency = resultP4?.urgency || '-'
+    const summaryNba = resultP4?.next_best_action?.description || 'Aucune action recommandee'
+    const summaryVip = vipStatus ? String(vipStatus).toUpperCase() : 'STANDARD'
+
+    const filteredClientResults = searchOnlyVip
+        ? clientResults.filter((client) => client.vic_status && client.vic_status !== 'Standard')
+        : clientResults
+
+    const filteredHistory = history.filter((note) => {
+        if (historyFilter === 'all') return true
+        const createdAt = new Date(note.date)
+        const now = new Date()
+        const diffMs = now.getTime() - createdAt.getTime()
+        const diffDays = diffMs / (1000 * 60 * 60 * 24)
+        if (historyFilter === 'today') return diffDays < 1
+        if (historyFilter === 'week') return diffDays < 7
+        return true
+    })
+
+    const normalizePipelineStep = (step) => {
+        const raw = String(step || '').toLowerCase()
+        if (!raw) return null
+        if (raw === 'failed' || raw.includes('error')) return 'failed'
+        if (raw === 'done' || raw === 'cache_hit' || raw === 'semantic_cache_hit') return 'done'
+        if (raw === 'cleaning' || raw === 'rgpd') return 'cleaning'
+        if (raw === 'routing') return 'routing'
+        if (raw.includes('tier') || raw === 'cross_validation' || raw === 'extraction') return 'extraction'
+        if (raw === 'rag') return 'rag'
+        if (raw === 'injection') return 'nba'
+        return raw
+    }
 
     // WebSocket for real-time pipeline visualization
     useEffect(() => {
         const socketUrl = wsUrl('/ws/pipeline')
-        let ws;
+        let ws
+        let reconnectTimer
+        let isActive = true
 
         const connect = () => {
-            ws = new WebSocket(socketUrl);
+            if (!isActive) return
+            setPipelineSocketState('connecting')
+            ws = new WebSocket(socketUrl)
+
+            ws.onopen = () => {
+                if (!isActive) return
+                setPipelineSocketState('connected')
+            }
+
             ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
+                if (!isActive) return
+
+                const data = JSON.parse(event.data || '{}')
                 if (data.type === 'leaderboard') {
-                    // Update leaderboard with 'isMe' flag
-                    const enriched = data.data.map(adv => ({
+                    const enriched = (data.data || []).map((adv) => ({
                         ...adv,
                         isMe: adv.id === user.name
-                    }));
-                    setLeaderboard(enriched);
-                } else if (data.step) {
-                    console.log("WS Pipeline Step:", data.step);
-                    setCurrentStep(data.step);
+                    }))
+                    setLeaderboard(enriched)
+                    return
                 }
-            };
-            ws.onclose = () => {
-                setTimeout(connect, 3000); // Reconnect
-            };
-        };
 
-        connect();
-        return () => ws?.close();
-    }, []);
+                if (!data.step) return
+
+                const eventUserId = data.user_id === undefined || data.user_id === null ? null : String(data.user_id)
+                const currentUserId = user?.id === undefined || user?.id === null ? null : String(user.id)
+                if (eventUserId && currentUserId && eventUserId !== currentUserId) return
+
+                const normalizedStep = normalizePipelineStep(data.step)
+                if (!normalizedStep) return
+
+                setPipelineProgress(data)
+                setCurrentStep(normalizedStep)
+
+                if (normalizedStep === 'failed') {
+                    setIsProcessing(false)
+                }
+            }
+
+            ws.onerror = () => {
+                if (!isActive) return
+                setPipelineSocketState('disconnected')
+            }
+
+            ws.onclose = () => {
+                if (!isActive) return
+                setPipelineSocketState('disconnected')
+                reconnectTimer = setTimeout(connect, 3000)
+            }
+        }
+
+        connect()
+
+        return () => {
+            isActive = false
+            if (reconnectTimer) clearTimeout(reconnectTimer)
+            ws?.close()
+        }
+    }, [user?.id])
 
     useEffect(() => {
         fetchLeaderboard()
@@ -182,13 +309,27 @@ export default function AdvisorView({ onBack }) {
         if (view === 'search') {
             setSearchQuery("")
             setClientResults([])
+            setSearchOnlyVip(false)
         }
+        if (view !== 'record') {
+            setIsReviewingTranscription(false)
+            setTranscriptionDraft('')
+            setPipelineProgress(null)
+            setCurrentStep(null)
+            setPipelineStartedAt(null)
+        }
+    }
+
+    const toggleSection = (key) => {
+        setExpandedSections((prev) => ({ ...prev, [key]: !prev[key] }))
     }
 
     const handleViewDetail = (note) => {
         // We might need to fetch full JSON if not in history
         if (note.analysis_json) {
             setCurrentResult(JSON.parse(note.analysis_json))
+            setCurrentStep('done')
+            setPipelineProgress({ step: 'done', source: 'history' })
         } else {
             // If it's the history list, we can fetch detail
             fetchNoteDetail(note.id)
@@ -202,13 +343,15 @@ export default function AdvisorView({ onBack }) {
             if (res.ok) {
                 const data = await res.json()
                 setCurrentResult(data)
+                setCurrentStep('done')
+                setPipelineProgress({ step: 'done', source: 'history' })
             }
         } catch (e) { console.error(e) }
         finally { setIsProcessing(false) }
     }
 
     const searchClients = async (query) => {
-        if (!query) {
+        if (!query || query.trim().length < 2) {
             setClientResults([])
             return
         }
@@ -232,13 +375,37 @@ export default function AdvisorView({ onBack }) {
         return () => clearTimeout(timer)
     }, [searchQuery, activeView])
 
+    useEffect(() => {
+        if (!toast) return
+        const timer = setTimeout(() => setToast(null), 4000)
+        return () => clearTimeout(timer)
+    }, [toast])
+
+    useEffect(() => {
+        if (!isProcessing || !pipelineStartedAt) {
+            setPipelineElapsedMs(0)
+            return
+        }
+        const timer = setInterval(() => {
+            setPipelineElapsedMs(Date.now() - pipelineStartedAt)
+        }, 200)
+        return () => clearInterval(timer)
+    }, [isProcessing, pipelineStartedAt])
+
+    const showToast = (message, tone = 'error') => {
+        setToast({
+            id: Date.now(),
+            message,
+            tone
+        })
+    }
+
     const handleLogout = () => {
         logout()
         onBack() // Redirects to landing/login
     }
 
     const [mediaRecorder, setMediaRecorder] = useState(null)
-    const [audioChunks, setAudioChunks] = useState([])
 
     const toggleRecord = async () => {
         if (!isRecording) {
@@ -247,47 +414,80 @@ export default function AdvisorView({ onBack }) {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
                 const recorder = new MediaRecorder(stream)
                 let chunks = []
+                setCurrentResult(null)
+                setIsReviewingTranscription(false)
+                setTranscriptionDraft('')
+                setPipelineProgress(null)
+                setCurrentStep(null)
+                setPipelineStartedAt(null)
 
                 recorder.ondataavailable = (e) => chunks.push(e.data)
                 recorder.onstop = async () => {
-                    setIsProcessing(true) // Start loading
                     // Use webm which is standard for MediaRecorder in Chrome/Firefox
                     const blob = new Blob(chunks, { type: 'audio/webm' })
                     await processAudio(blob)
-                    setIsProcessing(false) // Stop loading
                 }
 
                 recorder.start()
                 setMediaRecorder(recorder)
                 setIsRecording(true)
             } catch (err) {
-                alert("Microphone accès refusé")
+                showToast("Acces micro refuse. Verifiez les permissions du navigateur.")
             }
         } else {
             // Stop Recording
+            if (!mediaRecorder) {
+                showToast("Aucun enregistrement actif.")
+                return
+            }
             mediaRecorder.stop()
             setIsRecording(false)
         }
     }
 
     const processAudio = async (audioBlob) => {
-        // ... (processAudio code remains similar but we handle errors inside)
-        // 1. Transcribe (Whisper)
+        setIsProcessing(true)
+        setCurrentStep('cleaning')
+        setPipelineStartedAt(Date.now())
+        setPipelineProgress({ step: 'cleaning', source: 'frontend' })
+
         const formData = new FormData()
-        // OpenAI requires a filename with extension to detect format
         formData.append('file', audioBlob, 'recording.webm')
 
         try {
             const transRes = await apiFetch('/api/transcribe', {
                 method: 'POST',
-                body: formData // No headers for multipart
+                body: formData
             })
             if (!transRes.ok) throw new Error("Transcription failed")
 
             const { transcription } = await transRes.json()
+            setTranscriptionDraft(transcription || '')
+            setIsReviewingTranscription(true)
+            setCurrentStep('done')
+            setPipelineProgress({ step: 'done', source: 'transcribe' })
+        } catch (e) {
+            showToast(`Erreur systeme: ${e.message}`)
+        } finally {
+            setIsProcessing(false)
+            setPipelineStartedAt(null)
+        }
+    }
 
-            // 2. Intelligence Pipeline
-            // Get token from auth context/local storage if needed for Auth header
+    const analyzeDraftTranscription = async () => {
+        const textToAnalyze = transcriptionDraft.trim()
+        if (!textToAnalyze) {
+            showToast('La transcription est vide.')
+            return
+        }
+
+        setIsReviewingTranscription(false)
+        setIsProcessing(true)
+        setCurrentStep('routing')
+        setPipelineStartedAt(Date.now())
+        setPipelineProgress({ step: 'routing', source: 'frontend' })
+
+        try {
             const token = localStorage.getItem('token')
             const res = await apiFetch('/api/analyze', {
                 method: 'POST',
@@ -296,22 +496,27 @@ export default function AdvisorView({ onBack }) {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
-                    text: transcription,
+                    text: textToAnalyze,
                     language: 'FR',
                     advisor_id: user.id || 1,
                     store_id: user.store || "PARIS_HQ"
                 })
             })
-            if (!res.ok) throw new Error("Analysis failed")
+            if (!res.ok) throw new Error('Analysis failed')
 
             const data = await res.json()
             setCurrentResult(data)
+            setTranscriptionDraft('')
+            setCurrentStep('done')
+            setPipelineProgress({
+                step: 'done',
+                quality_score: data?.meta_analysis?.quality_score,
+                processing_time_ms: data?.processing_time_ms
+            })
 
-            // Refresh leaderboard to update score locally (optimistic or re-fetch)
             const qualityScore = normalizeScore(data.meta_analysis?.quality_score || 0)
             const newScore = (user.points || user.score || 0) + (qualityScore >= 80 ? 15 : 10)
             updateUser({ score: newScore, points: newScore })
-            // fetchLeaderboard will run via useEffect dependency on `user`
 
             if (qualityScore >= 80) {
                 confetti({
@@ -322,19 +527,47 @@ export default function AdvisorView({ onBack }) {
                 })
             }
         } catch (e) {
-            alert("Erreur système : " + e.message)
+            setIsReviewingTranscription(true)
+            setCurrentStep('failed')
+            setPipelineProgress({ step: 'failed', error: e.message })
+            showToast(`Erreur systeme: ${e.message}`)
         } finally {
             setIsProcessing(false)
+            setPipelineStartedAt(null)
         }
     }
 
+    const cancelDraftReview = () => {
+        setIsReviewingTranscription(false)
+        setTranscriptionDraft('')
+        setCurrentStep(null)
+        setPipelineProgress(null)
+        setPipelineStartedAt(null)
+    }
+
     return (
-        <div className="max-w-md mx-auto min-h-screen flex flex-col p-6 bg-lvmh-black text-white relative overflow-hidden">
+        <div className={`max-w-md mx-auto min-h-screen flex flex-col p-6 bg-lvmh-black text-white relative overflow-hidden ${activeView === 'record' && !currentResult && !isReviewingTranscription ? 'pb-28' : ''}`}>
             {/* Loading Overlay */}
             {isProcessing && !isRecording && !currentResult && (
                 <div className="absolute inset-x-6 top-24 z-50 flex flex-col items-center justify-center animate-in fade-in duration-500">
                     <div className="w-12 h-12 border-4 border-lvmh-gold border-t-transparent rounded-full animate-spin mb-4" />
                     <div className="text-lvmh-gold font-bold tracking-widest uppercase text-[10px] animate-pulse">Intelligence Flow...</div>
+                </div>
+            )}
+
+            {toast && (
+                <div className="fixed top-5 inset-x-6 z-[70] max-w-md mx-auto">
+                    <div className={`glass px-4 py-3 flex items-start gap-3 border ${toast.tone === 'error' ? 'border-red-500/40' : 'border-green-500/40'}`}>
+                        <div className={`w-2 h-2 rounded-full mt-1.5 ${toast.tone === 'error' ? 'bg-red-400' : 'bg-green-400'}`} />
+                        <p className="text-sm text-white flex-1">{toast.message}</p>
+                        <button
+                            onClick={() => setToast(null)}
+                            className="text-lvmh-gray hover:text-white transition-colors"
+                            aria-label="Fermer la notification"
+                        >
+                            <X size={16} />
+                        </button>
+                    </div>
                 </div>
             )}
 
@@ -364,7 +597,7 @@ export default function AdvisorView({ onBack }) {
                         <nav className="space-y-2 flex-1">
                             <button onClick={() => handleMenuNavigation('record')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'record' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
                                 <Mic size={20} className={activeView === 'record' ? 'text-lvmh-gold' : ''} />
-                                <span>Nouvelle Dictée</span>
+                                <span>Nouvelle dictee</span>
                             </button>
                             <button onClick={() => handleMenuNavigation('history')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'history' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
                                 <History size={20} className={activeView === 'history' ? 'text-lvmh-gold' : ''} />
@@ -376,13 +609,13 @@ export default function AdvisorView({ onBack }) {
                             </button>
                             <button onClick={() => handleMenuNavigation('csv')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'csv' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
                                 <FileText size={20} className={activeView === 'csv' ? 'text-lvmh-gold' : ''} />
-                                <span>Résultats CSV</span>
+                                <span>Resultats CSV</span>
                             </button>
                         </nav>
 
                         <button onClick={handleLogout} className="w-full flex items-center gap-4 p-4 hover:bg-red-500/10 text-red-400 rounded-xl transition-colors text-left mt-auto">
                             <LogOut size={20} />
-                            <span>Déconnexion</span>
+                            <span>Deconnexion</span>
                         </button>
                     </div>
                 </div>
@@ -422,36 +655,96 @@ export default function AdvisorView({ onBack }) {
                             isProcessing={isProcessing}
                             currentStep={currentStep}
                             result={currentResult}
+                            progress={pipelineProgress}
+                            connectionState={pipelineSocketState}
+                            elapsedMs={pipelineElapsedMs}
                         />
                     </div>
 
                     {!currentResult ? (
-                        <div className="flex-1 flex flex-col items-center justify-center text-center">
+                        isReviewingTranscription ? (
+                            <div className="glass p-5 border border-lvmh-gold/30 animate-in fade-in">
+                                <div className="flex items-center justify-between gap-3 mb-4">
+                                    <div>
+                                        <div className="data-label">Validation transcription</div>
+                                        <h3 className="text-lg font-bold text-white">Verifier avant analyse IA</h3>
+                                    </div>
+                                    <button
+                                        onClick={cancelDraftReview}
+                                        className="text-xs uppercase tracking-widest text-lvmh-gray hover:text-white transition-colors"
+                                    >
+                                        Annuler
+                                    </button>
+                                </div>
+                                <textarea
+                                    value={transcriptionDraft}
+                                    onChange={(e) => setTranscriptionDraft(e.target.value)}
+                                    className="w-full min-h-[220px] rounded-xl bg-white/5 border border-white/10 text-sm text-white p-4 focus:outline-none focus:border-lvmh-gold resize-y"
+                                    placeholder="La transcription apparait ici..."
+                                />
+                                <div className="mt-4 flex items-center justify-between text-xs text-lvmh-gray">
+                                    <span>{transcriptionDraft.trim().length} caracteres</span>
+                                    <span>Conseil: corrigez les noms/produits avant analyse</span>
+                                </div>
+                                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <button
+                                        onClick={cancelDraftReview}
+                                        className="py-3 rounded-xl border border-white/15 text-white hover:border-white/35 transition-colors uppercase tracking-widest text-xs font-bold"
+                                    >
+                                        Refaire la dictee
+                                    </button>
+                                    <button
+                                        onClick={analyzeDraftTranscription}
+                                        disabled={isProcessing || !transcriptionDraft.trim()}
+                                        className={`py-3 rounded-xl uppercase tracking-widest text-xs font-black transition-all ${isProcessing || !transcriptionDraft.trim()
+                                            ? 'bg-lvmh-gold/50 text-black/60 cursor-not-allowed'
+                                            : 'bg-lvmh-gold text-black hover:bg-lvmh-gold/90'
+                                            }`}
+                                    >
+                                        Lancer l analyse
+                                    </button>
+                                </div>
+                            </div>
+                        ) : (
+                        <div className="flex-1 flex flex-col text-center">
+                            <div className={`glass w-full p-4 mb-6 border ${recordingStatus.border}`}>
+                                <div className="flex items-center justify-between gap-4">
+                                    <div className="text-left">
+                                        <div className="text-[10px] text-lvmh-gray uppercase tracking-widest">Statut</div>
+                                        <div className={`text-sm font-bold ${recordingStatus.tone}`}>{recordingStatus.label}</div>
+                                    </div>
+                                    <div className={`text-[10px] px-2 py-1 rounded-full uppercase tracking-widest font-bold ${recordingStatus.badge}`}>
+                                        {recordingStatus.helper}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex-1 flex flex-col items-center justify-center">
                             <h2 className="gold-text text-4xl font-bold mb-4 tracking-tighter">
-                                {isRecording ? "Capture Live..." : "Insight Client"}
+                                {isRecording ? "Enregistrement en cours" : isProcessing ? "Analyse en cours" : "Pret pour une nouvelle note"}
                             </h2>
                             <p className="text-lvmh-gray text-xs uppercase tracking-[0.2em] mb-12">
-                                {isRecording ? "Le moteur Whisper vous écoute" : "Appuyez pour commencer"}
+                                {isRecording ? "Le moteur Whisper vous ecoute" : isProcessing ? "La pipeline traite la note" : "Appuyez sur le bouton principal"}
                             </p>
 
                             <div className="relative mb-16">
                                 {isRecording && (
                                     <div className="absolute inset-0 rounded-full bg-red-500/20 animate-ping" />
                                 )}
-                                <button
-                                    onClick={toggleRecord}
-                                    className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : 'bg-white border-white/20 hover:scale-105'}`}
+                                <div
+                                    className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : isProcessing ? 'bg-lvmh-gold/20 border-lvmh-gold/40' : 'bg-white border-white/20'}`}
                                 >
-                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : "text-black"} />
-                                </button>
+                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : isProcessing ? "text-lvmh-gold" : "text-black"} />
+                                </div>
 
                                 {isRecording && (
                                     <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-red-500 font-mono text-xs font-bold flex items-center gap-2">
                                         <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                                        LIVE RECORDING
+                                        LIVE
                                     </div>
                                 )}
                             </div>
+                        </div>
 
                             <div className="glass w-full p-5">
                                 <div className="flex items-center gap-2 text-lvmh-gold text-xs font-bold uppercase mb-4 tracking-widest leading-none">
@@ -466,24 +759,33 @@ export default function AdvisorView({ onBack }) {
                                             <span className="font-bold text-sm text-lvmh-gold">{adv.score} pts</span>
                                         </div>
                                     )) : (
-                                        <div className="text-center text-xs text-lvmh-gray py-4">Aucune donnée</div>
+                                        <div className="text-center text-xs text-lvmh-gray py-4">Aucune donnee</div>
                                     )}
                                 </div>
                             </div>
                         </div>
-                    ) : (
+                    )) : (
                         <div className="fixed inset-0 bg-lvmh-black z-50 p-6 overflow-y-auto animate-in slide-in-from-bottom duration-500">
                             <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
                                 <div>
                                     <h2 className="gold-text text-3xl font-display font-black">Expertise IA</h2>
-                                    <p className="text-sm text-lvmh-gray">Synthèse client et recommandations</p>
+                                    <p className="text-sm text-lvmh-gray">Synthese client et recommandations</p>
                                 </div>
-                                <button onClick={() => setCurrentResult(null)} className="p-2"><X size={32} /></button>
+                                <button
+                                    onClick={() => {
+                                        setCurrentResult(null)
+                                        setCurrentStep(null)
+                                        setPipelineProgress(null)
+                                    }}
+                                    className="p-2"
+                                >
+                                    <X size={32} />
+                                </button>
                             </div>
 
                             <div className="glass p-5 border-l-4 border-lvmh-gold mb-8 bg-lvmh-gold/5">
-                                <div className="data-label">Récompense</div>
-                                <div className="text-lg font-bold leading-tight">{resultMeta?.advisor_feedback || "Note traitée !"}</div>
+                                <div className="data-label">Recompense</div>
+                                <div className="text-lg font-bold leading-tight">{resultMeta?.advisor_feedback || "Note traitee !"}</div>
                             </div>
 
                             <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
@@ -499,7 +801,7 @@ export default function AdvisorView({ onBack }) {
                                                     </span>
                                                 )}
                                                 <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-lvmh-gray">
-                                                    Tier {resultRouting.tier || '—'}
+                                                    Tier {resultRouting.tier || '-'}
                                                 </span>
                                                 <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-lvmh-gray">
                                                     Confiance {formatPercent(resultRouting.confidence ?? currentResult?.confidence)}
@@ -512,8 +814,8 @@ export default function AdvisorView({ onBack }) {
                                             </div>
                                         </div>
                                         <div className="text-right">
-                                            <div className="data-label">Modèle</div>
-                                            <div className="text-sm font-semibold">{currentResult?.model_used || '—'}</div>
+                                            <div className="data-label">Modele</div>
+                                            <div className="text-sm font-semibold">{currentResult?.model_used || '-'}</div>
                                             <div className="text-xs text-lvmh-gray">Traitement {Math.round(currentResult?.processing_time_ms || 0)}ms</div>
                                         </div>
                                     </div>
@@ -549,7 +851,7 @@ export default function AdvisorView({ onBack }) {
                                 <div className="space-y-4">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="glass p-4">
-                                            <div className="data-label">Qualité</div>
+                                            <div className="data-label">Qualite</div>
                                             <div className="text-xl font-semibold">{formatPercent(resultMeta?.quality_score)}</div>
                                             <div className="text-xs text-lvmh-gray">
                                                 Confiance {formatPercent(resultRouting.confidence ?? currentResult?.confidence)}
@@ -559,35 +861,60 @@ export default function AdvisorView({ onBack }) {
                                             <div className="data-label">Budget</div>
                                             <div className="text-lg font-semibold">{resultP4?.budget_potential || 'N/A'}</div>
                                             <div className="text-xs text-lvmh-gray">
-                                                {resultP4?.budget_specific ? formatCurrency(resultP4.budget_specific) : 'Budget spécifique N/A'}
+                                                {resultP4?.budget_specific ? formatCurrency(resultP4.budget_specific) : 'Budget specifique N/A'}
                                             </div>
                                         </div>
                                         <div className="glass p-4">
                                             <div className="data-label">RGPD</div>
                                             <div className={`text-sm font-semibold ${resultRgpd?.contains_sensitive ? 'text-red-400' : 'text-green-400'}`}>
-                                                {resultRgpd?.contains_sensitive ? 'Sensibles détectées' : 'Conforme'}
+                                                {resultRgpd?.contains_sensitive ? 'Sensibles detectees' : 'Conforme'}
                                             </div>
                                             <div className="text-xs text-lvmh-gray">
-                                                {resultRgpd?.categories_detected?.length ? resultRgpd.categories_detected.join(', ') : 'Aucune catégorie'}
+                                                {resultRgpd?.categories_detected?.length ? resultRgpd.categories_detected.join(', ') : 'Aucune categorie'}
                                             </div>
                                         </div>
                                         <div className="glass p-4">
                                             <div className="data-label">Traitement</div>
                                             <div className="text-lg font-semibold">{Math.round(currentResult?.processing_time_ms || 0)}ms</div>
                                             <div className="text-xs text-lvmh-gray">
-                                                {currentResult?.model_used || 'Modèle inconnu'}
+                                                {currentResult?.model_used || 'Modele inconnu'}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-                                <div className="glass p-6">
-                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 1 - Univers Produit</h4>
+                            <div className="glass p-5 mb-6 border border-lvmh-gold/30 bg-lvmh-gold/5">
+                                <div className="data-label">Resume actionnable</div>
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+                                    <div className="bg-white/5 rounded-lg p-3">
+                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Statut client</div>
+                                        <div className="font-bold text-white mt-1">{summaryVip}</div>
+                                    </div>
+                                    <div className="bg-white/5 rounded-lg p-3">
+                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Budget</div>
+                                        <div className="font-bold text-white mt-1">{summaryBudget}</div>
+                                    </div>
+                                    <div className="bg-white/5 rounded-lg p-3">
+                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Urgence</div>
+                                        <div className="font-bold text-white mt-1">{summaryUrgency}</div>
+                                    </div>
+                                    <div className="bg-white/5 rounded-lg p-3 col-span-2 lg:col-span-1">
+                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">NBA</div>
+                                        <div className="text-sm text-white mt-1 line-clamp-2">{summaryNba}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4 mt-6">
+                                <CollapsibleSection
+                                    title="Pilier 1 - Univers Produit"
+                                    isOpen={expandedSections.product}
+                                    onToggle={() => toggleSection('product')}
+                                >
                                     <div className="space-y-3 text-sm">
                                         <div>
-                                            <div className="data-label">Catégories</div>
+                                            <div className="data-label">Categories</div>
                                             <div className="mt-2 flex flex-wrap gap-2">
                                                 {(resultP1.categories || []).length ? resultP1.categories.map((cat, i) => (
                                                     <span key={i} className="text-xs bg-white/10 px-2 py-1 rounded">{cat}</span>
@@ -595,7 +922,7 @@ export default function AdvisorView({ onBack }) {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="data-label">Produits mentionnés</div>
+                                            <div className="data-label">Produits mentionnes</div>
                                             <div className="mt-2 text-sm text-lvmh-gray">{(resultP1.produits_mentionnes || []).join(', ') || 'N/A'}</div>
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
@@ -604,15 +931,18 @@ export default function AdvisorView({ onBack }) {
                                                 <div className="text-sm text-lvmh-gray">{(resultP1.preferences?.colors || []).join(', ') || 'N/A'}</div>
                                             </div>
                                             <div>
-                                                <div className="data-label">Matières</div>
+                                                <div className="data-label">Matieres</div>
                                                 <div className="text-sm text-lvmh-gray">{(resultP1.preferences?.materials || []).join(', ') || 'N/A'}</div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </CollapsibleSection>
 
-                                <div className="glass p-6">
-                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 2 - Profil Client</h4>
+                                <CollapsibleSection
+                                    title="Pilier 2 - Profil Client"
+                                    isOpen={expandedSections.profile}
+                                    onToggle={() => toggleSection('profile')}
+                                >
                                     <div className="space-y-3 text-sm">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
@@ -633,19 +963,22 @@ export default function AdvisorView({ onBack }) {
                                             <div className="text-sm text-lvmh-gray">{resultP2?.lifestyle?.family || 'N/A'}</div>
                                         </div>
                                     </div>
-                                </div>
+                                </CollapsibleSection>
 
-                                <div className="glass p-6">
-                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 3 - Hospitalité & Care</h4>
+                                <CollapsibleSection
+                                    title="Pilier 3 - Hospitalite & Care"
+                                    isOpen={expandedSections.hospitality}
+                                    onToggle={() => toggleSection('hospitality')}
+                                >
                                     <div className="space-y-3 text-sm">
                                         <div>
                                             <div className="data-label">Allergies</div>
                                             <div className={`text-sm ${resultAllergies.length ? 'text-red-400' : 'text-green-400'}`}>
-                                                {resultAllergies.length ? resultAllergies.join(', ') : 'Aucune détectée'}
+                                                {resultAllergies.length ? resultAllergies.join(', ') : 'Aucune detectee'}
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="data-label">Régime</div>
+                                            <div className="data-label">Regime</div>
                                             <div className="text-sm text-lvmh-gray">{(resultP3?.diet || []).join(', ') || 'N/A'}</div>
                                         </div>
                                         <div>
@@ -653,10 +986,13 @@ export default function AdvisorView({ onBack }) {
                                             <div className="text-sm text-lvmh-gray">{resultP3?.occasion || 'N/A'}</div>
                                         </div>
                                     </div>
-                                </div>
+                                </CollapsibleSection>
 
-                                <div className="glass p-6">
-                                    <h4 className="text-lg font-display font-bold mb-4">Pilier 4 - Action Business</h4>
+                                <CollapsibleSection
+                                    title="Pilier 4 - Action Business"
+                                    isOpen={expandedSections.business}
+                                    onToggle={() => toggleSection('business')}
+                                >
                                     <div className="space-y-3 text-sm">
                                         <div>
                                             <div className="data-label">Budget</div>
@@ -667,59 +1003,69 @@ export default function AdvisorView({ onBack }) {
                                             <div className="text-sm text-lvmh-gray">{resultP4?.urgency || 'N/A'}</div>
                                         </div>
                                         <div>
-                                            <div className="data-label">Température du lead</div>
+                                            <div className="data-label">Temperature du lead</div>
                                             <div className="text-sm text-lvmh-gray">{resultP4?.lead_temperature || 'N/A'}</div>
                                         </div>
                                     </div>
-                                </div>
+                                </CollapsibleSection>
+
+                                {resultP1?.matched_products?.length > 0 && (
+                                    <CollapsibleSection
+                                        title="Produits recommandes (RAG)"
+                                        isOpen={expandedSections.rag}
+                                        onToggle={() => toggleSection('rag')}
+                                    >
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                            {resultP1.matched_products.map((product, i) => (
+                                                <div key={i} className="bg-white/5 p-4 rounded-lg border border-white/10">
+                                                    <div className="font-bold text-lvmh-gold mb-1">{product.name || product.ID}</div>
+                                                    <div className="text-xs text-lvmh-gray uppercase">{product.category || 'Categorie'}</div>
+                                                    {product.description && (
+                                                        <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
+                                                    )}
+                                                    {product.match_score && (
+                                                        <div className="text-[10px] text-lvmh-gray mt-3">Score {Math.round(product.match_score * 100)}%</div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CollapsibleSection>
+                                )}
+
+                                {resultP4?.next_best_action && (
+                                    <CollapsibleSection
+                                        title="Next Best Action"
+                                        isOpen={expandedSections.nba}
+                                        onToggle={() => toggleSection('nba')}
+                                        accent="green"
+                                    >
+                                        <div className="space-y-3">
+                                            <p className="text-sm">{resultP4.next_best_action.description || 'Action recommandee'}</p>
+                                            {resultP4.next_best_action.target_products?.length > 0 && (
+                                                <div>
+                                                    <div className="data-label mb-2">Produits suggeres</div>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {resultP4.next_best_action.target_products.map((p, i) => (
+                                                            <span key={i} className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
+                                                                {p}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </CollapsibleSection>
+                                )}
                             </div>
 
-                            {resultP1?.matched_products?.length > 0 && (
-                                <div className="glass p-6 mt-6">
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <ShoppingBag size={20} className="text-lvmh-gold" />
-                                        <h4 className="font-display font-bold">Produits recommandés (RAG)</h4>
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {resultP1.matched_products.map((product, i) => (
-                                            <div key={i} className="bg-white/5 p-4 rounded-lg border border-white/10">
-                                                <div className="font-bold text-lvmh-gold mb-1">{product.name || product.ID}</div>
-                                                <div className="text-xs text-lvmh-gray uppercase">{product.category || 'Catégorie'}</div>
-                                                {product.description && (
-                                                    <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
-                                                )}
-                                                {product.match_score && (
-                                                    <div className="text-[10px] text-lvmh-gray mt-3">Score {Math.round(product.match_score * 100)}%</div>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {resultP4?.next_best_action && (
-                                <div className="glass p-6 border-l-4 border-green-500 mt-6">
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <Lightbulb size={20} className="text-green-500" />
-                                        <h4 className="font-display font-bold">Next Best Action</h4>
-                                    </div>
-                                    <p className="text-sm mb-4">{resultP4.next_best_action.description || 'Action recommandée'}</p>
-                                    {resultP4.next_best_action.target_products?.length > 0 && (
-                                        <div>
-                                            <div className="data-label mb-2">Produits suggérés</div>
-                                            <div className="flex flex-wrap gap-2">
-                                                {resultP4.next_best_action.target_products.map((p, i) => (
-                                                    <span key={i} className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
-                                                        {p}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-
-                            <button onClick={() => setCurrentResult(null)} className="w-full bg-lvmh-gold text-black font-black py-4 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6">
+                            <button
+                                onClick={() => {
+                                    setCurrentResult(null)
+                                    setCurrentStep(null)
+                                    setPipelineProgress(null)
+                                }}
+                                className="w-full bg-lvmh-gold text-black font-black py-4 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6"
+                            >
                                 <CheckCircle size={20} aria-hidden="true" />
                                 Terminer
                             </button>
@@ -728,18 +1074,70 @@ export default function AdvisorView({ onBack }) {
                 </>
             )}
 
+            {activeView === 'record' && !currentResult && !isReviewingTranscription && (
+                <div className="fixed inset-x-0 bottom-0 z-30 px-6 pb-6">
+                    <div className="max-w-md mx-auto">
+                        <button
+                            onClick={toggleRecord}
+                            disabled={isProcessing}
+                            className={`w-full py-4 rounded-xl transition-all shadow-[0_15px_40px_rgba(0,0,0,0.35)] border flex items-center justify-center gap-3 uppercase tracking-widest font-black ${isRecording
+                                ? 'bg-red-500 text-white border-red-400 hover:bg-red-500/90'
+                                : 'bg-lvmh-gold text-black border-lvmh-gold hover:bg-lvmh-gold/90'
+                                } ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}
+                        >
+                            <Mic size={20} />
+                            {isProcessing ? 'Analyse en cours...' : primaryRecordLabel}
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {/* HISTORY VIEW */}
             {activeView === 'history' && (
                 <div className="flex-1 overflow-y-auto animate-in fade-in">
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <History size={24} className="text-lvmh-gold" />
-                        Historique
-                    </h2>
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                        <h2 className="text-2xl font-bold flex items-center gap-2">
+                            <History size={24} className="text-lvmh-gold" />
+                            Historique
+                        </h2>
+                        <div className="text-xs text-lvmh-gray inline-flex items-center gap-1">
+                            <Filter size={12} />
+                            Filtres
+                        </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                        {[
+                            { id: 'all', label: 'Tout' },
+                            { id: 'today', label: 'Aujourd hui' },
+                            { id: 'week', label: '7 jours' }
+                        ].map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => setHistoryFilter(item.id)}
+                                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${historyFilter === item.id
+                                    ? 'border-lvmh-gold bg-lvmh-gold/20 text-lvmh-gold'
+                                    : 'border-white/10 text-lvmh-gray hover:border-white/30 hover:text-white'
+                                    }`}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
+
                     {loadingHistory ? (
-                        <div className="text-center py-10 text-lvmh-gray">Chargement...</div>
+                        <div className="space-y-3">
+                            {[1, 2, 3].map((item) => (
+                                <div key={item} className="glass p-4 animate-pulse">
+                                    <div className="h-3 w-1/3 bg-white/10 rounded mb-3" />
+                                    <div className="h-2 w-full bg-white/10 rounded mb-2" />
+                                    <div className="h-2 w-4/5 bg-white/10 rounded" />
+                                </div>
+                            ))}
+                        </div>
                     ) : (
                         <div className="space-y-4">
-                            {history.length > 0 ? history.map(note => (
+                            {filteredHistory.length > 0 ? filteredHistory.map(note => (
                                 <div key={note.id} onClick={() => handleViewDetail(note)} className="glass p-4 border-l-2 border-lvmh-gold cursor-pointer hover:bg-white/10 transition-colors">
                                     <div className="flex justify-between items-start mb-2">
                                         <span className="font-bold text-white">{note.client}</span>
@@ -751,7 +1149,7 @@ export default function AdvisorView({ onBack }) {
                                     </div>
                                 </div>
                             )) : (
-                                <div className="text-center py-10 text-lvmh-gray italic">Aucun enregistrement</div>
+                                <div className="text-center py-10 text-lvmh-gray italic">Aucun enregistrement pour ce filtre</div>
                             )}
                         </div>
                     )}
@@ -761,10 +1159,21 @@ export default function AdvisorView({ onBack }) {
             {/* SEARCH VIEW */}
             {activeView === 'search' && (
                 <div className="flex-1 animate-in fade-in">
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <Search size={24} className="text-lvmh-gold" />
-                        Recherche Client
-                    </h2>
+                    <div className="flex items-center justify-between gap-3 mb-6">
+                        <h2 className="text-2xl font-bold flex items-center gap-2">
+                            <Search size={24} className="text-lvmh-gold" />
+                            Recherche Client
+                        </h2>
+                        <button
+                            onClick={() => setSearchOnlyVip((prev) => !prev)}
+                            className={`text-[10px] px-3 py-1.5 rounded-full uppercase tracking-widest border transition-colors ${searchOnlyVip
+                                ? 'border-lvmh-gold bg-lvmh-gold/20 text-lvmh-gold'
+                                : 'border-white/10 text-lvmh-gray hover:border-white/30 hover:text-white'
+                                }`}
+                        >
+                            VIC only
+                        </button>
+                    </div>
                     <div className="relative mb-6">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lvmh-gray" size={18} />
                         <input
@@ -778,12 +1187,17 @@ export default function AdvisorView({ onBack }) {
                     </div>
 
                     {searchingClients ? (
-                        <div className="flex justify-center py-10">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
+                        <div className="space-y-3">
+                            {[1, 2, 3].map((item) => (
+                                <div key={item} className="glass p-4 animate-pulse">
+                                    <div className="h-3 w-1/3 bg-white/10 rounded mb-3" />
+                                    <div className="h-2 w-2/3 bg-white/10 rounded" />
+                                </div>
+                            ))}
                         </div>
                     ) : (
                         <div className="space-y-4">
-                            {clientResults.length > 0 ? clientResults.map(client => (
+                            {filteredClientResults.length > 0 ? filteredClientResults.map(client => (
                                 <div key={client.id} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
                                     <div className="flex justify-between items-center">
                                         <div>
@@ -794,13 +1208,13 @@ export default function AdvisorView({ onBack }) {
                                             <div className="text-xs text-lvmh-gray">{client.total_notes} enregistrements</div>
                                         </div>
                                         <button onClick={() => { setActiveView('record'); setSearchQuery(client.name); }} className="text-lvmh-gold text-xs font-bold uppercase hover:underline">
-                                            Nouvelle dictée
+                                            Nouvelle dictee
                                         </button>
                                     </div>
                                 </div>
-                            )) : searchQuery.length > 2 && (
+                            )) : searchQuery.length > 1 && (
                                 <div className="text-center text-lvmh-gray text-sm mt-10">
-                                    Aucun client trouvé pour "{searchQuery}".
+                                    Aucun client trouve pour "{searchQuery}" {searchOnlyVip ? '(filtre VIC uniquement actif).' : '.'}
                                 </div>
                             )}
 
@@ -819,7 +1233,7 @@ export default function AdvisorView({ onBack }) {
                 <div className="flex-1 overflow-y-auto animate-in fade-in">
                     <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                         <FileText size={24} className="text-lvmh-gold" />
-                        Résultats CSV
+                        Resultats CSV
                     </h2>
 
                     {/* File Selector */}
@@ -842,7 +1256,7 @@ export default function AdvisorView({ onBack }) {
                         </div>
                     ) : (
                         <>
-                            <div className="text-xs text-lvmh-gray mb-4">{csvTotal} résultats</div>
+                            <div className="text-xs text-lvmh-gray mb-4">{csvTotal} resultats</div>
                             <div className="space-y-3">
                                 {csvData.length > 0 ? csvData.map((row, i) => (
                                     <div key={i} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
@@ -875,7 +1289,7 @@ export default function AdvisorView({ onBack }) {
                                     </div>
                                 )) : (
                                     <div className="text-center text-lvmh-gray text-sm py-10 italic">
-                                        Aucun résultat dans ce fichier
+                                        Aucun resultat dans ce fichier
                                     </div>
                                 )}
                             </div>
@@ -883,6 +1297,24 @@ export default function AdvisorView({ onBack }) {
                     )}
                 </div>
             )}
+        </div>
+    )
+}
+
+function CollapsibleSection({ title, isOpen, onToggle, children, accent = 'gold' }) {
+    const borderClass = accent === 'green' ? 'border-green-500/40' : 'border-white/10'
+    const titleClass = accent === 'green' ? 'text-green-400' : 'text-white'
+
+    return (
+        <div className={`glass p-5 border ${borderClass}`}>
+            <button
+                onClick={onToggle}
+                className="w-full flex items-center justify-between gap-3 text-left"
+            >
+                <h4 className={`text-base font-display font-bold ${titleClass}`}>{title}</h4>
+                {isOpen ? <ChevronDown size={18} className="text-lvmh-gold" /> : <ChevronRight size={18} className="text-lvmh-gray" />}
+            </button>
+            {isOpen && <div className="mt-4">{children}</div>}
         </div>
     )
 }

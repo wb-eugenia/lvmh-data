@@ -11,12 +11,33 @@ export default defineConfig(({ mode }) => {
         build: {
             rollupOptions: {
                 output: {
-                    manualChunks: {
-                        react: ['react', 'react-dom'],
-                        charts: ['recharts'],
-                        motion: ['framer-motion'],
-                        icons: ['lucide-react'],
-                        confetti: ['canvas-confetti']
+                    manualChunks(id) {
+                        if (!id.includes('node_modules')) return undefined
+
+                        if (
+                            id.includes('node_modules/react')
+                            || id.includes('node_modules/scheduler')
+                            || id.includes('node_modules/prop-types')
+                        ) {
+                            return 'vendor-react'
+                        }
+                        if (id.includes('node_modules/recharts') || id.includes('node_modules/victory-vendor')) {
+                            return 'vendor-recharts'
+                        }
+                        if (id.includes('node_modules/d3-')) {
+                            return 'vendor-d3'
+                        }
+                        if (id.includes('node_modules/framer-motion') || id.includes('node_modules/motion-dom')) {
+                            return 'vendor-motion'
+                        }
+                        if (id.includes('node_modules/lucide-react')) {
+                            return 'vendor-icons'
+                        }
+                        if (id.includes('node_modules/canvas-confetti')) {
+                            return 'vendor-confetti'
+                        }
+
+                        return undefined
                     }
                 }
             }
