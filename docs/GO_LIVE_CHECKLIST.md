@@ -8,10 +8,24 @@ Date baseline: 2026-02-11
 - Database: PostgreSQL (Cloud SQL recommended)
 - Cache / rate limit: Redis (Memorystore recommended)
 
+## Runtime Profiles (same engine, different objectives)
+- `single_note` (`/api/analyze`): latency-first for Advisor flow.
+- `batch_csv` (`/api/batch`): throughput-first for CSV imports.
+- Both profiles share the same taxonomy/rules/LLM stack, but tune:
+- RAG depth (`top_k`, threshold), timeout, cache strategy, write strategy, and quality gate strictness.
+
+## Performance Targets (single_note)
+- `p50 <= 6000ms`
+- `p95 <= 12000ms`
+- `success_rate >= 99.5%`
+- `5xx = 0`
+- `avg_quality_score >= 80`
+- `notes_without_tags = 0` for business-rich notes (with automatic deterministic fallback)
+
 ## 1) Before deployment
 1. Set production env vars.
 2. Ensure `DATABASE_URL` points to PostgreSQL.
-3. Ensure `JWT_SECRET_KEY` is strong (>= 32 chars recommended).
+3. Ensure `JWT_SECRET_KEY` is set with at least 32 characters.
 4. Ensure `AUTO_CREATE_SCHEMA=false` in production.
 5. Ensure `RATE_LIMIT_BACKEND=redis` with valid `REDIS_URL`.
 

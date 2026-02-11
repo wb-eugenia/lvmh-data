@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ArrowLeft, Play, RotateCcw, Wifi, WifiOff } from 'lucide-react'
+import { ArrowLeft, Play, RotateCcw, Wifi, WifiOff, LogOut } from 'lucide-react'
 import PipelineVisualizer from './PipelineVisualizer'
 import { wsUrl } from '../lib/api'
+import { useAuth } from '../context/AuthContext'
 
 const DEFAULT_RESULT = {
     meta_analysis: {
@@ -23,6 +24,7 @@ const SIMULATION_STEPS = [
 ]
 
 export default function PipelineView({ onBack }) {
+    const { logout } = useAuth()
     const [isProcessing, setIsProcessing] = useState(false)
     const [currentStep, setCurrentStep] = useState(null)
     const [result, setResult] = useState(null)
@@ -152,6 +154,12 @@ export default function PipelineView({ onBack }) {
         }
     }, [])
 
+    const handleLogout = () => {
+        logout()
+        if (onBack) onBack()
+        else window.location.assign('/login')
+    }
+
     return (
         <div className="min-h-screen bg-lvmh-black text-white p-6">
             <div className="max-w-3xl mx-auto">
@@ -164,9 +172,18 @@ export default function PipelineView({ onBack }) {
                         Retour
                     </button>
 
-                    <div className="text-right">
-                        <h1 className="text-2xl font-display font-bold gold-text">Pipeline Monitor</h1>
-                        <p className="text-xs text-lvmh-gray uppercase tracking-widest">Route /pipeline</p>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={handleLogout}
+                            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-red-500/40 text-red-300 text-xs uppercase tracking-widest hover:bg-red-500/10 transition-colors"
+                        >
+                            <LogOut size={12} />
+                            Deconnexion
+                        </button>
+                        <div className="text-right">
+                            <h1 className="text-2xl font-display font-bold gold-text">Pipeline Monitor</h1>
+                            <p className="text-xs text-lvmh-gray uppercase tracking-widest">Route /pipeline</p>
+                        </div>
                     </div>
                 </div>
 

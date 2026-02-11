@@ -1,11 +1,13 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react'
-import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText, Mic, Play, Pause, Tag, ShoppingBag, Zap, Sparkles, Trash2, Terminal, AlertTriangle, Clock3, Filter, BriefcaseBusiness, Activity, RefreshCcw, BellRing, Building2, UserRound, Wifi, WifiOff, X } from 'lucide-react'
+import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText, Mic, Play, Pause, Tag, ShoppingBag, Zap, Sparkles, Trash2, Terminal, AlertTriangle, Clock3, Filter, BriefcaseBusiness, Activity, RefreshCcw, BellRing, Building2, UserRound, Wifi, WifiOff, LogOut, X } from 'lucide-react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
 import { apiFetch, wsUrl } from '../lib/api'
+import { useAuth } from '../context/AuthContext'
 
 const DebugAnalyzer = lazy(() => import('./DebugAnalyzer'))
 
 export default function ManagerView({ onBack }) {
+    const { logout } = useAuth()
     const [currentTab, setCurrentTab] = useState('overview')
     const [stats, setStats] = useState({ total_notes: 0, avg_quality: 0, tier_distribution: { 1: 0, 2: 0, 3: 0 } })
     const [dashboardMetrics, setDashboardMetrics] = useState(null)
@@ -1429,6 +1431,12 @@ export default function ManagerView({ onBack }) {
         }
     }
 
+    const handleLogout = () => {
+        logout()
+        if (onBack) onBack()
+        else window.location.assign('/login')
+    }
+
     return (
         <div className="flex h-screen bg-lvmh-dark text-white overflow-hidden">
             {/* Sidebar */}
@@ -1457,6 +1465,13 @@ export default function ManagerView({ onBack }) {
                         <div className={`w-2 h-2 rounded-full ${pipelineSocketState === 'connected' ? 'bg-green-500 animate-pulse' : pipelineSocketState === 'connecting' ? 'bg-lvmh-gold animate-pulse' : 'bg-red-500'}`}></div>
                         {pipelineSocketState === 'connected' ? 'Serveur Live' : pipelineSocketState === 'connecting' ? 'Connexion WS...' : 'WS deconnecte'}
                     </div>
+                    <button
+                        onClick={handleLogout}
+                        className="mt-4 w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors"
+                    >
+                        <LogOut size={18} />
+                        <span className="text-sm font-semibold">Deconnexion</span>
+                    </button>
                 </div>
             </div>
 

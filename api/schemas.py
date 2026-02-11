@@ -118,6 +118,11 @@ class ExtractionResult(BaseModel):
     processed_text: Optional[str] = None
     original_text: Optional[str] = None
     processing_time_ms: float
+    profile: Optional[str] = None
+    stage_timings_ms: Dict[str, float] = Field(default_factory=dict)
+    fallbacks_applied: List[str] = Field(default_factory=list)
+    quality_gate_passed: bool = True
+    quality_gate_reason: Optional[str] = None
     cache_hit: bool = False
     model_used: Optional[str] = None
 

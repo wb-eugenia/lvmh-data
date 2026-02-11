@@ -28,6 +28,22 @@ import requests
 
 
 RETRY_STATUSES = {429, 500, 502, 503, 504}
+STAGE_KEYS = [
+    "cleaning",
+    "rgpd",
+    "cache_lookup",
+    "semantic_cache_lookup",
+    "routing",
+    "tier1",
+    "tier2",
+    "tier3",
+    "cross_validation",
+    "rag",
+    "recommendation",
+    "quality_gate",
+    "injection",
+    "total",
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -175,9 +191,13 @@ def _run_once(
                         "rag_hit": 0,
                         "rgpd_sensitive": 0,
                         "tier": None,
+                        "profile": None,
+                        "quality_gate_passed": 0,
+                        "fallback_count": 0,
                         "processing_time_ms": latency_ms,
                         "error": error_detail,
                         "text_preview": text[:180],
+                        **{f"stage_{key}_ms": 0.0 for key in STAGE_KEYS},
                     }
                 )
                 continue
@@ -193,47 +213,57 @@ def _run_once(
 
             routing = data.get("routing") or {}
             rgpd = data.get("rgpd") or {}
+            stage_timings = data.get("stage_timings_ms") or {}
+            fallbacks = data.get("fallbacks_applied") or []
 
             processing_time_ms = float(data.get("processing_time_ms") or latency_ms)
+            stage_metrics = {f"stage_{key}_ms": float(stage_timings.get(key, 0.0) or 0.0) for key in STAGE_KEYS}
 
-            rows.append(
-                {
-                    "run": run_index,
-                    "id": note_id,
-                    "status_code": status_code,
-                    "ok": 1,
-                    "quality_score": quality,
-                    "tags_count": len(tags),
-                    "invalid_tags_count": len(invalid_tags),
-                    "invalid_tags": "|".join(invalid_tags),
-                    "rag_hit": rag_hit,
-                    "rgpd_sensitive": 1 if bool(rgpd.get("contains_sensitive")) else 0,
-                    "tier": routing.get("tier"),
-                    "processing_time_ms": processing_time_ms,
-                    "error": "",
-                    "text_preview": text[:180],
-                }
-            )
+            row = {
+                "run": run_index,
+                "id": note_id,
+                "status_code": status_code,
+                "ok": 1,
+                "quality_score": quality,
+                "tags_count": len(tags),
+                "invalid_tags_count": len(invalid_tags),
+                "invalid_tags": "|".join(invalid_tags),
+                "rag_hit": rag_hit,
+                "rgpd_sensitive": 1 if bool(rgpd.get("contains_sensitive")) else 0,
+                "tier": routing.get("tier"),
+                "profile": data.get("profile"),
+                "quality_gate_passed": 1 if bool(data.get("quality_gate_passed", True)) else 0,
+                "fallback_count": len(fallbacks) if isinstance(fallbacks, list) else 0,
+                "processing_time_ms": processing_time_ms,
+                "error": "",
+                "text_preview": text[:180],
+            }
+            row.update(stage_metrics)
+            rows.append(row)
         except Exception as exc:
             latency_ms = (time.time() - started) * 1000.0
-            rows.append(
-                {
-                    "run": run_index,
-                    "id": note_id,
-                    "status_code": None,
-                    "ok": 0,
-                    "quality_score": 0.0,
-                    "tags_count": 0,
-                    "invalid_tags_count": 0,
-                    "invalid_tags": "",
-                    "rag_hit": 0,
-                    "rgpd_sensitive": 0,
-                    "tier": None,
-                    "processing_time_ms": latency_ms,
-                    "error": str(exc)[:400],
-                    "text_preview": text[:180],
-                }
-            )
+            row = {
+                "run": run_index,
+                "id": note_id,
+                "status_code": None,
+                "ok": 0,
+                "quality_score": 0.0,
+                "tags_count": 0,
+                "invalid_tags_count": 0,
+                "invalid_tags": "",
+                "rag_hit": 0,
+                "rgpd_sensitive": 0,
+                "tier": None,
+                "profile": None,
+                "quality_gate_passed": 0,
+                "fallback_count": 0,
+                "processing_time_ms": latency_ms,
+                "error": str(exc)[:400],
+                "text_preview": text[:180],
+            }
+            for key in STAGE_KEYS:
+                row[f"stage_{key}_ms"] = 0.0
+            rows.append(row)
 
     df = pd.DataFrame(rows)
     total = len(df)
@@ -266,6 +296,11 @@ def _run_once(
     ]
 
     processing_values = [float(x) for x in ok_df["processing_time_ms"].tolist()]
+    stage_summary: Dict[str, float] = {}
+    for key in STAGE_KEYS:
+        col = f"stage_{key}_ms"
+        if col in ok_df.columns and not ok_df.empty:
+            stage_summary[col] = round(float(ok_df[col].mean()), 2)
     run_result = {
         "run": run_index,
         "input_notes": total,
@@ -279,8 +314,11 @@ def _run_once(
         "invalid_tags_total": int(ok_df["invalid_tags_count"].sum()) if not ok_df.empty else 0,
         "notes_with_invalid_tags": int((ok_df["invalid_tags_count"] > 0).sum()) if not ok_df.empty else 0,
         "rag_hit_rate_pct": round(float(ok_df["rag_hit"].mean() * 100.0) if not ok_df.empty else 0.0, 2),
+        "quality_gate_fail_count": int((ok_df["quality_gate_passed"] == 0).sum()) if not ok_df.empty else 0,
+        "fallback_rate_pct": round(float((ok_df["fallback_count"] > 0).mean() * 100.0) if not ok_df.empty else 0.0, 2),
         "avg_processing_time_ms": round(float(ok_df["processing_time_ms"].mean()) if not ok_df.empty else 0.0, 2),
         "p95_processing_time_ms": round(_percentile(processing_values, 95), 2),
+        "avg_stage_timings_ms": stage_summary,
         "worst_10_notes": worst_notes,
     }
     return run_result, df

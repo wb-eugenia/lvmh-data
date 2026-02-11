@@ -365,9 +365,9 @@ async def readiness():
         status = "not_ready"
 
     jwt_secret = os.getenv("JWT_SECRET_KEY", "")
-    checks["jwt_secret"] = bool(jwt_secret and len(jwt_secret) >= 16)
+    checks["jwt_secret"] = bool(jwt_secret and len(jwt_secret) >= 32)
     if not checks["jwt_secret"]:
-        details["jwt_secret_warning"] = "JWT_SECRET_KEY missing or weak"
+        details["jwt_secret_warning"] = "JWT_SECRET_KEY missing or too short (min 32 chars)"
         if os.getenv("ENV", "development").lower() in {"production", "prod", "staging"}:
             status = "not_ready"
 

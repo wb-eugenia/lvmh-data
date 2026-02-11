@@ -15,10 +15,12 @@ import {
     ShieldCheck,
     Wifi,
     WifiOff,
+    LogOut,
     X
 } from 'lucide-react'
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { apiFetch, wsUrl } from '../lib/api'
+import { useAuth } from '../context/AuthContext'
 
 const REFRESH_INTERVAL_MS = 30000
 const WINDOW_PRESETS = [
@@ -123,6 +125,7 @@ const componentStatus = (value) => {
 }
 
 export default function AdminView({ onBack }) {
+    const { logout } = useAuth()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [windowDays, setWindowDays] = useState(30)
@@ -436,6 +439,12 @@ export default function AdminView({ onBack }) {
         setNoteDetailsError(null)
     }
 
+    const handleLogout = () => {
+        logout()
+        if (onBack) onBack()
+        else window.location.assign('/login')
+    }
+
     return (
         <div className="min-h-screen bg-lvmh-black text-white p-6 md:p-8">
             <div className="max-w-7xl mx-auto space-y-6">
@@ -499,6 +508,13 @@ export default function AdminView({ onBack }) {
                         >
                             <RefreshCcw size={12} />
                             Refresh
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-red-500/40 text-red-300 text-xs uppercase tracking-widest hover:bg-red-500/10 transition-colors"
+                        >
+                            <LogOut size={12} />
+                            Deconnexion
                         </button>
                     </div>
                 </div>

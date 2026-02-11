@@ -160,6 +160,12 @@ class PipelineOutput(BaseModel):
     extraction: Optional[ExtractionResult] = None # Make optional to handle failures
     
     tier: Optional[int] = None # Legacy/Shortcut
+    profile: str = "single_note"
+    stage_timings_ms: Dict[str, float] = Field(default_factory=dict)
+    fallbacks_applied: List[str] = Field(default_factory=list)
+    quality_gate_passed: bool = True
+    quality_gate_reason: Optional[str] = None
+    high_signal_input: bool = False
     processing_time_ms: float = 0.0
     from_cache: bool = False
 

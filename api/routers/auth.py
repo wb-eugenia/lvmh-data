@@ -131,7 +131,7 @@ async def login_for_access_token(
 
 @router.post("/seed")
 async def seed_users(db: Session = Depends(get_db)):
-    """Seed initial users for testing."""
+    """Seed initial users for testing (upsert mode)."""
     if not ALLOW_SEED_ENDPOINT:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Seed endpoint disabled")
 
@@ -160,24 +160,33 @@ async def seed_users(db: Session = Depends(get_db)):
     ]
 
     created = []
+    updated = []
     for user_payload in users:
         db_user = db.query(User).filter(User.email == user_payload["email"]).first()
-        if db_user:
-            continue
         hashed = get_password_hash(user_payload["password"])
-        new_user = User(
-            email=user_payload["email"],
-            hashed_password=hashed,
-            full_name=user_payload["full_name"],
-            role=user_payload["role"],
-            store=user_payload["store"],
-        )
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-        created.append(new_user.email)
+        if db_user:
+            db_user.hashed_password = hashed
+            db_user.full_name = user_payload["full_name"]
+            db_user.role = user_payload["role"]
+            db_user.store = user_payload["store"]
+            updated.append(db_user.email)
+        else:
+            new_user = User(
+                email=user_payload["email"],
+                hashed_password=hashed,
+                full_name=user_payload["full_name"],
+                role=user_payload["role"],
+                store=user_payload["store"],
+            )
+            db.add(new_user)
+            created.append(user_payload["email"])
 
-    return {"message": "Users created", "users": created}
+    db.commit()
+    return {
+        "message": "Users upserted",
+        "created": created,
+        "updated": updated,
+    }
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):

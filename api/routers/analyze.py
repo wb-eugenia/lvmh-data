@@ -9,7 +9,7 @@ import time
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
@@ -19,12 +19,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from api.schemas import NoteInput, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo, MetaAnalysis
 from src.pipeline_async import AsyncPipeline
 from src.language_utils import detect_language
-from api.routers.auth import get_current_user
+from api.routers.auth import get_current_user, require_roles
 from api.models_sql import User, Note, Client
-from api.database import get_db
+from api.database import get_db, SessionLocal
 from sqlalchemy.orm import Session
 from fastapi import Depends
 import json
+from config.production import settings
 
 logger = logging.getLogger("lvmh-api.analyze")
 router = APIRouter()
@@ -45,12 +46,54 @@ def get_pipeline() -> AsyncPipeline:
     return _pipeline
 
 
+def persist_note_single_transaction(
+    advisor_id: int,
+    behavior: Optional[str],
+    processed_text: str,
+    analysis_payload: dict,
+    points: int,
+) -> None:
+    """
+    Persist score + client + note in one short transaction.
+    Used as background task for single-note latency path.
+    """
+    db = SessionLocal()
+    try:
+        user = db.query(User).filter(User.id == advisor_id).first()
+        if user is None:
+            return
+
+        user.score = int(user.score or 0) + int(points)
+
+        client_name = "Client VIP" if str(behavior or "").lower() in {"vic", "ultimate", "platinum"} else "Client Inconnu"
+        client = db.query(Client).filter(Client.name == client_name).first()
+        if client is None:
+            client = Client(name=client_name, vic_status="Standard")
+            db.add(client)
+            db.flush()
+
+        note = Note(
+            advisor_id=user.id,
+            client_id=client.id,
+            transcription=processed_text,
+            analysis_json=json.dumps(analysis_payload, ensure_ascii=False, default=str),
+            points_awarded=int(points),
+        )
+        db.add(note)
+        db.commit()
+    except Exception as exc:
+        db.rollback()
+        logger.error("Persistence error (background): %s", exc)
+    finally:
+        db.close()
+
+
 @router.post("/analyze", response_model=ExtractionResult)
 @limiter.limit("30/minute")
 async def analyze_note(
     note: NoteInput, 
     request: Request, 
-    db: Session = Depends(get_db),
+    background_tasks: BackgroundTasks,
     current_user: User = Depends(get_current_user),
 ):
     """
@@ -78,55 +121,48 @@ async def analyze_note(
             'ID': f'API_{int(time.time())}',
             'Transcription': note.text,
             'Language': note_language
-        }, on_progress=on_progress, save_to_cache=False)
+        }, on_progress=on_progress, profile=settings.single_note_profile.name, save_to_cache=settings.single_note_profile.save_to_cache)
         
         if result is None:
             raise HTTPException(status_code=500, detail="Analysis failed to produce a result.")
             
-        processing_time = (time.time() - start_time) * 1000
+        processing_time = float(result.processing_time_ms or ((time.time() - start_time) * 1000))
         ext = result.extraction
+
+        if not result.quality_gate_passed:
+            raise HTTPException(
+                status_code=422,
+                detail=result.quality_gate_reason or "Quality contract failed (empty tags on high-signal note).",
+            )
         
         # Build response with mapping from 4-Pillar to API schema
         # === PERSISTENCE ===
         try:
-            if current_user:
-                # 1. Update Score
-                points = 10
+            if current_user and ext:
                 quality = ext.meta_analysis.quality_score if ext else 0.0
                 quality_pct = quality * 100 if quality <= 1 else quality
-                if quality_pct >= 80:
-                    points += 5
-                current_user.score += points
-                
-                # 2. Get/Create Client (Simple logic: if VIC/Ultimate mentioned or just 'Standard')
-                client_name = "Client Inconnu"
-                if ext.pilier_2_profil_client.purchase_context.behavior in ["vic", "ultimate"]:
-                    client_name = "Client VIP"
-                
-                # Find or create a generic client for this demo
-                client = db.query(Client).filter(Client.name == client_name).first()
-                if not client:
-                    client = Client(name=client_name, vic_status="Standard")
-                    db.add(client)
-                    db.commit()
-                    db.refresh(client)
-                
-                # 3. Save Note
-                new_note = Note(
-                    advisor_id=current_user.id,
-                    client_id=client.id,
-                    transcription=result.processed_text,
-                    # Avoid persisting raw input text (may contain PII). Keep anonymized `processed_text`.
-                    analysis_json=json.dumps(
-                        result.model_dump(mode="json", exclude={"original_text"}),
-                        ensure_ascii=False,
-                        default=str
-                    ),
-                    points_awarded=points
-                )
-                db.add(new_note)
-                db.commit()
-                logger.info(f"💾 Note saved for user {current_user.email} (+{points} pts)")
+                points = 15 if quality_pct >= 80 else 10
+                behavior = ext.pilier_2_profil_client.purchase_context.behavior if ext else None
+                analysis_payload = result.model_dump(mode="json", exclude={"original_text"})
+
+                if settings.single_note_profile.defer_non_critical_writes:
+                    background_tasks.add_task(
+                        persist_note_single_transaction,
+                        current_user.id,
+                        behavior,
+                        result.processed_text,
+                        analysis_payload,
+                        points,
+                    )
+                else:
+                    persist_note_single_transaction(
+                        current_user.id,
+                        behavior,
+                        result.processed_text,
+                        analysis_payload,
+                        points,
+                    )
+                logger.info("Note persistence scheduled for user %s (+%s pts)", current_user.email, points)
         except Exception as e:
             logger.error(f"Persistence error: {e}")
 
@@ -165,6 +201,11 @@ async def analyze_note(
             processed_text=result.processed_text,
             original_text=result.original_text,
             processing_time_ms=processing_time,
+            profile=result.profile,
+            stage_timings_ms=result.stage_timings_ms,
+            fallbacks_applied=result.fallbacks_applied,
+            quality_gate_passed=result.quality_gate_passed,
+            quality_gate_reason=result.quality_gate_reason,
             cache_hit=result.from_cache,
             model_used=getattr(result, 'model_used', "hybrid")
         )
@@ -172,6 +213,21 @@ async def analyze_note(
     except Exception as e:
         logger.error(f"Analysis error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/analyze/runtime-metrics")
+async def get_runtime_metrics(current_user: User = Depends(require_roles("manager", "admin"))):
+    """Profile-separated runtime metrics with stage-level averages."""
+    pipeline = get_pipeline()
+    return {
+        "targets": {
+            "single_note_p50_ms": settings.target_single_note_p50_ms,
+            "single_note_p95_ms": settings.target_single_note_p95_ms,
+            "success_rate_pct": settings.target_success_rate_pct,
+            "quality_score": settings.target_quality_score,
+        },
+        "profiles": pipeline.get_profile_metrics(),
+    }
 
 @router.get("/history")
 async def get_history(

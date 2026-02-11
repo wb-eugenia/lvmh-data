@@ -15,12 +15,13 @@ import logging
 import time
 import sys
 import os
+from collections import defaultdict, deque
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
 from datetime import datetime
-from typing import List, Dict, Optional, Callable
+from typing import Any, List, Dict, Optional, Callable
 
 # Add project root to path to allow imports from config
 sys.path.append(os.getcwd())
@@ -28,7 +29,7 @@ sys.path.append(os.getcwd())
 import pandas as pd
 from tqdm.asyncio import tqdm
 
-from config.production import settings
+from config.production import settings, RuntimeProfile
 from src.models import PipelineOutput, RoutingDecision, ExtractionResult, RGPDResult
 from src.smart_router import SmartRouterV2
 from src.tier1_rules import Tier1RulesEngine
@@ -71,6 +72,37 @@ class AsyncPipeline:
         '[SSN]',
         '[FISCAL]',
     ]
+    HIGH_SIGNAL_KEYWORDS = (
+        "budget",
+        "cadeau",
+        "gift",
+        "vip",
+        "vic",
+        "urgent",
+        "birthday",
+        "wedding",
+        "allerg",
+        "marriage",
+        "anniversaire",
+        "travel",
+        "work",
+    )
+    PRODUCT_HINTS = (
+        "sac",
+        "bag",
+        "ceinture",
+        "belt",
+        "watch",
+        "montre",
+        "wallet",
+        "portefeuille",
+        "chaussure",
+        "shoe",
+        "fragrance",
+        "parfum",
+        "jewelry",
+        "bijou",
+    )
     
     def __init__(self, use_cache: bool = True, use_semantic_cache: bool = True, use_cross_validation: bool = True):
         self.router = SmartRouterV2()
@@ -97,6 +129,14 @@ class AsyncPipeline:
         self.cache = CacheManager() if use_cache else None
         self.semantic_cache = SemanticCache() if use_semantic_cache and HAS_EMBEDDINGS else None
         self.cross_validator = CrossValidator() if use_cross_validation else None
+        self.profile_configs: Dict[str, RuntimeProfile] = {
+            settings.single_note_profile.name: settings.single_note_profile,
+            settings.batch_csv_profile.name: settings.batch_csv_profile,
+        }
+        if "single_note" not in self.profile_configs:
+            self.profile_configs["single_note"] = settings.single_note_profile
+        if "batch_csv" not in self.profile_configs:
+            self.profile_configs["batch_csv"] = settings.batch_csv_profile
         
         self.dlq = DeadLetterQueue()
         
@@ -123,6 +163,15 @@ class AsyncPipeline:
             'rag_disabled': 0,
             'start_time': None
         }
+        self.profile_runtime_stats: Dict[str, Dict[str, Any]] = defaultdict(
+            lambda: {
+                "count": 0,
+                "latencies_ms": deque(maxlen=1000),
+                "fallback_count": 0,
+                "notes_without_tags": 0,
+                "stage_totals_ms": defaultdict(float),
+            }
+        )
 
     @staticmethod
     def _build_heuristic_rgpd(text: str) -> RGPDResult:
@@ -146,16 +195,185 @@ class AsyncPipeline:
             return "medium"
         return "low"
 
-    async def process_note(self, note: Dict, on_progress: Optional[Callable] = None, **kwargs) -> Optional[PipelineOutput]:
+    @staticmethod
+    def _merge_unique(primary: List[str], secondary: List[str]) -> List[str]:
+        merged: List[str] = []
+        for value in list(primary or []) + list(secondary or []):
+            if not isinstance(value, str):
+                continue
+            item = value.strip()
+            if not item:
+                continue
+            if item not in merged:
+                merged.append(item)
+        return merged
+
+    def _resolve_profile(self, profile: str) -> RuntimeProfile:
+        if profile in self.profile_configs:
+            return self.profile_configs[profile]
+        return self.profile_configs["single_note"]
+
+    def _has_high_signal(self, text: str) -> bool:
+        lowered = (text or "").lower()
+        if len(lowered.split()) >= 18:
+            return True
+        hits = sum(1 for token in self.HIGH_SIGNAL_KEYWORDS if token in lowered)
+        return hits >= 2
+
+    def _deterministic_minimum_tag(self, text: str) -> str:
+        lowered = (text or "").lower()
+        if any(token in lowered for token in ("watch", "montre", "timepiece", "orologio")):
+            return "watches"
+        if any(token in lowered for token in ("jewel", "bijou", "bracelet", "ring", "bague")):
+            return "jewelry"
+        if any(token in lowered for token in ("shoe", "chaussure", "sneaker", "basket")):
+            return "shoes"
+        if any(token in lowered for token in ("fragrance", "parfum", "perfume", "cologne")):
+            return "fragrance"
+        if any(token in lowered for token in ("ceinture", "belt", "cintura")):
+            return "belts"
+        if any(token in lowered for token in ("wallet", "portefeuille", "card holder", "pochette")):
+            return "small_leather"
+        if any(token in lowered for token in ("travel", "voyage", "luggage", "valise")):
+            return "travel_luggage"
+        if any(token in lowered for token in self.PRODUCT_HINTS):
+            return "leather_goods"
+        return "accessories"
+
+    def _apply_quality_fallback(
+        self,
+        extraction_result: Optional[ExtractionResult],
+        *,
+        text: str,
+        language: str,
+        require_non_empty_tags: bool,
+    ) -> tuple[Optional[ExtractionResult], List[str]]:
+        fallbacks: List[str] = []
+
+        if extraction_result is None:
+            extraction_result = self.tier1.extract(text, language)
+            fallbacks.append("tier1_recovery")
+
+        if extraction_result is None:
+            return None, fallbacks
+
+        if not require_non_empty_tags or extraction_result.tags:
+            return extraction_result, fallbacks
+
+        tier1_candidate = self.tier1.extract(text, language)
+        if tier1_candidate and tier1_candidate.tags:
+            p1 = extraction_result.pilier_1_univers_produit
+            p1.categories = self._merge_unique(p1.categories, tier1_candidate.pilier_1_univers_produit.categories)
+            p1.produits_mentionnes = self._merge_unique(
+                p1.produits_mentionnes,
+                tier1_candidate.pilier_1_univers_produit.produits_mentionnes,
+            )
+            p1.usage = self._merge_unique(p1.usage, tier1_candidate.pilier_1_univers_produit.usage)
+            p1.preferences.colors = self._merge_unique(
+                p1.preferences.colors,
+                tier1_candidate.pilier_1_univers_produit.preferences.colors,
+            )
+            p1.preferences.materials = self._merge_unique(
+                p1.preferences.materials,
+                tier1_candidate.pilier_1_univers_produit.preferences.materials,
+            )
+            p1.preferences.styles = self._merge_unique(
+                p1.preferences.styles,
+                tier1_candidate.pilier_1_univers_produit.preferences.styles,
+            )
+            p1.preferences.hardware = self._merge_unique(
+                p1.preferences.hardware,
+                tier1_candidate.pilier_1_univers_produit.preferences.hardware,
+            )
+            fallbacks.append("tier1_no_tag_merge")
+
+        if not extraction_result.tags:
+            p1 = extraction_result.pilier_1_univers_produit
+            p1.categories = self._merge_unique(p1.categories, [self._deterministic_minimum_tag(text)])
+            fallbacks.append("deterministic_minimum_tag")
+
+        if not extraction_result.tags and require_non_empty_tags:
+            # Last-resort safety net for strict contracts.
+            p1 = extraction_result.pilier_1_univers_produit
+            p1.categories = self._merge_unique(p1.categories, ["customer_intent"])
+            fallbacks.append("contractual_forced_tag")
+
+        return extraction_result, fallbacks
+
+    def _record_profile_runtime(
+        self,
+        profile: str,
+        processing_time_ms: float,
+        stage_timings_ms: Dict[str, float],
+        *,
+        tags_count: int,
+        fallback_used: bool,
+    ) -> None:
+        pstats = self.profile_runtime_stats[profile]
+        pstats["count"] += 1
+        pstats["latencies_ms"].append(float(processing_time_ms))
+        if tags_count == 0:
+            pstats["notes_without_tags"] += 1
+        if fallback_used:
+            pstats["fallback_count"] += 1
+        for stage, value in stage_timings_ms.items():
+            pstats["stage_totals_ms"][stage] += float(value)
+
+    @staticmethod
+    def _percentile(values: List[float], p: float) -> float:
+        if not values:
+            return 0.0
+        arr = sorted(values)
+        idx = int(round((p / 100.0) * (len(arr) - 1)))
+        return float(arr[idx])
+
+    def get_profile_metrics(self) -> Dict[str, Any]:
+        payload: Dict[str, Any] = {}
+        for profile, stats in self.profile_runtime_stats.items():
+            latencies = list(stats["latencies_ms"])
+            count = int(stats["count"])
+            stage_avgs = {}
+            if count > 0:
+                for stage, total in stats["stage_totals_ms"].items():
+                    stage_avgs[stage] = round(float(total) / count, 2)
+            payload[profile] = {
+                "count": count,
+                "p50_ms": round(self._percentile(latencies, 50), 2),
+                "p95_ms": round(self._percentile(latencies, 95), 2),
+                "avg_ms": round(sum(latencies) / len(latencies), 2) if latencies else 0.0,
+                "notes_without_tags": int(stats["notes_without_tags"]),
+                "fallback_rate_pct": round((stats["fallback_count"] / count) * 100, 2) if count else 0.0,
+                "stage_avg_ms": stage_avgs,
+            }
+        return payload
+
+    async def process_note(
+        self,
+        note: Dict,
+        on_progress: Optional[Callable] = None,
+        profile: str = "single_note",
+        **kwargs,
+    ) -> Optional[PipelineOutput]:
         """
         Process a single note through the pipeline.
         """
         async with self.semaphore:
             start_time = time.time()
+            perf_start = time.perf_counter()
             note_id = str(note.get('ID', 'unknown'))
             raw_text = note.get('Transcription') or ''  # Handle None or missing
             language = note.get('Language', 'FR') or 'FR'
-            timeout_budget = max(5, int(settings.processing_timeout_seconds))
+            runtime_profile = self._resolve_profile(str(kwargs.get("profile") or profile or "single_note"))
+            timeout_budget = max(5, int(kwargs.get("timeout_seconds") or runtime_profile.timeout_seconds))
+            cache_enabled = bool(kwargs.get("save_to_cache", runtime_profile.save_to_cache))
+            semantic_cache_enabled = bool(self.semantic_cache and runtime_profile.save_to_semantic_cache)
+            cache_namespace = f"pipeline_v3_{runtime_profile.name}"
+            high_signal_input = self._has_high_signal(raw_text)
+            stage_timings_ms: Dict[str, float] = {}
+            fallbacks_applied: List[str] = []
+
+            def mark_stage(stage: str, started_at: float) -> None:
+                stage_timings_ms[stage] = round((time.perf_counter() - started_at) * 1000.0, 2)
 
             # Helper for safe progress reporting
             async def safe_progress(step_data):
@@ -163,6 +381,7 @@ class AsyncPipeline:
                     try:
                         payload = {**step_data}
                         if "note_id" not in payload: payload["note_id"] = note_id
+                        payload["profile"] = runtime_profile.name
                         await on_progress(payload)
                     except Exception as pe:
                         logger.warning(f"Progress report failed for step {step_data.get('step')}: {pe}")
@@ -180,11 +399,13 @@ class AsyncPipeline:
                 return await asyncio.wait_for(runner(), timeout=timeout_seconds)
 
             # 0. Data Cleaning
+            cleaning_started = time.perf_counter()
             await safe_progress({"step": "cleaning", "tokens_saved": 0})
             clean_res = self.cleaner.clean_text(raw_text, language)
             text = clean_res['cleaned']
             tokens_saved = clean_res.get('fillers_removed', 0)
             await safe_progress({"step": "cleaning", "tokens_saved": tokens_saved})
+            mark_stage("cleaning", cleaning_started)
             
             logger.debug(
                 "Cleaned note %s: chars=%s tokens_saved=%s",
@@ -194,6 +415,7 @@ class AsyncPipeline:
             )
 
             # 0b. RGPD layer (LLM if available, heuristic fallback otherwise)
+            rgpd_started = time.perf_counter()
             await safe_progress({"step": "rgpd", "status": "processing"})
             rgpd_result = self._build_heuristic_rgpd(text)
 
@@ -248,28 +470,64 @@ class AsyncPipeline:
                         "categories": rgpd_result.categories_detected,
                     }
                 )
+            mark_stage("rgpd", rgpd_started)
             
             try:
                 # 1. Check Exact Match Cache
-                if self.cache:
-                    cached_data = self.cache.load(self.cache.get_cache_key(text, 'pipeline_v3'), 'pipeline_v3')
+                cache_lookup_started = time.perf_counter()
+                if self.cache and cache_enabled:
+                    cached_data = self.cache.load(
+                        self.cache.get_cache_key(text, cache_namespace),
+                        cache_namespace
+                    )
                     if cached_data:
+                        mark_stage("cache_lookup", cache_lookup_started)
                         await safe_progress({"step": "cache_hit"})
                         await safe_progress({"step": "done"})
                         # Reconstruct PipelineOutput from dict
-                        return PipelineOutput(**cached_data)
+                        output = PipelineOutput(**cached_data)
+                        output.profile = runtime_profile.name
+                        output.stage_timings_ms = output.stage_timings_ms or stage_timings_ms
+                        output.processing_time_ms = float(
+                            output.processing_time_ms or ((time.time() - start_time) * 1000.0)
+                        )
+                        self._record_profile_runtime(
+                            runtime_profile.name,
+                            output.processing_time_ms,
+                            output.stage_timings_ms,
+                            tags_count=len(output.extraction.tags) if output.extraction else 0,
+                            fallback_used=False,
+                        )
+                        return output
+                mark_stage("cache_lookup", cache_lookup_started)
                 
                 # 2. Check Semantic Cache (similarity-based)
-                if self.semantic_cache:
+                semantic_lookup_started = time.perf_counter()
+                if semantic_cache_enabled:
                     semantic_result = self.semantic_cache.get(text, language)
                     if semantic_result:
                         await safe_progress({"step": "semantic_cache_hit", "similarity": semantic_result.get('_cache_metadata', {}).get('similarity', 0)})
                         await safe_progress({"step": "done"})
                         self.stats['semantic_cache_hits'] += 1
                         # Convert dict back to PipelineOutput
-                        return PipelineOutput(**semantic_result)
+                        output = PipelineOutput(**semantic_result)
+                        output.profile = runtime_profile.name
+                        output.stage_timings_ms = output.stage_timings_ms or stage_timings_ms
+                        output.processing_time_ms = float(
+                            output.processing_time_ms or ((time.time() - start_time) * 1000.0)
+                        )
+                        self._record_profile_runtime(
+                            runtime_profile.name,
+                            output.processing_time_ms,
+                            output.stage_timings_ms,
+                            tags_count=len(output.extraction.tags) if output.extraction else 0,
+                            fallback_used=False,
+                        )
+                        return output
+                mark_stage("semantic_cache_lookup", semantic_lookup_started)
 
                 # 3. Routing (Use ML Router)
+                routing_started = time.perf_counter()
                 decision = self.router.route_ml(text, language, note)
                 predicted_tier = decision.tier
                 await safe_progress({
@@ -279,21 +537,25 @@ class AsyncPipeline:
                     "priority": decision.priority.upper(),
                     "engine": "Machine Learning" if any("ML" in r for r in decision.reasons) else "Heuristic Engine"
                 })
+                mark_stage("routing", routing_started)
                 
                 # 4. Extraction with Cross-Validation
                 tier_results = {}
                 tier_confidences = {}
                 
                 # Always run Tier 1 for baseline (fast, cheap)
+                tier1_started = time.perf_counter()
                 await safe_progress({"step": "tier1_extraction"})
                 tier1_result = self.tier1.extract(text, language)
                 if tier1_result:
                     tier_results[1] = tier1_result.model_dump() if hasattr(tier1_result, 'model_dump') else tier1_result
                     tier_confidences[1] = getattr(tier1_result, 'confidence', 0.7)
                 self.stats['tier1_exec'] += 1
+                mark_stage("tier1", tier1_started)
                 
                 # Run Tier 2 if routed
                 if decision.tier >= 2:
+                    tier2_started = time.perf_counter()
                     await safe_progress({"step": "tier2_extraction"})
                     tier2_result = None
                     if budget_exhausted(buffer_seconds=3):
@@ -321,25 +583,41 @@ class AsyncPipeline:
                         tier_results[2] = tier2_result.model_dump() if hasattr(tier2_result, 'model_dump') else tier2_result
                         tier_confidences[2] = getattr(tier2_result, 'confidence', 0.85)
                     
-                    # Check if we should escalate to Tier 3
-                    client_status = getattr(tier2_result.pilier_2_profil_client.purchase_context, 'behavior', None) if tier2_result else None
+                    # Escalation guardrail:
+                    # Tier 3 is expensive/slow and currently less stable for some multilingual cases.
+                    # Escalate only on clearly critical uncertainty.
+                    client_status = (
+                        getattr(tier2_result.pilier_2_profil_client.purchase_context, 'behavior', None)
+                        if tier2_result else None
+                    )
                     should_escalate = False
-                    
+
                     if tier2_result:
-                        if tier2_result.confidence < 0.85:
+                        tier2_conf = float(getattr(tier2_result, "confidence", 0.0) or 0.0)
+                        critical_client = str(client_status or "").lower() in {'vic', 'ultimate', 'platinum'}
+                        high_risk_note = str(decision.priority or "").lower() in {'high', 'critical'}
+
+                        # Escalate for critical clients if confidence is clearly below premium bar.
+                        if critical_client and tier2_conf < 0.90:
                             should_escalate = True
-                        elif client_status in ['vic', 'ultimate'] and tier2_result.confidence < 0.95:
+                        # Escalate only if extremely uncertain on high-risk notes.
+                        elif high_risk_note and tier2_conf < 0.60:
                             should_escalate = True
-                    
+
                     if should_escalate:
-                        logger.info(f"Summary: Escalating Note {note_id} to Tier 3 (Safety/Confidence)")
+                        logger.info(
+                            "Summary: Escalating Note %s to Tier 3 (critical confidence gate)",
+                            note_id,
+                        )
                         decision.tier = 3
-                        decision.reasons.append("Escalated from Tier 2 (Safety/Confidence)")
+                        decision.reasons.append("Escalated from Tier 2 (critical confidence gate)")
                     else:
                         self.stats['tier2_exec'] += 1
+                    mark_stage("tier2", tier2_started)
                 
                 # Run Tier 3 if routed
                 if decision.tier >= 3:
+                    tier3_started = time.perf_counter()
                     await safe_progress({"step": "tier3_extraction"})
                     tier3_result = None
                     if budget_exhausted(buffer_seconds=3):
@@ -373,9 +651,11 @@ class AsyncPipeline:
                         tier_results[3] = tier3_result.model_dump() if hasattr(tier3_result, 'model_dump') else tier3_result
                         tier_confidences[3] = getattr(tier3_result, 'confidence', 0.95)
                     self.stats['tier3_exec'] += 1
+                    mark_stage("tier3", tier3_started)
                 
                 # Cross-Validation: Merge results from all tiers
-                if self.cross_validator and len(tier_results) > 1:
+                crossval_started = time.perf_counter()
+                if runtime_profile.allow_cross_validation and self.cross_validator and len(tier_results) > 1:
                     await safe_progress({"step": "cross_validation", "tiers": list(tier_results.keys())})
                     
                     validation = self.cross_validator.validate(tier_results, tier_confidences)
@@ -412,6 +692,7 @@ class AsyncPipeline:
                     if isinstance(extraction_result, dict):
                         from src.models import ExtractionResult
                         extraction_result = ExtractionResult(**extraction_result)
+                mark_stage("cross_validation", crossval_started)
                 
                 final_tier_used = (
                     decision.tier
@@ -422,6 +703,7 @@ class AsyncPipeline:
                     self.stats[f'tier{final_tier_used}'] += 1
 
                 # 5. RAG (real product matching)
+                rag_started = time.perf_counter()
                 if extraction_result:
                     try:
                         self.stats['rag_attempted'] += 1
@@ -431,7 +713,11 @@ class AsyncPipeline:
                             self.stats['rag_disabled'] += 1
                             await safe_progress({"step": "rag", "status": "skipped_timeout_budget", "matches": 0})
                         elif self.matcher and getattr(self.matcher, 'enabled', False):
-                            rag_matches = self.matcher.match(text, top_k=3, threshold=0.35)
+                            rag_matches = self.matcher.match(
+                                text,
+                                top_k=int(runtime_profile.rag_top_k),
+                                threshold=float(runtime_profile.rag_threshold)
+                            )
                             extraction_result.pilier_1_univers_produit.matched_products = rag_matches
                             if rag_matches:
                                 self.stats['rag_hits'] += 1
@@ -446,8 +732,10 @@ class AsyncPipeline:
                     except Exception as rag_err:
                         logger.warning(f"RAG enrichment failed for note {note_id}: {rag_err}")
                         await safe_progress({"step": "rag", "status": "error", "matches": 0})
+                mark_stage("rag", rag_started)
 
                 # 6. Enrich extraction with NBA recommendation and unified quality scoring.
+                recommendation_started = time.perf_counter()
                 if extraction_result:
                     try:
                         extraction_result = self.recommender.generate_recommendation(
@@ -456,17 +744,35 @@ class AsyncPipeline:
                         )
                     except Exception as rec_err:
                         logger.warning(f"Recommender enrichment failed for note {note_id}: {rec_err}")
+                mark_stage("recommendation", recommendation_started)
+
+                quality_gate_started = time.perf_counter()
+                extraction_result, gate_fallbacks = self._apply_quality_fallback(
+                    extraction_result,
+                    text=text,
+                    language=language,
+                    require_non_empty_tags=runtime_profile.require_non_empty_tags,
+                )
+                if gate_fallbacks:
+                    fallbacks_applied.extend(gate_fallbacks)
+                tags_count = len(extraction_result.tags) if extraction_result else 0
+                quality_gate_passed = True
+                quality_gate_reason = None
+                if runtime_profile.strict_quality_gate and high_signal_input and tags_count == 0:
+                    quality_gate_passed = False
+                    quality_gate_reason = "High-signal note produced empty tags after fallback."
+                mark_stage("quality_gate", quality_gate_started)
 
                 # Progress after extraction to show count
                 if extraction_result:
-                    tags = extraction_result.tags
                     await safe_progress({
                         "step": "extraction",
-                        "tag_count": len(tags),
+                        "tag_count": tags_count,
                         "model": "Mistral-Medium" if decision.tier <= 2 else "Mistral-Large"
                     })
 
                 # 7. CRM Injection & Gamification
+                injection_started = time.perf_counter()
                 quality = 0
                 feedback = "Note traitée."
                 points = 5
@@ -486,8 +792,11 @@ class AsyncPipeline:
                     "quality_score": f"{int(quality_pct)}%",
                     "feedback": feedback
                 })
+                mark_stage("injection", injection_started)
 
                 # 8. Build Output
+                stage_timings_ms["total"] = round((time.perf_counter() - perf_start) * 1000.0, 2)
+                total_processing_ms = (time.time() - start_time) * 1000
                 output = PipelineOutput(
                     id=note_id,
                     original_text=raw_text,
@@ -502,7 +811,13 @@ class AsyncPipeline:
                     ),
                     rgpd=rgpd_result,
                     extraction=extraction_result,
-                    processing_time_ms=(time.time() - start_time) * 1000,
+                    profile=runtime_profile.name,
+                    stage_timings_ms=stage_timings_ms,
+                    fallbacks_applied=fallbacks_applied,
+                    quality_gate_passed=quality_gate_passed,
+                    quality_gate_reason=quality_gate_reason,
+                    high_signal_input=high_signal_input,
+                    processing_time_ms=total_processing_ms,
                     from_cache=False
                 )
                 
@@ -530,16 +845,16 @@ class AsyncPipeline:
                 
                 # 9. Cache Results
                 # 9a. Exact Match Cache
-                if self.cache and kwargs.get('save_to_cache', True):
+                if self.cache and cache_enabled:
                     serialized = output.model_dump(mode="json")
                     self.cache.save(
-                        self.cache.get_cache_key(text, 'pipeline_v3'), 
-                        'pipeline_v3', 
+                        self.cache.get_cache_key(text, cache_namespace), 
+                        cache_namespace, 
                         serialized
                     )
                 
                 # 9b. Semantic Cache (for similarity-based retrieval)
-                if self.semantic_cache and kwargs.get('save_to_cache', True):
+                if self.semantic_cache and semantic_cache_enabled:
                     result_dict = output.model_dump() if hasattr(output, 'model_dump') else json.loads(output.json())
                     self.semantic_cache.store(
                         text=text,
@@ -549,7 +864,14 @@ class AsyncPipeline:
                     )
                 
                 self.stats['success'] += 1
-                await safe_progress({"step": "done"})
+                self._record_profile_runtime(
+                    runtime_profile.name,
+                    total_processing_ms,
+                    stage_timings_ms,
+                    tags_count=tags_count,
+                    fallback_used=bool(fallbacks_applied),
+                )
+                await safe_progress({"step": "done", "quality_gate_passed": quality_gate_passed})
                 return output
 
             except Exception as e:
@@ -567,7 +889,7 @@ class AsyncPipeline:
                 )
                 return None
 
-    async def process_batch(self, notes: List[Dict]) -> List[PipelineOutput]:
+    async def process_batch(self, notes: List[Dict], profile: str = "batch_csv") -> List[PipelineOutput]:
         """
         Process a batch of notes concurrently.
         """
@@ -590,7 +912,7 @@ class AsyncPipeline:
         ):
             self.stats[key] = 0
         
-        tasks = [self.process_note(note) for note in notes]
+        tasks = [self.process_note(note, profile=profile) for note in notes]
         
         results = []
         for f in tqdm.as_completed(tasks, total=len(notes), desc="🚀 Async Pipeline"):
@@ -640,6 +962,7 @@ class AsyncPipeline:
             ) if self.stats.get('rag_attempted', 0) > 0 else 0.0,
             'disabled': self.stats.get('rag_disabled', 0)
         }
+        summary['profiles'] = self.get_profile_metrics()
         
         return summary
 

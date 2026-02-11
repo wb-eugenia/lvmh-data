@@ -94,8 +94,18 @@ class SmartRouterV3:
         'vic': (r'\bVIC\b', 15),
         'vip': (r'\bVIP\b', 12),
         'ultimate': (r'\b(ultimate|platinum)\b', 20),
-        'budget_10k': (r'\b(1[0-9]|[2-9]\d)\s*[kK]', 10),
-        'budget_50k': (r'\b([5-9]\d|[1-9]\d{2})\s*[kK]', 15),
+        # Keep budget scoring contextual to avoid false positives such as
+        # "800K followers" being interpreted as client budget.
+        'budget_10k': (
+            r'\b(?:budget|prix|panier|enveloppe|spend|spesa|invest(?:ir|ire)?|around|about|circa)\b'
+            r'[^.\n]{0,24}\b(1[0-9]|[2-9]\d)\s*[kK]\b',
+            10,
+        ),
+        'budget_50k': (
+            r'\b(?:budget|prix|panier|enveloppe|spend|spesa|invest(?:ir|ire)?|around|about|circa)\b'
+            r'[^.\n]{0,24}\b([5-9]\d|[1-9]\d{2})\s*[kK]\b',
+            15,
+        ),
         'budget_vague': (r'\b(flexible|ouvert|sans limite|no limit)\b', 8),
         'allergy_severe': (r'\b(allergi.*(?:grave|sévère)|choc|anaphyla)', 12),
         'allergy_medium': (r'\b(allergi.*(?:importante?|forte?))', 6),

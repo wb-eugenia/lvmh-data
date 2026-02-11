@@ -10,10 +10,10 @@ import asyncio
 import logging
 import io
 from datetime import datetime
-from typing import Dict
+from typing import Dict, Optional
 
 import pandas as pd
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from fastapi.responses import StreamingResponse
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
@@ -21,6 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from api.schemas import BatchTask
 from src.pipeline_async import AsyncPipeline
 from src.text_cleaner import MultilingualTextCleaner, PIIEnforcer
+from config.production import settings
 
 logger = logging.getLogger("lvmh-api.batch")
 router = APIRouter()
@@ -30,6 +31,9 @@ batch_tasks: Dict[str, dict] = {}
 
 # Pipeline instance
 _pipeline = None
+_batch_queue: Optional[asyncio.Queue] = None
+_batch_workers: list[asyncio.Task] = []
+_workers_bootstrapped = False
 
 
 def get_pipeline():
@@ -37,6 +41,40 @@ def get_pipeline():
     if _pipeline is None:
         _pipeline = AsyncPipeline(use_cache=True, use_semantic_cache=False, use_cross_validation=True)
     return _pipeline
+
+
+def _get_batch_queue() -> asyncio.Queue:
+    global _batch_queue
+    if _batch_queue is None:
+        _batch_queue = asyncio.Queue(maxsize=settings.batch_queue_max_size)
+    return _batch_queue
+
+
+async def _batch_worker_loop(worker_id: int):
+    queue = _get_batch_queue()
+    logger.info("Batch worker %s started", worker_id)
+    while True:
+        task_id, df = await queue.get()
+        try:
+            await process_batch_async(task_id, df)
+        except Exception as exc:
+            logger.error("Batch worker %s failed task %s: %s", worker_id, task_id, exc)
+            if task_id in batch_tasks:
+                batch_tasks[task_id]["status"] = "error"
+                batch_tasks[task_id]["error"] = str(exc)
+        finally:
+            queue.task_done()
+
+
+def ensure_batch_workers() -> None:
+    global _workers_bootstrapped
+    if _workers_bootstrapped:
+        return
+    worker_count = max(1, int(settings.batch_worker_count))
+    for idx in range(worker_count):
+        _batch_workers.append(asyncio.create_task(_batch_worker_loop(idx + 1)))
+    _workers_bootstrapped = True
+    logger.info("Batch queue initialized with %s workers", worker_count)
 
 
 async def process_batch_async(task_id: str, df: pd.DataFrame):
@@ -52,14 +90,26 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
                 'ID': row.get('ID', f'BATCH_{idx}'),
                 'Transcription': row.get('Transcription', row.get('text', '')),
                 'Language': row.get('Language', 'FR')
-            })
+            }, profile=settings.batch_csv_profile.name, save_to_cache=settings.batch_csv_profile.save_to_cache)
+            if result is None:
+                batch_tasks[task_id]["results"].append({
+                    "id": row.get('ID', f'BATCH_{idx}'),
+                    "tags": [],
+                    "tier": None,
+                    "confidence": 0.0,
+                    "error": "processing_failed",
+                })
+                batch_tasks[task_id]["progress"] = idx + 1
+                continue
             
             # Update progress
             batch_tasks[task_id]["results"].append({
                 "id": result.id,
                 "tags": result.extraction.tags if hasattr(result.extraction, 'tags') else [],
                 "tier": result.routing.tier,
-                "confidence": result.routing.confidence
+                "confidence": result.routing.confidence,
+                "profile": result.profile,
+                "stage_timings_ms": result.stage_timings_ms,
             })
             batch_tasks[task_id]["progress"] = idx + 1
             
@@ -77,8 +127,7 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
 
 @router.post("/batch")
 async def start_batch(
-    file: UploadFile = File(...),
-    background_tasks: BackgroundTasks = None
+    file: UploadFile = File(...)
 ):
     """
     Start batch processing in background.
@@ -115,8 +164,13 @@ async def start_batch(
         "error": None
     }
     
-    # Start background processing
-    background_tasks.add_task(process_batch_async, task_id, df)
+    ensure_batch_workers()
+    queue = _get_batch_queue()
+    if queue.full():
+        batch_tasks[task_id]["status"] = "error"
+        batch_tasks[task_id]["error"] = "batch_queue_full"
+        raise HTTPException(503, "Batch queue is full, retry later")
+    await queue.put((task_id, df))
     
     logger.info(f"Batch {task_id} started: {len(df)} notes")
     
@@ -131,6 +185,25 @@ async def get_batch_status(task_id: str):
         raise HTTPException(404, "Task not found")
     
     return batch_tasks[task_id]
+
+
+@router.get("/batch-workers/status")
+async def get_batch_workers_status():
+    """Operational view for batch queue and worker runtime."""
+    queue = _get_batch_queue()
+    pipeline = get_pipeline()
+    return {
+        "workers_configured": int(settings.batch_worker_count),
+        "workers_running": len([w for w in _batch_workers if not w.done()]),
+        "queue_size": queue.qsize(),
+        "queue_max_size": queue.maxsize,
+        "tasks_total": len(batch_tasks),
+        "tasks_pending": len([t for t in batch_tasks.values() if t.get("status") == "pending"]),
+        "tasks_processing": len([t for t in batch_tasks.values() if t.get("status") == "processing"]),
+        "tasks_complete": len([t for t in batch_tasks.values() if t.get("status") == "complete"]),
+        "tasks_error": len([t for t in batch_tasks.values() if t.get("status") == "error"]),
+        "profile_metrics": pipeline.get_profile_metrics(),
+    }
 
 
 @router.get("/batch/{task_id}/stream")

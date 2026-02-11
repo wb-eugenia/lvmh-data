@@ -631,7 +631,16 @@ export default function AdvisorView({ onBack }) {
                     <div className="text-[10px] text-lvmh-gold uppercase tracking-tighter">{user.store || "LVMH Paris Rivoli"}</div>
                     <div className="font-bold text-sm">{user.name}</div>
                 </div>
-                <div className="glass px-3 py-1 text-sm font-bold text-lvmh-gold">{user.points || user.score || 0} pts</div>
+                <div className="flex items-center gap-2">
+                    <div className="glass px-3 py-1 text-sm font-bold text-lvmh-gold">{user.points || user.score || 0} pts</div>
+                    <button
+                        onClick={handleLogout}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/40 text-red-300 text-[10px] uppercase tracking-widest hover:bg-red-500/10 transition-colors"
+                    >
+                        <LogOut size={12} />
+                        Deconnexion
+                    </button>
+                </div>
             </div>
 
             {/* VIEWS */}
