@@ -4,8 +4,8 @@ Routes notes based on multi-dimensional complexity analysis (0-100 score).
 
 PHILOSOPHY:
 - Tier 1 (Rules): Score < 25 → Simple, deterministic cases
-- Tier 2 (Groq): Score 25-75 → Standard complexity, fast inference
-- Tier 3 (GPT-4): Score > 75 → Complex, critical, ambiguous cases
+- Tier 2 (Mistral): Score 25-75 → Standard complexity
+- Tier 3 (Mistral Premium): Score > 75 → Complex, critical, ambiguous cases
 
 SCORING FACTORS (Weighted):
 1. Text Complexity (25 points)
@@ -373,7 +373,7 @@ class SmartRouterV3:
         # Save feedback to disk
         self._save_feedback()
         
-        logger.info(f"Recorded feedback: predicted={predicted_tier}, final={label}, samples={len(self.feedback_data)}")
+        logger.debug(f"Recorded feedback: predicted={predicted_tier}, final={label}, samples={len(self.feedback_data)}")
         
         # Auto re-train check
         self._check_retrain()
@@ -627,13 +627,23 @@ class SmartRouterV3:
         # ML prediction with confidence
         ml_tier = self.ml_model.predict(features)[0]
         ml_proba = self.ml_model.predict_proba(features)[0]
-        ml_confidence = ml_proba.max()
+        # Works with numpy arrays and list-like outputs from model wrappers.
+        ml_confidence = float(max(ml_proba))
+        
+        # Safety floor: ML must never downgrade critical heuristic decisions.
+        safety_floor = 1
+        if heuristic_decision.score.risk_flags >= 8:
+            safety_floor = max(safety_floor, 2)
+        if heuristic_decision.priority in ['high', 'critical'] or heuristic_decision.tier >= 3:
+            safety_floor = max(safety_floor, heuristic_decision.tier)
         
         # Decision: Use ML if confident enough
         if ml_confidence >= self.ml_confidence_threshold:
-            tier = ml_tier
+            tier = max(ml_tier, safety_floor)
             confidence = ml_confidence
             reasons = heuristic_decision.reasons + [f"🤖 ML prediction (conf: {ml_confidence:.2f})"]
+            if tier != ml_tier:
+                reasons.append(f"🛡️ Safety floor applied (heuristic floor={safety_floor}, ml={ml_tier})")
         else:
             # Fallback to heuristic
             tier = heuristic_decision.tier

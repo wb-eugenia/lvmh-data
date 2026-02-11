@@ -332,3 +332,57 @@ Résultat: 2 passed, 20 deselected, 3 warnings (Swig).
 python -m pytest -q -m "not integration" -p no:cacheprovider
 ```
 R?sultat: **26 passed, 1 skipped (UMAP), 2 deselected**
+
+---
+
+# Compte Rendu - Prod Readiness (Pipeline)
+
+**Date:** 2026-02-11  
+**Version:** 2.5.0
+
+## Hardening applique
+- Auth stricte sur `POST /api/analyze` et `GET /api/history` (suppression fallback demo).
+- JWT secret externalise via `JWT_SECRET_KEY` (plus de secret hardcode en dur pour production).
+- Pipeline RGPD branchee en mode LLM (`RGPDFilter`) avec fallback heuristique robuste.
+- Le texte anonymise RGPD est maintenant celui utilise pour l'extraction et retourne au frontend.
+- Ajout des tests API auth + tests pipeline RGPD (LLM path + fallback path).
+
+## Validation technique
+- `python -m pytest -q tests/test_api_auth_enforcement.py tests/test_pipeline_rgpd.py -p no:cacheprovider`
+  - Resultat: **5 passed**
+- `python -m pytest -q -m "not integration" -p no:cacheprovider`
+  - Resultat: **40 passed, 1 skipped, 2 deselected**
+
+## Benchmark qualite reelle (100 notes)
+- Fichier: `benchmark_quality_100_pipeline_prod_ready.json`
+- Notes: **100/100 succes**
+- Throughput: **19.9 notes/min**
+- Qualite moyenne: **59.7**
+- Tags moyens: **11.12** (0% notes sans tags)
+- RAG hit rate: **90%**
+- RGPD sensibles detectees: **21%**
+- NBA present: **100%**
+
+## Parite API / Frontend (100 notes sur :8080)
+- Fichier: `benchmark_api_frontend_parity_100_prod_ready.json`
+- API success: **100/100**
+- Throughput: **23.57 notes/min**
+- Qualite moyenne API: **64.7**
+- Tags moyens API: **12.23**
+- Checks frontend:
+  - missing_required_fields: **0**
+  - invalid_quality_range: **0**
+- Delta vs benchmark pipeline:
+  - quality delta abs: **5.0**
+  - tag_count delta abs: **1.11**
+  - rag_hit_rate delta abs: **0.0**
+
+## Etat des composants
+- ML Router: **actif** (`ml_enabled=true`, `feedback_samples=200`, threshold=0.7).
+- Data cleaning: **actif** (fillers + PII masking + dedup, couvert par tests).
+- RAG: **actif** (`ProductMatcher` charge, 7806 produits indexes).
+
+## Points a finir avant prod stricte
+1. Ajouter monitoring/alerte sur timeouts Mistral (timeouts observes pendant benchmark, pipeline resiliente mais latence variable).
+2. Definir et injecter un `JWT_SECRET_KEY` fort en env de deploy (obligatoire).
+3. Ajouter un benchmark de regression journalier (100 notes) en CI pour surveiller quality/tags/rag.

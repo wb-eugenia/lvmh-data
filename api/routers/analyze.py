@@ -50,30 +50,12 @@ async def analyze_note(
     note: NoteInput, 
     request: Request, 
     db: Session = Depends(get_db),
-    # current_user: User = Depends(get_current_user) # Uncomment to enforce strict auth
+    current_user: User = Depends(get_current_user),
 ):
     """
     Analyze a single client note and extract structured tags.
     """
-    # For now, if no auth header, get default advisor "Sophie" for smooth dev experience
-    # In prod, uncomment dependency above
-    current_user = None
-    auth_header = request.headers.get("Authorization")
-    if auth_header:
-        try:
-            token = auth_header.split(" ")[1]
-            logger.info(f"Analyzing with token: {token[:10]}...")
-            from api.routers.auth import get_current_user
-            current_user = await get_current_user(token, db)
-        except:
-            pass
-    
-    if not current_user:
-        # Fallback to first advisor found (Demo Mode)
-        current_user = db.query(User).filter(User.role == "advisor").first()
-        logger.warning(f"No auth user found, falling back to demo user: {current_user.email if current_user else 'None'}")
-    else:
-        logger.info(f"Authenticated user: {current_user.email} (ID: {current_user.id})")
+    logger.info(f"Authenticated user: {current_user.email} (ID: {current_user.id})")
 
     start_time = time.time()
     
@@ -83,8 +65,7 @@ async def analyze_note(
         # Progress callback for WebSocket
         from api.websocket_manager import manager
         async def on_progress(data):
-            # Fallback for demo mode where current_user isn't injected
-            data["user_id"] = "demo_advisor"
+            data["user_id"] = current_user.id
             await manager.broadcast(data)
 
         # Process note through pipeline
@@ -106,7 +87,10 @@ async def analyze_note(
             if current_user:
                 # 1. Update Score
                 points = 10
-                if ext.meta_analysis.quality_score > 0.8: points += 5
+                quality = ext.meta_analysis.quality_score if ext else 0.0
+                quality_pct = quality * 100 if quality <= 1 else quality
+                if quality_pct >= 80:
+                    points += 5
                 current_user.score += points
                 
                 # 2. Get/Create Client (Simple logic: if VIC/Ultimate mentioned or just 'Standard')
@@ -127,7 +111,12 @@ async def analyze_note(
                     advisor_id=current_user.id,
                     client_id=client.id,
                     transcription=result.processed_text,
-                    analysis_json=json.dumps(result.model_dump(), default=str),
+                    # Avoid persisting raw input text (may contain PII). Keep anonymized `processed_text`.
+                    analysis_json=json.dumps(
+                        result.model_dump(mode="json", exclude={"original_text"}),
+                        ensure_ascii=False,
+                        default=str
+                    ),
                     points_awarded=points
                 )
                 db.add(new_note)
@@ -181,20 +170,12 @@ async def analyze_note(
 
 @router.get("/history")
 async def get_history(
-    request: Request,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     """Fetch history of notes for current user."""
-    auth_header = request.headers.get("Authorization")
-    if not auth_header:
-        raise HTTPException(status_code=401, detail="Unauthorized")
-    
     try:
-        from api.routers.auth import get_current_user
-        token = auth_header.split(" ")[1]
-        user = await get_current_user(token, db)
-        
-        notes = db.query(Note).filter(Note.advisor_id == user.id).order_by(Note.timestamp.desc()).all()
+        notes = db.query(Note).filter(Note.advisor_id == current_user.id).order_by(Note.timestamp.desc()).all()
         
         # Simple serialization
         return [
@@ -209,4 +190,4 @@ async def get_history(
         ]
     except Exception as e:
         logger.error(f"History fetch error: {e}")
-        return []
+        raise HTTPException(status_code=500, detail="Could not fetch history")

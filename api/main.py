@@ -6,7 +6,8 @@ FastAPI backend for React frontend.
 import os
 import time
 import logging
-from contextlib import asynccontextmanager
+import asyncio
+from contextlib import asynccontextmanager, suppress
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -42,7 +43,12 @@ class LoggingMiddleware(BaseHTTPMiddleware):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("🚀 LVMH Voice-to-Tag API starting...")
+    leaderboard_task = asyncio.create_task(broadcast_leaderboard_task())
+    app.state.leaderboard_task = leaderboard_task
     yield
+    leaderboard_task.cancel()
+    with suppress(asyncio.CancelledError):
+        await leaderboard_task
     logger.info("👋 API shutting down...")
 
 
@@ -88,7 +94,6 @@ async def health():
 # --- WebSocket Manager ---
 from api.websocket_manager import manager
 from fastapi import WebSocket, WebSocketDisconnect
-import asyncio
 
 
 async def broadcast_leaderboard_task():
@@ -111,12 +116,6 @@ async def broadcast_leaderboard_task():
         except Exception as e:
             logger.error(f"Leaderboard broadcast error: {e}")
         await asyncio.sleep(10)
-
-
-@app.on_event("startup")
-async def startup_event():
-    asyncio.create_task(broadcast_leaderboard_task())
-
 
 @app.websocket("/ws/pipeline")
 async def websocket_endpoint(websocket: WebSocket):

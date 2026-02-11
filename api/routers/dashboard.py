@@ -19,6 +19,7 @@ from config.production import settings
 
 logger = logging.getLogger("lvmh-api.dashboard")
 router = APIRouter()
+MIN_FEEDBACK_FOR_ACCURACY_ALERT = 10
 
 
 class SystemMetrics(BaseModel):
@@ -37,6 +38,25 @@ _metrics_history: List[Dict] = []
 def _safe_json_load(value: Optional[str]) -> Optional[Dict]:
     if not value:
         return None
+
+
+def _normalized_tag_set(values: Optional[List[str]]) -> set[str]:
+    if not values:
+        return set()
+    return {
+        str(v).strip().lower()
+        for v in values
+        if isinstance(v, (str, int, float)) and str(v).strip()
+    }
+
+
+def _tag_overlap_score(predicted: Optional[List[str]], corrected: Optional[List[str]]) -> float:
+    pred_set = _normalized_tag_set(predicted)
+    corr_set = _normalized_tag_set(corrected)
+    union = pred_set | corr_set
+    if not union:
+        return 1.0
+    return len(pred_set & corr_set) / len(union)
     try:
         return json.loads(value)
     except Exception:
@@ -59,17 +79,20 @@ def _get_pipeline_stats(db: Session) -> Dict:
             "active_processes": 0
         }
 
-    success = 0
+    # A persisted note means the pipeline completed. JSON parsing failures should not
+    # turn global success rate to 0; they are tracked separately.
+    success = total
     tier_dist = {"tier1": 0, "tier2": 0, "tier3": 0}
     times = []
     confidences = []
     cache_hits = 0
+    parse_failures = 0
 
     for note in notes:
         data = _safe_json_load(note.analysis_json)
         if not data:
+            parse_failures += 1
             continue
-        success += 1
         routing = data.get("routing", {})
         tier = int(routing.get("tier", 1))
         if tier == 1:
@@ -100,6 +123,7 @@ def _get_pipeline_stats(db: Session) -> Dict:
     return {
         "total_processed": total,
         "success_rate": round(success_rate, 1),
+        "analysis_parse_failures": parse_failures,
         "tier_distribution": tier_dist,
         "avg_processing_time_ms": round(avg_time, 1),
         "avg_confidence": round(avg_conf, 3),
@@ -184,24 +208,31 @@ def _get_quality_metrics(db: Session) -> Dict:
     rows = db.query(Feedback).all()
     if not rows:
         return {
-            "accuracy_rate": 0,
-            "avg_rating": 0,
+            "accuracy_rate": None,
+            "accuracy_available": False,
+            "avg_rating": None,
             "total_feedback": 0
         }
 
     total = len(rows)
-    correct = 0
+    exact_match = 0
+    overlap_sum = 0.0
     total_rating = 0.0
 
     for row in rows:
         predicted = _safe_json_load(row.predicted_tags_json) or []
         corrected = _safe_json_load(row.corrected_tags_json) or []
-        if predicted == corrected:
-            correct += 1
+        pred_set = _normalized_tag_set(predicted)
+        corr_set = _normalized_tag_set(corrected)
+        if pred_set == corr_set:
+            exact_match += 1
+        overlap_sum += _tag_overlap_score(predicted, corrected)
         total_rating += row.rating or 0
 
     return {
-        "accuracy_rate": round(correct / total * 100, 1),
+        "accuracy_rate": round(overlap_sum / total * 100, 1),
+        "exact_match_rate": round(exact_match / total * 100, 1),
+        "accuracy_available": True,
         "avg_rating": round(total_rating / total, 2),
         "total_feedback": total,
         "improvement_trend": "stable"
@@ -224,8 +255,13 @@ def _check_alerts(pipeline_stats: Dict, cost_stats: Dict, quality: Dict) -> List
     if daily_cost > 10:
         alerts.append(f"ALERT: High daily cost (?{daily_cost:.2f})")
 
-    accuracy = quality.get("accuracy_rate", 100)
-    if accuracy < 80:
+    accuracy = quality.get("accuracy_rate")
+    total_feedback = int(quality.get("total_feedback", 0) or 0)
+    if (
+        total_feedback >= MIN_FEEDBACK_FOR_ACCURACY_ALERT
+        and isinstance(accuracy, (int, float))
+        and accuracy < 80
+    ):
         alerts.append(f"ALERT: Low accuracy ({accuracy}%)")
 
     return alerts
@@ -302,14 +338,19 @@ async def get_summary(db: Session = Depends(get_db)):
     if success_rate < 99:
         health_score -= (100 - success_rate) * 2
 
-    accuracy = quality.get("accuracy_rate", 100)
-    if accuracy < 90:
+    accuracy = quality.get("accuracy_rate")
+    total_feedback = int(quality.get("total_feedback", 0) or 0)
+    if (
+        total_feedback >= MIN_FEEDBACK_FOR_ACCURACY_ALERT
+        and isinstance(accuracy, (int, float))
+        and accuracy < 90
+    ):
         health_score -= (100 - accuracy)
 
     health_score = max(0, health_score)
 
     # Notes processed today
-    today = datetime.utcnow().date()
+    today = datetime.now().date()
     processed_today = db.query(Note).filter(Note.timestamp >= datetime(today.year, today.month, today.day)).count()
 
     return {
@@ -318,8 +359,9 @@ async def get_summary(db: Session = Depends(get_db)):
         "summary": {
             "processed_today": processed_today,
             "success_rate": success_rate,
-            "accuracy": quality.get("accuracy_rate", 0),
-            "avg_rating": quality.get("avg_rating", 0),
+            "accuracy": quality.get("accuracy_rate"),
+            "accuracy_available": bool(quality.get("accuracy_available", False)),
+            "avg_rating": quality.get("avg_rating"),
             "daily_cost_eur": cost.get("total_cost_eur", 0)
         },
         "alerts_count": len(alerts),
@@ -332,11 +374,11 @@ async def get_component_status():
     """Get status of all pipeline components"""
     components = {}
 
-    # Check ML Router
+    # Check runtime ML router status (Smart Router V2/V3 used by pipeline).
     try:
-        from src.ml_router import get_ml_router
-        ml = get_ml_router()
-        components["ml_router"] = ml.get_stats()
+        from src.smart_router import SmartRouterV2
+        smart_router = SmartRouterV2()
+        components["ml_router"] = smart_router.get_ml_stats()
     except Exception as e:
         components["ml_router"] = {"error": str(e)}
 

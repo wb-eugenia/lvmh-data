@@ -9,6 +9,17 @@ from datetime import datetime
 
 # ============== Input Schemas ==============
 
+SUPPORTED_LANGUAGES = {'FR', 'EN', 'IT', 'ES', 'DE'}
+LANGUAGE_ALIASES = {
+    'FR-FR': 'FR',
+    'EN-US': 'EN',
+    'EN-GB': 'EN',
+    'IT-IT': 'IT',
+    'ES-ES': 'ES',
+    'DE-DE': 'DE',
+    'UK': 'EN',
+}
+
 class NoteInput(BaseModel):
     """Input for single note analysis."""
     text: str = Field(
@@ -17,9 +28,9 @@ class NoteInput(BaseModel):
         max_length=10000,
         description="Note transcription text"
     )
-    language: Literal['FR', 'EN', 'IT'] = Field(
+    language: Literal['FR', 'EN', 'IT', 'ES', 'DE'] = Field(
         default='FR',
-        description="Language of the transcription"
+        description="Language of the transcription (unsupported values fallback to FR)"
     )
     
     @field_validator('text')
@@ -29,6 +40,16 @@ class NoteInput(BaseModel):
         if '<script' in v.lower():
             raise ValueError('Invalid characters detected')
         return v.strip()
+
+    @field_validator('language', mode='before')
+    @classmethod
+    def normalize_language(cls, v: Optional[str]) -> str:
+        """Normalize locale variants and fallback to FR for unknown values."""
+        lang = str(v or 'FR').strip().upper()
+        lang = LANGUAGE_ALIASES.get(lang, lang)
+        if lang not in SUPPORTED_LANGUAGES:
+            return 'FR'
+        return lang
 
 
 class BatchFileInput(BaseModel):

@@ -74,7 +74,7 @@ class CrossValidator:
     TIER_WEIGHTS = {
         1: 0.7,  # Rules - rapide mais basique
         2: 0.85,  # LLM local - bon équilibre
-        3: 0.95,  # GPT-4 - plus précis
+        3: 0.95,  # LLM premium - plus précis
     }
     
     def __init__(self, agreement_threshold: float = 0.6):

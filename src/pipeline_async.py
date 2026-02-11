@@ -4,8 +4,8 @@ Handles massive batch processing with asyncio, concurrency control, and resilien
 Integrates:
 - Smart Router v2
 - Tier 1 (Rules)
-- Tier 2 (Async Ollama)
-- Tier 3 (Async GPT-4)
+- Tier 2 (Async Mistral)
+- Tier 3 (Async Mistral Premium)
 - DLQ & Caching
 """
 
@@ -40,6 +40,9 @@ from src.dlq_manager import DeadLetterQueue
 from src.resilience import safe_execution
 from src.semantic_cache import SemanticCache
 from src.cross_validator import CrossValidator
+from src.recommender import RecommenderEngine
+from src.product_matcher import ProductMatcher
+from src.rgpd_filter import RGPDFilter
 
 # Configure logging
 logging.basicConfig(
@@ -53,13 +56,42 @@ class AsyncPipeline:
     """
     Production-ready Async Pipeline.
     """
+
+    RGPD_MARKERS = [
+        '[EMAIL]',
+        '[PHONE]',
+        '[CARTE]',
+        '[NAME]',
+        '[RIB]',
+        '[CVC]',
+        '[CARTE_VITALE]',
+        '[DNI]',
+        '[NIF]',
+        '[PASSPORT]',
+        '[SSN]',
+        '[FISCAL]',
+    ]
     
     def __init__(self, use_cache: bool = True, use_semantic_cache: bool = True, use_cross_validation: bool = True):
         self.router = SmartRouterV2()
         self.tier1 = Tier1RulesEngine()
         self.tier2 = Tier2Mistral()
         self.tier3 = TagExtractor()
+        self.recommender = RecommenderEngine()
+        self.matcher = ProductMatcher()
         self.cleaner = MultilingualTextCleaner(use_embeddings=False) # Keep it light by default
+        self.rgpd_filter = None
+        self.rgpd_enabled = False
+
+        if settings.enable_rgpd_llm:
+            try:
+                self.rgpd_filter = RGPDFilter(model=settings.rgpd_model)
+                self.rgpd_enabled = True
+            except Exception as rgpd_init_error:
+                logger.warning(
+                    "RGPD LLM filter disabled, fallback mode enabled: %s",
+                    rgpd_init_error
+                )
         
         # Caching systems
         self.cache = CacheManager() if use_cache else None
@@ -70,8 +102,8 @@ class AsyncPipeline:
         
         # Concurrency control
         self.semaphore = asyncio.Semaphore(settings.max_concurrent_notes)
-        self.ollama_semaphore = asyncio.Semaphore(1)  # Reduced to 1 for stability/speed on local CPU/GPU
-        self.openai_semaphore = asyncio.Semaphore(10) # Max 10 OpenAI parallel
+        self.ollama_semaphore = asyncio.Semaphore(settings.max_concurrent_tier2_calls)
+        self.openai_semaphore = asyncio.Semaphore(settings.max_concurrent_tier3_calls)
         
         # Stats
         self.stats = {
@@ -83,8 +115,33 @@ class AsyncPipeline:
             'tier3': 0,
             'semantic_cache_hits': 0,
             'cross_validated': 0,
+            'rag_attempted': 0,
+            'rag_hits': 0,
+            'rag_disabled': 0,
             'start_time': None
         }
+
+    @staticmethod
+    def _build_heuristic_rgpd(text: str) -> RGPDResult:
+        categories = [token for token in AsyncPipeline.RGPD_MARKERS if token in text]
+        has_critical = any(token in text for token in ['[CARTE]', '[RIB]', '[SSN]', '[CARTE_VITALE]'])
+        return RGPDResult(
+            contains_sensitive=bool(categories),
+            categories_detected=categories,
+            safe_to_store=True,
+            severity="medium" if has_critical else ("low" if categories else "low"),
+            anonymized_text=text
+        )
+
+    @staticmethod
+    def _derive_rgpd_severity(detection: Dict) -> str:
+        spans = detection.get("sensitive_spans") or []
+        severities = {str(span.get("severity", "")).lower() for span in spans if isinstance(span, dict)}
+        if "high" in severities:
+            return "high"
+        if "medium" in severities:
+            return "medium"
+        return "low"
 
     async def process_note(self, note: Dict, on_progress: Optional[Callable] = None, **kwargs) -> Optional[PipelineOutput]:
         """
@@ -113,7 +170,68 @@ class AsyncPipeline:
             tokens_saved = clean_res.get('fillers_removed', 0)
             await safe_progress({"step": "cleaning", "tokens_saved": tokens_saved})
             
-            logger.info(f"Summary: Cleaned text: '{text}' (saved {tokens_saved} tokens)")
+            logger.debug(
+                "Cleaned note %s: chars=%s tokens_saved=%s",
+                note_id,
+                len(text),
+                tokens_saved
+            )
+
+            # 0b. RGPD layer (LLM if available, heuristic fallback otherwise)
+            await safe_progress({"step": "rgpd", "status": "processing"})
+            rgpd_result = self._build_heuristic_rgpd(text)
+
+            if self.rgpd_enabled and self.rgpd_filter:
+                try:
+                    rgpd_payload = self.rgpd_filter.process_note(
+                        {
+                            "ID": note_id,
+                            "Transcription": text,
+                            "Language": language,
+                        }
+                    )
+                    detection = rgpd_payload.get("rgpd_result") or {}
+                    anonymized_text = rgpd_payload.get("anonymized_text") or text
+                    text = anonymized_text
+                    rgpd_result = RGPDResult(
+                        contains_sensitive=bool(detection.get("contains_sensitive", False)),
+                        categories_detected=[
+                            str(category) for category in (detection.get("categories_detected") or [])
+                        ],
+                        safe_to_store=bool(detection.get("safe_to_store", True)),
+                        severity=self._derive_rgpd_severity(detection),
+                        reasoning=detection.get("reasoning"),
+                        anonymized_text=anonymized_text,
+                    )
+                    await safe_progress(
+                        {
+                            "step": "rgpd",
+                            "status": "llm",
+                            "contains_sensitive": rgpd_result.contains_sensitive,
+                            "categories": rgpd_result.categories_detected,
+                        }
+                    )
+                except Exception as rgpd_error:
+                    logger.warning("RGPD LLM step failed for note %s: %s", note_id, rgpd_error)
+                    rgpd_result = self._build_heuristic_rgpd(text)
+                    text = rgpd_result.anonymized_text or text
+                    await safe_progress(
+                        {
+                            "step": "rgpd",
+                            "status": "fallback",
+                            "contains_sensitive": rgpd_result.contains_sensitive,
+                            "categories": rgpd_result.categories_detected,
+                        }
+                    )
+            else:
+                await safe_progress(
+                    {
+                        "step": "rgpd",
+                        "status": "heuristic",
+                        "contains_sensitive": rgpd_result.contains_sensitive,
+                        "categories": rgpd_result.categories_detected,
+                    }
+                )
             
             try:
                 # 1. Check Exact Match Cache
@@ -137,6 +255,7 @@ class AsyncPipeline:
 
                 # 3. Routing (Use ML Router)
                 decision = self.router.route_ml(text, language, note)
+                predicted_tier = decision.tier
                 await safe_progress({
                     "step": "routing", 
                     "tier": decision.tier,
@@ -210,7 +329,7 @@ class AsyncPipeline:
                     # Log validation insights
                     if validation.validation_notes:
                         for note in validation.validation_notes:
-                            logger.info(f"Cross-Validation: {note}")
+                            logger.debug(f"Cross-Validation: {note}")
                     
                     # Reconstruct extraction result from merged data
                     # Use the highest tier result as base, override with merged fields
@@ -239,6 +358,42 @@ class AsyncPipeline:
                     if isinstance(extraction_result, dict):
                         from src.models import ExtractionResult
                         extraction_result = ExtractionResult(**extraction_result)
+                
+                final_tier_used = (
+                    decision.tier
+                    if decision.tier in tier_results
+                    else (max(tier_results.keys()) if tier_results else decision.tier)
+                )
+
+                # 5. RAG (real product matching)
+                if extraction_result:
+                    try:
+                        self.stats['rag_attempted'] += 1
+                        rag_matches = []
+
+                        if self.matcher and getattr(self.matcher, 'enabled', False):
+                            rag_matches = self.matcher.match(text, top_k=3, threshold=0.35)
+                            extraction_result.pilier_1_univers_produit.matched_products = rag_matches
+                            if rag_matches:
+                                self.stats['rag_hits'] += 1
+                            await safe_progress({
+                                "step": "rag",
+                                "matches": len(rag_matches),
+                                "best_score": rag_matches[0].get("match_score", 0) if rag_matches else 0
+                            })
+                        else:
+                            self.stats['rag_disabled'] += 1
+                            await safe_progress({"step": "rag", "status": "disabled", "matches": 0})
+                    except Exception as rag_err:
+                        logger.warning(f"RAG enrichment failed for note {note_id}: {rag_err}")
+                        await safe_progress({"step": "rag", "status": "error", "matches": 0})
+
+                # 6. Enrich extraction with NBA recommendation and unified quality scoring.
+                if extraction_result:
+                    try:
+                        extraction_result = self.recommender.generate_recommendation(extraction_result)
+                    except Exception as rec_err:
+                        logger.warning(f"Recommender enrichment failed for note {note_id}: {rec_err}")
 
                 # Progress after extraction to show count
                 if extraction_result:
@@ -246,13 +401,10 @@ class AsyncPipeline:
                     await safe_progress({
                         "step": "extraction",
                         "tag_count": len(tags),
-                        "model": "Mistral-Large" if decision.tier <= 2 else "GPT-4o"
+                        "model": "Mistral-Medium" if decision.tier <= 2 else "Mistral-Large"
                     })
 
-                # 5. RAG (Matching Product)
-                await safe_progress({"step": "rag", "dist": "0.94"})
-                
-                # 6. CRM Injection & Gamification
+                # 7. CRM Injection & Gamification
                 quality = 0
                 feedback = "Note traitée."
                 points = 5
@@ -260,17 +412,20 @@ class AsyncPipeline:
                 if extraction_result:
                     meta = getattr(extraction_result, 'meta_analysis', None)
                     quality = getattr(meta, 'quality_score', 0) if meta else 0
+                    quality_pct = quality * 100 if quality <= 1 else quality
                     feedback = getattr(meta, 'advisor_feedback', "Note traitée.") if meta else "Note traitée."
-                    points = 10 if quality > 50 else 5
+                    points = 10 if quality_pct > 50 else 5
+                else:
+                    quality_pct = 0
 
                 await safe_progress({
                     "step": "injection", 
                     "points": points,
-                    "quality_score": f"{int(quality)}%",
+                    "quality_score": f"{int(quality_pct)}%",
                     "feedback": feedback
                 })
 
-                # 7. Build Output
+                # 8. Build Output
                 output = PipelineOutput(
                     id=note_id,
                     original_text=raw_text,
@@ -278,25 +433,41 @@ class AsyncPipeline:
                     language=language,
                     timestamp=datetime.now(),
                     routing=RoutingDecision(
-                        tier=decision.tier,
+                        tier=final_tier_used,
                         reasons=decision.reasons,
                         confidence=decision.confidence,
                         priority=decision.priority
                     ),
-                    rgpd=RGPDResult(
-                        contains_sensitive=any(t in text for t in ['[EMAIL]', '[PHONE]', '[CARTE]', '[NAME]', '[RIB]', '[CVC]', '[CARTE_VITALE]', '[DNI]', '[NIF]', '[PASSPORT]', '[SSN]', '[FISCAL]']),
-                        categories_detected=[t for t in ['[EMAIL]', '[PHONE]', '[CARTE]', '[NAME]', '[RIB]', '[CVC]', '[CARTE_VITALE]', '[DNI]', '[NIF]', '[PASSPORT]', '[SSN]', '[FISCAL]'] if t in text],
-                        safe_to_store=True,
-                        severity="low" if not any(t in text for t in ['[CARTE]', '[RIB]', '[SSN]', '[CARTE_VITALE]']) else "medium",
-                        anonymized_text=text
-                    ),
+                    rgpd=rgpd_result,
                     extraction=extraction_result,
                     processing_time_ms=(time.time() - start_time) * 1000,
                     from_cache=False
                 )
                 
-                # 8. Cache Results
-                # 8a. Exact Match Cache
+                # 8b. Online ML feedback loop for router learning in production.
+                if (
+                    extraction_result
+                    and settings.enable_router_feedback_learning
+                    and hasattr(self.router, "record_feedback")
+                ):
+                    try:
+                        final_confidence = float(
+                            getattr(extraction_result, "confidence", decision.confidence) or decision.confidence or 0.0
+                        )
+                        self.router.record_feedback(
+                            text=text,
+                            predicted_tier=predicted_tier,
+                            executed_tier=predicted_tier,
+                            confidence_achieved=final_confidence,
+                            was_escalated=(final_tier_used != predicted_tier),
+                            final_tier=final_tier_used,
+                            final_confidence=final_confidence,
+                        )
+                    except Exception as fb_err:
+                        logger.debug(f"Router feedback record failed for note {note_id}: {fb_err}")
+                
+                # 9. Cache Results
+                # 9a. Exact Match Cache
                 if self.cache and kwargs.get('save_to_cache', True):
                     serialized = output.model_dump(mode="json")
                     self.cache.save(
@@ -305,7 +476,7 @@ class AsyncPipeline:
                         serialized
                     )
                 
-                # 8b. Semantic Cache (for similarity-based retrieval)
+                # 9b. Semantic Cache (for similarity-based retrieval)
                 if self.semantic_cache and kwargs.get('save_to_cache', True):
                     result_dict = output.model_dump() if hasattr(output, 'model_dump') else json.loads(output.json())
                     self.semantic_cache.store(
@@ -377,6 +548,14 @@ class AsyncPipeline:
         summary['cross_validation'] = {
             'enabled': self.cross_validator is not None,
             'notes_merged': self.stats.get('cross_validated', 0)
+        }
+        summary['rag'] = {
+            'attempted': self.stats.get('rag_attempted', 0),
+            'hits': self.stats.get('rag_hits', 0),
+            'hit_rate': round(
+                (self.stats.get('rag_hits', 0) / self.stats.get('rag_attempted', 1)) * 100, 2
+            ) if self.stats.get('rag_attempted', 0) > 0 else 0.0,
+            'disabled': self.stats.get('rag_disabled', 0)
         }
         
         return summary

@@ -1,0 +1,12 @@
+{
+  "before_duration_s": 441.91,
+  "after_duration_s": 47.23,
+  "duration_improvement_pct": 89.31,
+  "before_throughput_npm": 13.58,
+  "after_throughput_npm": 127.03,
+  "throughput_gain_x": 9.35,
+  "quality_before": 64.7,
+  "quality_after": 64.55,
+  "rag_rate_before": 0.9,
+  "rag_rate_after": 0.9
+}

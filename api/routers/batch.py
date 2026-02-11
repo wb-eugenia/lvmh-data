@@ -110,7 +110,7 @@ async def start_batch(
         "status": "pending",
         "progress": 0,
         "total": len(df),
-        "created_at": datetime.utcnow().isoformat(),
+        "created_at": datetime.now().isoformat(),
         "results": [],
         "error": None
     }

@@ -1,6 +1,7 @@
 """
 LVMH SSO & RBAC with JWT and Database Persistence.
 """
+import os
 from typing import Optional, List
 from pydantic import BaseModel
 from fastapi import Header, HTTPException, Depends
@@ -11,7 +12,7 @@ from datetime import datetime, timedelta
 from src.database import SessionLocal, User
 
 # JWT Config
-SECRET_KEY = "lvmh_secret_key_change_in_prod"
+SECRET_KEY = os.getenv("JWT_SECRET_KEY", "CHANGE_ME_IN_PROD")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 # 24 Hours
 
@@ -38,7 +39,7 @@ def get_password_hash(password):
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
@@ -46,10 +47,7 @@ async def get_current_user(authorization: str = Header(None), db: Session = Depe
     """Validate JWT and fetch user from DB"""
     user_id = None
     
-    if not authorization:
-        # Fallback for easier testing/demo
-        user_id = "CA_001"
-    elif authorization.startswith("Bearer "):
+    if authorization and authorization.startswith("Bearer "):
         token = authorization.replace("Bearer ", "")
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])

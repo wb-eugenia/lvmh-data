@@ -17,7 +17,20 @@ class Settings(BaseModel):
     tier1_confidence_threshold: float = Field(default=0.75, ge=0.0, le=1.0)
     tier2_confidence_threshold: float = Field(default=0.85, ge=0.0, le=1.0)
     max_concurrent_notes: int = Field(default=10, ge=1, le=50)
+    max_concurrent_tier2_calls: int = Field(
+        default_factory=lambda: int(os.getenv("MAX_CONCURRENT_TIER2_CALLS", "4")),
+        ge=1,
+        le=20
+    )
+    max_concurrent_tier3_calls: int = Field(
+        default_factory=lambda: int(os.getenv("MAX_CONCURRENT_TIER3_CALLS", "6")),
+        ge=1,
+        le=20
+    )
     processing_timeout_seconds: int = Field(default=60, ge=5, le=300)
+    enable_router_feedback_learning: bool = Field(
+        default_factory=lambda: os.getenv("ENABLE_ROUTER_FEEDBACK_LEARNING", "1") == "1"
+    )
     
     # Ollama Configuration
     ollama_host: str = "http://localhost:11434"
@@ -30,6 +43,10 @@ class Settings(BaseModel):
     openai_model: str = "gpt-4o-mini"
     openai_max_retries: int = 3
     openai_timeout: int = 30
+    enable_rgpd_llm: bool = Field(
+        default_factory=lambda: os.getenv("ENABLE_RGPD_LLM", "1") == "1"
+    )
+    rgpd_model: str = Field(default_factory=lambda: os.getenv("RGPD_MODEL", "gpt-4o-mini"))
     
     # Cache Configuration
     cache_enabled: bool = True

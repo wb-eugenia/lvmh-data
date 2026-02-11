@@ -1,0 +1,38 @@
+{
+  "dataset": "LVMH_Realistic_Merged_CA001-100.csv",
+  "notes_requested": 100,
+  "api_success": 100,
+  "api_failed": 0,
+  "duration_seconds": 254.58,
+  "throughput_notes_per_min": 23.57,
+  "quality": {
+    "avg_quality_score": 64.7,
+    "avg_tag_count": 12.23,
+    "empty_tag_ratio": 0.0
+  },
+  "routing_distribution": {
+    "1": 5,
+    "2": 94,
+    "3": 1
+  },
+  "rag": {
+    "hit_count": 90,
+    "hit_rate": 90.0
+  },
+  "nba": {
+    "count": 100,
+    "rate": 100.0
+  },
+  "frontend_parity_checks": {
+    "missing_required_fields": 0,
+    "invalid_quality_range": 0
+  },
+  "failures": [],
+  "pipeline_comparison": {
+    "pipeline_success_rate": 100.0,
+    "api_success_rate": 100.0,
+    "quality_delta_abs": 5.0,
+    "tag_count_delta_abs": 1.11,
+    "rag_hit_rate_delta_abs": 0.0
+  }
+}

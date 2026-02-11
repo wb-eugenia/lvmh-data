@@ -1,0 +1,19 @@
+{
+  "ml_enabled": true,
+  "feedback_samples": 0,
+  "min_samples_needed": 50,
+  "confidence_threshold": 0.75,
+  "last_train_date": "2026-02-01T01:44:42.428722",
+  "accuracy_history": [
+    {
+      "date": "2026-02-01T01:44:42.428722",
+      "accuracy": 0.86,
+      "samples": 50,
+      "class_distribution": {
+        "1": 13,
+        "2": 34,
+        "3": 3
+      }
+    }
+  ]
+}

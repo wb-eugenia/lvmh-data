@@ -1,6 +1,6 @@
 """
 Tier 3 Enhanced: Premium Adaptive LLM Extractor.
-Uses OpenAI Adaptive Models (GPT-4o, Turbo, O1) with deep 4-layer analysis.
+Uses Mistral adaptive model selection with deep 4-layer analysis.
 Features: Async, Caching, Robust Validation, and Adaptive Routing.
 """
 
@@ -43,7 +43,7 @@ class Tier3Enhanced:
     # Model tiers (Mistral Native)
     MODELS = {
         'economy': 'mistral-small-latest',       # Efficient for fallback
-        'standard': 'mistral-large-latest',      # Flagship (GPT-4 equivalent)
+        'standard': 'mistral-large-latest',      # Flagship
         'premium': 'mistral-large-latest',       # Use Large for premium too
         'reasoning': 'mistral-large-latest',     # Large handles reasoning well
     }
@@ -100,7 +100,7 @@ Extrais SYSTÉMATIQUEMENT:
    - CA référents, Influenceurs, Relations
 
 ═══════════════════════════════════════════════════════════════
-🧠 LAYER 3: INTENTIONS IMPLICITES (GPT-4 ADVANTAGE!)
+🧠 LAYER 3: INTENTIONS IMPLICITES (LLM ADVANTAGE)
 ═══════════════════════════════════════════════════════════════
 
 Analyse le SOUS-TEXTE et détecte:
@@ -132,7 +132,7 @@ DÉTECTION PRIORITAIRE:
 4. COMPLIANCE EXPORT (Pays sanctionnés, Produits sensibles)
 
 ═══════════════════════════════════════════════════════════════
-💰 BUDGET INFERENCE AVANCÉE (GPT-4 REASONING)
+💰 BUDGET INFERENCE AVANCÉE (LLM REASONING)
 ═══════════════════════════════════════════════════════════════
 
 CONTEXTE MULTI-FACTEURS:

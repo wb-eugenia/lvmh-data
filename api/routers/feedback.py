@@ -38,6 +38,7 @@ class FeedbackStats(BaseModel):
     """Statistics for feedback system"""
     total_feedback: int
     accuracy_rate: float
+    exact_match_rate: float = 0.0
     avg_rating: float
     top_corrections: List[dict]
     tier_distribution: dict
@@ -46,6 +47,25 @@ class FeedbackStats(BaseModel):
 def _safe_json_load(value: Optional[str], default):
     if not value:
         return default
+
+
+def _normalized_tag_set(values: Optional[List[str]]) -> set[str]:
+    if not values:
+        return set()
+    return {
+        str(v).strip().lower()
+        for v in values
+        if isinstance(v, (str, int, float)) and str(v).strip()
+    }
+
+
+def _tag_overlap_score(predicted: Optional[List[str]], corrected: Optional[List[str]]) -> float:
+    pred_set = _normalized_tag_set(predicted)
+    corr_set = _normalized_tag_set(corrected)
+    union = pred_set | corr_set
+    if not union:
+        return 1.0
+    return len(pred_set & corr_set) / len(union)
     try:
         return json.loads(value)
     except Exception:
@@ -76,7 +96,7 @@ async def submit_feedback(feedback: FeedbackRequest, db: Session = Depends(get_d
             processing_tier=feedback.processing_tier,
             actual_tier=feedback.actual_tier,
             routing_correct=routing_correct,
-            created_at=datetime.utcnow()
+            created_at=datetime.now()
         )
 
         db.add(entry)
@@ -120,13 +140,15 @@ async def get_feedback_stats(db: Session = Depends(get_db)) -> FeedbackStats:
         return FeedbackStats(
             total_feedback=0,
             accuracy_rate=0.0,
+            exact_match_rate=0.0,
             avg_rating=0.0,
             top_corrections=[],
             tier_distribution={"1": 0, "2": 0, "3": 0}
         )
 
     total = len(rows)
-    correct = 0
+    exact_match = 0
+    overlap_sum = 0.0
     total_rating = 0.0
     tier_dist = {"1": 0, "2": 0, "3": 0}
     corrections = {}
@@ -134,8 +156,11 @@ async def get_feedback_stats(db: Session = Depends(get_db)) -> FeedbackStats:
     for row in rows:
         predicted = _safe_json_load(row.predicted_tags_json, [])
         corrected = _safe_json_load(row.corrected_tags_json, [])
-        if predicted == corrected:
-            correct += 1
+        pred_set = _normalized_tag_set(predicted)
+        corr_set = _normalized_tag_set(corrected)
+        if pred_set == corr_set:
+            exact_match += 1
+        overlap_sum += _tag_overlap_score(predicted, corrected)
         total_rating += row.rating or 0
 
         tier_key = str(row.processing_tier or 1)
@@ -156,7 +181,8 @@ async def get_feedback_stats(db: Session = Depends(get_db)) -> FeedbackStats:
 
     return FeedbackStats(
         total_feedback=total,
-        accuracy_rate=round(correct / total * 100, 1) if total > 0 else 0.0,
+        accuracy_rate=round(overlap_sum / total * 100, 1) if total > 0 else 0.0,
+        exact_match_rate=round(exact_match / total * 100, 1) if total > 0 else 0.0,
         avg_rating=round(avg_rating, 2),
         top_corrections=top_corrections,
         tier_distribution=tier_dist

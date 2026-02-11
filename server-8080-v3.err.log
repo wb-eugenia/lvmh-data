@@ -1,0 +1,10 @@
+2026-02-11 11:44:14,531 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-11 11:44:14,550 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+INFO:     Started server process [2020]
+INFO:     Waiting for application startup.
+2026-02-11 11:44:15,260 - lvmh-api - INFO - \U0001f680 LVMH Voice-to-Tag API starting...
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+2026-02-11 11:44:15,371 - lvmh-api - INFO - {'method': 'GET', 'path': '/docs', 'status': 200, 'duration_ms': 0.18}
+2026-02-11 11:44:26,296 - lvmh-api - INFO - {'method': 'GET', 'path': '/api/dashboard/metrics/summary', 'status': 200, 'duration_ms': 66.61}
+2026-02-11 11:44:26,346 - lvmh-api - INFO - {'method': 'GET', 'path': '/api/feedback/stats', 'status': 200, 'duration_ms': 2.19}

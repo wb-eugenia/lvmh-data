@@ -1,6 +1,6 @@
 {
-  "last_train_date": "2026-02-01T01:44:42.428722",
-  "confidence_threshold": 0.75,
+  "last_train_date": "2026-02-11T00:19:28.958842",
+  "confidence_threshold": 0.7,
   "accuracy_history": [
     {
       "date": "2026-02-01T01:44:42.428722",
@@ -10,6 +10,15 @@
         "1": 13,
         "2": 34,
         "3": 3
+      }
+    },
+    {
+      "date": "2026-02-11T00:19:28.958842",
+      "accuracy": 0.9200000000000002,
+      "samples": 50,
+      "class_distribution": {
+        "1": 3,
+        "2": 47
       }
     }
   ]

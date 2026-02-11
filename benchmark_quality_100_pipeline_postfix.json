@@ -1,0 +1,294 @@
+{
+  "source_file": "LVMH_Realistic_Merged_CA001-100.csv",
+  "notes_requested": 100,
+  "notes_processed": 100,
+  "notes_failed": 0,
+  "success_rate": 1.0,
+  "duration_seconds": 28.04,
+  "throughput_notes_per_min": 213.99,
+  "avg_processing_time_ms": 293.77,
+  "tier_distribution": {
+    "1": 5,
+    "2": 94,
+    "3": 1
+  },
+  "tag_metrics": {
+    "avg_tags_per_note": 12.31,
+    "non_empty_tags_rate": 1.0,
+    "avg_quality_score_0_1": 0.6455,
+    "avg_confidence_0_1": 0.9022,
+    "avg_missing_info_count": 3.33,
+    "avg_risk_flags_count": 0.0
+  },
+  "field_coverage_rate": {
+    "p1_categories": 1.0,
+    "p2_behavior": 0.53,
+    "p3_occasion": 0.25,
+    "p3_allergies": 0.44,
+    "p4_budget_potential": 0.99,
+    "p4_next_best_action": 1.0
+  },
+  "pseudo_ground_truth": {
+    "notes_with_explicit_expected_tags": 68,
+    "expected_tag_instances": 83,
+    "matched_expected_tag_instances": 34,
+    "expected_tag_recall": 0.4096,
+    "notes_with_any_expected_match_rate": 0.4706,
+    "notes_with_full_expected_match_rate": 0.3676,
+    "mismatch_examples": [
+      {
+        "id": "CA_048",
+        "expected": [
+          "gift",
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "black",
+          "brown_cognac"
+        ],
+        "missing_expected": [
+          "gift",
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_009",
+        "expected": [
+          "gift",
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "art_collector",
+          "casual_daily",
+          "eco_conscious",
+          "evening",
+          "first_visit",
+          "gift_for_colleague",
+          "gift_for_self",
+          "golf"
+        ],
+        "missing_expected": [
+          "gift",
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_018",
+        "expected": [
+          "vip"
+        ],
+        "predicted_sample": [
+          "action:gift_suggestion",
+          "casual_daily",
+          "eco_conscious",
+          "first_visit",
+          "high_potential",
+          "luxury_service",
+          "ready_to_wear",
+          "small_leather",
+          "tennis",
+          "travel_luggage"
+        ],
+        "missing_expected": [
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_006",
+        "expected": [
+          "gift",
+          "vip"
+        ],
+        "predicted_sample": [
+          "action:follow_up",
+          "first_visit",
+          "flexible_unknown",
+          "gift_for_spouse",
+          "leather_goods",
+          "luxury_service",
+          "small_leather",
+          "travel_luggage",
+          "vegan"
+        ],
+        "missing_expected": [
+          "gift",
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_084",
+        "expected": [
+          "gift"
+        ],
+        "predicted_sample": [
+          "action:follow_up",
+          "black",
+          "brown_cognac",
+          "gift_for_spouse",
+          "leather_goods",
+          "legal_lawyer",
+          "travel_frequent",
+          "vegetarian"
+        ],
+        "missing_expected": [
+          "gift"
+        ]
+      },
+      {
+        "id": "CA_061",
+        "expected": [
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "eco_conscious",
+          "first_visit",
+          "jewelry",
+          "ready_to_wear",
+          "shoes",
+          "tech_early_adopter",
+          "travel_frequent",
+          "vegan"
+        ],
+        "missing_expected": [
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_066",
+        "expected": [
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:invitation",
+          "art_collector",
+          "beige_neutral",
+          "black",
+          "bold_colors",
+          "casual_daily",
+          "evening",
+          "legal_corporate",
+          "luxury_service"
+        ],
+        "missing_expected": [
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_022",
+        "expected": [
+          "gift"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "art_collector",
+          "eco_conscious",
+          "entrepreneur_startup",
+          "first_visit",
+          "gift_for_sibling",
+          "luxury_service",
+          "professional",
+          "professional_work"
+        ],
+        "missing_expected": [
+          "gift"
+        ]
+      },
+      {
+        "id": "CA_003",
+        "expected": [
+          "gift",
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "art_collector",
+          "brown_cognac",
+          "gift_for_self",
+          "jewelry",
+          "leather_goods",
+          "luxury_service",
+          "medical_physician",
+          "nickel_allergy"
+        ],
+        "missing_expected": [
+          "gift"
+        ]
+      },
+      {
+        "id": "CA_017",
+        "expected": [
+          "gift",
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "art_collector",
+          "beige_neutral",
+          "black",
+          "brown_cognac",
+          "leather_goods",
+          "luxury_service",
+          "pescatarian",
+          "travel_frequent"
+        ],
+        "missing_expected": [
+          "gift"
+        ]
+      },
+      {
+        "id": "CA_056",
+        "expected": [
+          "gift",
+          "vip"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:gift_suggestion",
+          "first_visit",
+          "gift_for_spouse",
+          "golf",
+          "jewelry",
+          "travel_frequent",
+          "travel_luggage",
+          "vegan",
+          "wedding_anniversary"
+        ],
+        "missing_expected": [
+          "gift",
+          "vip"
+        ]
+      },
+      {
+        "id": "CA_068",
+        "expected": [
+          "gift"
+        ],
+        "predicted_sample": [
+          "accessories",
+          "action:follow_up",
+          "art_collector",
+          "black",
+          "brown_cognac",
+          "first_visit",
+          "gift_for_spouse",
+          "leather_goods",
+          "luxury_service",
+          "nickel_allergy"
+        ],
+        "missing_expected": [
+          "gift"
+        ]
+      }
+    ]
+  }
+}

@@ -114,11 +114,21 @@ class ExtractionResult(BaseModel):
     # Legacy fields wrapper (for backward compatibility if needed)
     @property
     def tags(self) -> List[str]:
-        """Flatten specific categories as tags for legacy systems"""
-        return (
-            self.pilier_1_univers_produit.categories + 
-            [self.pilier_4_action_business.next_best_action or ""]
-        )
+        """Flatten specific categories as tags for legacy systems."""
+        tags: List[str] = []
+
+        # Product categories are the canonical tags used by UI and downstream exports.
+        for cat in self.pilier_1_univers_produit.categories:
+            if isinstance(cat, str) and cat.strip():
+                tags.append(cat.strip())
+
+        # Optionally expose NBA type as an action tag without leaking complex objects.
+        nba = self.pilier_4_action_business.next_best_action
+        if nba and isinstance(nba.action_type, str) and nba.action_type.strip():
+            tags.append(f"action:{nba.action_type.strip()}")
+
+        # Preserve insertion order while removing duplicates.
+        return list(dict.fromkeys(tags))
 
 # ==========================================
 # PIPELINE OUTPUT

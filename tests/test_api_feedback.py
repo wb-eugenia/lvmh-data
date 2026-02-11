@@ -25,6 +25,8 @@ def test_feedback_flow():
     assert stats.status_code == 200
     stats_data = stats.json()
     assert "total_feedback" in stats_data
+    assert "accuracy_rate" in stats_data
+    assert "exact_match_rate" in stats_data
 
     recent = client.get("/api/feedback/recent")
     assert recent.status_code == 200

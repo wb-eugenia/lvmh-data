@@ -1,0 +1,16 @@
+2026-02-11 11:42:22,446 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-11 11:42:22,464 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+INFO:     Started server process [9700]
+INFO:     Waiting for application startup.
+2026-02-11 11:42:23,134 - lvmh-api - INFO - \U0001f680 LVMH Voice-to-Tag API starting...
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+2026-02-11 11:42:23,584 - lvmh-api - INFO - {'method': 'GET', 'path': '/docs', 'status': 200, 'duration_ms': 0.36}
+2026-02-11 11:42:32,380 - src.smart_router - INFO - Loaded ML model from disk
+2026-02-11 11:42:32,383 - src.smart_router - INFO - Loaded 402 feedback samples
+2026-02-11 11:42:32,386 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-02-11 11:42:32,386 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2
+2026-02-11 11:42:34,870 - src.semantic_cache - INFO - \u2705 Semantic cache initialized with paraphrase-multilingual-MiniLM-L12-v2
+2026-02-11 11:42:34,870 - src.semantic_cache - INFO - \u2705 FAISS index initialized (dim=384)
+2026-02-11 11:42:34,870 - lvmh-api - INFO - {'method': 'GET', 'path': '/api/dashboard/components/status', 'status': 200, 'duration_ms': 2593.12}
+2026-02-11 11:42:34,984 - lvmh-api - INFO - {'method': 'GET', 'path': '/api/dashboard/metrics/summary', 'status': 200, 'duration_ms': 100.92}

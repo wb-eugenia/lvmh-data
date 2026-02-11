@@ -1,0 +1,53 @@
+{
+  "source_file": "LVMH_Realistic_Merged_CA001-100.csv",
+  "notes_requested": 100,
+  "notes_processed": 100,
+  "notes_failed": 0,
+  "success_rate": 1.0,
+  "duration_seconds": 441.91,
+  "throughput_notes_per_min": 13.58,
+  "avg_processing_time_ms": 42090.73,
+  "tier_distribution": {
+    "1": 5,
+    "2": 94,
+    "3": 1
+  },
+  "tag_metrics": {
+    "avg_tags_per_note": 12.23,
+    "non_empty_tags_rate": 1.0,
+    "avg_quality_score_0_100": 64.7,
+    "avg_confidence_0_1": 0.9117,
+    "invalid_tag_rate": 0.0818,
+    "invalid_tag_instances": 100,
+    "total_tag_instances": 1223
+  },
+  "field_coverage_rate": {
+    "p1_categories": 1.0,
+    "p2_behavior": 0.52,
+    "p3_occasion": 0.25,
+    "p4_budget_potential": 0.99,
+    "p4_next_best_action": 1.0,
+    "rag_matched_products": 0.9
+  },
+  "pipeline_summary": {
+    "duration_seconds": 441.92,
+    "processed": 100,
+    "success": 100,
+    "failed": 0,
+    "tiers": {
+      "tier1": 100,
+      "tier2": 95,
+      "tier3": 1
+    },
+    "cross_validation": {
+      "enabled": true,
+      "notes_merged": 95
+    },
+    "rag": {
+      "attempted": 100,
+      "hits": 90,
+      "hit_rate": 90.0,
+      "disabled": 0
+    }
+  }
+}
