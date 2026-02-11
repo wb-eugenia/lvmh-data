@@ -472,3 +472,36 @@ R?sultat: **26 passed, 1 skipped (UMAP), 2 deselected**
   - Nettoyage: 40/40 lignes nettoyees, 85 fillers retires.
   - Pipeline apres nettoyage: 40/40 succes.
   - RAG: 37/40 hits (92.5%).
+
+## Execution plan 1/2/3 (fait)
+
+### 1) Migrations DB production (Alembic)
+- Ajoute:
+  - `alembic.ini`
+  - `alembic/env.py`
+  - `alembic/versions/20260211_0001_initial_schema.py`
+- Validation executee:
+  - `DATABASE_URL=sqlite:///./tmp_alembic_ci.db python -m alembic upgrade head`
+  - `python -m alembic downgrade base`
+  - `python -m alembic upgrade head`
+- Resultat: **OK**
+
+### 2) Rate limiting distribue Redis
+- `api/main.py`
+  - `DistributedRateLimitMiddleware`
+  - Backends: `memory` (defaut) et `redis`
+  - Fallback auto vers memory si Redis indisponible
+- Config ajoutee:
+  - `.env.example`: `RATE_LIMIT_BACKEND`, `REDIS_URL`, `RATE_LIMIT_REDIS_RETRY_SECONDS`
+  - `docker-compose.prod.yml`: service `redis`
+- Validation executee:
+  - 25 tentatives login invalides => **20x401 + 5x429**, backend `memory`
+
+### 3) Go-live checklist executable
+- Ajoute:
+  - `scripts/go_live_checklist.py`
+  - `docs/GO_LIVE_CHECKLIST.md`
+  - `Makefile`: cible `go-live-check`
+- Validation executee:
+  - `python scripts/go_live_checklist.py --benchmark benchmark_quality_100_pipeline_prod_ready.json --output-json go_live_checklist_report.json`
+  - Resultat: `overall_ok=true`

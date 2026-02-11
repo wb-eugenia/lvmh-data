@@ -21,7 +21,9 @@ Rendre la pipeline Voice-to-Tag exploitable en production avec:
 
 ### 1) Hardening backend
 - `api/main.py`
-  - Ajout rate limiting global en mémoire (`InMemoryRateLimitMiddleware`)
+  - Ajout rate limiting global distribué (`DistributedRateLimitMiddleware`)
+  - Backend rate limit configurable: `RATE_LIMIT_BACKEND=memory|redis`
+  - Fallback automatique Redis -> mémoire en cas d'indisponibilité Redis
   - Ajout logs structurés JSON (`JSON_LOGS=1`)
   - Ajout endpoint readiness `GET /ready` (test DB + secret JWT)
   - Ajout endpoint `GET /metrics/prometheus`
@@ -61,10 +63,12 @@ Rendre la pipeline Voice-to-Tag exploitable en production avec:
 ### 4) PostgreSQL production explicite
 - `api/database.py` et `src/database.py`
   - Pool config prod (`DB_POOL_SIZE`, `DB_MAX_OVERFLOW`, etc.)
+- `alembic.ini`, `alembic/env.py`, `alembic/versions/20260211_0001_initial_schema.py`
+  - Migrations versionnées pour schéma API (`users`, `clients`, `notes`, `feedback`)
 - `docker-compose.prod.yml`
-  - Stack API + PostgreSQL pour environnement prod-like
+  - Stack API + PostgreSQL + Redis pour environnement prod-like
 - `.env.example`
-  - Variables DB pool, logs, rate limiting, preload pipeline
+  - Variables DB pool, logs, rate limiting, preload pipeline, Redis backend
 
 ### 5) UI pipeline visualisation
 - `frontend-v2/src/components/PipelineVisualizer.jsx`
@@ -120,6 +124,16 @@ python scripts/benchmark_quality_pipeline.py --dataset LVMH_Realistic_Merged_CA0
 python scripts/check_slo.py --benchmark benchmark_quality_100_pipeline_prod_ready.json
 ```
 
+### DB migration
+```bash
+alembic upgrade head
+```
+
+### Go-live checklist
+```bash
+python scripts/go_live_checklist.py --benchmark benchmark_quality_100_pipeline_prod_ready.json --output-json go_live_checklist_report.json
+```
+
 ## Dernière validation (11 Feb 2026)
 - Benchmark 100 notes (`benchmark_quality_100_pipeline_prod_ready.json`)
   - `avg_quality_score`: **83.99**
@@ -146,8 +160,8 @@ k6 run scripts/load_test_k6.js -e BASE_URL=http://localhost:8080 -e BEARER_TOKEN
 ```
 
 ## Risques restants (à traiter avant go-live final)
-- Migration schéma DB versionnée (Alembic) encore absente
-- Rate limiter en mémoire: pour multi-instance Cloud Run, passer à Redis/Cloud Memorystore
+- Migration DB dans Cloud Run encore dépendante de `MIGRATION_DATABASE_URL` (ou job migration dédié)
+- Backend Redis en place, mais Memorystore managé reste recommandé en prod
 - SLO alerting temps réel: brancher sur Cloud Monitoring policies (latency/error budget)
 - Secrets rotation automatisée (Secret Manager + policy)
 
