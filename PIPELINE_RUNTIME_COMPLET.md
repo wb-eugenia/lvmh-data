@@ -160,32 +160,32 @@ Le design est volontairement **tiered** pour équilibrer:
 
 ---
 
-## 5) Benchmarks qualité récents (100 notes)
+## 5) Benchmarks qualité récents (100 notes, run live)
 
 ## 5.1 Pipeline directe
-Fichier: `benchmark_quality_100_pipeline_prod_ready.json`
+Fichier: `benchmark_quality_100_pipeline_live.json`
 - Notes demandées: 100
 - Notes traitées: 100
 - Succès: 100%
-- Durée: 301.53s
-- Throughput: 19.90 notes/min
-- Qualité moyenne: 59.7
-- Confiance moyenne: 0.9125
-- Tags moyens: 11.12
+- Durée: 296.18s
+- Throughput: 20.26 notes/min
+- Qualité moyenne: 60.5
+- Confiance moyenne: 0.9137
+- Tags moyens: 11.39
 - Notes sans tags: 0%
 - RAG hit rate: 90%
-- RGPD sensible: 21%
+- RGPD sensible: 18%
 - NBA présent: 100%
 
 ## 5.2 API 8080 + parité frontend
-Fichier: `benchmark_api_frontend_parity_100_prod_ready.json`
+Fichier: `benchmark_api_frontend_parity_100_live.json`
 - Notes demandées: 100
 - Succès API: 100
 - Échecs API: 0
-- Durée: 254.58s
-- Throughput: 23.57 notes/min
-- Qualité moyenne API: 64.7
-- Tags moyens API: 12.23
+- Durée: 283.21s
+- Throughput: 21.19 notes/min
+- Qualité moyenne API: 61.95
+- Tags moyens API: 12.2
 - RAG hit rate API: 90%
 - Checks frontend:
   - missing_required_fields: 0
@@ -193,14 +193,15 @@ Fichier: `benchmark_api_frontend_parity_100_prod_ready.json`
 
 ## 5.3 Delta pipeline vs API
 - Success rate: 100% vs 100%
-- Delta qualité moyenne: 5.0
-- Delta tags moyens: 1.11
+- Delta qualité moyenne: 1.45
+- Delta tags moyens: 0.81
 - Delta RAG hit rate: 0.0
 
 Interprétation:
 - Le pipeline est stable.
 - Le front reçoit une structure cohérente.
 - Écart qualité/tags attendu possible selon chemin exact et timing provider.
+- Le run API a utilisé majoritairement Tier 2 (96%), alors que le run pipeline direct a escaladé 9 notes en Tier 3.
 
 ---
 
@@ -266,6 +267,10 @@ Interprétation:
 
 4. **CI benchmark régulier**:
 - fixer un benchmark qualité 100 notes journalier en CI pour détecter dérive.
+
+5. **Observabilité provider Tier 2**:
+- des timeouts Mistral ponctuels ont été observés pendant le benchmark live,
+- le circuit breaker protège correctement la pipeline mais il faut monitorer le taux d'ouverture.
 
 ---
 

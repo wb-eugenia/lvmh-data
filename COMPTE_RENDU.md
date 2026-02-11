@@ -354,33 +354,34 @@ R?sultat: **26 passed, 1 skipped (UMAP), 2 deselected**
   - Resultat: **40 passed, 1 skipped, 2 deselected**
 
 ## Benchmark qualite reelle (100 notes)
-- Fichier: `benchmark_quality_100_pipeline_prod_ready.json`
+- Fichier: `benchmark_quality_100_pipeline_live.json`
 - Notes: **100/100 succes**
-- Throughput: **19.9 notes/min**
-- Qualite moyenne: **59.7**
-- Tags moyens: **11.12** (0% notes sans tags)
+- Throughput: **20.26 notes/min**
+- Qualite moyenne: **60.5**
+- Tags moyens: **11.39** (0% notes sans tags)
 - RAG hit rate: **90%**
-- RGPD sensibles detectees: **21%**
+- RGPD sensibles detectees: **18%**
 - NBA present: **100%**
 
 ## Parite API / Frontend (100 notes sur :8080)
-- Fichier: `benchmark_api_frontend_parity_100_prod_ready.json`
+- Fichier: `benchmark_api_frontend_parity_100_live.json`
 - API success: **100/100**
-- Throughput: **23.57 notes/min**
-- Qualite moyenne API: **64.7**
-- Tags moyens API: **12.23**
+- Throughput: **21.19 notes/min**
+- Qualite moyenne API: **61.95**
+- Tags moyens API: **12.2**
 - Checks frontend:
   - missing_required_fields: **0**
   - invalid_quality_range: **0**
 - Delta vs benchmark pipeline:
-  - quality delta abs: **5.0**
-  - tag_count delta abs: **1.11**
+  - quality delta abs: **1.45**
+  - tag_count delta abs: **0.81**
   - rag_hit_rate delta abs: **0.0**
 
 ## Etat des composants
-- ML Router: **actif** (`ml_enabled=true`, `feedback_samples=200`, threshold=0.7).
+- ML Router: **actif** (`ml_enabled=true`, `feedback_samples=406`, threshold=0.7).
 - Data cleaning: **actif** (fillers + PII masking + dedup, couvert par tests).
 - RAG: **actif** (`ProductMatcher` charge, 7806 produits indexes).
+- Dashboard health: **corrige** (plus de faux `critical` quand parsing/feedback etaient mal interpretes).
 
 ## Points a finir avant prod stricte
 1. Ajouter monitoring/alerte sur timeouts Mistral (timeouts observes pendant benchmark, pipeline resiliente mais latence variable).
