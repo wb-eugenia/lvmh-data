@@ -13,6 +13,7 @@ import json
 import math
 import os
 import sys
+import time
 from pathlib import Path
 from typing import Dict, List, Any
 
@@ -99,6 +100,30 @@ def _login(api_base: str, email: str, password: str) -> str:
     return resp.json()["access_token"]
 
 
+def _post_analyze_with_retries(
+    api_base: str,
+    payload: Dict[str, Any],
+    headers: Dict[str, str],
+    max_retries: int = 4,
+) -> requests.Response:
+    retry_statuses = {429, 500, 502, 503, 504}
+    last_resp: requests.Response | None = None
+    for attempt in range(max_retries + 1):
+        resp = requests.post(
+            f"{api_base}/api/analyze",
+            json=payload,
+            headers=headers,
+            timeout=180,
+        )
+        last_resp = resp
+        if resp.status_code not in retry_statuses:
+            return resp
+        if attempt < max_retries:
+            sleep_s = min(8.0, 1.5 * (2 ** attempt))
+            time.sleep(sleep_s)
+    return last_resp
+
+
 def main() -> int:
     args = parse_args()
     df = pd.read_csv(args.dataset)
@@ -127,10 +152,18 @@ def main() -> int:
         payload = {"text": note["Transcription"], "language": note["Language"] or "AUTO"}
 
         try:
-            resp = requests.post(f"{args.api_base}/api/analyze", json=payload, headers=headers, timeout=120)
+            resp = _post_analyze_with_retries(args.api_base, payload, headers=headers, max_retries=4)
+
+            # Token may expire during long benchmarks. Refresh once then retry.
+            if resp.status_code == 401:
+                token = _login(args.api_base, args.email, args.password)
+                headers = {"Authorization": f"Bearer {token}"}
+                resp = _post_analyze_with_retries(args.api_base, payload, headers=headers, max_retries=1)
+
             if resp.status_code != 200:
                 api_errors.append({"id": pid, "status": resp.status_code, "detail": resp.text[:200]})
                 continue
+
             api_data = resp.json()
             api_success += 1
         except Exception as exc:  # pragma: no cover - network/runtime variability
