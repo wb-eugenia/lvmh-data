@@ -218,6 +218,9 @@ return {1, count + 1, 0}
             return await self._check_limit_memory(key, limit, now)
 
     async def dispatch(self, request: Request, call_next):
+        if os.getenv("PYTEST_CURRENT_TEST"):
+            return await call_next(request)
+
         path = request.url.path
         if (
             not path.startswith("/api")

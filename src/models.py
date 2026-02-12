@@ -78,6 +78,11 @@ class Pilier4Business(BaseModel):
     budget_potential: Optional[str] = Field(None)
     budget_specific: Optional[int] = Field(None, description="Exact budget amount in EUR")
     urgency: Optional[str] = Field(None)
+    churn_risk: Optional[float] = Field(None, description="0-1 churn probability")
+    churn_level: Optional[str] = Field(None, description="low|medium|high")
+    clv_estimate: Optional[float] = Field(None, description="Estimated customer lifetime value in EUR")
+    clv_tier: Optional[str] = Field(None, description="silver|gold|platinum")
+    prediction_source: Optional[str] = Field(None, description="Source model identifier")
 
 # ==========================================
 # META & WRAPPER

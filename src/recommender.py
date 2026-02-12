@@ -7,6 +7,7 @@ import re
 from typing import List, Dict, Optional, Any
 from src.models import ExtractionResult, Pilier4Business, NextBestAction
 import logging
+from src.analytics.predictions import SyntheticClientPredictions
 
 logger = logging.getLogger(__name__)
 
@@ -16,8 +17,11 @@ class RecommenderEngine:
     """
     
     def __init__(self):
-        # Could load business rules from a JSON config eventually
-        pass
+        self.predictor: Optional[SyntheticClientPredictions] = None
+        try:
+            self.predictor = SyntheticClientPredictions()
+        except Exception as exc:
+            logger.warning("Synthetic prediction engine unavailable: %s", exc)
     
     def generate_recommendation(self, extraction: ExtractionResult, source_text: Optional[str] = None) -> ExtractionResult:
         """
@@ -99,11 +103,50 @@ class RecommenderEngine:
         # Inject recommendation if found
         if action:
             p4.next_best_action = action
+
+        prediction = self._predict_client_signals(extraction, source_text or "")
+        if prediction:
+            p4.churn_risk = prediction.get("churn_risk")
+            p4.churn_level = prediction.get("churn_level")
+            p4.clv_estimate = prediction.get("clv_estimate")
+            p4.clv_tier = prediction.get("clv_tier")
+            p4.prediction_source = prediction.get("prediction_source")
+
+            if p4.churn_level == "high":
+                if p4.next_best_action is None:
+                    p4.next_best_action = NextBestAction(
+                        action_type="retention_call",
+                        description=f"Client a risque churn ({p4.churn_risk:.0%}) - appel de retention prioritaire.",
+                        priority="Critical",
+                        target_products=products[:1],
+                        deadline="48h",
+                    )
+                else:
+                    p4.next_best_action.priority = "Critical"
+                    if "churn" not in p4.next_best_action.description.lower():
+                        p4.next_best_action.description += f" Risque churn estime: {p4.churn_risk:.0%}."
+
+            if p4.clv_tier == "platinum" and p4.next_best_action is not None:
+                if p4.next_best_action.priority in {"Low", "Medium"}:
+                    p4.next_best_action.priority = "High"
+                if "CLV" not in p4.next_best_action.description:
+                    p4.next_best_action.description += f" CLV estime: {p4.clv_estimate:,.0f} EUR."
             
         # --- GAMIFICATION (Super Note Score) ---
         self._calculate_gamification(extraction, source_text=source_text)
             
         return extraction
+
+    def _predict_client_signals(
+        self, extraction: ExtractionResult, source_text: str
+    ) -> Optional[Dict[str, Any]]:
+        if self.predictor is None:
+            return None
+        try:
+            return self.predictor.predict_from_extraction(extraction, source_text=source_text)
+        except Exception as exc:
+            logger.warning("Prediction enrichment skipped: %s", exc)
+            return None
 
     def _append_unique(self, values: List[str], value: str) -> None:
         if not value:
@@ -315,6 +358,14 @@ class RecommenderEngine:
     def _has_occasion(self, extraction: ExtractionResult) -> bool:
         return bool((extraction.pilier_3_hospitalite_care.occasion or "").strip())
 
+    def _has_specific_occasion(self, extraction: ExtractionResult) -> bool:
+        occasion = str(extraction.pilier_3_hospitalite_care.occasion or "").strip().lower()
+        if not occasion:
+            return False
+        if occasion.endswith("_gift"):
+            return True
+        return occasion in {"wedding_anniversary", "career_milestone", "coming_of_age"}
+
     def _has_care_details(self, extraction: ExtractionResult) -> bool:
         p3 = extraction.pilier_3_hospitalite_care
         return (
@@ -422,6 +473,11 @@ class RecommenderEngine:
                 "weight": 10,
                 "expected": signals["occasion_signal"],
                 "present": self._has_occasion(extraction),
+            },
+            "occasion_specificity": {
+                "weight": 8,
+                "expected": signals["occasion_signal"],
+                "present": self._has_specific_occasion(extraction),
             },
             "care": {
                 "weight": 10,

@@ -43,6 +43,9 @@ class Settings(BaseModel):
         le=20
     )
     processing_timeout_seconds: int = Field(default=60, ge=5, le=300)
+    tier1_match_engine: str = Field(
+        default_factory=lambda: (os.getenv("TIER1_MATCH_ENGINE", "aho") or "aho").strip().lower()
+    )
     enable_router_feedback_learning: bool = Field(
         default_factory=lambda: os.getenv("ENABLE_ROUTER_FEEDBACK_LEARNING", "1") == "1"
     )
@@ -132,6 +135,20 @@ class Settings(BaseModel):
             defer_non_critical_writes=os.getenv("BATCH_DEFER_WRITES", "0") == "1",
             allow_cross_validation=os.getenv("BATCH_ALLOW_CROSS_VALIDATION", "1") == "1",
             strict_quality_gate=os.getenv("BATCH_STRICT_QUALITY_GATE", "0") == "1",
+        )
+    )
+    fast_batch_profile: RuntimeProfile = Field(
+        default_factory=lambda: RuntimeProfile(
+            name="fast_batch",
+            rag_top_k=int(os.getenv("FAST_BATCH_RAG_TOP_K", "1")),
+            rag_threshold=float(os.getenv("FAST_BATCH_RAG_THRESHOLD", "1.0")),
+            timeout_seconds=int(os.getenv("FAST_BATCH_TIMEOUT_SECONDS", "20")),
+            save_to_cache=os.getenv("FAST_BATCH_SAVE_TO_CACHE", "0") == "1",
+            save_to_semantic_cache=False,
+            require_non_empty_tags=False,
+            defer_non_critical_writes=True,
+            allow_cross_validation=False,
+            strict_quality_gate=False,
         )
     )
 

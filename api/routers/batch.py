@@ -36,6 +36,23 @@ _batch_workers: list[asyncio.Task] = []
 _workers_bootstrapped = False
 
 
+def _normalize_batch_profile(profile: Optional[str]) -> str:
+    normalized = str(profile or settings.batch_csv_profile.name).strip().lower()
+    allowed = {settings.batch_csv_profile.name, settings.fast_batch_profile.name}
+    if normalized not in allowed:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid profile '{profile}'. Allowed: {sorted(allowed)}",
+        )
+    return normalized
+
+
+def _profile_save_to_cache(profile: str) -> bool:
+    if profile == settings.fast_batch_profile.name:
+        return settings.fast_batch_profile.save_to_cache
+    return settings.batch_csv_profile.save_to_cache
+
+
 def get_pipeline():
     global _pipeline
     if _pipeline is None:
@@ -54,9 +71,9 @@ async def _batch_worker_loop(worker_id: int):
     queue = _get_batch_queue()
     logger.info("Batch worker %s started", worker_id)
     while True:
-        task_id, df = await queue.get()
+        task_id, df, profile = await queue.get()
         try:
-            await process_batch_async(task_id, df)
+            await process_batch_async(task_id, df, profile)
         except Exception as exc:
             logger.error("Batch worker %s failed task %s: %s", worker_id, task_id, exc)
             if task_id in batch_tasks:
@@ -77,11 +94,12 @@ def ensure_batch_workers() -> None:
     logger.info("Batch queue initialized with %s workers", worker_count)
 
 
-async def process_batch_async(task_id: str, df: pd.DataFrame):
+async def process_batch_async(task_id: str, df: pd.DataFrame, profile: str):
     """Process batch in background with progress updates."""
     
     batch_tasks[task_id]["status"] = "processing"
     pipeline = get_pipeline()
+    save_to_cache = _profile_save_to_cache(profile)
     
     try:
         for idx, row in df.iterrows():
@@ -90,7 +108,7 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
                 'ID': row.get('ID', f'BATCH_{idx}'),
                 'Transcription': row.get('Transcription', row.get('text', '')),
                 'Language': row.get('Language', 'FR')
-            }, profile=settings.batch_csv_profile.name, save_to_cache=settings.batch_csv_profile.save_to_cache)
+            }, profile=profile, save_to_cache=save_to_cache)
             if result is None:
                 batch_tasks[task_id]["results"].append({
                     "id": row.get('ID', f'BATCH_{idx}'),
@@ -98,6 +116,7 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
                     "tier": None,
                     "confidence": 0.0,
                     "error": "processing_failed",
+                    "mode": profile,
                 })
                 batch_tasks[task_id]["progress"] = idx + 1
                 continue
@@ -110,6 +129,7 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
                 "confidence": result.routing.confidence,
                 "profile": result.profile,
                 "stage_timings_ms": result.stage_timings_ms,
+                "mode": profile,
             })
             batch_tasks[task_id]["progress"] = idx + 1
             
@@ -117,7 +137,7 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
             await asyncio.sleep(0.05)
         
         batch_tasks[task_id]["status"] = "complete"
-        logger.info(f"Batch {task_id} completed: {len(df)} notes processed")
+        logger.info("Batch %s completed: %s notes processed (profile=%s)", task_id, len(df), profile)
         
     except Exception as e:
         batch_tasks[task_id]["status"] = "error"
@@ -127,13 +147,16 @@ async def process_batch_async(task_id: str, df: pd.DataFrame):
 
 @router.post("/batch")
 async def start_batch(
-    file: UploadFile = File(...)
+    file: UploadFile = File(...),
+    profile: str = "batch_csv",
 ):
     """
     Start batch processing in background.
     Returns task_id to track progress via SSE stream.
     """
     
+    selected_profile = _normalize_batch_profile(profile)
+
     # Validate file type
     if not file.filename.endswith(('.csv', '.xlsx')):
         raise HTTPException(400, "File must be CSV or Excel")
@@ -159,6 +182,7 @@ async def start_batch(
         "status": "pending",
         "progress": 0,
         "total": len(df),
+        "profile": selected_profile,
         "created_at": datetime.now().isoformat(),
         "results": [],
         "error": None
@@ -170,11 +194,11 @@ async def start_batch(
         batch_tasks[task_id]["status"] = "error"
         batch_tasks[task_id]["error"] = "batch_queue_full"
         raise HTTPException(503, "Batch queue is full, retry later")
-    await queue.put((task_id, df))
+    await queue.put((task_id, df, selected_profile))
     
-    logger.info(f"Batch {task_id} started: {len(df)} notes")
+    logger.info("Batch %s started: %s notes (profile=%s)", task_id, len(df), selected_profile)
     
-    return {"task_id": task_id, "total": len(df)}
+    return {"task_id": task_id, "total": len(df), "profile": selected_profile}
 
 
 @router.get("/batch/{task_id}")
@@ -195,6 +219,7 @@ async def get_batch_workers_status():
     return {
         "workers_configured": int(settings.batch_worker_count),
         "workers_running": len([w for w in _batch_workers if not w.done()]),
+        "supported_profiles": [settings.batch_csv_profile.name, settings.fast_batch_profile.name],
         "queue_size": queue.qsize(),
         "queue_max_size": queue.maxsize,
         "tasks_total": len(batch_tasks),

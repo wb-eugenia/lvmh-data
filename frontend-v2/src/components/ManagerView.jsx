@@ -12,6 +12,9 @@ export default function ManagerView({ onBack }) {
     const [stats, setStats] = useState({ total_notes: 0, avg_quality: 0, tier_distribution: { 1: 0, 2: 0, 3: 0 } })
     const [dashboardMetrics, setDashboardMetrics] = useState(null)
     const [dashboardSummary, setDashboardSummary] = useState(null)
+    const [segmentsData, setSegmentsData] = useState(null)
+    const [segmentsLoading, setSegmentsLoading] = useState(false)
+    const [segmentsError, setSegmentsError] = useState(null)
     const [leaderboard, setLeaderboard] = useState([])
     const [history, setHistory] = useState([])
     const [overviewRecordings, setOverviewRecordings] = useState([])
@@ -702,6 +705,32 @@ export default function ManagerView({ onBack }) {
         } catch (e) { console.error(e) }
     }
 
+    const loadSegments = async () => {
+        setSegmentsLoading(true)
+        setSegmentsError(null)
+        try {
+            const params = new URLSearchParams()
+            params.set('window', overviewWindow)
+            params.set('n_clusters', '5')
+            params.set('limit', '1500')
+            if (overviewAdvisor && overviewAdvisor !== 'all') {
+                params.set('advisor', overviewAdvisor)
+            }
+
+            const res = await apiFetch(`/api/dashboard/segments?${params.toString()}`)
+            if (!res.ok) {
+                const body = await res.text()
+                throw new Error(body || `Erreur segments (${res.status})`)
+            }
+            setSegmentsData(await res.json())
+        } catch (error) {
+            setSegmentsError(error.message || 'Erreur chargement segments')
+            setSegmentsData(null)
+        } finally {
+            setSegmentsLoading(false)
+        }
+    }
+
     const loadOpportunityActions = async (noteIdsCsv) => {
         if (!noteIdsCsv) {
             setOpportunityActions({})
@@ -1115,6 +1144,10 @@ export default function ManagerView({ onBack }) {
     const selectedOpportunityTags = Array.isArray(selectedOpportunityRecord?.tags) ? selectedOpportunityRecord.tags : []
     const selectedOpportunityProducts = Array.isArray(selectedOpportunityRecord?.matched_products) ? selectedOpportunityRecord.matched_products : []
     const selectedOpportunityNba = selectedOpportunityP4?.next_best_action || selectedOpportunityRecord?.next_best_action || null
+    const selectedOpportunityChurn = Number(selectedOpportunityP4?.churn_risk || 0)
+    const selectedOpportunityClv = extractBudgetValue(selectedOpportunityP4?.clv_estimate)
+    const selectedOpportunityPredictionSource = selectedOpportunityP4?.prediction_source || null
+    const segmentRows = Array.isArray(segmentsData?.segments) ? segmentsData.segments : []
 
     useEffect(() => {
         if (currentTab === 'overview') return
@@ -1145,6 +1178,11 @@ export default function ManagerView({ onBack }) {
         if (currentTab !== 'overview') return
         loadOpportunityActions(scopedNoteIdsCsv)
     }, [currentTab, scopedNoteIdsCsv])
+
+    useEffect(() => {
+        if (currentTab !== 'overview') return
+        loadSegments()
+    }, [currentTab, overviewWindow, overviewAdvisor])
 
     useEffect(() => {
         if (currentTab !== 'overview') {
@@ -2093,6 +2131,53 @@ export default function ManagerView({ onBack }) {
                                 red={urgentActionsCount > 0}
                                 trendTone={currentWindowKpis.urgentCount > (previousWindowKpis?.urgentCount || 0) ? 'negative' : 'positive'}
                             />
+                        </div>
+
+                        <div className="glass p-6">
+                            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                <h3 className="text-lg font-bold flex items-center gap-2">
+                                    <Users size={18} className="text-lvmh-gold" /> Segments comportementaux (notes)
+                                </h3>
+                                <span className="text-xs text-lvmh-gray">
+                                    {segmentsLoading ? 'Calcul en cours...' : `${segmentsData?.total_notes || 0} notes | ${segmentRows.length} segments`}
+                                </span>
+                            </div>
+                            {segmentsError && (
+                                <div className="mb-3 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300">
+                                    {segmentsError}
+                                </div>
+                            )}
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="text-lvmh-gray text-[11px] uppercase tracking-widest border-b border-white/10">
+                                        <tr>
+                                            <th className="pb-3">Segment</th>
+                                            <th className="pb-3 text-right">Notes</th>
+                                            <th className="pb-3 text-right">Budget moyen</th>
+                                            <th className="pb-3 text-right">Tier 3</th>
+                                            <th className="pb-3 text-right">VIP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/5">
+                                        {segmentRows.slice(0, 5).map((segment) => (
+                                            <tr key={`segment-${segment.segment_id}`} className="hover:bg-white/5 transition-colors">
+                                                <td className="py-3 text-sm font-semibold">{segment.segment_label}</td>
+                                                <td className="py-3 text-sm text-right text-white">{segment.count}</td>
+                                                <td className="py-3 text-sm text-right text-lvmh-gold">{formatCurrency(segment.avg_budget || 0)}</td>
+                                                <td className="py-3 text-sm text-right text-red-300">{Math.round(segment.tier3_share_pct || 0)}%</td>
+                                                <td className="py-3 text-sm text-right text-lvmh-gray">{Math.round(segment.vip_share_pct || 0)}%</td>
+                                            </tr>
+                                        ))}
+                                        {!segmentsLoading && segmentRows.length === 0 && (
+                                            <tr>
+                                                <td colSpan={5} className="py-6 text-sm text-lvmh-gray text-center">
+                                                    Aucun segment disponible pour cette fenetre.
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 xl:grid-cols-[0.95fr_1.05fr] gap-6">
@@ -3088,6 +3173,22 @@ export default function ManagerView({ onBack }) {
                                                 <span className="text-lvmh-gold font-medium">
                                                     {selectedOpportunityBudget ? formatCurrency(selectedOpportunityBudget) : (selectedOpportunityP4?.budget_potential || '-')}
                                                 </span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-3">
+                                                <span className="text-lvmh-gray">Risque churn</span>
+                                                <span className={`${selectedOpportunityChurn >= 0.7 ? 'text-red-300' : selectedOpportunityChurn >= 0.4 ? 'text-lvmh-gold' : 'text-white'} font-medium`}>
+                                                    {selectedOpportunityP4?.churn_level ? `${selectedOpportunityP4.churn_level.toUpperCase()} (${Math.round(selectedOpportunityChurn * 100)}%)` : '-'}
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-3">
+                                                <span className="text-lvmh-gray">CLV estimé</span>
+                                                <span className="text-white font-medium">
+                                                    {selectedOpportunityClv ? `${formatCurrency(selectedOpportunityClv)} (${selectedOpportunityP4?.clv_tier || 'n/a'})` : '-'}
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-3">
+                                                <span className="text-lvmh-gray">Source prediction</span>
+                                                <span className="text-lvmh-gray font-medium">{selectedOpportunityPredictionSource || '-'}</span>
                                             </div>
                                         </div>
 

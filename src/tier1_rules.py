@@ -16,6 +16,7 @@ Enhanced with:
 import re
 import time
 from typing import List, Dict, Tuple, Optional, Any
+import logging
 from src.models import (
     ExtractionResult, Pilier1Product, Pilier2Client, Pilier3Care, Pilier4Business,
     MetaAnalysis, ProductPreferences, PurchaseContext, Profession, Lifestyle, Allergies
@@ -26,6 +27,9 @@ from functools import lru_cache
 
 from src.resilience import safe_execution
 from src.taxonomy import TaxonomyManager
+from config.production import settings
+
+logger = logging.getLogger(__name__)
 
 class Tier1RulesEngine:
     """Enhanced deterministic rules-based extraction engine."""
@@ -215,9 +219,42 @@ class Tier1RulesEngine:
         self.stats = {'processed': 0}
         self.taxonomy = TaxonomyManager()
         self.keyword_map = self.taxonomy.get_all_keywords_map()
+        self.match_engine = "regex"
+        self._aho_available = False
+        self._aho_automaton = None
         
         # Pre-compile patterns for speed ⚡
         self._compiled_patterns = self._compile_all_patterns()
+        self._init_aho_engine()
+
+    def _init_aho_engine(self) -> None:
+        requested_engine = str(getattr(settings, "tier1_match_engine", "aho") or "aho").strip().lower()
+        if requested_engine != "aho":
+            return
+
+        try:
+            import ahocorasick
+        except Exception as exc:
+            logger.warning("Tier1 Aho-Corasick disabled (import failed): %s", exc)
+            return
+
+        try:
+            automaton = ahocorasick.Automaton()
+            for keyword, tag in self.keyword_map.items():
+                normalized = str(keyword or "").strip().lower()
+                if not normalized:
+                    continue
+                automaton.add_word(normalized, (tag, normalized))
+            automaton.make_automaton()
+            self._aho_automaton = automaton
+            self._aho_available = True
+            self.match_engine = "aho"
+            logger.info("Tier1 Aho-Corasick enabled with %s keywords", len(self.keyword_map))
+        except Exception as exc:
+            logger.warning("Tier1 Aho-Corasick initialization failed, using regex fallback: %s", exc)
+            self._aho_available = False
+            self._aho_automaton = None
+            self.match_engine = "regex"
 
     def _compile_all_patterns(self) -> Dict:
         """Compile regex patterns once at startup."""
@@ -570,11 +607,34 @@ class Tier1RulesEngine:
         """Fast keyword extraction."""
         found_tags = set()
         text_lower = text.lower()
-        
+
+        if self._aho_available and self._aho_automaton is not None:
+            try:
+                return self._extract_taxonomy_tags_aho(text_lower)
+            except Exception as exc:
+                logger.warning("Tier1 Aho extraction failed, falling back to regex: %s", exc)
+
         for tag, patterns in self._compiled_patterns['keywords'].items():
             if any(p.search(text_lower) for p in patterns):
                 found_tags.add(tag)
         return list(found_tags)
+
+    def _extract_taxonomy_tags_aho(self, text_lower: str) -> List[str]:
+        found_tags = set()
+        for end_idx, (tag, alias) in self._aho_automaton.iter(text_lower):
+            start_idx = end_idx - len(alias) + 1
+            if self._is_word_boundary(text_lower, start_idx, end_idx):
+                found_tags.add(tag)
+        return list(found_tags)
+
+    @staticmethod
+    def _is_word_boundary(text: str, start_idx: int, end_idx: int) -> bool:
+        if start_idx > 0 and text[start_idx - 1].isalnum():
+            return False
+        next_idx = end_idx + 1
+        if next_idx < len(text) and text[next_idx].isalnum():
+            return False
+        return True
 
     def calculate_confidence(self, data: Dict) -> float:
         """Intelligent normalized confidence score."""

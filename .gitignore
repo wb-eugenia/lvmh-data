@@ -39,6 +39,8 @@ output/*.csv
 output/*.xlsx
 output/*.json
 !output/.gitkeep
+outputs/taxonomy_review_queue_*.csv
+outputs/taxonomy_review_queue_*.json
 
 # Runtime caches / local data
 cache/
@@ -48,6 +50,8 @@ tests/temp_cache_debug/
 *.sqlite
 *.sqlite3
 cleaned_*.csv
+models/synthetic_predictions.joblib
+models/synthetic_predictions_metadata.json
 
 # Auto Claude (Antigravity)
 .auto-claude/

@@ -334,6 +334,11 @@ def _build_opportunity_row(note: Note) -> Dict[str, Any]:
         "budget_label": str(budget_label) if budget_label is not None else "-",
         "confidence": _format_confidence_label(raw_confidence),
         "priority_score": priority_score,
+        "churn_risk": p4.get("churn_risk"),
+        "churn_level": p4.get("churn_level"),
+        "clv_estimate": p4.get("clv_estimate"),
+        "clv_tier": p4.get("clv_tier"),
+        "prediction_source": p4.get("prediction_source"),
         "action_status": action_status,
         "action_type": action_type,
         "action_label": action_label,
@@ -1210,6 +1215,11 @@ async def export_opportunities(
         "budget_value",
         "budget_label",
         "confidence",
+        "churn_risk",
+        "churn_level",
+        "clv_estimate",
+        "clv_tier",
+        "prediction_source",
         "next_action",
         "action_status",
         "action_type",
@@ -1226,6 +1236,76 @@ async def export_opportunities(
         media_type="text/csv",
         headers={"Content-Disposition": f'attachment; filename="manager_opportunities_{timestamp_slug}.csv"'},
     )
+
+
+@router.get("/segments")
+async def get_note_segments(
+    window: str = Query(default="7d", pattern="^(all|today|7d|30d)$"),
+    advisor: Optional[str] = Query(default=None),
+    n_clusters: int = Query(default=5, ge=2, le=10),
+    limit: int = Query(default=1500, ge=20, le=10000),
+    days: Optional[int] = Query(default=None, ge=1, le=365),
+    db: Session = Depends(get_db),
+):
+    """Cluster note-level behavior into manager-ready segments."""
+    from src.analytics.note_segmentation import NoteSegmentation
+
+    normalized_window = _normalize_opportunity_window(window)
+    advisor_filter = (advisor or "").strip().lower()
+
+    effective_days = days
+    if effective_days is None:
+        if normalized_window == "today":
+            effective_days = 1
+        elif normalized_window == "7d":
+            effective_days = 7
+        elif normalized_window == "30d":
+            effective_days = 30
+
+    start_ts, end_ts = _resolve_time_window(days=effective_days, date_from=None, date_to=None)
+
+    notes_query = (
+        db.query(Note)
+        .options(
+            joinedload(Note.advisor),
+            joinedload(Note.client),
+        )
+    )
+    notes_query = _apply_time_filter(notes_query, Note.timestamp, start_ts, end_ts)
+    notes = notes_query.order_by(Note.timestamp.desc()).limit(limit).all()
+
+    raw_notes: List[Dict[str, Any]] = []
+    for note in notes:
+        advisor_name = (note.advisor.full_name or note.advisor.email) if note.advisor else None
+        if advisor_filter and advisor_filter != "all":
+            if str(advisor_name or "").strip().lower() != advisor_filter:
+                continue
+
+        raw_notes.append(
+            {
+                "id": note.id,
+                "timestamp": note.timestamp.isoformat() if note.timestamp else None,
+                "analysis_json": note.analysis_json,
+                "advisor": {
+                    "name": advisor_name,
+                    "store": note.advisor.store if note.advisor else None,
+                },
+                "client": {
+                    "name": note.client.name if note.client else None,
+                    "vic_status": note.client.vic_status if note.client else None,
+                },
+            }
+        )
+
+    segmenter = NoteSegmentation(n_clusters=n_clusters)
+    payload = segmenter.segment_notes(raw_notes, n_clusters=n_clusters)
+    payload["window"] = _window_payload(start_ts, end_ts, effective_days)
+    payload["filters"] = {
+        "window": normalized_window,
+        "advisor": advisor_filter or "all",
+        "limit": limit,
+    }
+    return payload
 
 
 @router.get("/metrics/day-details")

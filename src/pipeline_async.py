@@ -132,11 +132,14 @@ class AsyncPipeline:
         self.profile_configs: Dict[str, RuntimeProfile] = {
             settings.single_note_profile.name: settings.single_note_profile,
             settings.batch_csv_profile.name: settings.batch_csv_profile,
+            settings.fast_batch_profile.name: settings.fast_batch_profile,
         }
         if "single_note" not in self.profile_configs:
             self.profile_configs["single_note"] = settings.single_note_profile
         if "batch_csv" not in self.profile_configs:
             self.profile_configs["batch_csv"] = settings.batch_csv_profile
+        if "fast_batch" not in self.profile_configs:
+            self.profile_configs["fast_batch"] = settings.fast_batch_profile
         
         self.dlq = DeadLetterQueue()
         
@@ -367,6 +370,7 @@ class AsyncPipeline:
             timeout_budget = max(5, int(kwargs.get("timeout_seconds") or runtime_profile.timeout_seconds))
             cache_enabled = bool(kwargs.get("save_to_cache", runtime_profile.save_to_cache))
             semantic_cache_enabled = bool(self.semantic_cache and runtime_profile.save_to_semantic_cache)
+            fast_batch_mode = runtime_profile.name == settings.fast_batch_profile.name
             cache_namespace = f"pipeline_v3_{runtime_profile.name}"
             high_signal_input = self._has_high_signal(raw_text)
             stage_timings_ms: Dict[str, float] = {}
@@ -529,13 +533,21 @@ class AsyncPipeline:
                 # 3. Routing (Use ML Router)
                 routing_started = time.perf_counter()
                 decision = self.router.route_ml(text, language, note)
+                if fast_batch_mode:
+                    decision.tier = 1
+                    decision.priority = "low"
+                    decision.reasons.append("Fast batch profile: Tier 1 only mode")
                 predicted_tier = decision.tier
                 await safe_progress({
                     "step": "routing", 
                     "tier": decision.tier,
                     "score": f"{int(decision.score.total)}/100",
                     "priority": decision.priority.upper(),
-                    "engine": "Machine Learning" if any("ML" in r for r in decision.reasons) else "Heuristic Engine"
+                    "engine": (
+                        "Fast Tier1"
+                        if fast_batch_mode
+                        else ("Machine Learning" if any("ML" in r for r in decision.reasons) else "Heuristic Engine")
+                    ),
                 })
                 mark_stage("routing", routing_started)
                 
@@ -554,7 +566,7 @@ class AsyncPipeline:
                 mark_stage("tier1", tier1_started)
                 
                 # Run Tier 2 if routed
-                if decision.tier >= 2:
+                if decision.tier >= 2 and not fast_batch_mode:
                     tier2_started = time.perf_counter()
                     await safe_progress({"step": "tier2_extraction"})
                     tier2_result = None
@@ -616,7 +628,7 @@ class AsyncPipeline:
                     mark_stage("tier2", tier2_started)
                 
                 # Run Tier 3 if routed
-                if decision.tier >= 3:
+                if decision.tier >= 3 and not fast_batch_mode:
                     tier3_started = time.perf_counter()
                     await safe_progress({"step": "tier3_extraction"})
                     tier3_result = None
@@ -655,7 +667,12 @@ class AsyncPipeline:
                 
                 # Cross-Validation: Merge results from all tiers
                 crossval_started = time.perf_counter()
-                if runtime_profile.allow_cross_validation and self.cross_validator and len(tier_results) > 1:
+                if (
+                    not fast_batch_mode
+                    and runtime_profile.allow_cross_validation
+                    and self.cross_validator
+                    and len(tier_results) > 1
+                ):
                     await safe_progress({"step": "cross_validation", "tiers": list(tier_results.keys())})
                     
                     validation = self.cross_validator.validate(tier_results, tier_confidences)
@@ -709,7 +726,10 @@ class AsyncPipeline:
                         self.stats['rag_attempted'] += 1
                         rag_matches = []
 
-                        if budget_exhausted(buffer_seconds=1.5):
+                        if fast_batch_mode:
+                            self.stats['rag_disabled'] += 1
+                            await safe_progress({"step": "rag", "status": "skipped_fast_batch", "matches": 0})
+                        elif budget_exhausted(buffer_seconds=1.5):
                             self.stats['rag_disabled'] += 1
                             await safe_progress({"step": "rag", "status": "skipped_timeout_budget", "matches": 0})
                         elif self.matcher and getattr(self.matcher, 'enabled', False):
@@ -736,7 +756,7 @@ class AsyncPipeline:
 
                 # 6. Enrich extraction with NBA recommendation and unified quality scoring.
                 recommendation_started = time.perf_counter()
-                if extraction_result:
+                if extraction_result and not fast_batch_mode:
                     try:
                         extraction_result = self.recommender.generate_recommendation(
                             extraction_result,
@@ -747,15 +767,19 @@ class AsyncPipeline:
                 mark_stage("recommendation", recommendation_started)
 
                 quality_gate_started = time.perf_counter()
-                extraction_result, gate_fallbacks = self._apply_quality_fallback(
-                    extraction_result,
-                    text=text,
-                    language=language,
-                    require_non_empty_tags=runtime_profile.require_non_empty_tags,
-                )
-                if gate_fallbacks:
-                    fallbacks_applied.extend(gate_fallbacks)
-                tags_count = len(extraction_result.tags) if extraction_result else 0
+                if fast_batch_mode:
+                    gate_fallbacks = []
+                    tags_count = len(extraction_result.tags) if extraction_result else 0
+                else:
+                    extraction_result, gate_fallbacks = self._apply_quality_fallback(
+                        extraction_result,
+                        text=text,
+                        language=language,
+                        require_non_empty_tags=runtime_profile.require_non_empty_tags,
+                    )
+                    if gate_fallbacks:
+                        fallbacks_applied.extend(gate_fallbacks)
+                    tags_count = len(extraction_result.tags) if extraction_result else 0
                 quality_gate_passed = True
                 quality_gate_reason = None
                 if runtime_profile.strict_quality_gate and high_signal_input and tags_count == 0:
@@ -768,7 +792,7 @@ class AsyncPipeline:
                     await safe_progress({
                         "step": "extraction",
                         "tag_count": tags_count,
-                        "model": "Mistral-Medium" if decision.tier <= 2 else "Mistral-Large"
+                        "model": "Tier1-Fast" if fast_batch_mode else ("Mistral-Medium" if decision.tier <= 2 else "Mistral-Large")
                     })
 
                 # 7. CRM Injection & Gamification
@@ -783,6 +807,9 @@ class AsyncPipeline:
                     quality_pct = quality * 100 if quality <= 1 else quality
                     feedback = getattr(meta, 'advisor_feedback', "Note traitée.") if meta else "Note traitée."
                     points = 10 if quality_pct > 50 else 5
+                    if fast_batch_mode:
+                        points = 0
+                        feedback = "Mode fast_batch: extraction Tier 1 prioritaire."
                 else:
                     quality_pct = 0
 
@@ -824,6 +851,7 @@ class AsyncPipeline:
                 # 8b. Online ML feedback loop for router learning in production.
                 if (
                     extraction_result
+                    and not fast_batch_mode
                     and settings.enable_router_feedback_learning
                     and hasattr(self.router, "record_feedback")
                 ):
