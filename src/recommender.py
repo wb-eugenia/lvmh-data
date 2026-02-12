@@ -23,6 +23,10 @@ class RecommenderEngine:
         """
         Processes an extraction result and populates the next_best_action field.
         """
+        # Lightweight deterministic enrichment to reduce missing critical fields
+        # when LLM outputs are partial (timeouts/rate-limit/degraded answers).
+        self._enrich_from_text(extraction, source_text or "")
+
         p1 = extraction.pilier_1_univers_produit
         p2 = extraction.pilier_2_profil_client
         p3 = extraction.pilier_3_hospitalite_care
@@ -100,6 +104,187 @@ class RecommenderEngine:
         self._calculate_gamification(extraction, source_text=source_text)
             
         return extraction
+
+    def _append_unique(self, values: List[str], value: str) -> None:
+        if not value:
+            return
+        normalized = value.strip()
+        if not normalized:
+            return
+        lower_existing = {v.lower() for v in values if isinstance(v, str)}
+        if normalized.lower() in lower_existing:
+            return
+        values.append(normalized)
+
+    def _contains_any_pattern(self, text: str, patterns: List[str]) -> bool:
+        return any(re.search(pattern, text, re.IGNORECASE) for pattern in patterns)
+
+    def _enrich_from_text(self, extraction: ExtractionResult, source_text: str) -> None:
+        text = source_text or ""
+        lower = text.lower()
+
+        p1 = extraction.pilier_1_univers_produit
+        p2 = extraction.pilier_2_profil_client
+        p3 = extraction.pilier_3_hospitalite_care
+
+        # ---- Purchase context enrichment ----
+        if not (p2.purchase_context.type or "").strip():
+            if self._contains_any_pattern(
+                lower,
+                [
+                    r"\bgift\b", r"\bcadeau\b", r"\bregal[oi]\b", r"\bgeschenk\b",
+                    r"\bcompleanno\b", r"\bcumplea", r"\banniversaire\b",
+                    r"\bwedding\b", r"\bmariage\b", r"\bboda\b",
+                ],
+            ):
+                p2.purchase_context.type = "Gift"
+            elif self._contains_any_pattern(
+                lower,
+                [
+                    r"\bfor himself\b", r"\bfor herself\b", r"\bpour (lui|elle)\b",
+                    r"\bpour moi\b", r"\bself\b", r"\bpersonal use\b",
+                ],
+            ):
+                p2.purchase_context.type = "Self"
+
+        if not (p2.purchase_context.behavior or "").strip():
+            if self._contains_any_pattern(lower, [r"\b(vic|vip|ultimate|platinum)\b"]):
+                p2.purchase_context.behavior = "vic"
+            elif self._contains_any_pattern(
+                lower,
+                [
+                    r"\b(first visit|first[-\s]?time|new client)\b",
+                    r"\bpremi[eè]re visite\b",
+                    r"\bprimera visita\b",
+                    r"\bprimo cliente\b",
+                    r"\bneuer kunde\b",
+                    r"\bnouveau client\b",
+                ],
+            ):
+                p2.purchase_context.behavior = "first_visit"
+            elif self._contains_any_pattern(
+                lower,
+                [
+                    r"\bregular client\b", r"\bclient r[eé]gulier\b",
+                    r"\bcliente regular\b", r"\bcliente occasionale\b",
+                    r"\blong[-\s]?time client\b",
+                ],
+            ):
+                p2.purchase_context.behavior = "regular"
+
+        # ---- Profession enrichment ----
+        if not (p2.profession.sector or "").strip():
+            sector_patterns = {
+                "healthcare": [r"\bdoctor\b", r"\bdr\.\b", r"\bsurgeon\b", r"\bpsycholog"],
+                "legal": [r"\blawyer\b", r"\bbarrister\b", r"\bavocat\b", r"\bdroit\b"],
+                "media": [r"\bjournalist\b", r"\bjournaliste\b", r"\bvogue\b", r"\bpresse\b"],
+                "sports": [r"\btennis\b", r"\bgolf\b", r"\bplayer\b", r"\bathlet"],
+                "finance": [r"\bhedge fund\b", r"\banalyst\b", r"\binvest", r"\bcapital\b"],
+                "business": [r"\bentrepreneur\b", r"\bfounder\b", r"\bceo\b", r"\bmanager\b"],
+                "diplomacy": [r"\bdiplomat\b", r"\bonu\b", r"\bun\b", r"\bconsulat"],
+                "aviation": [r"\bpilot\b", r"\bairline\b", r"\bstewardess\b"],
+            }
+            for sector, patterns in sector_patterns.items():
+                if self._contains_any_pattern(lower, patterns):
+                    p2.profession.sector = sector
+                    break
+
+        # ---- Usage enrichment ----
+        if not p1.usage:
+            usage_patterns = {
+                "travel": [r"\btravel\b", r"\bvoyage\b", r"\btrip\b", r"\bcircuit\b", r"\btourn"],
+                "professional": [r"\bwork\b", r"\bprofessional\b", r"\bbureau\b", r"\boffice\b", r"\bmeeting\b"],
+                "daily": [r"\bdaily\b", r"\bquotidien\b", r"\beveryday\b"],
+                "event": [r"\bevent\b", r"\bsoir[ée]e\b", r"\bgala\b"],
+            }
+            for usage_tag, patterns in usage_patterns.items():
+                if self._contains_any_pattern(lower, patterns):
+                    self._append_unique(p1.usage, usage_tag)
+
+        # ---- Preferences enrichment ----
+        color_map = {
+            "black": [r"\bblack\b", r"\bnoir\b", r"\bnero\b", r"\bnegro\b", r"\bschwarz\b"],
+            "white": [r"\bwhite\b", r"\bblanc\b", r"\bbianco\b", r"\bblanco\b", r"\bwei[ßs]\b"],
+            "brown": [r"\bbrown\b", r"\bmarron\b", r"\bmar[ró]n\b", r"\bbraun\b"],
+            "beige": [r"\bbeige\b"],
+            "red": [r"\bred\b", r"\brouge\b", r"\brojo\b", r"\brot\b"],
+            "blue": [r"\bblue\b", r"\bbleu\b", r"\bazul\b", r"\bblau\b"],
+        }
+        for color, patterns in color_map.items():
+            if self._contains_any_pattern(lower, patterns):
+                self._append_unique(p1.preferences.colors, color)
+
+        material_map = {
+            "leather": [r"\bleather\b", r"\bcuir\b", r"\bcuoio\b", r"\bpiel\b", r"\bleder\b"],
+            "canvas": [r"\bcanvas\b", r"\btoile\b", r"\blona\b"],
+            "metal": [r"\bmetal\b", r"\bm[ée]tal\b"],
+        }
+        for material, patterns in material_map.items():
+            if self._contains_any_pattern(lower, patterns):
+                self._append_unique(p1.preferences.materials, material)
+
+        # ---- Occasion enrichment (multilingual) ----
+        if not (p3.occasion or "").strip():
+            occasion_patterns = {
+                "birthday": [
+                    r"\bbirthday\b", r"\banniversaire\b", r"\bcompleanno\b",
+                    r"\bcumplea", r"\bgeburtstag\b",
+                ],
+                "wedding": [
+                    r"\bwedding\b", r"\bmariage\b", r"\bmatrimonio\b", r"\bboda\b", r"\bhochzeit\b",
+                ],
+                "graduation": [
+                    r"\bgraduat", r"\bdiplom", r"\blaurea\b", r"\babschluss\b",
+                ],
+                "housewarming": [
+                    r"\bhousewarming\b", r"\bpendaison de cr[ée]maill", r"\beinweihung\b",
+                ],
+                "christmas": [r"\bchristmas\b", r"\bno[eë]l\b", r"\bnavidad\b", r"\bweihnacht"],
+                "valentine": [r"\bvalentin", r"\bvalentine\b", r"\bsaint[-\s]?valentin"],
+            }
+            for occasion, patterns in occasion_patterns.items():
+                if self._contains_any_pattern(lower, patterns):
+                    p3.occasion = occasion
+                    break
+
+        # ---- Care / allergy enrichment ----
+        if self._contains_any_pattern(lower, [r"\b(allerg|allergy|allergi|allergie)\w*"]):
+            if self._contains_any_pattern(lower, [r"\bgluten\b", r"\bceliac", r"\bc[oœ]liaque"]):
+                self._append_unique(p3.allergies.food, "gluten_allergy")
+            if self._contains_any_pattern(lower, [r"\bnut\b", r"\bnoix\b", r"\barachid", r"\bpeanut"]):
+                self._append_unique(p3.allergies.food, "nut_allergy")
+            if self._contains_any_pattern(lower, [r"\blactose\b", r"\bdairy\b"]):
+                self._append_unique(p3.allergies.food, "lactose_intolerance")
+            if self._contains_any_pattern(lower, [r"\bnickel\b"]):
+                self._append_unique(p3.allergies.contact, "nickel_allergy")
+            if self._contains_any_pattern(lower, [r"\blatex\b"]):
+                self._append_unique(p3.allergies.contact, "latex_allergy")
+            if self._contains_any_pattern(lower, [r"\bfragrance\b", r"\bparfum\b"]):
+                self._append_unique(p3.allergies.contact, "fragrance_sensitivity")
+            if not p3.allergies.food and not p3.allergies.contact:
+                self._append_unique(p3.values, "allergy_mentioned")
+
+        if self._contains_any_pattern(lower, [r"\bvegan\b", r"\bv[ée]gan"]):
+            self._append_unique(p3.diet, "vegan")
+        if self._contains_any_pattern(lower, [r"\bvegetar", r"\bv[ée]g[eé]tar"]):
+            self._append_unique(p3.diet, "vegetarian")
+        if self._contains_any_pattern(lower, [r"\bhalal\b"]):
+            self._append_unique(p3.diet, "halal")
+        if self._contains_any_pattern(lower, [r"\bkosher\b", r"\bcasher\b"]):
+            self._append_unique(p3.diet, "kosher")
+
+        # Explicit "no allergy" mention still counts as care information.
+        if self._contains_any_pattern(
+            lower,
+            [
+                r"\b(no|without)\s+allerg",
+                r"\baucune\s+allerg",
+                r"\bsans\s+allerg",
+                r"\bsin\s+alerg",
+                r"\bkeine\s+allerg",
+            ],
+        ):
+            self._append_unique(p3.values, "no_known_allergies")
 
     def _has_any(self, values: List[str]) -> bool:
         return any(isinstance(value, str) and value.strip() for value in values)
@@ -183,9 +368,10 @@ class RecommenderEngine:
             ),
             "occasion_signal": has_any(
                 [
-                    "cadeau", "gift", "anniversaire", "birthday", "wedding",
-                    "mariage", "christmas", "noel", "valentin", "valentine",
-                    "fete", "mother", "father",
+                    "anniversaire", "birthday", "compleanno", "cumplea", "geburtstag",
+                    "wedding", "mariage", "matrimonio", "boda", "hochzeit",
+                    "graduation", "diplom", "laurea", "christmas", "noel", "navidad",
+                    "valentin", "valentine", "housewarming", "pendaison de cremaill",
                 ]
             ),
             "care_signal": has_any(
@@ -214,12 +400,12 @@ class RecommenderEngine:
             },
             "usage": {
                 "weight": 10,
-                "expected": signals["long_note"] or signals["usage_signal"],
+                "expected": signals["usage_signal"],
                 "present": self._has_usage(extraction),
             },
             "preferences": {
                 "weight": 15,
-                "expected": signals["long_note"] or signals["preference_signal"],
+                "expected": signals["preference_signal"],
                 "present": self._has_preferences(extraction),
             },
             "budget": {

@@ -20,6 +20,42 @@ LANGUAGE_ALIASES = {
     'UK': 'EN',
 }
 
+TRUTHY_VALUES = {'1', 'true', 'yes', 'y', 'oui'}
+
+
+def _to_string_list(value: Any) -> List[str]:
+    if isinstance(value, str):
+        source = value.split(',')
+    elif isinstance(value, (list, tuple, set)):
+        source = list(value)
+    else:
+        return []
+    normalized: List[str] = []
+    seen = set()
+    for raw in source:
+        if raw is None:
+            continue
+        text = str(raw).strip()
+        if not text:
+            continue
+        key = text.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        normalized.append(text)
+    return normalized
+
+
+def _to_bool(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value != 0
+    normalized = str(value or '').strip().lower()
+    if not normalized:
+        return False
+    return normalized in TRUTHY_VALUES
+
 class NoteInput(BaseModel):
     """Input for single note analysis."""
     text: str = Field(
@@ -52,6 +88,15 @@ class NoteInput(BaseModel):
         return lang
 
 
+class ParityProbeInput(NoteInput):
+    """Input for parity probe (same runtime API projection vs runtime projection)."""
+
+    profile: Literal['single_note', 'batch_csv'] = Field(
+        default='single_note',
+        description="Runtime profile used by the pipeline in probe mode.",
+    )
+
+
 class BatchFileInput(BaseModel):
     """Metadata for batch file upload."""
     filename: str
@@ -77,12 +122,44 @@ class RGPDInfo(BaseModel):
     categories_detected: List[str] = Field(default_factory=list)
     anonymized_text: Optional[str] = None
 
+    @field_validator('contains_sensitive', mode='before')
+    @classmethod
+    def normalize_contains_sensitive(cls, v: Any) -> bool:
+        return _to_bool(v)
+
+    @field_validator('categories_detected', mode='before')
+    @classmethod
+    def normalize_categories_detected(cls, v: Any) -> List[str]:
+        return _to_string_list(v)
+
 
 class RoutingInfo(BaseModel):
     """Routing decision info."""
     tier: int = Field(ge=1, le=3)
     confidence: float = Field(ge=0, le=1)
     reason: Optional[str] = None
+
+    @field_validator('tier', mode='before')
+    @classmethod
+    def normalize_tier(cls, v: Any) -> int:
+        try:
+            tier = int(round(float(v)))
+        except (TypeError, ValueError):
+            tier = 1
+        return min(3, max(1, tier))
+
+    @field_validator('confidence', mode='before')
+    @classmethod
+    def normalize_confidence(cls, v: Any) -> float:
+        try:
+            confidence = float(v)
+        except (TypeError, ValueError):
+            confidence = 0.0
+        if confidence < 0:
+            return 0.0
+        if confidence > 1:
+            return 1.0
+        return confidence
 
 
 class MetaAnalysis(BaseModel):
@@ -91,6 +168,59 @@ class MetaAnalysis(BaseModel):
     advisor_feedback: Optional[str] = None
     missing_info: List[str] = Field(default_factory=list)
     risk_flags: List[str] = Field(default_factory=list)
+
+
+class ParityProjection(BaseModel):
+    """Compact parity projection used by benchmark tooling."""
+
+    tier: int = Field(ge=1, le=3)
+    rgpd_contains_sensitive: bool = False
+    tags: List[str] = Field(default_factory=list)
+
+    @field_validator('tier', mode='before')
+    @classmethod
+    def normalize_tier(cls, v: Any) -> int:
+        try:
+            tier = int(round(float(v)))
+        except (TypeError, ValueError):
+            tier = 1
+        return min(3, max(1, tier))
+
+    @field_validator('rgpd_contains_sensitive', mode='before')
+    @classmethod
+    def normalize_sensitive_flag(cls, v: Any) -> bool:
+        return _to_bool(v)
+
+    @field_validator('tags', mode='before')
+    @classmethod
+    def normalize_tags(cls, v: Any) -> List[str]:
+        return _to_string_list(v)
+
+
+class ParityProbeDiff(BaseModel):
+    """Per-note parity diff summary."""
+
+    tier_mismatch: bool = False
+    rgpd_mismatch: bool = False
+    tag_jaccard: float = Field(default=1.0, ge=0.0, le=1.0)
+
+
+class ParityProbeMeta(BaseModel):
+    """Runtime metadata for parity diagnostics."""
+
+    profile: str = 'single_note'
+    model_used: Optional[str] = None
+    processing_time_ms: float = 0.0
+    cache_hit: bool = False
+
+
+class ParityProbeResult(BaseModel):
+    """Full payload returned by /api/analyze/parity-probe."""
+
+    api_projection: ParityProjection
+    runtime_projection: ParityProjection
+    diff: ParityProbeDiff
+    meta: ParityProbeMeta
 
 
 class LeaderboardEntry(BaseModel):
@@ -125,6 +255,11 @@ class ExtractionResult(BaseModel):
     quality_gate_reason: Optional[str] = None
     cache_hit: bool = False
     model_used: Optional[str] = None
+
+    @field_validator('tags', mode='before')
+    @classmethod
+    def normalize_tags(cls, v: Any) -> List[str]:
+        return _to_string_list(v)
 
 
 # ============== Stats Schemas ==============

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ChevronDown, ChevronRight, Filter } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
-import { apiFetch, wsUrl } from '../lib/api'
+import { apiFetch, normalizeAnalysisResult, wsUrl } from '../lib/api'
 import confetti from 'canvas-confetti'
 import PipelineVisualizer from './PipelineVisualizer'
 
@@ -327,7 +327,12 @@ export default function AdvisorView({ onBack }) {
     const handleViewDetail = (note) => {
         // We might need to fetch full JSON if not in history
         if (note.analysis_json) {
-            setCurrentResult(JSON.parse(note.analysis_json))
+            try {
+                const parsed = JSON.parse(note.analysis_json)
+                setCurrentResult(normalizeAnalysisResult(parsed))
+            } catch {
+                setCurrentResult(null)
+            }
             setCurrentStep('done')
             setPipelineProgress({ step: 'done', source: 'history' })
         } else {
@@ -342,7 +347,7 @@ export default function AdvisorView({ onBack }) {
             const res = await apiFetch(`/api/results/${id}`)
             if (res.ok) {
                 const data = await res.json()
-                setCurrentResult(data)
+                setCurrentResult(normalizeAnalysisResult(data))
                 setCurrentStep('done')
                 setPipelineProgress({ step: 'done', source: 'history' })
             }
@@ -505,16 +510,17 @@ export default function AdvisorView({ onBack }) {
             if (!res.ok) throw new Error('Analysis failed')
 
             const data = await res.json()
-            setCurrentResult(data)
+            const normalizedData = normalizeAnalysisResult(data)
+            setCurrentResult(normalizedData)
             setTranscriptionDraft('')
             setCurrentStep('done')
             setPipelineProgress({
                 step: 'done',
-                quality_score: data?.meta_analysis?.quality_score,
-                processing_time_ms: data?.processing_time_ms
+                quality_score: normalizedData?.meta_analysis?.quality_score,
+                processing_time_ms: normalizedData?.processing_time_ms
             })
 
-            const qualityScore = normalizeScore(data.meta_analysis?.quality_score || 0)
+            const qualityScore = normalizeScore(normalizedData.meta_analysis?.quality_score || 0)
             const newScore = (user.points || user.score || 0) + (qualityScore >= 80 ? 15 : 10)
             updateUser({ score: newScore, points: newScore })
 
@@ -543,6 +549,15 @@ export default function AdvisorView({ onBack }) {
         setCurrentStep(null)
         setPipelineProgress(null)
         setPipelineStartedAt(null)
+    }
+
+    const activateTextMode = () => {
+        if (isProcessing || isRecording) return
+        setCurrentResult(null)
+        setTranscriptionDraft('')
+        setIsReviewingTranscription(true)
+        setCurrentStep('cleaning')
+        setPipelineProgress({ step: 'cleaning', source: 'text_mode' })
     }
 
     return (
@@ -727,6 +742,15 @@ export default function AdvisorView({ onBack }) {
                                     </div>
                                 </div>
                             </div>
+
+                            {!isRecording && !isProcessing && (
+                                <button
+                                    onClick={activateTextMode}
+                                    className="w-full mb-6 py-2.5 rounded-xl border border-lvmh-gold/35 text-lvmh-gold text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-lvmh-gold/10 transition-colors"
+                                >
+                                    Mode texte (deterministe)
+                                </button>
+                            )}
 
                             <div className="flex-1 flex flex-col items-center justify-center">
                             <h2 className="gold-text text-4xl font-bold mb-4 tracking-tighter">

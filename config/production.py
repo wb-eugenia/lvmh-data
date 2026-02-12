@@ -101,6 +101,9 @@ class Settings(BaseModel):
         ge=0.0,
         le=100.0,
     )
+    enable_parity_probe: bool = Field(
+        default_factory=lambda: os.getenv("ENABLE_PARITY_PROBE", "0") == "1"
+    )
 
     # Runtime Profiles
     single_note_profile: RuntimeProfile = Field(

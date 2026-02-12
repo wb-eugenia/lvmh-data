@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react'
 import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText, Mic, Play, Pause, Tag, ShoppingBag, Zap, Sparkles, Trash2, Terminal, AlertTriangle, Clock3, Filter, BriefcaseBusiness, Activity, RefreshCcw, BellRing, Building2, UserRound, Wifi, WifiOff, LogOut, X } from 'lucide-react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
-import { apiFetch, wsUrl } from '../lib/api'
+import { apiFetch, normalizeAnalysisResult, wsUrl } from '../lib/api'
 import { useAuth } from '../context/AuthContext'
 
 const DebugAnalyzer = lazy(() => import('./DebugAnalyzer'))
@@ -156,6 +156,37 @@ export default function ManagerView({ onBack }) {
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
     }
+
+    const normalizeRecording = (recording) => {
+        if (!recording || typeof recording !== 'object') return null
+        const normalized = normalizeAnalysisResult({
+            ...recording,
+            routing: recording.routing || {
+                tier: recording.tier,
+                confidence: recording.confidence
+            },
+            tags: recording.tags,
+            rgpd: recording.rgpd,
+            meta_analysis: recording.meta_analysis,
+            pilier_1_univers_produit: recording.pilier_1_univers_produit,
+            pilier_2_profil_client: recording.pilier_2_profil_client,
+            pilier_3_hospitalite_care: recording.pilier_3_hospitalite_care,
+            pilier_4_action_business: recording.pilier_4_action_business
+        })
+
+        return {
+            ...recording,
+            ...normalized,
+            tier: normalized.routing.tier,
+            confidence: normalized.routing.confidence
+        }
+    }
+
+    const normalizeRecordingsList = (items) => (
+        Array.isArray(items)
+            ? items.map(normalizeRecording).filter(Boolean)
+            : []
+    )
 
     const normalizeTierDistribution = (dist) => {
         if (!dist) return { 1: 0, 2: 0, 3: 0 }
@@ -563,7 +594,7 @@ export default function ManagerView({ onBack }) {
             if (res.ok) {
                 const data = await res.json()
                 console.log('Recordings data:', data)
-                setRecordings(data.recordings || [])
+                setRecordings(normalizeRecordingsList(data.recordings))
                 setRecordingsTotal(data.total || 0)
             } else {
                 const errorText = await res.text()
@@ -646,7 +677,7 @@ export default function ManagerView({ onBack }) {
             })
             if (ovRes.ok) {
                 const ovData = await ovRes.json()
-                setOverviewRecordings(ovData.recordings || [])
+                setOverviewRecordings(normalizeRecordingsList(ovData.recordings))
             }
 
             const rRes = await apiFetch('/api/stats/rgpd')

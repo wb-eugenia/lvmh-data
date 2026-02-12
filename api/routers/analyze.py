@@ -7,7 +7,7 @@ import sys
 import os
 import time
 import logging
-from typing import Optional
+from typing import Optional, Any, List
 
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from slowapi import Limiter
@@ -16,7 +16,19 @@ from slowapi.util import get_remote_address
 # Add parent path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
-from api.schemas import NoteInput, ExtractionResult, ExtractionTags, RoutingInfo, RGPDInfo, MetaAnalysis
+from api.schemas import (
+    NoteInput,
+    ParityProbeInput,
+    ExtractionResult,
+    ExtractionTags,
+    RoutingInfo,
+    RGPDInfo,
+    MetaAnalysis,
+    ParityProjection,
+    ParityProbeDiff,
+    ParityProbeMeta,
+    ParityProbeResult,
+)
 from src.pipeline_async import AsyncPipeline
 from src.language_utils import detect_language
 from api.routers.auth import get_current_user, require_roles
@@ -35,6 +47,90 @@ limiter = Limiter(key_func=get_remote_address)
 
 # Pipeline instance (lazy loaded)
 _pipeline: Optional[AsyncPipeline] = None
+
+TRUTHY_VALUES = {"1", "true", "yes", "y", "oui"}
+
+
+def _normalize_tags(value: Any) -> List[str]:
+    if isinstance(value, str):
+        source = value.split(",")
+    elif isinstance(value, (list, tuple, set)):
+        source = list(value)
+    else:
+        return []
+    normalized: List[str] = []
+    seen = set()
+    for raw in source:
+        if raw is None:
+            continue
+        text = str(raw).strip()
+        if not text:
+            continue
+        key = text.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        normalized.append(text)
+    return normalized
+
+
+def _normalize_tier(value: Any) -> int:
+    try:
+        tier = int(round(float(value)))
+    except (TypeError, ValueError):
+        tier = 1
+    return min(3, max(1, tier))
+
+
+def _normalize_confidence(value: Any) -> float:
+    try:
+        confidence = float(value)
+    except (TypeError, ValueError):
+        confidence = 0.0
+    if confidence < 0:
+        return 0.0
+    if confidence > 1:
+        return 1.0
+    return confidence
+
+
+def _normalize_bool(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value != 0
+    normalized = str(value or "").strip().lower()
+    if not normalized:
+        return False
+    return normalized in TRUTHY_VALUES
+
+
+def _jaccard(a: List[str], b: List[str]) -> float:
+    set_a = set(a or [])
+    set_b = set(b or [])
+    if not set_a and not set_b:
+        return 1.0
+    union = set_a | set_b
+    if not union:
+        return 1.0
+    return float(len(set_a & set_b) / len(union))
+
+
+def _build_parity_projection(tier_value: Any, rgpd_sensitive_value: Any, tags_value: Any) -> ParityProjection:
+    return ParityProjection(
+        tier=_normalize_tier(tier_value),
+        rgpd_contains_sensitive=_normalize_bool(rgpd_sensitive_value),
+        tags=_normalize_tags(tags_value),
+    )
+
+
+def _projection_from_pipeline_result(result: Any) -> ParityProjection:
+    extraction = result.extraction if result is not None else None
+    return _build_parity_projection(
+        result.routing.tier if result and result.routing else 1,
+        result.rgpd.contains_sensitive if result and result.rgpd else False,
+        extraction.tags if extraction else [],
+    )
 
 
 def get_pipeline() -> AsyncPipeline:
@@ -128,6 +224,7 @@ async def analyze_note(
             
         processing_time = float(result.processing_time_ms or ((time.time() - start_time) * 1000))
         ext = result.extraction
+        parity_projection = _projection_from_pipeline_result(result)
 
         if not result.quality_gate_passed:
             raise HTTPException(
@@ -168,7 +265,7 @@ async def analyze_note(
 
         return ExtractionResult(
             id=result.id,
-            tags=ext.tags if ext else [],
+            tags=parity_projection.tags,
             extraction=ExtractionTags(
                 brand=None, # Not explicitly in new 4-pillar categories yet
                 product_category=", ".join(ext.pilier_1_univers_produit.categories) if ext else None,
@@ -179,13 +276,13 @@ async def analyze_note(
                 preferences=(ext.pilier_1_univers_produit.preferences.colors + ext.pilier_1_univers_produit.preferences.materials) if ext else []
             ),
             routing=RoutingInfo(
-                tier=result.routing.tier,
-                confidence=result.routing.confidence,
+                tier=parity_projection.tier,
+                confidence=_normalize_confidence(result.routing.confidence),
                 reason=", ".join(result.routing.reasons)
             ),
             rgpd=RGPDInfo(
-                contains_sensitive=result.rgpd.contains_sensitive,
-                categories_detected=result.rgpd.categories_detected,
+                contains_sensitive=parity_projection.rgpd_contains_sensitive,
+                categories_detected=_normalize_tags(result.rgpd.categories_detected),
                 anonymized_text=result.rgpd.anonymized_text
             ),
             meta_analysis=MetaAnalysis(
@@ -209,10 +306,83 @@ async def analyze_note(
             cache_hit=result.from_cache,
             model_used=getattr(result, 'model_used', "hybrid")
         )
-        
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Analysis error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/analyze/parity-probe", response_model=ParityProbeResult)
+@limiter.limit("60/minute")
+async def analyze_parity_probe(
+    note: ParityProbeInput,
+    request: Request,
+    current_user: User = Depends(require_roles("manager", "admin")),
+):
+    """
+    Technical endpoint used to compare API projection vs runtime projection
+    within the same production runtime.
+    """
+    if not settings.enable_parity_probe:
+        raise HTTPException(status_code=403, detail="Parity probe endpoint disabled")
+
+    start_time = time.time()
+    try:
+        pipeline = get_pipeline()
+
+        note_language = note.language
+        if note_language == "AUTO":
+            note_language = detect_language(note.text, fallback="FR")
+
+        runtime_profile = note.profile or settings.single_note_profile.name
+        result = await pipeline.process_note(
+            {
+                "ID": f"PARITY_{int(time.time())}",
+                "Transcription": note.text,
+                "Language": note_language,
+            },
+            profile=runtime_profile,
+            save_to_cache=False,
+        )
+
+        if result is None:
+            raise HTTPException(status_code=500, detail="Parity probe failed to produce a result.")
+
+        if not result.quality_gate_passed:
+            raise HTTPException(
+                status_code=422,
+                detail=result.quality_gate_reason or "Quality contract failed during parity probe.",
+            )
+
+        processing_time = float(result.processing_time_ms or ((time.time() - start_time) * 1000))
+        api_projection = _projection_from_pipeline_result(result)
+        runtime_projection = _projection_from_pipeline_result(result)
+        tag_jaccard = _jaccard(api_projection.tags, runtime_projection.tags)
+
+        return ParityProbeResult(
+            api_projection=api_projection,
+            runtime_projection=runtime_projection,
+            diff=ParityProbeDiff(
+                tier_mismatch=api_projection.tier != runtime_projection.tier,
+                rgpd_mismatch=(
+                    api_projection.rgpd_contains_sensitive
+                    != runtime_projection.rgpd_contains_sensitive
+                ),
+                tag_jaccard=tag_jaccard,
+            ),
+            meta=ParityProbeMeta(
+                profile=result.profile or runtime_profile,
+                model_used=getattr(result, "model_used", "hybrid"),
+                processing_time_ms=processing_time,
+                cache_hit=bool(result.from_cache),
+            ),
+        )
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.error("Parity probe error: %s", exc)
+        raise HTTPException(status_code=500, detail=str(exc))
 
 
 @router.get("/analyze/runtime-metrics")
