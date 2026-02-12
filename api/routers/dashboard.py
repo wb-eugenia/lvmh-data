@@ -15,10 +15,11 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Depends, Query
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
+from sqlalchemy import func
 from sqlalchemy.orm import Session, joinedload
 
 from api.database import get_db
-from api.models_sql import Feedback, Note, OpportunityAction, User
+from api.models_sql import Client, Feedback, Note, OpportunityAction, User
 from api.routers.auth import require_roles
 from config.production import settings
 
@@ -53,6 +54,7 @@ ALLOWED_ACTION_STATUS = {"open", "planned", "done"}
 ALLOWED_OPPORTUNITY_PRIORITY_FILTER = {"all", "urgent", "vip", "tier3"}
 ALLOWED_OPPORTUNITY_SORT = {"priority", "recent", "budget", "urgency"}
 ALLOWED_OPPORTUNITY_WINDOW = {"all", "today", "7d", "30d"}
+DEMO_ACCOUNT_EMAILS = {"advisor@lvmh.com", "manager@lvmh.com", "admin@lvmh.com"}
 
 
 def _utcnow_naive() -> datetime:
@@ -1614,3 +1616,182 @@ async def warm_semantic_cache(
     except Exception as e:
         logger.error(f"Cache warm failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/admin/users")
+async def admin_list_users(
+    include_hashed_password: bool = Query(default=False),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
+    """Admin user inventory with role/points and login credential hints."""
+    users = db.query(User).order_by(User.role.asc(), User.email.asc()).all()
+    note_counts = {
+        int(user_id): int(count)
+        for user_id, count in (
+            db.query(Note.advisor_id, func.count(Note.id))
+            .group_by(Note.advisor_id)
+            .all()
+        )
+        if user_id is not None
+    }
+    last_note_at = {
+        int(user_id): timestamp
+        for user_id, timestamp in (
+            db.query(Note.advisor_id, func.max(Note.timestamp))
+            .group_by(Note.advisor_id)
+            .all()
+        )
+        if user_id is not None
+    }
+
+    demo_password = os.getenv("DEMO_PASSWORD", "lvmh")
+    rows: List[Dict[str, Any]] = []
+    for user in users:
+        email = str(user.email or "").strip()
+        email_lower = email.lower()
+        is_demo_account = email_lower in DEMO_ACCOUNT_EMAILS
+
+        credentials: Dict[str, Any] = {
+            "username": email,
+            "password": demo_password if is_demo_account else None,
+            "password_hint": (
+                "Compte demo seede via DEMO_PASSWORD"
+                if is_demo_account
+                else "Mot de passe non recuperable (hash uniquement)"
+            ),
+            "is_demo_account": is_demo_account,
+        }
+        if include_hashed_password:
+            credentials["hashed_password"] = user.hashed_password
+
+        user_id = int(user.id)
+        last_note = last_note_at.get(user_id)
+        rows.append(
+            {
+                "id": user_id,
+                "email": email,
+                "full_name": user.full_name,
+                "role": str(user.role or "advisor").strip().lower(),
+                "store": user.store,
+                "score": int(user.score or 0),
+                "notes_count": int(note_counts.get(user_id, 0)),
+                "last_note_at": last_note.isoformat() if isinstance(last_note, datetime) else None,
+                "credentials": credentials,
+            }
+        )
+
+    return {
+        "total": len(rows),
+        "requested_by": current_user.email,
+        "users": rows,
+    }
+
+
+@router.post("/admin/points/reset")
+async def admin_reset_points(
+    advisor_only: bool = Query(default=False),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
+    """Reset scoreboard points for all users (or advisors only)."""
+    try:
+        query = db.query(User)
+        if advisor_only:
+            query = query.filter(User.role == "advisor")
+
+        users = query.all()
+        reset_users = 0
+        for user in users:
+            if int(user.score or 0) != 0:
+                user.score = 0
+                reset_users += 1
+
+        db.commit()
+        return {
+            "status": "ok",
+            "target": "advisors" if advisor_only else "all_users",
+            "total_users": len(users),
+            "reset_users": reset_users,
+            "requested_by": current_user.email,
+        }
+    except Exception as exc:
+        db.rollback()
+        logger.error("Admin points reset failed: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to reset points")
+
+
+@router.delete("/admin/recordings/{note_id}")
+async def admin_delete_recording(
+    note_id: int,
+    adjust_advisor_points: bool = Query(default=True),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
+    """Delete one recording and optionally adjust advisor score."""
+    note = db.query(Note).filter(Note.id == note_id).first()
+    if not note:
+        raise HTTPException(status_code=404, detail=f"Note {note_id} not found")
+
+    removed_points = int(note.points_awarded or 0)
+    advisor_id = int(note.advisor_id) if note.advisor_id is not None else None
+    try:
+        deleted_actions = (
+            db.query(OpportunityAction)
+            .filter(OpportunityAction.note_id == note_id)
+            .delete(synchronize_session=False)
+        )
+        db.delete(note)
+
+        advisor_updated = False
+        if adjust_advisor_points and advisor_id is not None and removed_points > 0:
+            advisor = db.query(User).filter(User.id == advisor_id).first()
+            if advisor:
+                advisor.score = max(0, int(advisor.score or 0) - removed_points)
+                advisor_updated = True
+
+        db.commit()
+        return {
+            "status": "ok",
+            "deleted_note_id": note_id,
+            "deleted_actions": int(deleted_actions or 0),
+            "removed_points": removed_points,
+            "advisor_points_adjusted": advisor_updated,
+            "requested_by": current_user.email,
+        }
+    except Exception as exc:
+        db.rollback()
+        logger.error("Admin single recording delete failed: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to delete recording")
+
+
+@router.delete("/admin/recordings")
+async def admin_purge_recordings(
+    reset_points: bool = Query(default=True),
+    delete_feedback: bool = Query(default=True),
+    delete_clients: bool = Query(default=False),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
+    """Purge all recordings and optionally reset points and related data."""
+    try:
+        deleted_actions = db.query(OpportunityAction).delete(synchronize_session=False)
+        deleted_notes = db.query(Note).delete(synchronize_session=False)
+        deleted_feedback = db.query(Feedback).delete(synchronize_session=False) if delete_feedback else 0
+        deleted_clients = db.query(Client).delete(synchronize_session=False) if delete_clients else 0
+        reset_users = db.query(User).update({User.score: 0}, synchronize_session=False) if reset_points else 0
+
+        db.commit()
+        return {
+            "status": "ok",
+            "deleted_notes": int(deleted_notes or 0),
+            "deleted_actions": int(deleted_actions or 0),
+            "deleted_feedback": int(deleted_feedback or 0),
+            "deleted_clients": int(deleted_clients or 0),
+            "reset_users": int(reset_users or 0),
+            "requested_by": current_user.email,
+        }
+    except Exception as exc:
+        db.rollback()
+        logger.error("Admin purge recordings failed: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to purge recordings")

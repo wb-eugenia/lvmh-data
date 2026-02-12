@@ -35,10 +35,10 @@ async def get_batch_results(
     """
     List available batch CSV files or load data from a specific file.
     """
-    logger.info(f"ðŸ” Checking batch results in: {OUTPUT_DIR}")
+    logger.info(f"🔍 Checking batch results in: {OUTPUT_DIR}")
     
     if not OUTPUT_DIR.exists():
-        logger.warning(f"âš ï¸ Output directory not found: {OUTPUT_DIR}")
+        logger.warning(f"⚠️ Output directory not found: {OUTPUT_DIR}")
         return {"files": [], "data": [], "total": 0, "page": page}
     
     # List all CSV files
@@ -48,7 +48,7 @@ async def get_batch_results(
         reverse=True  # Most recent first
     )
     
-    logger.info(f"ðŸ“‚ Found {len(csv_files)} CSV files")
+    logger.info(f"📂 Found {len(csv_files)} CSV files")
     
     # If no file specified, just return the list
     if not file:
@@ -284,7 +284,7 @@ async def get_all_recordings(
     db: Session = Depends(get_db),
     current_user: User = Depends(require_roles("manager", "admin")),
     page: int = Query(1, ge=1),
-    limit: int = Query(20, ge=1, le=100),
+    limit: int = Query(20, ge=1, le=500),
     search: Optional[str] = None,
     advisor_id: Optional[int] = None,
     tier: Optional[int] = None

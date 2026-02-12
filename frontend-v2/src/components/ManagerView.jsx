@@ -66,22 +66,22 @@ export default function ManagerView({ onBack }) {
     const [previewData, setPreviewData] = useState(null)
 
     const formatPercent = (value) => {
-        if (value === null || value === undefined || Number.isNaN(value)) return 'â€”'
+        if (value === null || value === undefined || Number.isNaN(value)) return '—'
         const normalized = value <= 1 ? value * 100 : value
         return `${Math.round(normalized)}%`
     }
 
     const formatCurrency = (value) => {
-        if (value === null || value === undefined || Number.isNaN(value)) return 'â€”'
+        if (value === null || value === undefined || Number.isNaN(value)) return '—'
         try {
             return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)
         } catch {
-            return `${value}â‚¬`
+            return `${value}€`
         }
     }
 
     const formatDateTime = (value) => {
-        if (!value) return 'â€”'
+        if (!value) return '—'
         return new Date(value).toLocaleString('fr-FR')
     }
 
@@ -389,7 +389,7 @@ export default function ManagerView({ onBack }) {
         { id: 'datacleaning', name: 'Data Cleaning', icon: Sparkles },
         { id: 'leaderboard', name: 'Leaderboard', icon: Trophy },
         { id: 'vip', name: 'Clients VIP', icon: Star },
-        { id: 'quality', name: 'QualitÃ© Notes', icon: Users },
+        { id: 'quality', name: 'Qualité Notes', icon: Users },
         { id: 'debug', name: 'Debug Pipeline', icon: Terminal }
     ]
 
@@ -670,7 +670,7 @@ export default function ManagerView({ onBack }) {
             }
 
             const token = localStorage.getItem('token')
-            const ovRes = await apiFetch('/api/recordings?page=1&limit=150', {
+            const ovRes = await apiFetch('/api/recordings?page=1&limit=100', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -1591,7 +1591,7 @@ export default function ManagerView({ onBack }) {
                                     onClick={() => setSelectedRecording(null)}
                                     className="text-lvmh-gold text-sm hover:underline flex items-center gap-2"
                                 >
-                                    â† Retour Ã  la liste
+                                    ← Retour à la liste
                                 </button>
 
                                 <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
@@ -1647,17 +1647,17 @@ export default function ManagerView({ onBack }) {
                                     <div className="space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="glass p-4">
-                                                <div className="data-label">QualitÃ©</div>
+                                                <div className="data-label">Qualité</div>
                                                 <div className="text-xl font-semibold">{formatPercent(selectedMeta.quality_score)}</div>
                                                 <div className="text-xs text-lvmh-gray">
-                                                    ComplÃ©tude {formatPercent(selectedMeta.completeness_score)} / Confiance {formatPercent(selectedMeta.confidence_score)}
+                                                    Complétude {formatPercent(selectedMeta.completeness_score)} / Confiance {formatPercent(selectedMeta.confidence_score)}
                                                 </div>
                                             </div>
                                             <div className="glass p-4">
                                                 <div className="data-label">Budget</div>
                                                 <div className="text-lg font-semibold">{selectedP4?.budget_potential || 'N/A'}</div>
                                                 <div className="text-xs text-lvmh-gray">
-                                                    {selectedP4?.budget_specific ? formatCurrency(selectedP4.budget_specific) : 'Budget spÃ©cifique N/A'}
+                                                    {selectedP4?.budget_specific ? formatCurrency(selectedP4.budget_specific) : 'Budget spécifique N/A'}
                                                 </div>
                                             </div>
                                             <div className="glass p-4">
@@ -1667,10 +1667,10 @@ export default function ManagerView({ onBack }) {
                                             <div className="glass p-4">
                                                 <div className="data-label">RGPD</div>
                                                 <div className={`text-sm font-semibold ${selectedRgpd?.contains_sensitive ? 'text-red-400' : 'text-green-400'}`}>
-                                                    {selectedRgpd?.contains_sensitive ? 'Sensibles dÃ©tectÃ©es' : 'Conforme'}
+                                                    {selectedRgpd?.contains_sensitive ? 'Sensibles détectées' : 'Conforme'}
                                                 </div>
                                                 <div className="text-xs text-lvmh-gray">
-                                                    {selectedRgpd?.categories_detected?.length ? selectedRgpd.categories_detected.join(', ') : 'Aucune catÃ©gorie'}
+                                                    {selectedRgpd?.categories_detected?.length ? selectedRgpd.categories_detected.join(', ') : 'Aucune catégorie'}
                                                 </div>
                                             </div>
                                             <div className="glass p-4">
@@ -1712,7 +1712,7 @@ export default function ManagerView({ onBack }) {
                                         <h4 className="text-lg font-display font-bold mb-4">Pilier 1 - Univers Produit</h4>
                                         <div className="space-y-3 text-sm">
                                             <div>
-                                                <div className="data-label">CatÃ©gories</div>
+                                                <div className="data-label">Catégories</div>
                                                 <div className="mt-2 flex flex-wrap gap-2">
                                                     {(selectedP1.categories || []).length ? selectedP1.categories.map((cat, i) => (
                                                         <span key={i} className="text-xs bg-white/10 px-2 py-1 rounded">{cat}</span>
@@ -1720,7 +1720,7 @@ export default function ManagerView({ onBack }) {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="data-label">Produits mentionnÃ©s</div>
+                                                <div className="data-label">Produits mentionnés</div>
                                                 <div className="mt-2 text-sm text-lvmh-gray">{(selectedP1.produits_mentionnes || []).join(', ') || 'N/A'}</div>
                                             </div>
                                             <div className="grid grid-cols-2 gap-4">
@@ -1729,7 +1729,7 @@ export default function ManagerView({ onBack }) {
                                                     <div className="text-sm text-lvmh-gray">{(selectedP1.preferences?.colors || []).join(', ') || 'N/A'}</div>
                                                 </div>
                                                 <div>
-                                                <div className="data-label">MatiÃ¨res</div>
+                                                <div className="data-label">Matières</div>
                                                     <div className="text-sm text-lvmh-gray">{(selectedP1.preferences?.materials || []).join(', ') || 'N/A'}</div>
                                                 </div>
                                             </div>
@@ -1757,16 +1757,16 @@ export default function ManagerView({ onBack }) {
                                     </div>
 
                                     <div className="glass p-6">
-                                        <h4 className="text-lg font-display font-bold mb-4">Pilier 3 - HospitalitÃ© & Care</h4>
+                                        <h4 className="text-lg font-display font-bold mb-4">Pilier 3 - Hospitalité & Care</h4>
                                         <div className="space-y-3 text-sm">
                                             <div>
                                                 <div className="data-label">Allergies</div>
                                                 <div className={`text-sm ${selectedAllergies.length ? 'text-red-400' : 'text-green-400'}`}>
-                                                    {selectedAllergies.length ? selectedAllergies.join(', ') : 'Aucune dÃ©tectÃ©e'}
+                                                    {selectedAllergies.length ? selectedAllergies.join(', ') : 'Aucune détectée'}
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="data-label">RÃ©gime</div>
+                                                <div className="data-label">Régime</div>
                                                 <div className="text-sm text-lvmh-gray">{(selectedP3?.diet || []).join(', ') || 'N/A'}</div>
                                             </div>
                                             <div>
@@ -1788,7 +1788,7 @@ export default function ManagerView({ onBack }) {
                                                 <div className="text-sm text-lvmh-gray">{selectedP4?.urgency || 'N/A'}</div>
                                             </div>
                                             <div>
-                                                <div className="data-label">TempÃ©rature du lead</div>
+                                                <div className="data-label">Température du lead</div>
                                                 <div className="text-sm text-lvmh-gray">{selectedP4?.lead_temperature || 'N/A'}</div>
                                             </div>
                                         </div>
@@ -1800,13 +1800,13 @@ export default function ManagerView({ onBack }) {
                                     <div className="glass p-6">
                                         <div className="flex items-center gap-2 mb-4">
                                             <ShoppingBag size={20} className="text-lvmh-gold" />
-                                            <h4 className="font-display font-bold">Produits recommandÃ©s (RAG)</h4>
+                                            <h4 className="font-display font-bold">Produits recommandés (RAG)</h4>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                             {selectedRecording.matched_products.map((product, i) => (
                                                 <div key={i} className="bg-white/5 p-4 rounded-lg border border-white/10">
                                                     <div className="font-bold text-lvmh-gold mb-1">{product.name || product.ID}</div>
-                                                    <div className="text-xs text-lvmh-gray uppercase">{product.category || 'CatÃ©gorie'}</div>
+                                                    <div className="text-xs text-lvmh-gray uppercase">{product.category || 'Catégorie'}</div>
                                                     {product.description && (
                                                         <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
                                                     )}
@@ -1826,10 +1826,10 @@ export default function ManagerView({ onBack }) {
                                             <Zap size={20} className="text-green-500" />
                                             <h4 className="font-display font-bold">Next Best Action</h4>
                                         </div>
-                                        <p className="text-sm mb-4">{selectedRecording.next_best_action.description || 'Action recommandÃ©e'}</p>
+                                        <p className="text-sm mb-4">{selectedRecording.next_best_action.description || 'Action recommandée'}</p>
                                         {selectedRecording.next_best_action.target_products?.length > 0 && (
                                             <div>
-                                                <div className="data-label mb-2">Produits suggÃ©rÃ©s</div>
+                                                <div className="data-label mb-2">Produits suggérés</div>
                                                 <div className="flex flex-wrap gap-2">
                                                     {selectedRecording.next_best_action.target_products.map((p, i) => (
                                                         <span key={i} className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
@@ -1898,7 +1898,7 @@ export default function ManagerView({ onBack }) {
                                             {rec.matched_products?.length > 0 && (
                                                 <span className="flex items-center gap-1 text-lvmh-gold">
                                                     <ShoppingBag size={12} />
-                                                    {rec.matched_products.length} produits matchÃ©s
+                                                    {rec.matched_products.length} produits matchés
                                                 </span>
                                             )}
                                         </div>
@@ -1910,7 +1910,7 @@ export default function ManagerView({ onBack }) {
                                     </div>
                                 ) : (
                                     <div className="text-center py-20 text-lvmh-gray">
-                                        Aucun enregistrement trouvÃ©
+                                        Aucun enregistrement trouvé
                                     </div>
                                 )}
 
@@ -1922,7 +1922,7 @@ export default function ManagerView({ onBack }) {
                                             disabled={recordingsPage === 1}
                                             className="px-4 py-2 bg-white/5 rounded-lg disabled:opacity-50 hover:bg-white/10 transition-colors"
                                         >
-                                            PrÃ©cÃ©dent
+                                            Précédent
                                         </button>
                                         <span className="px-4 py-2 text-lvmh-gray">
                                             Page {recordingsPage} / {Math.ceil(recordingsTotal / 10)}
@@ -2604,7 +2604,7 @@ export default function ManagerView({ onBack }) {
                                     <span className="text-4xl font-black text-white/10">{i + 1}</span>
                                     <div className="flex-1">
                                         <div className="font-bold text-xl">{adv.id}</div>
-                                        <div className="text-lvmh-gray text-sm">{adv.notes} interactions capturÃ©es</div>
+                                        <div className="text-lvmh-gray text-sm">{adv.notes} interactions capturées</div>
                                     </div>
                                     <div className="text-3xl font-display font-black text-lvmh-gold">{adv.score} <span className="text-xs uppercase">points</span></div>
                                 </div>
@@ -2638,13 +2638,13 @@ export default function ManagerView({ onBack }) {
 
                                     <div className="bg-white/5 p-4 rounded-lg border border-white/5 space-y-4">
                                         <div>
-                                            <div className="text-[10px] text-lvmh-gold uppercase font-bold mb-2 tracking-widest">ðŸš€ OpportunitÃ© NBA</div>
+                                            <div className="text-[10px] text-lvmh-gold uppercase font-bold mb-2 tracking-widest">🚀 Opportunité NBA</div>
                                             <div className="font-medium text-sm">{r.pilier_4_action_business?.next_best_action?.description || "Analyse approfondie requise"}</div>
                                         </div>
 
                                         {r.matched_products?.length > 0 && (
                                             <div className="pt-3 border-t border-white/5">
-                                                <div className="text-[10px] text-lvmh-gray uppercase font-bold mb-2 tracking-widest">ðŸ›ï¸ Produits CataloguÃ©s (RAG)</div>
+                                                <div className="text-[10px] text-lvmh-gray uppercase font-bold mb-2 tracking-widest">🛍️ Produits Catalogués (RAG)</div>
                                                 <div className="flex gap-2 overflow-x-auto pb-1">
                                                     {r.matched_products.slice(0, 3).map((prod, pi) => (
                                                         <div key={pi} className="flex-shrink-0 bg-lvmh-black border border-white/5 p-2 rounded text-[10px]">
@@ -2667,10 +2667,10 @@ export default function ManagerView({ onBack }) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             {/* ROI CARD */}
                             <div className="glass p-8">
-                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-green-500">ðŸ’° Performance & ROI</h3>
+                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-green-500">💰 Performance & ROI</h3>
                                 <div className="space-y-6">
                                     <div>
-                                        <div className="text-xs text-lvmh-gray uppercase mb-1">CoÃ»t Total Cloud (Est.)</div>
+                                        <div className="text-xs text-lvmh-gray uppercase mb-1">Coût Total Cloud (Est.)</div>
                                         <div className="text-3xl font-display font-black">{formatCurrency(totalCost)}</div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
@@ -2679,7 +2679,7 @@ export default function ManagerView({ onBack }) {
                                             <div className="text-lg font-bold text-green-500">{savingsRate}</div>
                                         </div>
                                         <div className="bg-white/5 p-4 rounded-lg">
-                                            <div className="text-[10px] text-lvmh-gray uppercase">CoÃ»t / Note</div>
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Coût / Note</div>
                                             <div className="text-lg font-bold">{formatCurrency(costPerNote)}</div>
                                         </div>
                                     </div>
@@ -2688,11 +2688,11 @@ export default function ManagerView({ onBack }) {
 
                             {/* RGPD CARD */}
                             <div className="glass p-8">
-                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-red-400">ðŸ›¡ï¸ ConformitÃ© RGPD</h3>
+                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-red-400">🛡️ Conformité RGPD</h3>
                                 <div className="space-y-6">
                                     <div className="flex justify-between items-end">
                                         <div>
-                                            <div className="text-xs text-lvmh-gray uppercase mb-1">DonnÃ©es Sensibles DÃ©tectÃ©es</div>
+                                            <div className="text-xs text-lvmh-gray uppercase mb-1">Données Sensibles Détectées</div>
                                             <div className="text-3xl font-display font-black">{rgpdStats?.sensitive_count || 0}</div>
                                         </div>
                                         <div className="text-sm font-bold text-red-400 mb-1">{rgpdStats?.sensitive_rate || 0}% du flux</div>
@@ -2743,14 +2743,14 @@ export default function ManagerView({ onBack }) {
                                 htmlFor="cleaning-file-input"
                                 className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer transition-colors mb-4"
                             >
-                                {cleaningFile ? cleaningFile.name : 'SÃ©lectionner un fichier'}
+                                {cleaningFile ? cleaningFile.name : 'Sélectionner un fichier'}
                             </label>
 
                             {/* Column Selection */}
                             {availableColumns.length > 0 && (
                                 <div className="mt-6 text-left">
                                     <label className="block text-sm text-lvmh-gray mb-2">
-                                        Colonne contenant le texte Ã  nettoyer :
+                                        Colonne contenant le texte à nettoyer :
                                     </label>
                                     <select
                                         value={selectedColumn}
@@ -2766,7 +2766,7 @@ export default function ManagerView({ onBack }) {
                                     {previewData && (
                                         <div className="mt-4 p-4 bg-white/5 rounded-lg text-left">
                                             <div className="text-xs text-lvmh-gray uppercase mb-2">
-                                                {previewData.row_count} lignes â€¢ {availableColumns.length} colonnes
+                                                {previewData.row_count} lignes • {availableColumns.length} colonnes
                                             </div>
                                             {selectedColumn && previewData.sample[0] && (
                                                 <div className="text-sm">
@@ -2825,9 +2825,9 @@ export default function ManagerView({ onBack }) {
                                         <Sparkles size={20} className="text-green-500" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg">Nettoyage terminÃ© !</h4>
+                                        <h4 className="font-bold text-lg">Nettoyage terminé !</h4>
                                         <p className="text-sm text-lvmh-gray">
-                                            RÃ©duction de {cleaningResult.report.reduction_percent}%
+                                            Réduction de {cleaningResult.report.reduction_percent}%
                                         </p>
                                     </div>
                                     <button
@@ -2835,7 +2835,7 @@ export default function ManagerView({ onBack }) {
                                         className="ml-auto px-4 py-2 bg-lvmh-gold text-black font-bold rounded-lg hover:bg-lvmh-gold/90 transition-colors flex items-center gap-2"
                                     >
                                         <Download size={16} />
-                                        TÃ©lÃ©charger
+                                        Télécharger
                                     </button>
                                 </div>
 
@@ -2847,7 +2847,7 @@ export default function ManagerView({ onBack }) {
                                     </div>
                                     <div className="bg-white/5 p-4 rounded-lg text-center">
                                         <div className="text-2xl font-display font-black text-red-400">-{cleaningResult.report.rows_removed_total}</div>
-                                        <div className="text-xs text-lvmh-gray uppercase">Lignes supprimÃ©es</div>
+                                        <div className="text-xs text-lvmh-gray uppercase">Lignes supprimées</div>
                                     </div>
                                     <div className="bg-white/5 p-4 rounded-lg text-center">
                                         <div className="text-2xl font-display font-black text-green-500">{cleaningResult.report.final_rows}</div>
@@ -2855,14 +2855,14 @@ export default function ManagerView({ onBack }) {
                                     </div>
                                     <div className="bg-white/5 p-4 rounded-lg text-center">
                                         <div className="text-2xl font-display font-black text-lvmh-gold">{cleaningResult.report.reduction_percent}%</div>
-                                        <div className="text-xs text-lvmh-gray uppercase">RÃ©duction</div>
+                                        <div className="text-xs text-lvmh-gray uppercase">Réduction</div>
                                     </div>
                                 </div>
 
                                 {/* Details */}
                                 <div className="space-y-3">
                                     <h5 className="font-bold text-sm uppercase tracking-wider text-lvmh-gray mb-3">
-                                        DÃ©tails des opÃ©rations
+                                        Détails des opérations
                                     </h5>
                                     {cleaningResult.report.details.map((detail, i) => (
                                         <div key={i} className="flex items-center gap-3 bg-white/5 p-3 rounded-lg">
@@ -2883,7 +2883,7 @@ export default function ManagerView({ onBack }) {
                                 {/* Column Used */}
                                 <div className="mt-6 pt-6 border-t border-white/10">
                                     <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-sm text-lvmh-gray">Colonne utilisÃ©e pour le nettoyage:</span>
+                                        <span className="text-sm text-lvmh-gray">Colonne utilisée pour le nettoyage:</span>
                                         <span className="text-sm font-bold text-lvmh-gold">
                                             {cleaningResult.report.text_column_used}
                                         </span>
@@ -2923,14 +2923,14 @@ export default function ManagerView({ onBack }) {
                     <div className="space-y-6 animate-in slide-in-from-right duration-500">
                         <div className="flex justify-between items-center">
                             <h3 className="text-2xl font-display font-black gold-text flex items-center gap-2">
-                                <FileText size={24} /> RÃ©sultats Batch CSV
+                                <FileText size={24} /> Résultats Batch CSV
                             </h3>
-                            <span className="text-sm text-lvmh-gray">{csvTotal} rÃ©sultats</span>
+                            <span className="text-sm text-lvmh-gray">{csvTotal} résultats</span>
                         </div>
 
                         {/* File Selector */}
                         <div className="glass p-6">
-                            <label className="text-xs text-lvmh-gray uppercase tracking-widest font-bold mb-3 block">SÃ©lectionner un fichier</label>
+                            <label className="text-xs text-lvmh-gray uppercase tracking-widest font-bold mb-3 block">Sélectionner un fichier</label>
                             <select
                                 value={selectedCsv}
                                 onChange={handleCsvSelect}
@@ -2988,7 +2988,7 @@ export default function ManagerView({ onBack }) {
                                         )) : (
                                             <tr>
                                                 <td colSpan={5} className="p-10 text-center text-lvmh-gray italic">
-                                                    Aucun rÃ©sultat dans ce fichier
+                                                    Aucun résultat dans ce fichier
                                                 </td>
                                             </tr>
                                         )}

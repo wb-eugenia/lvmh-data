@@ -1,0 +1,147 @@
+{
+  "dataset": "LVMH_Realistic_Merged_CA001-100.csv",
+  "input_notes_per_run": 200,
+  "runs": 1,
+  "api_base": "http://127.0.0.1:8080",
+  "results": [
+    {
+      "run": 1,
+      "input_notes": 100,
+      "successful_notes": 100,
+      "failed_notes": 0,
+      "success_rate_pct": 100.0,
+      "http_5xx_count": 0,
+      "status_counts": {
+        "200": 100
+      },
+      "avg_quality_score": 89.98,
+      "notes_without_tags": 0,
+      "invalid_tags_total": 0,
+      "notes_with_invalid_tags": 0,
+      "rag_hit_rate_pct": 73.0,
+      "quality_gate_fail_count": 0,
+      "fallback_rate_pct": 0.0,
+      "avg_processing_time_ms": 3074.07,
+      "p95_processing_time_ms": 9383.35,
+      "avg_stage_timings_ms": {
+        "stage_cleaning_ms": 16.47,
+        "stage_rgpd_ms": 2307.88,
+        "stage_cache_lookup_ms": 0.54,
+        "stage_semantic_cache_lookup_ms": 0.0,
+        "stage_routing_ms": 73.11,
+        "stage_tier1_ms": 2.2,
+        "stage_tier2_ms": 619.73,
+        "stage_tier3_ms": 0.0,
+        "stage_cross_validation_ms": 1.29,
+        "stage_rag_ms": 51.32,
+        "stage_recommendation_ms": 1.39,
+        "stage_quality_gate_ms": 0.02,
+        "stage_injection_ms": 0.01,
+        "stage_total_ms": 3074.07
+      },
+      "worst_10_notes": [
+        {
+          "id": "CA_027",
+          "quality_score": 40.91,
+          "tags_count": 14,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Mr. Chen, 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high potential. Looking for gifts wife and business associates. Budget 20K discussed fl"
+        },
+        {
+          "id": "CA_032",
+          "quality_score": 45.0,
+          "tags_count": 16,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Dr. Patel and husband, both 38, first-time clients exceptional potential. She's plastic surgeon Harley Street, he's barrister specializing corporate law. Looking for professional p"
+        },
+        {
+          "id": "CA_028",
+          "quality_score": 59.09,
+          "tags_count": 17,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "M. Dubois et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avocate droit affaires. Shopping ensemble cadeaux famille événement familial. Budge"
+        },
+        {
+          "id": "CA_037",
+          "quality_score": 59.09,
+          "tags_count": 24,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Mrs. Wilson and daughter shopping together, excellent multi-generational clients. Mother 67 retired publisher, daughter 39 environmental lawyer. Combined budget 19K. Mother elegant"
+        },
+        {
+          "id": "CA_022",
+          "quality_score": 68.18,
+          "tags_count": 13,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking for professional wardrobe upgrade post-fundraising. Budget 15K flexible. She's b"
+        },
+        {
+          "id": "CA_077",
+          "quality_score": 72.22,
+          "tags_count": 11,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Mr. Phillips, 41, venture capitalist tech startups, new client high potential. Looking for professional pieces after recent successful exits. Budget 15K very flexible. Invests AI c"
+        },
+        {
+          "id": "CA_082",
+          "quality_score": 75.0,
+          "tags_count": 6,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Mr. Thompson, 36, hedge fund analyst, regular client. Shopping for sister's 30th birthday gift. Budget 6K. Sister works fashion PR agency London, style trendy modern follows trends"
+        },
+        {
+          "id": "CA_036",
+          "quality_score": 75.0,
+          "tags_count": 9,
+          "invalid_tags_count": 0,
+          "rag_hit": true,
+          "tier": 1,
+          "text_preview": "M. Simon, 59 ans, entrepreneur import-export, client occasionnel. Cherche cadeau épouse anniversaire 30 ans mariage. Budget 8K. Épouse galeriste art africain contemporain, organise"
+        },
+        {
+          "id": "CA_061",
+          "quality_score": 75.0,
+          "tags_count": 9,
+          "invalid_tags_count": 0,
+          "rag_hit": false,
+          "tier": 2,
+          "text_preview": "Ms. Park, 34, YouTuber luxury lifestyle content 1.5M subscribers, first visit high potential. Looking for pieces content creation and personal use. Budget 14K flexible. Travels con"
+        },
+        {
+          "id": "CA_018",
+          "quality_score": 75.0,
+          "tags_count": 13,
+          "invalid_tags_count": 0,
+          "rag_hit": true,
+          "tier": 2,
+          "text_preview": "Mr. Davis, 41, professional tennis player recently retired, new client high potential. Looking for lifestyle pieces post-sports career, starting coaching academy. Budget around 12K"
+        }
+      ],
+      "thresholds": {
+        "success_rate>=99": true,
+        "http_5xx==0": true,
+        "invalid_tags_total==0": true,
+        "avg_quality_score>=80": true,
+        "rag_hit_rate>=85": false,
+        "notes_without_tags==0": true
+      },
+      "all_thresholds_pass": false,
+      "output_csv": "output/benchmark_api_quality_run1.csv"
+    }
+  ],
+  "all_runs_pass": false
+}

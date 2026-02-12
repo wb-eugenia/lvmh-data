@@ -1,0 +1,101 @@
+{
+  "dataset": "LVMH_Realistic_Merged_CA001-100.csv",
+  "source": "legacy",
+  "pipeline_profile": "single_note",
+  "input_notes": 5,
+  "api_success": 5,
+  "api_errors": [],
+  "api_success_rate_pct": 100.0,
+  "compared_notes": 5,
+  "weights": {
+    "tier": 0.4,
+    "rgpd": 0.4,
+    "tags": 0.2
+  },
+  "tier_match_rate_pct": 80.0,
+  "rgpd_match_rate_pct": 40.0,
+  "avg_tag_jaccard": 0.6135,
+  "avg_tag_jaccard_pct": 61.35,
+  "min_tag_jaccard": 0.1667,
+  "max_tag_jaccard": 1.0,
+  "combined_parity_score_pct": 60.27,
+  "missing_required_fields": 0,
+  "invalid_quality_range": 0,
+  "mismatch_counts": {
+    "tier_mismatch": 1,
+    "rgpd_mismatch": 3,
+    "low_tag_jaccard": 1
+  },
+  "per_note_diff": [
+    {
+      "id": "CA_001",
+      "tier_mismatch": false,
+      "rgpd_mismatch": false,
+      "low_tag_jaccard": false,
+      "tag_jaccard": 0.6923,
+      "api_tier": 2,
+      "pipeline_tier": 2,
+      "api_contains_sensitive": true,
+      "pipeline_contains_sensitive": true,
+      "api_tag_count": 9,
+      "pipeline_tag_count": 13,
+      "missing_required_fields": []
+    },
+    {
+      "id": "CA_002",
+      "tier_mismatch": false,
+      "rgpd_mismatch": true,
+      "low_tag_jaccard": false,
+      "tag_jaccard": 0.5833,
+      "api_tier": 2,
+      "pipeline_tier": 2,
+      "api_contains_sensitive": true,
+      "pipeline_contains_sensitive": false,
+      "api_tag_count": 7,
+      "pipeline_tag_count": 12,
+      "missing_required_fields": []
+    },
+    {
+      "id": "CA_003",
+      "tier_mismatch": false,
+      "rgpd_mismatch": false,
+      "low_tag_jaccard": true,
+      "tag_jaccard": 0.1667,
+      "api_tier": 2,
+      "pipeline_tier": 2,
+      "api_contains_sensitive": false,
+      "pipeline_contains_sensitive": false,
+      "api_tag_count": 3,
+      "pipeline_tag_count": 11,
+      "missing_required_fields": []
+    },
+    {
+      "id": "CA_004",
+      "tier_mismatch": false,
+      "rgpd_mismatch": true,
+      "low_tag_jaccard": false,
+      "tag_jaccard": 0.625,
+      "api_tier": 2,
+      "pipeline_tier": 2,
+      "api_contains_sensitive": true,
+      "pipeline_contains_sensitive": false,
+      "api_tag_count": 5,
+      "pipeline_tag_count": 8,
+      "missing_required_fields": []
+    },
+    {
+      "id": "CA_005",
+      "tier_mismatch": true,
+      "rgpd_mismatch": true,
+      "low_tag_jaccard": false,
+      "tag_jaccard": 1.0,
+      "api_tier": 2,
+      "pipeline_tier": 1,
+      "api_contains_sensitive": false,
+      "pipeline_contains_sensitive": true,
+      "api_tag_count": 7,
+      "pipeline_tag_count": 7,
+      "missing_required_fields": []
+    }
+  ]
+}

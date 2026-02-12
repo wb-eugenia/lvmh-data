@@ -13,6 +13,8 @@ import {
     Server,
     ShieldAlert,
     ShieldCheck,
+    Trash2,
+    Users,
     Wifi,
     WifiOff,
     LogOut,
@@ -147,12 +149,36 @@ export default function AdminView({ onBack }) {
     const [liveEvents, setLiveEvents] = useState([])
     const [socketState, setSocketState] = useState('connecting')
     const [lastRefreshAt, setLastRefreshAt] = useState(null)
+    const [adminUsers, setAdminUsers] = useState([])
+    const [usersLoading, setUsersLoading] = useState(false)
+    const [usersError, setUsersError] = useState(null)
+    const [adminActionLoading, setAdminActionLoading] = useState(null)
+    const [adminActionMessage, setAdminActionMessage] = useState(null)
 
     const buildQuery = () => {
         const params = new URLSearchParams()
         if (windowDays) params.set('days', String(windowDays))
         const queryString = params.toString()
         return queryString ? `?${queryString}` : ''
+    }
+
+    const fetchAdminUsers = async () => {
+        setUsersLoading(true)
+        try {
+            const response = await apiFetch('/api/dashboard/admin/users')
+            if (!response.ok) {
+                const body = await response.text()
+                throw new Error(body || `Erreur users (${response.status})`)
+            }
+            const payload = await response.json()
+            setAdminUsers(Array.isArray(payload?.users) ? payload.users : [])
+            setUsersError(null)
+        } catch (fetchError) {
+            setAdminUsers([])
+            setUsersError(fetchError.message || 'Erreur chargement utilisateurs')
+        } finally {
+            setUsersLoading(false)
+        }
     }
 
     const fetchDashboard = async () => {
@@ -175,6 +201,7 @@ export default function AdminView({ onBack }) {
             if (rgpdRes.ok) setRgpdStats(await rgpdRes.json())
             if (costRes.ok) setCostStats(await costRes.json())
 
+            await fetchAdminUsers()
             setLastRefreshAt(new Date().toISOString())
         } catch (fetchError) {
             setError(fetchError.message || 'Erreur de chargement dashboard')
@@ -210,6 +237,50 @@ export default function AdminView({ onBack }) {
             setError(exportError.message || 'Erreur export')
         } finally {
             setExporting(null)
+        }
+    }
+
+    const handleResetAllPoints = async () => {
+        if (!window.confirm('Reinitialiser tous les points utilisateurs ?')) return
+        setAdminActionLoading('reset-points')
+        setAdminActionMessage(null)
+        setError(null)
+        try {
+            const response = await apiFetch('/api/dashboard/admin/points/reset', { method: 'POST' })
+            if (!response.ok) {
+                const body = await response.text()
+                throw new Error(body || 'Reset points indisponible')
+            }
+            const payload = await response.json()
+            setAdminActionMessage(`Points remis a zero pour ${payload?.reset_users ?? 0} utilisateur(s).`)
+            await fetchDashboard()
+        } catch (actionError) {
+            setError(actionError.message || 'Erreur reset points')
+        } finally {
+            setAdminActionLoading(null)
+        }
+    }
+
+    const handlePurgeRecordings = async () => {
+        if (!window.confirm('Supprimer tous les enregistrements et remettre les points a zero ?')) return
+        setAdminActionLoading('purge-recordings')
+        setAdminActionMessage(null)
+        setError(null)
+        try {
+            const response = await apiFetch('/api/dashboard/admin/recordings?reset_points=true&delete_feedback=true', {
+                method: 'DELETE'
+            })
+            if (!response.ok) {
+                const body = await response.text()
+                throw new Error(body || 'Purge indisponible')
+            }
+            const payload = await response.json()
+            setAdminActionMessage(`Purge OK: ${payload?.deleted_notes ?? 0} note(s), ${payload?.reset_users ?? 0} utilisateur(s) remis a zero.`)
+            await fetchDashboard()
+        } catch (actionError) {
+            setError(actionError.message || 'Erreur purge enregistrements')
+        } finally {
+            setAdminActionLoading(null)
         }
     }
 
@@ -420,6 +491,10 @@ export default function AdminView({ onBack }) {
     const noteProducts = noteDetails?.matched_products || []
     const noteTags = noteDetails?.tags || []
     const noteAudio = noteDetails?.audio || { available: false, sources: [] }
+    const usersTotal = adminUsers.length
+    const advisorsCount = adminUsers.filter((user) => user?.role === 'advisor').length
+    const managersCount = adminUsers.filter((user) => user?.role === 'manager').length
+    const adminsCount = adminUsers.filter((user) => user?.role === 'admin').length
 
     const handleTrendChartClick = (state) => {
         const clickedDate = state?.activePayload?.[0]?.payload?.date
@@ -926,6 +1001,114 @@ export default function AdminView({ onBack }) {
                                 </div>
                             )}
                         </div>
+                    </div>
+                </div>
+
+                <div className="glass p-6 space-y-4">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                            <h3 className="text-lg font-bold flex items-center gap-2">
+                                <Users size={18} className="text-lvmh-gold" />
+                                Users & Credentials
+                            </h3>
+                            <p className="text-xs text-lvmh-gray mt-1">
+                                Advisors: {advisorsCount} | Managers: {managersCount} | Admins: {adminsCount} | Total: {usersTotal}
+                            </p>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                            <button
+                                onClick={fetchAdminUsers}
+                                disabled={usersLoading}
+                                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-50"
+                            >
+                                <RefreshCcw size={12} />
+                                {usersLoading ? 'Refresh...' : 'Refresh Users'}
+                            </button>
+                            <button
+                                onClick={handleResetAllPoints}
+                                disabled={adminActionLoading === 'reset-points'}
+                                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-lvmh-gold/30 text-lvmh-gold text-xs uppercase tracking-widest hover:bg-lvmh-gold/10 transition-colors disabled:opacity-50"
+                            >
+                                <ShieldAlert size={12} />
+                                {adminActionLoading === 'reset-points' ? 'Reset...' : 'Reset Points'}
+                            </button>
+                            <button
+                                onClick={handlePurgeRecordings}
+                                disabled={adminActionLoading === 'purge-recordings'}
+                                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-red-500/40 text-red-300 text-xs uppercase tracking-widest hover:bg-red-500/10 transition-colors disabled:opacity-50"
+                            >
+                                <Trash2 size={12} />
+                                {adminActionLoading === 'purge-recordings' ? 'Purge...' : 'Purge Recordings + Points'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {adminActionMessage && (
+                        <div className="text-sm text-green-300 border border-green-500/30 rounded-lg p-3 bg-green-500/10">
+                            {adminActionMessage}
+                        </div>
+                    )}
+                    {usersError && (
+                        <div className="text-sm text-red-200 border border-red-500/30 rounded-lg p-3 bg-red-500/10">
+                            {usersError}
+                        </div>
+                    )}
+
+                    <div className="overflow-x-auto border border-white/10 rounded-xl">
+                        <table className="w-full text-sm min-w-[980px]">
+                            <thead className="bg-white/[0.03] text-lvmh-gray uppercase text-[10px] tracking-widest">
+                                <tr>
+                                    <th className="text-left px-4 py-3">User</th>
+                                    <th className="text-left px-4 py-3">Role</th>
+                                    <th className="text-left px-4 py-3">Store</th>
+                                    <th className="text-right px-4 py-3">Points</th>
+                                    <th className="text-right px-4 py-3">Notes</th>
+                                    <th className="text-left px-4 py-3">Last Note</th>
+                                    <th className="text-left px-4 py-3">Credentials</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {adminUsers.length > 0 ? adminUsers.map((user) => (
+                                    <tr key={user.id} className="border-t border-white/10 hover:bg-white/[0.02]">
+                                        <td className="px-4 py-3">
+                                            <div className="font-semibold">{user.full_name || user.email}</div>
+                                            <div className="text-xs text-lvmh-gray">{user.email}</div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <span className={`text-[10px] px-2 py-1 rounded-full border uppercase tracking-widest ${
+                                                user.role === 'admin'
+                                                    ? 'border-red-500/30 text-red-300 bg-red-500/10'
+                                                    : user.role === 'manager'
+                                                        ? 'border-lvmh-gold/30 text-lvmh-gold bg-lvmh-gold/10'
+                                                        : 'border-green-500/30 text-green-300 bg-green-500/10'
+                                            }`}>
+                                                {user.role}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3 text-lvmh-gray">{user.store || '-'}</td>
+                                        <td className="px-4 py-3 text-right font-semibold">{user.score ?? 0}</td>
+                                        <td className="px-4 py-3 text-right">{user.notes_count ?? 0}</td>
+                                        <td className="px-4 py-3 text-xs text-lvmh-gray">{formatDateTime(user.last_note_at)}</td>
+                                        <td className="px-4 py-3 text-xs">
+                                            <div className="font-mono text-lvmh-gold break-all">
+                                                {user?.credentials?.username || user.email}
+                                            </div>
+                                            <div className="text-lvmh-gray break-all">
+                                                {user?.credentials?.password
+                                                    ? `password: ${user.credentials.password}`
+                                                    : 'password: non lisible (hash uniquement)'}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )) : (
+                                    <tr>
+                                        <td colSpan={7} className="px-4 py-6 text-center text-lvmh-gray">
+                                            {usersLoading ? 'Chargement utilisateurs...' : 'Aucun utilisateur trouve.'}
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
