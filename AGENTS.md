@@ -5,7 +5,7 @@
 **LVMH Voice-to-Tag Pipeline V2.3** is an advanced AI system for hyper-personalized CRM in luxury retail. It transforms voice transcriptions from Client Advisors (CAs) into structured, actionable client profiles using a multi-tier processing architecture.
 
 **Key Capabilities:**
-- Real-time voice-to-text transcription (Groq Whisper)
+- Real-time voice-to-text transcription (OpenAI Whisper)
 - Intelligent note routing via Smart Router V3 (Random Forest ML)
 - 4-pillar taxonomy extraction (Product, Client Profile, Hospitality, Business Action)
 - RAG-based product matching
@@ -26,7 +26,7 @@
 | Language | Python 3.10+ |
 | Database | SQLite (SQLAlchemy ORM) |
 | Auth | JWT + bcrypt |
-| LLMs | Mistral AI (primary), OpenAI GPT-4o (fallback), Groq |
+| LLMs | Mistral AI (primary), OpenAI (transcription + RGPD) |
 | ML | scikit-learn (Smart Router) |
 | Vector Search | sentence-transformers + FAISS |
 | WebSocket | Real-time pipeline visualization |
@@ -72,7 +72,6 @@
 │   ├── smart_router.py    # Smart Router V3 (ML routing)
 │   ├── text_cleaner.py    # Pre-processing & normalization
 │   ├── tier1_rules.py     # Regex-based extraction (Tier 1)
-│   ├── tier2_groq.py      # Groq LLM processing (Tier 2)
 │   ├── tier2_mistral.py   # Mistral AI processing (Tier 2/3)
 │   ├── taxonomy.py        # Taxonomy management
 │   ├── extractor.py       # Tag extraction engine
@@ -186,8 +185,7 @@ The application will be available at:
 ### Environment Variables (.env)
 
 ```bash
-OPENAI_API_KEY=sk-...          # OpenAI GPT-4o-mini
-GROQ_API_KEY=gsk-...           # Groq API (Whisper + LLM)
+OPENAI_API_KEY=sk-...          # OpenAI (Whisper + RGPD)
 MISTRAL_API_KEY=...            # Mistral AI (primary LLM)
 ```
 
@@ -204,9 +202,6 @@ processing_timeout_seconds: 60
 cache_enabled: True
 cache_ttl_seconds: 86400
 
-# Ollama (local fallback)
-ollama_host: "http://localhost:11434"
-ollama_model: "qwen2.5:7b"
 ```
 
 ---
@@ -224,7 +219,7 @@ The router scores notes 0-100 based on:
 
 **Routing Logic:**
 - Score < 20: Tier 1 (Regex rules, ~50ms, €0)
-- Score 20-75: Tier 2 (Groq/Mistral, ~3s, €0.0001)
+- Score 20-75: Tier 2 (Mistral, ~3s, €0.0001)
 - Score > 75: Tier 3 (Mistral Large/GPT-4, ~5s, €0.005)
 
 ### 4-Pillar Taxonomy

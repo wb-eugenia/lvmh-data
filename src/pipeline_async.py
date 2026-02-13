@@ -145,7 +145,7 @@ class AsyncPipeline:
         
         # Concurrency control
         self.semaphore = asyncio.Semaphore(settings.max_concurrent_notes)
-        self.ollama_semaphore = asyncio.Semaphore(settings.max_concurrent_tier2_calls)
+        self.tier2_semaphore = asyncio.Semaphore(settings.max_concurrent_tier2_calls)
         self.openai_semaphore = asyncio.Semaphore(settings.max_concurrent_tier3_calls)
         
         # Stats
@@ -578,7 +578,7 @@ class AsyncPipeline:
                         try:
                             tier2_timeout = max(3.0, min(remaining_budget_seconds(), float(timeout_budget)))
                             tier2_result = await run_with_semaphore_timeout(
-                                self.ollama_semaphore,
+                                self.tier2_semaphore,
                                 lambda: self.tier2.extract(text, language),
                                 timeout_seconds=tier2_timeout
                             )
@@ -733,11 +733,20 @@ class AsyncPipeline:
                             self.stats['rag_disabled'] += 1
                             await safe_progress({"step": "rag", "status": "skipped_timeout_budget", "matches": 0})
                         elif self.matcher and getattr(self.matcher, 'enabled', False):
-                            rag_matches = self.matcher.match(
-                                text,
-                                top_k=int(runtime_profile.rag_top_k),
-                                threshold=float(runtime_profile.rag_threshold)
-                            )
+                            try:
+                                rag_matches = self.matcher.match(
+                                    text,
+                                    top_k=int(runtime_profile.rag_top_k),
+                                    threshold=float(runtime_profile.rag_threshold),
+                                    extraction=extraction_result,
+                                )
+                            except TypeError:
+                                # Backward compatibility with matchers exposing the old signature.
+                                rag_matches = self.matcher.match(
+                                    text,
+                                    top_k=int(runtime_profile.rag_top_k),
+                                    threshold=float(runtime_profile.rag_threshold),
+                                )
                             extraction_result.pilier_1_univers_produit.matched_products = rag_matches
                             if rag_matches:
                                 self.stats['rag_hits'] += 1

@@ -2,8 +2,8 @@
 Pipeline v2: Multi-Tier Orchestrator.
 Routes notes through Tier 1/2/3 based on complexity.
 - Tier 1: Rules (regex) - FREE
-- Tier 2: Ollama Qwen 2.5 7B - FREE (local)
-- Tier 3: GPT-4o-mini - $0.0001/note
+- Tier 2: Mistral - low cost
+- Tier 3: Mistral Large - premium quality
 """
 
 import json
@@ -37,8 +37,8 @@ class PipelineV2:
     Multi-tier processing pipeline.
     
     Tier 1: Rules-based (0€, ~0.01s/note)
-    Tier 2: Ollama Qwen 2.5 7B (0€, ~3s/note)
-    Tier 3: GPT-4o-mini ($0.0001/note, ~3s/note)
+    Tier 2: Mistral (low cost, ~3s/note)
+    Tier 3: Mistral Large (premium quality, ~3-5s/note)
     """
     
     def __init__(self, use_cache: bool = True):
@@ -109,8 +109,7 @@ class PipelineV2:
                 cached['tier'] = tier
                 return cached
         
-        # NOTE: RGPD detection is now handled by Smart Router V3 (RGPD boost)
-        # No need for separate Ollama filter - 1000x faster!
+        # NOTE: RGPD detection is handled in the active async pipeline.
         
         # Process based on tier
         if tier == 1:

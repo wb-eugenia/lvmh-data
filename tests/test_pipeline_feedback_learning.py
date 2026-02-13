@@ -92,5 +92,5 @@ async def test_pipeline_records_router_feedback_automatically():
 
 def test_pipeline_uses_configured_tier_concurrency():
     pipeline = AsyncPipeline(use_cache=False, use_semantic_cache=False, use_cross_validation=False)
-    assert pipeline.ollama_semaphore._value == settings.max_concurrent_tier2_calls
+    assert pipeline.tier2_semaphore._value == settings.max_concurrent_tier2_calls
     assert pipeline.openai_semaphore._value == settings.max_concurrent_tier3_calls

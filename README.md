@@ -64,7 +64,7 @@ Passage d'un mode "Batch" uniquement à une architecture **Événementielle** vi
 - **RGPD contextuel** : `RGPDFilter` (OpenAI) + fallback heuristique local.
 - **NBA** : `RecommenderEngine`.
 
-> Note: les anciens modules Groq ont été rangés dans `archive/legacy_groq/` et ne font pas partie du runtime actif.
+> Note: les anciens modules legacy ont été archivés et ne font pas partie du runtime actif.
 
 ---
 
