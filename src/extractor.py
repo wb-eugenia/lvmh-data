@@ -369,12 +369,13 @@ RÈGLE OR: Combine TOUS les signaux pour inférer range précis
         async with self.semaphore:
             taxonomy_summary = self.taxonomy.get_tags_summary()
             
-            # Simple user prompt
-            user_prompt = f"""LANGUE: {language}
-NOTE VOCALE:
-{text}
-
-Mission: Extraction 4-Layer complète selon le System Prompt."""
+            user_payload = {
+                "language": language,
+                "note_vocale": text,
+                "mission": "Extraction 4-Layer complète selon le System Prompt",
+                "output_format": "json_object",
+            }
+            user_prompt = json.dumps(user_payload, ensure_ascii=False)
 
             try:
                 response = await self.client.chat.complete_async(

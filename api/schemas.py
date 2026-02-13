@@ -165,6 +165,8 @@ class RoutingInfo(BaseModel):
 class MetaAnalysis(BaseModel):
     """Meta analysis info."""
     quality_score: float = 0.0
+    confidence_score: float = 0.0
+    completeness_score: float = 0.0
     advisor_feedback: Optional[str] = None
     missing_info: List[str] = Field(default_factory=list)
     risk_flags: List[str] = Field(default_factory=list)

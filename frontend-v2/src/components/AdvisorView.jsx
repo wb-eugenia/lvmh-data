@@ -892,9 +892,11 @@ export default function AdvisorView({ onBack }) {
                                         </div>
                                         <div className="glass p-4">
                                             <div className="data-label">Budget</div>
-                                            <div className="text-lg font-semibold">{resultP4?.budget_potential || 'N/A'}</div>
+                                            <div className="text-lg font-semibold">{summaryBudget}</div>
                                             <div className="text-xs text-lvmh-gray">
-                                                {resultP4?.budget_specific ? formatCurrency(resultP4.budget_specific) : 'Budget specifique N/A'}
+                                                {resultP4?.budget_specific && resultP4?.budget_potential
+                                                    ? `Estimation: ${resultP4.budget_potential}`
+                                                    : (resultP4?.budget_specific ? 'Budget specifique detecte' : 'Budget specifique N/A')}
                                             </div>
                                         </div>
                                         <div className="glass p-4">

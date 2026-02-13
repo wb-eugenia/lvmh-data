@@ -91,6 +91,79 @@ export default function DebugAnalyzer() {
         </div>
     );
 
+    const formatValue = (value) => {
+        if (value === null || value === undefined) return '';
+        if (typeof value === 'string') return value;
+        if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+        if (Array.isArray(value)) return value.map((item) => formatValue(item)).filter(Boolean).join(', ');
+        if (typeof value === 'object') {
+            if (typeof value.description === 'string' && value.description.trim()) return value.description.trim();
+            if (typeof value.label === 'string' && value.label.trim()) return value.label.trim();
+            try {
+                return JSON.stringify(value);
+            } catch {
+                return String(value);
+            }
+        }
+        return String(value);
+    };
+
+    const normalizePercent = (value) => {
+        if (value === null || value === undefined || Number.isNaN(Number(value))) return 0;
+        const numeric = Number(value);
+        return Math.round(numeric <= 1 ? numeric * 100 : numeric);
+    };
+
+    const collectAllTags = (payload) => {
+        if (!payload || typeof payload !== 'object') return [];
+        const explicit = Array.isArray(payload.tags) ? payload.tags : [];
+        const p1 = payload.pilier_1_univers_produit || {};
+        const p2 = payload.pilier_2_profil_client || {};
+        const p3 = payload.pilier_3_hospitalite_care || {};
+        const p4 = payload.pilier_4_action_business || {};
+
+        const derived = [
+            ...(Array.isArray(p1.categories) ? p1.categories : []),
+            ...(Array.isArray(p1.produits_mentionnes) ? p1.produits_mentionnes : []),
+            ...(Array.isArray(p3.allergies?.food) ? p3.allergies.food : []),
+            ...(Array.isArray(p3.allergies?.contact) ? p3.allergies.contact : []),
+            p2.purchase_context?.behavior,
+            p2.purchase_context?.type,
+            p3.occasion,
+            p4.next_best_action?.action_type ? `action:${p4.next_best_action.action_type}` : null
+        ];
+
+        return [...explicit, ...derived]
+            .map((item) => String(item || '').trim())
+            .filter(Boolean)
+            .filter((item, index, array) => array.findIndex((candidate) => candidate.toLowerCase() === item.toLowerCase()) === index);
+    };
+
+    const estimateCompleteness = (payload) => {
+        if (!payload || typeof payload !== 'object') return 0;
+        const p1 = payload.pilier_1_univers_produit || {};
+        const p2 = payload.pilier_2_profil_client || {};
+        const p3 = payload.pilier_3_hospitalite_care || {};
+        const p4 = payload.pilier_4_action_business || {};
+        const checks = [
+            Boolean(p4.budget_specific || p4.budget_potential),
+            Boolean((p1.categories || []).length || (p1.produits_mentionnes || []).length),
+            Boolean(p3.occasion),
+            Boolean(p2.purchase_context?.type || p2.purchase_context?.behavior),
+            Boolean(p4.urgency),
+        ];
+        const filled = checks.filter(Boolean).length;
+        return Math.round((filled / checks.length) * 100);
+    };
+
+    const allTags = collectAllTags(result);
+    const qualityPercent = normalizePercent(result?.meta_analysis?.quality_score);
+    const confidencePercent = normalizePercent(
+        result?.meta_analysis?.confidence_score ?? result?.routing?.confidence
+    );
+    const completenessPercentRaw = normalizePercent(result?.meta_analysis?.completeness_score);
+    const completenessPercent = completenessPercentRaw > 0 ? completenessPercentRaw : estimateCompleteness(result);
+
     return (
         <div className="space-y-6 animate-in fade-in duration-500 max-w-6xl mx-auto">
             {/* Header */}
@@ -178,8 +251,8 @@ export default function DebugAnalyzer() {
                         />
                         <MetricCard 
                             label="Confiance" 
-                            value={`${Math.round((result.routing?.confidence || 0) * 100)}%`}
-                            color={result.routing?.confidence > 0.8 ? 'text-green-400' : 'text-yellow-400'}
+                            value={`${confidencePercent}%`}
+                            color={confidencePercent >= 80 ? 'text-green-400' : 'text-yellow-400'}
                         />
                         <MetricCard 
                             label="Temps API" 
@@ -191,23 +264,23 @@ export default function DebugAnalyzer() {
                         />
                         <MetricCard 
                             label="Tags Extraits" 
-                            value={result.extraction?.tags?.length || 0}
+                            value={allTags.length}
                         />
                         <MetricCard 
                             label="Qualité Score" 
-                            value={`${Math.round((result.meta_analysis?.quality_score || 0) * 100)}%`}
+                            value={`${qualityPercent}%`}
                         />
                     </div>
 
                     {/* Tags */}
-                    {result.tags && result.tags.length > 0 && (
+                    {allTags.length > 0 && (
                         <div className="glass p-4">
                             <div className="flex items-center gap-2 mb-3">
                                 <Tag size={18} className="text-lvmh-gold" />
                                 <span className="font-bold">Tags Extraits</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
-                                {result.tags.map((tag, i) => (
+                                {allTags.map((tag, i) => (
                                     <span 
                                         key={i} 
                                         className="bg-lvmh-gold/20 text-lvmh-gold px-3 py-1 rounded-full text-sm font-medium"
@@ -335,11 +408,13 @@ export default function DebugAnalyzer() {
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Budget</span>
                                         <div className="text-lg font-bold text-lvmh-gold mt-1">
-                                            {result.pilier_4_action_business.budget_potential || 'Non détecté'}
+                                            {result.pilier_4_action_business.budget_specific
+                                                ? `${result.pilier_4_action_business.budget_specific}€`
+                                                : (result.pilier_4_action_business.budget_potential || 'Non détecté')}
                                         </div>
-                                        {result.pilier_4_action_business.budget_specific && (
+                                        {result.pilier_4_action_business.budget_specific && result.pilier_4_action_business.budget_potential && (
                                             <div className="text-sm text-lvmh-gray">
-                                                Spécifique: {result.pilier_4_action_business.budget_specific}€
+                                                Estimation: {result.pilier_4_action_business.budget_potential}
                                             </div>
                                         )}
                                     </div>
@@ -355,8 +430,22 @@ export default function DebugAnalyzer() {
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Prochaine Action</span>
                                         <div className="text-sm font-medium text-lvmh-gold mt-1">
-                                            {result.pilier_4_action_business.next_best_action || 'Aucune'}
+                                            {formatValue(result.pilier_4_action_business.next_best_action) || 'Aucune'}
                                         </div>
+                                        {Array.isArray(result.pilier_4_action_business.next_best_action?.target_products)
+                                            && result.pilier_4_action_business.next_best_action.target_products.length > 0 && (
+                                            <div className="flex flex-wrap gap-1 mt-2">
+                                                {result.pilier_4_action_business.next_best_action.target_products.slice(0, 8).map((product, i) => {
+                                                    const label = formatValue(product);
+                                                    if (!label) return null;
+                                                    return (
+                                                        <span key={i} className="text-[10px] bg-white/10 px-2 py-1 rounded">
+                                                            {label}
+                                                        </span>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 {result.pilier_4_action_business.nba_rationale && (
@@ -378,13 +467,13 @@ export default function DebugAnalyzer() {
                                 {result.matched_products.map((product, i) => (
                                     <div key={i} className="bg-white/5 rounded-lg p-4 border border-white/10">
                                         <div className="flex justify-between items-start mb-2">
-                                            <span className="font-bold">{product.name}</span>
+                                            <span className="font-bold">{product.name || product.ID || `Produit ${i + 1}`}</span>
                                             <span className="text-xs bg-lvmh-gold/20 text-lvmh-gold px-2 py-1 rounded">
-                                                {Math.round((product.similarity || 0) * 100)}% match
+                                                {Math.round(((product.match_score ?? product.similarity) || 0) * 100)}% match
                                             </span>
                                         </div>
-                                        <div className="text-sm text-lvmh-gray">{product.category}</div>
-                                        <div className="text-lvmh-gold font-bold mt-2">{product.price}€</div>
+                                        <div className="text-sm text-lvmh-gray">{product.category || 'Categorie N/A'}</div>
+                                        <div className="text-lvmh-gold font-bold mt-2">{product.price ? `${product.price}€` : 'Prix N/A'}</div>
                                     </div>
                                 ))}
                             </div>
@@ -479,19 +568,19 @@ export default function DebugAnalyzer() {
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Quality Score</span>
                                         <div className="text-2xl font-bold text-lvmh-gold mt-1">
-                                            {Math.round((result.meta_analysis.quality_score || 0) * 100)}%
+                                            {qualityPercent}%
                                         </div>
                                     </div>
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Confiance Extraction</span>
                                         <div className="text-2xl font-bold text-lvmh-gold mt-1">
-                                            {Math.round((result.meta_analysis.confidence_score || 0) * 100)}%
+                                            {confidencePercent}%
                                         </div>
                                     </div>
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Complétude</span>
                                         <div className="text-2xl font-bold text-lvmh-gold mt-1">
-                                            {Math.round((result.meta_analysis.completeness_score || 0) * 100)}%
+                                            {completenessPercent}%
                                         </div>
                                     </div>
                                 </div>

@@ -3,11 +3,19 @@ Next Best Action Recommender Engine.
 Transforms extracted tags and context into actionable business suggestions.
 """
 
+import json
+import os
 import re
 from typing import List, Dict, Optional, Any
 from src.models import ExtractionResult, Pilier4Business, NextBestAction
 import logging
 from src.analytics.predictions import SyntheticClientPredictions
+
+try:
+    from mistralai import Mistral
+    HAS_MISTRAL = True
+except ImportError:
+    HAS_MISTRAL = False
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +23,33 @@ class RecommenderEngine:
     """
     Engine that generates business recommendations based on extracted pillars.
     """
+
+    NBA_GENERATION_PROMPT = """
+Tu es un Manager LVMH expert en stratégie client boutique de luxe.
+Génère une Next Best Action concrète, priorisée, orientée conversion.
+
+Règles:
+1. Prioriser les actions time-sensitive (réservation, RDV, stock limité, deadline).
+2. Mentionner explicitement les contraintes critiques (allergies, restrictions, urgences).
+3. Proposer un cross-sell pertinent uniquement si cohérent avec budget et intention.
+4. Être concret: QUI, QUOI, QUAND.
+5. Pas d'actions génériques.
+
+Réponds en JSON strict:
+{
+  "nba_text": "string",
+  "actions": [
+    {
+      "type": "reservation|rdv_preparation|cross_sell|verification|follow_up|retention_call",
+      "priority": "urgent|high|medium|low|critical",
+      "text": "Action concrète",
+      "deadline": "ISO-8601 or relative",
+      "product_sku": "optional"
+    }
+  ],
+  "overall_priority": "urgent|high|medium|low|critical"
+}
+"""
     
     def __init__(self):
         self.predictor: Optional[SyntheticClientPredictions] = None
@@ -22,6 +57,19 @@ class RecommenderEngine:
             self.predictor = SyntheticClientPredictions()
         except Exception as exc:
             logger.warning("Synthetic prediction engine unavailable: %s", exc)
+
+        self.nba_llm_enabled = os.getenv("LVMH_ENABLE_NBA_LLM", "false").lower() in {"1", "true", "yes"}
+        self.nba_llm_model = os.getenv("NBA_LLM_MODEL", "mistral-large-latest")
+        self.nba_llm_client = None
+        if self.nba_llm_enabled:
+            api_key = os.getenv("MISTRAL_API_KEY")
+            if HAS_MISTRAL and api_key:
+                try:
+                    self.nba_llm_client = Mistral(api_key=api_key)
+                except Exception as exc:
+                    logger.warning("NBA LLM disabled (client init failed): %s", exc)
+            else:
+                logger.warning("NBA LLM requested but Mistral client/api key unavailable.")
     
     def generate_recommendation(self, extraction: ExtractionResult, source_text: Optional[str] = None) -> ExtractionResult:
         """
@@ -42,67 +90,75 @@ class RecommenderEngine:
         budget = p4.budget_potential
         status = p2.purchase_context.behavior or "client"
         
-        action = None
-        
         # Match products from RAG if available
         products = [p.get('name', 'N/A') for p in p1.matched_products]
         top_product = products[0] if products else None
-        
-        # --- RULE 1: Birthdays/Anniversaries ---
-        if occasion in ['birthday', 'birthday_gift', 'wedding_anniversary']:
-            priority = "High" if urgency in ['urgent', 'today', 'this_week'] else "Medium"
-            desc = f"Contacte le {status} pour son {occasion.replace('_', ' ')}. "
-            if top_product:
-                desc += f"Suggère le {top_product} qui correspond à ses goûts."
-            else:
-                desc += "Propose une sélection de nouveautés."
-            
-            action = NextBestAction(
-                action_type="gift_suggestion",
-                description=desc,
-                priority=priority,
-                target_products=products[:2],
-                deadline=urgency
-            )
-            
-        # --- RULE 2: VIC Service Passage ---
-        elif "luxury_service" in p1.categories and status in ['vic', 'ultimate']:
-            action = NextBestAction(
-                action_type="invitation",
-                description=f"Le client {status.upper()} est passé pour un service. Invite-le à découvrir la nouvelle collection en salon privé.",
-                priority="High",
-                target_products=["new_collection"]
-            )
-            
-        # --- RULE 3: New Lead Exploration ---
-        elif status == 'first_visit' or not status:
-            desc = "Envoie un mot de remerciement post-visite. "
-            if top_product:
-                desc += f"Relance sur le {top_product}."
-            
-            action = NextBestAction(
-                action_type="follow_up",
-                description=desc,
-                priority="Medium",
-                target_products=products[:1]
-            )
-            
-        # --- RULE 4: Specific Product Intent ---
-        elif p1.categories and not action:
-            desc = f"Relance le client sur ses favoris: {', '.join(p1.categories[:2])}. "
-            if budget:
-                desc += f"Budget estimé: {budget}."
-                
-            action = NextBestAction(
-                action_type="follow_up",
-                description=desc,
-                priority="Medium",
-                target_products=products[:2]
-            )
 
-        # Inject recommendation if found
-        if action:
-            p4.next_best_action = action
+        # Optional structured NBA generation via LLM (guarded by env flag).
+        if p4.next_best_action is None:
+            llm_action = self._generate_nba_llm_action(extraction, source_text or "")
+            if llm_action is not None:
+                p4.next_best_action = llm_action
+
+        action = p4.next_best_action
+        if action is None:
+            # --- RULE 1: Birthdays/Anniversaries ---
+            if occasion in ['birthday', 'birthday_gift', 'wedding_anniversary']:
+                priority = "High" if urgency in ['urgent', 'today', 'this_week'] else "Medium"
+                desc = f"Contacte le {status} pour son {occasion.replace('_', ' ')}. "
+                if top_product:
+                    desc += f"Suggère le {top_product} qui correspond à ses goûts."
+                else:
+                    desc += "Propose une sélection de nouveautés."
+                
+                action = NextBestAction(
+                    action_type="gift_suggestion",
+                    description=desc,
+                    priority=priority,
+                    target_products=products[:2],
+                    deadline=urgency
+                )
+                
+            # --- RULE 2: VIC Service Passage ---
+            elif "luxury_service" in p1.categories and status in ['vic', 'ultimate']:
+                action = NextBestAction(
+                    action_type="invitation",
+                    description=f"Le client {status.upper()} est passé pour un service. Invite-le à découvrir la nouvelle collection en salon privé.",
+                    priority="High",
+                    target_products=["new_collection"]
+                )
+                
+            # --- RULE 3: New Lead Exploration ---
+            elif status == 'first_visit' or not status:
+                desc = "Envoie un mot de remerciement post-visite. "
+                if top_product:
+                    desc += f"Relance sur le {top_product}."
+                
+                action = NextBestAction(
+                    action_type="follow_up",
+                    description=desc,
+                    priority="Medium",
+                    target_products=products[:1]
+                )
+                
+            # --- RULE 4: Specific Product Intent ---
+            elif p1.categories:
+                desc = f"Relance le client sur ses favoris: {', '.join(p1.categories[:2])}. "
+                if budget:
+                    desc += f"Budget estimé: {budget}."
+                    
+                action = NextBestAction(
+                    action_type="follow_up",
+                    description=desc,
+                    priority="Medium",
+                    target_products=products[:2]
+                )
+
+            # Inject deterministic fallback recommendation if found
+            if action:
+                p4.next_best_action = action
+
+        self._augment_nba_from_text(extraction, source_text or "")
 
         prediction = self._predict_client_signals(extraction, source_text or "")
         if prediction:
@@ -147,6 +203,206 @@ class RecommenderEngine:
         except Exception as exc:
             logger.warning("Prediction enrichment skipped: %s", exc)
             return None
+
+    def _generate_nba_llm_action(
+        self,
+        extraction: ExtractionResult,
+        source_text: str,
+    ) -> Optional[NextBestAction]:
+        if not self.nba_llm_client:
+            return None
+
+        p1 = extraction.pilier_1_univers_produit
+        p2 = extraction.pilier_2_profil_client
+        p3 = extraction.pilier_3_hospitalite_care
+        p4 = extraction.pilier_4_action_business
+
+        constraints: List[str] = []
+        if p3.allergies.food or p3.allergies.contact:
+            constraints.append(
+                f"allergies={p3.allergies.food + p3.allergies.contact}"
+            )
+        if p4.urgency:
+            constraints.append(f"urgency={p4.urgency}")
+        if p3.occasion:
+            constraints.append(f"occasion={p3.occasion}")
+
+        matched_products = []
+        for product in (p1.matched_products or [])[:3]:
+            if not isinstance(product, dict):
+                continue
+            matched_products.append(
+                {
+                    "name": product.get("name"),
+                    "sku": product.get("sku"),
+                    "price": product.get("price"),
+                    "score": product.get("match_score"),
+                }
+            )
+
+        payload = {
+            "note_summary": (source_text or "")[:500],
+            "client_profile": {
+                "tier": p2.purchase_context.behavior,
+                "purchase_type": p2.purchase_context.type,
+                "budget_potential": p4.budget_potential,
+                "budget_specific": p4.budget_specific,
+            },
+            "product_context": {
+                "categories": p1.categories[:5],
+                "products_mentioned": p1.produits_mentionnes[:5],
+                "matched_products": matched_products,
+            },
+            "constraints": constraints,
+        }
+
+        try:
+            request_args = {
+                "model": self.nba_llm_model,
+                "messages": [
+                    {"role": "system", "content": self.NBA_GENERATION_PROMPT},
+                    {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+                ],
+                "temperature": 0.2,
+                "max_tokens": 500,
+            }
+            try:
+                response = self.nba_llm_client.chat.complete(
+                    **request_args,
+                    response_format={"type": "json_object"},
+                )
+            except TypeError:
+                response = self.nba_llm_client.chat.complete(**request_args)
+
+            content = response.choices[0].message.content
+            if isinstance(content, list):
+                content = "".join(
+                    chunk.get("text", "") if isinstance(chunk, dict) else str(chunk)
+                    for chunk in content
+                )
+            if not isinstance(content, str):
+                return None
+
+            data = json.loads(content)
+            actions = data.get("actions", []) if isinstance(data, dict) else []
+            first_action = actions[0] if actions and isinstance(actions[0], dict) else {}
+            description = (
+                first_action.get("text")
+                or data.get("nba_text")
+                or "Relance client avec préparation personnalisée."
+            )
+
+            action_type = str(first_action.get("type") or "follow_up").strip().lower() or "follow_up"
+            priority = self._normalize_priority(
+                first_action.get("priority") or data.get("overall_priority") or "medium"
+            )
+            deadline = first_action.get("deadline")
+            targets = [item.get("name") for item in matched_products if isinstance(item, dict) and item.get("name")]
+            if first_action.get("product_sku"):
+                targets.insert(0, str(first_action.get("product_sku")))
+            target_products = list(dict.fromkeys([str(target).strip() for target in targets if str(target).strip()]))[:3]
+
+            return NextBestAction(
+                action_type=action_type,
+                description=str(description).strip(),
+                priority=priority,
+                target_products=target_products,
+                deadline=str(deadline).strip() if isinstance(deadline, str) and deadline.strip() else None,
+            )
+        except Exception as exc:
+            logger.warning("NBA LLM generation failed, fallback deterministic rules: %s", exc)
+            return None
+
+    def _normalize_priority(self, value: Any) -> str:
+        mapping = {
+            "critical": "Critical",
+            "urgent": "Critical",
+            "high": "High",
+            "medium": "Medium",
+            "low": "Low",
+        }
+        normalized = str(value or "").strip().lower()
+        return mapping.get(normalized, "Medium")
+
+    def _normalize_score_pct(self, value: Any) -> float:
+        try:
+            score = float(value)
+        except (TypeError, ValueError):
+            return 0.0
+        if score <= 1.0:
+            score *= 100.0
+        return max(0.0, min(100.0, score))
+
+    def _extract_meeting_hint(self, source_text: str) -> Optional[str]:
+        text = source_text or ""
+        # Supports "lundi 11h", "monday at 11:00", "vendredi a 14h30"
+        match = re.search(
+            r"\b(lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b(?:\s*(?:a|à|at)?\s*(\d{1,2}(?:h\d{0,2}|:\d{2})?))?",
+            text,
+            re.IGNORECASE,
+        )
+        if not match:
+            return None
+        day = match.group(1).strip()
+        hour = (match.group(2) or "").strip()
+        if hour:
+            return f"{day} {hour}"
+        return day
+
+    def _augment_nba_from_text(self, extraction: ExtractionResult, source_text: str) -> None:
+        text = (source_text or "").lower()
+        p1 = extraction.pilier_1_univers_produit
+        p3 = extraction.pilier_3_hospitalite_care
+        p4 = extraction.pilier_4_action_business
+
+        if p4.next_best_action is None:
+            p4.next_best_action = NextBestAction(
+                action_type="follow_up",
+                description="Relance client avec preparation personnalisee.",
+                priority="Medium",
+                target_products=[],
+            )
+
+        action = p4.next_best_action
+        assert action is not None
+        fragments: List[str] = []
+
+        mentioned_products = [str(prod).strip() for prod in p1.produits_mentionnes if str(prod).strip()]
+        rag_products = [str(prod.get("name", "")).strip() for prod in p1.matched_products if isinstance(prod, dict)]
+        merged_targets = list(dict.fromkeys([*action.target_products, *mentioned_products[:2], *rag_products[:2]]))
+        action.target_products = [target for target in merged_targets if target]
+
+        if self._contains_any_pattern(text, [r"\breserv", r"\br[ée]server", r"\bbook\b", r"\bhold\b"]):
+            product_label = action.target_products[0] if action.target_products else "le produit mentionne"
+            fragments.append(f"Reserver {product_label} avant le prochain passage client.")
+            if action.priority in {"Low", "Medium"}:
+                action.priority = "High"
+
+        has_nickel_signal = (
+            self._contains_any_pattern(text, [r"\bnickel\b"])
+            or any("nickel" in str(item).lower() for item in p3.allergies.contact)
+        )
+        if has_nickel_signal:
+            fragments.append("Verifier les finitions sans nickel avant presentation.")
+            if action.priority in {"Low", "Medium"}:
+                action.priority = "High"
+
+        if self._contains_any_pattern(text, [r"rendez[-\s]?vous", r"\brdv\b", r"\bappointment\b", r"\bmeeting\b", r"\breviendra\b"]):
+            meeting_hint = self._extract_meeting_hint(source_text)
+            if meeting_hint:
+                fragments.append(f"Preparer la selection pour le RDV {meeting_hint}.")
+            else:
+                fragments.append("Preparer une selection pour le prochain RDV.")
+
+        if self._contains_any_pattern(text, [r"\bportefeuille\b", r"\bwallet\b", r"\bsmall leather\b"]):
+            fragments.append("Preparer un portefeuille assorti en cross-sell.")
+
+        if fragments:
+            normalized_description = (action.description or "").strip()
+            for fragment in fragments:
+                if fragment.lower() not in normalized_description.lower():
+                    normalized_description = f"{normalized_description} {fragment}".strip()
+            action.description = normalized_description
 
     def _append_unique(self, values: List[str], value: str) -> None:
         if not value:
@@ -224,7 +480,7 @@ class RecommenderEngine:
                 "sports": [r"\btennis\b", r"\bgolf\b", r"\bplayer\b", r"\bathlet"],
                 "finance": [r"\bhedge fund\b", r"\banalyst\b", r"\binvest", r"\bcapital\b"],
                 "business": [r"\bentrepreneur\b", r"\bfounder\b", r"\bceo\b", r"\bmanager\b"],
-                "diplomacy": [r"\bdiplomat\b", r"\bonu\b", r"\bun\b", r"\bconsulat"],
+                "diplomacy": [r"\bdiplomat(e)?\b", r"\bonu\b", r"\bunited nations\b", r"\bconsul(?:at)?\b", r"\bambassador\b", r"\bambassadeur\b"],
                 "aviation": [r"\bpilot\b", r"\bairline\b", r"\bstewardess\b"],
             }
             for sector, patterns in sector_patterns.items():
@@ -510,15 +766,46 @@ class RecommenderEngine:
 
         raw_score = (earned_weight / expected_weight * 100.0) if expected_weight > 0 else 0.0
         final_score = max(0.0, min(100.0, raw_score * floor))
-        extraction.meta_analysis.quality_score = float(round(final_score, 2))
-        
+        completeness_score = max(0.0, min(100.0, raw_score))
+
+        meta = extraction.meta_analysis
+        meta.quality_score = float(round(final_score, 2))
+        meta.completeness_score = float(round(completeness_score, 2))
+
+        confidence_candidates = [
+            self._normalize_score_pct(getattr(meta, "confidence_score", 0.0)),
+            self._normalize_score_pct(getattr(extraction, "confidence", 0.0)),
+        ]
+        confidence_score = max(confidence_candidates)
+        if confidence_score <= 0.0:
+            confidence_score = max(45.0, min(95.0, 40.0 + final_score * 0.55))
+        meta.confidence_score = float(round(confidence_score, 2))
+
+        missing_labels = {
+            "categories": "Categorie produit non detectee",
+            "context": "Type d'achat indetermine",
+            "usage": "Usage client non precise",
+            "preferences": "Preferences produit non precisees",
+            "budget": "Budget non specifie",
+            "profession": "Profil socio-professionnel incomplet",
+            "occasion": "Occasion non mentionnee",
+            "occasion_specificity": "Contexte occasion peu specifique",
+            "care": "Informations care/allergies absentes",
+        }
+        normalized_missing = [
+            missing_labels[name]
+            for name in missing_sections
+            if name in missing_labels
+        ]
+        meta.missing_info = list(dict.fromkeys(normalized_missing))
+
         # Gamified feedback
         if final_score >= 80:
             feedback = "Super note: profil client tres complet et exploitable en CRM."
         elif final_score >= 50:
             feedback = "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
         else:
-            top_missing = ", ".join(missing_sections[:3]) if missing_sections else "contexte client"
+            top_missing = ", ".join(meta.missing_info[:3]) if meta.missing_info else "contexte client"
             feedback = f"Note a enrichir: ajoute des details sur {top_missing}."
-            
-        extraction.meta_analysis.advisor_feedback = feedback
+
+        meta.advisor_feedback = feedback

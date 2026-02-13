@@ -126,6 +126,17 @@ export default function ManagerView({ onBack }) {
             .slice(0, 8)
     }
 
+    const formatChipValue = (value) => {
+        const preview = formatPreviewValue(value)
+        if (preview) return preview
+        if (value === null || value === undefined) return null
+        try {
+            return JSON.stringify(value)
+        } catch {
+            return String(value)
+        }
+    }
+
     const formatFileTimestamp = () => {
         return new Date().toISOString().replace(/[:.]/g, '-')
     }
@@ -1864,16 +1875,20 @@ export default function ManagerView({ onBack }) {
                                             <Zap size={20} className="text-green-500" />
                                             <h4 className="font-display font-bold">Next Best Action</h4>
                                         </div>
-                                        <p className="text-sm mb-4">{selectedRecording.next_best_action.description || 'Action recommandée'}</p>
+                                        <p className="text-sm mb-4">{formatChipValue(selectedRecording.next_best_action?.description) || 'Action recommandée'}</p>
                                         {selectedRecording.next_best_action.target_products?.length > 0 && (
                                             <div>
                                                 <div className="data-label mb-2">Produits suggérés</div>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {selectedRecording.next_best_action.target_products.map((p, i) => (
-                                                        <span key={i} className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
-                                                            {p}
-                                                        </span>
-                                                    ))}
+                                                    {selectedRecording.next_best_action.target_products.map((p, i) => {
+                                                        const label = formatChipValue(p)
+                                                        if (!label) return null
+                                                        return (
+                                                            <span key={i} className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">
+                                                                {label}
+                                                            </span>
+                                                        )
+                                                    })}
                                                 </div>
                                             </div>
                                         )}
@@ -3128,15 +3143,19 @@ export default function ManagerView({ onBack }) {
                                         <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
                                             <div className="text-[10px] uppercase tracking-[0.18em] text-lvmh-gray mb-2">Next Best Action</div>
                                             <p className="text-sm text-white leading-relaxed">
-                                                {selectedOpportunityNba?.description || selectedOpportunityP4?.next_step || 'Relance manager recommandee pour qualification commerciale.'}
+                                                {formatChipValue(selectedOpportunityNba?.description) || selectedOpportunityP4?.next_step || 'Relance manager recommandee pour qualification commerciale.'}
                                             </p>
                                             {Array.isArray(selectedOpportunityNba?.target_products) && selectedOpportunityNba.target_products.length > 0 && (
                                                 <div className="mt-4 flex flex-wrap gap-2">
-                                                    {selectedOpportunityNba.target_products.slice(0, 8).map((product, index) => (
-                                                        <span key={`nba-target-${index}`} className="text-[10px] px-2 py-1 rounded-full border border-lvmh-gold/30 bg-lvmh-gold/10 text-lvmh-gold">
-                                                            {product}
-                                                        </span>
-                                                    ))}
+                                                    {selectedOpportunityNba.target_products.slice(0, 8).map((product, index) => {
+                                                        const label = formatChipValue(product)
+                                                        if (!label) return null
+                                                        return (
+                                                            <span key={`nba-target-${index}`} className="text-[10px] px-2 py-1 rounded-full border border-lvmh-gold/30 bg-lvmh-gold/10 text-lvmh-gold">
+                                                                {label}
+                                                            </span>
+                                                        )
+                                                    })}
                                                 </div>
                                             )}
                                         </div>

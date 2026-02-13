@@ -81,6 +81,24 @@ PROFESSIONS:
 - entrepreneur_startup, entrepreneur_established
 - tech_engineer, tech_executive, creative_designer
 
+═══════════════════════════════════════════════════════════════
+⚠️ RÈGLE CRITIQUE PROFESSION
+═══════════════════════════════════════════════════════════════
+
+NE JAMAIS INVENTER/INFÉRER UNE PROFESSION.
+
+EXTRACTION PROFESSION = EXPLICITE UNIQUEMENT:
+✅ "Je suis avocate" → profession: "legal_lawyer"
+✅ "Médecin urgentiste" → profession: "medical_physician"
+✅ "Banquier privé" → profession: "finance_banker"
+
+❌ "Cliente Hong Kong" → profession: null
+❌ "VIP Monaco" → profession: null
+❌ "Shopping Champs-Élysées" → profession: null
+
+SIGNAUX GÉOGRAPHIQUES = LOCATIONS (Layer 2), PAS profession.
+Si aucune mention explicite de profession: profession = null.
+
 LIFESTYLE:
 - art_collector, wine_enthusiast, travel_frequent
 - sports_golf, sports_tennis, sports_equestrian, sports_yacht
@@ -524,7 +542,13 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
         if not self._check_circuit_breaker():
             raise Exception("Circuit breaker OPEN - Mistral unavailable")
             
-        prompt = f"Langue: {language}\n\nNOTE CLIENT:\n\"{text}\"\n\nExtrais les informations et réponds en JSON."
+        user_payload = {
+            "language": language,
+            "note_client": text,
+            "task": "Extraire les informations business-critiques selon le system prompt.",
+            "output_format": "json_object",
+        }
+        prompt = json.dumps(user_payload, ensure_ascii=False)
         
         try:
             # Call Mistral with Timeout (async)
@@ -627,7 +651,10 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
                     behavior=safe_str(result_dict.get('client_status'))
                 ),
                 profession=Profession(
-                    sector=safe_str(result_dict.get('profession'))
+                    sector=self._sanitize_profession(
+                        safe_str(result_dict.get('profession')),
+                        locations=safe_list(result_dict.get('locations', [])),
+                    )
                 ),
                 lifestyle=Lifestyle()
             )
@@ -688,6 +715,52 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
                 from_cache=False,
                 rgpd_flag=False
             )
+
+    def _sanitize_profession(self, value: Optional[str], locations: Optional[List[str]] = None) -> Optional[str]:
+        """Prevent geography/status noise from being persisted as profession."""
+        if not value:
+            return None
+
+        normalized = value.strip()
+        if not normalized:
+            return None
+
+        lower = normalized.lower()
+        blocked_values = {
+            "vip",
+            "vic",
+            "ultimate",
+            "regular",
+            "client",
+            "unknown",
+            "none",
+            "null",
+        }
+        if lower in blocked_values:
+            return None
+
+        # Common location-only values occasionally hallucinated as profession.
+        blocked_location_tokens = {
+            "hong kong",
+            "monaco",
+            "dubaï",
+            "dubai",
+            "paris",
+            "london",
+            "new york",
+            "milan",
+            "tokyo",
+            "singapore",
+        }
+        if lower in blocked_location_tokens:
+            return None
+
+        if locations:
+            normalized_locations = {str(loc).strip().lower() for loc in locations if str(loc).strip()}
+            if lower in normalized_locations:
+                return None
+
+        return normalized
 
     def get_metrics_summary(self) -> Dict:
         """Get metrics summary."""

@@ -287,6 +287,8 @@ async def analyze_note(
             ),
             meta_analysis=MetaAnalysis(
                 quality_score=ext.meta_analysis.quality_score if ext else 0.0,
+                confidence_score=ext.meta_analysis.confidence_score if ext else 0.0,
+                completeness_score=ext.meta_analysis.completeness_score if ext else 0.0,
                 advisor_feedback=ext.meta_analysis.advisor_feedback if ext else None,
                 missing_info=ext.meta_analysis.missing_info if ext else [],
                 risk_flags=ext.meta_analysis.risk_flags if ext else []

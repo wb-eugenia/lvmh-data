@@ -80,7 +80,18 @@ RÉPONDS EN JSON:
                 model=self.model,
                 messages=[
                     {"role": "system", "content": self.SYSTEM_PROMPT},
-                    {"role": "user", "content": f"Langue: {language}\n\nTexte à analyser:\n\"{text}\""}
+                    {
+                        "role": "user",
+                        "content": json.dumps(
+                            {
+                                "language": language,
+                                "text_to_analyze": text,
+                                "task": "Detect sensitive RGPD/GDPR data categories in this note.",
+                                "output_format": "json_object",
+                            },
+                            ensure_ascii=False,
+                        ),
+                    }
                 ],
                 temperature=0.0,
                 response_format={"type": "json_object"}
