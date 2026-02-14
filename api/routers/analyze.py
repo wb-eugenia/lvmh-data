@@ -34,6 +34,7 @@ from src.language_utils import detect_language
 from api.routers.auth import get_current_user, require_roles
 from api.models_sql import User, Note, Client
 from api.database import get_db, SessionLocal
+from api.container import get_pipeline
 from sqlalchemy.orm import Session
 from fastapi import Depends
 import json
@@ -134,12 +135,8 @@ def _projection_from_pipeline_result(result: Any) -> ParityProjection:
 
 
 def get_pipeline() -> AsyncPipeline:
-    """Get or create pipeline instance."""
-    global _pipeline
-    if _pipeline is None:
-        _pipeline = AsyncPipeline(use_cache=True, use_semantic_cache=False, use_cross_validation=True)
-        logger.info("Pipeline initialized")
-    return _pipeline
+    """Get pipeline instance via dependency injection."""
+    return get_pipeline()
 
 
 def persist_note_single_transaction(
@@ -216,7 +213,8 @@ async def analyze_note(
         result = await pipeline.process_note({
             'ID': f'API_{int(time.time())}',
             'Transcription': note.text,
-            'Language': note_language
+            'Language': note_language,
+            'is_written': note.is_written_note,
         }, on_progress=on_progress, profile=settings.single_note_profile.name, save_to_cache=settings.single_note_profile.save_to_cache)
         
         if result is None:

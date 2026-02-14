@@ -1,0 +1,84 @@
+{
+  "dataset": "data/raw/generated_notes_dirty_40.csv",
+  "input_notes": 40,
+  "successful_notes": 40,
+  "failed_notes": 0,
+  "pipeline_summary": {
+    "duration_seconds": 142.55,
+    "processed": 40,
+    "success": 40,
+    "failed": 0,
+    "tiers": {
+      "tier1": 7,
+      "tier2": 33,
+      "tier3": 0
+    },
+    "tiers_executed": {
+      "tier1": 40,
+      "tier2": 33,
+      "tier3": 0
+    },
+    "cross_validation": {
+      "enabled": true,
+      "notes_merged": 33
+    },
+    "rag": {
+      "attempted": 40,
+      "hits": 4,
+      "hit_rate": 10.0,
+      "disabled": 0
+    },
+    "profiles": {
+      "batch_csv": {
+        "count": 40,
+        "p50_ms": 32263.07,
+        "p95_ms": 49962.9,
+        "avg_ms": 30202.02,
+        "notes_without_tags": 0,
+        "fallback_rate_pct": 0.0,
+        "stage_avg_ms": {
+          "cleaning": 18.03,
+          "rgpd": 2494.51,
+          "cache_lookup": 0.0,
+          "semantic_cache_lookup": 0.0,
+          "routing": 77.79,
+          "tier1": 1.66,
+          "tier2": 27566.68,
+          "cross_validation": 2.02,
+          "rag": 26.87,
+          "recommendation": 14.31,
+          "quality_gate": 0.01,
+          "injection": 0.0,
+          "total": 30202.02
+        }
+      }
+    }
+  },
+  "quality_metrics": {
+    "avg_quality_score": 79.8,
+    "avg_extraction_confidence": 0.9025,
+    "avg_tags_per_note": 9.95,
+    "notes_without_tags": 0,
+    "invalid_tags_total": 0,
+    "invalid_tags_rate_pct": 0.0,
+    "notes_with_invalid_tags": 0,
+    "avg_processing_time_ms": 30202.023,
+    "p50_processing_time_ms": 31864.57,
+    "p95_processing_time_ms": 50039.97,
+    "p99_processing_time_ms": 53141.55,
+    "max_processing_time_ms": 54188.41,
+    "avg_processing_time_ms_excl_top_1pct": 29586.987,
+    "avg_char_reduction_pct": 4.2273
+  },
+  "rgpd_metrics": {
+    "notes_with_sensitive_data": 8,
+    "sensitive_rate_pct": 20.0
+  },
+  "rag_metrics": {
+    "attempted": 40,
+    "hits": 4,
+    "hit_rate_pct": 10.0,
+    "notes_with_matched_products": 4
+  },
+  "output_metrics_csv": "output/benchmark_quality_100_notes_metrics.csv"
+}

@@ -23,6 +23,8 @@ RUN pip install groq sqlalchemy passlib python-jose bcrypt
 
 # Copy Backend Code
 COPY src/ ./src/
+COPY api/ ./api/
+COPY config/ ./config/
 
 # Copy React Build from previous stage
 COPY --from=frontend-build /app/frontend/dist ./frontend-v2/dist
@@ -35,4 +37,4 @@ ENV PORT=8080
 ENV HOST=0.0.0.0
 
 # Run Command
-CMD ["uvicorn", "src.event_pipeline:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8080"]

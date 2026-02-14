@@ -164,5 +164,27 @@ class Settings(BaseModel):
         le=1000,
     )
 
+    # Smart Router Optimized Settings (V3)
+    router_mode: Literal['quality', 'balanced', 'economy'] = Field(
+        default='balanced',
+        description="Router mode: quality (strict), balanced (optimized), economy (aggressive)"
+    )
+    router_tier1_threshold: int = Field(
+        default_factory=lambda: int(os.getenv("ROUTER_TIER1_THRESHOLD", "35")),
+        ge=15,
+        le=50,
+        description="Max score for Tier 1 routing"
+    )
+    router_tier2_threshold: int = Field(
+        default_factory=lambda: int(os.getenv("ROUTER_TIER2_THRESHOLD", "80")),
+        ge=50,
+        le=100,
+        description="Max score for Tier 2 routing"
+    )
+    router_is_written_mode: bool = Field(
+        default_factory=lambda: os.getenv("ROUTER_WRITTEN_MODE", "1") == "1",
+        description="True for web app (written notes), False for voice"
+    )
+
 # Singleton instance
 settings = Settings()

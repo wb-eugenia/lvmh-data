@@ -18,7 +18,11 @@ import {
     Wifi,
     WifiOff,
     LogOut,
-    X
+    X,
+    ShoppingBag,
+    ChevronLeft,
+    ChevronRight,
+    Search
 } from 'lucide-react'
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { apiFetch, wsUrl } from '../lib/api'
@@ -154,6 +158,13 @@ export default function AdminView({ onBack }) {
     const [usersError, setUsersError] = useState(null)
     const [adminActionLoading, setAdminActionLoading] = useState(null)
     const [adminActionMessage, setAdminActionMessage] = useState(null)
+    const [products, setProducts] = useState([])
+    const [productsTotal, setProductsTotal] = useState(0)
+    const [productsPage, setProductsPage] = useState(1)
+    const [productsLoading, setProductsLoading] = useState(false)
+    const [productsCategory, setProductsCategory] = useState('')
+    const [productsSearch, setProductsSearch] = useState('')
+    const [productStats, setProductStats] = useState(null)
 
     const buildQuery = () => {
         const params = new URLSearchParams()
@@ -179,6 +190,47 @@ export default function AdminView({ onBack }) {
         } finally {
             setUsersLoading(false)
         }
+    }
+
+    const fetchProductStats = async () => {
+        try {
+            const response = await apiFetch('/api/products/stats')
+            if (response.ok) {
+                const data = await response.json()
+                setProductStats(data)
+            }
+        } catch (e) {
+            console.error('Failed to fetch product stats:', e)
+        }
+    }
+
+    const fetchProducts = async (page = 1) => {
+        setProductsLoading(true)
+        try {
+            const params = new URLSearchParams()
+            params.set('page', String(page))
+            params.set('limit', '12')
+            if (productsCategory) params.set('category', productsCategory)
+            if (productsSearch) params.set('search', productsSearch)
+            
+            const response = await apiFetch(`/api/products?${params}`)
+            if (response.ok) {
+                const data = await response.json()
+                setProducts(data.products || [])
+                setProductsTotal(data.total || 0)
+                setProductsPage(data.page || 1)
+            }
+        } catch (e) {
+            console.error('Failed to fetch products:', e)
+        } finally {
+            setProductsLoading(false)
+        }
+    }
+
+    const handleProductsSearch = (e) => {
+        e.preventDefault()
+        setProductsPage(1)
+        fetchProducts(1)
     }
 
     const fetchDashboard = async () => {
@@ -289,6 +341,11 @@ export default function AdminView({ onBack }) {
         const timer = setInterval(fetchDashboard, REFRESH_INTERVAL_MS)
         return () => clearInterval(timer)
     }, [windowDays])
+
+    useEffect(() => {
+        fetchProductStats()
+        fetchProducts()
+    }, [])
 
     useEffect(() => {
         const rows = timeseries?.series || []
@@ -1001,6 +1058,100 @@ export default function AdminView({ onBack }) {
                                 </div>
                             )}
                         </div>
+                    </div>
+
+                    <div className="glass p-6">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            <ShoppingBag size={18} className="text-lvmh-gold" />
+                            Product Catalog ({productStats?.total || 0} products)
+                        </h3>
+                        
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                            <form onSubmit={handleProductsSearch} className="flex items-center gap-2">
+                                <div className="relative">
+                                    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-lvmh-gray" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search products..."
+                                        value={productsSearch}
+                                        onChange={(e) => setProductsSearch(e.target.value)}
+                                        className="pl-9 pr-3 py-2 rounded-lg border border-white/10 bg-white/5 text-sm text-white placeholder-lvmh-gray focus:border-lvmh-gold/40 focus:outline-none w-48"
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                                >
+                                    Search
+                                </button>
+                            </form>
+                            <select
+                                value={productsCategory}
+                                onChange={(e) => { setProductsCategory(e.target.value); setProductsPage(1); fetchProducts(1); }}
+                                className="px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-sm text-white focus:border-lvmh-gold/40 focus:outline-none"
+                            >
+                                <option value="">All Categories</option>
+                                {Object.entries(productStats?.categories || {}).map(([cat, count]) => (
+                                    <option key={cat} value={cat}>{cat} ({count})</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+                            {productsLoading ? (
+                                <div className="col-span-full text-center py-8 text-lvmh-gray">Loading products...</div>
+                            ) : products.length === 0 ? (
+                                <div className="col-span-full text-center py-8 text-lvmh-gray">No products found.</div>
+                            ) : (
+                                products.map((product, idx) => (
+                                    <a
+                                        key={product.sku || idx}
+                                        href={product.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="rounded-lg border border-white/10 bg-white/[0.03] p-2 hover:border-lvmh-gold/40 transition-colors group"
+                                    >
+                                        <div className="aspect-square bg-white/5 rounded-lg mb-2 overflow-hidden">
+                                            {product.image_url ? (
+                                                <img 
+                                                    src={product.image_url} 
+                                                    alt={product.name}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                                    onError={(e) => { e.target.style.display = 'none'; }}
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-lvmh-gray text-xs">No image</div>
+                                            )}
+                                        </div>
+                                        <div className="text-[10px] text-lvmh-gray truncate">{product.sku}</div>
+                                        <div className="text-xs font-semibold truncate" title={product.name}>{product.name}</div>
+                                        <div className="text-xs text-lvmh-gold mt-1">{product.price_eur?.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</div>
+                                    </a>
+                                ))
+                            )}
+                        </div>
+
+                        {productsTotal > 12 && (
+                            <div className="flex items-center justify-center gap-3 mt-4">
+                                <button
+                                    onClick={() => { const p = Math.max(1, productsPage - 1); setProductsPage(p); fetchProducts(p); }}
+                                    disabled={productsPage === 1}
+                                    className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <ChevronLeft size={16} />
+                                </button>
+                                <span className="text-sm text-lvmh-gray">
+                                    Page {productsPage} / {Math.ceil(productsTotal / 12)}
+                                </span>
+                                <button
+                                    onClick={() => { const p = productsPage + 1; setProductsPage(p); fetchProducts(p); }}
+                                    disabled={productsPage >= Math.ceil(productsTotal / 12)}
+                                    className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <ChevronRight size={16} />
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
 

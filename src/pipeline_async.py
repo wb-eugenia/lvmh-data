@@ -44,6 +44,14 @@ from src.cross_validator import CrossValidator
 from src.recommender import RecommenderEngine
 from src.product_matcher import ProductMatcher
 from src.rgpd_filter import RGPDFilter
+from src.validator import NoteValidator
+from src.circuit_breaker import (
+    circuit_breaker_manager,
+    get_tier2_circuit_breaker,
+    get_tier3_circuit_breaker,
+    get_rgpd_circuit_breaker,
+    CircuitBreakerError
+)
 
 # Configure logging
 logging.basicConfig(
@@ -105,7 +113,11 @@ class AsyncPipeline:
     )
     
     def __init__(self, use_cache: bool = True, use_semantic_cache: bool = True, use_cross_validation: bool = True):
-        self.router = SmartRouterV2()
+        self.router = SmartRouterV2(config={
+            'tier1_max_score': settings.router_tier1_threshold,
+            'tier2_max_score': settings.router_tier2_threshold,
+            'is_written_mode': settings.router_is_written_mode,
+        })
         self.tier1 = Tier1RulesEngine()
         self.tier2 = Tier2Mistral()
         self.tier3 = TagExtractor()
@@ -363,9 +375,20 @@ class AsyncPipeline:
         async with self.semaphore:
             start_time = time.time()
             perf_start = time.perf_counter()
+            
+            # Input validation
+            is_valid, error = NoteValidator.validate(note)
+            if not is_valid:
+                logger.warning(f"Note validation failed: {error}")
+                return None
+            
+            # Sanitize input
+            note = NoteValidator.sanitize(note)
+            
             note_id = str(note.get('ID', 'unknown'))
             raw_text = note.get('Transcription') or ''  # Handle None or missing
             language = note.get('Language', 'FR') or 'FR'
+            is_written_mode = note.get('is_written', settings.router_is_written_mode)
             runtime_profile = self._resolve_profile(str(kwargs.get("profile") or profile or "single_note"))
             timeout_budget = max(5, int(kwargs.get("timeout_seconds") or runtime_profile.timeout_seconds))
             cache_enabled = bool(kwargs.get("save_to_cache", runtime_profile.save_to_cache))
@@ -418,41 +441,51 @@ class AsyncPipeline:
                 tokens_saved
             )
 
-            # 0b. RGPD layer (LLM if available, heuristic fallback otherwise)
+            # 0b. RGPD layer (Profile-aware: skip LLM for fast_batch)
             rgpd_started = time.perf_counter()
             await safe_progress({"step": "rgpd", "status": "processing"})
             rgpd_result = self._build_heuristic_rgpd(text)
 
-            if self.rgpd_enabled and self.rgpd_filter:
+            # Profile-aware RGPD: use heuristic only for fast_batch
+            use_rgpd_llm = self.rgpd_enabled and self.rgpd_filter and not fast_batch_mode
+            
+            if use_rgpd_llm:
                 try:
-                    rgpd_payload = self.rgpd_filter.process_note(
+                    rgpd_circuit = get_rgpd_circuit_breaker()
+                    rgpd_payload = await rgpd_circuit.call(
+                        self.rgpd_filter.process_note,
                         {
                             "ID": note_id,
                             "Transcription": text,
                             "Language": language,
-                        }
+                        },
+                        fallback=None
                     )
-                    detection = rgpd_payload.get("rgpd_result") or {}
-                    anonymized_text = rgpd_payload.get("anonymized_text") or text
-                    text = anonymized_text
-                    rgpd_result = RGPDResult(
-                        contains_sensitive=bool(detection.get("contains_sensitive", False)),
-                        categories_detected=[
-                            str(category) for category in (detection.get("categories_detected") or [])
-                        ],
-                        safe_to_store=bool(detection.get("safe_to_store", True)),
-                        severity=self._derive_rgpd_severity(detection),
-                        reasoning=detection.get("reasoning"),
-                        anonymized_text=anonymized_text,
-                    )
-                    await safe_progress(
-                        {
-                            "step": "rgpd",
-                            "status": "llm",
-                            "contains_sensitive": rgpd_result.contains_sensitive,
-                            "categories": rgpd_result.categories_detected,
-                        }
-                    )
+                    
+                    if rgpd_payload is not None:
+                        detection = rgpd_payload.get("rgpd_result") or {}
+                        anonymized_text = rgpd_payload.get("anonymized_text") or text
+                        text = anonymized_text
+                        rgpd_result = RGPDResult(
+                            contains_sensitive=bool(detection.get("contains_sensitive", False)),
+                            categories_detected=[
+                                str(category) for category in (detection.get("categories_detected") or [])
+                            ],
+                            safe_to_store=bool(detection.get("safe_to_store", True)),
+                            severity=self._derive_rgpd_severity(detection),
+                            reasoning=detection.get("reasoning"),
+                            anonymized_text=anonymized_text,
+                        )
+                        await safe_progress(
+                            {
+                                "step": "rgpd",
+                                "status": "llm",
+                                "contains_sensitive": rgpd_result.contains_sensitive,
+                                "categories": rgpd_result.categories_detected,
+                            }
+                        )
+                    else:
+                        raise Exception("Circuit breaker open, using heuristic fallback")
                 except Exception as rgpd_error:
                     logger.warning("RGPD LLM step failed for note %s: %s", note_id, rgpd_error)
                     rgpd_result = self._build_heuristic_rgpd(text)
@@ -577,11 +610,23 @@ class AsyncPipeline:
                     else:
                         try:
                             tier2_timeout = max(3.0, min(remaining_budget_seconds(), float(timeout_budget)))
-                            tier2_result = await run_with_semaphore_timeout(
+                            
+                            # Use circuit breaker for Tier 2
+                            tier2_circuit = get_tier2_circuit_breaker()
+                            tier2_result = await tier2_circuit.call(
+                                run_with_semaphore_timeout,
                                 self.tier2_semaphore,
                                 lambda: self.tier2.extract(text, language),
-                                timeout_seconds=tier2_timeout
+                                tier2_timeout,
+                                fallback=None
                             )
+                            
+                            # Handle result from circuit breaker
+                            if tier2_result is None:
+                                # Circuit breaker was open, use fallback
+                                decision.tier = 1
+                                decision.reasons.append("Tier 2 circuit breaker open, using fallback")
+                                logger.warning("Note %s: Tier 2 circuit breaker open, using fallback", note_id)
                         except asyncio.TimeoutError:
                             logger.warning("Tier 2 timed out for note %s after %.1fs", note_id, tier2_timeout)
                             decision.tier = 1
@@ -639,7 +684,11 @@ class AsyncPipeline:
                     else:
                         try:
                             tier3_timeout = max(3.0, min(remaining_budget_seconds(), float(timeout_budget)))
-                            tier3_result = await run_with_semaphore_timeout(
+                            
+                            # Use circuit breaker for Tier 3
+                            tier3_circuit = get_tier3_circuit_breaker()
+                            tier3_result = await tier3_circuit.call(
+                                run_with_semaphore_timeout,
                                 self.openai_semaphore,
                                 lambda: self.tier3.extract(
                                     text,
@@ -648,8 +697,14 @@ class AsyncPipeline:
                                     escalation_reason=decision.reasons[-1] if decision.reasons else None,
                                     use_cache=False
                                 ),
-                                timeout_seconds=tier3_timeout
+                                tier3_timeout,
+                                fallback=None
                             )
+                            
+                            if tier3_result is None:
+                                decision.tier = 2 if 2 in tier_results else 1
+                                decision.reasons.append("Tier 3 circuit breaker open, using fallback")
+                                logger.warning("Note %s: Tier 3 circuit breaker open, using fallback", note_id)
                         except asyncio.TimeoutError:
                             decision.tier = 2 if 2 in tier_results else 1
                             decision.reasons.append("Tier 3 timeout")

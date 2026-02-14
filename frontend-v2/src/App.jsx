@@ -7,6 +7,7 @@ const AdvisorView = lazy(() => import('./components/AdvisorView'))
 const ManagerView = lazy(() => import('./components/ManagerView'))
 const AdminView = lazy(() => import('./components/AdminView'))
 const PipelineView = lazy(() => import('./components/PipelineView'))
+const ProductsView = lazy(() => import('./components/ProductsView'))
 
 const viewByPath = (path) => {
     const normalizedPath = (path || '/').replace(/\/+$/, '') || '/'
@@ -15,6 +16,7 @@ const viewByPath = (path) => {
     if (normalizedPath === '/manager') return 'manager'
     if (normalizedPath === '/admin') return 'admin'
     if (normalizedPath === '/pipeline') return 'pipeline'
+    if (normalizedPath === '/products') return 'products'
     return 'landing'
 }
 
@@ -24,6 +26,7 @@ const pathByView = (view) => {
     if (view === 'manager') return '/manager'
     if (view === 'admin') return '/admin'
     if (view === 'pipeline') return '/pipeline'
+    if (view === 'products') return '/products'
     return '/'
 }
 
@@ -77,6 +80,7 @@ function AppContent() {
                 {view === 'manager' && <ManagerView onBack={() => navigate('landing')} />}
                 {view === 'admin' && <AdminView onBack={() => navigate('landing')} />}
                 {view === 'pipeline' && <PipelineView onBack={() => navigate('landing')} />}
+                {view === 'products' && <ProductsView onBack={() => navigate('landing')} />}
                 {view === 'login' && <LoginView />}
             </Suspense>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Activity, Database, LayoutDashboard, Mic, ShieldCheck } from 'lucide-react'
+import { Activity, Database, LayoutDashboard, Mic, ShieldCheck, ShoppingBag } from 'lucide-react'
 
 export default function LandingPage({ onNavigate }) {
     return (
@@ -9,7 +9,7 @@ export default function LandingPage({ onNavigate }) {
                 <p className="text-lvmh-gray uppercase tracking-widest text-sm">Intelligence Artificielle Native</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 w-full max-w-6xl">
                 <button
                     onClick={() => onNavigate('advisor')}
                     className="glass p-10 flex flex-col items-center group hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-2"
@@ -41,6 +41,17 @@ export default function LandingPage({ onNavigate }) {
                     </div>
                     <h2 className="text-2xl font-bold mb-2">Pipeline Live</h2>
                     <p className="text-lvmh-gray text-center text-sm">Visualisation temps reel du flux IA V3</p>
+                </button>
+
+                <button
+                    onClick={() => onNavigate('products')}
+                    className="glass p-10 flex flex-col items-center group hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-2"
+                >
+                    <div className="w-20 h-20 bg-lvmh-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-lvmh-gold/30 transition-colors">
+                        <ShoppingBag className="text-lvmh-gold w-10 h-10" />
+                    </div>
+                    <h2 className="text-2xl font-bold mb-2">Products</h2>
+                    <p className="text-lvmh-gray text-center text-sm">Catalogue produits avec images et disponibilite</p>
                 </button>
 
                 <button

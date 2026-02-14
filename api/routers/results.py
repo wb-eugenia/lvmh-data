@@ -12,7 +12,7 @@ import pandas as pd
 from api.database import get_db
 from api.models_sql import User, Note, Client
 from api.routers.auth import require_roles
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from fastapi import APIRouter, Query, HTTPException, Depends
 import json
 
@@ -218,7 +218,10 @@ async def search_notes(
     current_user: User = Depends(require_roles("manager", "admin")),
 ):
     """Search notes in SQL database."""
-    query = db.query(Note)
+    query = db.query(Note).options(
+        joinedload(Note.advisor),
+        joinedload(Note.client)
+    )
     if q:
         query = query.filter(Note.transcription.ilike(f"%{q}%"))
     
@@ -293,7 +296,10 @@ async def get_all_recordings(
     Get all recordings for manager view with full pipeline results.
     Includes: transcription, tags, RAG products, NBA, advisor info.
     """
-    query = db.query(Note).join(User).join(Client)
+    query = db.query(Note).options(
+        joinedload(Note.advisor),
+        joinedload(Note.client)
+    ).join(User).join(Client)
     
     # Apply filters
     if search:

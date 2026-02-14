@@ -22,15 +22,16 @@ from api.schemas import BatchTask
 from src.pipeline_async import AsyncPipeline
 from src.text_cleaner import MultilingualTextCleaner, PIIEnforcer
 from config.production import settings
+from api.redis_client import BatchTaskStore, RedisCache
+from api.container import get_pipeline as get_pipeline_instance
 
 logger = logging.getLogger("lvmh-api.batch")
 router = APIRouter()
 
-# In-memory task store (use Redis in production!)
-batch_tasks: Dict[str, dict] = {}
+# Redis-backed task store
+_redis_available = True
 
-# Pipeline instance
-_pipeline = None
+# Queue and workers
 _batch_queue: Optional[asyncio.Queue] = None
 _batch_workers: list[asyncio.Task] = []
 _workers_bootstrapped = False
@@ -54,10 +55,7 @@ def _profile_save_to_cache(profile: str) -> bool:
 
 
 def get_pipeline():
-    global _pipeline
-    if _pipeline is None:
-        _pipeline = AsyncPipeline(use_cache=True, use_semantic_cache=False, use_cross_validation=True)
-    return _pipeline
+    return get_pipeline_instance()
 
 
 def _get_batch_queue() -> asyncio.Queue:
@@ -76,9 +74,7 @@ async def _batch_worker_loop(worker_id: int):
             await process_batch_async(task_id, df, profile)
         except Exception as exc:
             logger.error("Batch worker %s failed task %s: %s", worker_id, task_id, exc)
-            if task_id in batch_tasks:
-                batch_tasks[task_id]["status"] = "error"
-                batch_tasks[task_id]["error"] = str(exc)
+            await _update_task(task_id, {"status": "error", "error": str(exc)})
         finally:
             queue.task_done()
 
@@ -94,12 +90,25 @@ def ensure_batch_workers() -> None:
     logger.info("Batch queue initialized with %s workers", worker_count)
 
 
+async def _update_task(task_id: str, data: dict):
+    """Update task in Redis or memory."""
+    global _redis_available
+    if _redis_available:
+        try:
+            task = await BatchTaskStore.get(task_id) or {}
+            task.update(data)
+            await BatchTaskStore.save(task_id, task)
+        except Exception:
+            _redis_available = False
+
+
 async def process_batch_async(task_id: str, df: pd.DataFrame, profile: str):
     """Process batch in background with progress updates."""
     
-    batch_tasks[task_id]["status"] = "processing"
+    await _update_task(task_id, {"status": "processing"})
     pipeline = get_pipeline()
     save_to_cache = _profile_save_to_cache(profile)
+    results = []
     
     try:
         for idx, row in df.iterrows():
@@ -110,7 +119,7 @@ async def process_batch_async(task_id: str, df: pd.DataFrame, profile: str):
                 'Language': row.get('Language', 'FR')
             }, profile=profile, save_to_cache=save_to_cache)
             if result is None:
-                batch_tasks[task_id]["results"].append({
+                results.append({
                     "id": row.get('ID', f'BATCH_{idx}'),
                     "tags": [],
                     "tier": None,
@@ -118,11 +127,11 @@ async def process_batch_async(task_id: str, df: pd.DataFrame, profile: str):
                     "error": "processing_failed",
                     "mode": profile,
                 })
-                batch_tasks[task_id]["progress"] = idx + 1
+                await _update_task(task_id, {"progress": idx + 1, "results": results})
                 continue
             
             # Update progress
-            batch_tasks[task_id]["results"].append({
+            results.append({
                 "id": result.id,
                 "tags": result.extraction.tags if hasattr(result.extraction, 'tags') else [],
                 "tier": result.routing.tier,
@@ -131,17 +140,16 @@ async def process_batch_async(task_id: str, df: pd.DataFrame, profile: str):
                 "stage_timings_ms": result.stage_timings_ms,
                 "mode": profile,
             })
-            batch_tasks[task_id]["progress"] = idx + 1
-            
+            await _update_task(task_id, {"progress": idx + 1, "results": results})
+             
             # Small delay to avoid rate limits
             await asyncio.sleep(0.05)
         
-        batch_tasks[task_id]["status"] = "complete"
+        await _update_task(task_id, {"status": "complete", "results": results})
         logger.info("Batch %s completed: %s notes processed (profile=%s)", task_id, len(df), profile)
         
     except Exception as e:
-        batch_tasks[task_id]["status"] = "error"
-        batch_tasks[task_id]["error"] = str(e)
+        await _update_task(task_id, {"status": "error", "error": str(e)})
         logger.error(f"Batch {task_id} error: {e}")
 
 
@@ -177,7 +185,7 @@ async def start_batch(
     
     # Create task
     task_id = str(uuid.uuid4())
-    batch_tasks[task_id] = {
+    task_data = {
         "task_id": task_id,
         "status": "pending",
         "progress": 0,
@@ -188,11 +196,12 @@ async def start_batch(
         "error": None
     }
     
+    await BatchTaskStore.save(task_id, task_data)
+    
     ensure_batch_workers()
     queue = _get_batch_queue()
     if queue.full():
-        batch_tasks[task_id]["status"] = "error"
-        batch_tasks[task_id]["error"] = "batch_queue_full"
+        await _update_task(task_id, {"status": "error", "error": "batch_queue_full"})
         raise HTTPException(503, "Batch queue is full, retry later")
     await queue.put((task_id, df, selected_profile))
     
@@ -205,10 +214,11 @@ async def start_batch(
 async def get_batch_status(task_id: str):
     """Get batch processing status (polling)."""
     
-    if task_id not in batch_tasks:
+    task = await BatchTaskStore.get(task_id)
+    if not task:
         raise HTTPException(404, "Task not found")
     
-    return batch_tasks[task_id]
+    return task
 
 
 @router.get("/batch-workers/status")
@@ -216,17 +226,29 @@ async def get_batch_workers_status():
     """Operational view for batch queue and worker runtime."""
     queue = _get_batch_queue()
     pipeline = get_pipeline()
+    
+    tasks_list = []
+    if _redis_available:
+        try:
+            task_ids = await BatchTaskStore.list_tasks()
+            for tid in task_ids:
+                task = await BatchTaskStore.get(tid)
+                if task:
+                    tasks_list.append(task)
+        except Exception:
+            pass
+    
     return {
         "workers_configured": int(settings.batch_worker_count),
         "workers_running": len([w for w in _batch_workers if not w.done()]),
         "supported_profiles": [settings.batch_csv_profile.name, settings.fast_batch_profile.name],
         "queue_size": queue.qsize(),
         "queue_max_size": queue.maxsize,
-        "tasks_total": len(batch_tasks),
-        "tasks_pending": len([t for t in batch_tasks.values() if t.get("status") == "pending"]),
-        "tasks_processing": len([t for t in batch_tasks.values() if t.get("status") == "processing"]),
-        "tasks_complete": len([t for t in batch_tasks.values() if t.get("status") == "complete"]),
-        "tasks_error": len([t for t in batch_tasks.values() if t.get("status") == "error"]),
+        "tasks_total": len(tasks_list),
+        "tasks_pending": len([t for t in tasks_list if t.get("status") == "pending"]),
+        "tasks_processing": len([t for t in tasks_list if t.get("status") == "processing"]),
+        "tasks_complete": len([t for t in tasks_list if t.get("status") == "complete"]),
+        "tasks_error": len([t for t in tasks_list if t.get("status") == "error"]),
         "profile_metrics": pipeline.get_profile_metrics(),
     }
 
@@ -238,20 +260,21 @@ async def stream_batch_progress(task_id: str):
     Connect via EventSource in frontend.
     """
     
-    if task_id not in batch_tasks:
+    task = await BatchTaskStore.get(task_id)
+    if not task:
         raise HTTPException(404, "Task not found")
     
     async def event_generator():
         while True:
-            if task_id not in batch_tasks:
-                break
+            task = await BatchTaskStore.get(task_id)
             
-            task = batch_tasks[task_id]
+            if not task:
+                break
             
             # Send progress update as SSE event
             yield f"data: {json.dumps(task)}\n\n"
             
-            if task["status"] in ("complete", "error"):
+            if task.get("status") in ("complete", "error"):
                 break
             
             await asyncio.sleep(0.5)  # Update every 500ms
@@ -270,10 +293,11 @@ async def stream_batch_progress(task_id: str):
 async def cancel_batch(task_id: str):
     """Cancel a running batch task."""
     
-    if task_id not in batch_tasks:
+    task = await BatchTaskStore.get(task_id)
+    if not task:
         raise HTTPException(404, "Task not found")
     
-    batch_tasks[task_id]["status"] = "cancelled"
+    await _update_task(task_id, {"status": "cancelled"})
     
     return {"message": "Task cancelled"}
 

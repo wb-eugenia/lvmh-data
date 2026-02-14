@@ -1,5 +1,5 @@
 """
-Stats router - Dashboard statistics with ETag caching.
+Stats router - Dashboard statistics with ETag caching and optimized queries.
 """
 
 import os
@@ -16,7 +16,25 @@ from api.database import get_db
 from api.models_sql import User, Note, Client
 from api.routers.auth import require_roles
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Depends, Query
+from sqlalchemy import select, func
+from fastapi import APIRouter, Depends, Query, Request
+from fastapi.responses import JSONResponse
+
+# Async DB - optional (requires aiosqlite)
+try:
+    from api.database_async import get_async_db
+    ASYNC_DB_AVAILABLE = True
+except ImportError:
+    ASYNC_DB_AVAILABLE = False
+    get_async_db = None
+
+# Redis cache - optional
+try:
+    from api.redis_client import RedisCache
+    REDIS_AVAILABLE = True
+except ImportError:
+    REDIS_AVAILABLE = False
+    RedisCache = None
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
@@ -29,16 +47,16 @@ router = APIRouter(
 
 OUTPUTS_DIR = Path(__file__).parent.parent.parent / "outputs"
 
+stats_cache = RedisCache(prefix="lvmh:stats", ttl=60)
+
 
 def _utcnow_naive() -> datetime:
     return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
-def _apply_note_window(query, *, days: Optional[int]) -> Any:
-    if days is None:
-        return query
-    cutoff = _utcnow_naive() - timedelta(days=days)
-    return query.filter(Note.timestamp >= cutoff)
+def generate_etag(data: Dict[str, Any]) -> str:
+    """Generate ETag from data hash."""
+    return hashlib.md5(json.dumps(data, default=str).encode()).hexdigest()
 
 
 def load_latest_results() -> pd.DataFrame:
@@ -59,84 +77,132 @@ def load_latest_results() -> pd.DataFrame:
         return pd.DataFrame()
 
 
-def generate_etag(data: Dict[str, Any]) -> str:
-    """Generate ETag from data hash."""
-    return hashlib.md5(json.dumps(data, default=str).encode()).hexdigest()
+async def _get_all_stats(days: Optional[int]) -> Dict[str, Any]:
+    """Get all stats in a single optimized query."""
+    cache_key = f"all_stats_{days}"
+    
+    # Try Redis cache first
+    cached = await stats_cache.get(cache_key)
+    if cached:
+        return cached
+    
+    db = next(get_async_db())
+    try:
+        query = select(Note)
+        if days:
+            cutoff = _utcnow_naive() - timedelta(days=days)
+            query = query.where(Note.timestamp >= cutoff)
+        
+        # Execute single query for all notes
+        result = await db.execute(query)
+        notes = result.scalars().all()
+        
+        total_notes = len(notes)
+        
+        if total_notes == 0:
+            data = {
+                "total_notes": 0,
+                "avg_quality": 0,
+                "tier_distribution": {1: 0, 2: 0, 3: 0},
+                "sensitive_count": 0,
+                "sensitive_rate": 0,
+                "sensitive_categories": {},
+                "tier_costs": {1: 0, 2: 0, 3: 0},
+                "total_cost": 0
+            }
+            await stats_cache.set(cache_key, data)
+            return data
+        
+        # Aggregate stats from JSON
+        tier_dist = {1: 0, 2: 0, 3: 0}
+        sensitive_count = 0
+        sensitive_categories = {}
+        tier_costs = {1: 0, 2: 0, 3: 0}
+        total_points = 0
+        COST_PER_TIER = {1: 0.0001, 2: 0.002, 3: 0.015}
+        
+        for note in notes:
+            try:
+                data = json.loads(note.analysis_json) if note.analysis_json else {}
+                routing = data.get('routing', {})
+                tier = routing.get('tier', 1)
+                tier_dist[tier] = tier_dist.get(tier, 0) + 1
+                tier_costs[tier] = tier_costs.get(tier, 0) + COST_PER_TIER.get(tier, 0.0001)
+                
+                rgpd = data.get('rgpd', {})
+                if rgpd.get('contains_sensitive'):
+                    sensitive_count += 1
+                    for cat in rgpd.get('categories_detected', []):
+                        sensitive_categories[cat] = sensitive_categories.get(cat, 0) + 1
+                
+                total_points += note.points_awarded or 0
+            except:
+                pass
+        
+        avg_quality = (total_points / total_notes / 15) * 100 if total_notes > 0 else 0
+        total_cost = sum(tier_costs.values())
+        
+        data = {
+            "total_notes": total_notes,
+            "avg_quality": round(avg_quality, 1),
+            "tier_distribution": tier_dist,
+            "sensitive_count": sensitive_count,
+            "sensitive_rate": round((sensitive_count / total_notes * 100), 1) if total_notes > 0 else 0,
+            "sensitive_categories": sensitive_categories,
+            "tier_costs": tier_costs,
+            "total_cost": round(total_cost, 3)
+        }
+        
+        await stats_cache.set(cache_key, data)
+        return data
+        
+    except Exception as e:
+        logger.error(f"Error getting stats: {e}")
+        return {
+            "total_notes": 0,
+            "avg_quality": 0,
+            "tier_distribution": {1: 0, 2: 0, 3: 0}
+        }
+    finally:
+        await db.close()
 
 
 @router.get("/stats")
 @router.get("/stats/overview")
 async def get_overview_stats(
     days: Optional[int] = Query(default=None, ge=1, le=365),
-    db: Session = Depends(get_db),
+    request: Request = None,
 ):
     """Get dashboard overview statistics from SQL DB."""
-    notes_query = _apply_note_window(db.query(Note), days=days)
-    total_notes = notes_query.count()
+    stats = await _get_all_stats(days)
     
-    if total_notes == 0:
-        return {
-            "total_notes": 0,
-            "avg_quality": 0,
-            "tier_distribution": {1: 0, 2: 0, 3: 0}
-        }
-    
-    # Calculate avg quality (simplified for demo based on points)
-    # If 15 pts = 100%, 10 pts = 66%
-    avg_points = _apply_note_window(db.query(Note.points_awarded), days=days).all()
-    avg_quality = (sum(p[0] for p in avg_points) / (total_notes * 15)) * 100 if total_notes > 0 else 0
-    
-    # Tier distribution from JSON in DB
-    notes = _apply_note_window(db.query(Note.analysis_json), days=days).all()
-    tiers = [1, 2, 3]
-    distribution = {t: 0 for t in tiers}
-    
-    for n in notes:
-        try:
-            data = json.loads(n[0])
-            tier = data.get('routing', {}).get('tier', 1)
-            distribution[tier] = distribution.get(tier, 0) + 1
-        except:
-            pass
-            
-    return {
-        "total_notes": total_notes,
-        "avg_quality": round(avg_quality, 1),
-        "tier_distribution": distribution
+    data = {
+        "total_notes": stats["total_notes"],
+        "avg_quality": stats["avg_quality"],
+        "tier_distribution": stats["tier_distribution"]
     }
+    
+    if request:
+        etag = generate_etag(data)
+        if_match = request.headers.get("if-none-match")
+        if if_match and if_match == etag:
+            return JSONResponse(status_code=304, content={})
+    
+    return data
 
 
 @router.get("/stats/rgpd")
 async def get_rgpd_stats(
     days: Optional[int] = Query(default=None, ge=1, le=365),
-    db: Session = Depends(get_db),
 ):
     """Get RGPD statistics from SQL DB."""
-    notes = _apply_note_window(db.query(Note.analysis_json), days=days).all()
-    total = len(notes)
+    stats = await _get_all_stats(days)
     
-    if total == 0:
-        return {"total_notes": 0, "sensitive_count": 0, "sensitive_rate": 0, "categories": {}}
-
-    sensitive_count = 0
-    categories = {}
-    
-    for n in notes:
-        try:
-            data = json.loads(n[0])
-            rgpd = data.get('rgpd', {})
-            if rgpd.get('contains_sensitive'):
-                sensitive_count += 1
-                for cat in rgpd.get('categories_detected', []):
-                    categories[cat] = categories.get(cat, 0) + 1
-        except:
-            pass
-
     return {
-        "total_notes": total,
-        "sensitive_count": sensitive_count,
-        "sensitive_rate": round((sensitive_count / total * 100), 1) if total > 0 else 0,
-        "categories": categories,
+        "total_notes": stats["total_notes"],
+        "sensitive_count": stats["sensitive_count"],
+        "sensitive_rate": stats["sensitive_rate"],
+        "categories": stats.get("sensitive_categories", {}),
         "false_positive_rate": 2.7,
         "false_negative_rate": 0.7
     }
@@ -145,32 +211,16 @@ async def get_rgpd_stats(
 @router.get("/stats/cost")
 async def get_cost_stats(
     days: Optional[int] = Query(default=None, ge=1, le=365),
-    db: Session = Depends(get_db),
 ):
     """Get cost and ROI statistics from SQL DB."""
-    notes = _apply_note_window(db.query(Note.analysis_json), days=days).all()
-    total = len(notes)
+    stats = await _get_all_stats(days)
+    total = stats["total_notes"]
+    total_cost = stats["total_cost"]
     
-    # Cost per tier (estimated in USD)
-    COST_PER_TIER = {1: 0.0001, 2: 0.002, 3: 0.015} # Higher Tier = More expensive model
-    
-    tier_costs = {1: 0, 2: 0, 3: 0}
-    total_cost = 0
-    
-    for n in notes:
-        try:
-            data = json.loads(n[0])
-            tier = data.get('routing', {}).get('tier', 1)
-            cost = COST_PER_TIER.get(tier, 0.0001)
-            tier_costs[tier] += cost
-            total_cost += cost
-        except:
-            pass
-
     return {
-        "total_cost": round(total_cost, 3),
-        "cost_by_tier": {f"tier_{t}": round(c, 4) for t, c in tier_costs.items()},
-        "projection_annual": round(total_cost * 1000, 2), # Simplified projection
+        "total_cost": stats["total_cost"],
+        "cost_by_tier": {f"tier_{t}": round(c, 4) for t, c in stats.get("tier_costs", {}).items()},
+        "projection_annual": round(total_cost * 1000, 2),
         "roi_metrics": {
             "cost_per_note": round(total_cost / total, 4) if total > 0 else 0,
             "savings": "74%",

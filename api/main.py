@@ -14,6 +14,7 @@ from contextlib import asynccontextmanager, suppress
 
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from sqlalchemy import text
@@ -258,6 +259,7 @@ return {1, count + 1, 0}
 class LoggingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         request_id = request.headers.get("x-request-id") or f"req-{int(time.time() * 1000)}"
+        request.state.request_id = request_id  # Make available in route handlers
         start_time = time.time()
 
         if HTTP_IN_PROGRESS:
@@ -300,6 +302,15 @@ class LoggingMiddleware(BaseHTTPMiddleware):
 async def lifespan(app: FastAPI):
     logger.info("LVMH Voice-to-Tag API starting")
 
+    # Initialize Redis connection
+    if _env_flag("USE_REDIS", "1"):
+        try:
+            from api.redis_client import get_redis
+            await get_redis()
+            logger.info("Redis connection established")
+        except Exception as e:
+            logger.warning(f"Redis connection failed: {e}")
+
     if _env_flag("PRELOAD_PIPELINE", "1"):
         try:
             from api.routers.analyze import get_pipeline
@@ -312,9 +323,20 @@ async def lifespan(app: FastAPI):
     leaderboard_task = asyncio.create_task(broadcast_leaderboard_task())
     app.state.leaderboard_task = leaderboard_task
     yield
+    
+    # Cleanup
     leaderboard_task.cancel()
     with suppress(asyncio.CancelledError):
         await leaderboard_task
+    
+    # Close Redis connection
+    try:
+        from api.redis_client import close_redis
+        await close_redis()
+        logger.info("Redis connection closed")
+    except Exception as e:
+        logger.warning(f"Redis cleanup error: {e}")
+    
     logger.info("API shutting down")
 
 
@@ -339,6 +361,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(DistributedRateLimitMiddleware)
 app.add_middleware(LoggingMiddleware)
 
@@ -427,7 +450,7 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 
-from api.routers import analyze, batch, results, stats, transcribe, auth, streaming, feedback, dashboard
+from api.routers import analyze, batch, results, stats, transcribe, auth, streaming, feedback, dashboard, products
 
 app.include_router(analyze.router, prefix="/api", tags=["Analyze"])
 app.include_router(batch.router, prefix="/api", tags=["Batch"])
@@ -437,4 +460,19 @@ app.include_router(transcribe.router, prefix="/api", tags=["Transcribe"])
 app.include_router(auth.router, prefix="/api/auth", tags=["Auth"])
 app.include_router(streaming.router, prefix="/api", tags=["Streaming"])
 app.include_router(feedback.router, prefix="/api", tags=["Feedback"])
+app.include_router(products.router, prefix="/api", tags=["Products"])
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])
+
+# GraphQL endpoint
+try:
+    from strawberry.fastapi import GraphQLRouter
+    from api.graphql import schema as graphql_schema
+    
+    app.include_router(
+        GraphQLRouter(graphql_schema),
+        prefix="/graphql",
+        tags=["GraphQL"]
+    )
+    logger.info("GraphQL endpoint enabled at /graphql")
+except Exception as e:
+    logger.warning(f"GraphQL disabled: {e}")

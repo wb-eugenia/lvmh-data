@@ -68,6 +68,10 @@ class NoteInput(BaseModel):
         default='FR',
         description="Language of the transcription. Use AUTO to detect from text."
     )
+    is_written_note: bool = Field(
+        default=True,
+        description="True for web app (written notes), False for voice recordings. Affects routing."
+    )
     
     @field_validator('text')
     @classmethod

@@ -392,22 +392,169 @@ Tested on 400 real notes (January 2026):
 
 ### GCP Cloud Run (Production)
 
+**Method 1: Using gcloud CLI (Recommended)**
+
+```bash
+# 1. Authenticate
+gcloud auth login
+gcloud config set project elite-hold-485510-t5
+
+# 2. Build and push to Container Registry
+gcloud builds submit --project=elite-hold-485510-t5 --tag gcr.io/elite-hold-485510-t5/lvmh-voice-tag:latest
+
+# 3. Deploy to Cloud Run
+gcloud run deploy lvmh-api \
+  --image gcr.io/elite-hold-485510-t5/lvmh-voice-tag \
+  --platform managed \
+  --region europe-west9 \
+  --allow-unauthenticated \
+  --memory 1Gi \
+  --port 8080 \
+  --project=elite-hold-485510-t5
+```
+
+**Method 2: Using deployment script**
+
 ```powershell
 # Run deployment script
 .\scripts\deploy.ps1
 ```
 
-Requirements:
-- gcloud CLI authenticated
-- Cloud Run & Cloud Build APIs enabled
-- Project ID ready
-
-### Docker Production
+**Method 3: Manual Docker build**
 
 ```bash
 docker build -t lvmh-voice-tag .
 docker run -p 8080:8080 --env-file .env lvmh-voice-tag
 ```
+
+**Current Production Service:**
+- URL: https://lvmh-api-570069708764.europe-west9.run.app
+- Service: lvmh-api
+- Region: europe-west9
+
+**Environment Variables for Cloud Run:**
+```
+OPENAI_API_KEY=sk-...
+MISTRAL_API_KEY=...
+JWT_SECRET_KEY=your-secret-key-min-32-chars
+ENV=production
+CORS_ORIGINS=https://your-domain.com
+```
+
+**Troubleshooting:**
+- Check logs: `gcloud logs read --project=elite-hold-485510-t5 --resource=cloud_run_revision --service=lvmh-api`
+- Rollback: `gcloud run revisions list lvmh-api --region=europe-west9`
+
+---
+
+## Code Audit & Performance Improvements
+
+### Current Issues Found
+
+#### 1. Database (High Priority)
+
+| Issue | Location | Impact |
+|-------|----------|--------|
+| No composite indexes on Note | `models_sql.py` | Slow filtered queries |
+| Missing indexes on Feedback | `models_sql.py` | Slow feedback queries |
+| N+1 queries in results.py | `routers/results.py:260-270` | Multiple DB hits per request |
+| No query result caching | Most routers | Repeated expensive queries |
+
+#### 2. API Performance (Medium Priority)
+
+| Issue | Location | Impact |
+|-------|----------|--------|
+| No response compression | `main.py` | Large JSON payloads |
+| In-memory batch task storage | `batch.py:30` | Lost on restart, no scaling |
+| Global mutable state | Multiple files | Thread-safety issues |
+| Sync DB calls in async | `stats.py` | Blocking event loop |
+
+#### 3. Code Quality (Medium Priority)
+
+| Issue | Location | Impact |
+|-------|----------|--------|
+| Duplicate normalization logic | `analyze.py`, `schemas.py` | Code duplication |
+| No connection pooling config | `database.py` | Default pool too large |
+| Missing type hints | Several files | Poor IDE support |
+| No request ID tracking | `main.py` | Hard to debug |
+
+### Recommended Improvements
+
+#### Phase 1: Quick Wins (1-2 days)
+
+```python
+# 1. Add composite indexes to models_sql.py
+class Note(Base):
+    __table_args__ = (
+        Index("ix_notes_advisor_timestamp", "advisor_id", "timestamp"),
+        Index("ix_notes_client_timestamp", "client_id", "timestamp"),
+    )
+
+# 2. Enable GZip compression in main.py
+from fastapi.middleware.gzip import GZipMiddleware
+app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+# 3. Add ETag caching to stats endpoints
+etag = generate_etag(data)
+if request.headers.get("if-none-match") == etag:
+    return JSONResponse(status_code=304)
+```
+
+#### Phase 2: Performance (1 week)
+
+1. **Redis for caching & sessions**
+   - Replace in-memory batch tasks with Redis
+   - Use Redis for stats caching
+   - Store session data in Redis
+
+2. **Database optimizations**
+   - Add connection pooling for PostgreSQL
+   - Use SQLAlchemy 2.0 async (asyncpg)
+   - Add query result pagination
+
+3. **API optimizations**
+   - Add response caching headers
+   - Implement request deduplication
+   - Add GraphQL for complex queries
+
+#### Phase 3: Architecture (2-4 weeks)
+
+1. **Microservices split**
+   - Separate transcription service
+   - Separate analysis pipeline
+   - Separate API/frontend
+
+2. **Message queue**
+   - Replace in-memory queue with RabbitMQ/Cloud Tasks
+   - Add dead letter queue
+   - Implement retry logic
+
+3. **Advanced caching**
+   - Semantic cache for LLM responses
+   - Redis for vector store metadata
+   - CDN for static assets
+
+### Feature Suggestions
+
+| Feature | Priority | Effort |
+|---------|----------|--------|
+| Real-time notifications (WebSocket) | High | 1 week |
+| Export to CSV/Excel | High | 2 days |
+| Client timeline view | Medium | 1 week |
+| Advanced search with filters | Medium | 1 week |
+| Dashboard customization | Medium | 2 weeks |
+| Multi-language support | Low | 2 weeks |
+| AI-powered insights | Low | 4 weeks |
+
+### Performance Targets
+
+| Metric | Current | Target |
+|--------|---------|--------|
+| API p95 latency | ~500ms | <200ms |
+| Note processing | ~2.8s | <1.5s |
+| DB query time | ~100ms | <20ms |
+| Memory usage | ~500MB | <300MB |
+| Cold start | ~10s | <3s |
 
 ---
 
@@ -417,6 +564,7 @@ docker run -p 8080:8080 --env-file .env lvmh-voice-tag
 - **User Guide**: `README.md`
 - **Next Steps**: `NEXT_STEPS.md`
 - **API Docs**: `/docs` (when running locally)
+- **Production API**: https://lvmh-api-570069708764.europe-west9.run.app
 
 ---
 

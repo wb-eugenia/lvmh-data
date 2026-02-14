@@ -111,6 +111,22 @@ class Tier1RulesEngine:
         ]
     }
 
+    # --- MULTI-PRODUCT PATTERNS (NOUVEAU) ---
+    MULTI_PRODUCT_PATTERNS = {
+        'bag_and_belt': r'\b(sac|bag?|maroquinerie|poches?)\b.{0,25}(ceinture|belt|cintura)',
+        'bag_and_wallet': r'\b(sac|bag?|maroquinerie)\b.{0,25}(portefeuille|wallet|portafoglio)',
+        'watch_and_jewelry': r'\b(montre|watch|orologio)\b.{0,25}(bague|ring|bijou|bracelet|gioiello)',
+        'fragrance_set': r'\b(parfum| fragrance)\b.{0,25}(coffret|set|box|échantillon|sample)',
+        'shoes_and_belt': r'\b(chaussure|shoe|sneaker)\b.{0,25}(ceinture|belt|cintura)',
+    }
+
+    # --- SIMPLE CHOICE PATTERNS (NOUVEAU) ---
+    # Pour extraire les choix binaires simples "A ou B"
+    SIMPLE_CHOICE_PATTERNS = [
+        r'(?:cherche|veux|want|looking for).*?(\w+)\s+(?:ou|or)\s+(\w+)\s*(?:\?|$)',
+        r'(\w+)\s+(?:ou|or)\s+(\w+)\s+(?:pour|for|\?)\s*(?:\?|$)',
+    ]
+
     # --- HEALTH & SAFETY ---
     ALLERGIES = {
         'nickel_allergy': [r'allergi\w*\s+(?:au\s+)?nickel', r'sensible\s+(?:au\s+)?nickel'],
@@ -262,7 +278,8 @@ class Tier1RulesEngine:
             'keywords': {}, 'budget': [], 'status': {}, 
             'allergies': {}, 'dietary': {}, 'occasions': {},
             'relations': {}, 'companions': {}, 'urgency': [],
-            'gender': {}, 'lv_products': {}, 'lv_materials': {}
+            'gender': {}, 'lv_products': {}, 'lv_materials': {},
+            'multi_product': {},  # NOUVEAU
         }
         
         # Taxonomy Keywords
@@ -308,6 +325,13 @@ class Tier1RulesEngine:
         # LV Specific Patterns
         compiled['lv_products'] = {k: re.compile(p, re.I) for k, p in self.LV_PRODUCT_PATTERNS.items()}
         compiled['lv_materials'] = {k: re.compile(p, re.I) for k, p in self.LV_MATERIAL_PATTERNS.items()}
+        
+        # Multi-Product Patterns (NOUVEAU)
+        for k, pattern in self.MULTI_PRODUCT_PATTERNS.items():
+            compiled['multi_product'][k] = re.compile(pattern, re.I)
+        
+        # Simple Choice Patterns (NOUVEAU)
+        compiled['simple_choices'] = [re.compile(p, re.I) for p in self.SIMPLE_CHOICE_PATTERNS]
 
         return compiled
 
@@ -354,6 +378,28 @@ class Tier1RulesEngine:
             'client_gender': client_gender,
             'is_gift_context': is_gift
         }
+
+    def extract_simple_choices(self, text: str) -> List[Tuple[str, str]]:
+        """
+        Extraire les choix binaires simples (A ou B) pour Tier 1.
+        Ex: "Sac noir ou marron" -> [("noir", "marron")]
+        """
+        choices = []
+        text_lower = text.lower()
+        
+        for pattern in self.SIMPLE_CHOICE_PATTERNS:
+            matches = re.finditer(pattern, text_lower, re.IGNORECASE)
+            for m in matches:
+                groups = m.groups()
+                if len(groups) >= 2 and groups[0] and groups[1]:
+                    # Filtrer les mots vides
+                    stop_words = {'le', 'la', 'un', 'une', 'ou', 'or', 'et', 'for', 'pour', 'a', 'the'}
+                    choice1 = groups[0].strip()
+                    choice2 = groups[1].strip()
+                    if choice1 not in stop_words and choice2 not in stop_words:
+                        choices.append((choice1, choice2))
+        
+        return choices
 
     def infer_budget(self, text: str, client_status: Optional[str]) -> Dict:
         """Smart Budget Inference."""

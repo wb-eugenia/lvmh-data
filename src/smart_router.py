@@ -66,11 +66,13 @@ class SmartRouterV3:
     """
     
     # ═══════════════════════════════════════════════════════════════
-    # SCORING WEIGHTS & THRESHOLDS
+    # SCORING WEIGHTS & THRESHOLDS (OPTIMIZED V3)
     # ═══════════════════════════════════════════════════════════════
     
-    TIER1_MAX_SCORE = 20
-    TIER2_MAX_SCORE = 75
+    # Seuils optimisés pour notes écrites
+    # Objectif: 20-30% en Tier 1 (vs 4% avant)
+    TIER1_MAX_SCORE = 35   # AVANT: 20 (Quick Win: +15pts)
+    TIER2_MAX_SCORE = 80  # AVANT: 75
     
     TIER_COSTS = {1: 0.0, 2: 0.0001, 3: 0.005}
     TIER_TIMES = {1: 50, 2: 3000, 3: 5000}
@@ -89,24 +91,25 @@ class SmartRouterV3:
         'abbreviations': (r'\b(rdv|svp|tlj|bjr|qq|qqn)\b', 4),
     }
     
-    # 3. BUSINESS CRITICALITY (0-30 points)
+    # 3. BUSINESS CRITICALITY (0-30 points) - WEIGHTS OPTIMIZED
+    # Réduits car Tier 1 peut extraire VIC, budget, allergies
     BUSINESS_CRITICAL_PATTERNS = {
-        'vic': (r'\bVIC\b', 15),
-        'vip': (r'\bVIP\b', 12),
-        'ultimate': (r'\b(ultimate|platinum)\b', 20),
+        'vic': (r'\bVIC\b', 8),           # AVANT: 15 (Tier 1 gère VIC)
+        'vip': (r'\bVIP\b', 10),          # AVANT: 12
+        'ultimate': (r'\b(ultimate|platinum)\b', 12),  # AVANT: 20
         # Keep budget scoring contextual to avoid false positives such as
         # "800K followers" being interpreted as client budget.
         'budget_10k': (
             r'\b(?:budget|prix|panier|enveloppe|spend|spesa|invest(?:ir|ire)?|around|about|circa)\b'
             r'[^.\n]{0,24}\b(1[0-9]|[2-9]\d)\s*[kK]\b',
-            10,
+            7,  # AVANT: 10
         ),
         'budget_50k': (
             r'\b(?:budget|prix|panier|enveloppe|spend|spesa|invest(?:ir|ire)?|around|about|circa)\b'
             r'[^.\n]{0,24}\b([5-9]\d|[1-9]\d{2})\s*[kK]\b',
-            15,
+            10,  # AVANT: 15
         ),
-        'budget_vague': (r'\b(flexible|ouvert|sans limite|no limit)\b', 8),
+        'budget_vague': (r'\b(flexible|ouvert|sans limite|no limit)\b', 4),  # AVANT: 8
         'allergy_severe': (r'\b(allergi.*(?:grave|sévère)|choc|anaphyla)', 12),
         'allergy_medium': (r'\b(allergi.*(?:importante?|forte?))', 6),
         'complaint': (r'\b(plainte|complaint|déçu|insatisfait|problème|mécontent|pas content)\b', 10),
@@ -115,10 +118,12 @@ class SmartRouterV3:
         'gift_important': (r'\b(cadeau|gift).*(mari|épouse|ceo|directeur|boss)\b', 6),
     }
     
-    # 4. INTENT TYPE (0-15 points)
+    # 4. INTENT TYPE (0-15 points) - OPTIMIZED
+    # "ou" seul = 3pts, comparison stricte = 12pts
     INTENT_PATTERNS = {
         'advisory': (r'\b(conseil.*|recommand.*|suggest.*|que.*pens.*|what.*think|advice)\b', 15),
-        'comparison': (r'\b(ou|or|versus|vs|plutôt|instead|différence|compare|between)\b', 12),
+        'comparison': (r'\b(versus|vs|différence|compare|between)\b', 12),  # AVANT: incluait "ou|or"
+        'simple_or': (r'(?<![a-zA-Z])(ou|or)(?!\s*\w+\s+(ou|or)\b)(?:\s|$|\?|!|\.)', 3),  # NOUVEAU: "ou" seul = 3pts
         'negation': (r'\b(pas de|sans|non|not|no|except|sauf)\b', 10),
         'conditional': (r'\b(si|if|peut-être|maybe|depends?|selon)\b', 8),
         'simple_lookup': (r'\b(cherche|veux|want|looking for|besoin|need)\s+(un|une|le|la|a)\s+\w+\b', 0),
@@ -143,6 +148,8 @@ class SmartRouterV3:
         self.config = config or {}
         self.tier1_max = self.config.get('tier1_max_score', self.TIER1_MAX_SCORE)
         self.tier2_max = self.config.get('tier2_max_score', self.TIER2_MAX_SCORE)
+        # Mode écrit: ignorer les petites fautes (défaut: True pour app web)
+        self.is_written_mode = self.config.get('is_written_mode', True)
         self.stats = {'total_routed': 0, 'tier1': 0, 'tier2': 0, 'tier3': 0, 'scores': [], 'avg_score': 0.0}
     
     def _score_text_complexity(self, text: str) -> Tuple[float, List[str]]:
@@ -167,11 +174,24 @@ class SmartRouterV3:
         return min(score, 25.0), reasons
     
     def _score_linguistic_quality(self, text: str) -> Tuple[float, List[str]]:
+        """
+        Score linguistic quality with mode awareness.
+        In written mode: reduce penalties for minor errors (notes are typed, not spoken).
+        """
         score, reasons = 0.0, []
+        
         for name, (pattern, points) in self.LINGUISTIC_RED_FLAGS.items():
             if re.search(pattern, text, re.IGNORECASE):
-                score += points
-                reasons.append(f"{name.replace('_', ' ').title()}: +{points}")
+                # Mode écrit: pénalité réduite de moitié pour fautes mineures
+                if self.is_written_mode and name in ('spelling_errors', 'abbreviations', 'excessive_punct'):
+                    adjusted_points = points // 2
+                else:
+                    adjusted_points = points
+                    
+                if adjusted_points > 0:
+                    score += adjusted_points
+                    reasons.append(f"{name.replace('_', ' ').title()}: +{adjusted_points}")
+        
         return min(score, 20.0), reasons
     
     def _score_business_criticality(self, text: str) -> Tuple[float, List[str]]:
@@ -289,15 +309,41 @@ class SmartRouterV3:
         }
     
     def get_stats(self) -> Dict:
+        """Get detailed routing statistics with cost savings."""
         total = self.stats['total_routed']
-        if total == 0: return {'total': 0, 'tier1_pct': 0, 'tier2_pct': 0, 'tier3_pct': 0, 'avg_score': 0, 'free_processing_pct': 0}
+        if total == 0: 
+            return {
+                'total': 0, 'tier1_pct': 0, 'tier2_pct': 0, 'tier3_pct': 0, 
+                'avg_score': 0, 'free_processing_pct': 0,
+                'estimated_cost_usd': 0, 'savings_vs_all_tier2': 0
+            }
+        
         free = self.stats['tier1'] + self.stats['tier2']
+        
+        # Calcul coût actuel
+        tier1_cost = self.stats['tier1'] * self.TIER_COSTS[1]
+        tier2_cost = self.stats['tier2'] * self.TIER_COSTS[2]
+        tier3_cost = self.stats['tier3'] * self.TIER_COSTS[3]
+        total_cost = tier1_cost + tier2_cost + tier3_cost
+        
+        # Économie vs tout en Tier 2
+        all_tier2_cost = total * self.TIER_COSTS[2]
+        savings = all_tier2_cost - total_cost
+        
         return {
-            'total_routed': total, 'tier1': self.stats['tier1'], 'tier2': self.stats['tier2'], 'tier3': self.stats['tier3'],
-            'tier1_pct': (self.stats['tier1'] / total) * 100, 'tier2_pct': (self.stats['tier2'] / total) * 100,
-            'tier3_pct': (self.stats['tier3'] / total) * 100, 'avg_score': self.stats['avg_score'],
-            'free_processing_pct': (free / total) * 100,
-            'estimated_total_cost_usd': self.stats['tier1']*self.TIER_COSTS[1] + self.stats['tier2']*self.TIER_COSTS[2] + self.stats['tier3']*self.TIER_COSTS[3]
+            'total_routed': total, 
+            'tier1': self.stats['tier1'], 
+            'tier2': self.stats['tier2'], 
+            'tier3': self.stats['tier3'],
+            'tier1_pct': round((self.stats['tier1'] / total) * 100, 1), 
+            'tier2_pct': round((self.stats['tier2'] / total) * 100, 1),
+            'tier3_pct': round((self.stats['tier3'] / total) * 100, 1), 
+            'avg_score': round(self.stats['avg_score'], 1),
+            'free_processing_pct': round((free / total) * 100, 1),
+            'estimated_cost_usd': round(total_cost, 6),
+            'savings_vs_all_tier2': round(savings, 6),
+            'tier1_threshold': self.tier1_max,
+            'is_written_mode': self.is_written_mode,
         }
     
     # ═══════════════════════════════════════════════════════════════
