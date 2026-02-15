@@ -35,7 +35,7 @@ from src.smart_router import SmartRouterV2
 from src.tier1_rules import Tier1RulesEngine
 from src.tier2_mistral import Tier2Mistral
 from src.extractor import TagExtractor
-from src.text_cleaner import MultilingualTextCleaner, HAS_EMBEDDINGS
+from src.text_cleaner import MultilingualTextCleaner, _check_embeddings_available
 from src.cache_manager import CacheManager
 from src.dlq_manager import DeadLetterQueue
 from src.resilience import safe_execution
@@ -139,7 +139,7 @@ class AsyncPipeline:
         
         # Caching systems
         self.cache = CacheManager() if use_cache else None
-        self.semantic_cache = SemanticCache() if use_semantic_cache and HAS_EMBEDDINGS else None
+        self.semantic_cache = SemanticCache() if use_semantic_cache and _check_embeddings_available() else None
         self.cross_validator = CrossValidator() if use_cross_validation else None
         self.profile_configs: Dict[str, RuntimeProfile] = {
             settings.single_note_profile.name: settings.single_note_profile,

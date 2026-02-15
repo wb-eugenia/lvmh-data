@@ -311,7 +311,7 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             logger.warning(f"Redis connection failed: {e}")
 
-    if _env_flag("PRELOAD_PIPELINE", "1"):
+    if _env_flag("PRELOAD_PIPELINE", "0"):  # Disabled by default - lazy load is better
         try:
             from api.routers.analyze import get_pipeline
 

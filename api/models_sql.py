@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, CheckConstraint, Column, DateTime, Float, ForeignKey, Index, Integer, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, CheckConstraint, Column, DateTime, Float, ForeignKey, Index, Integer, String, Text, UniqueConstraint, LargeBinary
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from .database import Base
@@ -106,3 +106,23 @@ class OpportunityAction(Base):
 
     note = relationship("Note", back_populates="opportunity_action")
     manager = relationship("User")
+
+
+class Product(Base):
+    __tablename__ = "products"
+
+    id = Column(Integer, primary_key=True, index=True)
+    sku = Column(String, unique=True, index=True, nullable=False)
+    name = Column(String, nullable=False)
+    url = Column(String)
+    image_url = Column(String)
+    price_eur = Column(Float, default=0.0)
+    category1 = Column(String, index=True)
+    category2 = Column(String)
+    category3 = Column(String)
+    is_discount = Column(Boolean, default=False)
+    stock = Column(Integer, default=10)
+    embedding = Column(LargeBinary, nullable=True)
+    rag_indexed = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

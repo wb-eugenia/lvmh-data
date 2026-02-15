@@ -8,9 +8,17 @@ import json
 import os
 import re
 from typing import Dict, List, Optional
-from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
 import logging
+
+# Lazy import to avoid Cloud Run startup timeout
+OpenAI = None
+
+def _get_openai_client():
+    global OpenAI
+    if OpenAI is None:
+        from openai import OpenAI
+    return OpenAI
 
 
 logger = logging.getLogger(__name__)
@@ -66,7 +74,7 @@ RÉPONDS EN JSON:
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise ValueError("OPENAI_API_KEY not found")
-        self.client = OpenAI(api_key=api_key)
+        self.client = _get_openai_client()(api_key=api_key)
     
     @retry(
         stop=stop_after_attempt(3),

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
     ArrowLeft,
     Search,
@@ -13,7 +13,11 @@ import {
     Edit2,
     Check,
     X,
-    PackageCheck
+    PackageCheck,
+    Upload,
+    Database,
+    AlertCircle,
+    CheckCircle
 } from 'lucide-react'
 import { apiFetch } from '../lib/api'
 import { useAuth } from '../context/AuthContext'
@@ -33,6 +37,12 @@ export default function ProductsView({ onBack }) {
     const [editingStock, setEditingStock] = useState(null)
     const [stockValue, setStockValue] = useState('')
     const [stockSaving, setStockSaving] = useState(false)
+    const [showImportModal, setShowImportModal] = useState(false)
+    const [importing, setImporting] = useState(false)
+    const [importResult, setImportResult] = useState(null)
+    const [ragStatus, setRagStatus] = useState(null)
+    const [rebuildingRag, setRebuildingRag] = useState(false)
+    const fileInputRef = useRef(null)
 
     const fetchProductStats = async () => {
         try {
@@ -43,6 +53,68 @@ export default function ProductsView({ onBack }) {
             }
         } catch (e) {
             console.error('Failed to fetch product stats:', e)
+        }
+    }
+
+    const fetchRagStatus = async () => {
+        try {
+            const response = await apiFetch('/api/products/rag-status')
+            if (response.ok) {
+                const data = await response.json()
+                setRagStatus(data)
+            }
+        } catch (e) {
+            console.error('Failed to fetch RAG status:', e)
+        }
+    }
+
+    const handleImportCSV = async (e) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+        
+        setImporting(true)
+        setImportResult(null)
+        
+        try {
+            const formData = new FormData()
+            formData.append('file', file)
+            
+            const response = await apiFetch('/api/products/import-csv', {
+                method: 'POST',
+                body: formData,
+            })
+            
+            const data = await response.json()
+            setImportResult(data)
+            
+            if (data.imported > 0 || data.updated > 0) {
+                fetchProducts(1)
+                fetchProductStats()
+                fetchRagStatus()
+            }
+        } catch (err) {
+            setImportResult({ error: err.message })
+        } finally {
+            setImporting(false)
+            if (fileInputRef.current) {
+                fileInputRef.current.value = ''
+            }
+        }
+    }
+
+    const handleRebuildRag = async () => {
+        setRebuildingRag(true)
+        try {
+            const response = await apiFetch('/api/products/rebuild-rag', {
+                method: 'POST',
+            })
+            const data = await response.json()
+            setRagStatus({ needs_rebuild: false, ...data })
+            alert(data.rebuilt ? `RAG rebuilt! ${data.products_indexed} products indexed.` : `Error: ${data.error}`)
+        } catch (err) {
+            alert('Failed to rebuild RAG: ' + err.message)
+        } finally {
+            setRebuildingRag(false)
         }
     }
 
@@ -74,6 +146,7 @@ export default function ProductsView({ onBack }) {
     useEffect(() => {
         fetchProductStats()
         fetchProducts()
+        fetchRagStatus()
     }, [])
 
     const handleSearch = (e) => {
@@ -145,12 +218,39 @@ export default function ProductsView({ onBack }) {
                             </p>
                         </div>
                     </div>
-                    <button
-                        onClick={() => fetchProducts(productsPage)}
-                        className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
-                    >
-                        <RefreshCcw size={18} />
-                    </button>
+                    <div className="flex items-center gap-2">
+                        {ragStatus?.needs_rebuild && (
+                            <span className="flex items-center gap-1 px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded">
+                                <AlertCircle size={12} />
+                                RAG needs rebuild
+                            </span>
+                        )}
+                        <label className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors cursor-pointer text-sm">
+                            <Upload size={16} />
+                            Import CSV
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept=".csv"
+                                onChange={handleImportCSV}
+                                className="hidden"
+                            />
+                        </label>
+                        <button
+                            onClick={handleRebuildRag}
+                            disabled={rebuildingRag}
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors text-sm disabled:opacity-50"
+                        >
+                            <Database size={16} />
+                            {rebuildingRag ? 'Rebuilding...' : 'Rebuild RAG'}
+                        </button>
+                        <button
+                            onClick={() => fetchProducts(productsPage)}
+                            className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                        >
+                            <RefreshCcw size={18} />
+                        </button>
+                    </div>
                 </div>
             </div>
 

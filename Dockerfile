@@ -25,6 +25,8 @@ RUN pip install groq sqlalchemy passlib python-jose bcrypt
 COPY src/ ./src/
 COPY api/ ./api/
 COPY config/ ./config/
+COPY data/ ./data/
+RUN mkdir -p models cache && touch models/.gitkeep cache/.gitkeep || true
 
 # Copy React Build from previous stage
 COPY --from=frontend-build /app/frontend/dist ./frontend-v2/dist

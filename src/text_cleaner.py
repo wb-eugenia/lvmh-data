@@ -11,14 +11,22 @@ import pandas as pd
 from tqdm import tqdm
 from difflib import SequenceMatcher
 
-# Try importing semantic libraries
-try:
-    from sentence_transformers import SentenceTransformer
-    from torch.nn.functional import cosine_similarity
-    import torch
-    HAS_EMBEDDINGS = True
-except ImportError:
-    HAS_EMBEDDINGS = False
+# DON'T import sentence_transformers at module level - it blocks for 30+ seconds
+# Import lazily when needed to avoid Cloud Run startup timeout
+HAS_EMBEDDINGS = None  # Will be set lazily
+
+def _check_embeddings_available():
+    global HAS_EMBEDDINGS
+    if HAS_EMBEDDINGS is not None:
+        return HAS_EMBEDDINGS
+    try:
+        from sentence_transformers import SentenceTransformer
+        from torch.nn.functional import cosine_similarity
+        import torch
+        HAS_EMBEDDINGS = True
+    except ImportError:
+        HAS_EMBEDDINGS = False
+    return HAS_EMBEDDINGS
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -188,7 +196,7 @@ class MultilingualTextCleaner:
     }
 
     def __init__(self, use_embeddings: bool = True):
-        self.use_embeddings = use_embeddings and HAS_EMBEDDINGS
+        self.use_embeddings = use_embeddings and _check_embeddings_available()
         self.embedder = None
         self.current_lang = 'FR'
         

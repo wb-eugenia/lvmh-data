@@ -13,17 +13,31 @@ from typing import List, Dict, Any, Set, Optional
 import numpy as np
 import pandas as pd
 
-try:
-    from sentence_transformers import SentenceTransformer
-    HAS_ML = True
-except ImportError:
-    HAS_ML = False
+# Lazy imports to avoid Cloud Run startup timeout
+HAS_ML = None
+HAS_MISTRAL = None
 
-try:
-    from mistralai import Mistral
-    HAS_MISTRAL = True
-except ImportError:
-    HAS_MISTRAL = False
+def _check_ml_available():
+    global HAS_ML
+    if HAS_ML is not None:
+        return HAS_ML
+    try:
+        from sentence_transformers import SentenceTransformer
+        HAS_ML = True
+    except ImportError:
+        HAS_ML = False
+    return HAS_ML
+
+def _check_mistral_available():
+    global HAS_MISTRAL
+    if HAS_MISTRAL is not None:
+        return HAS_MISTRAL
+    try:
+        from mistralai import Mistral
+        HAS_MISTRAL = True
+    except ImportError:
+        HAS_MISTRAL = False
+    return HAS_MISTRAL
 
 logger = logging.getLogger(__name__)
 
@@ -73,13 +87,21 @@ Réponds en JSON strict:
         self.df = None
         self.embeddings = None
         self.norm_embeddings = None
+        self._use_new_format = False
+        self._stock_info = {}
+        self.product_skus = []
+        self.product_names = []
+        self.product_prices = []
+        self.product_urls = []
+        self.product_images = []
+        self.product_categories = []
         self.rag_query_llm_enabled = os.getenv("LVMH_ENABLE_RAG_QUERY_LLM", "false").lower() in {"1", "true", "yes"}
         self.rag_query_model = os.getenv("RAG_QUERY_LLM_MODEL", "mistral-small-latest")
         self.rag_query_client = None
 
         if self.rag_query_llm_enabled:
             api_key = os.getenv("MISTRAL_API_KEY")
-            if HAS_MISTRAL and api_key:
+            if _check_mistral_available() and api_key:
                 try:
                     self.rag_query_client = Mistral(api_key=api_key)
                 except Exception as exc:
@@ -87,7 +109,7 @@ Réponds en JSON strict:
             else:
                 logger.warning("RAG query LLM requested but Mistral client/api key unavailable.")
 
-        if not HAS_ML:
+        if not _check_ml_available():
             logger.warning("SentenceTransformers not installed. RAG disabled.")
             return
 
@@ -100,15 +122,46 @@ Réponds en JSON strict:
             with open(index_path, "rb") as f:
                 data = pickle.load(f)
                 self.embeddings = data["embeddings"]
-                self.df = data["df"]
+                
+                if "df" in data and data["df"] is not None:
+                    self.df = data["df"]
+                    self.product_skus = data["df"]["product_code"].tolist() if "product_code" in data["df"].columns else []
+                    self.product_names = data["df"]["title"].tolist() if "title" in data["df"].columns else []
+                    self.product_prices = data["df"]["price_eur"].tolist() if "price_eur" in data["df"].columns else []
+                    self.product_urls = data["df"]["itemurl"].tolist() if "itemurl" in data["df"].columns else []
+                    self.product_images = data["df"]["imageurl"].tolist() if "imageurl" in data["df"].columns else []
+                    self.product_categories = data["df"]["category1_code"].tolist() if "category1_code" in data["df"].columns else []
+                    self._use_new_format = False
+                else:
+                    self.df = None
+                    self.product_skus = data.get("product_skus", [])
+                    self.product_names = data.get("product_names", [])
+                    self.product_prices = data.get("product_prices", [])
+                    self.product_urls = data.get("product_urls", [])
+                    self.product_images = data.get("product_images", [])
+                    self.product_categories = data.get("product_categories", [])
+                    self._use_new_format = True
 
             self.model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
             self.norm_embeddings = self.embeddings / np.linalg.norm(self.embeddings, axis=1, keepdims=True)
             self.enabled = True
-            logger.info("ProductMatcher ready: %s products indexed.", len(self.df))
+            
+            num_products = len(self.product_skus) if self._use_new_format else len(self.df)
+            logger.info("ProductMatcher ready: %s products indexed (new_format=%s).", num_products, self._use_new_format)
         except Exception as exc:
             logger.error("Failed to initialize ProductMatcher: %s", exc)
             self.enabled = False
+
+    def load_stock_from_db(self, db_session):
+        """Load stock info from database to mark out-of-stock products."""
+        try:
+            from api.models_sql import Product as ProductModel
+            products = db_session.query(ProductModel.sku, ProductModel.stock).all()
+            self._stock_info = {p.sku: p.stock for p in products}
+            logger.info("Loaded stock info for %d products from database", len(self._stock_info))
+        except Exception as exc:
+            logger.warning("Could not load stock from DB: %s", exc)
+            self._stock_info = {}
 
     def match(
         self,
@@ -116,10 +169,18 @@ Réponds en JSON strict:
         top_k: int = 3,
         threshold: float = 0.35,
         extraction: Optional[Any] = None,
+        stock_info: Optional[Dict[str, int]] = None,
     ) -> List[Dict[str, Any]]:
-        """Return top-k product matches for the query."""
+        """Return top-k product matches for the query.
+        
+        Args:
+            stock_info: Optional dict mapping SKU -> stock quantity. If provided,
+                       products with stock=0 will be marked. Uses self._stock_info if not provided.
+        """
         if not self.enabled or not query:
             return []
+
+        effective_stock_info = stock_info if stock_info is not None else self._stock_info
 
         try:
             query_struct = self._build_query_struct(query, extraction=extraction)
@@ -153,7 +214,19 @@ Réponds en JSON strict:
             results: List[Dict[str, Any]] = []
             for idx in top_indices:
                 base_score = float(similarities[idx])
-                prod = self.df.iloc[idx].to_dict()
+                
+                if self._use_new_format:
+                    prod = {
+                        "product_code": self.product_skus[idx] if idx < len(self.product_skus) else "N/A",
+                        "title": self.product_names[idx] if idx < len(self.product_names) else "Unknown",
+                        "price_eur": self.product_prices[idx] if idx < len(self.product_prices) else 0,
+                        "itemurl": self.product_urls[idx] if idx < len(self.product_urls) else "",
+                        "imageurl": self.product_images[idx] if idx < len(self.product_images) else "",
+                        "category1_code": self.product_categories[idx] if idx < len(self.product_categories) else "",
+                    }
+                else:
+                    prod = self.df.iloc[idx].to_dict()
+                
                 product_text = self._build_product_text(prod)
 
                 if category_filter and not self._category_matches(self._get_best_category(prod), category_filter):
@@ -181,12 +254,22 @@ Réponds en JSON strict:
                     continue
 
                 category = self._get_best_category(prod)
+                sku = str(prod.get("product_code", "N/A"))
+                
+                in_stock = True
+                if effective_stock_info:
+                    stock = effective_stock_info.get(sku, -1)
+                    if stock == 0:
+                        in_stock = False
+                
                 clean_prod = {
-                    "sku": str(prod.get("product_code", "N/A")),
+                    "sku": sku,
                     "name": self._get_best_name(prod),
                     "category": category,
                     "price": product_price,
                     "url": str(prod.get("itemurl", "")),
+                    "image_url": str(prod.get("imageurl", "")),
+                    "in_stock": in_stock,
                     "match_score": round(adjusted_score, 2),
                     "similarity": round(adjusted_score, 2),
                     "base_score": round(base_score, 2),

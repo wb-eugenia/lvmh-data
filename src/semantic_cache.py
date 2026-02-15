@@ -14,21 +14,34 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-# Try to import FAISS for vector search
-try:
-    import faiss
-    HAS_FAISS = True
-except ImportError:
-    HAS_FAISS = False
-    logger.warning("FAISS not available, falling back to simple cache")
+# DON'T import at module level - causes Cloud Run startup timeout
+# Lazy imports when needed
+HAS_FAISS = None
+HAS_EMBEDDINGS = None
 
-# Try to import sentence transformers
-try:
-    from sentence_transformers import SentenceTransformer
-    HAS_EMBEDDINGS = True
-except ImportError:
-    HAS_EMBEDDINGS = False
-    logger.warning("Sentence transformers not available")
+def _check_faiss_available():
+    global HAS_FAISS
+    if HAS_FAISS is not None:
+        return HAS_FAISS
+    try:
+        import faiss
+        HAS_FAISS = True
+    except ImportError:
+        HAS_FAISS = False
+        logger.warning("FAISS not available, falling back to simple cache")
+    return HAS_FAISS
+
+def _check_embeddings_available():
+    global HAS_EMBEDDINGS
+    if HAS_EMBEDDINGS is not None:
+        return HAS_EMBEDDINGS
+    try:
+        from sentence_transformers import SentenceTransformer
+        HAS_EMBEDDINGS = True
+    except ImportError:
+        HAS_EMBEDDINGS = False
+        logger.warning("Sentence transformers not available")
+    return HAS_EMBEDDINGS
 
 
 @dataclass
@@ -90,9 +103,9 @@ class SemanticCache:
         # Ensure cache directory exists
         os.makedirs(cache_dir, exist_ok=True)
         
-        # Initialize embedding model
+        # Initialize embedding model (lazy)
         self.model = None
-        if HAS_EMBEDDINGS:
+        if _check_embeddings_available():
             try:
                 self.model = SentenceTransformer(model_name)
                 logger.info(f"✅ Semantic cache initialized with {model_name}")
@@ -104,7 +117,7 @@ class SemanticCache:
         self.entries: List[CacheEntry] = []
         self.dimension = 384  # Default for MiniLM-L12
         
-        if HAS_FAISS and self.model:
+        if _check_faiss_available() and self.model:
             self._init_faiss_index()
         
         # Load existing cache
@@ -119,7 +132,7 @@ class SemanticCache:
     
     def _init_faiss_index(self):
         """Initialize FAISS index for similarity search"""
-        if not HAS_FAISS:
+        if not _check_faiss_available():
             return
             
         # Use IndexFlatIP (Inner Product) for cosine similarity with normalized vectors
@@ -305,7 +318,7 @@ class SemanticCache:
         self.entries = self.entries[:keep_count]
         
         # Rebuild FAISS index
-        if self.index and HAS_FAISS:
+        if self.index and _check_faiss_available():
             self._init_faiss_index()
             for entry in self.entries:
                 if entry.embedding:
