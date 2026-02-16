@@ -32,12 +32,40 @@ import { useAuth } from '../context/AuthContext'
 import AdminProductsView from './AdminProductsView'
 
 const REFRESH_INTERVAL_MS = 30000
+const REFRESH_COUNTDOWN_MS = 10000
 const WINDOW_PRESETS = [
     { label: '24h', days: 1 },
     { label: '7 jours', days: 7 },
     { label: '30 jours', days: 30 },
     { label: '90 jours', days: 90 }
 ]
+
+const calculateTrend = (current, previous) => {
+    if (!previous || previous === 0) return { value: 0, isPositive: true, isNeutral: true }
+    const change = ((current - previous) / previous) * 100
+    return {
+        value: Math.abs(change).toFixed(1),
+        isPositive: change >= 0,
+        isNeutral: Math.abs(change) < 1
+    }
+}
+
+const getSparklineData = (rows, key, days = 7) => {
+    const recent = rows.slice(-days)
+    return recent.map((r, i) => ({ value: r[key] || 0, index: i }))
+}
+
+const getToneColor = (value, thresholds = { good: 80, warn: 50 }) => {
+    if (value >= thresholds.good) return 'text-green-400'
+    if (value >= thresholds.warn) return 'text-lvmh-gold'
+    return 'text-red-400'
+}
+
+const getToneBg = (value, thresholds = { good: 80, warn: 50 }) => {
+    if (value >= thresholds.good) return 'bg-green-500/10 border-green-500/30'
+    if (value >= thresholds.warn) return 'bg-lvmh-gold/10 border-lvmh-gold/30'
+    return 'bg-red-500/10 border-red-500/30'
+}
 
 const componentStatus = (value) => {
     if (!value || typeof value !== 'object') return { label: 'Unknown', tone: 'text-lvmh-gray border-white/10 bg-white/5' }
@@ -91,12 +119,36 @@ export default function AdminPanel({ onBack }) {
     const [adminActionMessage, setAdminActionMessage] = useState(null)
     const [socketState, setSocketState] = useState('offline')
     const [lastRefreshAt, setLastRefreshAt] = useState(null)
+    const [refreshCountdown, setRefreshCountdown] = useState(REFRESH_INTERVAL_MS)
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
-    const { pipeline, healthScore, healthTone, trendRows, trendTotals, mergedCost, componentRows } = useMemo(() => {
+    const { pipeline, healthScore, healthTone, trendRows, trendTotals, mergedCost, componentRows, sparklines, comparisons } = useMemo(() => {
         const pipeline = summary?.pipeline
         const healthScore = Math.round((metrics?.health_score ?? summary?.health_score ?? 0))
         const healthTone = healthScore >= 80 ? 'border-green-500/40 text-green-400 bg-green-500/10' : healthScore >= 50 ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 'border-red-500/40 text-red-400 bg-red-500/10'
-        const trendRows = (timeseries?.daily ?? []).map((row) => ({
+        
+        const rows = timeseries?.daily ?? []
+        const halfIndex = Math.floor(rows.length / 2)
+        const firstHalf = rows.slice(0, halfIndex)
+        const secondHalf = rows.slice(halfIndex)
+        
+        const sumKey = (arr, key) => arr.reduce((acc, r) => acc + (Number(r[key]) || 0), 0)
+        
+        const sparklines = {
+            notes: getSparklineData(rows, 'notes_count', 7),
+            cost: getSparklineData(rows, 'cost_eur', 7),
+            latency: getSparklineData(rows, 'avg_latency_ms', 7),
+            health: getSparklineData(rows, 'health_score', 7)
+        }
+        
+        const comparisons = {
+            notes: calculateTrend(sumKey(secondHalf, 'notes_count'), sumKey(firstHalf, 'notes_count')),
+            cost: calculateTrend(sumKey(secondHalf, 'cost_eur'), sumKey(firstHalf, 'cost_eur')),
+            latency: calculateTrend(sumKey(secondHalf, 'avg_latency_ms'), sumKey(firstHalf, 'avg_latency_ms')),
+            health: calculateTrend(healthScore, rows[halfIndex]?.health_score ?? healthScore)
+        }
+        
+        const trendRows = rows.map((row) => ({
             ...row,
             label: row.date?.slice(5) ?? '',
             fullLabel: row.date ?? ''
@@ -106,7 +158,7 @@ export default function AdminPanel({ onBack }) {
         const summaryCost = summary?.cost
         const mergedCost = { ...summaryCost, ...cost }
         const componentRows = Object.entries(metrics?.components ?? summary?.components ?? {})
-        return { pipeline, healthScore, healthTone, trendRows, trendTotals, mergedCost, componentRows }
+        return { pipeline, healthScore, healthTone, trendRows, trendTotals, mergedCost, componentRows, sparklines, comparisons }
     }, [metrics, summary, timeseries])
 
     const currentWindowLabel = WINDOW_PRESETS.find((preset) => preset.days === windowDays)?.label || `${windowDays} jours`
@@ -116,9 +168,9 @@ export default function AdminPanel({ onBack }) {
         setError(null)
         try {
             const [metricsRes, summaryRes, timeseriesRes] = await Promise.all([
-                apiFetch(`/api/admin/metrics?days=${windowDays}`),
-                apiFetch('/api/admin/summary'),
-                apiFetch(`/api/admin/timeseries?days=${windowDays}`)
+                apiFetch(`/api/dashboard/metrics?days=${windowDays}`),
+                apiFetch('/api/dashboard/metrics/summary'),
+                apiFetch(`/api/dashboard/metrics/timeseries?days=${windowDays}`)
             ])
             if (metricsRes.ok) {
                 const metricsData = await metricsRes.json()
@@ -144,7 +196,7 @@ export default function AdminPanel({ onBack }) {
         setUsersLoading(true)
         setUsersError(null)
         try {
-            const res = await apiFetch('/api/admin/users')
+            const res = await apiFetch('/api/dashboard/admin/users')
             if (res.ok) {
                 const data = await res.json()
                 setAdminUsers(data.users ?? [])
@@ -164,7 +216,7 @@ export default function AdminPanel({ onBack }) {
 
     const fetchDailyNotes = async () => {
         try {
-            const res = await apiFetch(`/api/admin/notes?days=${windowDays}&limit=50`)
+            const res = await apiFetch(`/api/results?limit=50&days=${windowDays}`)
             if (res.ok) {
                 const data = await res.json()
                 setDailyNotes(data.notes ?? [])
@@ -197,7 +249,7 @@ export default function AdminPanel({ onBack }) {
 
     const fetchProductStats = async () => {
         try {
-            const res = await apiFetch('/api/admin/products/stats')
+            const res = await apiFetch('/api/products/stats')
             if (res.ok) {
                 const data = await res.json()
                 setProductStats(data)
@@ -208,13 +260,53 @@ export default function AdminPanel({ onBack }) {
     }
 
     useEffect(() => {
-        fetchDashboard()
-        fetchAdminUsers()
-        fetchDailyNotes()
-        fetchProducts()
-        fetchProductStats()
-        const interval = setInterval(fetchDashboard, REFRESH_INTERVAL_MS)
-        return () => clearInterval(interval)
+        let mounted = true
+        
+        const loadData = async () => {
+            if (!mounted) return
+            
+            try {
+                await Promise.allSettled([
+                    fetchDashboard(),
+                    fetchAdminUsers(),
+                    fetchDailyNotes(),
+                    fetchProducts(),
+                    fetchProductStats()
+                ])
+            } catch (e) {
+                console.error('Initial load error:', e)
+            }
+        }
+        
+        loadData()
+        
+        let refreshInterval = null
+        let countdownInterval = null
+        
+        const startCountdown = () => {
+            setRefreshCountdown(REFRESH_INTERVAL_MS)
+            countdownInterval = setInterval(() => {
+                setRefreshCountdown(prev => {
+                    if (prev <= 1000) {
+                        return REFRESH_INTERVAL_MS
+                    }
+                    return prev - 1000
+                })
+            }, 1000)
+        }
+        
+        startCountdown()
+        refreshInterval = setInterval(() => {
+            fetchDashboard()
+            fetchAdminUsers()
+            fetchDailyNotes()
+        }, REFRESH_INTERVAL_MS)
+        
+        return () => {
+            mounted = false
+            if (refreshInterval) clearInterval(refreshInterval)
+            if (countdownInterval) clearInterval(countdownInterval)
+        }
     }, [windowDays])
 
     useEffect(() => {
@@ -225,7 +317,7 @@ export default function AdminPanel({ onBack }) {
     }, [activeTab, productsSearch, productsCategory])
 
     useEffect(() => {
-        const wsUrlValue = wsUrl('/ws/admin')
+        const wsUrlValue = wsUrl('/ws/pipeline')
         let ws = null
         let reconnectTimeout = null
         const connect = () => {
@@ -261,26 +353,15 @@ export default function AdminPanel({ onBack }) {
             setNoteDetailsLoading(true)
             setNoteDetailsError(null)
             Promise.all([
-                apiFetch(`/api/admin/notes/${selectedNoteId}`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/summary`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/routing`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/quality`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/rgpd`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/nba`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/products`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/audio`),
-                apiFetch(`/api/admin/notes/${selectedNoteId}/tags`)
-            ]).then(([detailsRes, summaryRes, routingRes, qualityRes, rgpdRes, nbaRes, productsRes, audioRes, tagsRes]) => {
-                if (detailsRes.ok) setNoteDetails(detailsRes.json())
+                apiFetch(`/api/results/${selectedNoteId}`)
+            ]).then(([detailsRes]) => {
+                if (detailsRes.ok) {
+                    detailsRes.json().then(data => {
+                        setNoteDetails(data)
+                        setNoteSummary(data)
+                    })
+                }
                 else setNoteDetailsError(`Erreur: ${detailsRes.status}`)
-                if (summaryRes.ok) setNoteSummary(summaryRes.json())
-                if (routingRes.ok) setNoteRouting(routingRes.json())
-                if (qualityRes.ok) setNoteQuality(qualityRes.json())
-                if (rgpdRes.ok) setNoteRgpd(rgpdRes.json())
-                if (nbaRes.ok) setNoteNba(nbaRes.json())
-                if (productsRes.ok) productsRes.json().then(d => setNoteProducts(d.products ?? []))
-                if (audioRes.ok) setNoteAudio(audioRes.json())
-                if (tagsRes.ok) tagsRes.json().then(d => setNoteTags(d.tags ?? []))
                 setNoteDetailsLoading(false)
             }).catch(e => {
                 setNoteDetailsError(e.message)
@@ -292,7 +373,7 @@ export default function AdminPanel({ onBack }) {
     const exportMetrics = async (format) => {
         setExporting(format)
         try {
-            const res = await apiFetch(`/api/admin/metrics/export?format=${format}`)
+            const res = await apiFetch(`/api/dashboard/metrics/export?format=${format}`)
             if (res.ok) {
                 const blob = await res.blob()
                 const url = URL.createObjectURL(blob)
@@ -316,7 +397,7 @@ export default function AdminPanel({ onBack }) {
                 setSelectedTrendDate(date)
                 setDayDetailsLoading(true)
                 setDayDetailsError(null)
-                apiFetch(`/api/admin/timeseries/${date}`).then((res) => {
+                apiFetch(`/api/dashboard/metrics/day-details?date=${date}`).then((res) => {
                     if (res.ok) {
                         res.json().then(setDayDetails)
                     } else {
@@ -339,7 +420,7 @@ export default function AdminPanel({ onBack }) {
         setAdminActionLoading('reset-points')
         setAdminActionMessage(null)
         try {
-            const res = await apiFetch('/api/admin/users/reset-points', { method: 'POST' })
+            const res = await apiFetch('/api/dashboard/admin/points/reset', { method: 'POST' })
             if (res.ok) {
                 setAdminActionMessage('Points réinitialisés avec succès')
                 fetchAdminUsers()
@@ -359,7 +440,7 @@ export default function AdminPanel({ onBack }) {
         setAdminActionLoading('purge-recordings')
         setAdminActionMessage(null)
         try {
-            const res = await apiFetch('/api/admin/purge-recordings', { method: 'POST' })
+            const res = await apiFetch('/api/dashboard/admin/purge-recordings', { method: 'POST' })
             if (res.ok) {
                 setAdminActionMessage('Enregistrements supprimés avec succès')
                 fetchAdminUsers()
@@ -432,10 +513,19 @@ export default function AdminPanel({ onBack }) {
     return (
         <div className="min-h-screen bg-lvmh-black text-white">
             <div className="flex">
-                <div className="w-56 min-h-screen bg-black/50 border-r border-white/10 p-4 flex flex-col">
-                    <div className="mb-6">
-                        <h1 className="text-xl font-display font-black gold-text">Admin</h1>
-                        <p className="text-[10px] text-lvmh-gray uppercase tracking-widest">Panel</p>
+                <div className={`${sidebarCollapsed ? 'w-16' : 'w-56'} min-h-screen bg-black/50 border-r border-white/10 p-4 flex flex-col transition-all duration-300`}>
+                    <div className="mb-6 flex items-center justify-between">
+                        {!sidebarCollapsed && (
+                            <>
+                                <h1 className="text-xl font-display font-black gold-text">Admin</h1>
+                            </>
+                        )}
+                        <button
+                            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                            className="p-1.5 rounded-lg hover:bg-white/10 text-lvmh-gray hover:text-white transition-colors"
+                        >
+                            {sidebarCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+                        </button>
                     </div>
                     <nav className="flex-1 space-y-1">
                         {adminTabs.map((tab) => {
@@ -450,9 +540,10 @@ export default function AdminPanel({ onBack }) {
                                             ? 'bg-lvmh-gold/10 text-lvmh-gold border border-lvmh-gold/30'
                                             : 'text-lvmh-gray hover:text-white hover:bg-white/5 border border-transparent'
                                     }`}
+                                    title={sidebarCollapsed ? tab.label : undefined}
                                 >
                                     <Icon size={18} />
-                                    {tab.label}
+                                    {!sidebarCollapsed && tab.label}
                                 </button>
                             )
                         })}
@@ -460,9 +551,10 @@ export default function AdminPanel({ onBack }) {
                     <button
                         onClick={handleLogout}
                         className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-red-300 hover:bg-red-500/10 border border-transparent"
+                        title={sidebarCollapsed ? 'Deconnexion' : undefined}
                     >
                         <LogOut size={18} />
-                        Deconnexion
+                        {!sidebarCollapsed && 'Deconnexion'}
                     </button>
                 </div>
                 <div className="flex-1 p-6 md:p-8 overflow-visible">
@@ -709,35 +801,149 @@ export default function AdminPanel({ onBack }) {
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                                 <div className="glass p-5">
-                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gray mb-2">Health Score</div>
-                                    <div className={`inline-flex px-3 py-1 rounded-full border text-sm font-bold ${healthTone}`}>
-                                        {healthScore}/100
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Health Score</div>
+                                        <div className={`w-2 h-2 rounded-full ${healthScore >= 80 ? 'bg-green-400' : healthScore >= 50 ? 'bg-lvmh-gold' : 'bg-red-400'} ${socketState === 'connected' ? 'animate-pulse' : ''}`}></div>
                                     </div>
-                                    <div className="mt-3 text-xs text-lvmh-gray">Updated: {formatDateTime(lastRefreshAt)}</div>
+                                    <div className="flex items-end gap-3">
+                                        <div className={`text-3xl font-black ${getToneColor(healthScore)}`}>
+                                            {healthScore}
+                                        </div>
+                                        <div className="text-xs text-lvmh-gray mb-1">/100</div>
+                                    </div>
+                                    <div className="flex items-center justify-between mt-3">
+                                        <div className="text-xs text-lvmh-gray">
+                                            {comparisons?.health && !comparisons.health.isNeutral && (
+                                                <span className={comparisons.health.isPositive ? 'text-green-400' : 'text-red-400'}>
+                                                    {comparisons.health.isPositive ? '↑' : '↓'} {comparisons.health.value}%
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="text-[10px] text-lvmh-gray">
+                                            {refreshCountdown > 0 ? `↻ ${Math.ceil(refreshCountdown/1000)}s` : '↻'}
+                                        </div>
+                                    </div>
+                                    <div className="h-8 mt-2">
+                                        {sparklines?.health?.length > 0 && (
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <AreaChart data={sparklines.health}>
+                                                    <defs>
+                                                        <linearGradient id="healthSpark" x1="0" y1="0" x2="0" y2="1">
+                                                            <stop offset="5%" stopColor={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#D4AF37' : '#f87171'} stopOpacity={0.4} />
+                                                            <stop offset="95%" stopColor={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#D4AF37' : '#f87171'} stopOpacity={0} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                    <Area type="monotone" dataKey="value" stroke={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#D4AF37' : '#f87171'} fill="url(#healthSpark)" strokeWidth={1.5} />
+                                                </AreaChart>
+                                            </ResponsiveContainer>
+                                        )}
+                                    </div>
                                 </div>
 
                                 <div className="glass p-5">
                                     <div className="text-[10px] uppercase tracking-widest text-lvmh-gray mb-2 flex items-center gap-1">
-                                        <Database size={12} /> Notes Processed
+                                        <Database size={12} /> Notes
                                     </div>
-                                    <div className="text-3xl font-black">{pipeline?.total_processed ?? 0}</div>
-                                    <div className="text-xs text-lvmh-gray mt-2">Success rate: {formatPercent(pipeline?.success_rate || 0)}</div>
+                                    <div className="flex items-end gap-3">
+                                        <div className="text-3xl font-black">{pipeline?.total_processed ?? 0}</div>
+                                        <div className="text-xs text-lvmh-gray mb-1">
+                                            {comparisons?.notes && !comparisons.notes.isNeutral && (
+                                                <span className={comparisons.notes.isPositive ? 'text-green-400' : 'text-red-400'}>
+                                                    {comparisons.notes.isPositive ? '↑' : '↓'} {comparisons.notes.value}%
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="text-xs text-lvmh-gray mt-2">
+                                        <span className={pipeline?.success_rate >= 0.95 ? 'text-green-400' : pipeline?.success_rate >= 0.8 ? 'text-lvmh-gold' : 'text-red-400'}>
+                                            {formatPercent(pipeline?.success_rate || 0)} success
+                                        </span>
+                                    </div>
+                                    <div className="h-8 mt-2">
+                                        {sparklines?.notes?.length > 0 && (
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <AreaChart data={sparklines.notes}>
+                                                    <defs>
+                                                        <linearGradient id="notesSpark" x1="0" y1="0" x2="0" y2="1">
+                                                            <stop offset="5%" stopColor="#4ade80" stopOpacity={0.4} />
+                                                            <stop offset="95%" stopColor="#4ade80" stopOpacity={0} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                    <Area type="monotone" dataKey="value" stroke="#4ade80" fill="url(#notesSpark)" strokeWidth={1.5} />
+                                                </AreaChart>
+                                            </ResponsiveContainer>
+                                        )}
+                                    </div>
                                 </div>
 
                                 <div className="glass p-5">
                                     <div className="text-[10px] uppercase tracking-widest text-lvmh-gray mb-2 flex items-center gap-1">
-                                        <Clock3 size={12} /> Processing
+                                        <Clock3 size={12} /> Latency
                                     </div>
-                                    <div className="text-3xl font-black">{formatDuration(pipeline?.avg_processing_time_ms || 0)}</div>
-                                    <div className="text-xs text-lvmh-gray mt-2">Confidence: {formatPercent(pipeline?.avg_confidence || 0)}</div>
+                                    <div className="flex items-end gap-3">
+                                        <div className="text-3xl font-black">{formatDuration(pipeline?.avg_processing_time_ms || 0)}</div>
+                                        <div className="text-xs text-lvmh-gray mb-1">
+                                            {comparisons?.latency && !comparisons.latency.isNeutral && (
+                                                <span className={comparisons.latency.isPositive ? 'text-red-400' : 'text-green-400'}>
+                                                    {comparisons.latency.isPositive ? '↑' : '↓'} {comparisons.latency.value}%
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="text-xs text-lvmh-gray mt-2">
+                                        Confidence: <span className={pipeline?.avg_confidence >= 0.9 ? 'text-green-400' : pipeline?.avg_confidence >= 0.7 ? 'text-lvmh-gold' : 'text-red-400'}>
+                                            {formatPercent(pipeline?.avg_confidence || 0)}
+                                        </span>
+                                    </div>
+                                    <div className="h-8 mt-2">
+                                        {sparklines?.latency?.length > 0 && (
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <AreaChart data={sparklines.latency}>
+                                                    <defs>
+                                                        <linearGradient id="latencySpark" x1="0" y1="0" x2="0" y2="1">
+                                                            <stop offset="5%" stopColor="#60a5fa" stopOpacity={0.4} />
+                                                            <stop offset="95%" stopColor="#60a5fa" stopOpacity={0} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                    <Area type="monotone" dataKey="value" stroke="#60a5fa" fill="url(#latencySpark)" strokeWidth={1.5} />
+                                                </AreaChart>
+                                            </ResponsiveContainer>
+                                        )}
+                                    </div>
                                 </div>
 
                                 <div className="glass p-5">
                                     <div className="text-[10px] uppercase tracking-widest text-lvmh-gray mb-2 flex items-center gap-1">
                                         <Coins size={12} /> Cost
                                     </div>
-                                    <div className="text-3xl font-black">{formatCurrency(mergedCost?.total_cost_eur ?? mergedCost?.total_cost ?? 0)}</div>
-                                    <div className="text-xs text-lvmh-gray mt-2">Per note: {formatCurrency(mergedCost?.cost_per_note ?? mergedCost?.roi_metrics?.cost_per_note ?? 0)}</div>
+                                    <div className="flex items-end gap-3">
+                                        <div className="text-3xl font-black">{formatCurrency(mergedCost?.total_cost_eur ?? mergedCost?.total_cost ?? 0)}</div>
+                                        <div className="text-xs text-lvmh-gray mb-1">
+                                            {comparisons?.cost && !comparisons.cost.isNeutral && (
+                                                <span className={comparisons.cost.isPositive ? 'text-red-400' : 'text-green-400'}>
+                                                    {comparisons.cost.isPositive ? '↑' : '↓'} {comparisons.cost.value}%
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="text-xs text-lvmh-gray mt-2">
+                                        Per note: <span className="text-lvmh-gold">{formatCurrency(mergedCost?.cost_per_note ?? mergedCost?.roi_metrics?.cost_per_note ?? 0)}</span>
+                                    </div>
+                                    <div className="h-8 mt-2">
+                                        {sparklines?.cost?.length > 0 && (
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <AreaChart data={sparklines.cost}>
+                                                    <defs>
+                                                        <linearGradient id="costSpark" x1="0" y1="0" x2="0" y2="1">
+                                                            <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.4} />
+                                                            <stop offset="95%" stopColor="#D4AF37" stopOpacity={0} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                    <Area type="monotone" dataKey="value" stroke="#D4AF37" fill="url(#costSpark)" strokeWidth={1.5} />
+                                                </AreaChart>
+                                            </ResponsiveContainer>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 

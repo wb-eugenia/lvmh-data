@@ -31,6 +31,7 @@ export default function AdvisorView({ onBack }) {
     const [isReviewingTranscription, setIsReviewingTranscription] = useState(false)
     const [transcriptionDraft, setTranscriptionDraft] = useState('')
     const [historyFilter, setHistoryFilter] = useState('all')
+    const [historySearch, setHistorySearch] = useState('')
     const [searchOnlyVip, setSearchOnlyVip] = useState(false)
     const [expandedSections, setExpandedSections] = useState({
         product: true,
@@ -137,6 +138,11 @@ export default function AdvisorView({ onBack }) {
         if (historyFilter === 'today') return diffDays < 1
         if (historyFilter === 'week') return diffDays < 7
         return true
+    }).filter((note) => {
+        if (!historySearch) return true
+        const search = historySearch.toLowerCase()
+        return (note.transcription || '').toLowerCase().includes(search) || 
+               (note.client || '').toLowerCase().includes(search)
     })
 
     const normalizePipelineStep = (step) => {
@@ -222,14 +228,69 @@ export default function AdvisorView({ onBack }) {
 
     useEffect(() => {
         fetchLeaderboard()
+        fetchUserStats()
     }, [user])
 
     const fetchLeaderboard = async () => {
         try {
-            const realData = [
-                { id: user.name, score: user.points || user.score || 0, isMe: true }
-            ]
-            setLeaderboard(realData)
+            const res = await apiFetch('/api/dashboard/leaderboard')
+            if (res.ok) {
+                const data = await res.json()
+                const leaderboardData = (data.users || data.leaderboard || []).map((u, i) => ({
+                    id: u.full_name || u.email || u.name,
+                    score: u.score || 0,
+                    isMe: u.id === user?.id || u.email === user?.email
+                }))
+                
+                const meIndex = leaderboardData.findIndex(u => u.isMe)
+                setUserRank(meIndex >= 0 ? meIndex + 1 : null)
+                setLeaderboard(leaderboardData)
+            } else {
+                setLeaderboard([{ id: user.name, score: user.points || user.score || 0, isMe: true }])
+            }
+        } catch (e) { 
+            setLeaderboard([{ id: user.name, score: user.points || user.score || 0, isMe: true }])
+        }
+    }
+    
+    const [userRank, setUserRank] = useState(null)
+    const [userStats, setUserStats] = useState(null)
+
+    const generateQualityTips = (qualityScore, tags, extraction) => {
+        const tips = []
+        
+        if (qualityScore < 60) {
+            tips.push({ icon: '📝', text: 'Ajoutez plus de détails sur le client et ses préférences' })
+        }
+        if (!extraction?.products || extraction.products.length === 0) {
+            tips.push({ icon: '🛍️', text: 'Mentionnez les produits intéressés (marque, modèle, couleur)' })
+        }
+        if (!extraction?.budget_potential && !extraction?.budget_specific) {
+            tips.push({ icon: '💰', text: 'Précisez le budget du client pour de meilleures recommandations' })
+        }
+        if (!extraction?.purchase_context?.behavior) {
+            tips.push({ icon: '👤', text: 'Indiquez le statut VIC/VIP ou le contexte d\'achat' })
+        }
+        if (!extraction?.urgency && !extraction?.next_best_action) {
+            tips.push({ icon: '⏰', text: 'Mentionnez l\'urgence ou la date limite' })
+        }
+        
+        if (qualityScore >= 80) {
+            tips.push({ icon: '⭐', text: 'Excellente note ! Continuez ainsi' })
+        } else if (qualityScore >= 60) {
+            tips.push({ icon: '👍', text: 'Note correcte. Ajoutez plus de contexte pour améliorer' })
+        }
+        
+        return tips
+    }
+
+    const fetchUserStats = async () => {
+        try {
+            const res = await apiFetch('/api/dashboard/advisor/stats')
+            if (res.ok) {
+                const data = await res.json()
+                setUserStats(data)
+            }
         } catch (e) { }
     }
 
@@ -618,6 +679,10 @@ export default function AdvisorView({ onBack }) {
                                 <History size={20} className={activeView === 'history' ? 'text-lvmh-gold' : ''} />
                                 <span>Mes Enregistrements</span>
                             </button>
+                            <button onClick={() => handleMenuNavigation('classement')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'classement' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
+                                <Trophy size={20} className={activeView === 'classement' ? 'text-lvmh-gold' : ''} />
+                                <span>Classement</span>
+                            </button>
                             <button onClick={() => handleMenuNavigation('search')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'search' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
                                 <Search size={20} className={activeView === 'search' ? 'text-lvmh-gold' : ''} />
                                 <span>Rechercher</span>
@@ -743,21 +808,12 @@ export default function AdvisorView({ onBack }) {
                                 </div>
                             </div>
 
-                            {!isRecording && !isProcessing && (
-                                <button
-                                    onClick={activateTextMode}
-                                    className="w-full mb-6 py-2.5 rounded-xl border border-lvmh-gold/35 text-lvmh-gold text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-lvmh-gold/10 transition-colors"
-                                >
-                                    Mode texte (deterministe)
-                                </button>
-                            )}
-
                             <div className="flex-1 flex flex-col items-center justify-center">
                             <h2 className="gold-text text-4xl font-bold mb-4 tracking-tighter">
-                                {isRecording ? "Enregistrement en cours" : isProcessing ? "Analyse en cours" : "Pret pour une nouvelle note"}
+                                {isRecording ? "Enregistrement en cours" : isProcessing ? "Analyse en cours" : "Pret"}
                             </h2>
                             <p className="text-lvmh-gray text-xs uppercase tracking-[0.2em] mb-12">
-                                {isRecording ? "Le moteur Whisper vous ecoute" : isProcessing ? "La pipeline traite la note" : "Appuyez sur le bouton principal"}
+                                {isRecording ? "Le moteur Whisper vous ecoute" : isProcessing ? "La pipeline traite la note" : "Appuyez sur le microphone"}
                             </p>
 
                             <div className="relative mb-16">
@@ -780,6 +836,11 @@ export default function AdvisorView({ onBack }) {
                         </div>
 
                             <div className="glass w-full p-5">
+                                {userRank && (
+                                    <div className="mb-3 text-xs text-lvmh-gray">
+                                        Votre classement: <span className="text-lvmh-gold font-bold">#{userRank}</span> sur {leaderboard.length} advisors
+                                    </div>
+                                )}
                                 <div className="flex items-center gap-2 text-lvmh-gold text-xs font-bold uppercase mb-4 tracking-widest leading-none">
                                     <Trophy size={14} /> Leaderboard Live
                                 </div>
@@ -819,7 +880,32 @@ export default function AdvisorView({ onBack }) {
                             <div className="glass p-5 border-l-4 border-lvmh-gold mb-8 bg-lvmh-gold/5">
                                 <div className="data-label">Recompense</div>
                                 <div className="text-lg font-bold leading-tight">{resultMeta?.advisor_feedback || "Note traitee !"}</div>
+                                <div className="mt-3 flex items-center gap-3">
+                                    <div className="text-2xl font-black text-lvmh-gold">{normalizeScore(resultMeta?.quality_score || 0)}%</div>
+                                    <div className="text-xs text-lvmh-gray">qualite</div>
+                                    <span className={`text-[10px] px-2 py-1 rounded-full ${
+                                        (resultMeta?.quality_score || 0) >= 0.8 ? 'bg-green-500/20 text-green-300' :
+                                        (resultMeta?.quality_score || 0) >= 0.5 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
+                                        'bg-red-500/20 text-red-300'
+                                    }`}>
+                                        {(resultMeta?.quality_score || 0) >= 0.8 ? 'Excellent' : (resultMeta?.quality_score || 0) >= 0.5 ? 'Correct' : 'A ameliorer'}
+                                    </span>
+                                </div>
                             </div>
+
+                            {generateQualityTips(normalizeScore(resultMeta?.quality_score || 0), resultTags, currentResult?.extraction).length > 0 && (
+                                <div className="glass p-4 mb-6 border border-lvmh-gold/20">
+                                    <div className="text-xs text-lvmh-gold font-bold uppercase mb-3">Conseils pour ameliorer</div>
+                                    <div className="space-y-2">
+                                        {generateQualityTips(normalizeScore(resultMeta?.quality_score || 0), resultTags, currentResult?.extraction).map((tip, i) => (
+                                            <div key={i} className="flex items-start gap-2 text-sm">
+                                                <span>{tip.icon}</span>
+                                                <span className="text-gray-300">{tip.text}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
 
                             <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
                                 <div className="glass p-6 border-l-4 border-lvmh-gold">
@@ -1086,9 +1172,52 @@ export default function AdvisorView({ onBack }) {
                                                             </span>
                                                         ))}
                                                     </div>
-                                                </div>
-                                            )}
+                </div>
+            )}
+
+            {/* CLASSEMENT VIEW */}
+            {activeView === 'classement' && (
+                <div className="flex-1 overflow-y-auto animate-in fade-in">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                        <Trophy size={24} className="text-lvmh-gold" />
+                        Classement
+                    </h2>
+
+                    {userRank && (
+                        <div className="glass p-6 mb-6 text-center border-l-4 border-lvmh-gold">
+                            <div className="text-xs text-lvmh-gray uppercase tracking-widest mb-2">Votre Position</div>
+                            <div className="text-5xl font-black text-lvmh-gold">#{userRank}</div>
+                            <div className="text-sm text-lvmh-gray mt-2">sur {leaderboard.length} advisors</div>
+                        </div>
+                    )}
+
+                    <div className="glass p-5">
+                        <div className="space-y-3">
+                            {leaderboard.length > 0 ? leaderboard.map((adv, i) => (
+                                <div key={i} className={`flex justify-between py-3 border-b border-white/5 last:border-0 items-center ${adv.isMe ? 'bg-lvmh-gold/10 -mx-3 px-3 rounded' : ''}`}>
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                                            i === 0 ? 'bg-yellow-500 text-black' :
+                                            i === 1 ? 'bg-gray-400 text-black' :
+                                            i === 2 ? 'bg-amber-700 text-white' :
+                                            'bg-white/10 text-white'
+                                        }`}>
+                                            {i + 1}
                                         </div>
+                                        <span className="font-medium">
+                                            {adv.id} {adv.isMe && <span className="text-[10px] bg-lvmh-gold text-black px-1 rounded font-bold ml-1">MOI</span>}
+                                        </span>
+                                    </div>
+                                    <span className="font-bold text-lg text-lvmh-gold">{adv.score} pts</span>
+                                </div>
+                            )) : (
+                                <div className="text-center py-8 text-lvmh-gray">Aucune donnee</div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
                                     </CollapsibleSection>
                                 )}
                             </div>
@@ -1135,10 +1264,17 @@ export default function AdvisorView({ onBack }) {
                             <History size={24} className="text-lvmh-gold" />
                             Historique
                         </h2>
-                        <div className="text-xs text-lvmh-gray inline-flex items-center gap-1">
-                            <Filter size={12} />
-                            Filtres
-                        </div>
+                    </div>
+
+                    <div className="relative mb-4">
+                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-lvmh-gray" />
+                        <input
+                            type="text"
+                            placeholder="Rechercher dans les transcriptions..."
+                            value={historySearch}
+                            onChange={(e) => setHistorySearch(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white placeholder-lvmh-gray focus:outline-none focus:border-lvmh-gold/40"
+                        />
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-6">
@@ -1158,6 +1294,7 @@ export default function AdvisorView({ onBack }) {
                                 {item.label}
                             </button>
                         ))}
+                        <span className="text-xs text-lvmh-gray py-1.5">{filteredHistory.length} resultats</span>
                     </div>
 
                     {loadingHistory ? (

@@ -193,12 +193,21 @@ The application will be available at:
 ### Deployment Commands
 
 #### Frontend (Cloudflare Pages)
+
 ```bash
 cd frontend-v2
-# Set API URL in .env.production
-echo "VITE_API_BASE_URL=https://lvmh-api-570069708764.europe-west9.run.app" > .env.production
+
+# Build only
 npm run build
-npx wrangler pages deploy dist --project-name=lvmh-frontend --branch=main
+
+# Build + Deploy en une commande
+npm run build:deploy
+
+# Deploy seul (si deja build)
+npm run deploy
+
+# Development
+npm run dev
 ```
 
 #### API (GCP Cloud Run)

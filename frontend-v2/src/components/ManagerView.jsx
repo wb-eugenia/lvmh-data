@@ -8,7 +8,7 @@ const DebugAnalyzer = lazy(() => import('./DebugAnalyzer'))
 
 export default function ManagerView({ onBack }) {
     const { logout } = useAuth()
-    const [currentTab, setCurrentTab] = useState('overview')
+    const [currentTab, setCurrentTab] = useState('dashboard')
     const [stats, setStats] = useState({ total_notes: 0, avg_quality: 0, tier_distribution: { 1: 0, 2: 0, 3: 0 } })
     const [dashboardMetrics, setDashboardMetrics] = useState(null)
     const [dashboardSummary, setDashboardSummary] = useState(null)
@@ -398,13 +398,16 @@ export default function ManagerView({ onBack }) {
     }
 
     const tabs = [
-        { id: 'overview', name: 'Overview', icon: LayoutDashboard },
-        { id: 'recordings', name: 'Enregistrements', icon: Mic },
-        { id: 'datacleaning', name: 'Data Cleaning', icon: Sparkles },
-        { id: 'leaderboard', name: 'Leaderboard', icon: Trophy },
-        { id: 'vip', name: 'Clients VIP', icon: Star },
-        { id: 'quality', name: 'Qualité Notes', icon: Users },
-        { id: 'debug', name: 'Debug Pipeline', icon: Terminal }
+        { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
+        { id: 'opportunities', name: 'Opportunités', icon: Zap },
+        { id: 'segments', name: 'Segments', icon: Users },
+        { id: 'advisors', name: 'Advisors', icon: Trophy },
+        { id: 'alerts', name: 'Alertes', icon: BellRing },
+        { id: 'notes', name: 'Notes', icon: Mic },
+        { id: 'vip', name: 'VIP', icon: Star },
+        { id: 'quality', name: 'Qualité', icon: Star },
+        { id: 'datacleaning', name: 'Data', icon: Sparkles },
+        { id: 'debug', name: 'Debug', icon: Terminal }
     ]
 
     useEffect(() => {
@@ -412,10 +415,7 @@ export default function ManagerView({ onBack }) {
     }, [])
 
     useEffect(() => {
-        if (currentTab === 'csv') {
-            loadCsvFiles()
-        }
-        if (currentTab === 'recordings') {
+        if (currentTab === 'notes') {
             loadRecordings()
         }
     }, [currentTab, recordingsPage, recordingsSearch, recordingsFilter])
@@ -1161,9 +1161,11 @@ export default function ManagerView({ onBack }) {
     const segmentRows = Array.isArray(segmentsData?.segments) ? segmentsData.segments : []
 
     useEffect(() => {
-        if (currentTab === 'overview') return
-        if (selectedOpportunityId !== null) {
-            setSelectedOpportunityId(null)
+        const tabsWithSelection = ['dashboard', 'opportunities', 'notes', 'segments', 'vip']
+        if (!tabsWithSelection.includes(currentTab)) {
+            if (selectedOpportunityId !== null) {
+                setSelectedOpportunityId(null)
+            }
         }
     }, [currentTab, selectedOpportunityId])
 
@@ -1186,17 +1188,20 @@ export default function ManagerView({ onBack }) {
     }, [selectedOpportunityRecord])
 
     useEffect(() => {
-        if (currentTab !== 'overview') return
+        const tabsWithOpportunities = ['dashboard', 'opportunities']
+        if (!tabsWithOpportunities.includes(currentTab)) return
         loadOpportunityActions(scopedNoteIdsCsv)
     }, [currentTab, scopedNoteIdsCsv])
 
     useEffect(() => {
-        if (currentTab !== 'overview') return
+        const tabsWithSegments = ['dashboard', 'segments']
+        if (!tabsWithSegments.includes(currentTab)) return
         loadSegments()
     }, [currentTab, overviewWindow, overviewAdvisor])
 
     useEffect(() => {
-        if (currentTab !== 'overview') {
+        const tabsWithSelection = ['dashboard', 'opportunities']
+        if (!tabsWithSelection.includes(currentTab)) {
             if (selectedOpportunityIds.length > 0) setSelectedOpportunityIds([])
             return
         }
@@ -1359,8 +1364,9 @@ export default function ManagerView({ onBack }) {
     }
 
     const handleExportManagerCsv = async () => {
-        if (currentTab !== 'overview') {
-            setExportError("L'export manager est disponible uniquement dans l'overview.")
+        const tabsWithExport = ['dashboard', 'opportunities']
+        if (!tabsWithExport.includes(currentTab)) {
+            setExportError("Export disponible dans Dashboard ou Opportunites.")
             return
         }
 
@@ -1418,8 +1424,9 @@ export default function ManagerView({ onBack }) {
     }
 
     const handleExportManagerPdf = () => {
-        if (currentTab !== 'overview') {
-            setExportError("L'export manager est disponible uniquement dans l'overview.")
+        const tabsWithExport = ['dashboard', 'opportunities']
+        if (!tabsWithExport.includes(currentTab)) {
+            setExportError("Export disponible dans Dashboard ou Opportunites.")
             return
         }
 
@@ -1566,7 +1573,7 @@ export default function ManagerView({ onBack }) {
                         <div className="flex flex-wrap items-center justify-end gap-2">
                             <button
                                 onClick={handleExportManagerCsv}
-                                disabled={currentTab !== 'overview' || Boolean(exportingManager)}
+                                disabled={!['dashboard', 'opportunities'].includes(currentTab) || Boolean(exportingManager)}
                                 className="glass flex items-center gap-2 px-4 py-2 hover:bg-white/10 transition-colors uppercase text-[11px] font-bold tracking-widest disabled:opacity-40"
                             >
                                 <Download size={14} />
@@ -1574,7 +1581,7 @@ export default function ManagerView({ onBack }) {
                             </button>
                             <button
                                 onClick={handleExportManagerPdf}
-                                disabled={currentTab !== 'overview' || Boolean(exportingManager)}
+                                disabled={!['dashboard', 'opportunities'].includes(currentTab) || Boolean(exportingManager)}
                                 className="glass flex items-center gap-2 px-4 py-2 hover:bg-white/10 transition-colors uppercase text-[11px] font-bold tracking-widest disabled:opacity-40"
                             >
                                 <FileText size={14} />
@@ -1582,9 +1589,9 @@ export default function ManagerView({ onBack }) {
                             </button>
                         </div>
                         <div className="text-[10px] text-lvmh-gray text-right">
-                            {currentTab === 'overview'
-                                ? `Scope export: ${topOpportunities.length}/${filteredOpportunities.length} priorites visibles | ${managerFilterSummary}`
-                                : "Export disponible dans l'overview manager"}
+                            {currentTab === 'dashboard' || currentTab === 'opportunities'
+                                ? `Scope: ${topOpportunities.length}/${filteredOpportunities.length} priorites | ${managerFilterSummary}`
+                                : `Export: ${currentTab}`}
                         </div>
                         {exportError && (
                             <div className="text-[10px] text-red-300 border border-red-500/30 bg-red-500/10 rounded px-2 py-1 max-w-[640px] text-right">
@@ -1594,11 +1601,11 @@ export default function ManagerView({ onBack }) {
                     </div>
                 </div>
 
-                {currentTab === 'recordings' && (
+                {currentTab === 'notes' && (
                     <div className="space-y-6 animate-in fade-in duration-500">
                         <div className="flex justify-between items-center">
                             <h3 className="text-2xl font-display font-black gold-text flex items-center gap-2">
-                                <Mic size={24} /> Enregistrements Audio
+                                <Mic size={24} /> Notes & Transcriptions
                             </h3>
                             <span className="text-sm text-lvmh-gray">{recordingsTotal} enregistrements</span>
                         </div>
@@ -1673,22 +1680,19 @@ export default function ManagerView({ onBack }) {
 
                                         <div className="mt-6">
                                             <div className="data-label">Transcription</div>
-                                            <div className="bg-white/5 p-4 rounded-lg text-sm leading-relaxed max-h-56 overflow-auto">
+                                            <div className="bg-white/5 p-4 rounded-lg text-sm leading-relaxed max-h-64 overflow-y-auto scrollbar-thin">
                                                 "{selectedRecording.transcription}"
                                             </div>
                                         </div>
 
                                         <div className="mt-6">
-                                            <div className="data-label">Tags</div>
-                                            <div className="flex flex-wrap gap-2 mt-2">
-                                                {selectedRecording.tags?.slice(0, 12).map((tag, i) => (
+                                            <div className="data-label">Tags ({selectedRecording.tags?.length || 0})</div>
+                                            <div className="flex flex-wrap gap-2 mt-2 max-h-32 overflow-y-auto">
+                                                {selectedRecording.tags?.map((tag, i) => (
                                                     <span key={i} className="text-xs bg-lvmh-gold/15 text-lvmh-gold px-2 py-1 rounded-full">
                                                         {tag}
                                                     </span>
                                                 ))}
-                                                {selectedRecording.tags?.length > 12 && (
-                                                    <span className="text-xs text-lvmh-gray">+{selectedRecording.tags.length - 12}</span>
-                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -1851,16 +1855,28 @@ export default function ManagerView({ onBack }) {
                                             <ShoppingBag size={20} className="text-lvmh-gold" />
                                             <h4 className="font-display font-bold">Produits recommandés (RAG)</h4>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-80 overflow-y-auto">
                                             {selectedRecording.matched_products.map((product, i) => (
-                                                <div key={i} className="bg-white/5 p-4 rounded-lg border border-white/10">
-                                                    <div className="font-bold text-lvmh-gold mb-1">{product.name || product.ID}</div>
-                                                    <div className="text-xs text-lvmh-gray uppercase">{product.category || 'Catégorie'}</div>
+                                                <div key={i} className="bg-white/5 p-3 rounded-lg border border-white/10 hover:border-lvmh-gold/40 transition-colors">
+                                                    {product.image_url ? (
+                                                        <img 
+                                                            src={product.image_url} 
+                                                            alt={product.name || product.ID}
+                                                            className="w-full h-32 object-cover rounded mb-2"
+                                                            onError={(e) => { e.target.style.display = 'none' }}
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-32 bg-white/5 rounded mb-2 flex items-center justify-center">
+                                                            <ShoppingBag size={24} className="text-lvmh-gray" />
+                                                        </div>
+                                                    )}
+                                                    <div className="font-bold text-sm text-lvmh-gold mb-1 truncate">{product.name || product.ID}</div>
+                                                    <div className="text-xs text-lvmh-gray uppercase truncate">{product.category || 'Catégorie'}</div>
                                                     {product.description && (
                                                         <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
                                                     )}
                                                     {product.match_score && (
-                                                        <div className="text-[10px] text-lvmh-gray mt-3">Score {Math.round(product.match_score * 100)}%</div>
+                                                        <div className="text-[10px] text-lvmh-gray mt-2">Score {Math.round(product.match_score * 100)}%</div>
                                                     )}
                                                 </div>
                                             ))}
@@ -1994,14 +2010,14 @@ export default function ManagerView({ onBack }) {
                     </div>
                 )}
 
-                                {currentTab === 'overview' && (
+                {currentTab === 'dashboard' && (
                     <div className="space-y-8 animate-in fade-in duration-500">
                         <div className="glass p-6 border border-white/10">
                             <div className="flex flex-wrap items-start justify-between gap-4">
                                 <div>
-                                    <div className="text-[10px] uppercase tracking-[0.24em] text-lvmh-gray mb-2">Executive cockpit</div>
-                                    <h3 className="text-2xl font-display font-black gold-text">Manager Command Center</h3>
-                                    <p className="text-sm text-lvmh-gray mt-1">Pilotage commercial, qualite IA et priorites CRM en un seul ecran.</p>
+                                    <div className="text-[10px] uppercase tracking-[0.24em] text-lvmh-gray mb-2">Dashboard</div>
+                                    <h3 className="text-2xl font-display font-black gold-text">Vue d'Ensemble</h3>
+                                    <p className="text-sm text-lvmh-gray mt-1">Indicateurs cles et health score du pipeline.</p>
                                 </div>
                                 <div className="flex flex-wrap items-center gap-2">
                                     <span className={`text-[11px] px-3 py-2 rounded-full border font-bold ${alertToneClass}`}>
@@ -2457,7 +2473,7 @@ export default function ManagerView({ onBack }) {
                                             <button
                                                 key={`focus-note-${note.id}`}
                                                 onClick={() => {
-                                                    setCurrentTab('recordings')
+                                                    setCurrentTab('notes')
                                                     setRecordingsSearch(note?.client?.name || '')
                                                     setRecordingsPage(1)
                                                     setSelectedRecording(null)
@@ -2644,7 +2660,7 @@ export default function ManagerView({ onBack }) {
                                                         </button>
                                                         <button
                                                             onClick={() => {
-                                                                setCurrentTab('recordings')
+                                                                setCurrentTab('notes')
                                                                 setRecordingsSearch(opportunity.clientName)
                                                                 setRecordingsPage(1)
                                                                 setSelectedRecording(null)
@@ -2708,7 +2724,411 @@ export default function ManagerView({ onBack }) {
                                     </div>
                                     <div className="text-3xl font-display font-black text-lvmh-gold">{adv.score} <span className="text-xs uppercase">points</span></div>
                                 </div>
-                            ))}
+                            ))} 
+                        </div>
+                    </div>
+                )}
+
+                {/* OPPORTUNITIES TAB */}
+                {currentTab === 'opportunities' && (
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        <div className="glass p-6 border border-white/10">
+                            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                                <div>
+                                    <div className="text-[10px] uppercase tracking-[0.24em] text-lvmh-gray mb-2">Opportunites</div>
+                                    <h3 className="text-2xl font-display font-black gold-text">Gestion des Priorites</h3>
+                                    <p className="text-sm text-lvmh-gray mt-1">Suivez et actionnez les opportunites CRM.</p>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-[11px] px-3 py-2 rounded-full border border-white/10 bg-white/5 text-lvmh-gray">
+                                        {filteredOpportunities.length} opportunites
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Filtres */}
+                            <div className="flex flex-wrap items-center gap-3 mb-6">
+                                <select
+                                    value={overviewWindow}
+                                    onChange={(e) => setOverviewWindow(e.target.value)}
+                                    className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white"
+                                >
+                                    <option value="today">Aujourd'hui</option>
+                                    <option value="7d">7 jours</option>
+                                    <option value="30d">30 jours</option>
+                                </select>
+                                <select
+                                    value={overviewPriority}
+                                    onChange={(e) => setOverviewPriority(e.target.value)}
+                                    className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white"
+                                >
+                                    <option value="all">Toutes priorites</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="vip">VIP</option>
+                                    <option value="tier3">Tier 3</option>
+                                </select>
+                                <select
+                                    value={opportunityStatusFilter}
+                                    onChange={(e) => setOpportunityStatusFilter(e.target.value)}
+                                    className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white"
+                                >
+                                    <option value="all">Actions: toutes</option>
+                                    <option value="open">Actions: ouvertes</option>
+                                    <option value="planned">Planifiees</option>
+                                    <option value="done">Finalisees</option>
+                                </select>
+                                <div className="relative min-w-[200px]">
+                                    <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-lvmh-gray" />
+                                    <input
+                                        type="text"
+                                        value={opportunitySearch}
+                                        onChange={(e) => setOpportunitySearch(e.target.value)}
+                                        placeholder="Rechercher..."
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-9 pr-3 text-sm text-white"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Stats rapides */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Total</div>
+                                    <div className="text-2xl font-bold">{filteredOpportunities.length}</div>
+                                </div>
+                                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                                    <div className="text-[10px] uppercase tracking-widest text-red-300">Urgents</div>
+                                    <div className="text-2xl font-bold text-red-300">{urgentActionsCount}</div>
+                                </div>
+                                <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-4">
+                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Budget Total</div>
+                                    <div className="text-2xl font-bold text-lvmh-gold">{formatCurrency(opportunityBudgetTotal)}</div>
+                                </div>
+                                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+                                    <div className="text-[10px] uppercase tracking-widest text-green-300">Finalisees</div>
+                                    <div className="text-2xl font-bold text-green-300">{opportunityActionsDone}</div>
+                                </div>
+                            </div>
+
+                            {/* Liste des opportunites */}
+                            <div className="space-y-3">
+                                {topOpportunities.slice(0, 15).map((opp) => {
+                                    const actionState = resolveOpportunityAction(opp.id)
+                                    return (
+                                        <div key={opp.id} className="glass p-4 border-l-4 border-lvmh-gold hover:bg-white/5 transition-all">
+                                            <div className="flex items-start justify-between gap-4">
+                                                <div className="flex-1">
+                                                    <div className="flex items-center gap-2 mb-1">
+                                                        <span className="font-semibold">{opp.clientName}</span>
+                                                        {opp.isVip && <Star size={14} className="text-lvmh-gold fill-lvmh-gold" />}
+                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${opp.tier === 3 ? 'bg-red-500/20 text-red-300' : opp.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                                            T{opp.tier}
+                                                        </span>
+                                                    </div>
+                                                    <div className="text-xs text-lvmh-gray">
+                                                        {opp.advisorName} | {opp.advisorStore}
+                                                    </div>
+                                                    <div className="text-sm text-lvmh-gray mt-2 line-clamp-1">{opp.nextAction}</div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <div className="text-lg font-bold text-lvmh-gold">{opp.budgetLabel}</div>
+                                                    <div className="text-xs text-lvmh-gray">{formatDateTime(opp.timestamp)}</div>
+                                                    <div className="text-xs text-red-300 mt-1">{opp.urgencyLabel}</div>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-wrap gap-2 mt-3">
+                                                <button
+                                                    onClick={() => setSelectedOpportunityId(opp.id)}
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-white/20 text-white hover:border-lvmh-gold/40"
+                                                >
+                                                    Details
+                                                </button>
+                                                <button
+                                                    onClick={() => handleOpportunityAction(opp, 'call')}
+                                                    disabled={actionSubmittingId === opp.id}
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-green-500/40 text-green-300 hover:bg-green-500/10 disabled:opacity-50"
+                                                >
+                                                    Appeler
+                                                </button>
+                                                <button
+                                                    onClick={() => handleOpportunityAction(opp, 'done')}
+                                                    disabled={actionSubmittingId === opp.id}
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-lvmh-gold/40 text-lvmh-gold hover:bg-lvmh-gold/10 disabled:opacity-50"
+                                                >
+                                                    Fait
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                                {topOpportunities.length === 0 && (
+                                    <div className="text-center py-12 text-lvmh-gray">
+                                        Aucune opportunite avec les filtres actifs.
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* SEGMENTS TAB */}
+                {currentTab === 'segments' && (
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        <div className="glass p-6 border border-white/10">
+                            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                                <div>
+                                    <div className="text-[10px] uppercase tracking-[0.24em] text-lvmh-gray mb-2">Segments</div>
+                                    <h3 className="text-2xl font-display font-black gold-text">Comportements Client</h3>
+                                    <p className="text-sm text-lvmh-gray mt-1">Analyse des segments comportementaux.</p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <select
+                                        value={overviewWindow}
+                                        onChange={(e) => setOverviewWindow(e.target.value)}
+                                        className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white"
+                                    >
+                                        <option value="7d">7 jours</option>
+                                        <option value="30d">30 jours</option>
+                                        <option value="all">Tout</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {segmentsLoading ? (
+                                <div className="flex justify-center py-20">
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
+                                </div>
+                            ) : segmentsError ? (
+                                <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-red-300">
+                                    {segmentsError}
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                        <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                                            <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Notes</div>
+                                            <div className="text-2xl font-bold">{segmentsData?.total_notes || 0}</div>
+                                        </div>
+                                        <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                                            <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Segments</div>
+                                            <div className="text-2xl font-bold">{segmentRows.length}</div>
+                                        </div>
+                                        <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-4">
+                                            <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Budget Moyen</div>
+                                            <div className="text-2xl font-bold text-lvmh-gold">
+                                                {formatCurrency(segmentRows.reduce((sum, s) => sum + (s.avg_budget || 0), 0) / Math.max(segmentRows.length, 1))}
+                                            </div>
+                                        </div>
+                                        <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                                            <div className="text-[10px] uppercase tracking-widest text-red-300">Tier 3</div>
+                                            <div className="text-2xl font-bold text-red-300">
+                                                {Math.round(segmentRows.reduce((sum, s) => sum + (s.tier3_share_pct || 0) * s.count, 0) / Math.max(segmentRows.reduce((sum, s) => sum + s.count, 0), 1))}%
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left">
+                                            <thead className="text-lvmh-gray text-[11px] uppercase tracking-widest border-b border-white/10">
+                                                <tr>
+                                                    <th className="pb-3">Segment</th>
+                                                    <th className="pb-3 text-right">Notes</th>
+                                                    <th className="pb-3 text-right">Budget Moy.</th>
+                                                    <th className="pb-3 text-right">Tier 3</th>
+                                                    <th className="pb-3 text-right">VIP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-white/5">
+                                                {segmentRows.map((seg) => (
+                                                    <tr key={seg.segment_id} className="hover:bg-white/5">
+                                                        <td className="py-3 font-semibold">{seg.segment_label}</td>
+                                                        <td className="py-3 text-right">{seg.count}</td>
+                                                        <td className="py-3 text-right text-lvmh-gold">{formatCurrency(seg.avg_budget || 0)}</td>
+                                                        <td className="py-3 text-right text-red-300">{Math.round(seg.tier3_share_pct || 0)}%</td>
+                                                        <td className="py-3 text-right text-lvmh-gray">{Math.round(seg.vip_share_pct || 0)}%</td>
+                                                    </tr>
+                                                ))}
+                                                {segmentRows.length === 0 && (
+                                                    <tr>
+                                                        <td colSpan={5} className="py-8 text-center text-lvmh-gray">
+                                                            Aucun segment disponible.
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* ADVISORS TAB */}
+                {currentTab === 'advisors' && (
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                            {/* Leaderboard */}
+                            <div className="glass p-6 border border-white/10">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-lg font-bold flex items-center gap-2">
+                                        <Trophy size={18} className="text-lvmh-gold" /> Classement
+                                    </h3>
+                                    <span className="text-xs text-lvmh-gray">{leaderboard.length} advisors</span>
+                                </div>
+                                <div className="space-y-2">
+                                    {(leaderboard || []).map((adv, idx) => (
+                                        <div key={adv.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                            <div className="flex items-center gap-3">
+                                                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                                                    idx === 0 ? 'bg-yellow-500 text-black' : 
+                                                    idx === 1 ? 'bg-gray-400 text-black' : 
+                                                    idx === 2 ? 'bg-amber-700 text-white' : 
+                                                    'bg-white/10 text-lvmh-gray'
+                                                }`}>
+                                                    {idx + 1}
+                                                </span>
+                                                <div>
+                                                    <div className="font-semibold">{adv.id}</div>
+                                                    <div className="text-xs text-lvmh-gray">{adv.notes} notes</div>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-lg font-bold text-lvmh-gold">{adv.score}</div>
+                                                <div className="text-[10px] text-lvmh-gray uppercase">points</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {(!leaderboard || leaderboard.length === 0) && (
+                                        <div className="text-center py-8 text-lvmh-gray">Aucune donnee</div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Drilldown */}
+                            <div className="glass p-6 border border-white/10">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-lg font-bold flex items-center gap-2">
+                                        <Users size={18} className="text-lvmh-gold" /> Detail par Advisor
+                                    </h3>
+                                </div>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <select
+                                        value={drilldownStore}
+                                        onChange={(e) => setDrilldownStore(e.target.value)}
+                                        className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white"
+                                    >
+                                        <option value="all">Tous stores</option>
+                                        {storeOptions.map((s) => <option key={s} value={s}>{s}</option>)}
+                                    </select>
+                                    <select
+                                        value={drilldownAdvisor}
+                                        onChange={(e) => setDrilldownAdvisor(e.target.value)}
+                                        className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white"
+                                    >
+                                        <option value="all">Tous advisors</option>
+                                        {overviewAdvisorOptions.map((a) => <option key={a} value={a}>{a}</option>)}
+                                    </select>
+                                </div>
+                                <div className="overflow-x-auto max-h-[400px]">
+                                    <table className="w-full text-left">
+                                        <thead className="text-lvmh-gray text-[11px] uppercase tracking-widest border-b border-white/10 sticky top-0 bg-lvmh-black">
+                                            <tr>
+                                                <th className="pb-2">Advisor</th>
+                                                <th className="pb-2">Store</th>
+                                                <th className="pb-2 text-right">Notes</th>
+                                                <th className="pb-2 text-right">Urgent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-white/5">
+                                            {filteredDrilldownRows.slice(0, 10).map((row, idx) => (
+                                                <tr key={idx} className="hover:bg-white/5">
+                                                    <td className="py-2 font-semibold">{row.advisorName}</td>
+                                                    <td className="py-2 text-sm text-lvmh-gray">{row.advisorStore}</td>
+                                                    <td className="py-2 text-right">{row.notes}</td>
+                                                    <td className="py-2 text-right text-red-300">{row.urgent}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* ALERTS TAB */}
+                {currentTab === 'alerts' && (
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        <div className="glass p-6 border border-white/10">
+                            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                                <div>
+                                    <div className="text-[10px] uppercase tracking-[0.24em] text-lvmh-gray mb-2">Alertes</div>
+                                    <h3 className="text-2xl font-display font-black gold-text">Centre d'Alertes</h3>
+                                    <p className="text-sm text-lvmh-gray mt-1">Monitoring temps reel du pipeline.</p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <span className={`text-[10px] px-3 py-2 rounded-full border inline-flex items-center gap-1 ${
+                                        pipelineSocketState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : 
+                                        pipelineSocketState === 'connecting' ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 
+                                        'border-red-500/40 text-red-400 bg-red-500/10'
+                                    }`}>
+                                        {pipelineSocketState === 'connected' ? <Wifi size={11} /> : <WifiOff size={11} />}
+                                        {pipelineSocketState === 'connected' ? ' Connecte' : ' Deconnecte'}
+                                    </span>
+                                    <button
+                                        onClick={() => setLiveAlerts([])}
+                                        className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-full border border-white/10 hover:border-white/30"
+                                    >
+                                        Effacer
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Stats */}
+                            <div className="grid grid-cols-3 gap-4 mb-6">
+                                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 text-center">
+                                    <div className="text-[10px] uppercase tracking-widest text-red-300">Critical</div>
+                                    <div className="text-3xl font-bold text-red-300">{liveAlertsCritical}</div>
+                                </div>
+                                <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-4 text-center">
+                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Warning</div>
+                                    <div className="text-3xl font-bold text-lvmh-gold">{liveAlertsWarning}</div>
+                                </div>
+                                <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
+                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Info</div>
+                                    <div className="text-3xl font-bold">{liveAlertsInfo}</div>
+                                </div>
+                            </div>
+
+                            {/* Liste alerts */}
+                            <div className="space-y-2 max-h-[500px] overflow-y-auto">
+                                {liveAlerts.length > 0 ? liveAlerts.map((alert, idx) => (
+                                    <div
+                                        key={`${alert.timestamp}-${idx}`}
+                                        className={`rounded-lg p-4 border ${
+                                            alert.severity === 'critical' ? 'border-red-500/30 bg-red-500/10' : 
+                                            alert.severity === 'warning' ? 'border-lvmh-gold/30 bg-lvmh-gold/10' : 
+                                            'border-white/10 bg-white/[0.03]'
+                                        }`}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <div className={`font-semibold ${
+                                                alert.severity === 'critical' ? 'text-red-300' : 
+                                                alert.severity === 'warning' ? 'text-lvmh-gold' : 
+                                                'text-white'
+                                            }`}>
+                                                {alert.title}
+                                            </div>
+                                            <div className="text-[10px] text-lvmh-gray">{formatDateTime(alert.timestamp)}</div>
+                                        </div>
+                                        <div className="text-sm text-lvmh-gray mt-1">{alert.message}</div>
+                                    </div>
+                                )) : (
+                                    <div className="text-center py-12 text-lvmh-gray border border-white/10 rounded-lg">
+                                        Aucune alerte en cours.
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 )}
@@ -3099,7 +3519,7 @@ export default function ManagerView({ onBack }) {
                     </div>
                 )}
 
-                {currentTab === 'overview' && selectedOpportunityRecord && (
+                {(currentTab === 'dashboard' || currentTab === 'opportunities') && selectedOpportunityRecord && (
                     <div
                         className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm p-4 md:p-8"
                         onClick={() => setSelectedOpportunityId(null)}
@@ -3237,7 +3657,7 @@ export default function ManagerView({ onBack }) {
                                                 </button>
                                                 <button
                                                     onClick={() => {
-                                                        setCurrentTab('recordings')
+                                                        setCurrentTab('notes')
                                                         setRecordingsSearch(selectedOpportunityRecord?.client?.name || '')
                                                         setRecordingsPage(1)
                                                         setSelectedRecording(null)

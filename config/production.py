@@ -5,7 +5,19 @@ Handles environment variables and default values.
 
 import os
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Literal, Optional
+
+
+class RuntimeProfile(BaseModel):
+    """Runtime profile configuration for different processing tiers"""
+    name: str
+    llm_provider: str = "mistral"
+    llm_model: str = "mistral-small"
+    max_tokens: int = 1024
+    temperature: float = 0.1
+    timeout: int = 30
+    allow_cross_validation: bool = True
+
 
 class Settings(BaseModel):
     """Configuration centralisée type-safe"""
@@ -24,6 +36,11 @@ class Settings(BaseModel):
     use_semantic_cache: bool = False
     use_cross_validation: bool = False
     use_note_validation: bool = False
+    
+    # Profiles
+    single_note_profile: Optional[RuntimeProfile] = None
+    batch_csv_profile: Optional[RuntimeProfile] = None
+    fast_batch_profile: Optional[RuntimeProfile] = None
     
     # Ollama Configuration
     ollama_host: str = "http://localhost:11434"
@@ -51,11 +68,8 @@ class Settings(BaseModel):
     retry_exponential_base: float = 2.0
     circuit_breaker_threshold: int = 5
 
-# Singleton instance
-settings = Settings()
 
-
-# Default profiles
+# Default profile instances
 single_note_profile = RuntimeProfile(
     name="single_note",
     llm_provider="mistral",
@@ -86,13 +100,5 @@ fast_batch_profile = RuntimeProfile(
     allow_cross_validation=False,
 )
 
-
-class RuntimeProfile(BaseModel):
-    """Runtime profile configuration for different processing tiers"""
-    name: str
-    llm_provider: str = "mistral"
-    llm_model: str = "mistral-small"
-    max_tokens: int = 1024
-    temperature: float = 0.1
-    timeout: int = 30
-    allow_cross_validation: bool = True
+# Singleton instance
+settings = Settings()
