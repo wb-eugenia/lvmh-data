@@ -1,0 +1,147 @@
+{
+  "_cached_at": 1770887344.5595093,
+  "payload": {
+    "id": "API_1770887342",
+    "original_text": "Herr Richter, 46 Jahre, Pilot Langstrecke internationale Airline, neuer Kunde. Sucht Geschenke Ehefrau Stewardess gleiche Airline kennen gelernt. Budget 9K. Beide reisen ständig beruflich, nächste freie Woche Urlaub Malediven geplant. Ehefrau Stil elegant reisefreundlich praktisch. Sammeln Souvenirs Destinationen weltweit. Hochzeitstag April. Beide praktizieren Tauchen Unterwasserfotografie Hobby. Pescetarier beide. Keine Allergien. Kunde zufrieden Service, erwähnt viele Kollegen Piloten Crew potenzielle Kunden Flughafen Nähe bequem. Follow-up gut Beziehung. Airline Netzwerk international interessant.",
+    "processed_text": "Herr Richter, 46 Jahre, Pilot Langstrecke internationale Airline, neuer Kunde. Sucht Geschenke Ehefrau Stewardess gleiche Airline kennen gelernt. Budget 9K. Beide reisen ständig beruflich, nächste freie Woche Urlaub Malediven geplant. Ehefrau Stil elegant reisefreundlich praktisch. Sammeln Souvenirs Destinationen weltweit. Hochzeitstag April. Beide praktizieren Tauchen Unterwasserfotografie Hobby. Pescetarier beide. Keine Allergien. Kunde zufrieden Service, erwähnt viele Kollegen Piloten Crew potenzielle Kunden Flughafen Nähe bequem. Follow-up gut Beziehung. Airline Netzwerk international interessant.",
+    "language": "DE",
+    "timestamp": "2026-02-12T10:09:04.508819",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations fournies concernent des détails professionnels et des préférences personnelles qui ne relèvent pas des catégories sensibles définies.",
+      "anonymized_text": "Herr Richter, 46 Jahre, Pilot Langstrecke internationale Airline, neuer Kunde. Sucht Geschenke Ehefrau Stewardess gleiche Airline kennen gelernt. Budget 9K. Beide reisen ständig beruflich, nächste freie Woche Urlaub Malediven geplant. Ehefrau Stil elegant reisefreundlich praktisch. Sammeln Souvenirs Destinationen weltweit. Hochzeitstag April. Beide praktizieren Tauchen Unterwasserfotografie Hobby. Pescetarier beide. Keine Allergien. Kunde zufrieden Service, erwähnt viele Kollegen Piloten Crew potenzielle Kunden Flughafen Nähe bequem. Follow-up gut Beziehung. Airline Netzwerk international interessant."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "luxury_service",
+          "travel_luggage",
+          "gift_for_spouse",
+          "wedding_anniversary",
+          "travel_frequent",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD460001V/R08343",
+            "name": "Livre Travel Book Hawaï",
+            "price": 55.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-hawai-nvprod460001v/R08343",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD4670068V/M7251M",
+            "name": "Casquette Woolgram",
+            "price": 410.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/casquette-woolgram-s00-nvprod4670068v/M7251M",
+            "match_score": 0.47
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "aviation",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [
+          "allergy_mentioned",
+          "no_known_allergies"
+        ],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. Relance sur le Livre Travel Book Hawaï.",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Travel Book Hawaï"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 9000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.85,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 86.67,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.85,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 5.32,
+      "rgpd": 1765.95,
+      "cache_lookup": 0.39,
+      "semantic_cache_lookup": 0.0,
+      "routing": 40.35,
+      "tier1": 1.35,
+      "tier2": 0.56,
+      "cross_validation": 1.01,
+      "rag": 40.01,
+      "recommendation": 2.19,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 1857.22
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 1857.2173118591309,
+    "from_cache": false
+  }
+}

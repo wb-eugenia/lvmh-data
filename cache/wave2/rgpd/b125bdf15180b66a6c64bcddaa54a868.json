@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193687.6950026,
+  "payload": {
+    "ID": "CA_116",
+    "original_text": "M, plus ou moins. Leroy, 44 ans, journaliste reporter grands médias, client occasionnel depuis 2022. Achat sac voyage solide léger zones parfois difficiles. que,,. Budget 4K,,. par exemple fonctionnel discret, cuir noir marron. Voyage constamment reportages terrains conflits zones sensibles,. Passionné photographie, couvre événements mondiaux importants, que,. Collectionne appareils vintage Leica. , un peu. Pratique boxe fitness maintien forme,,. Végétarien pour événements. Allergie iode sévère fruits mer. ,. Compagne journaliste aussi voyages ensemble souvent, opportunité future. ,. Mentionné prix journalisme reçu récemment reconnaissance travail en quelque sorte. client niche aventurier professionnels extrêmes. Rappeler mars montrer pièces résistantes voyage. ,.",
+    "anonymized_text": "M, plus ou moins. Leroy, 44 ans, journaliste reporter grands médias, client occasionnel depuis 2022. Achat sac voyage solide léger zones parfois difficiles. que,,. Budget 4K,,. par exemple fonctionnel discret, cuir noir marron. Voyage constamment reportages terrains conflits zones sensibles,. Passionné photographie, couvre événements mondiaux importants, que,. Collectionne appareils vintage Leica. , un peu. Pratique boxe fitness maintien forme,,. Végétarien pour événements. Allergie iode sévère fruits mer. ,. Compagne journaliste aussi voyages ensemble souvent, opportunité future. ,. Mentionné prix journalisme reçu récemment reconnaissance travail en quelque sorte. client niche aventurier professionnels extrêmes. Rappeler mars montrer pièces résistantes voyage. ,.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Aucune donnée sensible détectée selon les catégories définies. Les informations sur l'allergie à l'iode et le régime végétarien ne sont pas considérées comme sensibles dans le contexte du RGPD."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

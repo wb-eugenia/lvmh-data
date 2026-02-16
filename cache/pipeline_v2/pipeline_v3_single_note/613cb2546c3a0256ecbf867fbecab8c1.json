@@ -1,0 +1,149 @@
+{
+  "_cached_at": 1770887222.5455127,
+  "payload": {
+    "id": "API_1770887220",
+    "original_text": "Mme Perrin, 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra.",
+    "processed_text": "Mme [NAME], 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra.",
+    "language": "FR",
+    "timestamp": "2026-02-12T10:07:02.491419",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Urgent: +8",
+        "🤖 ML prediction (conf: 0.71)"
+      ],
+      "confidence": 0.71,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations fournies concernent des détails professionnels et des préférences d'achat sans mentionner d'éléments sensibles.",
+      "anonymized_text": "Mme [NAME], 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "travel",
+          "gift",
+          "brown_cognac"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "brown"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD1850089V/M44714",
+            "name": "Sac de golf",
+            "price": 20000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-de-golf-monogram-canvas-nvprod1850089v/M44714",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD1850090V/M44923",
+            "name": "Sac de golf",
+            "price": 20000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-de-golf-monogram-eclipse-nvprod1850090v/M44923",
+            "match_score": 0.47
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": "sports",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: travel, gift. Budget estimé: core (2K-5K).",
+          "priority": "Medium",
+          "target_products": [
+            "Sac de golf",
+            "Sac de golf"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "core (2K-5K)",
+        "budget_specific": 2000,
+        "urgency": "high"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.6372928619384766,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 0.97,
+      "rgpd": 1932.75,
+      "cache_lookup": 0.35,
+      "semantic_cache_lookup": 0.0,
+      "routing": 72.92,
+      "tier1": 0.68,
+      "cross_validation": 0.03,
+      "rag": 25.51,
+      "recommendation": 0.87,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2034.14
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2034.1417789459229,
+    "from_cache": false
+  }
+}

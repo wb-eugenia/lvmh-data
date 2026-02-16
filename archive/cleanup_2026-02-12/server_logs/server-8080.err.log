@@ -1,644 +1,0 @@
-2026-02-11 11:23:23,346 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2026-02-11 11:23:23,364 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-INFO:     Started server process [6476]
-INFO:     Waiting for application startup.
-2026-02-11 11:23:24,084 - lvmh-api - INFO - \U0001f680 LVMH Voice-to-Tag API starting...
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
-2026-02-11 11:31:45,264 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/auth/login', 'status': 200, 'duration_ms': 351.25}
-2026-02-11 11:31:45,277 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:31:45,870 - src.tier2_mistral - INFO - \U0001f1eb\U0001f1f7 Tier 2 Mistral initialized with model: mistral-medium-latest
-2026-02-11 11:31:46,389 - src.product_matcher - INFO - \U0001f9e0 Loading RAG Index & Model...
-2026-02-11 11:31:46,407 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2026-02-11 11:31:46,407 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2
-2026-02-11 11:31:49,094 - src.product_matcher - INFO - \u2705 ProductMatcher Ready: 7806 products indexed.
-2026-02-11 11:31:49,349 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2026-02-11 11:31:49,349 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2
-2026-02-11 11:31:51,706 - src.semantic_cache - INFO - \u2705 Semantic cache initialized with paraphrase-multilingual-MiniLM-L12-v2
-2026-02-11 11:31:51,708 - src.semantic_cache - INFO - \u2705 FAISS index initialized (dim=384)
-2026-02-11 11:31:51,708 - lvmh-api.analyze - INFO - Pipeline initialized
-2026-02-11 11:31:55,213 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00,  9.94it/s]Batches: 100%|##########| 1/1 [00:00<00:00,  9.92it/s]
-2026-02-11 11:31:55,529 - src.smart_router - INFO - Loaded ML model from disk
-2026-02-11 11:31:55,560 - src.smart_router - INFO - Loaded 301 feedback samples
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 13.62it/s]
-2026-02-11 11:31:55,756 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:31:55,757 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 10484.76}
-2026-02-11 11:31:55,764 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:31:57,683 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.99it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.87it/s]
-2026-02-11 11:31:57,901 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:31:57,902 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2141.81}
-2026-02-11 11:31:57,908 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:31:59,381 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.84it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.46it/s]
-2026-02-11 11:31:59,585 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:31:59,585 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1681.3}
-2026-02-11 11:31:59,592 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:01,764 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.87it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 35.63it/s]
-2026-02-11 11:32:01,959 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:01,959 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2370.72}
-2026-02-11 11:32:01,967 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:03,862 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.61it/s]
-2026-02-11 11:32:13,806 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.61it/s]
-2026-02-11 11:32:13,880 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:13,880 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 11917.21}
-2026-02-11 11:32:13,888 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:16,135 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.35it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.60it/s]
-2026-02-11 11:32:16,335 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:32:16,336 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2452.28}
-2026-02-11 11:32:16,343 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:18,792 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.47it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.16it/s]
-2026-02-11 11:32:18,996 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:32:18,997 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2658.75}
-2026-02-11 11:32:19,004 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:20,968 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.84it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.74it/s]
-2026-02-11 11:32:21,181 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:21,182 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2181.1}
-2026-02-11 11:32:21,188 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:22,985 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.54it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.03it/s]
-2026-02-11 11:32:23,203 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:23,204 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2018.25}
-2026-02-11 11:32:23,210 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:25,464 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.80it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.95it/s]
-2026-02-11 11:32:25,659 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:25,660 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2452.98}
-2026-02-11 11:32:25,667 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:28,444 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.67it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.00it/s]
-2026-02-11 11:32:28,648 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:28,649 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2986.19}
-2026-02-11 11:32:28,655 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:30,426 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.89it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.20it/s]
-2026-02-11 11:32:30,652 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:32:30,653 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2000.18}
-2026-02-11 11:32:30,660 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:31,982 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.23it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.56it/s]
-2026-02-11 11:32:32,176 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:32,177 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1521.63}
-2026-02-11 11:32:32,183 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:34,167 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.82it/s]
-2026-02-11 11:32:37,505 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.55it/s]
-2026-02-11 11:32:37,580 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:37,580 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 5400.15}
-2026-02-11 11:32:37,587 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:39,671 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.08it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.80it/s]
-2026-02-11 11:32:39,868 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:32:39,869 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2285.69}
-2026-02-11 11:32:39,876 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:41,907 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.81it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.76it/s]
-2026-02-11 11:32:42,110 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:42,111 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2239.12}
-2026-02-11 11:32:42,117 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:44,035 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.95it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.54it/s]
-2026-02-11 11:32:44,247 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:32:44,247 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2133.71}
-2026-02-11 11:32:44,252 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:46,108 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.35it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.27it/s]
-2026-02-11 11:32:46,322 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:46,323 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2073.91}
-2026-02-11 11:32:46,328 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:48,710 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.11it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.28it/s]
-2026-02-11 11:32:48,926 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:48,926 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2601.09}
-2026-02-11 11:32:48,932 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:50,708 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.15it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.84it/s]
-2026-02-11 11:32:50,912 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:50,913 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1984.62}
-2026-02-11 11:32:50,919 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:52,608 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.26it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.01it/s]
-2026-02-11 11:32:52,809 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:52,810 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1894.02}
-2026-02-11 11:32:52,816 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:54,408 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.10it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.32it/s]
-2026-02-11 11:32:54,605 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:54,606 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1794.21}
-2026-02-11 11:32:54,611 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:56,498 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.88it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.82it/s]
-2026-02-11 11:32:56,715 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:32:56,715 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2106.88}
-2026-02-11 11:32:56,721 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:32:59,067 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.86it/s]
-2026-02-11 11:33:02,961 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.79it/s]
-2026-02-11 11:33:03,032 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:33:03,033 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 6314.44}
-2026-02-11 11:33:03,038 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:05,899 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 37.48it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 41.44it/s]
-2026-02-11 11:33:06,068 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:06,068 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3033.19}
-2026-02-11 11:33:06,075 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:08,439 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.48it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 33.47it/s]
-2026-02-11 11:33:08,631 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:33:08,632 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2561.46}
-2026-02-11 11:33:08,637 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:10,467 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.97it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.50it/s]
-2026-02-11 11:33:10,680 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:10,681 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2046.28}
-2026-02-11 11:33:10,686 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:12,489 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.80it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.16it/s]
-2026-02-11 11:33:12,689 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:12,689 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2006.24}
-2026-02-11 11:33:12,694 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:16,412 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.62it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.85it/s]
-2026-02-11 11:33:16,605 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:16,606 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3914.42}
-2026-02-11 11:33:16,610 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:18,819 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.38it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.02it/s]
-2026-02-11 11:33:19,034 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:33:19,034 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2426.67}
-2026-02-11 11:33:19,040 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:21,695 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.80it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.37it/s]
-2026-02-11 11:33:21,872 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:21,873 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2835.79}
-2026-02-11 11:33:21,879 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:24,094 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.11it/s]
-2026-02-11 11:33:27,854 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.32it/s]
-2026-02-11 11:33:27,925 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:27,926 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 6050.62}
-2026-02-11 11:33:27,931 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:29,682 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.12it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.90it/s]
-2026-02-11 11:33:29,887 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:29,887 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1959.28}
-2026-02-11 11:33:29,892 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:31,344 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.86it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.01it/s]
-2026-02-11 11:33:31,545 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:31,546 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1656.57}
-2026-02-11 11:33:31,551 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:32,921 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.68it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.57it/s]
-2026-02-11 11:33:33,119 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:33:33,120 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1571.87}
-2026-02-11 11:33:33,124 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:34,867 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.11it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.50it/s]
-2026-02-11 11:33:35,072 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:35,072 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1950.73}
-2026-02-11 11:33:35,077 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:36,566 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.47it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.18it/s]
-2026-02-11 11:33:36,775 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:36,776 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1701.33}
-2026-02-11 11:33:36,781 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:39,221 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.26it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.84it/s]
-2026-02-11 11:33:39,422 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:39,423 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2645.41}
-2026-02-11 11:33:39,427 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:41,522 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.12it/s]
-2026-02-11 11:33:44,838 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.93it/s]
-2026-02-11 11:33:44,905 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:44,906 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 5481.34}
-2026-02-11 11:33:44,912 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:46,541 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.24it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.62it/s]
-2026-02-11 11:33:46,724 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:33:46,725 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1816.87}
-2026-02-11 11:33:46,730 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:48,633 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 33.04it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 42.90it/s]
-2026-02-11 11:33:48,811 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:48,812 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2084.73}
-2026-02-11 11:33:48,818 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:50,490 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.52it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.22it/s]
-2026-02-11 11:33:50,685 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:50,685 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1870.32}
-2026-02-11 11:33:50,691 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:52,435 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.59it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.09it/s]
-2026-02-11 11:33:52,631 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:52,632 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1944.25}
-2026-02-11 11:33:52,637 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:54,202 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.43it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 35.18it/s]
-2026-02-11 11:33:54,397 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:54,398 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1764.39}
-2026-02-11 11:33:54,403 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:56,169 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.10it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.20it/s]
-2026-02-11 11:33:56,374 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:33:56,375 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1974.66}
-2026-02-11 11:33:56,381 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:58,183 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.25it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.69it/s]
-2026-02-11 11:33:58,377 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:58,378 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2000.39}
-2026-02-11 11:33:58,382 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:33:59,802 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.83it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.59it/s]
-2026-02-11 11:33:59,996 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:33:59,997 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1616.95}
-2026-02-11 11:34:00,002 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:01,995 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.69it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.85it/s]
-2026-02-11 11:34:02,203 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:02,204 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2205.04}
-2026-02-11 11:34:02,209 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:03,902 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.09it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.35it/s]
-2026-02-11 11:34:04,131 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:04,131 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1925.63}
-2026-02-11 11:34:04,137 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:06,000 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.96it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.39it/s]
-2026-02-11 11:34:06,245 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:06,246 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2111.51}
-2026-02-11 11:34:06,252 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:07,753 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.47it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.51it/s]
-2026-02-11 11:34:07,953 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:07,954 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1705.52}
-2026-02-11 11:34:07,959 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:11,071 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.76it/s]
-2026-02-11 11:34:19,737 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.45it/s]
-2026-02-11 11:34:19,820 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:19,820 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 11864.88}
-2026-02-11 11:34:19,826 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:21,981 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 41.94it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 50.45it/s]
-2026-02-11 11:34:22,145 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:22,146 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2323.31}
-2026-02-11 11:34:22,151 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:25,528 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.40it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.49it/s]
-2026-02-11 11:34:25,737 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:25,738 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3589.5}
-2026-02-11 11:34:25,743 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:27,707 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.14it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.22it/s]
-2026-02-11 11:34:27,917 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:27,918 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2178.19}
-2026-02-11 11:34:27,924 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:29,836 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.20it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.46it/s]
-2026-02-11 11:34:30,057 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:30,058 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2138.06}
-2026-02-11 11:34:30,064 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:31,729 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.19it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.99it/s]
-2026-02-11 11:34:31,918 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:31,919 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1858.52}
-2026-02-11 11:34:31,923 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:33,748 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.35it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.43it/s]
-2026-02-11 11:34:33,951 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:34:33,952 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2031.41}
-2026-02-11 11:34:33,957 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:35,927 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.83it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.25it/s]
-2026-02-11 11:34:36,137 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:36,138 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2184.0}
-2026-02-11 11:34:36,143 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:37,660 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.63it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 35.04it/s]
-2026-02-11 11:34:37,844 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:37,845 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1705.26}
-2026-02-11 11:34:37,850 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:39,694 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.10it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.03it/s]
-2026-02-11 11:34:39,888 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:39,888 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2040.96}
-2026-02-11 11:34:39,893 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:42,295 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.90it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.35it/s]
-2026-02-11 11:34:42,494 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:42,494 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2604.09}
-2026-02-11 11:34:42,498 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:44,869 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.21it/s]
-2026-02-11 11:34:49,271 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.76it/s]
-2026-02-11 11:34:49,339 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:49,340 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 6843.86}
-2026-02-11 11:34:49,344 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:51,452 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.46it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.58it/s]
-2026-02-11 11:34:51,651 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:51,652 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2309.9}
-2026-02-11 11:34:51,655 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:54,100 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.55it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.47it/s]
-2026-02-11 11:34:54,311 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:34:54,311 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2658.23}
-2026-02-11 11:34:54,316 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:56,011 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.19it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.32it/s]
-2026-02-11 11:34:56,228 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:56,229 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1915.81}
-2026-02-11 11:34:56,234 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:58,195 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.32it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.52it/s]
-2026-02-11 11:34:58,426 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:34:58,427 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2196.32}
-2026-02-11 11:34:58,434 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:34:59,992 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.60it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.39it/s]
-2026-02-11 11:35:00,234 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:35:00,235 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1805.63}
-2026-02-11 11:35:00,242 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:02,239 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.06it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.22it/s]
-2026-02-11 11:35:02,652 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:02,653 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2415.1}
-2026-02-11 11:35:02,658 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:04,613 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.91it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.92it/s]
-2026-02-11 11:35:04,852 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:04,853 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2198.45}
-2026-02-11 11:35:04,858 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:08,062 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.62it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 33.72it/s]
-2026-02-11 11:35:08,258 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:08,258 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3403.51}
-2026-02-11 11:35:08,263 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:10,191 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.83it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.33it/s]
-2026-02-11 11:35:10,388 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:10,389 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2128.68}
-2026-02-11 11:35:10,393 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:12,093 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.25it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.40it/s]
-2026-02-11 11:35:12,313 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:35:12,314 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1923.69}
-2026-02-11 11:35:12,320 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:14,254 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.72it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.40it/s]
-2026-02-11 11:35:14,478 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:14,479 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2162.72}
-2026-02-11 11:35:14,484 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:16,194 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.91it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.94it/s]
-2026-02-11 11:35:16,391 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:16,391 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1910.55}
-2026-02-11 11:35:16,397 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:18,539 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.00it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.87it/s]
-2026-02-11 11:35:18,752 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:35:18,752 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2358.74}
-2026-02-11 11:35:18,756 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:20,555 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.62it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.16it/s]
-2026-02-11 11:35:20,773 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:20,774 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2019.94}
-2026-02-11 11:35:20,778 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:23,050 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.08it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.79it/s]
-2026-02-11 11:35:23,274 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:23,274 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2498.74}
-2026-02-11 11:35:23,278 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:25,055 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.12it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.97it/s]
-2026-02-11 11:35:25,249 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:25,249 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1973.34}
-2026-02-11 11:35:25,253 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:27,656 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.31it/s]
-2026-02-11 11:35:37,553 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.25it/s]
-2026-02-11 11:35:37,623 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:37,624 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 12373.14}
-2026-02-11 11:35:37,630 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:39,975 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.83it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 41.46it/s]
-2026-02-11 11:35:40,157 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:40,158 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2531.98}
-2026-02-11 11:35:40,164 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:42,123 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.38it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 41.21it/s]
-2026-02-11 11:35:42,302 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:42,303 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2142.35}
-2026-02-11 11:35:42,309 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:44,586 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.50it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.62it/s]
-2026-02-11 11:35:44,788 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:35:44,788 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2483.45}
-2026-02-11 11:35:44,794 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:46,629 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.23it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.18it/s]
-2026-02-11 11:35:46,819 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:46,820 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2029.8}
-2026-02-11 11:35:46,824 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:49,408 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.28it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.53it/s]
-2026-02-11 11:35:49,638 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:49,638 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2817.0}
-2026-02-11 11:35:49,644 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:52,644 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.50it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.37it/s]
-2026-02-11 11:35:52,889 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:52,890 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3249.3}
-2026-02-11 11:35:52,895 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:54,439 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.12it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.50it/s]
-2026-02-11 11:35:54,638 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:54,639 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1747.54}
-2026-02-11 11:35:54,645 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:56,807 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.48it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.18it/s]
-2026-02-11 11:35:57,028 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:35:57,029 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2386.82}
-2026-02-11 11:35:57,034 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:35:58,732 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.97it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.15it/s]
-2026-02-11 11:35:58,931 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:35:58,932 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1901.85}
-2026-02-11 11:35:58,938 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:00,630 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.28it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 18.24it/s]
-2026-02-11 11:36:00,870 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:00,871 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1936.77}
-2026-02-11 11:36:00,877 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:02,578 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 17.80it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.86it/s]
-2026-02-11 11:36:02,801 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:02,801 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1927.32}
-2026-02-11 11:36:02,805 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:04,882 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.69it/s]
-2026-02-11 11:36:09,356 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.08it/s]
-2026-02-11 11:36:09,434 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:36:09,435 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 6632.46}
-2026-02-11 11:36:09,441 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:11,104 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.48it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.90it/s]
-2026-02-11 11:36:11,324 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:11,325 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1887.23}
-2026-02-11 11:36:11,330 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:12,947 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 19.53it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.64it/s]
-2026-02-11 11:36:13,188 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:13,189 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1862.57}
-2026-02-11 11:36:13,196 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:15,104 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.34it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.45it/s]
-2026-02-11 11:36:15,324 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:15,325 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2132.81}
-2026-02-11 11:36:15,331 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:16,811 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.93it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.09it/s]
-2026-02-11 11:36:17,039 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:17,040 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1712.13}
-2026-02-11 11:36:17,046 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:18,601 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 20.97it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.27it/s]
-2026-02-11 11:36:18,832 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:18,833 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1790.38}
-2026-02-11 11:36:18,840 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:20,661 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 24.39it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 34.93it/s]
-2026-02-11 11:36:20,855 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+15 pts)
-2026-02-11 11:36:20,856 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2020.85}
-2026-02-11 11:36:20,861 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:22,505 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.50it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.02it/s]
-2026-02-11 11:36:22,690 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:22,691 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1832.54}
-2026-02-11 11:36:22,696 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:24,843 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.38it/s]
-2026-02-11 11:36:28,369 - httpx - INFO - HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 33.13it/s]
-2026-02-11 11:36:28,481 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:28,482 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 5789.37}
-2026-02-11 11:36:45,757 - src.ml_router - INFO - \U0001f195 ML Router initialized (untrained)
-2026-02-11 11:36:45,769 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2026-02-11 11:36:45,769 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2
-2026-02-11 11:36:48,342 - src.semantic_cache - INFO - \u2705 Semantic cache initialized with paraphrase-multilingual-MiniLM-L12-v2
-2026-02-11 11:36:48,342 - src.semantic_cache - INFO - \u2705 FAISS index initialized (dim=384)
-2026-02-11 11:36:48,343 - lvmh-api - INFO - {'method': 'GET', 'path': '/api/dashboard/components/status', 'status': 200, 'duration_ms': 2635.15}
-2026-02-11 11:36:48,590 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/auth/login', 'status': 200, 'duration_ms': 2883.36}
-2026-02-11 11:36:48,935 - lvmh-api - INFO - {'method': 'GET', 'path': '/api/dashboard/metrics/summary', 'status': 200, 'duration_ms': 343.83}
-2026-02-11 11:36:48,942 - lvmh-api.analyze - INFO - Authenticated user: advisor@lvmh.com (ID: 1)
-2026-02-11 11:36:50,757 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 52.68it/s]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 69.39it/s]
-2026-02-11 11:36:50,903 - lvmh-api.analyze - INFO - \U0001f4be Note saved for user advisor@lvmh.com (+10 pts)
-2026-02-11 11:36:50,903 - lvmh-api - INFO - {'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1967.55}

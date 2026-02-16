@@ -1,0 +1,134 @@
+{
+  "_cached_at": 1770886034.8214724,
+  "payload": {
+    "id": "API_1770886032",
+    "original_text": "Mme Girard, 38 ans, dentiste, nouvelle cliente. Achat rapide sac travail professionnel. Budget 3500€. Style sobre élégant noir. Pratique course pied régulièrement. Pas allergies mentionnées. Satisfaite achat, demandé programme fidélité informations. Rappeler dans deux mois nouveautés. Potentiel correct.",
+    "processed_text": "Mme [NAME], 38 ans, dentiste, nouvelle cliente. Achat rapide sac travail professionnel. Budget 3500€. sobre élégant noir. Pratique course pied régulièrement. Pas allergies mentionnées. Satisfaite achat, demandé programme fidélité informations. Rappeler dans deux mois nouveautés. Potentiel correct.",
+    "language": "FR",
+    "timestamp": "2026-02-12T09:47:14.770573",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 0.90)"
+      ],
+      "confidence": 0.9,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations fournies sont liées à des détails professionnels et des préférences d'achat, sans mention de santé mentale, santé physique, conflits familiaux, croyances religieuses, opinions politiques, orientation sexuelle ou origine ethnique.",
+      "anonymized_text": "Mme [NAME], 38 ans, dentiste, nouvelle cliente. Achat rapide sac travail professionnel. Budget 3500€. sobre élégant noir. Pratique course pied régulièrement. Pas allergies mentionnées. Satisfaite achat, demandé programme fidélité informations. Rappeler dans deux mois nouveautés. Potentiel correct."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "leather_goods",
+          "black",
+          "professional",
+          "customer_intent",
+          "accessories",
+          "professional_work",
+          "medical_dentist",
+          "first_visit"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [
+            "black"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: leather_goods, black. Budget estimé: None (2K-5K).",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "None (2K-5K)",
+        "budget_specific": 3500,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 77.78,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.9052753448486328,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 2.06,
+      "rgpd": 2389.2,
+      "cache_lookup": 0.38,
+      "semantic_cache_lookup": 0.0,
+      "routing": 43.0,
+      "tier1": 0.95,
+      "tier2": 0.48,
+      "cross_validation": 0.99,
+      "rag": 27.02,
+      "recommendation": 0.18,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2464.37
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2464.367628097534,
+    "from_cache": false
+  }
+}

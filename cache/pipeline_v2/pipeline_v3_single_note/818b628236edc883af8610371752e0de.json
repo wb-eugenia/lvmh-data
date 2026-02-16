@@ -1,0 +1,152 @@
+{
+  "_cached_at": 1770887241.637061,
+  "payload": {
+    "id": "API_1770887238",
+    "original_text": "Sr. Ortiz, 55 años, empresario construcción, cliente regular. Compra regalos esposa cumpleaños 50 celebración grande familia. Budget 13K. Esposa decoradora interiores proyectos lujo, ama diseño arte. Celebración fiesta sorpresa 100 invitados casa. Viajan frecuente Italia Francia inspiración diseño. Ella estilo elegante sofisticado, prefiere beige cognac hardware dorado. Colecciona muebles diseño mid-century. Pescetariana ella. Cumpleaños abril próximo. Tres hijos: dos hijas casadas, hijo soltero arquitecto. Esposa mencionó siempre quiso piezas especiales únicas. Cliente muy fiel, compra regular ocasiones. Llamar marzo confirmar piezas antes fiesta. Preguntó posibilidad personalización mensaje amor grabado. Excelente cliente apreciado.",
+    "processed_text": "Sr. Ortiz, 55 años, empresario construcción, cliente regular. Compra regalos esposa cumpleaños 50 celebración grande familia. Budget 13K. Esposa decoradora interiores proyectos lujo, ama diseño arte. Celebración fiesta sorpresa 100 invitados casa. Viajan frecuente Italia Francia inspiración diseño. Ella estilo elegante sofisticado, prefiere beige cognac hardware dorado. Colecciona muebles diseño mid-century. Pescetariana ella. Cumpleaños abril próximo. Tres hijos: dos hijas casadas, hijo soltero arquitecto. Esposa mencionó siempre quiso piezas especiales únicas. Cliente muy fiel, compra regular ocasiones. Llamar marzo confirmar piezas antes fiesta. Preguntó posibilidad personalización mensaje amor grabado. Excelente cliente apreciado.",
+    "language": "ES",
+    "timestamp": "2026-02-12T10:07:21.587914",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 0.94)"
+      ],
+      "confidence": 0.94,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations fournies concernent des détails sur les préférences d'achat et la vie familiale sans mentionner de conflits, de santé ou d'autres catégories sensibles.",
+      "anonymized_text": "Sr. Ortiz, 55 años, empresario construcción, cliente regular. Compra regalos esposa cumpleaños 50 celebración grande familia. Budget 13K. Esposa decoradora interiores proyectos lujo, ama diseño arte. Celebración fiesta sorpresa 100 invitados casa. Viajan frecuente Italia Francia inspiración diseño. Ella estilo elegante sofisticado, prefiere beige cognac hardware dorado. Colecciona muebles diseño mid-century. Pescetariana ella. Cumpleaños abril próximo. Tres hijos: dos hijas casadas, hijo soltero arquitecto. Esposa mencionó siempre quiso piezas especiales únicas. Cliente muy fiel, compra regular ocasiones. Llamar marzo confirmar piezas antes fiesta. Preguntó posibilidad personalización mensaje amor grabado. Excelente cliente apreciado."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "beige_neutral",
+          "brown_cognac",
+          "regular",
+          "gift_for_spouse",
+          "travel_frequent",
+          "art_collector",
+          "pescatarian",
+          "entrepreneur_established"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "beige_neutral",
+            "beige"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4760006V/R09186",
+            "name": "Francesca Amfitheatrof : Fantastic Jewels",
+            "price": 125.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/francesca-amfitheatrof-fantastic-jewels-nvprod4760006v/R09186",
+            "match_score": 0.54
+          },
+          {
+            "sku": "NVPROD3570126V/Q93840",
+            "name": "Collier pendentif Vivienne Celebration  or jaune  or blanc  titane  diamants et pierres précieuses colorées",
+            "price": 38500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-celebration-or-jaune-or-blanc-titane-diamants-et-pierres-precieuses-colorees-nvprod3570126v/Q93840",
+            "match_score": 0.53
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le regular pour son birthday. Suggère le Francesca Amfitheatrof : Fantastic Jewels qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Francesca Amfitheatrof : Fantastic Jewels",
+            "Collier pendentif Vivienne Celebration  or jaune  or blanc  titane  diamants et pierres précieuses colorées"
+          ],
+          "deadline": "low"
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 13000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.680612564086914,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 10.37,
+      "rgpd": 2892.67,
+      "cache_lookup": 0.47,
+      "semantic_cache_lookup": 0.0,
+      "routing": 72.17,
+      "tier1": 1.72,
+      "tier2": 0.49,
+      "cross_validation": 1.1,
+      "rag": 41.66,
+      "recommendation": 1.95,
+      "quality_gate": 0.01,
+      "injection": 0.0,
+      "total": 3022.68
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 3022.679328918457,
+    "from_cache": false
+  }
+}

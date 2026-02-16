@@ -1,0 +1,141 @@
+{
+  "_cached_at": 1770809727.2255363,
+  "payload": {
+    "id": "GEN_006",
+    "original_text": "alors euh Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer 400K seguidores Instagram. Busca bolso regalo cumpleaños novia próxima semana. Presupuesto amplio 8-10K, quiere algo excepcional único. Ella estilo moderno colorido, no demasiado clásico. Él interesado también pequeña marroquinería hombre. Mencionó organizan eventos casa frecuentemente, anotar alergia mariscos ella para futuros cócteles boutique. Pareja joven mucho potencial, compras frecuentes probable. Invitar eventos VIP, buena visibilidad redes sociales. Seguimiento previsto después compra para fidelizar. Ella vegana estricta importante eventos. Adresse livraison [ADRESSE] tu vois tu vois.",
+    "processed_text": "alors euh Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer 400K seguidores Instagram. Busca bolso regalo cumpleaños novia próxima semana. Presupuesto amplio 8-10K, quiere algo excepcional único. Ella estilo moderno colorido, no demasiado clásico. Él interesado también pequeña marroquinería hombre. Mencionó organizan eventos casa frecuentemente, anotar alergia mariscos ella para futuros cócteles boutique. Pareja joven mucho potencial, compras frecuentes probable. Invitar eventos VIP, buena visibilidad redes sociales. Seguimiento previsto después compra para fidelizar. Ella vegana estricta importante eventos. Adresse livraison [ADRESSE] tu vois tu vois.",
+    "language": "ES",
+    "timestamp": "2026-02-11T12:35:27.214597",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget 50K: +15",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 0.95)"
+      ],
+      "confidence": 0.95,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur l'allergie aux fruits de mer sont acceptables pour le business, et le régime alimentaire vegan n'est pas considéré comme sensible.",
+      "anonymized_text": "alors euh Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer 400K seguidores Instagram. Busca bolso regalo cumpleaños novia próxima semana. Presupuesto amplio 8-10K, quiere algo excepcional único. Ella estilo moderno colorido, no demasiado clásico. Él interesado también pequeña marroquinería hombre. Mencionó organizan eventos casa frecuentemente, anotar alergia mariscos ella para futuros cócteles boutique. Pareja joven mucho potencial, compras frecuentes probable. Invitar eventos VIP, buena visibilidad redes sociales. Seguimiento previsto después compra para fidelizar. Ella vegana estricta importante eventos. Adresse livraison [ADRESSE] tu vois tu vois."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "ready_to_wear",
+          "first_visit",
+          "gift_for_spouse",
+          "fragrance",
+          "small_leather",
+          "vegan",
+          "influencer"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "013220/M62361",
+            "name": "Porte-monnaie Rosalie",
+            "price": 320.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-monnaie-rosalie-monogram-013220/M62361",
+            "match_score": 0.56
+          },
+          {
+            "sku": "NVPROD4900072V/GI1025",
+            "name": "Figurine Vivienne Doll LV Colormania",
+            "price": 1500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/figurine-vivienne-doll-lv-colormania-s00-nvprod4900072v/GI1025",
+            "match_score": 0.55
+          },
+          {
+            "sku": "NVPROD4440016V/M82387",
+            "name": "Pochette Kirigami",
+            "price": 785.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/pochette-kirigami-nvprod4440016v/M82387",
+            "match_score": 0.55
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "sports_equestrian",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. Relance sur le Porte-monnaie Rosalie.",
+          "priority": "Medium",
+          "target_products": [
+            "Porte-monnaie Rosalie"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": null,
+        "urgency": "this_week"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.83,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 65.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 14420.99404335022,
+    "from_cache": false
+  }
+}

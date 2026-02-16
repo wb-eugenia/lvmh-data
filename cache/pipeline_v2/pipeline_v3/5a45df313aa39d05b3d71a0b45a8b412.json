@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1770811282.9332128,
+  "payload": {
+    "id": "CA_065",
+    "original_text": "Frau Wagner, 51 Jahre, Professorin Kunstgeschichte Universität Berlin, treue Kundin seit 2016. Kauft Geschenke Tochter Promotion Architektur. Budget 8K. Tochter 28 Jahre promoviert nachhaltige Architektur, beginnt eigenes Büro. Beide leidenschaftlich Kunst Design, besuchen Documenta Kassel regelmäßig. Tochter praktiziert Yoga, interessiert Wellness nachhaltig Leben. Mutter sammelt Kunstbücher Erstausgaben, Tochter digitale Architektur renderings. Tochter Stil minimalistisch funktional, beige grau schwarz. Beide Vegetarier Events. Tochter Latex Allergie wichtig. Promotion Feier Mai Familie Kollegen. Kundin ausgezeichnet, empfohlen viele Akademiker Freunde. Nachfassen April. Sehr interessiert ethische Produktion Handwerk Geschichte Stücke.",
+    "processed_text": "Frau Wagner, 51 Jahre, Professorin Kunstgeschichte Universität Berlin, treue Kundin seit 2016. Kauft Geschenke Tochter Promotion Architektur. Budget 8K. Tochter 28 Jahre promoviert nachhaltige Architektur, beginnt eigenes Büro. Beide leidenschaftlich Kunst Design, besuchen Documenta Kassel regelmäßig. Tochter praktiziert Yoga, interessiert Wellness nachhaltig Leben. Mutter sammelt Kunstbücher Erstausgaben, Tochter digitale Architektur renderings. Tochter Stil minimalistisch funktional, beige grau schwarz. Beide Vegetarier Events. Tochter Latex Allergie wichtig. Promotion Feier Mai Familie Kollegen. Kundin ausgezeichnet, empfohlen viele Akademiker Freunde. Nachfassen April. Sehr interessiert ethische Produktion Handwerk Geschichte Stücke.",
+    "language": "DE",
+    "timestamp": "2026-02-11T13:01:22.891872",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 0.98)"
+      ],
+      "confidence": 0.98,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé (allergie au latex) sont considérées comme acceptables pour le business. Les autres informations sont liées à des activités professionnelles et des intérêts personnels sans connotation sensible.",
+      "anonymized_text": "Frau Wagner, 51 Jahre, Professorin Kunstgeschichte Universität Berlin, treue Kundin seit 2016. Kauft Geschenke Tochter Promotion Architektur. Budget 8K. Tochter 28 Jahre promoviert nachhaltige Architektur, beginnt eigenes Büro. Beide leidenschaftlich Kunst Design, besuchen Documenta Kassel regelmäßig. Tochter praktiziert Yoga, interessiert Wellness nachhaltig Leben. Mutter sammelt Kunstbücher Erstausgaben, Tochter digitale Architektur renderings. Tochter Stil minimalistisch funktional, beige grau schwarz. Beide Vegetarier Events. Tochter Latex Allergie wichtig. Promotion Feier Mai Familie Kollegen. Kundin ausgezeichnet, empfohlen viele Akademiker Freunde. Nachfassen April. Sehr interessiert ethische Produktion Handwerk Geschichte Stücke."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "beige_neutral",
+          "jewelry",
+          "black",
+          "leather_goods",
+          "gift_for_child",
+          "vegetarian",
+          "latex_allergy",
+          "professional_work",
+          "art_collector",
+          "eco_conscious"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "beige_neutral",
+            "beige",
+            "gray"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD3740056V/P01729",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-nvprod3740056v/P01729",
+            "match_score": 0.47
+          },
+          {
+            "sku": "NVPROD4150042V/M81937",
+            "name": "LV x YK - Organizer de poche",
+            "price": 670.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4150042v/M81937",
+            "match_score": 0.47
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "professor_art_history",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [
+            "latex_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: beige_neutral, jewelry. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche My LV Heritage",
+            "Organizer de poche My LV Heritage"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 8000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 80.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3300.922632217407,
+    "from_cache": false
+  }
+}

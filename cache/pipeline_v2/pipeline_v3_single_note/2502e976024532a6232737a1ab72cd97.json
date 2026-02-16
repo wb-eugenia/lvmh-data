@@ -1,0 +1,137 @@
+{
+  "_cached_at": 1770887187.348349,
+  "payload": {
+    "id": "API_1770887184",
+    "original_text": "Sra. Mendoza, 48 años, empresaria retail moda, cliente ocasional. Compra regalos equipo trabajo aniversario empresa. Budget 8K para 4 piezas. Empresa celebra 10 años. Quiere piezas elegantes clásicas variadas. Cuero negro cognac navy. Equipo mixto hombres mujeres. Mentionó eventos corporativos frecuentes, posible partnership boutique futuros regalos. Vegetariana algunos empleados eventos. Satisfecha servicio atención. Llamar septiembre siguiente aniversario. Interesada programa corporate gifts.",
+    "processed_text": "Sra. Mendoza, 48 años, empresaria retail moda, cliente ocasional. Compra regalos equipo trabajo aniversario empresa. Budget 8K para 4 piezas. Empresa celebra 10 años. Quiere piezas elegantes clásicas variadas. Cuero negro cognac navy. Equipo mixto hombres mujeres. Mentionó eventos corporativos frecuentes, posible partnership boutique futuros regalos. Vegetariana algunos empleados eventos. Satisfecha servicio atención. Llamar septiembre siguiente aniversario. Interesada programa corporate gifts.",
+    "language": "ES",
+    "timestamp": "2026-02-12T10:06:27.307875",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations fournies concernent des détails professionnels et des préférences d'achat, sans mention de santé, de conflits familiaux, de croyances religieuses, d'opinions politiques, d'orientation sexuelle ou d'origine ethnique.",
+      "anonymized_text": "Sra. Mendoza, 48 años, empresaria retail moda, cliente ocasional. Compra regalos equipo trabajo aniversario empresa. Budget 8K para 4 piezas. Empresa celebra 10 años. Quiere piezas elegantes clásicas variadas. Cuero negro cognac navy. Equipo mixto hombres mujeres. Mentionó eventos corporativos frecuentes, posible partnership boutique futuros regalos. Vegetariana algunos empleados eventos. Satisfecha servicio atención. Llamar septiembre siguiente aniversario. Interesada programa corporate gifts."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "navy",
+          "luxury_service",
+          "brown_cognac",
+          "entrepreneur_established",
+          "gift_for_colleague",
+          "wedding_anniversary",
+          "leather_goods",
+          "ready_to_wear"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "navy",
+            "black"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: accessories, navy. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 8000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 84.62,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.0232925415039062,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 5.62,
+      "rgpd": 2420.58,
+      "cache_lookup": 0.41,
+      "semantic_cache_lookup": 0.0,
+      "routing": 39.94,
+      "tier1": 1.06,
+      "tier2": 0.43,
+      "cross_validation": 0.93,
+      "rag": 35.72,
+      "recommendation": 1.26,
+      "quality_gate": 0.01,
+      "injection": 0.0,
+      "total": 2506.04
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2506.044864654541,
+    "from_cache": false
+  }
+}

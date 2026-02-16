@@ -1,0 +1,161 @@
+{
+  "_cached_at": 1770887290.7862563,
+  "payload": {
+    "id": "API_1770887288",
+    "original_text": "Signora Caruso, 58 anni, direttrice orchestra sinfonica Napoli, nuova cliente eccellente. Cerca pezzi eleganti professionali rappresentanza internazionale. Budget 12K. Stile raffinato artistico, viaggia tournée concerti mondiale. Passione musica classica ovviamente, colleziona spartiti antichi rari. Pratica tai chi meditazione disciplina mentale. Marito scultore artista, coppia artistica. Cuoio bordeaux cognac hardware argento classico elegante. Pescetariana eventi. Allergia profumi forti sensibilità importante. Mentionò orchestra tournée Asia estate Giappone Corea, serve pezzi viaggio qualità. Figlia violinista orchestra anche, figlio ingegnere. Anniversario matrimonio novembre. Cliente potenziale ottimo rete culturale musicale vastissima. Richiamare aprile preview. Interessata artigianalità storia pezzi apprezza profondamente.",
+    "processed_text": "Signora Caruso, 58 anni, direttrice orchestra sinfonica Napoli, nuova cliente eccellente. Cerca pezzi eleganti professionali rappresentanza internazionale. Budget 12K. Stile raffinato artistico, viaggia tournée concerti mondiale. Passione musica classica ovviamente, colleziona spartiti antichi rari. Pratica tai chi meditazione [RGPD_HEALTH_MENTAL_REDACTED]. Marito scultore artista, coppia artistica. Cuoio bordeaux cognac hardware argento classico elegante. Pescetariana eventi. Allergia profumi forti sensibilità importante. Mentionò orchestra tournée Asia estate Giappone Corea, serve pezzi viaggio qualità. Figlia violinista orchestra anche, figlio ingegnere. Anniversario matrimonio novembre. Cliente potenziale ottimo rete culturale musicale vastissima. Richiamare aprile preview. Interessata artigianalità storia pezzi apprezza profondamente.",
+    "language": "IT",
+    "timestamp": "2026-02-12T10:08:10.736241",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "🤖 ML prediction (conf: 0.89)"
+      ],
+      "confidence": 0.89,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_mental"
+      ],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "La mention de 'disciplina mentale' peut indiquer une pratique liée à la santé mentale, ce qui est sensible selon l'Article 9 du RGPD. Bien que d'autres éléments du texte soient non sensibles, cette mention justifie une attention particulière.",
+      "anonymized_text": "Signora Caruso, 58 anni, direttrice orchestra sinfonica Napoli, nuova cliente eccellente. Cerca pezzi eleganti professionali rappresentanza internazionale. Budget 12K. Stile raffinato artistico, viaggia tournée concerti mondiale. Passione musica classica ovviamente, colleziona spartiti antichi rari. Pratica tai chi meditazione [RGPD_HEALTH_MENTAL_REDACTED]. Marito scultore artista, coppia artistica. Cuoio bordeaux cognac hardware argento classico elegante. Pescetariana eventi. Allergia profumi forti sensibilità importante. Mentionò orchestra tournée Asia estate Giappone Corea, serve pezzi viaggio qualità. Figlia violinista orchestra anche, figlio ingegnere. Anniversario matrimonio novembre. Cliente potenziale ottimo rete culturale musicale vastissima. Richiamare aprile preview. Interessata artigianalità storia pezzi apprezza profondamente."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "brown_cognac",
+          "leather_goods",
+          "travel_luggage",
+          "professional_work",
+          "travel_frequent",
+          "art_collector",
+          "first_visit",
+          "wedding_anniversary",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4550113V/M01513",
+            "name": "Boucles d'oreilles LV Symphony",
+            "price": 400.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-lv-symphony-s00-nvprod4550113v/M01513",
+            "match_score": 0.54
+          },
+          {
+            "sku": "NVPROD4550114V/M01497",
+            "name": "Boucles d'oreilles LV Symphony",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-lv-symphony-s00-nvprod4550114v/M01497",
+            "match_score": 0.52
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [
+            "fragrance_sensitivity"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: accessories, brown_cognac. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Boucles d'oreilles LV Symphony",
+            "Boucles d'oreilles LV Symphony"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 12000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.85,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 80.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.85,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 13.22,
+      "rgpd": 2494.77,
+      "cache_lookup": 0.38,
+      "semantic_cache_lookup": 0.0,
+      "routing": 59.84,
+      "tier1": 1.81,
+      "tier2": 0.45,
+      "cross_validation": 0.96,
+      "rag": 45.25,
+      "recommendation": 3.99,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2620.77
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2620.772123336792,
+    "from_cache": false
+  }
+}

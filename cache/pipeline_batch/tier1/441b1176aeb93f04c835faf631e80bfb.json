@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1769906167.9565475,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories",
+        "black",
+        "navy",
+        "luxury_service"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [
+          "black",
+          "navy"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4380198V/Q05730",
+          "name": "Bracelet à perles Silver Lockit  titane noir et cordon en polyester noir",
+          "price": 650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bracelet-a-perles-silver-lockit-titane-noir-et-cordon-en-polyester-noir-nvprod4380198v/Q05730",
+          "match_score": 0.48
+        },
+        {
+          "sku": "NVPROD4380197V/Q05729",
+          "name": "Bracelet à perles Silver Lockit  argent et cordon en polyester noir",
+          "price": 650.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bracelet-a-perles-silver-lockit-argent-et-cordon-en-polyester-noir-nvprod4380197v/Q05729",
+          "match_score": 0.46
+        },
+        {
+          "sku": "NVPROD540239V/R17842",
+          "name": "STRAP VOYAGER ALLIGATOR BLACK L/L",
+          "price": 530.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/strap-voyager-alligator-black-l-l-nvprod540239v/R17842",
+          "match_score": 0.45
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "high (10K-20K)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.9,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.9,
+    "processing_tier": "tier1",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 3.5326480865478516,
+    "rgpd_flag": false,
+    "tier": 1,
+    "ID": "CA_113"
+  }
+}

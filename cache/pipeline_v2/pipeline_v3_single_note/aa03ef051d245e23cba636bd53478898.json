@@ -1,0 +1,167 @@
+{
+  "_cached_at": 1770887595.4962466,
+  "payload": {
+    "id": "API_1770887588",
+    "original_text": "Frau und Herr Zimmermann, 43-46 Jahre, exzellente neue Kunden hohes Potenzial. Sie Galeristin zeitgenössische Kunst Hamburg, er Unternehmer Tech-Sektor. Suchen Luxusaccessoires nach erfolgreichen Geschäftsjahr beide. Budget großzügig 24K sehr flexibel. Sie kuratiert Ausstellungen internationale Künstler, besucht alle wichtigen Kunstmessen weltweit. Er Tech-Startup verkauft letztes Jahr, jetzt Angel Investor. Beide leidenschaftlich Segeln, besitzen Yacht Ostsee, Regatta-Teilnahme Sommer. Sammeln digitale Kunst traditionelle Kunst Kombination. Reisen ständig geschäftlich privat, nächste Trips San Francisco Art Basel. Sie modern avantgarde Stil, bevorzugt außergewöhnliche Stücke rosé Gold. Er klassisch funktional, schwarz navy silber. Beide Pescetarier Events. Er Glutenunverträglichkeit wichtig. Zwei Kinder, Tochter 12 Sohn 9, internationale Schule. Planen umziehen Berlin expandieren Geschäfte. Hochzeitstag Dezember jährlich. Ausgezeichnetes Netzwerk Kunst Tech Kreise, können viele verweisen. Sofort Follow-up wöchentlich kuratierte Auswahl. VIP-Events einladen besonders Kunst bezogen. Sehr interessiert Künstlerkooperationen limitierte Editionen Investitionsstücke. Fragen nach Wertsteigerung Sammelpotenzial bestimmter Stücke. Top-Priorität Kundenbeziehung entwickeln.",
+    "processed_text": "Frau und Herr Zimmermann, 43-46 Jahre, exzellente neue Kunden hohes Potenzial. Sie Galeristin zeitgenössische Kunst Hamburg, er Unternehmer Tech-Sektor. Suchen Luxusaccessoires nach erfolgreichen Geschäftsjahr beide. Budget großzügig 24K sehr flexibel. Sie kuratiert Ausstellungen internationale Künstler, besucht alle wichtigen Kunstmessen weltweit. Er Tech-Startup verkauft letztes Jahr, jetzt Angel Investor. Beide leidenschaftlich Segeln, besitzen Yacht Ostsee, Regatta-Teilnahme Sommer. Sammeln digitale Kunst traditionelle Kunst Kombination. Reisen ständig geschäftlich privat, nächste Trips San Francisco Art Basel. Sie modern avantgarde Stil, bevorzugt außergewöhnliche Stücke rosé Gold. Er klassisch funktional, schwarz navy silber. Beide Pescetarier Events. Er Glutenunverträglichkeit wichtig. Zwei Kinder, Tochter 12 Sohn 9, internationale Schule. Planen umziehen Berlin expandieren Geschäfte. Hochzeitstag Dezember jährlich. Ausgezeichnetes Netzwerk Kunst Tech Kreise, können viele verweisen. Sofort Follow-up wöchentlich kuratierte Auswahl. VIP-Events einladen besonders Kunst bezogen. Sehr interessiert Künstlerkooperationen limitierte Editionen Investitionsstücke. Fragen nach Wertsteigerung Sammelpotenzial bestimmter Stücke. Top-Priorität Kundenbeziehung entwickeln.",
+    "language": "DE",
+    "timestamp": "2026-02-12T10:13:15.380486",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé (glutenunverträglichkeit) sont liées à une allergie alimentaire, ce qui est acceptable pour le business. Les autres informations sont liées à des aspects professionnels et personnels sans contexte sensible.",
+      "anonymized_text": "Frau und Herr Zimmermann, 43-46 Jahre, exzellente neue Kunden hohes Potenzial. Sie Galeristin zeitgenössische Kunst Hamburg, er Unternehmer Tech-Sektor. Suchen Luxusaccessoires nach erfolgreichen Geschäftsjahr beide. Budget großzügig 24K sehr flexibel. Sie kuratiert Ausstellungen internationale Künstler, besucht alle wichtigen Kunstmessen weltweit. Er Tech-Startup verkauft letztes Jahr, jetzt Angel Investor. Beide leidenschaftlich Segeln, besitzen Yacht Ostsee, Regatta-Teilnahme Sommer. Sammeln digitale Kunst traditionelle Kunst Kombination. Reisen ständig geschäftlich privat, nächste Trips San Francisco Art Basel. Sie modern avantgarde Stil, bevorzugt außergewöhnliche Stücke rosé Gold. Er klassisch funktional, schwarz navy silber. Beide Pescetarier Events. Er Glutenunverträglichkeit wichtig. Zwei Kinder, Tochter 12 Sohn 9, internationale Schule. Planen umziehen Berlin expandieren Geschäfte. Hochzeitstag Dezember jährlich. Ausgezeichnetes Netzwerk Kunst Tech Kreise, können viele verweisen. Sofort Follow-up wöchentlich kuratierte Auswahl. VIP-Events einladen besonders Kunst bezogen. Sehr interessiert Künstlerkooperationen limitierte Editionen Investitionsstücke. Fragen nach Wertsteigerung Sammelpotenzial bestimmter Stücke. Top-Priorität Kundenbeziehung entwickeln."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "navy",
+          "bold_colors",
+          "vip",
+          "art_collector",
+          "travel_frequent",
+          "tech_executive",
+          "entrepreneur_established",
+          "wedding_anniversary",
+          "pescatarian",
+          "gluten_free"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy",
+            "bold_colors",
+            "rosé gold"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "rosé gold",
+            "silver"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD120005V/R08324",
+            "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+            "price": 49.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+            "match_score": 0.52
+          },
+          {
+            "sku": "NVPROD4760006V/R09186",
+            "name": "Francesca Amfitheatrof : Fantastic Jewels",
+            "price": 125.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/francesca-amfitheatrof-fantastic-jewels-nvprod4760006v/R09186",
+            "match_score": 0.5
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['art_curator', 'tech_executive']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian",
+          "gluten_free"
+        ],
+        "allergies": {
+          "food": [
+            "gluten_intolerance"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: black, navy. Budget estimé: ultra_high (20K-50K).",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+            "Francesca Amfitheatrof : Fantastic Jewels"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": null,
+        "urgency": "this_week"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.88,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 88.24,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 25.18,
+      "rgpd": 2089.42,
+      "cache_lookup": 0.45,
+      "semantic_cache_lookup": 0.0,
+      "routing": 68.19,
+      "tier1": 3.17,
+      "tier2": 4141.01,
+      "cross_validation": 1.89,
+      "rag": 84.25,
+      "recommendation": 3.68,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 6417.39
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 6417.3924922943115,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "_cached_at": 1770887288.0890105,
+  "payload": {
+    "id": "API_1770887286",
+    "original_text": "Mr. Phillips, 41, venture capitalist tech startups, new client high potential. Looking for professional pieces after recent successful exits. Budget 15K very flexible. Invests AI companies, travels Silicon Valley Asia constantly. Passionate about innovation technology, follows emerging trends. Plays tennis weekends, member club. Collects modern art digital NFTs combination. Vegan tech lifestyle choice events. No allergies. Partner works Google senior position also potential. Planning move San Francisco London offices both. Excellent new tech segment client. Very active LinkedIn Twitter thought leader 100K followers. Follow up immediately relationship. Invite VIP events tech innovation related. Asked about technology integration products smart features interested.",
+    "processed_text": "Mr. [NAME], 41, venture capitalist tech startups, new client high potential. Looking for professional pieces after recent successful exits. Budget 15K very flexible. Invests AI companies, travels Silicon Valley Asia constantly. Passionate innovation technology, follows emerging trends. Plays tennis weekends, member club. Collects modern art digital NFTs combination. Vegan tech lifestyle choice events. No allergies. Partner works Google senior position also potential. Planning move San Francisco London offices both. Excellent new tech segment client. Very active LinkedIn Twitter thought leader 100K followers. Follow up immediately relationship. Invite VIP events tech innovation related. Asked technology integration products smart features interested.",
+    "language": "EN",
+    "timestamp": "2026-02-12T10:08:08.040975",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget Vague: +8",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 0.96)"
+      ],
+      "confidence": 0.96,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses professional interests, lifestyle choices, and business activities without revealing any sensitive personal information.",
+      "anonymized_text": "Mr. [NAME], 41, venture capitalist tech startups, new client high potential. Looking for professional pieces after recent successful exits. Budget 15K very flexible. Invests AI companies, travels Silicon Valley Asia constantly. Passionate innovation technology, follows emerging trends. Plays tennis weekends, member club. Collects modern art digital NFTs combination. Vegan tech lifestyle choice events. No allergies. Partner works Google senior position also potential. Planning move San Francisco London offices both. Excellent new tech segment client. Very active LinkedIn Twitter thought leader 100K followers. Follow up immediately relationship. Invite VIP events tech innovation related. Asked technology integration products smart features interested."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "professional",
+          "entrepreneur_established",
+          "tech_executive",
+          "travel_frequent",
+          "tennis",
+          "art_collector",
+          "vegan",
+          "tech_early_adopter",
+          "first_visit",
+          "professional_work"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "venture_capitalist",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [
+          "allergy_mentioned",
+          "no_known_allergies"
+        ],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. ",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": 15000,
+        "urgency": "today"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8500000000000001,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 72.22,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 12.78,
+      "rgpd": 1633.23,
+      "cache_lookup": 0.44,
+      "semantic_cache_lookup": 0.0,
+      "routing": 74.65,
+      "tier1": 1.53,
+      "tier2": 0.46,
+      "cross_validation": 0.91,
+      "rag": 41.43,
+      "recommendation": 1.18,
+      "quality_gate": 0.01,
+      "injection": 0.0,
+      "total": 1766.7
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 1766.6969299316406,
+    "from_cache": false
+  }
+}

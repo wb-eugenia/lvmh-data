@@ -1,0 +1,160 @@
+{
+  "_cached_at": 1770887294.8646116,
+  "payload": {
+    "id": "API_1770887292",
+    "original_text": "Dr. and Mrs. Anderson, both 62, long-time exceptional VIP clients since 2009. Shopping for retirement celebration gifts themselves and family members. Combined budget very generous 28K+. He's retiring cardiologist 35 years practice, she's retired psychologist. Planning extended travel retirement year exploring world. Both passionate about literature, book club members decades. Travel cultural historical sites, next year visiting New Zealand Australia then South America. He collects rare medical history books, she collects poetry first editions. Both active hikers nature lovers despite age, walk daily. She elegant classic timeless style, burgundy navy cognac. He functional quality pieces, wants durable travel-appropriate black brown. Both vegetarian 20 years events. She severe latex allergy critical. Three children successful careers, six grandchildren ages 4-14. Retirement party June large gathering 150 people medical community. Anniversary August annually tradition shopping here always. Exceptional clients lifetime value extraordinary, medical community network extensive referred countless colleagues over years. Follow up May final preparations party. Planning cruise September extended family three generations could be gifting opportunities. Very interested heritage craftsmanship quality lasting pieces pass down grandchildren. Treasure clients relationship maintained carefully appreciation loyalty years. Top priority maintain excellent service relationship continues.",
+    "processed_text": "Dr. and Mrs. Anderson, both 62, long-time exceptional VIP clients since 2009. Shopping for retirement celebration gifts themselves and family members. Combined budget very generous 28K+. He's retiring cardiologist 35 years practice, she's retired psychologist. Planning extended travel retirement year exploring world. Both passionate literature, book club members decades. Travel cultural historical sites, next year visiting New Zealand Australia then South America. He collects rare medical history books, she collects poetry first editions. Both active hikers nature lovers despite age, walk daily. She elegant classic timeless style, burgundy navy cognac. He functional quality pieces, wants durable travel-appropriate black brown. Both vegetarian 20 years events. She [RGPD_HEALTH_PHYSICAL_REDACTED] critical. Three children successful careers, six grandchildren ages 4-14. Retirement party June large gathering 150 people medical community. Anniversary August annually tradition shopping here always. Exceptional clients lifetime value extraordinary, medical community network extensive referred countless colleagues over years. Follow up May final preparations party. Planning cruise September extended family three generations could be gifting opportunities. Very interested heritage craftsmanship quality lasting pieces pass down grandchildren. Treasure clients relationship maintained carefully appreciation loyalty years. Top priority maintain excellent service relationship continues.",
+    "language": "EN",
+    "timestamp": "2026-02-12T10:08:14.822224",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "The text contains a mention of a severe latex allergy, which falls under health physical data and is considered sensitive according to Article 9 of the GDPR.",
+      "anonymized_text": "Dr. and Mrs. Anderson, both 62, long-time exceptional VIP clients since 2009. Shopping for retirement celebration gifts themselves and family members. Combined budget very generous 28K+. He's retiring cardiologist 35 years practice, she's retired psychologist. Planning extended travel retirement year exploring world. Both passionate literature, book club members decades. Travel cultural historical sites, next year visiting New Zealand Australia then South America. He collects rare medical history books, she collects poetry first editions. Both active hikers nature lovers despite age, walk daily. She elegant classic timeless style, burgundy navy cognac. He functional quality pieces, wants durable travel-appropriate black brown. Both vegetarian 20 years events. She [RGPD_HEALTH_PHYSICAL_REDACTED] critical. Three children successful careers, six grandchildren ages 4-14. Retirement party June large gathering 150 people medical community. Anniversary August annually tradition shopping here always. Exceptional clients lifetime value extraordinary, medical community network extensive referred countless colleagues over years. Follow up May final preparations party. Planning cruise September extended family three generations could be gifting opportunities. Very interested heritage craftsmanship quality lasting pieces pass down grandchildren. Treasure clients relationship maintained carefully appreciation loyalty years. Top priority maintain excellent service relationship continues."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "navy",
+          "luxury_service",
+          "black",
+          "professional",
+          "casual_daily",
+          "accessories",
+          "jewelry",
+          "brown_cognac",
+          "vip",
+          "leather_goods",
+          "travel_luggage",
+          "ready_to_wear",
+          "shoes",
+          "medical_physician",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian",
+          "gift_for_self",
+          "gift_for_spouse",
+          "gift_for_child",
+          "wedding_anniversary"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "casual_daily"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "brown",
+            "burgundy",
+            "cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "grained_leather"
+          ]
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "medical_physician",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: navy, luxury_service. Budget estimé: ultra_high (20K-50K).",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": null,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.88,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 88.89,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 37.25,
+      "rgpd": 2204.18,
+      "cache_lookup": 0.43,
+      "semantic_cache_lookup": 0.0,
+      "routing": 41.53,
+      "tier1": 3.3,
+      "tier2": 0.51,
+      "cross_validation": 1.0,
+      "rag": 44.14,
+      "recommendation": 2.8,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2335.31
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2335.308313369751,
+    "from_cache": false
+  }
+}

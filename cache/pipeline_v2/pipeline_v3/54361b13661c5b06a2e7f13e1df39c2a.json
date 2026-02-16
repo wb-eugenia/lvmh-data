@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1770811531.3057523,
+  "payload": {
+    "id": "CA_081",
+    "original_text": "Mme Leclerc, 41 ans, avocate environnement, nouvelle cliente potentiel. Cherche pièces professionnelles travail ONG international. Budget 8K. Style sobre élégant, valeurs durabilité importantes. Voyage missions Afrique Asie régulièrement. Pratique yoga méditation, retraites wellness occasionnels Bali. Cuir cognac beige matériaux éthiques préférence. Végane stricte convictions événements. Aucune allergie. Mari photographe documentaire voyagent ensemble missions. Très intéressée transparence chaîne approvisionnement, posa beaucoup questions éthique. Pourrait devenir cliente ambassadrice luxe durable si développé. Rappeler avril. Réseau ONG environnement étendu.",
+    "processed_text": "Mme [NAME], 41 ans, avocate environnement, nouvelle cliente potentiel. Cherche pièces professionnelles travail ONG international. Budget 8K. sobre élégant, valeurs durabilité importantes. Voyage missions Afrique Asie régulièrement. Pratique yoga méditation, retraites wellness occasionnels Bali. Cuir cognac beige matériaux éthiques préférence. Végane stricte convictions événements. Aucune allergie. Mari photographe documentaire voyagent ensemble missions. Très intéressée transparence chaîne approvisionnement, posa beaucoup questions éthique. Pourrait devenir cliente ambassadrice luxe durable si développé. Rappeler avril. Réseau ONG environnement étendu.",
+    "language": "FR",
+    "timestamp": "2026-02-11T13:05:31.260527",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Intent: Conditional: +8",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (végan), et les préférences en matière de matériaux ne sont pas considérées comme sensibles. Aucune mention de santé mentale, santé physique, conflits familiaux, religion, opinions politiques, orientation sexuelle ou origine ethnique n'est présente.",
+      "anonymized_text": "Mme [NAME], 41 ans, avocate environnement, nouvelle cliente potentiel. Cherche pièces professionnelles travail ONG international. Budget 8K. sobre élégant, valeurs durabilité importantes. Voyage missions Afrique Asie régulièrement. Pratique yoga méditation, retraites wellness occasionnels Bali. Cuir cognac beige matériaux éthiques préférence. Végane stricte convictions événements. Aucune allergie. Mari photographe documentaire voyagent ensemble missions. Très intéressée transparence chaîne approvisionnement, posa beaucoup questions éthique. Pourrait devenir cliente ambassadrice luxe durable si développé. Rappeler avril. Réseau ONG environnement étendu."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "beige_neutral",
+          "brown_cognac",
+          "professional",
+          "evening",
+          "travel",
+          "customer_intent",
+          "accessories",
+          "professional_work",
+          "leather_goods",
+          "ready_to_wear",
+          "travel_luggage",
+          "travel_frequent",
+          "eco_conscious",
+          "vegan",
+          "first_visit"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "beige_neutral"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "grained_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD460004V/RN0003",
+            "name": "Livre Travel Book Hawaï - Édition des artistes",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-hawai-edition-des-artistes-nvprod460004v/RN0003",
+            "match_score": 0.4
+          },
+          {
+            "sku": "008259/R07896",
+            "name": "Livre Édition d'artiste Travel Book Vietnam",
+            "price": 2000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-edition-dartiste-travel-book-vietnam-008259/R07896",
+            "match_score": 0.4
+          },
+          {
+            "sku": "008257/R07890",
+            "name": "Livre Travel Book Vietnam",
+            "price": 55.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-vietnam-008257/R07890",
+            "match_score": 0.39
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: beige_neutral, brown_cognac. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Travel Book Hawaï - Édition des artistes",
+            "Livre Édition d'artiste Travel Book Vietnam"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 8000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 3.4089088439941406,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3101.4060974121094,
+    "from_cache": false
+  }
+}

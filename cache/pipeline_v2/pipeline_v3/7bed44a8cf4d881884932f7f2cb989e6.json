@@ -1,0 +1,154 @@
+{
+  "_cached_at": 1770811475.552147,
+  "payload": {
+    "id": "CA_071",
+    "original_text": "M. Lambert, 48 ans, producteur cinéma films auteur, client occasionnel. Cherche cadeaux équipe film primé festival Cannes. Budget 12K pour 6 personnes. Film sélection officielle mai grande opportunité. Équipe réalisatrice acteurs producteurs. Veut pièces mémorables élégantes variées goûts. Cuirs couleurs classiques noir cognac navy. Réalisatrice végane, acteur principal pescetarien. Festival mai donc urgent confirmer. Client connecté milieu cinéma art, beaucoup contacts potentiels. Mentionné si film succès, budget futurs projets beaucoup plus important. Rappeler avril coordonner livraison Cannes possible. Opportunité visibilité festival tapis rouge.",
+    "processed_text": "M. [NAME], 48 ans, producteur cinéma films auteur, client occasionnel. Cherche cadeaux équipe film primé festival Cannes. Budget 12K pour 6 personnes. Film sélection officielle mai grande opportunité. Équipe réalisatrice acteurs producteurs. Veut pièces mémorables élégantes variées goûts. Cuirs couleurs classiques noir cognac navy. Réalisatrice végane, acteur principal pescetarien. Festival mai urgent confirmer. Client connecté milieu cinéma art, beaucoup contacts potentiels. Mentionné si film succès, budget futurs projets beaucoup plus important. Rappeler avril coordonner livraison Cannes possible. Opportunité visibilité festival tapis rouge.",
+    "language": "FR",
+    "timestamp": "2026-02-11T13:04:35.497469",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Urgent: +8",
+        "Intent: Conditional: +8",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des préférences alimentaires (végane, pescetarien) qui ne sont pas considérées comme sensibles dans ce contexte, et il n'y a pas d'autres éléments identifiables comme sensibles.",
+      "anonymized_text": "M. [NAME], 48 ans, producteur cinéma films auteur, client occasionnel. Cherche cadeaux équipe film primé festival Cannes. Budget 12K pour 6 personnes. Film sélection officielle mai grande opportunité. Équipe réalisatrice acteurs producteurs. Veut pièces mémorables élégantes variées goûts. Cuirs couleurs classiques noir cognac navy. Réalisatrice végane, acteur principal pescetarien. Festival mai urgent confirmer. Client connecté milieu cinéma art, beaucoup contacts potentiels. Mentionné si film succès, budget futurs projets beaucoup plus important. Rappeler avril coordonner livraison Cannes possible. Opportunité visibilité festival tapis rouge."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "bold_colors",
+          "brown_cognac",
+          "gift",
+          "navy",
+          "customer_intent",
+          "accessories",
+          "black",
+          "leather_goods",
+          "small_leather",
+          "gift_for_colleague",
+          "art_collector",
+          "travel_frequent"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD1250274V/R96625",
+            "name": "Canapé Bomboca par Fernando et Humberto Campana",
+            "price": 63500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/canape-bomboca-par-fernando-et-humberto-campana-nvprod1250274v/R96625",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD2070021V/M47023",
+            "name": "Coffret Trésor 24",
+            "price": 4800.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/coffret-tresor-24-monogram-canvas-nvprod2070021v/M47023",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD3100156V/R96371",
+            "name": "Aguacate par Fernando et Humberto Campana",
+            "price": 46500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/aguacate-multicolore-nvprod3100156v/R96371",
+            "match_score": 0.48
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "occasional"
+        },
+        "profession": {
+          "sector": "film_producer",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan",
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: bold_colors, brown_cognac. Budget estimé: high (10K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Canapé Bomboca par Fernando et Humberto Campana",
+            "Coffret Trésor 24"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (10K-15K)",
+        "budget_specific": 12000,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 65.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.92,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3566.110372543335,
+    "from_cache": false
+  }
+}

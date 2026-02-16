@@ -1,0 +1,160 @@
+{
+  "_cached_at": 1770811271.2515366,
+  "payload": {
+    "id": "CA_092",
+    "original_text": "Mr. and Mrs. Wellington, both 59, exceptional long-time VIP clients since 2008. Shopping for extended family gifts daughter's wedding June. Combined budget extremely generous 32K+. He's retired investment banker, she's art consultant private collections. Daughter marrying Oxford professor classics, wedding Oxford college traditional elegant affair 300 guests. Looking for gifts bridesmaids groomsmen parents family members special pieces. Daughter 31 works museum curator, passionate ancient history art. Groom's family academic distinguished professors. Both passionate about classical music art, collectors rare manuscripts. Travel extensively art auctions acquisitions, just returned Christie's London planning Sotheby's New York. She impeccable taste elegant sophisticated, rose gold burgundy cognac neutrals. He classic traditional, wants quality timeless pieces black navy brown. Both vegetarian 15 years events. She latex allergy severe critical. Son 28 works finance London married two grandchildren. Daughter's wedding June major family event year. Anniversary October annually tradition shopping here decades. Exceptional clients lifetime value extraordinary highest tier, art collecting finance network international extensive referred countless high-value clients years. Follow up monthly wedding preparations coordinate everything. Very interested bespoke customization commissioned several pieces past, asked about unique pieces wedding party personalized meaningful. Planning major charitable gala art foundation autumn after wedding could be partnership sponsorship opportunity. Treasure clients relationship decades maintained impeccably appreciation loyalty extraordinary. Absolute top priority relationship continue excellence service maintain carefully ongoing.",
+    "processed_text": "Mr. and Mrs. Wellington, both 59, exceptional long-time VIP clients since 2008. Shopping for extended family gifts daughter's wedding June. Combined budget extremely generous 32K+. He's retired investment banker, she's art consultant private collections. Daughter marrying Oxford professor classics, wedding Oxford college traditional elegant affair 300 guests. Looking for gifts bridesmaids groomsmen parents family members special pieces. Daughter 31 works museum curator, passionate ancient history art. Groom's family academic distinguished professors. Both passionate classical music art, collectors rare manuscripts. Travel extensively art auctions acquisitions, just returned Christie's London planning Sotheby's New York. She impeccable taste elegant sophisticated, rose gold burgundy cognac neutrals. He classic traditional, wants quality timeless pieces black navy brown. Both vegetarian 15 years events. She [RGPD_HEALTH_PHYSICAL_REDACTED]. Son 28 works finance London married two grandchildren. Daughter's wedding June major family event year. Anniversary October annually tradition shopping here decades. Exceptional clients lifetime value extraordinary highest tier, art collecting finance network international extensive referred countless high-value clients years. Follow up monthly wedding preparations coordinate everything. Very interested bespoke customization commissioned several pieces past, asked unique pieces wedding party personalized meaningful. Planning major charitable gala art foundation autumn after wedding could be partnership sponsorship opportunity. Treasure clients relationship decades maintained impeccably appreciation loyalty extraordinary. Absolute top priority relationship continue excellence service maintain carefully ongoing.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:01:11.184938",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "The text contains a severe latex allergy, which is classified as sensitive health information under Article 9 of the GDPR.",
+      "anonymized_text": "Mr. and Mrs. Wellington, both 59, exceptional long-time VIP clients since 2008. Shopping for extended family gifts daughter's wedding June. Combined budget extremely generous 32K+. He's retired investment banker, she's art consultant private collections. Daughter marrying Oxford professor classics, wedding Oxford college traditional elegant affair 300 guests. Looking for gifts bridesmaids groomsmen parents family members special pieces. Daughter 31 works museum curator, passionate ancient history art. Groom's family academic distinguished professors. Both passionate classical music art, collectors rare manuscripts. Travel extensively art auctions acquisitions, just returned Christie's London planning Sotheby's New York. She impeccable taste elegant sophisticated, rose gold burgundy cognac neutrals. He classic traditional, wants quality timeless pieces black navy brown. Both vegetarian 15 years events. She [RGPD_HEALTH_PHYSICAL_REDACTED]. Son 28 works finance London married two grandchildren. Daughter's wedding June major family event year. Anniversary October annually tradition shopping here decades. Exceptional clients lifetime value extraordinary highest tier, art collecting finance network international extensive referred countless high-value clients years. Follow up monthly wedding preparations coordinate everything. Very interested bespoke customization commissioned several pieces past, asked unique pieces wedding party personalized meaningful. Planning major charitable gala art foundation autumn after wedding could be partnership sponsorship opportunity. Treasure clients relationship decades maintained impeccably appreciation loyalty extraordinary. Absolute top priority relationship continue excellence service maintain carefully ongoing."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "bold_colors",
+          "brown_cognac",
+          "professional",
+          "evening",
+          "navy",
+          "luxury_service",
+          "accessories",
+          "black",
+          "vip",
+          "wedding",
+          "gift_for_daughter",
+          "gift_for_family",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian",
+          "creative_designer"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift",
+          "special_occasion"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "bold_colors",
+            "rose_gold",
+            "burgundy",
+            "cognac",
+            "brown"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "exotic"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3710129V/Q93904",
+            "name": "Collier pendentif Vivienne Statue de la Liberté  or blanc  or jaune  laque et diamants",
+            "price": 34500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-statue-de-la-liberte-or-blanc-or-jaune-laque-et-diamants-nvprod3710129v/Q93904",
+            "match_score": 0.41
+          },
+          {
+            "sku": "NVPROD4760006V/R09186",
+            "name": "Francesca Amfitheatrof : Fantastic Jewels",
+            "price": 125.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/francesca-amfitheatrof-fantastic-jewels-nvprod4760006v/R09186",
+            "match_score": 0.4
+          },
+          {
+            "sku": "NVPROD3920020V/M10066",
+            "name": "Malle Souvenirs",
+            "price": 36000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-souvenirs-monogram-nvprod3920020v/M10066",
+            "match_score": 0.4
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['finance_banker', 'creative_designer']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: bold_colors, brown_cognac. Budget estimé: ultra_high (30K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Collier pendentif Vivienne Statue de la Liberté  or blanc  or jaune  laque et diamants",
+            "Francesca Amfitheatrof : Fantastic Jewels"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (30K+)",
+        "budget_specific": null,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.93,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 85.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.98,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3551.778793334961,
+    "from_cache": false
+  }
+}

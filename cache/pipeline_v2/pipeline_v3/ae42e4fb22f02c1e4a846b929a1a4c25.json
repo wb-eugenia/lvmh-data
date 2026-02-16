@@ -1,0 +1,138 @@
+{
+  "_cached_at": 1770811535.905778,
+  "payload": {
+    "id": "CA_084",
+    "original_text": "Signora Mancini, 39 anni, giornalista televisione, cliente occasionale. Acquista regalo marito compleanno 40 anni. Budget 5K. Marito avvocato diritti umani ONU Ginevra. Stile classico professionale, viaggia molto lavoro. Pratica corsa maratone. Cuoio nero cognac. Marito vegetariano. Compleanno aprile. Cliente soddisfatta servizio. Mentionò trasferimento New York possibile prossimo anno, potrebbe continuare cliente. Richiamare estate.",
+    "processed_text": "Signora Mancini, 39 anni, giornalista televisione, cliente occasionale. Acquista regalo marito compleanno 40 anni. Budget 5K. Marito avvocato diritti umani ONU Ginevra. Stile classico professionale, viaggia molto lavoro. Pratica corsa maratone. Cuoio nero cognac. Marito vegetariano. Compleanno aprile. Cliente soddisfatta servizio. Mentionò trasferimento New York possibile prossimo anno, potrebbe continuare cliente. Richiamare estate.",
+    "language": "IT",
+    "timestamp": "2026-02-11T13:05:35.859844",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur le mari étant avocat et végétarien ne relèvent pas des catégories sensibles.",
+      "anonymized_text": "Signora Mancini, 39 anni, giornalista televisione, cliente occasionale. Acquista regalo marito compleanno 40 anni. Budget 5K. Marito avvocato diritti umani ONU Ginevra. Stile classico professionale, viaggia molto lavoro. Pratica corsa maratone. Cuoio nero cognac. Marito vegetariano. Compleanno aprile. Cliente soddisfatta servizio. Mentionò trasferimento New York possibile prossimo anno, potrebbe continuare cliente. Richiamare estate."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "black",
+          "leather_goods",
+          "ready_to_wear",
+          "travel_luggage",
+          "legal_lawyer",
+          "travel_frequent",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4340007V/1ABT6U",
+            "name": "Manteau croisé à Monogram en relief",
+            "price": 4350.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-croise-a-monogram-en-relief-nvprod4340007v/1ABT6U",
+            "match_score": 0.43
+          },
+          {
+            "sku": "NVPROD2130162V/M76202",
+            "name": "Carré Tribute To 90",
+            "price": 460.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/carre-tribute-to-90-s00-nvprod2130162v/M76202",
+            "match_score": 0.42
+          },
+          {
+            "sku": "NVPROD3970119V/1AB76A",
+            "name": "Manteau croisé à capuche et poches à rabat",
+            "price": 3950.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/manteau-croise-a-capuche-et-poches-a-rabat-nvprod3970119v/1AB76A",
+            "match_score": 0.41
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, black. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Manteau croisé à Monogram en relief",
+            "Carré Tribute To 90"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 5000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.85,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 35.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+      },
+      "confidence": 0.85,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2435.2142810821533,
+    "from_cache": false
+  }
+}

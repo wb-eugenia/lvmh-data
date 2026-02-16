@@ -1,0 +1,134 @@
+{
+  "_cached_at": 1770811370.8032463,
+  "payload": {
+    "id": "CA_053",
+    "original_text": "Mme Perrin, 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra.",
+    "processed_text": "Mme [NAME], 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra.",
+    "language": "FR",
+    "timestamp": "2026-02-11T13:02:50.767431",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Urgent: +8",
+        "🤖 ML prediction (conf: 0.71)"
+      ],
+      "confidence": 0.71,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations fournies concernent des détails professionnels et des préférences d'achat sans mentionner de données sensibles.",
+      "anonymized_text": "Mme [NAME], 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Collègue homme 65 ans aime golf voyages. Cuir marron classique. Simple rapide. Contente. Reviendra."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "gift",
+          "brown_cognac",
+          "travel"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD1850089V/M44714",
+            "name": "Sac de golf",
+            "price": 20000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-de-golf-monogram-canvas-nvprod1850089v/M44714",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD1850090V/M44923",
+            "name": "Sac de golf",
+            "price": 20000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-de-golf-monogram-eclipse-nvprod1850090v/M44923",
+            "match_score": 0.47
+          },
+          {
+            "sku": "NVPROD4050064V/GI0826",
+            "name": "Kit de golf Monogram et cuir noir Andrews",
+            "price": 645.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/kit-de-golf-monogram-et-cuir-noir-andrews-monogram-nvprod4050064v/GI0826",
+            "match_score": 0.47
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: gift, brown_cognac. Budget estimé: core (2K-5K).",
+          "priority": "Medium",
+          "target_products": [
+            "Sac de golf",
+            "Sac de golf"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "core (2K-5K)",
+        "budget_specific": 2000,
+        "urgency": "high"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.7727146148681641,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 1932.0495128631592,
+    "from_cache": false
+  }
+}

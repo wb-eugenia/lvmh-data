@@ -1,0 +1,167 @@
+{
+  "_cached_at": 1770920671.6955566,
+  "payload": {
+    "id": "TEST_001",
+    "original_text": "Budget 5000€. Cherche sac noir.",
+    "processed_text": "Budget 5000€. Cherche sac noir.",
+    "language": "FR",
+    "timestamp": "2026-02-12T19:24:31.630409",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "📊 ML low confidence (0.57), using heuristic"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Il s'agit simplement d'une demande de produit avec un budget.",
+      "anonymized_text": "Budget 5000€. Cherche sac noir."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "leather_goods"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4810083V/M83089",
+            "name": "Sac Treasure Box",
+            "price": 8000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-treasure-box-h27-nvprod4810083v/M83089",
+            "match_score": 0.49
+          },
+          {
+            "sku": "008109/N41605",
+            "name": "Sac Neverfull MM",
+            "price": 1500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-neverfull-mm-damier-azur-canvas-008109/N41605",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD4630013V/1AFBWI",
+            "name": "Pantalon cargo en laine",
+            "price": 990.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-cargo-technique-nvprod4630013v/1AFBWI",
+            "match_score": 0.48
+          },
+          {
+            "sku": "007653/M41177",
+            "name": "Sac Neverfull MM",
+            "price": 1500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-neverfull-mm-monogram-007653/M41177",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD3970186V/1AB6MA",
+            "name": "Pantalon en sergé de laine à taille paperbag trompe-l'œil",
+            "price": 1290.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-en-serge-de-laine-a-taille-paperbag-trompe-l-oeil-nvprod3970186v/1AB6MA",
+            "match_score": 0.48
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: black, leather_goods. Budget estimé: high (5K-10K).",
+          "priority": "Medium",
+          "target_products": [
+            "Sac Treasure Box",
+            "Sac Neverfull MM"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-10K)",
+        "budget_specific": 5000,
+        "urgency": "low",
+        "churn_risk": 0.0,
+        "churn_level": "low",
+        "clv_estimate": 38195.65,
+        "clv_tier": "gold",
+        "prediction_source": "synthetic_supervised_v1"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.85,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 79.78,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.26488304138183594,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "batch_csv",
+    "stage_timings_ms": {
+      "cleaning": 11.77,
+      "rgpd": 1491.97,
+      "cache_lookup": 0.53,
+      "semantic_cache_lookup": 0.0,
+      "routing": 79.27,
+      "tier1": 0.33,
+      "cross_validation": 0.04,
+      "rag": 26.26,
+      "recommendation": 9.81,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 1623.08
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": false,
+    "processing_time_ms": 1623.0804920196533,
+    "from_cache": false
+  }
+}

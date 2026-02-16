@@ -1,0 +1,156 @@
+{
+  "_cached_at": 1770811525.0064852,
+  "payload": {
+    "id": "CA_026",
+    "original_text": "Sr. Ramírez y esposa, 50-52 años, excelentes clientes desde 2016. Compra importante aniversario 20 años matrimonio próximo mes. Presupuesto muy generoso 18-20K. Él empresario construcción proyectos lujo, ella directora marketing empresa cosmética. Ambos pasión golf, miembros club exclusivo, viajan torneos internacionales. Coleccionan arte latinoamericano contemporáneo, asisten Art Basel Miami cada año. Viajan constantemente negocios placer, próximos destinos Aspen esquí luego Caribe vela. Ella prefiere elegancia sofisticada, cuero cognac beige hardware dorado. Él clásico funcional, negro marón plata. Ambos pescetarianos eventos. Ella alergia níquel crítica hardware. Tres hijos adultos: hijo mayor arquitecto Barcelona, hija mediana abogada Madrid, menor estudiante universidad. Familia unida, potencial multi-generacional excelente. Llamar febrero preview privada exclusiva colección. Mencionaron planean fiesta aniversario grande mayo, posible colaboración boutique evento. Red extensa contactos empresariales, referido muchos clientes.",
+    "processed_text": "Sr. Ramírez y esposa, 50-52 años, excelentes clientes desde 2016. Compra importante aniversario 20 años matrimonio próximo mes. Presupuesto muy generoso 18-20K. Él empresario construcción proyectos lujo, ella directora marketing empresa cosmética. Ambos pasión golf, miembros club exclusivo, viajan torneos internacionales. Coleccionan arte latinoamericano contemporáneo, asisten Art Basel Miami cada año. Viajan constantemente negocios placer, próximos destinos Aspen esquí luego Caribe vela. Ella prefiere elegancia sofisticada, cuero cognac beige hardware dorado. Él clásico funcional, negro marón plata. Ambos pescetarianos eventos. Ella alergia níquel crítica hardware. Tres hijos adultos: hijo mayor arquitecto Barcelona, hija mediana abogada Madrid, menor estudiante universidad. Familia unida, potencial multi-generacional excelente. Llamar febrero preview privada exclusiva colección. Mencionaron planean fiesta aniversario grande mayo, posible colaboración boutique evento. Red extensa contactos empresariales, referido muchos clientes.",
+    "language": "ES",
+    "timestamp": "2026-02-11T13:05:24.893581",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les clients, leurs professions, leurs préférences alimentaires et leur situation familiale ne révèlent pas de données sensibles telles que la santé mentale, la santé physique, les conflits familiaux, la religion, les opinions politiques, l'orientation sexuelle ou l'origine ethnique.",
+      "anonymized_text": "Sr. Ramírez y esposa, 50-52 años, excelentes clientes desde 2016. Compra importante aniversario 20 años matrimonio próximo mes. Presupuesto muy generoso 18-20K. Él empresario construcción proyectos lujo, ella directora marketing empresa cosmética. Ambos pasión golf, miembros club exclusivo, viajan torneos internacionales. Coleccionan arte latinoamericano contemporáneo, asisten Art Basel Miami cada año. Viajan constantemente negocios placer, próximos destinos Aspen esquí luego Caribe vela. Ella prefiere elegancia sofisticada, cuero cognac beige hardware dorado. Él clásico funcional, negro marón plata. Ambos pescetarianos eventos. Ella alergia níquel crítica hardware. Tres hijos adultos: hijo mayor arquitecto Barcelona, hija mediana abogada Madrid, menor estudiante universidad. Familia unida, potencial multi-generacional excelente. Llamar febrero preview privada exclusiva colección. Mencionaron planean fiesta aniversario grande mayo, posible colaboración boutique evento. Red extensa contactos empresariales, referido muchos clientes."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "beige_neutral",
+          "brown_cognac",
+          "luxury_service",
+          "black",
+          "vip",
+          "wedding_anniversary",
+          "travel_frequent",
+          "golf",
+          "art_collector",
+          "pescatarian",
+          "nickel_allergy",
+          "leather_goods",
+          "accessories",
+          "professional_work",
+          "evening",
+          "gift_for_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "beige_neutral",
+            "brown"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4810030V/GI0964",
+            "name": "Figurine Vivienne Snowman",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/figurine-vivienne-snowman-s00-nvprod4810030v/GI0964",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD4030053V/GI0811",
+            "name": "Figurine Gaston Snowflakes",
+            "price": 1850.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/figurine-gaston-snowflakes-s00-nvprod4030053v/GI0811",
+            "match_score": 0.43
+          },
+          {
+            "sku": "NVPROD4810026V/GI0966",
+            "name": "Figurine Vivienne Snow",
+            "price": 4500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/figurine-vivienne-snow-s00-nvprod4810026v/GI0966",
+            "match_score": 0.43
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['entrepreneur_established', 'tech_executive']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding_anniversary"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le vip pour son wedding anniversary. Suggère le Figurine Vivienne Snowman qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Figurine Vivienne Snowman",
+            "Figurine Gaston Snowflakes"
+          ],
+          "deadline": "this_month"
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 4628.230333328247,
+    "from_cache": false
+  }
+}

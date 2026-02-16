@@ -1,0 +1,153 @@
+{
+  "_cached_at": 1770886016.404736,
+  "payload": {
+    "id": "API_1770886014",
+    "original_text": "Mr. Davis, 41, professional tennis player recently retired, new client high potential. Looking for lifestyle pieces post-sports career, starting coaching academy. Budget around 12K initial. Wants travel bags, small leather goods, professional pieces for coaching. Still plays tennis daily, member multiple clubs, attends Wimbledon every year. Passionate about wine, taking sommelier courses, planning vineyard visit Bordeaux. Wife's birthday coming March, married to physiotherapist. Follows plant-based diet athlete habits. No allergies. Mentioned starting foundation for young athletes, could be partnership opportunity boutique. Good media presence former professional, 300K followers social media. Interested in durability quality pieces for active lifestyle. Follow up in month with personalized selection. Invite to sports-related VIP events.",
+    "processed_text": "Mr. [NAME], 41, professional tennis player recently retired, new client high potential. Looking for lifestyle pieces post-sports career, starting coaching academy. Budget around 12K initial. Wants travel bags, small leather goods, professional pieces for coaching. Still plays tennis daily, member multiple clubs, attends Wimbledon every year. Passionate wine, taking sommelier courses, planning vineyard visit Bordeaux. Wife's birthday coming March, married to physiotherapist. Follows plant-based diet athlete habits. No allergies. Mentioned starting foundation for young athletes, could be partnership opportunity boutique. Good media presence former professional, 300K followers social media. Interested in durability quality pieces for active lifestyle. Follow up in month with personalized selection. Invite to sports-related VIP events.",
+    "language": "EN",
+    "timestamp": "2026-02-12T09:46:56.344174",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the client's professional background, interests, and lifestyle choices without revealing any sensitive information related to health, family conflicts, religion, political opinions, sexual orientation, or ethnic origin.",
+      "anonymized_text": "Mr. [NAME], 41, professional tennis player recently retired, new client high potential. Looking for lifestyle pieces post-sports career, starting coaching academy. Budget around 12K initial. Wants travel bags, small leather goods, professional pieces for coaching. Still plays tennis daily, member multiple clubs, attends Wimbledon every year. Passionate wine, taking sommelier courses, planning vineyard visit Bordeaux. Wife's birthday coming March, married to physiotherapist. Follows plant-based diet athlete habits. No allergies. Mentioned starting foundation for young athletes, could be partnership opportunity boutique. Good media presence former professional, 300K followers social media. Interested in durability quality pieces for active lifestyle. Follow up in month with personalized selection. Invite to sports-related VIP events."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "ready_to_wear",
+          "luxury_service",
+          "casual_daily",
+          "shoes",
+          "travel_luggage",
+          "small_leather",
+          "tennis",
+          "wine_enthusiast",
+          "travel_frequent",
+          "eco_conscious",
+          "first_visit",
+          "gift_for_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "casual_daily"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3640012V/GI0773",
+            "name": "Housse de raquette de tennis en velours Monogram",
+            "price": 1700.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/housse-de-raquette-de-tennis-en-velours-monogram-monogram-velours-nvprod3640012v/GI0773",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD4630047V/M8293Z",
+            "name": "Bracelet Vivienne Tennis",
+            "price": 390.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/bracelet-vivienne-tennis-monogram-nvprod4630047v/M8293Z",
+            "match_score": 0.46
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Housse de raquette de tennis en velours Monogram qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Housse de raquette de tennis en velours Monogram",
+            "Bracelet Vivienne Tennis"
+          ],
+          "deadline": "low"
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": null,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.93,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 75.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
+      },
+      "confidence": 0.93,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.8703937530517578,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 17.98,
+      "rgpd": 1945.07,
+      "cache_lookup": 1.11,
+      "semantic_cache_lookup": 0.0,
+      "routing": 84.59,
+      "tier1": 1.91,
+      "tier2": 0.5,
+      "cross_validation": 1.12,
+      "rag": 44.86,
+      "recommendation": 0.2,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2097.47
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2097.468137741089,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "trained_at": "2026-02-12T17:04:11.991671+00:00",
+  "training_source": "synthetic_from_notes_history",
+  "samples": 1456,
+  "features": [
+    "days_since_last_visit",
+    "avg_spend_trend",
+    "engagement_score",
+    "tier_hint",
+    "confidence_hint",
+    "vip_flag",
+    "urgency_hint"
+  ],
+  "metrics": {
+    "churn_train_accuracy": 1.0,
+    "churn_test_accuracy": 1.0,
+    "clv_train_r2": 0.9956,
+    "clv_test_r2": 0.9999
+  }
+}

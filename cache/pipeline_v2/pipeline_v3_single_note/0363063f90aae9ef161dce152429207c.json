@@ -1,0 +1,153 @@
+{
+  "_cached_at": 1770887208.9479198,
+  "payload": {
+    "id": "API_1770887207",
+    "original_text": "M. Martin, 50 ans, banquier affaires, client régulier. Achat cadeau fille 21 ans anniversaire. Budget 4500€. Fille étudie design mode Londres Central Saint Martins. Style jeune créatif moderne apprécie avant-garde. Fille pratique danse contemporaine. Cuir cognac rosé gold. Fille végane génération Z valeurs. Anniversaire mars prochain. Client fidèle achats réguliers famille. Fils aussi étudiant architecture pourrait intéresser futur. Rappeler été.",
+    "processed_text": "M. [NAME], 50 ans, banquier affaires, client régulier. Achat cadeau fille 21 ans anniversaire. Budget 4500€. Fille étudie design mode Londres Central Saint Martins. jeune créatif moderne apprécie avant-garde. Fille pratique danse contemporaine. Cuir cognac rosé gold. Fille végane génération Z valeurs. Anniversaire mars prochain. Client fidèle achats réguliers famille. Fils aussi étudiant architecture pourrait intéresser futur. Rappeler été.",
+    "language": "FR",
+    "timestamp": "2026-02-12T10:06:48.898960",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur les enfants et leur éducation ne relèvent pas des catégories sensibles du RGPD.",
+      "anonymized_text": "M. [NAME], 50 ans, banquier affaires, client régulier. Achat cadeau fille 21 ans anniversaire. Budget 4500€. Fille étudie design mode Londres Central Saint Martins. jeune créatif moderne apprécie avant-garde. Fille pratique danse contemporaine. Cuir cognac rosé gold. Fille végane génération Z valeurs. Anniversaire mars prochain. Client fidèle achats réguliers famille. Fils aussi étudiant architecture pourrait intéresser futur. Rappeler été."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "customer_intent",
+          "gift",
+          "brown_cognac",
+          "regular",
+          "gift_for_child",
+          "vegan"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "pink",
+            "gold"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD120005V/R08324",
+            "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+            "price": 49.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+            "match_score": 0.54
+          },
+          {
+            "sku": "NVPROD110016V/R08339",
+            "name": "Livre Peter Marino Art Architecture - Édition Deluxe",
+            "price": 300.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-peter-marino-art-architecture-edition-deluxe-nvprod110016v/R08339",
+            "match_score": 0.53
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le regular pour son birthday. Suggère le Livre Icons of modern art. The Shchukin collection  édition anglaise qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+            "Livre Peter Marino Art Architecture - Édition Deluxe"
+          ],
+          "deadline": "low"
+        },
+        "budget_potential": "None (2K-5K)",
+        "budget_specific": 4500,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 88.89,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.041412353515625,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 4.2,
+      "rgpd": 1744.02,
+      "cache_lookup": 0.41,
+      "semantic_cache_lookup": 0.0,
+      "routing": 39.87,
+      "tier1": 1.08,
+      "tier2": 0.43,
+      "cross_validation": 0.99,
+      "rag": 35.6,
+      "recommendation": 0.84,
+      "quality_gate": 0.01,
+      "injection": 0.0,
+      "total": 1827.51
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 1827.5146484375,
+    "from_cache": false
+  }
+}

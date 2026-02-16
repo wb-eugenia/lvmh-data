@@ -1,0 +1,153 @@
+{
+  "_cached_at": 1770887283.6046102,
+  "payload": {
+    "id": "API_1770887281",
+    "original_text": "Frau Schulz, 46 Jahre, Galeristin zeitgenössische Fotografie Hamburg, regelmäßige Kundin. Kauft Geschenk Schwester 50. Geburtstag großes Ereignis. Budget 8K. Schwester Ärztin Kinderärztin, liebt Kinder Beruf Berufung. Reist medizinische Hilfsorganisation Afrika jährlich. Stil praktisch elegant, bevorzugt cognac beige erdtöne. Schwester Vegetarierin. Geburtstag April Familie Freunde groß. Kundin selbst sammelt Fotografie investiert Künstler aufstrebende. Schwester zwei Kinder Teenager. Kundin zufrieden immer, Netzwerk Kunst Kultur Hamburg groß. Nachfassen März Auswahl zeigen. Schwester schätzt Handwerk Qualität Langlebigkeit Reisen robust.",
+    "processed_text": "Frau Schulz, 46 Jahre, Galeristin zeitgenössische Fotografie Hamburg, regelmäßige Kundin. Kauft Geschenk Schwester 50. Geburtstag großes Ereignis. Budget 8K. Schwester Ärztin Kinderärztin, liebt Kinder Beruf Berufung. Reist medizinische Hilfsorganisation Afrika jährlich. Stil praktisch elegant, bevorzugt cognac beige erdtöne. Schwester Vegetarierin. Geburtstag April Familie Freunde groß. Kundin selbst sammelt Fotografie investiert Künstler aufstrebende. Schwester zwei Kinder Teenager. Kundin zufrieden immer, Netzwerk Kunst Kultur Hamburg groß. Nachfassen März Auswahl zeigen. Schwester schätzt Handwerk Qualität Langlebigkeit Reisen robust.",
+    "language": "DE",
+    "timestamp": "2026-02-12T10:08:03.557406",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations fournies concernent des détails professionnels et des préférences personnelles qui ne relèvent pas des catégories sensibles.",
+      "anonymized_text": "Frau Schulz, 46 Jahre, Galeristin zeitgenössische Fotografie Hamburg, regelmäßige Kundin. Kauft Geschenk Schwester 50. Geburtstag großes Ereignis. Budget 8K. Schwester Ärztin Kinderärztin, liebt Kinder Beruf Berufung. Reist medizinische Hilfsorganisation Afrika jährlich. Stil praktisch elegant, bevorzugt cognac beige erdtöne. Schwester Vegetarierin. Geburtstag April Familie Freunde groß. Kundin selbst sammelt Fotografie investiert Künstler aufstrebende. Schwester zwei Kinder Teenager. Kundin zufrieden immer, Netzwerk Kunst Kultur Hamburg groß. Nachfassen März Auswahl zeigen. Schwester schätzt Handwerk Qualität Langlebigkeit Reisen robust."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "beige_neutral",
+          "brown_cognac",
+          "regular",
+          "gift_for_sister",
+          "medical_physician",
+          "art_collector",
+          "travel_frequent",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "beige_neutral",
+            "beige"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD2810161V/R96331",
+            "name": "Table Anemona PM par Atelier Biagetti",
+            "price": 67000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/table-anemona-pm-par-atelier-biagetti-nvprod2810161v/R96331",
+            "match_score": 0.56
+          },
+          {
+            "sku": "NVPROD4620090V/1ABJSK",
+            "name": "Veste Napolitana à boutonnage simple en laine mélangée",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-napolitana-a-boutonnage-simple-en-laine-melangee-nvprod4620090v/1ABJSK",
+            "match_score": 0.56
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": "finance",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Table Anemona PM par Atelier Biagetti qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Table Anemona PM par Atelier Biagetti",
+            "Veste Napolitana à boutonnage simple en laine mélangée"
+          ],
+          "deadline": "low"
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 8000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.3883113861083984,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 8.24,
+      "rgpd": 1732.09,
+      "cache_lookup": 0.41,
+      "semantic_cache_lookup": 0.0,
+      "routing": 53.41,
+      "tier1": 1.43,
+      "tier2": 0.54,
+      "cross_validation": 0.98,
+      "rag": 34.59,
+      "recommendation": 1.84,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 1833.64
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 1833.6396217346191,
+    "from_cache": false
+  }
+}

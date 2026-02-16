@@ -1,0 +1,157 @@
+{
+  "_cached_at": 1770811387.1003041,
+  "payload": {
+    "id": "CA_024",
+    "original_text": "Signora e Signor Ferrara, coppia 42-45 anni, clienti VIP 2017. Acquisto multiplo collezione primavera e regali famiglia. Budget combinato 22K molto flessibile. Lei avvocato societario Milano, lui imprenditore immobiliare. Entrambi appassionati tennis, membri Tennis Club Milano, competono tornei amatoriali. Collezionano fotografia vintage italiana, casa piena opere Ghirri Basilico. Viaggiano lusso frequente, prossimi viaggi New York poi safari Tanzania estate. Lei eleganza moderna sofisticata, preferisce nero cognac rosé gold. Lui stile classico senza tempo, marrone navy argento. Entrambi pescetariani per eventi boutique. Lui intolleranza lattosio importante. Due figli: figlia 18 studia economia Bocconi potenziale cliente futura, figlio 15 passione calcio. Anniversario matrimonio settembre ogni anno shopping rituale. Eccellenti clienti lifetime value, riferito numerosi amici. Richiamare marzo anteprima esclusiva privata. Interessati personalizzazione monogrammi pezzi speciali.",
+    "processed_text": "Signora e Signor Ferrara, coppia 42-45 anni, clienti [VIP_ID]. Acquisto multiplo collezione primavera e regali famiglia. Budget combinato 22K molto flessibile. Lei avvocato societario Milano, lui imprenditore immobiliare. Entrambi appassionati tennis, membri Tennis Club Milano, competono tornei amatoriali. Collezionano fotografia vintage italiana, casa piena opere Ghirri Basilico. Viaggiano lusso frequente, prossimi viaggi New York poi safari Tanzania estate. Lei eleganza moderna sofisticata, preferisce nero cognac rosé gold. Lui stile classico senza tempo, marrone navy argento. Entrambi pescetariani per eventi boutique. Lui [RGPD_HEALTH_PHYSICAL_REDACTED]. Due figli: figlia 18 studia economia Bocconi potenziale cliente futura, figlio 15 passione calcio. Anniversario matrimonio settembre ogni anno shopping rituale. Eccellenti clienti lifetime value, riferito numerosi amici. Richiamare marzo anteprima esclusiva privata. Interessati personalizzazione monogrammi pezzi speciali.",
+    "language": "IT",
+    "timestamp": "2026-02-11T13:03:07.060689",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "L'intolleranza al lattosio est un dato di salute fisica, mais il contesto non è conflittuale e non è considerato altamente sensibile. Le altre informazioni non contengono dati sensibili secondo l'Articolo 9 del RGPD.",
+      "anonymized_text": "Signora e Signor Ferrara, coppia 42-45 anni, clienti [VIP_ID]. Acquisto multiplo collezione primavera e regali famiglia. Budget combinato 22K molto flessibile. Lei avvocato societario Milano, lui imprenditore immobiliare. Entrambi appassionati tennis, membri Tennis Club Milano, competono tornei amatoriali. Collezionano fotografia vintage italiana, casa piena opere Ghirri Basilico. Viaggiano lusso frequente, prossimi viaggi New York poi safari Tanzania estate. Lei eleganza moderna sofisticata, preferisce nero cognac rosé gold. Lui stile classico senza tempo, marrone navy argento. Entrambi pescetariani per eventi boutique. Lui [RGPD_HEALTH_PHYSICAL_REDACTED]. Due figli: figlia 18 studia economia Bocconi potenziale cliente futura, figlio 15 passione calcio. Anniversario matrimonio settembre ogni anno shopping rituale. Eccellenti clienti lifetime value, riferito numerosi amici. Richiamare marzo anteprima esclusiva privata. Interessati personalizzazione monogrammi pezzi speciali."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "canvas",
+          "navy",
+          "luxury_service",
+          "black",
+          "vip",
+          "legal_lawyer",
+          "entrepreneur_established",
+          "tennis",
+          "art_collector",
+          "travel_frequent",
+          "wedding_anniversary",
+          "gift_for_spouse",
+          "gift_for_child",
+          "shopping_with_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "rose_gold",
+            "silver"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "canvas"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4630047V/M8293Z",
+            "name": "Bracelet Vivienne Tennis",
+            "price": 390.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/bracelet-vivienne-tennis-monogram-nvprod4630047v/M8293Z",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD3640012V/GI0773",
+            "name": "Housse de raquette de tennis en velours Monogram",
+            "price": 1700.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/housse-de-raquette-de-tennis-en-velours-monogram-monogram-velours-nvprod3640012v/GI0773",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD3160116V/1A99KF",
+            "name": "Caban croisé court à ceinture",
+            "price": 4150.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/caban-croise-court-a-ceinture-nvprod3160116v/1A99KF",
+            "match_score": 0.46
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['legal_corporate', 'entrepreneur_established']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding_anniversary"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le vip pour son wedding anniversary. Suggère le Bracelet Vivienne Tennis qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Bracelet Vivienne Tennis",
+            "Housse de raquette de tennis en velours Monogram"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 85.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3774.425268173218,
+    "from_cache": false
+  }
+}

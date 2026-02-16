@@ -1,0 +1,144 @@
+{
+  "_cached_at": 1770811383.2847667,
+  "payload": {
+    "id": "CA_013",
+    "original_text": "M. Lefevre, 70 ans, retraité ancien ambassadeur, client fidèle depuis 2012. Achat cadeau petite-fille 25 ans nouveau travail cabinet consulting. Budget 2500€. Petite-fille style jeune moderne, voyage beaucoup professionnellement. Cuir noir pratique élégant. Client toujours satisfait, jamais problème. Petite-fille végétarienne. Parti content. Rappeler novembre cadeaux Noël famille comme chaque année.",
+    "processed_text": "M. [NAME], 70 ans, retraité ancien ambassadeur, client fidèle depuis 2012. Achat cadeau petite-fille 25 ans nouveau travail cabinet consulting. Budget 2500€. Petite-fille jeune moderne, voyage beaucoup professionnellement. Cuir noir pratique élégant. Client toujours satisfait, jamais problème. Petite-fille végétarienne. Parti content. Rappeler novembre cadeaux Noël famille comme chaque année.",
+    "language": "FR",
+    "timestamp": "2026-02-11T13:03:03.247377",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Complaint: +10",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 0.98)"
+      ],
+      "confidence": 0.98,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur la profession, l'âge, et le régime alimentaire de la petite-fille ne sont pas considérées comme sensibles.",
+      "anonymized_text": "M. [NAME], 70 ans, retraité ancien ambassadeur, client fidèle depuis 2012. Achat cadeau petite-fille 25 ans nouveau travail cabinet consulting. Budget 2500€. Petite-fille jeune moderne, voyage beaucoup professionnellement. Cuir noir pratique élégant. Client toujours satisfait, jamais problème. Petite-fille végétarienne. Parti content. Rappeler novembre cadeaux Noël famille comme chaque année."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "gift",
+          "professional",
+          "travel",
+          "customer_intent",
+          "accessories",
+          "black",
+          "professional_work",
+          "leather_goods",
+          "travel_frequent",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "000018/R20100",
+            "name": "Couverture Agenda de bureau",
+            "price": 455.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-agenda-de-bureau-monogram-000018/R20100",
+            "match_score": 0.39
+          },
+          {
+            "sku": "NVPROD4670098V/M82880",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82880",
+            "match_score": 0.39
+          },
+          {
+            "sku": "NVPROD4670098V/M82879",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82879",
+            "match_score": 0.39
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "christmas"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: gift, professional. Budget estimé: None (2K-5K).",
+          "priority": "Medium",
+          "target_products": [
+            "Couverture Agenda de bureau",
+            "Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "None (2K-5K)",
+        "budget_specific": 2500,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 75.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.1534690856933594,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2546.0028648376465,
+    "from_cache": false
+  }
+}

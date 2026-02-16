@@ -1,0 +1,42 @@
+{
+  "_cached_at": 1770193736.069911,
+  "payload": {
+    "ID": "CA_133",
+    "original_text": "Signora più o meno Bellini, 38 anni, violinista orchestra filarmonica, nuova cliente potenziale interessante che,,. Cerca borse viaggio tournée all'incirca internazionali frequenti proteggere strumento prezioso. Budget 6K iniziale. che, un po',. Stile elegante artistico classico, preferisce tonalità calde beige cognac bordeaux. in pratica, piuttosto. Suona concerti sale prestigiose in un certo senso mondiali, prossima tournée Asia tre mesi, se. all'incirca. Colleziona spartiti originali compositori classici per esempio autografi rari. in pratica. Pratica yoga flessibilità benessere, meditazione concentrazione performance. Vegetariana scelta personale per eventi. Allergia polvere acari importante viaggio. un po'. Marito direttore orchestra, entrambi mondo musica classica. Figlia piccola 8 anni studia violino segue genitori così, all'incirca. Cliente mondo arte cultura, rete contatti musicisti eccellente,. bene Follow-up marzo mostrare collezione viaggio resistente elegante. Interessata qualità artigianale durabilità pezzi investimento carriera lunga.",
+    "anonymized_text": "Signora più o meno Bellini, 38 anni, violinista orchestra filarmonica, nuova cliente potenziale interessante che,,. Cerca borse viaggio tournée all'incirca internazionali frequenti proteggere strumento prezioso. Budget 6K iniziale. che, un po',. Stile elegante artistico classico, preferisce tonalità calde beige cognac bordeaux. in pratica, piuttosto. Suona concerti sale prestigiose in un certo senso mondiali, prossima tournée Asia tre mesi, se. all'incirca. Colleziona spartiti originali compositori classici per esempio autografi rari. in pratica. Pratica [RGPD_HEALTH_MENTAL_REDACTED], meditazione concentrazione performance. Vegetariana scelta personale per eventi. Allergia polvere acari importante viaggio. un po'. Marito direttore orchestra, entrambi mondo musica classica. Figlia piccola 8 anni studia violino segue genitori così, all'incirca. Cliente mondo arte cultura, rete contatti musicisti eccellente,. bene Follow-up marzo mostrare collezione viaggio resistente elegante. Interessata qualità artigianale durabilità pezzi investimento carriera lunga.",
+    "rgpd_result": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_mental",
+        "health_physical",
+        "family_conflict"
+      ],
+      "sensitive_spans": [
+        {
+          "text": "yoga flessibilità benessere",
+          "category": "health_mental",
+          "severity": "low"
+        },
+        {
+          "text": "allergia polvere acari",
+          "category": "health_physical",
+          "severity": "medium"
+        },
+        {
+          "text": "marito direttore orchestra",
+          "category": "family_conflict",
+          "severity": "low"
+        }
+      ],
+      "safe_to_store": false,
+      "reasoning": "Le note contiennent des références à la santé mentale (yoga et bien-être), à une allergie physique (allergie à la poussière), et à la situation familiale (mariage avec un directeur d'orchestre), ce qui les rend sensibles selon l'Article 9 du RGPD."
+    },
+    "contains_sensitive": true,
+    "categories_detected": [
+      "health_mental",
+      "health_physical",
+      "family_conflict"
+    ],
+    "safe_to_store": false
+  }
+}

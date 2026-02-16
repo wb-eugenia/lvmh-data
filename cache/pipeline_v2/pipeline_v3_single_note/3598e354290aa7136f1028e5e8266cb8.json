@@ -1,0 +1,137 @@
+{
+  "_cached_at": 1770885969.7841907,
+  "payload": {
+    "id": "API_1770885966",
+    "original_text": "Meeting with Mr. Anderson, first time customer, investment banker from London, around 38. Looking for travel bag, travels frequently Asia for work. Budget around 5K, wants something durable and elegant. He plays tennis weekends at Queens Club, mentioned Wimbledon member. Prefers black or navy leather, classic style but modern touch. Pescatarian diet noted for store events. Wife's birthday coming up in May, possible gift opportunity. Good potential client, works in Mayfair so convenient location. Follow up end of month to show new arrivals.",
+    "processed_text": "Meeting with Mr. [NAME], first time customer, investment banker from London, around 38. Looking for travel bag, travels frequently Asia for work. Budget around 5K, wants something durable and elegant. He plays tennis weekends at Queens Club, mentioned Wimbledon member. Prefers black or navy leather, classic style but modern touch. Pescatarian diet noted for store events. Wife's birthday coming up in May, possible gift opportunity. Good potential client, works in Mayfair so convenient location. Follow up end of month to show new arrivals.",
+    "language": "EN",
+    "timestamp": "2026-02-12T09:46:09.693985",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Intent: Comparison: +12",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. The information provided is related to the customer's profession, preferences, and dietary choices, which are not classified as sensitive categories.",
+      "anonymized_text": "Meeting with Mr. [NAME], first time customer, investment banker from London, around 38. Looking for travel bag, travels frequently Asia for work. Budget around 5K, wants something durable and elegant. He plays tennis weekends at Queens Club, mentioned Wimbledon member. Prefers black or navy leather, classic style but modern touch. Pescatarian diet noted for store events. Wife's birthday coming up in May, possible gift opportunity. Good potential client, works in Mayfair so convenient location. Follow up end of month to show new arrivals."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "leather_goods",
+          "professional",
+          "accessories",
+          "professional_work",
+          "navy",
+          "first_visit",
+          "travel_luggage",
+          "travel_frequent",
+          "tennis",
+          "gift_for_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Propose une sélection de nouveautés.",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": "low"
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": null,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.93,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 88.89,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.93,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 2.2089481353759766,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 10.36,
+      "rgpd": 2787.06,
+      "cache_lookup": 0.44,
+      "semantic_cache_lookup": 0.0,
+      "routing": 79.41,
+      "tier1": 2.28,
+      "tier2": 0.59,
+      "cross_validation": 2.35,
+      "rag": 85.06,
+      "recommendation": 0.34,
+      "quality_gate": 0.03,
+      "injection": 0.01,
+      "total": 2968.08
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2968.0826663970947,
+    "from_cache": false
+  }
+}

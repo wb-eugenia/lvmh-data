@@ -102,7 +102,7 @@ def load_extractor():
     """Load the tag extractor (cached for performance)."""
     try:
         extractor = TagExtractor(
-            taxonomy_path="config/taxonomy_v2.2.json",
+            taxonomy_path="config/taxonomy_v1.json",
             model="gpt-4o-mini",
             temperature=0.0,
             cache_dir="cache"
@@ -115,7 +115,7 @@ def load_extractor():
 def load_taxonomy():
     """Load taxonomy (cached)."""
     try:
-        taxonomy = Taxonomy("config/taxonomy_v2.2.json")
+        taxonomy = Taxonomy("config/taxonomy_v1.json")
         return taxonomy, None
     except Exception as e:
         return None, str(e)
@@ -540,7 +540,7 @@ elif mode == "⚙️ Configuration":
         st.subheader("🏗️ Structure de la Taxonomie")
         
         # Load raw taxonomy
-        with open('config/taxonomy_v2.2.json', 'r', encoding='utf-8') as f:
+        with open('config/taxonomy_v1.json', 'r', encoding='utf-8') as f:
             tax_data = json.load(f)
         
         # Display by category with expandable sections

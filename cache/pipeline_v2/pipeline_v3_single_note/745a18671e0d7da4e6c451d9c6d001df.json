@@ -1,0 +1,170 @@
+{
+  "_cached_at": 1770887263.3412185,
+  "payload": {
+    "id": "API_1770887258",
+    "original_text": "Mme Fontaine, 57 ans, directrice hôtel palace 5 étoiles, nouvelle cliente potentiel. Cherche pièces professionnelles élégantes représentation. Budget 11K. Style raffiné discret luxe hôtellerie. Voyage fréquent congrès hôteliers internationaux. Pratique golf, membre club prestigieux. Collectionne argenterie ancienne passion famille. Cuir bordeaux cognac or classique. Végétarienne événements. Mentionné hôtel organise événements luxe réguliers, possibilité partenariat boutique cadeaux VIP clients. Mari directeur finance également intéressé maroquinerie. Excellente opportunité réseau hôtellerie luxe. Rappeler mars. Fille travaille communication luxe Paris pourrait cliente.",
+    "processed_text": "Mme [NAME], 57 ans, directrice hôtel palace 5 étoiles, nouvelle cliente potentiel. Cherche pièces professionnelles élégantes représentation. Budget 11K. raffiné discret luxe hôtellerie. Voyage fréquent congrès hôteliers internationaux. Pratique golf, membre club prestigieux. Collectionne argenterie ancienne passion famille. Cuir bordeaux cognac or classique. Végétarienne événements. Mentionné hôtel organise événements luxe réguliers, possibilité partenariat boutique cadeaux VIP clients. Mari directeur finance également intéressé maroquinerie. Excellente opportunité réseau hôtellerie luxe. Rappeler mars. Fille travaille communication luxe Paris pourrait cliente.",
+    "language": "FR",
+    "timestamp": "2026-02-12T10:07:43.294696",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Gift Important: +6",
+        "Intent: Comparison: +12",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des préférences professionnelles et des activités, sans mention de santé mentale, santé physique, conflits familiaux, croyances religieuses, opinions politiques, orientation sexuelle ou origine ethnique.",
+      "anonymized_text": "Mme [NAME], 57 ans, directrice hôtel palace 5 étoiles, nouvelle cliente potentiel. Cherche pièces professionnelles élégantes représentation. Budget 11K. raffiné discret luxe hôtellerie. Voyage fréquent congrès hôteliers internationaux. Pratique golf, membre club prestigieux. Collectionne argenterie ancienne passion famille. Cuir bordeaux cognac or classique. Végétarienne événements. Mentionné hôtel organise événements luxe réguliers, possibilité partenariat boutique cadeaux VIP clients. Mari directeur finance également intéressé maroquinerie. Excellente opportunité réseau hôtellerie luxe. Rappeler mars. Fille travaille communication luxe Paris pourrait cliente."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "professional_work",
+          "customer_intent",
+          "professional",
+          "travel",
+          "canvas",
+          "accessories",
+          "evening",
+          "gift",
+          "brown_cognac",
+          "leather_goods",
+          "travel_luggage",
+          "travel_frequent",
+          "golf",
+          "art_collector",
+          "vegetarian",
+          "first_visit"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "canvas",
+            "smooth_leather",
+            "leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "005786/R07712",
+            "name": "Livre Escales autour du monde. Étiquettes d'hôtel de la collection Gaston-Louis Vuitton par Francisca Mattéoli - Version Française ",
+            "price": 75.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-escales-autour-du-monde-etiquettes-dhotel-de-la-collection-gaston-louis-vuitton-par-francisca-matteoli-version-francaise-005786/R07712",
+            "match_score": 0.6
+          },
+          {
+            "sku": "005787/R07713",
+            "name": "Livre Escales autour du monde. Étiquettes d'hôtel de la collection Gaston-Louis Vuitton par Francisca Mattéoli - Version Anglaise ",
+            "price": 75.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-escales-autour-du-monde-etiquettes-dhotel-de-la-collection-gaston-louis-vuitton-par-francisca-matteoli-version-anglaise-005787/R07713",
+            "match_score": 0.58
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": "vic"
+        },
+        "profession": {
+          "sector": "sports",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "invitation",
+          "description": "Le client VIC est passé pour un service. Invite-le à découvrir la nouvelle collection en salon privé.",
+          "priority": "High",
+          "target_products": [
+            "new_collection"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 11000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.2018680572509766,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 7.25,
+      "rgpd": 2317.98,
+      "cache_lookup": 0.48,
+      "semantic_cache_lookup": 0.0,
+      "routing": 41.46,
+      "tier1": 1.24,
+      "tier2": 2867.53,
+      "cross_validation": 1.09,
+      "rag": 42.31,
+      "recommendation": 1.92,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 5281.35
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 5281.354188919067,
+    "from_cache": false
+  }
+}

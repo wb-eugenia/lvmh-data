@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1769906587.05828,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "creative_designer",
+        "travel_frequent",
+        "art_collector",
+        "vegetarian",
+        "gift_for_colleague",
+        "accessories",
+        "leather_goods",
+        "ready_to_wear"
+      ],
+      "usage": [
+        "professional_work"
+      ],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3740059V/P01730",
+          "name": "Organizer de poche My LV Heritage",
+          "price": 470.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.48
+        },
+        {
+          "sku": "NVPROD590322V/M99463",
+          "name": "Hamac par Atelier Oï",
+          "price": 38000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/hamac-par-atelier-oi-nvprod590322v/M99463",
+          "match_score": 0.47
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "creative_designer",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegetarian"
+      ],
+      "allergies": {
+        "food": [
+          "textile_dye_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.92,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.92,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_346"
+  }
+}

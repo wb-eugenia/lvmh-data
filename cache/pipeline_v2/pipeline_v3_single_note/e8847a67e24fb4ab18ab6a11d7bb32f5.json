@@ -1,0 +1,163 @@
+{
+  "_cached_at": 1770886014.2101104,
+  "payload": {
+    "id": "API_1770886012",
+    "original_text": "Signora Bianchi e marito, 58 e 62 anni, clienti VIP dal 2015. Lei cerca borse nuova stagione, lui accessori viaggio. Budget flessibile 16K discusso. Lei gallerista arte contemporanea Milano, organizza mostre artisti emergenti. Lui imprenditore moda in pensione, consulente ancora. Entrambi amano opera, abbonamento Teatro alla Scala. Viaggiano lusso frequente, prossimo viaggio Giappone aprile cerimonia sakura. Lei preferisce eleganza discreta beige cognac, colleziona sculture moderne. Lui stile classico senza tempo nero marrone. Entrambi pescetariani per eventi boutique. Lei intollerante lattosio importante. Figlia sposata architetto Londra, nipote nascerà estate regalo opportunità. Figlio direttore creativo casa moda Parigi. Famiglia eccellente rete contatti, hanno riferito molti clienti. Richiamare febbraio anteprima esclusiva primavera. Interessati collaborazioni artisti pezzi unici.",
+    "processed_text": "Signora Bianchi e marito, 58 e 62 anni, clienti VIP dal 2015. Lei cerca borse nuova stagione, lui accessori viaggio. Budget flessibile 16K discusso. Lei gallerista arte contemporanea Milano, organizza mostre artisti emergenti. Lui imprenditore moda in pensione, consulente ancora. Entrambi amano opera, abbonamento Teatro alla Scala. Viaggiano lusso frequente, prossimo viaggio Giappone aprile cerimonia sakura. Lei preferisce eleganza discreta beige cognac, colleziona sculture moderne. Lui stile classico senza tempo nero marrone. Entrambi pescetariani per eventi boutique. Lei intollerante lattosio importante. Figlia sposata architetto Londra, nipote nascerà estate regalo opportunità. Figlio direttore creativo casa moda Parigi. Famiglia eccellente rete contatti, hanno riferito molti clienti. Richiamare febbraio anteprima esclusiva primavera. Interessati collaborazioni artisti pezzi unici.",
+    "language": "IT",
+    "timestamp": "2026-02-12T09:46:54.149766",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le notes clients ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations sur l'intolérance au lactose sont considérées comme sûres pour le business. Aucune autre catégorie sensible n'est détectée.",
+      "anonymized_text": "Signora Bianchi e marito, 58 e 62 anni, clienti VIP dal 2015. Lei cerca borse nuova stagione, lui accessori viaggio. Budget flessibile 16K discusso. Lei gallerista arte contemporanea Milano, organizza mostre artisti emergenti. Lui imprenditore moda in pensione, consulente ancora. Entrambi amano opera, abbonamento Teatro alla Scala. Viaggiano lusso frequente, prossimo viaggio Giappone aprile cerimonia sakura. Lei preferisce eleganza discreta beige cognac, colleziona sculture moderne. Lui stile classico senza tempo nero marrone. Entrambi pescetariani per eventi boutique. Lei intollerante lattosio importante. Figlia sposata architetto Londra, nipote nascerà estate regalo opportunità. Figlio direttore creativo casa moda Parigi. Famiglia eccellente rete contatti, hanno riferito molti clienti. Richiamare febbraio anteprima esclusiva primavera. Interessati collaborazioni artisti pezzi unici."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "beige_neutral",
+          "luxury_service",
+          "black",
+          "vip",
+          "leather_goods",
+          "accessories",
+          "travel_luggage",
+          "art_collector",
+          "travel_frequent",
+          "pescatarian",
+          "wedding_anniversary"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "beige_neutral",
+            "brown"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4760006V/R09186",
+            "name": "Francesca Amfitheatrof : Fantastic Jewels",
+            "price": 125.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/francesca-amfitheatrof-fantastic-jewels-nvprod4760006v/R09186",
+            "match_score": 0.56
+          },
+          {
+            "sku": "NVPROD120005V/R08324",
+            "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+            "price": 49.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+            "match_score": 0.55
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['creative_designer', 'entrepreneur_established']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "lactose_intolerance"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, beige_neutral. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Francesca Amfitheatrof : Fantastic Jewels",
+            "Livre Icons of modern art. The Shchukin collection  édition anglaise"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.88,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 23.67,
+      "rgpd": 1919.88,
+      "cache_lookup": 0.51,
+      "semantic_cache_lookup": 0.0,
+      "routing": 89.53,
+      "tier1": 3.09,
+      "tier2": 1.01,
+      "cross_validation": 2.28,
+      "rag": 52.52,
+      "recommendation": 0.31,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2092.95
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2092.956781387329,
+    "from_cache": false
+  }
+}

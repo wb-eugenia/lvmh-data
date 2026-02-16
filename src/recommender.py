@@ -9,7 +9,7 @@ import re
 from typing import List, Dict, Optional, Any
 from src.models import ExtractionResult, Pilier4Business, NextBestAction
 import logging
-from src.analytics.predictions import SyntheticClientPredictions
+# from src.analytics.predictions import SyntheticClientPredictions  # Not available
 
 try:
     from mistralai import Mistral
@@ -52,11 +52,11 @@ Réponds en JSON strict:
 """
     
     def __init__(self):
-        self.predictor: Optional[SyntheticClientPredictions] = None
-        try:
-            self.predictor = SyntheticClientPredictions()
-        except Exception as exc:
-            logger.warning("Synthetic prediction engine unavailable: %s", exc)
+        self.predictor = None  # SyntheticClientPredictions not available
+        # try:
+        #     self.predictor = SyntheticClientPredictions()
+        # except Exception as exc:
+        #     logger.warning("Synthetic prediction engine unavailable: %s", exc)
 
         self.nba_llm_enabled = os.getenv("LVMH_ENABLE_NBA_LLM", "false").lower() in {"1", "true", "yes"}
         self.nba_llm_model = os.getenv("NBA_LLM_MODEL", "mistral-large-latest")

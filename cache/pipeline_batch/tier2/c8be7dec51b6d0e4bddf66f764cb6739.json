@@ -1,0 +1,110 @@
+{
+  "_cached_at": 1769906609.117898,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "regular",
+        "travel_frequent",
+        "art_collector",
+        "wine_enthusiast",
+        "gift_for_spouse",
+        "gift_for_child",
+        "gift_for_parent",
+        "pescatarian",
+        "leather_goods",
+        "ready_to_wear",
+        "accessories",
+        "professional_work",
+        "casual_daily",
+        "evening"
+      ],
+      "usage": [
+        "professional_work",
+        "casual_daily",
+        "evening"
+      ],
+      "preferences": {
+        "colors": [
+          "beige",
+          "black",
+          "brown",
+          "rose gold"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": [
+          "smooth_leather"
+        ]
+      },
+      "matched_products": [
+        {
+          "sku": "015578/M78666",
+          "name": "Carré Monogram Confidential 90",
+          "price": 460.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/carre-monogram-confidential-90-s00-015578/M78666",
+          "match_score": 0.41
+        },
+        {
+          "sku": "NVPROD3490008V/M77554",
+          "name": "Carré Personally LV 70",
+          "price": 340.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/carre-personally-lv-70-s00-nvprod3490008v/M77554",
+          "match_score": 0.41
+        },
+        {
+          "sku": "NVPROD2690006V/M80237",
+          "name": "Bijou de sac et porte-clés Neo LV Club",
+          "price": 285.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-neo-lv-club-s00-nvprod2690006v/M80237",
+          "match_score": 0.41
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "['interior designer', 'real estate developer']",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_357"
+  }
+}

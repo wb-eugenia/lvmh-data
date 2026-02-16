@@ -1,0 +1,650 @@
+{"ts": "2026-02-12 10:04:20,392", "level": "INFO", "logger": "faiss.loader", "message": "Loading faiss with AVX2 support."}
+{"ts": "2026-02-12 10:04:20,412", "level": "INFO", "logger": "faiss.loader", "message": "Successfully loaded faiss with AVX2 support."}
+INFO:     Started server process [9784]
+INFO:     Waiting for application startup.
+{"ts": "2026-02-12 10:04:21,058", "level": "INFO", "logger": "lvmh-api", "message": "LVMH Voice-to-Tag API starting"}
+{"ts": "2026-02-12 10:04:21,652", "level": "INFO", "logger": "src.tier2_mistral", "message": "\ud83c\uddeb\ud83c\uddf7 Tier 2 Mistral initialized with model: mistral-medium-latest"}
+{"ts": "2026-02-12 10:04:22,119", "level": "INFO", "logger": "src.product_matcher", "message": "\ud83e\udde0 Loading RAG Index & Model..."}
+{"ts": "2026-02-12 10:04:22,133", "level": "INFO", "logger": "sentence_transformers.SentenceTransformer", "message": "Use pytorch device_name: cpu"}
+{"ts": "2026-02-12 10:04:22,134", "level": "INFO", "logger": "sentence_transformers.SentenceTransformer", "message": "Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2"}
+{"ts": "2026-02-12 10:04:24,911", "level": "INFO", "logger": "src.product_matcher", "message": "\u2705 ProductMatcher Ready: 7806 products indexed."}
+{"ts": "2026-02-12 10:04:25,144", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Pipeline initialized"}
+{"ts": "2026-02-12 10:04:25,146", "level": "INFO", "logger": "lvmh-api", "message": "Pipeline preloaded"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+{"ts": "2026-02-12 10:04:31,791", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887071790', 'method': 'GET', 'path': '/health', 'status': 200, 'duration_ms': 0.52, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:38,646", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887078426', 'method': 'POST', 'path': '/api/auth/login', 'status': 200, 'duration_ms': 219.5, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:38,665", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:41,339", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:41,358", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:41,360", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887078660', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2699.28, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:41,380", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:42,842", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:42,856", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:42,857", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887081375', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1481.4, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:42,877", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:44,626", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:44,639", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:44,640", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887082873', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1766.57, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:44,663", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:46,171", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:46,183", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:46,185", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887084660', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1525.08, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:46,204", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:48,548", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:48,568", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:48,569", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887086201', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2367.93, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:48,594", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:50,101", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:50,115", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:50,116", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887088591', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1525.37, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:50,141", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:51,744", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:51,757", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:04:51,758", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887090139', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1619.34, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:51,780", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:53,751", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:53,773", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:04:53,775", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887091778', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1996.83, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:04:53,794", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:04:55,561", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:04:55,663", "level": "INFO", "logger": "src.smart_router", "message": "Loaded ML model from disk"}
+{"ts": "2026-02-12 10:04:55,696", "level": "INFO", "logger": "src.smart_router", "message": "Loaded 2268 feedback samples"}
+{"ts": "2026-02-12 10:05:03,561", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 13.12it/s]
+{"ts": "2026-02-12 10:05:03,699", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:03,700", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887093791', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 9908.89, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:03,719", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:06,650", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:06,664", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:06,666", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887103715', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2950.99, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:06,683", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:08,648", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:08,682", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:08,683", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887106680', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2002.82, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:08,703", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:10,895", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:10,909", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:10,910", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887108701', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2209.75, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:10,932", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:13,336", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:13,349", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:13,350", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887110930', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2420.52, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:13,372", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:15,504", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:15,519", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:15,520", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887113369', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2150.97, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:15,536", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:18,050", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:18,065", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:18,067", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887115534', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2532.86, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:18,085", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:21,058", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:21,072", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:21,073", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887118082', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2990.15, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:21,091", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:23,527", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:23,545", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:23,546", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887121089', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2456.56, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:23,568", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:25,587", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:25,600", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:25,601", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887123562', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2038.55, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:25,619", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:28,395", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:28,408", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:28,410", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887125617', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2792.89, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:28,432", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:31,474", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:31,487", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:31,488", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887128430', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3058.66, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:31,506", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:33,632", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:33,644", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:33,645", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887131492', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2153.39, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:33,661", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:35,683", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:35,702", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:35,703", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887133658', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2043.97, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:35,710", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:38,476", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:38,496", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:38,498", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887135706', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2792.5, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:38,515", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:41,639", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:41,653", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:41,654", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887138512', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3141.97, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:41,675", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:44,163", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:44,176", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:44,177", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887141672', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2505.13, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:44,196", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:46,290", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:46,311", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:46,312", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887144193', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2118.67, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:46,334", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:48,679", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:48,695", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:48,698", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887146332', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2366.04, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:48,716", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:50,436", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:50,462", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:05:50,463", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887148714', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1749.23, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:50,485", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:53,298", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:53,310", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:53,311", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887150468', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2843.31, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:53,327", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:55,377", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.13it/s]
+{"ts": "2026-02-12 10:05:55,526", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:55,527", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887153324', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2202.74, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:55,535", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:05:57,770", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:05:57,787", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:05:57,788", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887155532', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2255.94, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:05:57,805", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:00,686", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:00,701", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:06:00,703", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887157792', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2911.48, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:00,730", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:02,552", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:02,566", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:02,567", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887160727', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1839.26, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:02,584", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:04,636", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:04,654", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:04,655", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887162582', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2073.15, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:04,674", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:06,177", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:06,188", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:06,189", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887164672', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1517.32, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:06,209", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:08,103", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:08,119", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:06:08,120", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887166206', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1913.73, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:08,140", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:10,379", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:10,392", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:06:10,393", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887168137', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2255.19, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:10,410", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:12,659", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:12,672", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:12,674", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887170407', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2266.08, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:12,695", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:15,687", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:15,700", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:15,701", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887172691', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3009.81, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:15,730", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:17,799", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:17,813", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:17,815", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887175727', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2087.67, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:17,822", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:20,001", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.05it/s]
+{"ts": "2026-02-12 10:06:20,139", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:20,142", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887177819', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2323.41, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:20,165", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:22,376", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.49it/s]
+{"ts": "2026-02-12 10:06:22,541", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:22,542", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887180147', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2395.16, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:22,550", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:24,616", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.39it/s]
+{"ts": "2026-02-12 10:06:24,776", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:24,778", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887182546', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2231.93, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:24,801", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:27,223", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.78it/s]
+{"ts": "2026-02-12 10:06:27,349", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:27,350", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887184797', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2553.29, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:27,369", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:29,785", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:06:39,754", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.86it/s]
+{"ts": "2026-02-12 10:06:39,861", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:39,863", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887187365', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 12497.39, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:39,884", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:41,951", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.58it/s]
+{"ts": "2026-02-12 10:06:42,086", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:42,087", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887199880', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2207.29, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:42,109", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:44,336", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 18.91it/s]
+{"ts": "2026-02-12 10:06:44,759", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:44,762", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887202091', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2670.13, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:44,779", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:46,906", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.85it/s]
+{"ts": "2026-02-12 10:06:47,045", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:47,048", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887204775', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2272.46, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:47,070", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:48,813", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 32.59it/s]
+{"ts": "2026-02-12 10:06:48,949", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:48,950", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887207067', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1882.99, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:48,974", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:51,950", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.62it/s]
+{"ts": "2026-02-12 10:06:52,081", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:52,082", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887208970', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3111.87, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:52,105", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:06:55,462", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 30.81it/s]
+{"ts": "2026-02-12 10:06:55,599", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:06:55,601", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887212101', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3499.16, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:06:55,621", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:00,282", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.71it/s]
+{"ts": "2026-02-12 10:07:00,430", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:00,432", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887215615', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 4817.06, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:00,456", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:02,388", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 50.99it/s]
+{"ts": "2026-02-12 10:07:02,546", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:02,548", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887220438', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2110.68, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:02,570", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:04,873", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.21it/s]
+{"ts": "2026-02-12 10:07:05,036", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:05,037", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887222566', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2470.63, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:05,057", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:07,799", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 33.63it/s]
+{"ts": "2026-02-12 10:07:07,953", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:07,955", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887225053', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2901.78, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:07,974", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:10,521", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.31it/s]
+{"ts": "2026-02-12 10:07:10,665", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:10,668", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887227969', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2698.59, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:10,688", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:13,269", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.82it/s]
+{"ts": "2026-02-12 10:07:13,415", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:13,416", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887230684', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2731.95, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:13,435", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:15,408", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.95it/s]
+{"ts": "2026-02-12 10:07:15,569", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:15,572", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887233421', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2150.78, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:15,594", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:18,381", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.04it/s]
+{"ts": "2026-02-12 10:07:18,541", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:18,543", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887235576', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2966.86, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:18,564", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:21,462", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.46it/s]
+{"ts": "2026-02-12 10:07:21,638", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:21,641", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887238559', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3081.34, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:21,672", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:23,970", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.00it/s]
+{"ts": "2026-02-12 10:07:24,138", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:07:24,140", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887241667', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2472.3, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:24,149", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:26,913", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.81it/s]
+{"ts": "2026-02-12 10:07:27,092", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:27,093", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887244145', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2948.42, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:27,116", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:30,681", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.32it/s]
+{"ts": "2026-02-12 10:07:30,825", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:30,827", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887247098', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3728.6, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:30,846", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:32,624", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.78it/s]
+{"ts": "2026-02-12 10:07:32,782", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:32,784", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887250843', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1940.57, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:32,793", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:34,754", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.44it/s]
+{"ts": "2026-02-12 10:07:34,946", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:34,947", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887252788', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2159.17, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:34,966", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:37,801", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 23.80it/s]
+{"ts": "2026-02-12 10:07:37,989", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:37,990", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887254962', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3028.25, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:38,013", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:40,336", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:07:43,242", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.05it/s]
+{"ts": "2026-02-12 10:07:43,342", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:43,344", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887258010', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 5334.01, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:43,371", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:45,276", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:07:48,506", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.69it/s]
+{"ts": "2026-02-12 10:07:48,611", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:48,613", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887263350', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 5263.27, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:48,647", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:51,061", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.14it/s]
+{"ts": "2026-02-12 10:07:51,205", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:51,207", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887268642', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2565.02, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:51,228", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:53,491", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.07it/s]
+{"ts": "2026-02-12 10:07:53,670", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:53,672", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887271225', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2447.02, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:53,698", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:55,655", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 31.17it/s]
+{"ts": "2026-02-12 10:07:55,826", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:55,827", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887273694', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2132.62, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:55,848", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:57,493", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.36it/s]
+{"ts": "2026-02-12 10:07:57,644", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:57,645", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887275843', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1801.7, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:57,673", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:07:59,442", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.70it/s]
+{"ts": "2026-02-12 10:07:59,601", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:07:59,602", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887277649', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1953.08, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:07:59,624", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:01,526", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.91it/s]
+{"ts": "2026-02-12 10:08:01,693", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:01,694", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887279621', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2073.3, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:01,723", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:03,460", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 36.55it/s]
+{"ts": "2026-02-12 10:08:03,606", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:03,607", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887281699', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1907.42, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:03,631", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:06,077", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.67it/s]
+{"ts": "2026-02-12 10:08:06,251", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:06,253", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887283627', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2626.01, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:06,273", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:07,916", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.67it/s]
+{"ts": "2026-02-12 10:08:08,090", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:08:08,091", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887286258', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1833.32, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:08,114", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:10,619", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.19it/s]
+{"ts": "2026-02-12 10:08:10,787", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:10,788", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887288095', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2693.05, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:10,812", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:12,303", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.22it/s]
+{"ts": "2026-02-12 10:08:12,461", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:12,462", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887290808', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1653.97, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:12,482", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:14,721", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.75it/s]
+{"ts": "2026-02-12 10:08:14,865", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:14,867", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887292466', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2400.21, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:14,884", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:16,864", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:08:20,515", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.33it/s]
+{"ts": "2026-02-12 10:08:20,617", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:20,619", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887294870', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 5748.6, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:20,642", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:22,618", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 27.63it/s]
+{"ts": "2026-02-12 10:08:22,767", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:08:22,770", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887300624', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2145.81, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:22,792", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:25,155", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.31it/s]
+{"ts": "2026-02-12 10:08:25,315", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:25,316", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887302787', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2529.35, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:25,339", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:27,238", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 35.65it/s]
+{"ts": "2026-02-12 10:08:27,387", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:27,389", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887305335', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2053.57, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:27,410", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:29,643", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:08:38,407", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.04it/s]
+{"ts": "2026-02-12 10:08:38,504", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:38,505", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887307394', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 11110.88, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:38,530", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:42,070", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 26.99it/s]
+{"ts": "2026-02-12 10:08:42,254", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:08:42,256", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887318510', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3746.46, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:42,276", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:44,147", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.17it/s]
+{"ts": "2026-02-12 10:08:44,314", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:44,315", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887322272', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2042.78, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:44,339", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:46,240", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.65it/s]
+{"ts": "2026-02-12 10:08:46,422", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:46,423", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887324335', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2088.13, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:46,445", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:48,631", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 29.78it/s]
+{"ts": "2026-02-12 10:08:48,770", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:48,773", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887326439', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2333.8, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:48,804", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:08:51,192", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:08:58,775", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 25.89it/s]
+{"ts": "2026-02-12 10:08:58,879", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:08:58,881", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887328800', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 10080.39, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:08:58,902", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:00,521", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 41.52it/s]
+{"ts": "2026-02-12 10:09:00,653", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:00,654", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887338897', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1756.58, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:00,679", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:02,443", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 22.57it/s]
+{"ts": "2026-02-12 10:09:02,629", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:02,631", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887340675', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1955.75, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:02,651", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:04,418", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 28.01it/s]
+{"ts": "2026-02-12 10:09:04,561", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:04,562", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887342647', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1914.93, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:04,585", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:07,306", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 16.87it/s]
+{"ts": "2026-02-12 10:09:07,620", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:07,621", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887344566', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3055.17, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:07,653", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:10,283", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 10.77it/s]
+{"ts": "2026-02-12 10:09:10,665", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:10,667", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887347644', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3023.05, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:10,705", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:12,983", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 11.29it/s]
+{"ts": "2026-02-12 10:09:13,326", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:13,329", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887350679', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2649.69, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:13,359", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:15,166", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 13.42it/s]
+{"ts": "2026-02-12 10:09:15,470", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:15,473", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887353335', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2137.1, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:15,496", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:17,755", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00,  9.39it/s]Batches: 100%|##########| 1/1 [00:00<00:00,  9.33it/s]
+{"ts": "2026-02-12 10:09:18,104", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:18,108", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887355480', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2627.82, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:18,135", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:20,030", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 21.08it/s]
+{"ts": "2026-02-12 10:09:20,250", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:20,253", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887358116', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2137.17, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:09:20,278", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:09:22,986", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 15.55it/s]
+{"ts": "2026-02-12 10:09:23,268", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:09:23,273", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887360259', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3013.24, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:39,678", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887499402', 'method': 'POST', 'path': '/api/auth/login', 'status': 200, 'duration_ms': 275.83, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:39,710", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:42,138", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:42,149", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:42,150", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887499707', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2443.27, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:42,167", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:44,160", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:44,164", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:44,166", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887502154', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2011.72, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:44,191", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:46,465", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:46,475", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:46,478", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887504188', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2289.15, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:46,506", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:48,128", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:48,134", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:48,135", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887506482', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1652.66, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:48,155", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:50,290", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:50,293", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:50,294", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887508152', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2142.69, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:50,320", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:52,440", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:52,443", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:52,443", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887510298', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2145.02, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:52,450", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:54,353", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:54,358", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:54,360", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887512447', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1912.96, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:54,368", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:56,659", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:56,663", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:11:56,664", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887514364', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2299.79, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:56,673", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:11:58,670", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:11:58,687", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:11:58,689", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887516669', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2019.8, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:11:58,713", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:00,863", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:00,869", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:00,870", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887518710', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2159.41, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:00,876", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:03,402", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:03,404", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:03,405", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887520873', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2531.79, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:03,414", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:05,314", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:05,318", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:05,320", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887523410', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1909.8, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:05,327", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:07,402", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:07,408", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:07,409", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887525324', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2085.0, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:07,416", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:09,636", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:09,645", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:09,647", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887527412', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2234.48, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:09,679", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:11,758", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:11,770", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:11,771", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887529676', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2094.97, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:11,779", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:14,443", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:14,447", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:14,449", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887531774', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2674.49, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:14,456", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:16,375", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:16,378", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:16,380", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887534453', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1927.17, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:16,400", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:18,971", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:18,973", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:18,975", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887536384', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2590.9, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:19,002", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:23,284", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:23,295", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:23,296", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887538992', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 4304.82, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:23,331", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:25,847", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:25,851", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:25,853", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887543311', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2541.8, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:25,862", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:28,287", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:28,291", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:28,293", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887545857', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2436.33, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:28,314", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:31,046", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:31,050", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:31,051", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887548309', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2742.0, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:31,060", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:33,326", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:33,332", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:33,333", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887551056', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2276.48, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:33,340", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:36,269", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:36,271", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:36,272", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887553336', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2935.93, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:36,279", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:38,241", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:38,251", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:38,252", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887556276', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1975.96, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:38,274", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:40,363", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:40,367", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:40,369", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887558270', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2098.57, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:40,389", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:43,230", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:43,232", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:43,234", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887560374', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2859.83, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:43,265", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:45,178", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:45,181", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:45,183", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887563241', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1941.98, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:45,194", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:47,947", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:47,950", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:47,952", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887565189', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2762.84, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:47,975", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:51,015", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:51,034", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:51,037", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887567958', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3078.86, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:51,045", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:53,168", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:53,171", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:53,172", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887571041', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2131.29, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:53,204", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:56,587", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:56,595", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:12:56,596", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887573200', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 3395.47, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:56,612", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:12:58,480", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:12:58,486", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:12:58,487", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887576600', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1887.48, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:12:58,494", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:00,472", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:00,475", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:13:00,476", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887578490', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1986.05, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:13:00,496", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:02,619", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:02,627", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:13:02,630", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887580491', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2138.97, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:13:02,652", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:04,617", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:04,620", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:13:04,621", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887582648', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1972.38, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:13:04,646", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:06,375", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:06,378", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+10 pts)"}
+{"ts": "2026-02-12 10:13:06,379", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887584625', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 1754.39, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:13:06,389", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:08,934", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:08,938", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:13:08,939", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887586384', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2554.86, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:13:08,962", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:11,076", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:15,283", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.mistral.ai/v1/chat/completions \"HTTP/1.1 200 OK\""}
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 13.32it/s]
+{"ts": "2026-02-12 10:13:15,498", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:13:15,501", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887588960', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 6540.69, 'client_ip': '127.0.0.1'}"}
+{"ts": "2026-02-12 10:13:15,535", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Authenticated user: advisor@lvmh.com (ID: 1)"}
+{"ts": "2026-02-12 10:13:18,357", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST https://api.openai.com/v1/chat/completions \"HTTP/1.1 200 OK\""}
+{"ts": "2026-02-12 10:13:18,361", "level": "INFO", "logger": "lvmh-api.analyze", "message": "Note persistence scheduled for user advisor@lvmh.com (+15 pts)"}
+{"ts": "2026-02-12 10:13:18,362", "level": "INFO", "logger": "lvmh-api", "message": "{'event': 'http_request', 'request_id': 'req-1770887595509', 'method': 'POST', 'path': '/api/analyze', 'status': 200, 'duration_ms': 2853.65, 'client_ip': '127.0.0.1'}"}

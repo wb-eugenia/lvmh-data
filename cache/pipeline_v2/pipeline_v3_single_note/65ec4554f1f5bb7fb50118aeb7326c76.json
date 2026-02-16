@@ -1,0 +1,174 @@
+{
+  "_cached_at": 1770886019.8890762,
+  "payload": {
+    "id": "API_1770886016",
+    "original_text": "M. et Mme Moreau, couple 48-50 ans, excellents clients depuis 2016. Achat multiple pièces collection printemps plus cadeaux famille. Budget combiné 20K très flexible. Lui dirigeant entreprise familiale vins Bordeaux, elle architecte intérieur projets haut de gamme. Tous deux passionnés voile, possèdent yacht, participent régates Méditerranée été. Collectionnent art contemporain, maison remplie œuvres, fréquentent toutes foires importantes. Voyagent constamment affaires plaisir, prochains voyages Napa Valley puis Toscane. Elle adore design scandinave minimaliste, préfère cuirs naturels beige gris. Lui style plus traditionnel classique, cognac marine. Les deux végétariens pour événements. Lui allergie fruits coque sévère crucial événements. Trois enfants: aîné reprend entreprise familiale, cadette étudie œnologie, benjamin lycée passionné musique. Anniversaire mariage juillet chaque année shopping rituel. Potentiel vie entière exceptionnel, réseau important vignobles luxe. Rappeler avril preview privée exclusive. Proposer collaboration événement vendanges boutique château possibilité.",
+    "processed_text": "M. et Mme [NAME], couple 48-50 ans, excellents clients depuis 2016. Achat multiple pièces collection printemps plus cadeaux famille. Budget combiné 20K très flexible. Lui dirigeant entreprise familiale vins Bordeaux, elle architecte intérieur projets haut de gamme. Tous deux passionnés voile, possèdent yacht, participent régates Méditerranée été. Collectionnent art contemporain, maison remplie œuvres, fréquentent toutes foires importantes. Voyagent constamment affaires plaisir, prochains voyages Napa Valley puis Toscane. Elle adore design scandinave minimaliste, préfère cuirs naturels beige gris. Lui plus traditionnel classique, cognac marine. Les deux végétariens pour événements. Lui [RGPD_HEALTH_PHYSICAL_REDACTED] crucial événements. Trois enfants: aîné reprend entreprise familiale, cadette étudie œnologie, benjamin lycée passionné musique. Anniversaire mariage juillet chaque année shopping rituel. Potentiel vie entière exceptionnel, réseau important vignobles luxe. Rappeler avril preview privée exclusive. Proposer collaboration événement vendanges boutique château possibilité.",
+    "language": "FR",
+    "timestamp": "2026-02-12T09:46:59.822088",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Budget Vague: +8",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "Le texte mentionne une allergie alimentaire sévère, qui est considérée comme une donnée sensible selon le RGPD. Bien que les allergies alimentaires soient généralement acceptables pour le business, la gravité de l'allergie dans ce contexte nécessite une attention particulière.",
+      "anonymized_text": "M. et Mme [NAME], couple 48-50 ans, excellents clients depuis 2016. Achat multiple pièces collection printemps plus cadeaux famille. Budget combiné 20K très flexible. Lui dirigeant entreprise familiale vins Bordeaux, elle architecte intérieur projets haut de gamme. Tous deux passionnés voile, possèdent yacht, participent régates Méditerranée été. Collectionnent art contemporain, maison remplie œuvres, fréquentent toutes foires importantes. Voyagent constamment affaires plaisir, prochains voyages Napa Valley puis Toscane. Elle adore design scandinave minimaliste, préfère cuirs naturels beige gris. Lui plus traditionnel classique, cognac marine. Les deux végétariens pour événements. Lui [RGPD_HEALTH_PHYSICAL_REDACTED] crucial événements. Trois enfants: aîné reprend entreprise familiale, cadette étudie œnologie, benjamin lycée passionné musique. Anniversaire mariage juillet chaque année shopping rituel. Potentiel vie entière exceptionnel, réseau important vignobles luxe. Rappeler avril preview privée exclusive. Proposer collaboration événement vendanges boutique château possibilité."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "customer_intent",
+          "ultra_high",
+          "travel",
+          "gift",
+          "navy",
+          "beige_neutral",
+          "high",
+          "evening",
+          "brown_cognac",
+          "vip",
+          "wine_enthusiast",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian",
+          "wedding_anniversary",
+          "leather_goods",
+          "ready_to_wear",
+          "accessories"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "casual_daily"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "navy",
+            "beige_neutral",
+            "grey"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4400034V/R95220",
+            "name": "Table d'appoint Basket par Zanellato/Bortotto",
+            "price": 7600.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/table-dappoint-basket-par-zanellato-bortotto-nvprod4400034v/R95220",
+            "match_score": 0.47
+          },
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.47
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['entrepreneur_established', 'creative_designer']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: luxury_service, customer_intent. Budget estimé: ultra_high (20K-50K).",
+          "priority": "Medium",
+          "target_products": [
+            "Table d'appoint Basket par Zanellato/Bortotto",
+            "Organizer de poche My LV Heritage"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 90.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 24.94,
+      "rgpd": 3238.39,
+      "cache_lookup": 0.81,
+      "semantic_cache_lookup": 0.0,
+      "routing": 70.43,
+      "tier1": 2.51,
+      "tier2": 0.55,
+      "cross_validation": 1.31,
+      "rag": 46.0,
+      "recommendation": 0.34,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 3385.46
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 3385.4587078094482,
+    "from_cache": false
+  }
+}

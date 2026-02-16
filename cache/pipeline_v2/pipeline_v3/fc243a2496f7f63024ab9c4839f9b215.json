@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1770809687.2618427,
+  "payload": {
+    "id": "GEN_022",
+    "original_text": "euh bah bon Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking for professional wardrobe upgrade post-fundraising. Budget 15K flexible. She's building fintech company, works between London and NYC. Passionate sailing, weekend racer member yacht club. Collects modern art prints, follows emerging Latin American artists. Travels constantly investor meetings, next trip San Francisco then Mexico City. Vegan lifestyle choice for events. Shellfish allergy note for boutique lunches. Mentioned younger brother getting married summer, gift opportunity. Very interested sustainability, asked supply chain transparency materials. Good social media presence tech circles 80K followers. Follow up two weeks with curated selection. Potential excellent long-term client, scaling company fast. Carte [CARTE] genre en fait en gros.",
+    "processed_text": "euh bah bon Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking for professional wardrobe upgrade post-fundraising. Budget 15K flexible. She's building fintech company, works between London and NYC. Passionate sailing, weekend racer member yacht club. Collects modern art prints, follows emerging Latin American artists. Travels constantly investor meetings, next trip San Francisco then Mexico City. Vegan lifestyle choice for events. Shellfish allergy note for boutique lunches. Mentioned younger brother getting married summer, gift opportunity. Very interested sustainability, asked supply chain transparency materials. Good social media presence tech circles 80K followers. Follow up two weeks with curated selection. Potential excellent long-term client, scaling company fast. Carte [CARTE] genre en fait en gros.",
+    "language": "EN",
+    "timestamp": "2026-02-11T12:34:47.250379",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Budget 50K: +15",
+        "Budget Vague: +8",
+        "Intent: Comparison: +12",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It includes information about the client's professional background, interests, and lifestyle choices, but none of these fall into the sensitive categories outlined.",
+      "anonymized_text": "euh bah bon Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking for professional wardrobe upgrade post-fundraising. Budget 15K flexible. She's building fintech company, works between London and NYC. Passionate sailing, weekend racer member yacht club. Collects modern art prints, follows emerging Latin American artists. Travels constantly investor meetings, next trip San Francisco then Mexico City. Vegan lifestyle choice for events. Shellfish allergy note for boutique lunches. Mentioned younger brother getting married summer, gift opportunity. Very interested sustainability, asked supply chain transparency materials. Good social media presence tech circles 80K followers. Follow up two weeks with curated selection. Potential excellent long-term client, scaling company fast. Carte [CARTE] genre en fait en gros."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "professional",
+          "ready_to_wear",
+          "professional_work",
+          "shoes",
+          "accessories",
+          "entrepreneur_startup",
+          "travel_frequent",
+          "art_collector",
+          "vegan",
+          "eco_conscious",
+          "first_visit",
+          "gift_for_sibling"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4670098V/M82879",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82879",
+            "match_score": 0.41
+          },
+          {
+            "sku": "NVPROD4670098V/M82878",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82878",
+            "match_score": 0.41
+          },
+          {
+            "sku": "NVPROD4670098V/M82880",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82880",
+            "match_score": 0.41
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [
+            "shellfish_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: luxury_service, professional. Budget estimé: ultra_high (15K-30K).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche",
+            "Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K-30K)",
+        "budget_specific": 15000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.5773773193359375,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 12895.494222640991,
+    "from_cache": false
+  }
+}

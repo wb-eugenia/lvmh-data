@@ -1,0 +1,147 @@
+{
+    "version": "2.0",
+    "last_updated": "2026-01-27",
+    "categories": {
+        "PRODUCT_PREFERENCES": {
+            "description": "Specific product interests and collections",
+            "tags": [
+                "leather_goods",
+                "watches",
+                "jewelry",
+                "ready_to_wear",
+                "shoes",
+                "perfume_cosmetics",
+                "accessories",
+                "hardsided_luggage",
+                "exotic_skins",
+                "custom_orders"
+            ]
+        },
+        "LIFESTYLE": {
+            "description": "Hobbies, interests and lifestyle indicators",
+            "tags": [
+                "golf",
+                "sailing",
+                "equestrian",
+                "tennis",
+                "skiing",
+                "art_collector",
+                "wine_connoisseur",
+                "gastronomy",
+                "travel_frequent",
+                "wellness_yoga",
+                "opera_theater",
+                "vintage_cars",
+                "philanthropy",
+                "tech_enthusiast",
+                "interior_design",
+                "photography_collector",
+                "nft_digital_art_collector",
+                "book_collector_rare"
+            ]
+        },
+        "SENSITIVITIES": {
+            "description": "Values, ethical concerns and financial approach",
+            "tags": [
+                "vegan",
+                "vegetarian",
+                "pescatarian",
+                "sustainable_values",
+                "artisan_craft_appreciation",
+                "heritage_importance",
+                "innovation_interest",
+                "budget_very_flexible",
+                "investment_mindset",
+                "seeks_unique_pieces"
+            ]
+        },
+        "HEALTH_ALLERGIES": {
+            "description": "Health conditions and allergies (BUSINESS CRITICAL)",
+            "tags": [
+                "nickel_allergy",
+                "latex_allergy",
+                "nut_allergy",
+                "shellfish_allergy",
+                "gluten_intolerance",
+                "lactose_intolerance",
+                "chemical_sensitivity",
+                "dust_allergy",
+                "animal_allergy"
+            ],
+            "metadata_fields": [
+                "severity"
+            ]
+        },
+        "CLIENT_PROFILE": {
+            "description": "Client type, status and relationship quality",
+            "tags": [
+                "vic",
+                "regular_client",
+                "occasional_client",
+                "first_visit",
+                "multi_generational",
+                "corporate_gifting",
+                "referral_proven",
+                "high_network_documented",
+                "social_media_influencer",
+                "brand_ambassador_potential",
+                "at_risk_churn"
+            ]
+        },
+        "PURCHASE_OCCASIONS": {
+            "description": "Purchase motivations and life events",
+            "tags": [
+                "anniversary_gift",
+                "birthday_gift",
+                "wedding_gift",
+                "graduation_gift",
+                "self_purchase",
+                "business_gift",
+                "milestone_celebration",
+                "milestone_anniversary_25_plus",
+                "childbirth_celebration",
+                "retirement_celebration",
+                "promotion_celebration"
+            ]
+        },
+        "PROFESSIONAL_PROFILE": {
+            "description": "Professional background and industry (proxy for budget and network)",
+            "tags": [
+                "medical_surgeon",
+                "medical_specialist",
+                "medical_general",
+                "legal_corporate",
+                "legal_family",
+                "finance_banking",
+                "finance_investment",
+                "finance_insurance",
+                "entrepreneur_tech",
+                "entrepreneur_fashion",
+                "entrepreneur_real_estate",
+                "entrepreneur_hospitality",
+                "creative_arts_visual",
+                "creative_arts_music",
+                "creative_fashion_industry",
+                "influencer_lifestyle",
+                "media_professional",
+                "corporate_executive_c_level"
+            ]
+        },
+        "RELATIONSHIP_DYNAMICS": {
+            "description": "Shopping patterns, companions, and gift recipients",
+            "tags": [
+                "shopping_with_spouse",
+                "shopping_with_parent",
+                "shopping_with_children",
+                "shopping_alone",
+                "multi_generational_family",
+                "gift_for_spouse",
+                "gift_for_parent",
+                "gift_for_child",
+                "gift_for_sibling",
+                "gift_for_business_associate",
+                "gift_for_friend"
+            ]
+        }
+    }
+}

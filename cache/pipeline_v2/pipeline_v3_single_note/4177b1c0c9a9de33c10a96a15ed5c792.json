@@ -1,0 +1,152 @@
+{
+  "_cached_at": 1770887233.414039,
+  "payload": {
+    "id": "API_1770887230",
+    "original_text": "Herr Becker, 51 Jahre, Rechtsanwalt Partner Kanzlei, Stammkunde. Kauft Geschenk Ehefrau Muttertag Mai. Budget 6K. Ehefrau Lehrerin Gymnasium, liebt Literatur Theater. Reisen Theaterfestivals Salzburg Avignon. Stil klassisch elegant, bevorzugt bordeaux navy. Vegetarierin. Drei Kinder, älteste Tochter Medizinstudium, Zwillinge Söhne Gymnasium. Muttertag wichtig Familie Tradition. Kunde sehr zufrieden immer, kauft regelmäßig Anlässe. Nachfassen April Auswahl zeigen.",
+    "processed_text": "Herr Becker, 51 Jahre, Rechtsanwalt Partner Kanzlei, Stammkunde. Kauft Geschenk Ehefrau Muttertag Mai. Budget 6K. Ehefrau Lehrerin Gymnasium, liebt Literatur Theater. Reisen Theaterfestivals Salzburg Avignon. Stil klassisch elegant, bevorzugt bordeaux navy. Vegetarierin. Drei Kinder, älteste Tochter Medizinstudium, Zwillinge Söhne Gymnasium. Muttertag wichtig Familie Tradition. Kunde sehr zufrieden immer, kauft regelmäßig Anlässe. Nachfassen April Auswahl zeigen.",
+    "language": "DE",
+    "timestamp": "2026-02-12T10:07:13.366044",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations fournies concernent des détails sur les préférences d'achat et la vie familiale sans mentionner de données sensibles.",
+      "anonymized_text": "Herr Becker, 51 Jahre, Rechtsanwalt Partner Kanzlei, Stammkunde. Kauft Geschenk Ehefrau Muttertag Mai. Budget 6K. Ehefrau Lehrerin Gymnasium, liebt Literatur Theater. Reisen Theaterfestivals Salzburg Avignon. Stil klassisch elegant, bevorzugt bordeaux navy. Vegetarierin. Drei Kinder, älteste Tochter Medizinstudium, Zwillinge Söhne Gymnasium. Muttertag wichtig Familie Tradition. Kunde sehr zufrieden immer, kauft regelmäßig Anlässe. Nachfassen April Auswahl zeigen."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "navy",
+          "legal_lawyer",
+          "vip",
+          "gift_for_spouse",
+          "vegetarian",
+          "travel_frequent"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "navy",
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4550108V/M01441",
+            "name": "Broche LV Symphony",
+            "price": 1300.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/broche-lv-symphony-s00-nvprod4550108v/M01441",
+            "match_score": 0.52
+          },
+          {
+            "sku": "NVPROD4550113V/M01513",
+            "name": "Boucles d'oreilles LV Symphony",
+            "price": 400.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-lv-symphony-s00-nvprod4550113v/M01513",
+            "match_score": 0.51
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "legal_lawyer",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: accessories, navy. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Broche LV Symphony",
+            "Boucles d'oreilles LV Symphony"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 6000,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.85,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.92,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 4.39,
+      "rgpd": 2578.42,
+      "cache_lookup": 0.4,
+      "semantic_cache_lookup": 0.0,
+      "routing": 51.6,
+      "tier1": 1.1,
+      "tier2": 0.45,
+      "cross_validation": 1.02,
+      "rag": 38.4,
+      "recommendation": 0.72,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2676.6
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2676.5990257263184,
+    "from_cache": false
+  }
+}

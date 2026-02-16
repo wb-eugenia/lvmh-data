@@ -8,10 +8,6 @@ dist/
 **/dist/
 build/
 **/build/
-playwright-report/
-**/playwright-report/
-test-results/
-**/test-results/
 
 # Python
 __pycache__/
@@ -39,19 +35,6 @@ output/*.csv
 output/*.xlsx
 output/*.json
 !output/.gitkeep
-outputs/taxonomy_review_queue_*.csv
-outputs/taxonomy_review_queue_*.json
-
-# Runtime caches / local data
-cache/
-tests/temp_cache/
-tests/temp_cache_debug/
-*.db
-*.sqlite
-*.sqlite3
-cleaned_*.csv
-models/synthetic_predictions.joblib
-models/synthetic_predictions_metadata.json
 
 # Auto Claude (Antigravity)
 .auto-claude/
@@ -61,6 +44,5 @@ models/synthetic_predictions_metadata.json
 .worktrees/
 .security-key
 logs/security/
-logs/local_api_*.log
 brain/
 

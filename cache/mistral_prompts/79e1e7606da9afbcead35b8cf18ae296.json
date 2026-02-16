@@ -1,0 +1,75 @@
+{
+  "pilier_1_univers_produit": {
+    "categories": [
+      "legal_lawyer",
+      "gift_for_spouse",
+      "golf",
+      "travel_frequent",
+      "small_leather",
+      "leather_goods"
+    ],
+    "produits_mentionnes": [],
+    "usage": [
+      "travel",
+      "gift"
+    ],
+    "preferences": {
+      "colors": [
+        "brown_cognac"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather"
+      ]
+    },
+    "matched_products": []
+  },
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "occasional"
+    },
+    "profession": {
+      "sector": "legal_lawyer",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [],
+    "allergies": {
+      "food": [
+        "fragrance_sensitivity"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "birthday"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "high (3K-6K)",
+    "budget_specific": null,
+    "urgency": "this_month"
+  },
+  "meta_analysis": {
+    "confidence_score": 0.89,
+    "missing_info": [],
+    "risk_flags": [],
+    "quality_score": 0.0,
+    "completeness_score": 0.0,
+    "advisor_feedback": null
+  },
+  "confidence": 0.89,
+  "processing_tier": "tier2",
+  "extracted_by": null,
+  "error": null,
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
+}

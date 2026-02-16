@@ -1,0 +1,160 @@
+{
+  "_cached_at": 1770887247.091248,
+  "payload": {
+    "id": "API_1770887244",
+    "original_text": "M. Dubois, 63 ans, collectionneur art contemporain, client VIP 2010. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. Style jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril.",
+    "processed_text": "M. [NAME], 63 ans, collectionneur art contemporain, client [VIP_ID]. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril.",
+    "language": "FR",
+    "timestamp": "2026-02-12T10:07:27.039197",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations fournies concernent des détails sur un client et sa famille, mais ne relèvent pas des catégories sensibles identifiées.",
+      "anonymized_text": "M. [NAME], 63 ans, collectionneur art contemporain, client [VIP_ID]. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "customer_intent",
+          "professional",
+          "travel",
+          "accessories",
+          "gift",
+          "brown_cognac",
+          "vip",
+          "art_collector",
+          "gift_for_grandchild",
+          "travel_frequent",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.45
+          },
+          {
+            "sku": "NVPROD4220031V/M81984",
+            "name": "LV x YK - Porte-monnaie Rosalie",
+            "price": 525.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-porte-monnaie-rosalie-monogram-empreinte-nvprod4220031v/M81984",
+            "match_score": 0.45
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": null
+        },
+        "profession": {
+          "sector": "diplomacy",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Organizer de poche My LV Heritage qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche My LV Heritage",
+            "LV x YK - Porte-monnaie Rosalie"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "None (5K-15K)",
+        "budget_specific": 7000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 5.53,
+      "rgpd": 2762.33,
+      "cache_lookup": 0.45,
+      "semantic_cache_lookup": 0.0,
+      "routing": 67.25,
+      "tier1": 1.37,
+      "tier2": 0.47,
+      "cross_validation": 1.06,
+      "rag": 48.66,
+      "recommendation": 2.2,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2889.42
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2889.420986175537,
+    "from_cache": false
+  }
+}

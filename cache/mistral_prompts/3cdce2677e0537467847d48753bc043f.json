@@ -1,0 +1,97 @@
+{
+  "pilier_1_univers_produit": {
+    "categories": [
+      "leather_goods",
+      "ready_to_wear",
+      "accessories",
+      "travel_luggage",
+      "watches",
+      "jewelry",
+      "vegetarian",
+      "pescatarian",
+      "nickel_allergy",
+      "wedding_anniversary",
+      "art_collector",
+      "travel_frequent",
+      "tech_early_adopter",
+      "vic",
+      "gift_for_spouse",
+      "gift_for_parent",
+      "gift_for_child",
+      "shopping_with_family"
+    ],
+    "produits_mentionnes": [],
+    "usage": [
+      "professional_work",
+      "casual_daily",
+      "evening"
+    ],
+    "preferences": {
+      "colors": [
+        "cognac",
+        "bordeaux",
+        "beige",
+        "grey",
+        "black",
+        "brown"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather",
+        "grained_leather"
+      ]
+    },
+    "matched_products": []
+  },
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vic"
+    },
+    "profession": {
+      "sector": "['medical_physician', 'architect', 'student']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegetarian",
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [
+        "nickel_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "wedding_anniversary"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (20K+)",
+    "budget_specific": null,
+    "urgency": "this_month"
+  },
+  "meta_analysis": {
+    "confidence_score": 0.95,
+    "missing_info": [],
+    "risk_flags": [],
+    "quality_score": 0.0,
+    "completeness_score": 0.0,
+    "advisor_feedback": null
+  },
+  "confidence": 0.95,
+  "processing_tier": "tier2",
+  "extracted_by": null,
+  "error": null,
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
+}

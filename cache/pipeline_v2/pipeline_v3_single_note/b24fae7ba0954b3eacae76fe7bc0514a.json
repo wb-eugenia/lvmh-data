@@ -1,0 +1,164 @@
+{
+  "_cached_at": 1770885994.0401788,
+  "payload": {
+    "id": "API_1770885991",
+    "original_text": "Mme Bertrand, 55 ans, médecin cardiologue, cliente régulière depuis 2019. Renouvelle collection sacs travail, cherche modèle élégant professionnel. Budget 5-6K. Préfère cuirs discrets noir marine, fonctionnalité importante. Végétarienne noter pour déjeuners VIP. Voyage régulièrement congrès médicaux Europe Asie. Fille termine études médecine Bordeaux, diplomation juillet opportunité cadeau. Mari architecte, anniversaire mari septembre pourrait intéresser maroquinerie homme. Excellente cliente, achète 2-3 pièces par an, toujours satisfaite. Collectionne photographie contemporaine Helmut Newton fan. Rappeler juin preview collection été. Mentionné planifie grand voyage Japon octobre, besoin bagage qualité.",
+    "processed_text": "Mme [NAME], 55 ans, médecin cardiologue, cliente régulière depuis 2019. Renouvelle collection sacs travail, cherche modèle élégant professionnel. Budget 5-6K. Préfère cuirs discrets noir marine, fonctionnalité importante. Végétarienne noter pour déjeuners VIP. Voyage régulièrement congrès médicaux Europe Asie. Fille termine études médecine Bordeaux, diplomation juillet opportunité cadeau. Mari architecte, anniversaire mari septembre pourrait intéresser maroquinerie homme. Excellente cliente, achète 2-3 pièces par an, toujours satisfaite. Collectionne photographie contemporaine Helmut Newton fan. Rappeler juin preview collection été. Mentionné planifie grand voyage Japon octobre, besoin bagage qualité.",
+    "language": "FR",
+    "timestamp": "2026-02-12T09:46:33.977255",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Gift Important: +6",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des préférences d'achat, des détails professionnels et des informations familiales sans contexte conflictuel ou sensible.",
+      "anonymized_text": "Mme [NAME], 55 ans, médecin cardiologue, cliente régulière depuis 2019. Renouvelle collection sacs travail, cherche modèle élégant professionnel. Budget 5-6K. Préfère cuirs discrets noir marine, fonctionnalité importante. Végétarienne noter pour déjeuners VIP. Voyage régulièrement congrès médicaux Europe Asie. Fille termine études médecine Bordeaux, diplomation juillet opportunité cadeau. Mari architecte, anniversaire mari septembre pourrait intéresser maroquinerie homme. Excellente cliente, achète 2-3 pièces par an, toujours satisfaite. Collectionne photographie contemporaine Helmut Newton fan. Rappeler juin preview collection été. Mentionné planifie grand voyage Japon octobre, besoin bagage qualité."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "professional",
+          "customer_intent",
+          "travel",
+          "gift",
+          "accessories",
+          "professional_work",
+          "navy",
+          "travel_luggage",
+          "leather_goods",
+          "ready_to_wear",
+          "medical_physician",
+          "regular",
+          "vegetarian",
+          "travel_frequent",
+          "art_collector"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3660115V/R08926",
+            "name": "Travel Book Mediterranean Sea  édition collector",
+            "price": 150.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/travel-book-mediterranean-sea-edition-collector-nvprod3660115v/R08926",
+            "match_score": 0.51
+          },
+          {
+            "sku": "NVPROD4450028V/M11047",
+            "name": "Petite Valise Malletage Palazzo Écume",
+            "price": 9900.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/petite-valise-malletage-palazzo-ecume-malletage-nvprod4450028v/M11047",
+            "match_score": 0.5
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: black, professional. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Travel Book Mediterranean Sea  édition collector",
+            "Petite Valise Malletage Palazzo Écume"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 5000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 80.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.2314319610595703,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 22.6,
+      "rgpd": 1952.44,
+      "cache_lookup": 0.5,
+      "semantic_cache_lookup": 0.0,
+      "routing": 67.62,
+      "tier1": 1.28,
+      "tier2": 0.54,
+      "cross_validation": 1.1,
+      "rag": 48.95,
+      "recommendation": 0.16,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2095.33
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2095.3333377838135,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "_cached_at": 1770886068.4475143,
+  "payload": {
+    "id": "API_1770886065",
+    "original_text": "Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie compleanno e figlia laurea. Budget 15K flessibile. Moglie stilista brand proprio, ama moda avant-garde contemporanea. Figlia 25 anni laureata design Politecnico cerca primo lavoro. Moglie frequenta settimane moda tutte città, colleziona pezzi designer emergenti. Figlia appassionata sostenibilità eco-design. Famiglia pratica sci inverno vela estate. Moglie preferisce pezzi unici statement colorati audaci. Figlia stile minimale sostenibile. Moglie pescetariana figlia vegana eventi. Figlia allergia nichel importante. Mentionato figlio maschio 28 lavora finanza Londra, possibile cliente futuro. Anniversario matrimonio settembre. Cliente ottimo rete contatti moda lusso, riferito diversi amici. Richiamare febbraio anteprima esclusiva. Interessato collaborazioni designer italiani emergenti edizioni limitate.",
+    "processed_text": "Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie compleanno e figlia laurea. Budget 15K flessibile. Moglie stilista brand proprio, ama moda avant-garde contemporanea. Figlia 25 anni laureata design Politecnico cerca primo lavoro. Moglie frequenta settimane moda tutte città, colleziona pezzi designer emergenti. Figlia appassionata sostenibilità eco-design. Famiglia pratica sci inverno vela estate. Moglie preferisce pezzi unici statement colorati audaci. Figlia stile minimale sostenibile. Moglie pescetariana figlia vegana eventi. Figlia allergia nichel importante. Mentionato figlio maschio 28 lavora finanza Londra, possibile cliente futuro. Anniversario matrimonio settembre. Cliente ottimo rete contatti moda lusso, riferito diversi amici. Richiamare febbraio anteprima esclusiva. Interessato collaborazioni designer italiani emergenti edizioni limitate.",
+    "language": "IT",
+    "timestamp": "2026-02-12T09:47:48.350097",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le notes clients ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies alimentaires sont acceptables pour le business, et il n'y a pas de mention de conflits familiaux, de santé mentale ou physique, de croyances religieuses, d'opinions politiques, d'orientation sexuelle ou d'origine ethnique.",
+      "anonymized_text": "Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie compleanno e figlia laurea. Budget 15K flessibile. Moglie stilista brand proprio, ama moda avant-garde contemporanea. Figlia 25 anni laureata design Politecnico cerca primo lavoro. Moglie frequenta settimane moda tutte città, colleziona pezzi designer emergenti. Figlia appassionata sostenibilità eco-design. Famiglia pratica sci inverno vela estate. Moglie preferisce pezzi unici statement colorati audaci. Figlia stile minimale sostenibile. Moglie pescetariana figlia vegana eventi. Figlia allergia nichel importante. Mentionato figlio maschio 28 lavora finanza Londra, possibile cliente futuro. Anniversario matrimonio settembre. Cliente ottimo rete contatti moda lusso, riferito diversi amici. Richiamare febbraio anteprima esclusiva. Interessato collaborazioni designer italiani emergenti edizioni limitate."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "regular",
+          "entrepreneur_established",
+          "gift_for_spouse",
+          "gift_for_child",
+          "art_collector",
+          "travel_frequent",
+          "eco_conscious",
+          "nickel_allergy",
+          "vegan",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD1250274V/R96625",
+            "name": "Canapé Bomboca par Fernando et Humberto Campana",
+            "price": 63500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/canape-bomboca-par-fernando-et-humberto-campana-nvprod1250274v/R96625",
+            "match_score": 0.55
+          },
+          {
+            "sku": "NVPROD4240008V/M30933",
+            "name": "Organizer de poche",
+            "price": 360.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-taigarama-nvprod4240008v/M30933",
+            "match_score": 0.55
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "entrepreneur_established",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan",
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: regular, entrepreneur_established. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Canapé Bomboca par Fernando et Humberto Campana",
+            "Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 15000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 32.67,
+      "rgpd": 2648.19,
+      "cache_lookup": 1.3,
+      "semantic_cache_lookup": 0.0,
+      "routing": 141.69,
+      "tier1": 3.35,
+      "tier2": 1.46,
+      "cross_validation": 3.11,
+      "rag": 127.17,
+      "recommendation": 0.38,
+      "quality_gate": 0.03,
+      "injection": 0.01,
+      "total": 2959.53
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2959.5348834991455,
+    "from_cache": false
+  }
+}

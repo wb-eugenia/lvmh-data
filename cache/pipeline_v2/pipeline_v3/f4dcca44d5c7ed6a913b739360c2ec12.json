@@ -1,0 +1,154 @@
+{
+  "_cached_at": 1770809733.8321884,
+  "payload": {
+    "id": "GEN_009",
+    "original_text": "alors euh Mr. and Mrs. Kim, Korean couple living in London, late 40s, first visit but high potential. He's hedge fund manager, she's interior designer with own firm. Looking for multiple pieces for themselves and corporate gifts. Budget very flexible, discussed around 25-30K total. He's interested in leather goods for office, she wants handbags and accessories. Both passionate contemporary art, recently purchased piece from Frieze. They ski regularly in Alps, planning trip Verbier next month. She practices yoga daily at exclusive studio Chelsea. He plays golf, member at Sunningdale. Both follow plant-based diet mostly, she has severe shellfish allergy critical for events. Mentioned they host charity gala annually in autumn, could be boutique partnership opportunity. Son studying at Imperial College engineering, graduation gift next year. Daughter at boarding school Switzerland. Excellent network, could refer many clients. Follow up in two weeks with personalized selection. Invite to VIP events, they appreciate exclusivity. Merci. T. l. phone [PHONE] enfin voil. voil.",
+    "processed_text": "alors euh Mr. and Mrs. Kim, Korean couple living in London, late 40s, first visit but high potential. He's hedge fund manager, she's interior designer with own firm. Looking for multiple pieces for themselves and corporate gifts. Budget very flexible, discussed around 25-30K total. He's interested in leather goods for office, she wants handbags and accessories. Both passionate contemporary art, recently purchased piece from Frieze. They ski regularly in Alps, planning trip Verbier next month. She practices yoga daily at exclusive studio Chelsea. He plays golf, member at Sunningdale. Both follow plant-based diet mostly, she has [RGPD_HEALTH_PHYSICAL_REDACTED] critical for events. Mentioned they host charity gala annually in autumn, could be boutique partnership opportunity. Son studying at Imperial College engineering, graduation gift next year. Daughter at boarding school Switzerland. Excellent network, could refer many clients. Follow up in two weeks with personalized selection. Invite to VIP events, they appreciate exclusivity. Merci. T. l. phone [PHONE] enfin voil. voil.",
+    "language": "EN",
+    "timestamp": "2026-02-11T12:35:33.820124",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget Vague: +8",
+        "Multi Product: +5",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "The text contains a mention of a severe shellfish allergy, which is classified as a health-related sensitive data under Article 9 of the GDPR.",
+      "anonymized_text": "alors euh Mr. and Mrs. Kim, Korean couple living in London, late 40s, first visit but high potential. He's hedge fund manager, she's interior designer with own firm. Looking for multiple pieces for themselves and corporate gifts. Budget very flexible, discussed around 25-30K total. He's interested in leather goods for office, she wants handbags and accessories. Both passionate contemporary art, recently purchased piece from Frieze. They ski regularly in Alps, planning trip Verbier next month. She practices yoga daily at exclusive studio Chelsea. He plays golf, member at Sunningdale. Both follow plant-based diet mostly, she has [RGPD_HEALTH_PHYSICAL_REDACTED] critical for events. Mentioned they host charity gala annually in autumn, could be boutique partnership opportunity. Son studying at Imperial College engineering, graduation gift next year. Daughter at boarding school Switzerland. Excellent network, could refer many clients. Follow up in two weeks with personalized selection. Invite to VIP events, they appreciate exclusivity. Merci. T. l. phone [PHONE] enfin voil. voil."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "leather_goods",
+          "casual_daily",
+          "professional",
+          "jewelry",
+          "evening",
+          "first_visit",
+          "high_potential",
+          "accessories",
+          "art_collector",
+          "travel_frequent",
+          "golf",
+          "eco_conscious",
+          "vegan",
+          "gift_for_self",
+          "gift_for_colleague",
+          "wedding_anniversary"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4420007V/R09119",
+            "name": "Louis Vuitton Skin : Architecture of Luxury Seoul",
+            "price": 160.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/louis-vuitton-skin-architecture-of-luxury-seoul-nvprod4420007v/R09119",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD1590126V/R08596",
+            "name": "Livre de voyage Séoul",
+            "price": 55.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-de-voyage-seoul-nvprod1590126v/R08596",
+            "match_score": 0.42
+          },
+          {
+            "sku": "NVPROD1590128V/RN0017",
+            "name": "Livre de voyage Séoul - Édition de l'artiste",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-de-voyage-seoul-edition-de-lartiste-nvprod1590128v/RN0017",
+            "match_score": 0.42
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "['finance_trader', 'creative_designer']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan",
+          "plant_based"
+        ],
+        "allergies": {
+          "food": [
+            "[RGPD_HEALTH_PHYSICAL_REDACTED]"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. Relance sur le Louis Vuitton Skin : Architecture of Luxury Seoul.",
+          "priority": "Medium",
+          "target_products": [
+            "Louis Vuitton Skin : Architecture of Luxury Seoul"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (25K-30K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.88,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 65.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.92,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 14493.003129959106,
+    "from_cache": false
+  }
+}

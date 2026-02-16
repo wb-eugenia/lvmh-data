@@ -1,0 +1,153 @@
+{
+  "_cached_at": 1770887225.0346882,
+  "payload": {
+    "id": "API_1770887222",
+    "original_text": "Signor e Signora De Luca, 47-49 anni, clienti fedeli 2017. Comprano regali genitori anniversario 50 anni matrimonio celebrazione grande famiglia. Budget 14K. Genitori anziani 75-77 anni, stile classico tradizionale elegante. Madre ama giardinaggio fiori, padre appassionato storia libri antichi. Celebrazione aprile villa lago Como, famiglia allargata 50 persone. Coppia stessa entrambi avvocati studio legale proprio. Viaggiano frequente lavoro Europa. Lei eleganza moderna, lui classico funzionale. Entrambi pescetariani eventi. Nessuna allergia. Due figli adolescenti studiano liceo. Famiglia molto unita, tradizioni importanti. Ottimi clienti, comprano regolare occasioni famiglia. Richiamare marzo coordinare consegna villa. Interessati possibilità personalizzazione incisione messaggio genitori speciale.",
+    "processed_text": "Signor e Signora De Luca, 47-49 anni, clienti fedeli 2017. Comprano regali genitori anniversario 50 anni matrimonio celebrazione grande famiglia. Budget 14K. Genitori anziani 75-77 anni, stile classico tradizionale elegante. Madre ama giardinaggio fiori, padre appassionato storia libri antichi. Celebrazione aprile villa lago Como, famiglia allargata 50 persone. Coppia stessa entrambi avvocati studio legale proprio. Viaggiano frequente lavoro Europa. Lei eleganza moderna, lui classico funzionale. Entrambi pescetariani eventi. Nessuna allergia. Due figli adolescenti studiano liceo. Famiglia molto unita, tradizioni importanti. Ottimi clienti, comprano regolare occasioni famiglia. Richiamare marzo coordinare consegna villa. Interessati possibilità personalizzazione incisione messaggio genitori speciale.",
+    "language": "IT",
+    "timestamp": "2026-02-12T10:07:04.987809",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "🤖 ML prediction (conf: 0.89)"
+      ],
+      "confidence": 0.89,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le note clients ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des détails sur les clients et leur famille, mais ne révèlent pas de données sensibles telles que la santé mentale, la santé physique, les conflits familiaux, la religion, les opinions politiques, l'orientation sexuelle ou l'origine ethnique.",
+      "anonymized_text": "Signor e Signora De Luca, 47-49 anni, clienti fedeli 2017. Comprano regali genitori anniversario 50 anni matrimonio celebrazione grande famiglia. Budget 14K. Genitori anziani 75-77 anni, stile classico tradizionale elegante. Madre ama giardinaggio fiori, padre appassionato storia libri antichi. Celebrazione aprile villa lago Como, famiglia allargata 50 persone. Coppia stessa entrambi avvocati studio legale proprio. Viaggiano frequente lavoro Europa. Lei eleganza moderna, lui classico funzionale. Entrambi pescetariani eventi. Nessuna allergia. Due figli adolescenti studiano liceo. Famiglia molto unita, tradizioni importanti. Ottimi clienti, comprano regolare occasioni famiglia. Richiamare marzo coordinare consegna villa. Interessati possibilità personalizzazione incisione messaggio genitori speciale."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "vip",
+          "gift_for_parents",
+          "wedding_anniversary",
+          "travel_frequent",
+          "legal_lawyer",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4450028V/M11047",
+            "name": "Petite Valise Malletage Palazzo Écume",
+            "price": 9900.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/petite-valise-malletage-palazzo-ecume-malletage-nvprod4450028v/M11047",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD4220055V/R95070",
+            "name": "Carafe Flower",
+            "price": 495.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/flower-carafe-nvprod4220055v/R95070",
+            "match_score": 0.48
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "legal_lawyer",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [
+          "allergy_mentioned"
+        ],
+        "occasion": "wedding"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: accessories, vip. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Petite Valise Malletage Palazzo Écume",
+            "Carafe Flower"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 14000,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 13.72,
+      "rgpd": 2292.58,
+      "cache_lookup": 0.43,
+      "semantic_cache_lookup": 0.0,
+      "routing": 64.5,
+      "tier1": 1.9,
+      "tier2": 0.44,
+      "cross_validation": 0.9,
+      "rag": 41.21,
+      "recommendation": 1.12,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2416.88
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2416.879177093506,
+    "from_cache": false
+  }
+}

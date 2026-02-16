@@ -1,0 +1,173 @@
+{
+  "_cached_at": 1770887235.5681307,
+  "payload": {
+    "id": "API_1770887233",
+    "original_text": "M. et Mme Garnier, couple 50-52 ans, clients VIP depuis 2014. Achat important voyage anniversaire 25 ans mariage safari luxe Kenya Tanzanie puis Seychelles. Budget combiné 22K très généreux. Lui cardiologue chef service hôpital universitaire, elle psychologue cabinet privé réputé. Tous deux passionnés photographie animalière, safari rêve longtemps planifié. Collectionnent photos grands photographes nature Salgado Arthus-Bertrand. Voyage trois semaines juillet incluant repos plage après safari. Elle élégance naturelle discrète, préfère beige cognac cuirs souples. Lui style sobre fonctionnel, kaki olive pour safari noir élégant plage. Tous deux végétariens événements. Elle allergie soleil sévère protection important même accessoires. Trois enfants adultes, fils médecin suit père, deux filles architectes. Anniversaire mariage juin chaque année tradition shopping ici. Excellents clients lifetime value élevé, réseau médical professionnel important, référé nombreux collègues. Rappeler mai preview exclusive été confirmer pièces voyage. Mentionné planifient retraite dans 5 ans, voyages fréquents futurs, excellent potentiel long terme. Très intéressés artisanat qualité durabilité pièces investissement.",
+    "processed_text": "M. et Mme [NAME], couple 50-52 ans, clients VIP depuis 2014. Achat important voyage anniversaire 25 ans mariage safari luxe Kenya Tanzanie puis Seychelles. Budget combiné 22K très généreux. Lui cardiologue chef service hôpital universitaire, elle psychologue cabinet privé réputé. Tous deux passionnés photographie animalière, safari rêve longtemps planifié. Collectionnent photos grands photographes nature Salgado Arthus-Bertrand. Voyage trois semaines juillet incluant repos plage après safari. Elle élégance naturelle discrète, préfère beige cognac cuirs souples. Lui sobre fonctionnel, kaki olive pour safari noir élégant plage. Tous deux végétariens événements. Elle allergie soleil sévère protection important même accessoires. Trois enfants adultes, fils médecin suit père, deux filles architectes. Anniversaire mariage juin chaque année tradition shopping ici. Excellents clients lifetime value élevé, réseau médical professionnel important, référé nombreux collègues. Rappeler mai preview exclusive été confirmer pièces voyage. Mentionné planifient retraite dans 5 ans, voyages fréquents futurs, excellent potentiel long terme. Très intéressés artisanat qualité durabilité pièces investissement.",
+    "language": "FR",
+    "timestamp": "2026-02-12T10:07:15.513407",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Allergy Severe: +12",
+        "Allergy Medium: +6",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les professions, le régime alimentaire (végétarien), et l'allergie au soleil ne sont pas considérées comme sensibles dans ce contexte.",
+      "anonymized_text": "M. et Mme [NAME], couple 50-52 ans, clients VIP depuis 2014. Achat important voyage anniversaire 25 ans mariage safari luxe Kenya Tanzanie puis Seychelles. Budget combiné 22K très généreux. Lui cardiologue chef service hôpital universitaire, elle psychologue cabinet privé réputé. Tous deux passionnés photographie animalière, safari rêve longtemps planifié. Collectionnent photos grands photographes nature Salgado Arthus-Bertrand. Voyage trois semaines juillet incluant repos plage après safari. Elle élégance naturelle discrète, préfère beige cognac cuirs souples. Lui sobre fonctionnel, kaki olive pour safari noir élégant plage. Tous deux végétariens événements. Elle allergie soleil sévère protection important même accessoires. Trois enfants adultes, fils médecin suit père, deux filles architectes. Anniversaire mariage juin chaque année tradition shopping ici. Excellents clients lifetime value élevé, réseau médical professionnel important, référé nombreux collègues. Rappeler mai preview exclusive été confirmer pièces voyage. Mentionné planifient retraite dans 5 ans, voyages fréquents futurs, excellent potentiel long terme. Très intéressés artisanat qualité durabilité pièces investissement."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "black",
+          "customer_intent",
+          "professional",
+          "travel",
+          "accessories",
+          "evening",
+          "beige_neutral",
+          "brown_cognac",
+          "vip",
+          "travel_luggage",
+          "ready_to_wear",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian",
+          "medical_physician",
+          "medical_surgeon"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "casual_daily"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "beige_neutral",
+            "navy",
+            "beige"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD110014V/RN0001",
+            "name": "Livre Portfolio de photographies  par Jean Larivière - Volume 2",
+            "price": 6000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-portfolio-de-photographies-par-jean-lariviere-volume-2-nvprod110014v/RN0001",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD2290011V/RN0019",
+            "name": "Livre Travel Book Maroc - Édition de l'artiste",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-maroc-edition-de-lartiste-nvprod2290011v/RN0019",
+            "match_score": 0.43
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['medical_physician', 'medical_surgeon']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [
+            "sun_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le vip pour son birthday. Suggère le Livre Portfolio de photographies  par Jean Larivière - Volume 2 qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Portfolio de photographies  par Jean Larivière - Volume 2",
+            "Livre Travel Book Maroc - Édition de l'artiste"
+          ],
+          "deadline": "this_month"
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.93,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 25.96,
+      "rgpd": 1948.67,
+      "cache_lookup": 0.42,
+      "semantic_cache_lookup": 0.0,
+      "routing": 52.56,
+      "tier1": 2.08,
+      "tier2": 0.47,
+      "cross_validation": 1.0,
+      "rag": 44.07,
+      "recommendation": 2.28,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2077.64
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2077.6450634002686,
+    "from_cache": false
+  }
+}

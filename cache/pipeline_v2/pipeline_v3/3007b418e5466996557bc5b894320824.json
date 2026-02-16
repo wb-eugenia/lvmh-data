@@ -1,0 +1,142 @@
+{
+  "_cached_at": 1770811458.5785341,
+  "payload": {
+    "id": "CA_086",
+    "original_text": "Mrs. Harrison and mother shopping together, multi-generational excellent clients. Mrs. Harrison 47 barrister QC, mother 72 retired diplomat. Combined budget 18K. Mother elegant classic timeless style, decades diplomatic service worldwide lived many countries. Collects diplomatic memorabilia, house museum personal history. Daughter modern professional sophisticated, busy court schedule. Both passionate about theater opera, season tickets Royal Opera House. Travel cultural trips, just returned India next planning Egypt. Mother prefers burgundy navy gold classic diplomatic elegance. Daughter wants versatile professional pieces rose gold black cognac. Both vegetarian events. Mother severe nut allergy critical boutique events. Mentioned mother's 75th birthday coming this year September big family celebration. Daughter's husband architect two children teenagers boarding school. Anniversary mother's late husband June memory honors annually. Excellent multi-generational lifetime value, diplomatic legal network extensive internationally referred many over years. Follow up July summer collection preview. Very interested heritage craftsmanship, mother shared stories diplomatic gifts received career appreciates quality artisanship. Top relationship maintain carefully ongoing loyalty years appreciated.",
+    "processed_text": "Mrs. Harrison and mother shopping together, multi-generational excellent clients. Mrs. Harrison 47 barrister QC, mother 72 retired diplomat. Combined budget 18K. Mother elegant classic timeless style, decades diplomatic service worldwide lived many countries. Collects diplomatic memorabilia, house museum personal history. Daughter modern professional sophisticated, busy court schedule. Both passionate theater opera, season tickets Royal Opera House. Travel cultural trips, just returned India next planning Egypt. Mother prefers burgundy navy gold classic diplomatic elegance. Daughter wants versatile professional pieces rose gold black cognac. Both vegetarian events. Mother [RGPD_HEALTH_PHYSICAL_REDACTED] critical boutique events. Mentioned mother's 75th birthday coming this year September big family celebration. Daughter's husband architect two children teenagers boarding school. Anniversary [RGPD_FAMILY_CONFLICT_REDACTED] June memory honors annually. Excellent multi-generational lifetime value, diplomatic legal network extensive internationally referred many over years. Follow up July summer collection preview. Very interested heritage craftsmanship, mother shared stories diplomatic gifts received career appreciates quality artisanship. Top relationship maintain carefully ongoing loyalty years appreciated.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:04:18.523489",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical",
+        "family_conflict"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "The text contains a severe nut allergy, which is classified as sensitive health information. Additionally, the mention of the mother's late husband could imply a family conflict context, especially with the annual memory honors, which may indicate unresolved emotional issues.",
+      "anonymized_text": "Mrs. Harrison and mother shopping together, multi-generational excellent clients. Mrs. Harrison 47 barrister QC, mother 72 retired diplomat. Combined budget 18K. Mother elegant classic timeless style, decades diplomatic service worldwide lived many countries. Collects diplomatic memorabilia, house museum personal history. Daughter modern professional sophisticated, busy court schedule. Both passionate theater opera, season tickets Royal Opera House. Travel cultural trips, just returned India next planning Egypt. Mother prefers burgundy navy gold classic diplomatic elegance. Daughter wants versatile professional pieces rose gold black cognac. Both vegetarian events. Mother [RGPD_HEALTH_PHYSICAL_REDACTED] critical boutique events. Mentioned mother's 75th birthday coming this year September big family celebration. Daughter's husband architect two children teenagers boarding school. Anniversary [RGPD_FAMILY_CONFLICT_REDACTED] June memory honors annually. Excellent multi-generational lifetime value, diplomatic legal network extensive internationally referred many over years. Follow up July summer collection preview. Very interested heritage craftsmanship, mother shared stories diplomatic gifts received career appreciates quality artisanship. Top relationship maintain carefully ongoing loyalty years appreciated."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "bold_colors",
+          "brown_cognac",
+          "professional",
+          "navy",
+          "luxury_service",
+          "accessories",
+          "black",
+          "leather_goods",
+          "ready_to_wear",
+          "legal_lawyer",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian",
+          "vic",
+          "gift_for_parent",
+          "shopping_with_parent",
+          "wedding_anniversary"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "bold_colors",
+            "burgundy",
+            "gold",
+            "rose_gold",
+            "cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "exotic"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3740060V/P01731",
+            "name": "Couverture passeport My LV Heritage",
+            "price": 425.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-passeport-my-lv-heritage-monogram-eclipse-nvprod3740060v/P01731",
+            "match_score": 0.36
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Couverture passeport My LV Heritage qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Couverture passeport My LV Heritage"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 18000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3506.0274600982666,
+    "from_cache": false
+  }
+}

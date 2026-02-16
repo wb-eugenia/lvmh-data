@@ -1,0 +1,139 @@
+{
+  "_cached_at": 1770887244.1374733,
+  "payload": {
+    "id": "API_1770887241",
+    "original_text": "Ms. Park, 34, YouTuber luxury lifestyle content 1.5M subscribers, first visit high potential. Looking for pieces content creation and personal use. Budget 14K flexible. Travels constantly luxury destinations content, next trips Dubai then Maldives. Style modern elegant on-camera appropriate. Passionate about wellness spa treatments, practices meditation. Vegan strict lifestyle choice events. No allergies. Partner tech entrepreneur also influence. Excellent visibility social media potential brand partnership. Very interested sustainability asked materials sourcing. Follow up immediately maintain relationship. Invite exclusive VIP events content opportunities. Could become brand ambassador long-term.",
+    "processed_text": "Ms. Park, 34, YouTuber luxury lifestyle content 1. 5M subscribers, first visit high potential. Looking for pieces content creation and personal use. Budget 14K flexible. Travels constantly luxury destinations content, next trips Dubai then Maldives. Style modern elegant on-camera appropriate. Passionate wellness spa treatments, practices meditation. Vegan strict lifestyle choice events. No allergies. Partner tech entrepreneur also influence. Excellent visibility social media potential brand partnership. Very interested sustainability asked materials sourcing. Follow up immediately maintain relationship. Invite exclusive VIP events content opportunities. Could become brand ambassador long-term.",
+    "language": "EN",
+    "timestamp": "2026-02-12T10:07:24.089829",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget Vague: +8",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the client's profession, lifestyle choices, and interests without revealing any sensitive personal information.",
+      "anonymized_text": "Ms. Park, 34, YouTuber luxury lifestyle content 1. 5M subscribers, first visit high potential. Looking for pieces content creation and personal use. Budget 14K flexible. Travels constantly luxury destinations content, next trips Dubai then Maldives. Style modern elegant on-camera appropriate. Passionate wellness spa treatments, practices meditation. Vegan strict lifestyle choice events. No allergies. Partner tech entrepreneur also influence. Excellent visibility social media potential brand partnership. Very interested sustainability asked materials sourcing. Follow up immediately maintain relationship. Invite exclusive VIP events content opportunities. Could become brand ambassador long-term."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "first_visit",
+          "travel_frequent",
+          "vegan",
+          "eco_conscious",
+          "tech_early_adopter",
+          "travel_luggage",
+          "ready_to_wear"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "casual_daily"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "creative_designer",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [
+          "allergy_mentioned",
+          "no_known_allergies"
+        ],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. ",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 14000,
+        "urgency": "immediate"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8500000000000001,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 75.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Bonne note: le profil est exploitable, encore un peu de profondeur possible."
+      },
+      "confidence": 0.92,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 10.87,
+      "rgpd": 2292.33,
+      "cache_lookup": 0.42,
+      "semantic_cache_lookup": 0.0,
+      "routing": 68.1,
+      "tier1": 1.52,
+      "tier2": 0.54,
+      "cross_validation": 1.01,
+      "rag": 39.97,
+      "recommendation": 1.74,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2416.61
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2416.616201400757,
+    "from_cache": false
+  }
+}

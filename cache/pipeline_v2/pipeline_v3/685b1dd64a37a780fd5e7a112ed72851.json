@@ -1,0 +1,136 @@
+{
+  "_cached_at": 1770811368.833885,
+  "payload": {
+    "id": "CA_038",
+    "original_text": "Sra. Ruiz, 45 años, cardióloga hospital privado, nueva cliente buen potencial. Busca renovar accesorios profesionales después ascenso jefa departamento. Presupuesto 9K flexible. Estilo profesional elegante discreto, prefiere negro navy cognac. Practica natación competitiva master, entrena madrugadas antes trabajo. Viaja conferencias médicas Europa Asia frecuente. Colecciona fotografía médica histórica curiosidad profesional. Vegetariana estricta eventos. Alergia látex importante nota. Mencionó hija adolescente 16 estudia piano conservatorio podría interesar accesorios jóvenes futuro. Marido arquitecto también potencial cliente. Aniversario matrimonio julio cada año. Buen potencial largo plazo profesional establecida. Llamar marzo mostrar novedades primavera.",
+    "processed_text": "Sra. Ruiz, 45 años, cardióloga hospital privado, nueva cliente buen potencial. Busca renovar accesorios profesionales después ascenso jefa departamento. Presupuesto 9K flexible. Estilo profesional elegante discreto, prefiere negro navy cognac. Practica natación competitiva master, entrena madrugadas antes trabajo. Viaja conferencias médicas Europa Asia frecuente. Colecciona fotografía médica histórica curiosidad profesional. Vegetariana estricta eventos. [RGPD_HEALTH_PHYSICAL_REDACTED] importante nota. Mencionó hija adolescente 16 estudia piano conservatorio podría interesar accesorios jóvenes futuro. Marido arquitecto también potencial cliente. Aniversario matrimonio julio cada año. Buen potencial largo plazo profesional establecida. Llamar marzo mostrar novedades primavera.",
+    "language": "ES",
+    "timestamp": "2026-02-11T13:02:48.799357",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Budget Vague: +8",
+        "🤖 ML prediction (conf: 0.83)"
+      ],
+      "confidence": 0.83,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "L'allergie au latex est mentionnée, mais elle est considérée comme une donnée non sensible dans le cadre commercial. Aucune autre donnée sensible n'est détectée.",
+      "anonymized_text": "Sra. Ruiz, 45 años, cardióloga hospital privado, nueva cliente buen potencial. Busca renovar accesorios profesionales después ascenso jefa departamento. Presupuesto 9K flexible. Estilo profesional elegante discreto, prefiere negro navy cognac. Practica natación competitiva master, entrena madrugadas antes trabajo. Viaja conferencias médicas Europa Asia frecuente. Colecciona fotografía médica histórica curiosidad profesional. Vegetariana estricta eventos. [RGPD_HEALTH_PHYSICAL_REDACTED] importante nota. Mencionó hija adolescente 16 estudia piano conservatorio podría interesar accesorios jóvenes futuro. Marido arquitecto también potencial cliente. Aniversario matrimonio julio cada año. Buen potencial largo plazo profesional establecida. Llamar marzo mostrar novedades primavera."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "accessories",
+          "navy"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4890034V/1AFHMU",
+            "name": "Mini-jupe en tissu scuba à volants nageoires",
+            "price": 1650.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/mini-jupe-en-tissu-scuba-a-volants-nageoires-nvprod4890034v/1AFHMU",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD4880003V/1AFC03",
+            "name": "Veste en tissu scuba à volants nageoires",
+            "price": 6000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-en-tissu-scuba-a-volants-nageoires-nvprod4880003v/1AFC03",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD4890023V/1AFDCJ",
+            "name": "Mini-jupe en tissu scuba à volants nageoires",
+            "price": 6500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/mini-jupe-en-tissu-scuba-a-volants-nageoires-nvprod4890023v/1AFDCJ",
+            "match_score": 0.43
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [
+            "vegetarian"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, accessories. Budget estimé: flexible_unknown (None).",
+          "priority": "Medium",
+          "target_products": [
+            "Mini-jupe en tissu scuba à volants nageoires",
+            "Veste en tissu scuba à volants nageoires"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "flexible_unknown (None)",
+        "budget_specific": null,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 60.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.75,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 2.475738525390625,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2969.219923019409,
+    "from_cache": false
+  }
+}

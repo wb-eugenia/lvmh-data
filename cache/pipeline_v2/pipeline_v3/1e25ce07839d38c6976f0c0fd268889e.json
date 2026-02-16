@@ -1,0 +1,154 @@
+{
+  "_cached_at": 1770811403.4072235,
+  "payload": {
+    "id": "CA_083",
+    "original_text": "Herr und Frau Bauer, beide 48 Jahre, ausgezeichnete Kunden seit 2015. Einkauf wichtige Reise Jubiläum 20 Jahre Ehe Safari Luxus Botswana. Budget kombiniert 20K großzügig flexibel. Er Zahnarzt eigene Praxis erfolgreich, sie Apothekerin. Beide leidenschaftlich Tierfotografie Naturdokumentation, Safari Traum lange geplant. Sammeln Tierfotografie Bücher Kunstdrucke Afrika. Reise Juni drei Wochen inklusiv Viktoriafälle Kapstadt. Sie elegant natürlich Stil, bevorzugt khaki beige Safari dann schwarz elegant Kapstadt. Er funktional praktisch, olive braun Safari navy schwarz Stadt. Beide Pescetarier Events. Sie Sonnenallergie schwer Schutz wichtig Accessoires auch. Zwei Kinder Teenager, Tochter studiert Veterinärmedizin Sohn Gymnasium Biologie. Hochzeitstag Mai jedes Jahr Einkauf Tradition hier. Ausgezeichnete Kunden Lifetime Value hoch, Netzwerk medizinisch zahnärztlich Kollegen verwiesen bereits. Nachfassen April letzte Vorbereitungen Reise bestätigen. Erwähnt planen Ruhestand fünf Jahre, Reisen häufiger zukünftig ausgezeichnet Potenzial langfristig. Sehr interessiert Handwerk Qualität Haltbarkeit Investitionsstücke Reisen robust.",
+    "processed_text": "Herr und Frau Bauer, beide 48 Jahre, ausgezeichnete Kunden seit 2015. Einkauf wichtige Reise Jubiläum 20 Jahre Ehe Safari Luxus Botswana. Budget kombiniert 20K großzügig flexibel. Er Zahnarzt eigene Praxis erfolgreich, sie Apothekerin. Beide leidenschaftlich Tierfotografie Naturdokumentation, Safari Traum lange geplant. Sammeln Tierfotografie Bücher Kunstdrucke Afrika. Reise Juni drei Wochen inklusiv Viktoriafälle Kapstadt. Sie elegant natürlich Stil, bevorzugt khaki beige Safari dann schwarz elegant Kapstadt. Er funktional praktisch, olive braun Safari navy schwarz Stadt. Beide Pescetarier Events. Sie [RGPD_HEALTH_PHYSICAL_REDACTED] Schutz wichtig Accessoires auch. Zwei Kinder Teenager, Tochter studiert Veterinärmedizin Sohn Gymnasium Biologie. Hochzeitstag Mai jedes Jahr Einkauf Tradition hier. Ausgezeichnete Kunden Lifetime Value hoch, Netzwerk medizinisch zahnärztlich Kollegen verwiesen bereits. Nachfassen April letzte Vorbereitungen Reise bestätigen. Erwähnt planen Ruhestand fünf Jahre, Reisen häufiger zukünftig ausgezeichnet Potenzial langfristig. Sehr interessiert Handwerk Qualität Haltbarkeit Investitionsstücke Reisen robust.",
+    "language": "DE",
+    "timestamp": "2026-02-11T13:03:23.348498",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "Le texte mentionne une allergie au soleil, qui est considérée comme une donnée de santé physique sensible selon l'Article 9 du RGPD.",
+      "anonymized_text": "Herr und Frau Bauer, beide 48 Jahre, ausgezeichnete Kunden seit 2015. Einkauf wichtige Reise Jubiläum 20 Jahre Ehe Safari Luxus Botswana. Budget kombiniert 20K großzügig flexibel. Er Zahnarzt eigene Praxis erfolgreich, sie Apothekerin. Beide leidenschaftlich Tierfotografie Naturdokumentation, Safari Traum lange geplant. Sammeln Tierfotografie Bücher Kunstdrucke Afrika. Reise Juni drei Wochen inklusiv Viktoriafälle Kapstadt. Sie elegant natürlich Stil, bevorzugt khaki beige Safari dann schwarz elegant Kapstadt. Er funktional praktisch, olive braun Safari navy schwarz Stadt. Beide Pescetarier Events. Sie [RGPD_HEALTH_PHYSICAL_REDACTED] Schutz wichtig Accessoires auch. Zwei Kinder Teenager, Tochter studiert Veterinärmedizin Sohn Gymnasium Biologie. Hochzeitstag Mai jedes Jahr Einkauf Tradition hier. Ausgezeichnete Kunden Lifetime Value hoch, Netzwerk medizinisch zahnärztlich Kollegen verwiesen bereits. Nachfassen April letzte Vorbereitungen Reise bestätigen. Erwähnt planen Ruhestand fünf Jahre, Reisen häufiger zukünftig ausgezeichnet Potenzial langfristig. Sehr interessiert Handwerk Qualität Haltbarkeit Investitionsstücke Reisen robust."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "beige_neutral",
+          "navy",
+          "accessories",
+          "black",
+          "vip",
+          "travel_luggage",
+          "ready_to_wear",
+          "travel_frequent",
+          "wedding_anniversary",
+          "medical_dentist",
+          "medical_physician",
+          "art_collector",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "professional_work",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy",
+            "beige_neutral",
+            "khaki",
+            "olive",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD1830177V/Q96850",
+            "name": "Boucles d'oreilles longues Dentelle  or blanc et diamants",
+            "price": 9200.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-longues-dentelle-or-blanc-et-diamants-nvprod1830177v/Q96850",
+            "match_score": 0.46
+          },
+          {
+            "sku": "NVPROD1830180V/Q96761",
+            "name": "Boucles d'oreilles Dentelle Masterpiece  or blanc et diamants",
+            "price": 38000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-dentelle-masterpiece-or-blanc-et-diamants-nvprod1830180v/Q96761",
+            "match_score": 0.45
+          },
+          {
+            "sku": "NVPROD1490078V/Q96760",
+            "name": "Boucles d'oreilles Dentelle  or blanc et diamants",
+            "price": 12800.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-dentelle-or-blanc-et-diamants-nvprod1490078v/Q96760",
+            "match_score": 0.43
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['medical_dentist', 'medical_physician']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding_anniversary"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le vip pour son wedding anniversary. Suggère le Boucles d'oreilles longues Dentelle  or blanc et diamants qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Boucles d'oreilles longues Dentelle  or blanc et diamants",
+            "Boucles d'oreilles Dentelle Masterpiece  or blanc et diamants"
+          ],
+          "deadline": "this_month"
+        },
+        "budget_potential": "ultra_high (20K+)",
+        "budget_specific": null,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 85.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3560.206651687622,
+    "from_cache": false
+  }
+}

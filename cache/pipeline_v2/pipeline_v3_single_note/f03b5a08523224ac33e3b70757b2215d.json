@@ -1,0 +1,171 @@
+{
+  "_cached_at": 1770887350.663312,
+  "payload": {
+    "id": "API_1770887347",
+    "original_text": "M. et Mme Chevalier, couple 50-52 ans, excellents clients VIP depuis 2012. Achat important voyage anniversaire 25 ans mariage Japon cerisiers floraison. Budget combiné 24K très généreux. Lui professeur littérature japonaise Sorbonne spécialiste, elle traductrice japonais français. Tous deux passionnés culture japonaise toute vie, voyage rêve planifié années. Collectionnent estampes japonaises ukiyo-e, maison décoration japonaise zen. Voyage avril mai incluant Tokyo Kyoto Hiroshima cérémonie floraison. Elle élégance minimaliste japonaise, préfère beige gris noir esthétique wabi-sabi. Lui style sobre professeur, marine gris. Tous deux végétariens zen événements. Aucune allergie. Deux enfants adultes, fille traductrice aussi suit mère, fils travaille diplomatie Tokyo. Anniversaire mariage mai pendant voyage tradition continuer. Excellents clients lifetime value élevé, réseau académique japonisant France international, référé nombreux professeurs étudiants. Rappeler mars dernier ajustements voyage. Mentionné livre co-écrivent culture japonaise publier automne, possibilité mention boutique appréciation. Très intéressés artisanat japonais histoire pièces, apprécient qualité esthétique minimaliste zen durabilité. Clients précieux relation long terme entretenir soigneusement.",
+    "processed_text": "M. et Mme [NAME], couple 50-52 ans, excellents clients VIP depuis 2012. Achat important voyage anniversaire 25 ans mariage Japon cerisiers floraison. Budget combiné 24K très généreux. Lui professeur littérature japonaise Sorbonne spécialiste, elle traductrice japonais français. Tous deux passionnés culture japonaise toute vie, voyage rêve planifié années. Collectionnent estampes japonaises ukiyo-e, maison décoration japonaise zen. Voyage avril mai incluant Tokyo Kyoto Hiroshima cérémonie floraison. Elle élégance minimaliste japonaise, préfère beige gris noir esthétique wabi-sabi. Lui sobre professeur, marine gris. Tous deux végétariens zen événements. Aucune allergie. Deux enfants adultes, fille traductrice aussi suit mère, fils travaille diplomatie Tokyo. Anniversaire mariage mai pendant voyage tradition continuer. Excellents clients lifetime value élevé, réseau académique japonisant France international, référé nombreux professeurs étudiants. Rappeler mars dernier ajustements voyage. Mentionné livre co-écrivent culture japonaise publier automne, possibilité mention boutique appréciation. Très intéressés artisanat japonais histoire pièces, apprécient qualité esthétique minimaliste zen durabilité. Clients précieux relation long terme entretenir soigneusement.",
+    "language": "FR",
+    "timestamp": "2026-02-12T10:09:10.578555",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des détails sur les clients, leurs intérêts et leur profession, mais ne révèlent aucune donnée sensible telle que la santé mentale, la santé physique, des conflits familiaux, des croyances religieuses, des opinions politiques, une orientation sexuelle ou une origine ethnique.",
+      "anonymized_text": "M. et Mme [NAME], couple 50-52 ans, excellents clients VIP depuis 2012. Achat important voyage anniversaire 25 ans mariage Japon cerisiers floraison. Budget combiné 24K très généreux. Lui professeur littérature japonaise Sorbonne spécialiste, elle traductrice japonais français. Tous deux passionnés culture japonaise toute vie, voyage rêve planifié années. Collectionnent estampes japonaises ukiyo-e, maison décoration japonaise zen. Voyage avril mai incluant Tokyo Kyoto Hiroshima cérémonie floraison. Elle élégance minimaliste japonaise, préfère beige gris noir esthétique wabi-sabi. Lui sobre professeur, marine gris. Tous deux végétariens zen événements. Aucune allergie. Deux enfants adultes, fille traductrice aussi suit mère, fils travaille diplomatie Tokyo. Anniversaire mariage mai pendant voyage tradition continuer. Excellents clients lifetime value élevé, réseau académique japonisant France international, référé nombreux professeurs étudiants. Rappeler mars dernier ajustements voyage. Mentionné livre co-écrivent culture japonaise publier automne, possibilité mention boutique appréciation. Très intéressés artisanat japonais histoire pièces, apprécient qualité esthétique minimaliste zen durabilité. Clients précieux relation long terme entretenir soigneusement."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "navy",
+          "luxury_service",
+          "professional_work",
+          "customer_intent",
+          "travel",
+          "black",
+          "evening",
+          "beige_neutral",
+          "vip",
+          "wedding_anniversary",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian",
+          "casual_daily",
+          "smooth_leather"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "casual_daily"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy",
+            "beige_neutral",
+            "beige",
+            "grey"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD460006V/RN0005",
+            "name": "Livre Travel Book Tokyo - Édition de l’artiste",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-travel-book-tokyo-edition-de-l-artiste-nvprod460006v/RN0005",
+            "match_score": 0.47
+          },
+          {
+            "sku": "006293/R07884",
+            "name": "Livre Recueil de nouvelles La Malle - Version Japonaise",
+            "price": 50.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-recueil-de-nouvelles-la-malle-version-japonaise-006293/R07884",
+            "match_score": 0.46
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['professor', 'translator']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [
+          "allergy_mentioned",
+          "no_known_allergies"
+        ],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le vip pour son birthday. Suggère le Livre Travel Book Tokyo - Édition de l’artiste qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Travel Book Tokyo - Édition de l’artiste",
+            "Livre Recueil de nouvelles La Malle - Version Japonaise"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.93,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 49.59,
+      "rgpd": 2587.65,
+      "cache_lookup": 0.61,
+      "semantic_cache_lookup": 0.0,
+      "routing": 159.9,
+      "tier1": 3.37,
+      "tier2": 17.17,
+      "cross_validation": 2.36,
+      "rag": 101.47,
+      "recommendation": 2.27,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 2924.57
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2924.5693683624268,
+    "from_cache": false
+  }
+}

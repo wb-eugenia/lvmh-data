@@ -1,0 +1,26 @@
+candidate,occurrences,combined_score,tfidf_score,yake_score,proposed_category,status
+vip clients since,5,0.348853,0.0,0.996724,auto_generated_review,pending_review
+herr und frau,5,0.348782,0.0,0.996521,auto_generated_review,pending_review
+jahre,5,0.347229,0.020518,0.953976,auto_generated_review,pending_review
+first visit but,2,0.346837,0.0,0.990962,auto_generated_review,pending_review
+rechtsanwalt partner,2,0.346578,0.0,0.990222,auto_generated_review,pending_review
+ans,11,0.346047,0.038776,0.916692,auto_generated_review,pending_review
+new client high,2,0.345835,0.0,0.988099,auto_generated_review,pending_review
+anni,9,0.345338,0.0273,0.935981,auto_generated_review,pending_review
+neue kunden,2,0.344678,0.0,0.984793,auto_generated_review,pending_review
+signora e signor,2,0.344668,0.0,0.984767,auto_generated_review,pending_review
+galeristin zeitgenössische,2,0.344528,0.0,0.984366,auto_generated_review,pending_review
+nouvelle cliente,3,0.344169,0.009185,0.966284,auto_generated_review,pending_review
+vip clients,5,0.343694,0.0,0.981983,auto_generated_review,pending_review
+long-time vip clients,2,0.343569,0.0,0.981627,auto_generated_review,pending_review
+long-time vip,2,0.343356,0.0,0.981017,auto_generated_review,pending_review
+and mrs.,6,0.343354,0.0,0.98101,auto_generated_review,pending_review
+und frau,5,0.343183,0.0,0.980524,auto_generated_review,pending_review
+treue kunden seit,2,0.343124,0.0,0.980354,auto_generated_review,pending_review
+vip,29,0.340532,0.018666,0.938283,auto_generated_review,pending_review
+daughter,9,0.340327,0.015954,0.942733,auto_generated_review,pending_review
+madre,7,0.340215,0.018975,0.936806,auto_generated_review,pending_review
+excellents clients,5,0.340015,0.006023,0.960284,auto_generated_review,pending_review
+regular client since,2,0.338885,0.0,0.968244,auto_generated_review,pending_review
+primera visita,2,0.338783,0.0,0.967951,auto_generated_review,pending_review
+new client,4,0.338235,0.005422,0.956316,auto_generated_review,pending_review

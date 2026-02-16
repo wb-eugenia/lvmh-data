@@ -1,0 +1,150 @@
+{
+  "_cached_at": 1770887207.0447128,
+  "payload": {
+    "id": "API_1770887204",
+    "original_text": "Signora Colombo, 60 anni, collezionista arte importante, cliente VIP 2013. Acquista regalo nipote laureata economia Bocconi summa cum laude. Budget generoso 8K. Nipote 25 anni inizia lavoro consulenza Milano, serve pezzi professionali eleganti. Nonna colleziona arte moderna contemporanea, casa galleria privata. Nipote stile giovane professionale sofisticato, pratica corsa maratone. Cuoio nero cognac funzionale elegante. Nipote vegetariana eventi. Allergia nichel nipote importante. Nonna orgogliosissima nipote, menzionato altro nipote maschio studia medicina, laurea prossimo anno opportunità. Famiglia unita benestante, nonna generosa regali sempre qualità. Richiamare maggio nuova collezione estate. Cliente eccezionale lifetime value, rete sociale alto livello arte cultura.",
+    "processed_text": "Signora Colombo, 60 anni, collezionista arte importante, cliente [VIP_ID]. Acquista regalo nipote laureata economia Bocconi summa cum laude. Budget generoso 8K. Nipote 25 anni inizia lavoro consulenza Milano, serve pezzi professionali eleganti. Nonna colleziona arte moderna contemporanea, casa galleria privata. Nipote stile giovane professionale sofisticato, pratica corsa maratone. Cuoio nero cognac funzionale elegante. Nipote vegetariana eventi. Allergia nichel nipote importante. Nonna orgogliosissima nipote, menzionato altro nipote maschio studia medicina, laurea prossimo anno opportunità. Famiglia unita benestante, nonna generosa regali sempre qualità. Richiamare maggio nuova collezione estate. Cliente eccezionale lifetime value, rete sociale alto livello arte cultura.",
+    "language": "IT",
+    "timestamp": "2026-02-12T10:06:46.997949",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Allergy Medium: +6",
+        "🤖 ML prediction (conf: 0.73)"
+      ],
+      "confidence": 0.73,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le notes clients ne contiennent pas de données sensibles selon l'Article 9 du RGPD. Les informations sur l'allergie au nickel sont acceptables pour le business, et il n'y a pas d'autres catégories sensibles détectées.",
+      "anonymized_text": "Signora Colombo, 60 anni, collezionista arte importante, cliente [VIP_ID]. Acquista regalo nipote laureata economia Bocconi summa cum laude. Budget generoso 8K. Nipote 25 anni inizia lavoro consulenza Milano, serve pezzi professionali eleganti. Nonna colleziona arte moderna contemporanea, casa galleria privata. Nipote stile giovane professionale sofisticato, pratica corsa maratone. Cuoio nero cognac funzionale elegante. Nipote vegetariana eventi. Allergia nichel nipote importante. Nonna orgogliosissima nipote, menzionato altro nipote maschio studia medicina, laurea prossimo anno opportunità. Famiglia unita benestante, nonna generosa regali sempre qualità. Richiamare maggio nuova collezione estate. Cliente eccezionale lifetime value, rete sociale alto livello arte cultura."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "black",
+          "brown_cognac"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD2130162V/M76202",
+            "name": "Carré Tribute To 90",
+            "price": 460.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/carre-tribute-to-90-s00-nvprod2130162v/M76202",
+            "match_score": 0.51
+          },
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.5
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [
+            "vegetarian"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "graduation"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: accessories, black. Budget estimé: flexible_unknown (None).",
+          "priority": "Medium",
+          "target_products": [
+            "Carré Tribute To 90",
+            "Organizer de poche My LV Heritage"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "flexible_unknown (None)",
+        "budget_specific": null,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.75,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.5716552734375,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 9.5,
+      "rgpd": 2124.67,
+      "cache_lookup": 0.46,
+      "semantic_cache_lookup": 0.0,
+      "routing": 41.43,
+      "tier1": 1.61,
+      "cross_validation": 0.02,
+      "rag": 36.88,
+      "recommendation": 2.99,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2217.67
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2217.66996383667,
+    "from_cache": false
+  }
+}

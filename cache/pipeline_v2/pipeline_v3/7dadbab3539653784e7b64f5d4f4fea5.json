@@ -1,0 +1,150 @@
+{
+  "_cached_at": 1770809658.2719035,
+  "payload": {
+    "id": "GEN_028",
+    "original_text": "voil. M. [NAME] et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avocate droit affaires. Shopping ensemble cadeaux famille événement familial. Budget combiné 11K. Fille professionnel moderne, pratique yoga, voyage souvent travail Bruxelles. Père classique traditionnel. Fille végétarienne père pescetarien événements. Fille allergique latex important. Mentionné petit-fils père né récemment, cadeau baptême opportunité. Épouse père collectionne bijoux anciens. Excellente relation multi-générationnelle, shopping rituel régulier. Rappeler avril nouveautés. Je confirme. Je confirme. RIB [RIB] voil. voil.",
+    "processed_text": "voil. M. [NAME] et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avocate droit affaires. Shopping ensemble cadeaux famille événement familial. Budget combiné 11K. Fille professionnel moderne, pratique yoga, voyage souvent travail Bruxelles. Père classique traditionnel. Fille végétarienne père pescetarien événements. Fille allergique latex important. Mentionné petit-fils père né récemment, cadeau baptême opportunité. Épouse père collectionne bijoux anciens. Excellente relation multi-générationnelle, shopping rituel régulier. Rappeler avril nouveautés. Je confirme. Je confirme. RIB [RIB] voil. voil.",
+    "language": "FR",
+    "timestamp": "2026-02-11T12:34:18.258384",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "Gift Important: +6",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies au latex sont acceptables pour le business, et les autres détails ne relèvent pas des catégories sensibles.",
+      "anonymized_text": "voil. M. [NAME] et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avocate droit affaires. Shopping ensemble cadeaux famille événement familial. Budget combiné 11K. Fille professionnel moderne, pratique yoga, voyage souvent travail Bruxelles. Père classique traditionnel. Fille végétarienne père pescetarien événements. Fille allergique latex important. Mentionné petit-fils père né récemment, cadeau baptême opportunité. Épouse père collectionne bijoux anciens. Excellente relation multi-générationnelle, shopping rituel régulier. Rappeler avril nouveautés. Je confirme. Je confirme. RIB [RIB] voil. voil."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "customer_intent",
+          "professional_work",
+          "gift",
+          "professional",
+          "jewelry",
+          "evening",
+          "travel",
+          "regular",
+          "legal_lawyer",
+          "travel_frequent",
+          "vegetarian",
+          "pescatarian",
+          "latex_allergy",
+          "gift_for_family",
+          "shopping_with_family",
+          "leather_goods"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.41
+          },
+          {
+            "sku": "NVPROD3740056V/P01729",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-nvprod3740056v/P01729",
+            "match_score": 0.41
+          },
+          {
+            "sku": "NVPROD3920020V/M10066",
+            "name": "Malle Souvenirs",
+            "price": 36000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-souvenirs-monogram-nvprod3920020v/M10066",
+            "match_score": 0.41
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "legal_lawyer",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian",
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "latex_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: customer_intent, professional_work. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche My LV Heritage",
+            "Organizer de poche My LV Heritage"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.0,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 29227.47015953064,
+    "from_cache": false
+  }
+}

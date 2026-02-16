@@ -5,7 +5,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 
 const AdvisorView = lazy(() => import('./components/AdvisorView'))
 const ManagerView = lazy(() => import('./components/ManagerView'))
-const AdminView = lazy(() => import('./components/AdminView'))
+const AdminView = lazy(() => import('./components/AdminPanel'))
 const PipelineView = lazy(() => import('./components/PipelineView'))
 const ProductsView = lazy(() => import('./components/ProductsView'))
 

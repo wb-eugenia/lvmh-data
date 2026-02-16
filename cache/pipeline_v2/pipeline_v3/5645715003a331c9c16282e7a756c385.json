@@ -1,0 +1,140 @@
+{
+  "_cached_at": 1770811391.8006833,
+  "payload": {
+    "id": "CA_029",
+    "original_text": "Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen.",
+    "processed_text": "Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen.",
+    "language": "DE",
+    "timestamp": "2026-02-11T13:03:11.763166",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "🤖 ML prediction (conf: 0.99)"
+      ],
+      "confidence": 0.99,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations fournies concernent des préférences de consommation et des détails professionnels sans mentionner de données sensibles.",
+      "anonymized_text": "Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "leather_goods",
+          "small_leather",
+          "travel_luggage",
+          "tech_executive",
+          "art_collector",
+          "vegan",
+          "vip",
+          "wedding",
+          "eco_conscious"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4060098V/GI0888",
+            "name": "LV x YK - Couverture carnet de notes Paul Infinity Dots",
+            "price": 515.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-couverture-carnet-de-notes-paul-infinity-dots-epi-nvprod4060098v/GI0888",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD3780048V/GI0798",
+            "name": "Kit d'œnologie Thomas",
+            "price": 1900.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/kit-doenologie-thomas-s00-nvprod3780048v/GI0798",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD3580100V/GI0759",
+            "name": "Figurine Vivienne Mermaid",
+            "price": 1960.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/figurine-vivienne-mermaid-s00-nvprod3580100v/GI0759",
+            "match_score": 0.43
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "tech_entrepreneur",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: leather_goods, small_leather. Budget estimé: ultra_high (25K+).",
+          "priority": "Medium",
+          "target_products": [
+            "LV x YK - Couverture carnet de notes Paul Infinity Dots",
+            "Kit d'œnologie Thomas"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (25K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.78,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 50.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2415.5614376068115,
+    "from_cache": false
+  }
+}

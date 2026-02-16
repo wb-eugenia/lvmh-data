@@ -1,0 +1,140 @@
+{
+  "_cached_at": 1770811295.9263086,
+  "payload": {
+    "id": "CA_055",
+    "original_text": "Sra. Jiménez, 42 años, directora recursos humanos multinacional, cliente ocasional. Compra regalos retiros ejecutivos empresa programa liderazgo. Budget 10K para 5 ejecutivos. Retiro wellness resort lujo Marbella próximo mes. Quiere piezas elegantes profesionales memorables. Mix géneros edades 35-55. Empresa valores sostenibilidad importante. Cuero negro cognac navy. Ejecutivos dietas variadas varios vegetarianos veganos. Follow-up trimestral retiros regulares empresa. Excelente oportunidad corporate continua. Preguntó personalización logo empresa sutil. Muy satisfecha atención profesional.",
+    "processed_text": "Sra. Jiménez, 42 años, directora recursos humanos multinacional, cliente ocasional. Compra regalos retiros ejecutivos empresa programa liderazgo. Budget 10K para 5 ejecutivos. Retiro wellness resort lujo Marbella próximo mes. Quiere piezas elegantes profesionales memorables. Mix géneros edades 35-55. Empresa valores sostenibilidad importante. Cuero negro cognac navy. Ejecutivos dietas variadas varios vegetarianos veganos. Follow-up trimestral retiros regulares empresa. Excelente oportunidad corporate continua. Preguntó personalización logo empresa sutil. Muy satisfecha atención profesional.",
+    "language": "ES",
+    "timestamp": "2026-02-11T13:01:35.885729",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 0.98)"
+      ],
+      "confidence": 0.98,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies par l'Article 9 du RGPD. Les informations fournies concernent des détails professionnels et des préférences d'achat, sans mention de santé mentale, santé physique, conflits familiaux, croyances religieuses, opinions politiques, orientation sexuelle ou origine ethnique.",
+      "anonymized_text": "Sra. Jiménez, 42 años, directora recursos humanos multinacional, cliente ocasional. Compra regalos retiros ejecutivos empresa programa liderazgo. Budget 10K para 5 ejecutivos. Retiro wellness resort lujo Marbella próximo mes. Quiere piezas elegantes profesionales memorables. Mix géneros edades 35-55. Empresa valores sostenibilidad importante. Cuero negro cognac navy. Ejecutivos dietas variadas varios vegetarianos veganos. Follow-up trimestral retiros regulares empresa. Excelente oportunidad corporate continua. Preguntó personalización logo empresa sutil. Muy satisfecha atención profesional."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "accessories",
+          "navy",
+          "black",
+          "leather_goods",
+          "ready_to_wear",
+          "professional_work",
+          "eco_conscious"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4670098V/M82879",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82879",
+            "match_score": 0.42
+          },
+          {
+            "sku": "NVPROD4670098V/M82878",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82878",
+            "match_score": 0.42
+          },
+          {
+            "sku": "NVPROD4670098V/M82880",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82880",
+            "match_score": 0.42
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, accessories. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche",
+            "Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 10000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 45.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 2.949953079223633,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2702.4879455566406,
+    "from_cache": false
+  }
+}

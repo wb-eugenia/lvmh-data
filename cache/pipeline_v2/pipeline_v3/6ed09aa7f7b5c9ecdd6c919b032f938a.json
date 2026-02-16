@@ -1,0 +1,147 @@
+{
+  "_cached_at": 1770809696.2261622,
+  "payload": {
+    "id": "GEN_035",
+    "original_text": "alors euh Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie compleanno e figlia laurea. Budget 15K flessibile. Moglie stilista brand proprio, ama moda avant-garde contemporanea. Figlia 25 anni laureata design Politecnico cerca primo lavoro. Moglie frequenta settimane moda tutte città, colleziona pezzi designer emergenti. Figlia appassionata sostenibilità eco-design. Famiglia pratica sci inverno vela estate. Moglie preferisce pezzi unici statement colorati audaci. Figlia stile minimale sostenibile. Moglie pescetariana figlia vegana eventi. Figlia allergia nichel importante. Mentionato figlio maschio 28 lavora finanza Londra, possibile cliente futuro. Anniversario matrimonio settembre. Cliente ottimo rete contatti moda lusso, riferito diversi amici. Richiamare febbraio anteprima esclusiva. Interessato collaborazioni designer italiani emergenti edizioni limitate. Je confirme. Je confirme. Adresse livraison [ADRESSE] genre en fait en gros.",
+    "processed_text": "alors euh Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie compleanno e figlia laurea. Budget 15K flessibile. Moglie stilista brand proprio, ama moda avant-garde contemporanea. Figlia 25 anni laureata design Politecnico cerca primo lavoro. Moglie frequenta settimane moda tutte città, colleziona pezzi designer emergenti. Figlia appassionata sostenibilità eco-design. Famiglia pratica sci inverno vela estate. Moglie preferisce pezzi unici statement colorati audaci. Figlia stile minimale sostenibile. Moglie pescetariana figlia vegana eventi. Figlia allergia nichel importante. Mentionato figlio maschio 28 lavora finanza Londra, possibile cliente futuro. Anniversario matrimonio settembre. Cliente ottimo rete contatti moda lusso, riferito diversi amici. Richiamare febbraio anteprima esclusiva. Interessato collaborazioni designer italiani emergenti edizioni limitate. Je confirme. Je confirme. Adresse livraison [ADRESSE] genre en fait en gros.",
+    "language": "IT",
+    "timestamp": "2026-02-11T12:34:56.210605",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies alimentaires et le régime alimentaire ne sont pas considérées comme sensibles dans ce contexte.",
+      "anonymized_text": "alors euh Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie compleanno e figlia laurea. Budget 15K flessibile. Moglie stilista brand proprio, ama moda avant-garde contemporanea. Figlia 25 anni laureata design Politecnico cerca primo lavoro. Moglie frequenta settimane moda tutte città, colleziona pezzi designer emergenti. Figlia appassionata sostenibilità eco-design. Famiglia pratica sci inverno vela estate. Moglie preferisce pezzi unici statement colorati audaci. Figlia stile minimale sostenibile. Moglie pescetariana figlia vegana eventi. Figlia allergia nichel importante. Mentionato figlio maschio 28 lavora finanza Londra, possibile cliente futuro. Anniversario matrimonio settembre. Cliente ottimo rete contatti moda lusso, riferito diversi amici. Richiamare febbraio anteprima esclusiva. Interessato collaborazioni designer italiani emergenti edizioni limitate. Je confirme. Je confirme. Adresse livraison [ADRESSE] genre en fait en gros."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "ready_to_wear",
+          "regular",
+          "entrepreneur_established",
+          "gift_for_spouse",
+          "gift_for_child",
+          "wine_enthusiast",
+          "travel_frequent",
+          "eco_conscious",
+          "nickel_allergy",
+          "vegan",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4240008V/M30933",
+            "name": "Organizer de poche",
+            "price": 360.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-taigarama-nvprod4240008v/M30933",
+            "match_score": 0.54
+          },
+          {
+            "sku": "NVPROD1250274V/R96625",
+            "name": "Canapé Bomboca par Fernando et Humberto Campana",
+            "price": 63500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/canape-bomboca-par-fernando-et-humberto-campana-nvprod1250274v/R96625",
+            "match_score": 0.53
+          },
+          {
+            "sku": "NVPROD4480163V/M30985",
+            "name": "Organizer de poche",
+            "price": 430.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-taiga-nvprod4480163v/M30985",
+            "match_score": 0.53
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "entrepreneur_established",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan",
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: ready_to_wear, regular. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche",
+            "Canapé Bomboca par Fernando et Humberto Campana"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 15000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 80.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 16930.7279586792,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "_cached_at": 1770920670.0062037,
+  "payload": {
+    "id": "TEST_003",
+    "original_text": "Je cherche un cadeau pour mon mari.",
+    "processed_text": "Je cherche un cadeau pour mon mari.",
+    "language": "FR",
+    "timestamp": "2026-02-12T19:24:29.932415",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Gift Important: +6",
+        "Intent: Simple Lookup: +0",
+        "🤖 ML prediction (conf: 0.71)"
+      ],
+      "confidence": 0.71,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies.",
+      "anonymized_text": "Je cherche un cadeau pour mon mari."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "gift"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3920020V/M10066",
+            "name": "Malle Souvenirs",
+            "price": 36000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-souvenirs-monogram-nvprod3920020v/M10066",
+            "match_score": 0.33
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": null
+        },
+        "profession": {
+          "sector": "diplomacy",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: gift. Budget estimé: flexible_unknown (None).",
+          "priority": "Medium",
+          "target_products": [
+            "Malle Souvenirs"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "flexible_unknown (None)",
+        "budget_specific": null,
+        "urgency": "low",
+        "churn_risk": 0.0,
+        "churn_level": "low",
+        "clv_estimate": 16150.65,
+        "clv_tier": "silver",
+        "prediction_source": "synthetic_supervised_v1"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.7,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 82.89,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.7,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.9321441650390625,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "batch_csv",
+    "stage_timings_ms": {
+      "cleaning": 4.64,
+      "rgpd": 2717.22,
+      "cache_lookup": 7.53,
+      "semantic_cache_lookup": 0.0,
+      "routing": 390.73,
+      "tier1": 2.04,
+      "cross_validation": 0.09,
+      "rag": 891.48,
+      "recommendation": 19.31,
+      "quality_gate": 0.01,
+      "injection": 0.0,
+      "total": 4033.23
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": false,
+    "processing_time_ms": 4033.234119415283,
+    "from_cache": false
+  }
+}

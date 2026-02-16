@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-02-12T17:20:12.267542+00:00",
+  "notes_analyzed": 100,
+  "taxonomy_version": "2.2",
+  "existing_keywords_count": 201,
+  "candidate_count": 25,
+  "review_queue": [
+    {
+      "candidate": "vip clients since",
+      "occurrences": 5,
+      "combined_score": 0.348853,
+      "tfidf_score": 0.0,
+      "yake_score": 0.996724,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "herr und frau",
+      "occurrences": 5,
+      "combined_score": 0.348782,
+      "tfidf_score": 0.0,
+      "yake_score": 0.996521,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "jahre",
+      "occurrences": 5,
+      "combined_score": 0.347229,
+      "tfidf_score": 0.020518,
+      "yake_score": 0.953976,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "first visit but",
+      "occurrences": 2,
+      "combined_score": 0.346837,
+      "tfidf_score": 0.0,
+      "yake_score": 0.990962,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "rechtsanwalt partner",
+      "occurrences": 2,
+      "combined_score": 0.346578,
+      "tfidf_score": 0.0,
+      "yake_score": 0.990222,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "ans",
+      "occurrences": 11,
+      "combined_score": 0.346047,
+      "tfidf_score": 0.038776,
+      "yake_score": 0.916692,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "new client high",
+      "occurrences": 2,
+      "combined_score": 0.345835,
+      "tfidf_score": 0.0,
+      "yake_score": 0.988099,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "anni",
+      "occurrences": 9,
+      "combined_score": 0.345338,
+      "tfidf_score": 0.0273,
+      "yake_score": 0.935981,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "neue kunden",
+      "occurrences": 2,
+      "combined_score": 0.344678,
+      "tfidf_score": 0.0,
+      "yake_score": 0.984793,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "signora e signor",
+      "occurrences": 2,
+      "combined_score": 0.344668,
+      "tfidf_score": 0.0,
+      "yake_score": 0.984767,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "galeristin zeitgenössische",
+      "occurrences": 2,
+      "combined_score": 0.344528,
+      "tfidf_score": 0.0,
+      "yake_score": 0.984366,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "nouvelle cliente",
+      "occurrences": 3,
+      "combined_score": 0.344169,
+      "tfidf_score": 0.009185,
+      "yake_score": 0.966284,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "vip clients",
+      "occurrences": 5,
+      "combined_score": 0.343694,
+      "tfidf_score": 0.0,
+      "yake_score": 0.981983,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "long-time vip clients",
+      "occurrences": 2,
+      "combined_score": 0.343569,
+      "tfidf_score": 0.0,
+      "yake_score": 0.981627,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "long-time vip",
+      "occurrences": 2,
+      "combined_score": 0.343356,
+      "tfidf_score": 0.0,
+      "yake_score": 0.981017,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "and mrs.",
+      "occurrences": 6,
+      "combined_score": 0.343354,
+      "tfidf_score": 0.0,
+      "yake_score": 0.98101,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "und frau",
+      "occurrences": 5,
+      "combined_score": 0.343183,
+      "tfidf_score": 0.0,
+      "yake_score": 0.980524,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "treue kunden seit",
+      "occurrences": 2,
+      "combined_score": 0.343124,
+      "tfidf_score": 0.0,
+      "yake_score": 0.980354,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "vip",
+      "occurrences": 29,
+      "combined_score": 0.340532,
+      "tfidf_score": 0.018666,
+      "yake_score": 0.938283,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "daughter",
+      "occurrences": 9,
+      "combined_score": 0.340327,
+      "tfidf_score": 0.015954,
+      "yake_score": 0.942733,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "madre",
+      "occurrences": 7,
+      "combined_score": 0.340215,
+      "tfidf_score": 0.018975,
+      "yake_score": 0.936806,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "excellents clients",
+      "occurrences": 5,
+      "combined_score": 0.340015,
+      "tfidf_score": 0.006023,
+      "yake_score": 0.960284,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "regular client since",
+      "occurrences": 2,
+      "combined_score": 0.338885,
+      "tfidf_score": 0.0,
+      "yake_score": 0.968244,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "primera visita",
+      "occurrences": 2,
+      "combined_score": 0.338783,
+      "tfidf_score": 0.0,
+      "yake_score": 0.967951,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    },
+    {
+      "candidate": "new client",
+      "occurrences": 4,
+      "combined_score": 0.338235,
+      "tfidf_score": 0.005422,
+      "yake_score": 0.956316,
+      "proposed_category": "auto_generated_review",
+      "status": "pending_review"
+    }
+  ],
+  "policy": {
+    "auto_merge": false,
+    "review_required": true,
+    "target_file_unchanged": "config/taxonomy_v2.2.json"
+  }
+}

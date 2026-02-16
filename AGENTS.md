@@ -5,7 +5,7 @@
 **LVMH Voice-to-Tag Pipeline V2.3** is an advanced AI system for hyper-personalized CRM in luxury retail. It transforms voice transcriptions from Client Advisors (CAs) into structured, actionable client profiles using a multi-tier processing architecture.
 
 **Key Capabilities:**
-- Real-time voice-to-text transcription (OpenAI Whisper)
+- Real-time voice-to-text transcription (Groq Whisper)
 - Intelligent note routing via Smart Router V3 (Random Forest ML)
 - 4-pillar taxonomy extraction (Product, Client Profile, Hospitality, Business Action)
 - RAG-based product matching
@@ -26,7 +26,7 @@
 | Language | Python 3.10+ |
 | Database | SQLite (SQLAlchemy ORM) |
 | Auth | JWT + bcrypt |
-| LLMs | Mistral AI (primary), OpenAI (transcription + RGPD) |
+| LLMs | Mistral AI (primary), OpenAI GPT-4o (fallback), Groq |
 | ML | scikit-learn (Smart Router) |
 | Vector Search | sentence-transformers + FAISS |
 | WebSocket | Real-time pipeline visualization |
@@ -72,6 +72,7 @@
 │   ├── smart_router.py    # Smart Router V3 (ML routing)
 │   ├── text_cleaner.py    # Pre-processing & normalization
 │   ├── tier1_rules.py     # Regex-based extraction (Tier 1)
+│   ├── tier2_groq.py      # Groq LLM processing (Tier 2)
 │   ├── tier2_mistral.py   # Mistral AI processing (Tier 2/3)
 │   ├── taxonomy.py        # Taxonomy management
 │   ├── extractor.py       # Tag extraction engine
@@ -92,7 +93,10 @@
 │   │   │   ├── LoginView.jsx
 │   │   │   ├── AdvisorView.jsx    # CA interface
 │   │   │   ├── ManagerView.jsx    # Manager dashboard
-│   │   │   └── PipelineVisualizer.jsx
+│   │   │   ├── AdminPanel.jsx     # Admin dashboard with sidebar tabs
+│   │   │   ├── AdminProductsView.jsx # Products CRUD component
+│   │   │   ├── PipelineVisualizer.jsx
+│   │   │   └── ProductsView.jsx
 │   │   └── context/
 │   │       └── AuthContext.jsx    # JWT auth state
 │   ├── package.json
@@ -174,9 +178,41 @@ make docker-logs      # View logs
 ```
 
 The application will be available at:
-- Frontend: http://localhost:3000 (or 5173 in dev)
-- API: http://localhost:8000 or http://localhost:8080
-- API Docs: http://localhost:8000/docs
+- Frontend: https://lvmh-frontend.pages.dev (Cloudflare Pages)
+- API: https://lvmh-api-570069708764.europe-west9.run.app (GCP Cloud Run)
+- API Docs: https://lvmh-api-570069708764.europe-west9.run.app/docs
+
+---
+
+## Production Deployment URLs
+
+### Current Deployments
+- **Frontend**: https://lvmh-frontend.pages.dev (Cloudflare Pages)
+- **API**: https://lvmh-api-570069708764.europe-west9.run.app (GCP Cloud Run)
+
+### Deployment Commands
+
+#### Frontend (Cloudflare Pages)
+```bash
+cd frontend-v2
+# Set API URL in .env.production
+echo "VITE_API_BASE_URL=https://lvmh-api-570069708764.europe-west9.run.app" > .env.production
+npm run build
+npx wrangler pages deploy dist --project-name=lvmh-frontend --branch=main
+```
+
+#### API (GCP Cloud Run)
+```bash
+# Build and deploy
+gcloud builds submit --tag gcr.io/PROJECT_ID/lvmh-voice-tag .
+gcloud run deploy lvmh-voice-tag \
+  --image gcr.io/PROJECT_ID/lvmh-voice-tag \
+  --platform managed \
+  --region europe-west1 \
+  --allow-unauthenticated \
+  --memory 1Gi \
+  --port 8080
+```
 
 ---
 
@@ -185,7 +221,8 @@ The application will be available at:
 ### Environment Variables (.env)
 
 ```bash
-OPENAI_API_KEY=sk-...          # OpenAI (Whisper + RGPD)
+OPENAI_API_KEY=sk-...          # OpenAI GPT-4o-mini
+GROQ_API_KEY=gsk-...           # Groq API (Whisper + LLM)
 MISTRAL_API_KEY=...            # Mistral AI (primary LLM)
 ```
 
@@ -202,6 +239,9 @@ processing_timeout_seconds: 60
 cache_enabled: True
 cache_ttl_seconds: 86400
 
+# Ollama (local fallback)
+ollama_host: "http://localhost:11434"
+ollama_model: "qwen2.5:7b"
 ```
 
 ---
@@ -219,7 +259,7 @@ The router scores notes 0-100 based on:
 
 **Routing Logic:**
 - Score < 20: Tier 1 (Regex rules, ~50ms, €0)
-- Score 20-75: Tier 2 (Mistral, ~3s, €0.0001)
+- Score 20-75: Tier 2 (Groq/Mistral, ~3s, €0.0001)
 - Score > 75: Tier 3 (Mistral Large/GPT-4, ~5s, €0.005)
 
 ### 4-Pillar Taxonomy
@@ -362,6 +402,37 @@ python scripts/build_vector_store.py
 
 ---
 
+## Admin Panel Architecture
+
+### Components
+
+- **AdminPanel.jsx** - Main admin dashboard with sidebar navigation (5 tabs)
+- **AdminProductsView.jsx** - Full CRUD for products with stock management and RAG rebuild
+
+### Sidebar Tabs
+
+1. **Accueil** - Dashboard monitoring (health score, metrics, trends)
+2. **Enregistrement** - List of notes with click-to-view details
+3. **Classement** - Advisor rankings by points
+4. **User & Credentials** - User management (advisors, managers, admins)
+5. **Produits** - Product catalog with CRUD operations
+
+### CORS Configuration
+
+The API (`api/main.py`) is configured to allow Cloudflare Pages domains:
+```python
+ALLOWED_ORIGINS.extend([
+    "https://lvmh-frontend.pages.dev",
+])
+```
+
+For local development, add your localhost to `.env`:
+```
+CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+```
+
+---
+
 ## Troubleshooting
 
 | Issue | Solution |
@@ -392,169 +463,22 @@ Tested on 400 real notes (January 2026):
 
 ### GCP Cloud Run (Production)
 
-**Method 1: Using gcloud CLI (Recommended)**
-
-```bash
-# 1. Authenticate
-gcloud auth login
-gcloud config set project elite-hold-485510-t5
-
-# 2. Build and push to Container Registry
-gcloud builds submit --project=elite-hold-485510-t5 --tag gcr.io/elite-hold-485510-t5/lvmh-voice-tag:latest
-
-# 3. Deploy to Cloud Run
-gcloud run deploy lvmh-api \
-  --image gcr.io/elite-hold-485510-t5/lvmh-voice-tag \
-  --platform managed \
-  --region europe-west9 \
-  --allow-unauthenticated \
-  --memory 1Gi \
-  --port 8080 \
-  --project=elite-hold-485510-t5
-```
-
-**Method 2: Using deployment script**
-
 ```powershell
 # Run deployment script
 .\scripts\deploy.ps1
 ```
 
-**Method 3: Manual Docker build**
+Requirements:
+- gcloud CLI authenticated
+- Cloud Run & Cloud Build APIs enabled
+- Project ID ready
+
+### Docker Production
 
 ```bash
 docker build -t lvmh-voice-tag .
 docker run -p 8080:8080 --env-file .env lvmh-voice-tag
 ```
-
-**Current Production Service:**
-- URL: https://lvmh-api-570069708764.europe-west9.run.app
-- Service: lvmh-api
-- Region: europe-west9
-
-**Environment Variables for Cloud Run:**
-```
-OPENAI_API_KEY=sk-...
-MISTRAL_API_KEY=...
-JWT_SECRET_KEY=your-secret-key-min-32-chars
-ENV=production
-CORS_ORIGINS=https://your-domain.com
-```
-
-**Troubleshooting:**
-- Check logs: `gcloud logs read --project=elite-hold-485510-t5 --resource=cloud_run_revision --service=lvmh-api`
-- Rollback: `gcloud run revisions list lvmh-api --region=europe-west9`
-
----
-
-## Code Audit & Performance Improvements
-
-### Current Issues Found
-
-#### 1. Database (High Priority)
-
-| Issue | Location | Impact |
-|-------|----------|--------|
-| No composite indexes on Note | `models_sql.py` | Slow filtered queries |
-| Missing indexes on Feedback | `models_sql.py` | Slow feedback queries |
-| N+1 queries in results.py | `routers/results.py:260-270` | Multiple DB hits per request |
-| No query result caching | Most routers | Repeated expensive queries |
-
-#### 2. API Performance (Medium Priority)
-
-| Issue | Location | Impact |
-|-------|----------|--------|
-| No response compression | `main.py` | Large JSON payloads |
-| In-memory batch task storage | `batch.py:30` | Lost on restart, no scaling |
-| Global mutable state | Multiple files | Thread-safety issues |
-| Sync DB calls in async | `stats.py` | Blocking event loop |
-
-#### 3. Code Quality (Medium Priority)
-
-| Issue | Location | Impact |
-|-------|----------|--------|
-| Duplicate normalization logic | `analyze.py`, `schemas.py` | Code duplication |
-| No connection pooling config | `database.py` | Default pool too large |
-| Missing type hints | Several files | Poor IDE support |
-| No request ID tracking | `main.py` | Hard to debug |
-
-### Recommended Improvements
-
-#### Phase 1: Quick Wins (1-2 days)
-
-```python
-# 1. Add composite indexes to models_sql.py
-class Note(Base):
-    __table_args__ = (
-        Index("ix_notes_advisor_timestamp", "advisor_id", "timestamp"),
-        Index("ix_notes_client_timestamp", "client_id", "timestamp"),
-    )
-
-# 2. Enable GZip compression in main.py
-from fastapi.middleware.gzip import GZipMiddleware
-app.add_middleware(GZipMiddleware, minimum_size=1000)
-
-# 3. Add ETag caching to stats endpoints
-etag = generate_etag(data)
-if request.headers.get("if-none-match") == etag:
-    return JSONResponse(status_code=304)
-```
-
-#### Phase 2: Performance (1 week)
-
-1. **Redis for caching & sessions**
-   - Replace in-memory batch tasks with Redis
-   - Use Redis for stats caching
-   - Store session data in Redis
-
-2. **Database optimizations**
-   - Add connection pooling for PostgreSQL
-   - Use SQLAlchemy 2.0 async (asyncpg)
-   - Add query result pagination
-
-3. **API optimizations**
-   - Add response caching headers
-   - Implement request deduplication
-   - Add GraphQL for complex queries
-
-#### Phase 3: Architecture (2-4 weeks)
-
-1. **Microservices split**
-   - Separate transcription service
-   - Separate analysis pipeline
-   - Separate API/frontend
-
-2. **Message queue**
-   - Replace in-memory queue with RabbitMQ/Cloud Tasks
-   - Add dead letter queue
-   - Implement retry logic
-
-3. **Advanced caching**
-   - Semantic cache for LLM responses
-   - Redis for vector store metadata
-   - CDN for static assets
-
-### Feature Suggestions
-
-| Feature | Priority | Effort |
-|---------|----------|--------|
-| Real-time notifications (WebSocket) | High | 1 week |
-| Export to CSV/Excel | High | 2 days |
-| Client timeline view | Medium | 1 week |
-| Advanced search with filters | Medium | 1 week |
-| Dashboard customization | Medium | 2 weeks |
-| Multi-language support | Low | 2 weeks |
-| AI-powered insights | Low | 4 weeks |
-
-### Performance Targets
-
-| Metric | Current | Target |
-|--------|---------|--------|
-| API p95 latency | ~500ms | <200ms |
-| Note processing | ~2.8s | <1.5s |
-| DB query time | ~100ms | <20ms |
-| Memory usage | ~500MB | <300MB |
-| Cold start | ~10s | <3s |
 
 ---
 
@@ -564,7 +488,6 @@ if request.headers.get("if-none-match") == etag:
 - **User Guide**: `README.md`
 - **Next Steps**: `NEXT_STEPS.md`
 - **API Docs**: `/docs` (when running locally)
-- **Production API**: https://lvmh-api-570069708764.europe-west9.run.app
 
 ---
 

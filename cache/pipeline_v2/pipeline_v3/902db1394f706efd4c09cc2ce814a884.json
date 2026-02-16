@@ -1,0 +1,149 @@
+{
+  "_cached_at": 1770811424.113089,
+  "payload": {
+    "id": "CA_063",
+    "original_text": "Signora e Signor Moretti, coppia 44-46 anni, clienti regolari 2018. Acquisto multiplo viaggio anniversario 20 anni più regali famiglia. Budget combinato 19K. Lui dermatologo clinica propria, lei farmacista. Entrambi passione vela, possiedono barca, regate costiere estate. Viaggio anniversario Grecia isole giugno. Collezionano ceramiche greche antiche, frequentano aste. Lei stile elegante mediterraneo, preferisce azzurro bianco cognac. Lui classico nautico, navy blu marrone. Entrambi pescetariani eventi. Lui intolleranza lattosio importante. Due figli: figlia 18 studia farmacia segue madre, figlio 15 passione calcio gioca squadra giovanile. Anniversario giugno ogni anno shopping tradizione. Ottimi clienti lifetime value, rete medica professionale. Richiamare aprile confermare pezzi viaggio. Interessati personalizzazione simboli nautici greci.",
+    "processed_text": "Signora e Signor Moretti, coppia 44-46 anni, clienti regolari 2018. Acquisto multiplo viaggio anniversario 20 anni più regali famiglia. Budget combinato 19K. Lui dermatologo clinica propria, lei farmacista. Entrambi passione vela, possiedono barca, regate costiere estate. Viaggio anniversario Grecia isole giugno. Collezionano ceramiche greche antiche, frequentano aste. Lei stile elegante mediterraneo, preferisce azzurro bianco cognac. Lui classico nautico, navy blu marrone. Entrambi pescetariani eventi. Lui [RGPD_HEALTH_PHYSICAL_REDACTED]. Due figli: figlia 18 studia farmacia segue madre, figlio 15 passione calcio gioca squadra giovanile. Anniversario giugno ogni anno shopping tradizione. Ottimi clienti lifetime value, rete medica professionale. Richiamare aprile confermare pezzi viaggio. Interessati personalizzazione simboli nautici greci.",
+    "language": "IT",
+    "timestamp": "2026-02-11T13:03:44.061754",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 0.99)"
+      ],
+      "confidence": 0.99,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "L'intolleranza al lattosio estreme est un dato di salute fisica, mais non è considerato altamente sensibile. Le altre informazioni non contengono dati sensibili secondo l'Articolo 9 del RGPD.",
+      "anonymized_text": "Signora e Signor Moretti, coppia 44-46 anni, clienti regolari 2018. Acquisto multiplo viaggio anniversario 20 anni più regali famiglia. Budget combinato 19K. Lui dermatologo clinica propria, lei farmacista. Entrambi passione vela, possiedono barca, regate costiere estate. Viaggio anniversario Grecia isole giugno. Collezionano ceramiche greche antiche, frequentano aste. Lei stile elegante mediterraneo, preferisce azzurro bianco cognac. Lui classico nautico, navy blu marrone. Entrambi pescetariani eventi. Lui [RGPD_HEALTH_PHYSICAL_REDACTED]. Due figli: figlia 18 studia farmacia segue madre, figlio 15 passione calcio gioca squadra giovanile. Anniversario giugno ogni anno shopping tradizione. Ottimi clienti lifetime value, rete medica professionale. Richiamare aprile confermare pezzi viaggio. Interessati personalizzazione simboli nautici greci."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "accessories",
+          "navy",
+          "regular",
+          "medical_physician",
+          "travel_frequent",
+          "art_collector",
+          "wedding_anniversary",
+          "travel_luggage",
+          "ready_to_wear",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "navy",
+            "beige_cognac",
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3360105V/M00982",
+            "name": "Collier LV Iconic Aquamarine",
+            "price": 430.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-lv-iconic-s00-nvprod3360105v/M00982",
+            "match_score": 0.44
+          },
+          {
+            "sku": "NVPROD3360087V/M00987",
+            "name": "Boucles d'oreilles LV Iconic Aquamarine",
+            "price": 420.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-lv-iconic-s00-nvprod3360087v/M00987",
+            "match_score": 0.42
+          },
+          {
+            "sku": "NVPROD4220002V/M01133",
+            "name": "LV x YK - Porte-clés Fish",
+            "price": 465.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-porte-cles-fish-s00-nvprod4220002v/M01133",
+            "match_score": 0.42
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "['medical_physician', 'medical_pharmacist']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, accessories. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Collier LV Iconic Aquamarine",
+            "Boucles d'oreilles LV Iconic Aquamarine"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 65.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.92,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2871.8602657318115,
+    "from_cache": false
+  }
+}

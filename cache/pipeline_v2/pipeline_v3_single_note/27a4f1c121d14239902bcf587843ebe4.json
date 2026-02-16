@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1770885980.409978,
+  "payload": {
+    "id": "API_1770885978",
+    "original_text": "Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer 400K seguidores Instagram. Busca bolso regalo cumpleaños novia próxima semana. Presupuesto amplio 8-10K, quiere algo excepcional único. Ella estilo moderno colorido, no demasiado clásico. Él interesado también pequeña marroquinería hombre. Mencionó organizan eventos casa frecuentemente, anotar alergia mariscos ella para futuros cócteles boutique. Pareja joven mucho potencial, compras frecuentes probable. Invitar eventos VIP, buena visibilidad redes sociales. Seguimiento previsto después compra para fidelizar. Ella vegana estricta importante eventos.",
+    "processed_text": "Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer 400K seguidores Instagram. Busca bolso regalo cumpleaños novia próxima semana. Presupuesto amplio 8-10K, quiere algo excepcional único. Ella estilo moderno colorido, no demasiado clásico. Él interesado también pequeña marroquinería hombre. Mencionó organizan eventos casa frecuentemente, anotar alergia mariscos ella para futuros cócteles boutique. Pareja joven mucho potencial, compras frecuentes probable. Invitar eventos VIP, buena visibilidad redes sociales. Seguimiento previsto después compra para fidelizar. Ella vegana estricta importante eventos.",
+    "language": "ES",
+    "timestamp": "2026-02-12T09:46:20.346249",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur l'allergie aux fruits de mer sont acceptables pour le business, et le régime alimentaire vegan n'est pas considéré comme sensible.",
+      "anonymized_text": "Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer 400K seguidores Instagram. Busca bolso regalo cumpleaños novia próxima semana. Presupuesto amplio 8-10K, quiere algo excepcional único. Ella estilo moderno colorido, no demasiado clásico. Él interesado también pequeña marroquinería hombre. Mencionó organizan eventos casa frecuentemente, anotar alergia mariscos ella para futuros cócteles boutique. Pareja joven mucho potencial, compras frecuentes probable. Invitar eventos VIP, buena visibilidad redes sociales. Seguimiento previsto después compra para fidelizar. Ella vegana estricta importante eventos."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "first_visit",
+          "gift_for_spouse",
+          "leather_goods",
+          "small_leather",
+          "vegan",
+          "travel_frequent"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "bold_colors"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4110020V/M81866",
+            "name": "LV x YK - Mini Pochette Accessoires",
+            "price": 825.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-mini-pochette-accessoires-monogram-nvprod4110020v/M81866",
+            "match_score": 0.54
+          },
+          {
+            "sku": "013220/M62361",
+            "name": "Porte-monnaie Rosalie",
+            "price": 320.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-monnaie-rosalie-monogram-013220/M62361",
+            "match_score": 0.54
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "tech_engineer",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. Relance sur le LV x YK - Mini Pochette Accessoires.",
+          "priority": "Medium",
+          "target_products": [
+            "LV x YK - Mini Pochette Accessoires"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": null,
+        "urgency": "this_week"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.78,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.92,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 13.25,
+      "rgpd": 2008.38,
+      "cache_lookup": 0.96,
+      "semantic_cache_lookup": 0.0,
+      "routing": 87.66,
+      "tier1": 3.21,
+      "tier2": 0.88,
+      "cross_validation": 2.33,
+      "rag": 52.95,
+      "recommendation": 0.21,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 2169.97
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 2169.9671745300293,
+    "from_cache": false
+  }
+}

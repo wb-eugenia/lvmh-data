@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1769906605.533282,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "entrepreneur_startup",
+        "tech_executive",
+        "art_collector",
+        "travel_frequent",
+        "vegan",
+        "first_visit",
+        "ready_to_wear",
+        "accessories",
+        "leather_goods"
+      ],
+      "usage": [
+        "professional_work",
+        "casual_daily"
+      ],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "entrepreneur_startup",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (20K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_354"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "_cached_at": 1770809672.5409007,
+  "payload": {
+    "id": "GEN_015",
+    "original_text": "euh bah bon Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, sie Galeristin eigene Galerie zeitgenössische Kunst. Suchen Geschenke Hochzeitstag 25 Jahre nächsten Monat. Budget zusammen 8-10K. Sie liebt moderne Kunst, kuratiert Ausstellungen junge Künstler. Er spielt Golf Wochenende, Mitglied lokaler Club. Beide reisen gern kulturelle Städte, nächste Reise Florenz Biennale geplant Mai. Sie bevorzugt außergewöhnliche Stücke, cognac rosé Gold. Er klassisch funktional schwarz navy. Beide Vegetarier für Events. Sie Nickelallergie beachten Hardware. Tochter studiert Medizin folgt Vater Schritte, Sohn Architekt Berlin. Exzellente Kunden, kaufen regelmäßig, empfehlen Freunde. Nachfassen März private Vorschau neue Kollektion. Interesse an Künstlerkooperationen limitierte Editionen. Merci. T. l. phone [PHONE] enfin voil. voil.",
+    "processed_text": "euh bah bon Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, sie Galeristin eigene Galerie zeitgenössische Kunst. Suchen Geschenke Hochzeitstag 25 Jahre nächsten Monat. Budget zusammen 8-10K. Sie liebt moderne Kunst, kuratiert Ausstellungen junge Künstler. Er spielt Golf Wochenende, Mitglied lokaler Club. Beide reisen gern kulturelle Städte, nächste Reise Florenz Biennale geplant Mai. Sie bevorzugt außergewöhnliche Stücke, cognac rosé Gold. Er klassisch funktional schwarz navy. Beide Vegetarier für Events. Sie Nickelallergie beachten Hardware. Tochter studiert Medizin folgt Vater Schritte, Sohn Architekt Berlin. Exzellente Kunden, kaufen regelmäßig, empfehlen Freunde. Nachfassen März private Vorschau neue Kollektion. Interesse an Künstlerkooperationen limitierte Editionen. Merci. T. l. phone [PHONE] enfin voil. voil.",
+    "language": "DE",
+    "timestamp": "2026-02-11T12:34:32.528322",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies au nickel sont acceptables pour le business, et les autres détails ne relèvent pas des catégories sensibles.",
+      "anonymized_text": "euh bah bon Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, sie Galeristin eigene Galerie zeitgenössische Kunst. Suchen Geschenke Hochzeitstag 25 Jahre nächsten Monat. Budget zusammen 8-10K. Sie liebt moderne Kunst, kuratiert Ausstellungen junge Künstler. Er spielt Golf Wochenende, Mitglied lokaler Club. Beide reisen gern kulturelle Städte, nächste Reise Florenz Biennale geplant Mai. Sie bevorzugt außergewöhnliche Stücke, cognac rosé Gold. Er klassisch funktional schwarz navy. Beide Vegetarier für Events. Sie Nickelallergie beachten Hardware. Tochter studiert Medizin folgt Vater Schritte, Sohn Architekt Berlin. Exzellente Kunden, kaufen regelmäßig, empfehlen Freunde. Nachfassen März private Vorschau neue Kollektion. Interesse an Künstlerkooperationen limitierte Editionen. Merci. T. l. phone [PHONE] enfin voil. voil."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "brown_cognac",
+          "black",
+          "navy",
+          "regular",
+          "medical_surgeon",
+          "creative_designer",
+          "art_collector",
+          "golf",
+          "travel_frequent",
+          "wedding_anniversary",
+          "vegetarian",
+          "nickel_allergy"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "cognac",
+            "rosé",
+            "gold"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "006293/R07884",
+            "name": "Livre Recueil de nouvelles La Malle - Version Japonaise",
+            "price": 50.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-recueil-de-nouvelles-la-malle-version-japonaise-006293/R07884",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD3710125V/Q93899",
+            "name": "Collier pendentif Vivienne Ananas  or jaune  or blanc  laque et diamants",
+            "price": 37500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-ananas-or-jaune-or-blanc-laque-et-diamants-nvprod3710125v/Q93899",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD2000058V/M20207",
+            "name": "Maison Vivienne",
+            "price": 52000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/maison-vivienne-monogram-nvprod2000058v/M20207",
+            "match_score": 0.48
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "medical_surgeon",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: luxury_service, brown_cognac. Budget estimé: ultra_high (8K-10K).",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Recueil de nouvelles La Malle - Version Japonaise",
+            "Collier pendentif Vivienne Ananas  or jaune  or blanc  laque et diamants"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (8K-10K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 70.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 17829.94294166565,
+    "from_cache": false
+  }
+}

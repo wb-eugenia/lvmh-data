@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1770811503.5119205,
+  "payload": {
+    "id": "CA_062",
+    "original_text": "M. Dubois, 63 ans, collectionneur art contemporain, client VIP 2010. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. Style jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril.",
+    "processed_text": "M. [NAME], 63 ans, collectionneur art contemporain, client [VIP_ID]. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril.",
+    "language": "FR",
+    "timestamp": "2026-02-11T13:05:03.423925",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations fournies concernent des détails sur un client et sa famille, mais ne relèvent pas des catégories sensibles identifiées.",
+      "anonymized_text": "M. [NAME], 63 ans, collectionneur art contemporain, client [VIP_ID]. Achat cadeau petite-fille diplomation Sciences Po Paris. Budget 7K. Petite-fille 24 ans commence carrière diplomatie, stage ONU Genève. jeune professionnel international, voyage beaucoup. Cuir noir cognac classique élégant. Petite-fille végétarienne. Client excellent collectionne depuis 40 ans, maison musée privé. Autre petite-fille médecine Lyon diplomation année prochaine opportunité. Anniversaire petite-fille mai. Client fidèle famille toujours satisfait. Réseau diplomatique culturel étendu. Rappeler avril."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "gift",
+          "professional",
+          "travel",
+          "customer_intent",
+          "accessories",
+          "black",
+          "vip",
+          "art_collector",
+          "travel_frequent",
+          "vegetarian",
+          "leather_goods",
+          "professional_work"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.45
+          },
+          {
+            "sku": "NVPROD4220031V/M81984",
+            "name": "LV x YK - Porte-monnaie Rosalie",
+            "price": 525.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-porte-monnaie-rosalie-monogram-empreinte-nvprod4220031v/M81984",
+            "match_score": 0.45
+          },
+          {
+            "sku": "NVPROD3740060V/P01731",
+            "name": "Couverture passeport My LV Heritage",
+            "price": 425.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/couverture-passeport-my-lv-heritage-monogram-eclipse-nvprod3740060v/P01731",
+            "match_score": 0.45
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, gift. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche My LV Heritage",
+            "LV x YK - Porte-monnaie Rosalie"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 7000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 3.341197967529297,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3908.5476398468018,
+    "from_cache": false
+  }
+}

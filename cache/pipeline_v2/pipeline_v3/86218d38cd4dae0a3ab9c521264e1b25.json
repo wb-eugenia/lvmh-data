@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1770806972.7593164,
+  "payload": {
+    "id": "TEST_004",
+    "original_text": "Budget 5000€. Cherche sac noir.",
+    "processed_text": "Budget 5000€. Cherche sac noir.",
+    "language": "FR",
+    "timestamp": "2026-02-11T11:49:32.747290",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "📊 ML low confidence (0.57), using heuristic"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Il s'agit simplement d'une demande d'achat sans mention de données personnelles ou sensibles.",
+      "anonymized_text": "Budget 5000€. Cherche sac noir."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "leather_goods"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4810083V/M83089",
+            "name": "Sac Treasure Box",
+            "price": 8000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-treasure-box-h27-nvprod4810083v/M83089",
+            "match_score": 0.49
+          },
+          {
+            "sku": "008109/N41605",
+            "name": "Sac Neverfull MM",
+            "price": 1500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-neverfull-mm-damier-azur-canvas-008109/N41605",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD4630013V/1AFBWI",
+            "name": "Pantalon cargo en laine",
+            "price": 990.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-cargo-technique-nvprod4630013v/1AFBWI",
+            "match_score": 0.48
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: black, leather_goods. Budget estimé: high (5K-10K).",
+          "priority": "Medium",
+          "target_products": [
+            "Sac Treasure Box",
+            "Sac Neverfull MM"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-10K)",
+        "budget_specific": 5000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.85,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 45.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.5092620849609375,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 1488.062858581543,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1769906599.7242103,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "vip",
+        "art_collector",
+        "travel_frequent",
+        "watches",
+        "jewelry",
+        "ready_to_wear",
+        "accessories",
+        "nickel_allergy",
+        "pescatarian",
+        "gift_for_spouse",
+        "gift_for_child",
+        "shopping_with_spouse",
+        "shopping_with_children"
+      ],
+      "usage": [
+        "gift",
+        "art_events"
+      ],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD120005V/R08324",
+          "name": "Livre Icons of modern art. The Shchukin collection  édition anglaise",
+          "price": 49.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-icons-of-modern-art-the-shchukin-collection-edition-anglaise-nvprod120005v/R08324",
+          "match_score": 0.57
+        },
+        {
+          "sku": "008765/R07639",
+          "name": "Livre de Seydou Keïta  Édition Collector",
+          "price": 2500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-de-seydou-keita-edition-collector-008765/R07639",
+          "match_score": 0.5
+        },
+        {
+          "sku": "NVPROD110014V/RN0001",
+          "name": "Livre Portfolio de photographies  par Jean Larivière - Volume 2",
+          "price": 6000.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-portfolio-de-photographies-par-jean-lariviere-volume-2-nvprod110014v/RN0001",
+          "match_score": 0.49
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "vip"
+      },
+      "profession": {
+        "sector": "museum_director",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "pescatarian"
+      ],
+      "allergies": {
+        "food": [
+          "nickel_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "art_exhibition"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_353"
+  }
+}

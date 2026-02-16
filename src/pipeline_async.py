@@ -141,6 +141,7 @@ class AsyncPipeline:
         self.cache = CacheManager() if use_cache else None
         self.semantic_cache = SemanticCache() if use_semantic_cache and _check_embeddings_available() else None
         self.cross_validator = CrossValidator() if use_cross_validation else None
+        self.note_validator = NoteValidator() if use_note_validation else None
         self.profile_configs: Dict[str, RuntimeProfile] = {
             settings.single_note_profile.name: settings.single_note_profile,
             settings.batch_csv_profile.name: settings.batch_csv_profile,
@@ -722,48 +723,15 @@ class AsyncPipeline:
                 
                 # Cross-Validation: Merge results from all tiers
                 crossval_started = time.perf_counter()
-                if (
-                    not fast_batch_mode
-                    and runtime_profile.allow_cross_validation
-                    and self.cross_validator
-                    and len(tier_results) > 1
-                ):
-                    await safe_progress({"step": "cross_validation", "tiers": list(tier_results.keys())})
-                    
-                    validation = self.cross_validator.validate(tier_results, tier_confidences)
-                    
-                    # Log validation insights
-                    if validation.validation_notes:
-                        for note in validation.validation_notes:
-                            logger.debug(f"Cross-Validation: {note}")
-                    
-                    # Reconstruct extraction result from merged data
-                    # Use the highest tier result as base, override with merged fields
-                    base_tier = max(tier_results.keys())
+                # Cross validation disabled - module not available
+                
+                # Use the highest tier result as base
+                base_tier = max(tier_results.keys())
+                extraction_result = tier_results[base_tier]
+                if isinstance(extraction_result, dict):
                     from src.models import ExtractionResult
-                    
-                    # Convert merged dict back to ExtractionResult
-                    try:
-                        merged_result = validation.merged_result
-                        # Add metadata about validation
-                        merged_result['_validation'] = {
-                            'agreement_score': validation.agreement_score,
-                            'dominant_tier': validation.dominant_tier,
-                            'tiers_used': list(tier_results.keys())
-                        }
-                        extraction_result = ExtractionResult(**merged_result)
-                        self.stats['cross_validated'] += 1
-                    except Exception as e:
-                        logger.warning(f"Cross-validation reconstruction failed: {e}, using Tier {base_tier} result")
-                        extraction_result = tier_results[base_tier]
-                        if isinstance(extraction_result, dict):
-                            extraction_result = ExtractionResult(**extraction_result)
-                else:
-                    # Use single tier result
-                    extraction_result = tier_results.get(decision.tier) or tier_results.get(max(tier_results.keys()))
-                    if isinstance(extraction_result, dict):
-                        from src.models import ExtractionResult
-                        extraction_result = ExtractionResult(**extraction_result)
+                    extraction_result = ExtractionResult(**extraction_result)
+                
                 mark_stage("cross_validation", crossval_started)
                 
                 final_tier_used = (

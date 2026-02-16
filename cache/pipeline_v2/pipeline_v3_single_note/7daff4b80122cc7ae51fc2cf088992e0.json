@@ -1,0 +1,168 @@
+{
+  "_cached_at": 1770887212.0799458,
+  "payload": {
+    "id": "API_1770887208",
+    "original_text": "Sr. y Sra. Navarro, 52-54 años, clientes excelentes desde 2015. Compra importante viaje aniversario 25 matrimonio crucero Mediterráneo mes próximo. Presupuesto combinado 18K muy flexible. Él empresario viñedos Rioja productor vino, ella sommelier reconocida restaurante estrella Michelin. Ambos pasión vino gastronomía, viajan rutas vino mundial constantemente. Coleccionan etiquetas vino raras vintage. Crucero lujo para con grupo amigos íntimos parejas similar perfil. Ella elegancia sofisticada, prefiere cognac beige hardware dorado. Él clásico funcional, negro marrón plata. Ambos pescetarianos eventos. Él alergia mariscos severa crítico eventos boutique. Tres hijos adultos: hijo mayor enólogo continúa negocio familia, hija chef París, menor sommelier formación. Familia unida negocio vino generaciones. Aniversario julio cada año ritual compras. Red extensa contactos gastronomía lujo enología, referido muchos clientes. Llamar mayo preview privada verano. Mencionaron planean evento vendimia septiembre viñedo grande, posible colaboración boutique regalos invitados VIP. Cliente prioritario lifetime value altísimo.",
+    "processed_text": "Sr. y Sra. Navarro, 52-54 años, clientes excelentes desde 2015. Compra importante viaje aniversario 25 matrimonio crucero Mediterráneo mes próximo. Presupuesto combinado 18K muy flexible. Él empresario viñedos Rioja productor vino, ella sommelier reconocida restaurante estrella Michelin. Ambos pasión vino gastronomía, viajan rutas vino mundial constantemente. Coleccionan etiquetas vino raras vintage. Crucero lujo para con grupo amigos íntimos parejas similar perfil. Ella elegancia sofisticada, prefiere cognac beige hardware dorado. Él clásico funcional, negro marrón plata. Ambos pescetarianos eventos. Él [RGPD_HEALTH_PHYSICAL_REDACTED] crítico eventos boutique. Tres hijos adultos: hijo mayor enólogo continúa negocio familia, hija chef París, menor sommelier formación. Familia unida negocio vino generaciones. Aniversario julio cada año ritual compras. Red extensa contactos gastronomía lujo enología, referido muchos clientes. Llamar mayo preview privada verano. Mencionaron planean evento vendimia septiembre viñedo grande, posible colaboración boutique regalos invitados VIP. Cliente prioritario lifetime value altísimo.",
+    "language": "ES",
+    "timestamp": "2026-02-12T10:06:52.037454",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget Vague: +8",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "La nota contient une mention d'une allergie alimentaire sévère, ce qui est considéré comme une donnée sensible selon l'Article 9 du RGPD.",
+      "anonymized_text": "Sr. y Sra. Navarro, 52-54 años, clientes excelentes desde 2015. Compra importante viaje aniversario 25 matrimonio crucero Mediterráneo mes próximo. Presupuesto combinado 18K muy flexible. Él empresario viñedos Rioja productor vino, ella sommelier reconocida restaurante estrella Michelin. Ambos pasión vino gastronomía, viajan rutas vino mundial constantemente. Coleccionan etiquetas vino raras vintage. Crucero lujo para con grupo amigos íntimos parejas similar perfil. Ella elegancia sofisticada, prefiere cognac beige hardware dorado. Él clásico funcional, negro marrón plata. Ambos pescetarianos eventos. Él [RGPD_HEALTH_PHYSICAL_REDACTED] crítico eventos boutique. Tres hijos adultos: hijo mayor enólogo continúa negocio familia, hija chef París, menor sommelier formación. Familia unida negocio vino generaciones. Aniversario julio cada año ritual compras. Red extensa contactos gastronomía lujo enología, referido muchos clientes. Llamar mayo preview privada verano. Mencionaron planean evento vendimia septiembre viñedo grande, posible colaboración boutique regalos invitados VIP. Cliente prioritario lifetime value altísimo."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "beige_neutral",
+          "brown_cognac",
+          "vip",
+          "wedding_anniversary",
+          "travel_frequent",
+          "wine_enthusiast",
+          "art_collector",
+          "pescatarian",
+          "entrepreneur_established",
+          "shopping_with_spouse",
+          "gift_for_self",
+          "gift_for_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "brown_cognac",
+            "beige_neutral",
+            "black",
+            "beige",
+            "red"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "grained_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3690001V/M20309",
+            "name": "Coffret Champagne",
+            "price": 16000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/coffret-champagne-monogram-nvprod3690001v/M20309",
+            "match_score": 0.51
+          },
+          {
+            "sku": "NVPROD4810037V/M82634",
+            "name": "Bijou de sac et porte-clés Illustré Vivienne Sail",
+            "price": 280.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-illustre-vivienne-sail-s00-nvprod4810037v/M82634",
+            "match_score": 0.5
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['entrepreneur_established', 'sommelier']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: luxury_service, beige_neutral. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Coffret Champagne",
+            "Bijou de sac et porte-clés Illustré Vivienne Sail"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.88,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 22.77,
+      "rgpd": 2955.26,
+      "cache_lookup": 0.44,
+      "semantic_cache_lookup": 0.0,
+      "routing": 40.4,
+      "tier1": 2.78,
+      "tier2": 0.7,
+      "cross_validation": 1.52,
+      "rag": 37.41,
+      "recommendation": 1.13,
+      "quality_gate": 0.01,
+      "injection": 0.0,
+      "total": 3062.51
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 3062.514543533325,
+    "from_cache": false
+  }
+}

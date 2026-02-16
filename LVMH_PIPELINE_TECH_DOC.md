@@ -34,7 +34,7 @@ Le composant `SmartRouterV3` agit comme un trieur de courrier intelligent. Il é
 Le router utilise d'abord une approche heuristique (Scoring Engine), puis valide la décision via un modèle **Random Forest** (entrainé en local via `sklearn`). Si la confiance ML est > 0.85, la décision est validée automatiquement. Sinon, on suit les seuils :
 - **Tier 1 (<25)** : Règles Regex strictes. Coût : 0€. Vitesse : <10ms.
 - **Tier 2 (25-75)** : Mistral Balanced (7B/12B). Le "Workhorse" de la pipeline.
-- **Tier 3 (>75)** : Mistral Large (premium). Pour les notes longues ou stratégiques.
+- **Tier 3 (>75)** : Mistral Large / GPT-4o. Pour les notes longues ou stratégiques.
 
 ### 2.3 Étape 3 : Extraction Multi-Piliers (Taxonomie LVMH V2)
 L'extraction transforme le texte en un objet JSON structuré selon les 4 piliers fondamentaux définis par le Data Office :
@@ -85,7 +85,7 @@ Le `ProductMatcher` connecte les désirs flous à la réalité du catalogue.
 
 ### 3.2 Stack Technologique
 - **Backend** : Python 3.10+, FastAPI (Asynchrone).
-- **IA/LLM** : Mistral AI (Tier 2/3 extraction), OpenAI (Whisper + RGPD contextuel), HuggingFace (Local NER).
+- **IA/LLM** : Mistral AI (EU-Compliant), OpenAI (Fallback), HuggingFace (Local NER).
 - **Vector DB** : Local Pickle/FAISS Index (lv_index.pkl).
 - **Frontend** : React.js, Vite, TailwindCSS, Lucide Icons.
 - **DevOps** : Docker, Docker-Compose, scripts PowerShell de déploiement.
@@ -123,7 +123,7 @@ LVMH Data Office impose une politique de "Privacy by Design" :
 ### 6.1 Pré-requis
 - **Docker Desktop** (recommandé).
 - **Python 3.10** (si installe locale).
-- **Clés API** : Mistral, OpenAI.
+- **Clés API** : Mistral, OpenAI, Replicate (pour extraction d'images si activé).
 
 ### 6.2 Démarrage Rapide
 ```bash

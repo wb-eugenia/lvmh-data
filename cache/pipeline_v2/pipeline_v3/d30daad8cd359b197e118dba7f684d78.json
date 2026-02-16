@@ -1,0 +1,153 @@
+{
+  "_cached_at": 1770809702.3074467,
+  "payload": {
+    "id": "GEN_040",
+    "original_text": "Mme [NAME] et mari, 51-54 ans, clients fidèles 2016. Achat multiple collection printemps et cadeaux anniversaires enfants. Budget combiné 16K. Elle avocate droit famille cabinet propre, lui chirurgien maxillo-facial. Tous deux passionnés équitation, possèdent chevaux, compétitions dressage régionales. Voyagent équitation Europe, prochaine compétition Aachen. Collectionnent art équestre peintures sculptures chevaux. Elle élégance classique raffinée, préfère cognac bordeaux or. Lui sobre fonctionnel, noir marron argent. Tous deux pescetariens événements. Elle allergie nickel hardware attention. Trois enfants adultes maintenant, fils aîné vétérinaire, fille médecin, benjamin étudiant droit suit mère. Anniversaire mariage mai chaque année rituel shopping. Excellents clients lifetime value, réseau équestre haut niveau, référé plusieurs. Rappeler mars preview exclusive. Intéressés collaboration équestre événements sponsoring possibilité. Je confirme. Je confirme. Adresse livraison [ADRESSE] voil. voil.",
+    "processed_text": "Mme [NAME] et mari, 51-54 ans, clients fidèles 2016. Achat multiple collection printemps et cadeaux anniversaires enfants. Budget combiné 16K. Elle avocate droit famille cabinet propre, lui chirurgien maxillo-facial. Tous deux passionnés équitation, possèdent chevaux, compétitions dressage régionales. Voyagent équitation Europe, prochaine compétition Aachen. Collectionnent art équestre peintures sculptures chevaux. Elle élégance classique raffinée, préfère cognac bordeaux or. Lui sobre fonctionnel, noir marron argent. Tous deux pescetariens événements. Elle allergie nickel hardware attention. Trois enfants adultes maintenant, fils aîné vétérinaire, fille médecin, benjamin étudiant droit suit mère. Anniversaire mariage mai chaque année rituel shopping. Excellents clients lifetime value, réseau équestre haut niveau, référé plusieurs. Rappeler mars preview exclusive. Intéressés collaboration équestre événements sponsoring possibilité. Je confirme. Je confirme. Adresse livraison [ADRESSE] voil. voil.",
+    "language": "FR",
+    "timestamp": "2026-02-11T12:35:02.293910",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Intent: Comparison: +12",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire (pescetarien), et les détails sur la famille ne relèvent pas des catégories sensibles. L'allergie au nickel est acceptable pour le business.",
+      "anonymized_text": "Mme [NAME] et mari, 51-54 ans, clients fidèles 2016. Achat multiple collection printemps et cadeaux anniversaires enfants. Budget combiné 16K. Elle avocate droit famille cabinet propre, lui chirurgien maxillo-facial. Tous deux passionnés équitation, possèdent chevaux, compétitions dressage régionales. Voyagent équitation Europe, prochaine compétition Aachen. Collectionnent art équestre peintures sculptures chevaux. Elle élégance classique raffinée, préfère cognac bordeaux or. Lui sobre fonctionnel, noir marron argent. Tous deux pescetariens événements. Elle allergie nickel hardware attention. Trois enfants adultes maintenant, fils aîné vétérinaire, fille médecin, benjamin étudiant droit suit mère. Anniversaire mariage mai chaque année rituel shopping. Excellents clients lifetime value, réseau équestre haut niveau, référé plusieurs. Rappeler mars preview exclusive. Intéressés collaboration équestre événements sponsoring possibilité. Je confirme. Je confirme. Adresse livraison [ADRESSE] voil. voil."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "customer_intent",
+          "brown_cognac",
+          "black",
+          "gift",
+          "jewelry",
+          "evening",
+          "ready_to_wear",
+          "travel",
+          "leather_goods",
+          "vip",
+          "legal_lawyer",
+          "medical_surgeon",
+          "art_collector",
+          "travel_frequent",
+          "nickel_allergy",
+          "wedding_anniversary",
+          "gift_for_child",
+          "shopping_with_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD1250274V/R96625",
+            "name": "Canapé Bomboca par Fernando et Humberto Campana",
+            "price": 63500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/canape-bomboca-par-fernando-et-humberto-campana-nvprod1250274v/R96625",
+            "match_score": 0.59
+          },
+          {
+            "sku": "NVPROD2660007V/M10025",
+            "name": "Malle Courrier Lozine Carré Gauche",
+            "price": 42000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-courrier-lozine-carre-gauche-monogram-nvprod2660007v/M10025",
+            "match_score": 0.58
+          },
+          {
+            "sku": "NVPROD2660008V/M10023",
+            "name": "Malle Courrier Lozine Carré Droite",
+            "price": 42000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-courrier-lozine-carre-droite-monogram-nvprod2660008v/M10023",
+            "match_score": 0.58
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['legal_lawyer', 'medical_surgeon']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: customer_intent, brown_cognac. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Canapé Bomboca par Fernando et Humberto Campana",
+            "Malle Courrier Lozine Carré Gauche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8500000000000001,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 70.0,
+        "completeness_score": 0.0,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 29699.888706207275,
+    "from_cache": false
+  }
+}

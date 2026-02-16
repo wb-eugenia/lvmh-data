@@ -1,0 +1,152 @@
+{
+  "_cached_at": 1770887279.6001585,
+  "payload": {
+    "id": "API_1770887277",
+    "original_text": "Famiglia Benedetti completa, shopping multi-generazionale evento importante. Nonno 78 anni, genitori 52-54, figlia 26 figlio 23 anni. Budget familiare combinato eccezionale 24K. Nonno eleganza classica senza tempo, collezionista orologi vintage. Padre imprenditore moda dirige brand famiglia terza generazione. Madre stilista brand stesso, creatività famiglia. Figlia fashion buyer grande magazzino Londra, figlio studia business moda Parigi. Celebrano anniversario 50 anni brand famiglia evento grande settembre Milano. Nonno preferisce tradizionale cognac marrone argento. Genitori moderni sofisticati, madre avant-garde colorata audace, padre classico raffinato nero navy. Figlia stile giovane trendy sostenibilità importante generazione. Figlio urbano minimale funzionale. Nonno pescetariano, genitori onnivori, figlia vegana figlio vegetariano eventi. Madre allergia nichel importante. Famiglia moda generazioni, rete industry vastissima, clienti potenziali infiniti. Evento settembre Milan Fashion Week coincide sfilata, possibile collaborazione boutique sponsorship. Richiamare luglio coordinare tutto evento. Interessati collezione capsule collaborazione famiglia brand possibile discussione futura. Cliente priorità massima lifetime value straordinario relazione coltivare attentamente.",
+    "processed_text": "Famiglia Benedetti completa, shopping multi-generazionale evento importante. Nonno 78 anni, genitori 52-54, figlia 26 figlio 23 anni. Budget familiare combinato eccezionale 24K. Nonno eleganza classica senza tempo, collezionista orologi vintage. Padre imprenditore moda dirige brand famiglia terza generazione. Madre stilista brand stesso, creatività famiglia. Figlia fashion buyer grande magazzino Londra, figlio studia business moda Parigi. Celebrano anniversario 50 anni brand famiglia evento grande settembre Milano. Nonno preferisce tradizionale cognac marrone argento. Genitori moderni sofisticati, madre avant-garde colorata audace, padre classico raffinato nero navy. Figlia stile giovane trendy sostenibilità importante generazione. Figlio urbano minimale funzionale. Nonno pescetariano, genitori onnivori, figlia vegana figlio vegetariano eventi. Madre allergia nichel importante. Famiglia moda generazioni, rete industry vastissima, clienti potenziali infiniti. Evento settembre Milan Fashion Week coincide sfilata, possibile collaborazione boutique sponsorship. Richiamare luglio coordinare tutto evento. Interessati collezione capsule collaborazione famiglia brand possibile discussione futura. Cliente priorità massima lifetime value straordinario relazione coltivare attentamente.",
+    "language": "IT",
+    "timestamp": "2026-02-12T10:07:59.548352",
+    "routing": {
+      "tier": 1,
+      "reasons": [
+        "Allergy Medium: +6",
+        "📊 ML low confidence (0.67), using heuristic"
+      ],
+      "confidence": 0.85,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la famille, les professions et les régimes alimentaires ne sont pas considérées comme sensibles dans ce contexte.",
+      "anonymized_text": "Famiglia Benedetti completa, shopping multi-generazionale evento importante. Nonno 78 anni, genitori 52-54, figlia 26 figlio 23 anni. Budget familiare combinato eccezionale 24K. Nonno eleganza classica senza tempo, collezionista orologi vintage. Padre imprenditore moda dirige brand famiglia terza generazione. Madre stilista brand stesso, creatività famiglia. Figlia fashion buyer grande magazzino Londra, figlio studia business moda Parigi. Celebrano anniversario 50 anni brand famiglia evento grande settembre Milano. Nonno preferisce tradizionale cognac marrone argento. Genitori moderni sofisticati, madre avant-garde colorata audace, padre classico raffinato nero navy. Figlia stile giovane trendy sostenibilità importante generazione. Figlio urbano minimale funzionale. Nonno pescetariano, genitori onnivori, figlia vegana figlio vegetariano eventi. Madre allergia nichel importante. Famiglia moda generazioni, rete industry vastissima, clienti potenziali infiniti. Evento settembre Milan Fashion Week coincide sfilata, possibile collaborazione boutique sponsorship. Richiamare luglio coordinare tutto evento. Interessati collezione capsule collaborazione famiglia brand possibile discussione futura. Cliente priorità massima lifetime value straordinario relazione coltivare attentamente."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "navy",
+          "luxury_service",
+          "professional",
+          "black",
+          "brown_cognac"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4480190V/1AC7JI",
+            "name": "Bottine Legacy",
+            "price": 1600.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/bottine-legacy-nvprod4480190v/1AC7JI",
+            "match_score": 0.52
+          },
+          {
+            "sku": "NVPROD4480190V/1AC7JJ",
+            "name": "Bottine Legacy",
+            "price": 1600.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/bottine-legacy-nvprod4480190v/1AC7JJ",
+            "match_score": 0.52
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan",
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [
+            "vegetarian"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: navy, luxury_service. Budget estimé: flexible_unknown (None).",
+          "priority": "Medium",
+          "target_products": [
+            "Bottine Legacy",
+            "Bottine Legacy"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "flexible_unknown (None)",
+        "budget_specific": null,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.75,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 2.469301223754883,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 28.78,
+      "rgpd": 1744.84,
+      "cache_lookup": 0.44,
+      "semantic_cache_lookup": 0.0,
+      "routing": 55.3,
+      "tier1": 2.51,
+      "cross_validation": 0.02,
+      "rag": 38.11,
+      "recommendation": 3.9,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 1874.01
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 1874.009132385254,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1770887215.5987065,
+  "payload": {
+    "id": "API_1770887212",
+    "original_text": "Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin gemeinsames Projekt erfolgreich abgeschlossen. Budget 5K. Partnerin liebt Reisen Fotografie, dokumentiert Architektur weltweit. Stil modern minimalistisch funktional. Schwarz navy bevorzugt. Kundin selbst sammelt Designobjekte Bauhaus. Partnerin Vegetarierin. Projekt Fertigstellung nächste Woche. Zufrieden immer Service. Erwähnt großes Projekt kommend international könnte mehr Geschenke Team. Nachfassen März. Interessiert Firmenrabatt Mengenbestellungen.",
+    "processed_text": "Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin gemeinsames Projekt erfolgreich abgeschlossen. Budget 5K. Partnerin liebt Reisen Fotografie, dokumentiert Architektur weltweit. Stil modern minimalistisch funktional. Schwarz navy bevorzugt. Kundin selbst sammelt Designobjekte Bauhaus. Partnerin Vegetarierin. Projekt Fertigstellung nächste Woche. Zufrieden immer Service. Erwähnt großes Projekt kommend international könnte mehr Geschenke Team. Nachfassen März. Interessiert Firmenrabatt Mengenbestellungen.",
+    "language": "DE",
+    "timestamp": "2026-02-12T10:06:55.550055",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations fournies concernent des préférences de style et des détails professionnels sans mentionner de données sensibles.",
+      "anonymized_text": "Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin gemeinsames Projekt erfolgreich abgeschlossen. Budget 5K. Partnerin liebt Reisen Fotografie, dokumentiert Architektur weltweit. Stil modern minimalistisch funktional. Schwarz navy bevorzugt. Kundin selbst sammelt Designobjekte Bauhaus. Partnerin Vegetarierin. Projekt Fertigstellung nächste Woche. Zufrieden immer Service. Erwähnt großes Projekt kommend international könnte mehr Geschenke Team. Nachfassen März. Interessiert Firmenrabatt Mengenbestellungen."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "black",
+          "navy",
+          "luxury_service",
+          "leather_goods",
+          "gift_for_colleague",
+          "travel",
+          "art_collector",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD110016V/R08339",
+            "name": "Livre Peter Marino Art Architecture - Édition Deluxe",
+            "price": 300.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-peter-marino-art-architecture-edition-deluxe-nvprod110016v/R08339",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD110015V/R08337",
+            "name": "Livre Peter Marino Art Architecture",
+            "price": 100.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-peter-marino-art-architecture-nvprod110015v/R08337",
+            "match_score": 0.48
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: black, navy. Budget estimé: None (5K).",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Peter Marino Art Architecture - Édition Deluxe",
+            "Livre Peter Marino Art Architecture"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "None (5K)",
+        "budget_specific": 5000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.1572837829589844,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 4.56,
+      "rgpd": 3354.39,
+      "cache_lookup": 0.38,
+      "semantic_cache_lookup": 0.0,
+      "routing": 41.37,
+      "tier1": 1.2,
+      "tier2": 0.49,
+      "cross_validation": 0.94,
+      "rag": 38.94,
+      "recommendation": 1.79,
+      "quality_gate": 0.01,
+      "injection": 0.01,
+      "total": 3444.13
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 3444.129467010498,
+    "from_cache": false
+  }
+}

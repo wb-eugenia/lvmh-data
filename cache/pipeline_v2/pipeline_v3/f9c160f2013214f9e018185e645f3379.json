@@ -1,0 +1,145 @@
+{
+  "_cached_at": 1770809724.1064687,
+  "payload": {
+    "id": "GEN_008",
+    "original_text": "Mme [NAME] et M. [NAME], couple 35-38 ans, nouveaux quartier. Lui entrepreneur tech startup, elle chef de projet marketing. Cherchent cadeaux pendaison crémaillère famille amis. Budget total 10K pour 5-6 pièces variées. Goûts contemporains design épuré. Madame pratique course à pied, prépare marathon Paris avril. Monsieur amateur vin, cours sommelier le soir. Lui allergique gluten sévère pour événements boutique. Mentionné reçoivent beaucoup chez eux aiment diners. Potentiel excellent clientèle jeune dynamique. Anniversaire mariage juin chaque année. Rappeler mai pour suggestions cadeaux. Proposer programme fidélité. Merci. RIB [RIB].",
+    "processed_text": "Mme [NAME] et M. [NAME], couple 35-38 ans, nouveaux quartier. Lui entrepreneur tech startup, elle chef de projet marketing. Cherchent cadeaux pendaison crémaillère famille amis. Budget total 10K pour 5-6 pièces variées. Goûts contemporains design épuré. Madame pratique course à pied, prépare marathon Paris avril. Monsieur amateur vin, cours sommelier le soir. Lui allergique gluten sévère pour événements boutique. Mentionné reçoivent beaucoup chez eux aiment diners. Potentiel excellent clientèle jeune dynamique. Anniversaire mariage juin chaque année. Rappeler mai pour suggestions cadeaux. Proposer programme fidélité. Merci. RIB [RIB].",
+    "language": "FR",
+    "timestamp": "2026-02-11T12:35:24.093385",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Allergy Severe: +12",
+        "Intent: Advisory: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies alimentaires sont acceptables pour le business, et il n'y a pas d'autres catégories sensibles détectées.",
+      "anonymized_text": "Mme [NAME] et M. [NAME], couple 35-38 ans, nouveaux quartier. Lui entrepreneur tech startup, elle chef de projet marketing. Cherchent cadeaux pendaison crémaillère famille amis. Budget total 10K pour 5-6 pièces variées. Goûts contemporains design épuré. Madame pratique course à pied, prépare marathon Paris avril. Monsieur amateur vin, cours sommelier le soir. Lui allergique gluten sévère pour événements boutique. Mentionné reçoivent beaucoup chez eux aiment diners. Potentiel excellent clientèle jeune dynamique. Anniversaire mariage juin chaque année. Rappeler mai pour suggestions cadeaux. Proposer programme fidélité. Merci. RIB [RIB]."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "gift",
+          "luxury_service",
+          "customer_intent",
+          "evening",
+          "entrepreneur_startup",
+          "tech_executive",
+          "wedding_anniversary",
+          "gluten_free",
+          "wine_enthusiast",
+          "gift_for_friend",
+          "gift_for_parent",
+          "regular"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4670098V/M82879",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82879",
+            "match_score": 0.57
+          },
+          {
+            "sku": "NVPROD4670098V/M82878",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82878",
+            "match_score": 0.57
+          },
+          {
+            "sku": "NVPROD4670098V/M82880",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82880",
+            "match_score": 0.57
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "['entrepreneur_startup', 'marketing_manager']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "gluten_free"
+        ],
+        "allergies": {
+          "food": [
+            "gluten_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: gift, luxury_service. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche",
+            "Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.8,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 65.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.85,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 6501.184463500977,
+    "from_cache": false
+  }
+}

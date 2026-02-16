@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1769906170.837856,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "leather_goods",
+        "navy",
+        "accessories",
+        "luxury_service",
+        "professional",
+        "black"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [
+          "black",
+          "navy"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3970174V/1AB6XV",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6XV",
+          "match_score": 0.57
+        },
+        {
+          "sku": "007013/R07945",
+          "name": "Coffret d'étiquettes de compagnies maritimes",
+          "price": 50.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/coffret-detiquettes-de-compagnies-maritimes-007013/R07945",
+          "match_score": 0.57
+        },
+        {
+          "sku": "NVPROD3970174V/1AB6Y1",
+          "name": "Jupe à détails en cuir et fermeture à glissière",
+          "price": 2890.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/jupe-a-details-en-cuir-et-fermeture-a-glissiere-nvprod3970174v/1AB6Y1",
+          "match_score": 0.56
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "high (5K-10K)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.9,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.9,
+    "processing_tier": "tier1",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 4.098176956176758,
+    "rgpd_flag": false,
+    "tier": 1,
+    "ID": "CA_358"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1769906504.0957806,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "medical_physician",
+        "first_visit",
+        "vegan",
+        "gluten_free",
+        "wedding_anniversary",
+        "art_collector",
+        "travel_frequent",
+        "eco_conscious"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": []
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Gift",
+        "behavior": "first_visit"
+      },
+      "profession": {
+        "sector": "medical_physician",
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [
+        "vegan"
+      ],
+      "allergies": {
+        "food": [
+          "gluten_allergy"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": "wedding_anniversary"
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": "ultra_high (15K+)",
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.85,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.85,
+    "processing_tier": "tier2",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_302"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "_cached_at": 1770809719.3258889,
+  "payload": {
+    "id": "GEN_031",
+    "original_text": "voil. Mme [NAME], 43 ans, consultante stratégie, cliente occasionnelle. Cherche cadeau sœur 40 ans manager finance. Budget 4K. Sœur adore voyages aventure, trek régulier Himalaya Patagonie. pratique élégant, cuir noir marron. Sœur végétarienne. Anniversaire sœur février prochain. Cliente satisfaite achats précédents. Mentionné mère 70 ans anniversaire été pourrait revenir. Rappeler avril. Merci. RIB [RIB] voil.",
+    "processed_text": "voil. Mme [NAME], 43 ans, consultante stratégie, cliente occasionnelle. Cherche cadeau sœur 40 ans manager finance. Budget 4K. Sœur adore voyages aventure, trek régulier Himalaya Patagonie. pratique élégant, cuir noir marron. Sœur végétarienne. Anniversaire sœur février prochain. Cliente satisfaite achats précédents. Mentionné mère 70 ans anniversaire été pourrait revenir. Rappeler avril. Merci. RIB [RIB] voil.",
+    "language": "FR",
+    "timestamp": "2026-02-11T12:35:19.308591",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur la cliente et sa sœur sont liées à des préférences de cadeaux et ne relèvent pas des catégories sensibles du RGPD.",
+      "anonymized_text": "voil. Mme [NAME], 43 ans, consultante stratégie, cliente occasionnelle. Cherche cadeau sœur 40 ans manager finance. Budget 4K. Sœur adore voyages aventure, trek régulier Himalaya Patagonie. pratique élégant, cuir noir marron. Sœur végétarienne. Anniversaire sœur février prochain. Cliente satisfaite achats précédents. Mentionné mère 70 ans anniversaire été pourrait revenir. Rappeler avril. Merci. RIB [RIB] voil."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "customer_intent",
+          "brown_cognac",
+          "black",
+          "gift",
+          "travel",
+          "accessories",
+          "leather_goods",
+          "travel_luggage",
+          "gift_for_sister",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3740065V/P01737",
+            "name": "Portefeuille Multiple My LV Heritage",
+            "price": 610.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/portefeuille-multiple-my-lv-heritage-monogram-eclipse-nvprod3740065v/P01737",
+            "match_score": 0.42
+          },
+          {
+            "sku": "NVPROD4220031V/M81984",
+            "name": "LV x YK - Porte-monnaie Rosalie",
+            "price": 525.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-porte-monnaie-rosalie-monogram-empreinte-nvprod4220031v/M81984",
+            "match_score": 0.41
+          },
+          {
+            "sku": "NVPROD4220022V/M82109",
+            "name": "LV x YK - Porte-monnaie Pumpkin",
+            "price": 515.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-porte-monnaie-pumpkin-monogram-nvprod4220022v/M82109",
+            "match_score": 0.39
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Portefeuille Multiple My LV Heritage qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Portefeuille Multiple My LV Heritage",
+            "LV x YK - Porte-monnaie Rosalie"
+          ],
+          "deadline": "low"
+        },
+        "budget_potential": "None (2K-5K)",
+        "budget_specific": 4000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 75.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.90789794921875,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 13565.855979919434,
+    "from_cache": false
+  }
+}

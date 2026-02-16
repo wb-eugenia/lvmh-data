@@ -16,10 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ ./src/
 COPY api/ ./api/
 COPY config/ ./config/
-COPY alembic/ ./alembic/
-COPY alembic.ini ./
-COPY data/vector_store/ ./data/vector_store/
-COPY models/ ./models/
 
 # Set environment
 ENV PYTHONPATH=/app

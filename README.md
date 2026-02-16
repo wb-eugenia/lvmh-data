@@ -54,18 +54,6 @@ L'IA ne se contente plus de taguer. Elle suggère une action concrète au vendeu
 ### ⚡ Real-Time Pipeline
 Passage d'un mode "Batch" uniquement à une architecture **Événementielle** via FastAPI.
 
-### 🧭 Runtime Providers (Réel - Février 2026)
-- **Transcription audio (`/api/transcribe`)** : OpenAI `whisper-1`.
-- **Routing intelligent** : Smart Router V3 heuristique + RandomForest (`scikit-learn`).
-- **Tier 1** : règles regex (`Tier1RulesEngine`).
-- **Tier 2** : Mistral (`Tier2Mistral`).
-- **Tier 3** : Mistral premium (`TagExtractor` / `Tier3Enhanced`).
-- **RAG produit** : SentenceTransformers + FAISS (`ProductMatcher`).
-- **RGPD contextuel** : `RGPDFilter` (OpenAI) + fallback heuristique local.
-- **NBA** : `RecommenderEngine`.
-
-> Note: les anciens modules legacy ont été archivés et ne font pas partie du runtime actif.
-
 ---
 
 ## 🏗️ Architecture Technique

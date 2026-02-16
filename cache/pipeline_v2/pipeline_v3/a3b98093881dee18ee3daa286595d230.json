@@ -1,0 +1,145 @@
+{
+  "_cached_at": 1770811340.1504714,
+  "payload": {
+    "id": "CA_041",
+    "original_text": "M. Renaud, 41 ans, directeur commercial, première visite. Cherche cadeau épouse Saint-Valentin urgent dans deux jours. Budget 3K. Épouse aime voyages yoga. Style moderne. Cuir noir. Pressé beaucoup. Végane épouse. Satisfait achat rapide. Rappeler prochain événement.",
+    "processed_text": "M. [NAME], 41 ans, directeur commercial, première visite. Cherche cadeau épouse Saint-Valentin urgent dans deux jours. Budget 3K. Épouse aime voyages yoga. moderne. Cuir noir. Pressé beaucoup. Végane épouse. Satisfait achat rapide. Rappeler prochain événement.",
+    "language": "FR",
+    "timestamp": "2026-02-11T13:02:20.109098",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Urgent: +8",
+        "Gift Important: +6",
+        "🤖 ML prediction (conf: 0.94)"
+      ],
+      "confidence": 0.94,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Aucune donnée sensible détectée dans le texte. Les informations fournies concernent des préférences d'achat et des détails non sensibles sur le client et son épouse.",
+      "anonymized_text": "M. [NAME], 41 ans, directeur commercial, première visite. Cherche cadeau épouse Saint-Valentin urgent dans deux jours. Budget 3K. Épouse aime voyages yoga. moderne. Cuir noir. Pressé beaucoup. Végane épouse. Satisfait achat rapide. Rappeler prochain événement."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "gift",
+          "evening",
+          "luxury_service",
+          "travel",
+          "customer_intent",
+          "black",
+          "first_visit",
+          "gift_for_spouse",
+          "travel_frequent",
+          "leather_goods",
+          "vegan"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "travel",
+          "evening",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3430011V/M00616",
+            "name": "Bijou de sac et porte-clés Valentines Day Illustré",
+            "price": 250.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/bijou-de-sac-et-porte-cles-valentines-day-illustre-s00-nvprod3430011v/M00616",
+            "match_score": 0.39
+          },
+          {
+            "sku": "NVPROD4480127V/Z2027W",
+            "name": "Lunettes de soleil carrées 1.1 Millionaires",
+            "price": 670.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lunettes-de-soleil-carrees-11-millionaires-s00-nvprod4480127v/Z2027W",
+            "match_score": 0.39
+          },
+          {
+            "sku": "012302/M58456",
+            "name": "Porte-cartes de visite",
+            "price": 315.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/porte-cartes-de-visite-monogram-empreinte-012302/M58456",
+            "match_score": 0.37
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: gift, evening. Budget estimé: core (2K-5K).",
+          "priority": "Medium",
+          "target_products": [
+            "Bijou de sac et porte-clés Valentines Day Illustré",
+            "Lunettes de soleil carrées 1.1 Millionaires"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "core (2K-5K)",
+        "budget_specific": 3000,
+        "urgency": "high"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.7428398132324219,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2081.0253620147705,
+    "from_cache": false
+  }
+}

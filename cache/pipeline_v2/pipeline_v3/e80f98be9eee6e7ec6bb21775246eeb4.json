@@ -1,0 +1,124 @@
+{
+  "_cached_at": 1770811328.1364896,
+  "payload": {
+    "id": "CA_052",
+    "original_text": "Dr. and Mrs. Montgomery, both 56, long-time VIP clients since 2012. Shopping for daughter's wedding gifts bridesmaids and family. Combined budget 25K+ very generous. He's orthopedic surgeon, she's retired former diplomat. Daughter getting married June destination wedding Tuscany. Looking for gifts 6 bridesmaids, mother of groom, special pieces family members. Daughter works UN sustainable development passionate ethics. Bridesmaids age range 28-32 varied tastes. Mother groom Italian traditional elegant. Both passionate about opera theater, season ticket holders. Travel extensively cultural trips, just back from Prague planning Vienna. She prefers classic elegant pieces rose gold burgundy cognac. He wants quality timeless pieces. Both vegetarian for events. She has severe nut allergy critical boutique events. Mentioned son studying medicine Oxford, graduation next year gift opportunity. Wedding June big family affair 200 guests. Excellent lifetime value family occasions always shop here. Follow up April final selections confirm. Very interested ethical sourcing for daughter's values, asked detailed questions supply chain workers conditions. Could be advocates sustainable luxury line. Top priority clients maintain relationship carefully.",
+    "processed_text": "Dr. and Mrs. Montgomery, both 56, long-time VIP clients since 2012. Shopping for daughter's wedding gifts bridesmaids and family. Combined budget 25K+ very generous. He's orthopedic surgeon, she's retired former diplomat. Daughter getting married June destination wedding Tuscany. Looking for gifts 6 bridesmaids, mother of groom, special pieces family members. Daughter works UN sustainable development passionate ethics. Bridesmaids age range 28-32 varied tastes. Mother groom Italian traditional elegant. Both passionate opera theater, season ticket holders. Travel extensively cultural trips, just back from Prague planning Vienna. She prefers classic elegant pieces rose gold burgundy cognac. He wants quality timeless pieces. Both vegetarian for events. She has [RGPD_HEALTH_PHYSICAL_REDACTED] critical boutique events. Mentioned son studying medicine Oxford, graduation next year gift opportunity. Wedding June big family affair 200 guests. Excellent lifetime value family occasions always shop here. Follow up April final selections confirm. Very interested ethical sourcing for daughter's values, asked detailed questions supply chain workers conditions. Could be advocates sustainable luxury line. Top priority clients maintain relationship carefully.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:02:08.056909",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical",
+        "family_conflict"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "The text contains a severe nut allergy, which is classified as sensitive health information. Additionally, the mention of family dynamics related to the wedding could imply potential family conflicts, especially with the context of a large family event.",
+      "anonymized_text": "Dr. and Mrs. Montgomery, both 56, long-time VIP clients since 2012. Shopping for daughter's wedding gifts bridesmaids and family. Combined budget 25K+ very generous. He's orthopedic surgeon, she's retired former diplomat. Daughter getting married June destination wedding Tuscany. Looking for gifts 6 bridesmaids, mother of groom, special pieces family members. Daughter works UN sustainable development passionate ethics. Bridesmaids age range 28-32 varied tastes. Mother groom Italian traditional elegant. Both passionate opera theater, season ticket holders. Travel extensively cultural trips, just back from Prague planning Vienna. She prefers classic elegant pieces rose gold burgundy cognac. He wants quality timeless pieces. Both vegetarian for events. She has [RGPD_HEALTH_PHYSICAL_REDACTED] critical boutique events. Mentioned son studying medicine Oxford, graduation next year gift opportunity. Wedding June big family affair 200 guests. Excellent lifetime value family occasions always shop here. Follow up April final selections confirm. Very interested ethical sourcing for daughter's values, asked detailed questions supply chain workers conditions. Could be advocates sustainable luxury line. Top priority clients maintain relationship carefully."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "bold_colors",
+          "brown_cognac",
+          "professional",
+          "luxury_service",
+          "accessories",
+          "black",
+          "vip",
+          "wedding",
+          "gift_for_bridesmaids",
+          "gift_for_family",
+          "medical_surgeon",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "bold_colors",
+            "rose_gold",
+            "burgundy",
+            "cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: bold_colors, brown_cognac. Budget estimé: ultra_high (25K+).",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (25K+)",
+        "budget_specific": 25000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 4187.067031860352,
+    "from_cache": false
+  }
+}

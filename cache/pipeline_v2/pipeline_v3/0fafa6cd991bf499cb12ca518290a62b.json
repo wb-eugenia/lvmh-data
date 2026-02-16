@@ -1,0 +1,139 @@
+{
+  "_cached_at": 1770811496.0989318,
+  "payload": {
+    "id": "CA_042",
+    "original_text": "Mrs. Hamilton, 52, philanthropy director foundation, regular client. Shopping for gala charity event next week needs elegant evening pieces. Budget 7K. She organizes fundraising events regularly, this one opera house benefit. Passionate about classical music, board member philharmonic. Travels cultural events Europe. Prefers elegant timeless pieces rose gold burgundy. Pescatarian for events. Mentioned annual gala September every year always shops here for it. Good client consistent. Follow up next month spring arrivals. Interested in boutique sponsoring foundation events possibility.",
+    "processed_text": "Mrs. Hamilton, 52, philanthropy director foundation, regular client. Shopping for gala charity event next week needs elegant evening pieces. Budget 7K. She organizes fundraising events regularly, this one opera house benefit. Passionate classical music, board member philharmonic. Travels cultural events Europe. Prefers elegant timeless pieces rose gold burgundy. Pescatarian for events. Mentioned annual gala September every year always shops here for it. Good client consistent. Follow up next month spring arrivals. Interested in boutique sponsoring foundation events possibility.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:04:56.062626",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the client's shopping preferences, profession, and dietary choice (pescatarian), which are not considered sensitive under the specified categories.",
+      "anonymized_text": "Mrs. Hamilton, 52, philanthropy director foundation, regular client. Shopping for gala charity event next week needs elegant evening pieces. Budget 7K. She organizes fundraising events regularly, this one opera house benefit. Passionate classical music, board member philharmonic. Travels cultural events Europe. Prefers elegant timeless pieces rose gold burgundy. Pescatarian for events. Mentioned annual gala September every year always shops here for it. Good client consistent. Follow up next month spring arrivals. Interested in boutique sponsoring foundation events possibility."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "bold_colors",
+          "evening",
+          "luxury_service",
+          "accessories",
+          "jewelry",
+          "regular",
+          "philanthropist",
+          "travel_frequent",
+          "pescatarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "bold_colors",
+            "rose gold",
+            "burgundy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4760006V/R09186",
+            "name": "Francesca Amfitheatrof : Fantastic Jewels",
+            "price": 125.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/francesca-amfitheatrof-fantastic-jewels-nvprod4760006v/R09186",
+            "match_score": 0.37
+          },
+          {
+            "sku": "NVPROD3690001V/M20309",
+            "name": "Coffret Champagne",
+            "price": 16000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/coffret-champagne-monogram-nvprod3690001v/M20309",
+            "match_score": 0.35
+          },
+          {
+            "sku": "NVPROD3710129V/Q93904",
+            "name": "Collier pendentif Vivienne Statue de la Liberté  or blanc  or jaune  laque et diamants",
+            "price": 34500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-pendentif-vivienne-statue-de-la-liberte-or-blanc-or-jaune-laque-et-diamants-nvprod3710129v/Q93904",
+            "match_score": 0.35
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: bold_colors, evening. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Francesca Amfitheatrof : Fantastic Jewels",
+            "Coffret Champagne"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 7000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 55.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 2.8417110443115234,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3020.366907119751,
+    "from_cache": false
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "_cached_at": 1770809634.1426718,
+  "payload": {
+    "id": "GEN_029",
+    "original_text": "euh bah bon Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen. C est urgent. T. l. phone [PHONE] bah euh merci.",
+    "processed_text": "euh bah bon Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen. C est urgent. T. l. phone [PHONE] bah euh merci.",
+    "language": "DE",
+    "timestamp": "2026-02-11T12:33:54.127553",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Allergy Medium: +6",
+        "Urgent: +8",
+        "🤖 ML prediction (conf: 0.99)"
+      ],
+      "confidence": 0.99,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur la profession, le régime alimentaire et les intérêts ne sont pas considérées comme sensibles.",
+      "anonymized_text": "euh bah bon Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht Luxusaccessoires nach erfolgreichem Exit. Budget sehr flexibel 25K+ besprochen. Modern-professioneller Stil, schätzt Qualität Handwerk. Interessiert Handtaschen Kollektion, Kleinlederwaren, Reisestücke. Leidenschaftlich Triathlon, trainiert täglich, Ironman-Wettbewerbe international. Sammelt digitale Kunst NFTs, folgt Tech-Trends. Vegane Ernährung ethische Wahl Events. Keine Allergien. Partner ebenfalls Tech-Entrepreneur, beide einflussreich Startup-Szene. Plant Hochzeit Herbst, Hochzeitsgeschenke Opportunity. Ausgezeichnetes Potenzial neues Kundensegment wohlhabende junge Tech. Follow-up sofort nach Kauf. VIP-Events einladen. Sehr interessiert Nachhaltigkeit, fragte nach Materialherkunft Transparenz. Möchte langfristige Beziehung aufbauen. C est urgent. T. l. phone [PHONE] bah euh merci."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "luxury_service",
+          "leather_goods",
+          "small_leather",
+          "travel_luggage",
+          "tech_executive",
+          "entrepreneur_startup",
+          "art_collector",
+          "vegan",
+          "wedding"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4810032V/GI0954",
+            "name": "Doudou Vivienne (EUROPE)",
+            "price": 800.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/doudou-vivienne-europe-s00-nvprod4810032v/GI0954",
+            "match_score": 0.5
+          },
+          {
+            "sku": "NVPROD4810023V/GI0948",
+            "name": "Doudou Vivienne XL (EUROPE)",
+            "price": 3700.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/doudou-vivienne-xl-europe-s00-nvprod4810023v/GI0948",
+            "match_score": 0.5
+          },
+          {
+            "sku": "NVPROD4060098V/GI0888",
+            "name": "LV x YK - Couverture carnet de notes Paul Infinity Dots",
+            "price": 515.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-couverture-carnet-de-notes-paul-infinity-dots-epi-nvprod4060098v/GI0888",
+            "match_score": 0.5
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "tech_entrepreneur",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: luxury_service, leather_goods. Budget estimé: ultra_high (25K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Doudou Vivienne (EUROPE)",
+            "Doudou Vivienne XL (EUROPE)"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (25K+)",
+        "budget_specific": null,
+        "urgency": "urgent"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.83,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 50.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 1429.699182510376,
+    "from_cache": false
+  }
+}

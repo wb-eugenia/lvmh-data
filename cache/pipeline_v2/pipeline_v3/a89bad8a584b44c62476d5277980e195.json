@@ -1,0 +1,145 @@
+{
+  "_cached_at": 1770811316.9004328,
+  "payload": {
+    "id": "CA_027",
+    "original_text": "Mr. Chen, 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high potential. Looking for gifts wife and business associates. Budget 20K discussed flexible. Wife interior designer, passionate about contemporary Asian art, attends Hong Kong Art Basel. He plays golf regularly, member exclusive club Peak. They travel luxury extensively, homes Hong Kong London. Wife prefers modern elegant pieces, rose gold neutral tones. Vegan both lifestyle choice events. No allergies. Mentioned two children studying abroad UK universities, graduation gifts opportunities coming years. Anniversary in August annually. Excellent network finance luxury circles, could refer many. Follow up next week personalized selection. Invite to VIP events when in town. Asked about bespoke customization options interested.",
+    "processed_text": "Mr. [NAME], 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high potential. Looking for gifts wife and business associates. Budget 20K discussed flexible. Wife interior designer, passionate contemporary Asian art, attends Hong Kong Art Basel. He plays golf regularly, member exclusive club Peak. They travel luxury extensively, homes Hong Kong London. Wife prefers modern elegant pieces, rose gold neutral tones. Vegan both lifestyle choice events. No allergies. Mentioned two children studying abroad UK universities, graduation gifts opportunities coming years. Anniversary in August annually. Excellent network finance luxury circles, could refer many. Follow up next week personalized selection. Invite to VIP events when in town. Asked bespoke customization options interested.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:01:56.863014",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget Vague: +8",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the client's professional background, interests, and lifestyle choices without revealing any sensitive information related to health, family conflicts, religion, political opinions, sexual orientation, or ethnic origin.",
+      "anonymized_text": "Mr. [NAME], 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high potential. Looking for gifts wife and business associates. Budget 20K discussed flexible. Wife interior designer, passionate contemporary Asian art, attends Hong Kong Art Basel. He plays golf regularly, member exclusive club Peak. They travel luxury extensively, homes Hong Kong London. Wife prefers modern elegant pieces, rose gold neutral tones. Vegan both lifestyle choice events. No allergies. Mentioned two children studying abroad UK universities, graduation gifts opportunities coming years. Anniversary in August annually. Excellent network finance luxury circles, could refer many. Follow up next week personalized selection. Invite to VIP events when in town. Asked bespoke customization options interested."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "professional",
+          "bold_colors",
+          "accessories",
+          "leather_goods",
+          "jewelry",
+          "gift_for_spouse",
+          "gift_for_colleague",
+          "travel_frequent",
+          "art_collector",
+          "golf",
+          "vegan",
+          "first_visit"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "bold_colors",
+            "neutral_tones"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "rose_gold"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4420008V/R09120",
+            "name": "Louis Vuitton Skin : Architecture of Luxury Singapore",
+            "price": 160.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/louis-vuitton-skin-architecture-of-luxury-singapore-nvprod4420008v/R09120",
+            "match_score": 0.38
+          },
+          {
+            "sku": "NVPROD4420009V/R09121",
+            "name": "Louis Vuitton Skin : Architecture of Luxury Tokyo",
+            "price": 160.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/louis-vuitton-skin-architecture-of-luxury-tokyo-nvprod4420009v/R09121",
+            "match_score": 0.37
+          },
+          {
+            "sku": "NVPROD4040011V/R08968",
+            "name": "City Guide Hong Kong  version anglaise",
+            "price": 35.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/city-guide-hong-kong-version-anglaise-nvprod4040011v/R08968",
+            "match_score": 0.37
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: professional, bold_colors. Budget estimé: ultra_high (20K-50K).",
+          "priority": "Medium",
+          "target_products": [
+            "Louis Vuitton Skin : Architecture of Luxury Singapore",
+            "Louis Vuitton Skin : Architecture of Luxury Tokyo"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": 20000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 35.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+      },
+      "confidence": 0.95,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2372.1377849578857,
+    "from_cache": false
+  }
+}

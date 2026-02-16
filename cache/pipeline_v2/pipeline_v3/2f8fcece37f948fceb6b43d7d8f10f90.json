@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1770811438.8200245,
+  "payload": {
+    "id": "CA_037",
+    "original_text": "Mrs. Wilson and daughter shopping together, excellent multi-generational clients. Mother 67 retired publisher, daughter 39 environmental lawyer. Combined budget 19K. Mother elegant classic style, collects rare books first editions, attends literary events auctions. Daughter modern professional sophisticated, practices marathon running training for London Marathon. Mother prefers burgundy cognac traditional pieces. Daughter wants functional elegant black navy. Both passionate about sustainability conservation, daughter works environmental NGO part-time pro bono. Mother vegetarian daughter vegan strict for events. Daughter latex allergy important. Mentioned mother's 70th birthday coming this year in June, big celebration planned family gathering. Daughter's husband architect, son 8 years daughter 5 years. Family very close, regular shopping tradition together. Mother's anniversary in October annually. Excellent lifetime value multi-generational, referred friends family already. Follow up March private preview spring collection. Very interested ethical sourcing, daughter asked detailed questions supply chain carbon footprint. Could be advocates for sustainable luxury line if developed.",
+    "processed_text": "Mrs. Wilson and daughter shopping together, excellent multi-generational clients. Mother 67 retired publisher, daughter 39 environmental lawyer. Combined budget 19K. Mother elegant classic style, collects rare books first editions, attends literary events auctions. Daughter modern professional sophisticated, practices marathon running training for London Marathon. Mother prefers burgundy cognac traditional pieces. Daughter wants functional elegant black navy. Both passionate sustainability conservation, daughter works environmental NGO part-time pro bono. Mother vegetarian daughter vegan strict for events. Daughter latex allergy important. Mentioned mother's 70th birthday coming this year in June, big celebration planned family gathering. Daughter's husband architect, son 8 years daughter 5 years. Family very close, regular shopping tradition together. Mother's anniversary in October annually. Excellent lifetime value multi-generational, referred friends family already. Follow up March private preview spring collection. Very interested ethical sourcing, daughter asked detailed questions supply chain carbon footprint. Could be advocates for sustainable luxury line if developed.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:03:58.783476",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "Intent: Conditional: +8",
+        "⚠️ Negation context detected: +15",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the clients' shopping preferences, family relationships, and dietary choices, which are not classified as sensitive under the provided categories.",
+      "anonymized_text": "Mrs. Wilson and daughter shopping together, excellent multi-generational clients. Mother 67 retired publisher, daughter 39 environmental lawyer. Combined budget 19K. Mother elegant classic style, collects rare books first editions, attends literary events auctions. Daughter modern professional sophisticated, practices marathon running training for London Marathon. Mother prefers burgundy cognac traditional pieces. Daughter wants functional elegant black navy. Both passionate sustainability conservation, daughter works environmental NGO part-time pro bono. Mother vegetarian daughter vegan strict for events. Daughter latex allergy important. Mentioned mother's 70th birthday coming this year in June, big celebration planned family gathering. Daughter's husband architect, son 8 years daughter 5 years. Family very close, regular shopping tradition together. Mother's anniversary in October annually. Excellent lifetime value multi-generational, referred friends family already. Follow up March private preview spring collection. Very interested ethical sourcing, daughter asked detailed questions supply chain carbon footprint. Could be advocates for sustainable luxury line if developed."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "professional",
+          "navy",
+          "accessories",
+          "black",
+          "jewelry",
+          "leather_goods",
+          "ready_to_wear",
+          "wine_enthusiast",
+          "travel_frequent",
+          "eco_conscious",
+          "vegetarian",
+          "vegan",
+          "gift_for_parent",
+          "shopping_with_child",
+          "wedding_anniversary"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "burgundy",
+            "cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather",
+            "grained_leather"
+          ]
+        },
+        "matched_products": []
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [
+            "latex_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Propose une sélection de nouveautés.",
+          "priority": "Medium",
+          "target_products": [],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 19000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 70.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2491.403341293335,
+    "from_cache": false
+  }
+}

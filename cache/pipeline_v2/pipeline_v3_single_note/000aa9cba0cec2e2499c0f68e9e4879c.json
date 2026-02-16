@@ -1,0 +1,163 @@
+{
+  "_cached_at": 1770885966.7038367,
+  "payload": {
+    "id": "API_1770885963",
+    "original_text": "Rendez-vous Mme Laurent, avocate affaires 45 ans, cliente occasionnelle. Cherche cadeau anniversaire mari 50 ans fin mars. Il est passionné golf, membre Racing Club Paris. Budget 3-4K flexible si pièce exceptionnelle. Hésite entre portefeuille et petit sac weekend pour tournois. Cuir marron ou cognac préféré, pas fan noir. Mentionné partent souvent Provence et côte basque. Mari collectionne montres vintage aussi. Elle intolérante produits chimiques forts donc attention finitions. Proposé collection capsule printemps, elle reviendra semaine prochaine avec photos mari pour mieux cibler style. Bon potentiel à rappeler fin février.",
+    "processed_text": "Rendez-vous Mme [NAME], avocate affaires 45 ans, cliente occasionnelle. Cherche cadeau anniversaire mari 50 ans fin mars. Il est passionné golf, membre Racing Club Paris. Budget 3-4K flexible si pièce exceptionnelle. Hésite entre portefeuille et petit sac weekend pour tournois. Cuir marron ou cognac préféré, pas fan noir. Mentionné partent souvent Provence et côte basque. Mari collectionne montres vintage aussi. Elle [RGPD_HEALTH_PHYSICAL_REDACTED] attention finitions. Proposé collection capsule printemps, elle reviendra semaine prochaine avec photos mari pour mieux cibler. potentiel à rappeler fin février.",
+    "language": "FR",
+    "timestamp": "2026-02-12T09:46:06.644812",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget Vague: +8",
+        "Multi Product: +5",
+        "Gift Important: +6",
+        "Intent: Comparison: +12",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "medium",
+      "reasoning": "Le texte mentionne une intolérance aux produits chimiques, ce qui est considéré comme une donnée de santé physique sensible selon l'article 9 du RGPD.",
+      "anonymized_text": "Rendez-vous Mme [NAME], avocate affaires 45 ans, cliente occasionnelle. Cherche cadeau anniversaire mari 50 ans fin mars. Il est passionné golf, membre Racing Club Paris. Budget 3-4K flexible si pièce exceptionnelle. Hésite entre portefeuille et petit sac weekend pour tournois. Cuir marron ou cognac préféré, pas fan noir. Mentionné partent souvent Provence et côte basque. Mari collectionne montres vintage aussi. Elle [RGPD_HEALTH_PHYSICAL_REDACTED] attention finitions. Proposé collection capsule printemps, elle reviendra semaine prochaine avec photos mari pour mieux cibler. potentiel à rappeler fin février."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "small_leather",
+          "leather_goods",
+          "black",
+          "customer_intent",
+          "ultra_high",
+          "gift",
+          "watches",
+          "brown_cognac",
+          "legal_lawyer",
+          "gift_for_spouse",
+          "golf",
+          "travel_frequent",
+          "travel_luggage"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": [
+            "smooth_leather"
+          ]
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3840073V/M10089",
+            "name": "Malle Golf",
+            "price": 140000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/malle-golf-monogram-nvprod3840073v/M10089",
+            "match_score": 0.63
+          },
+          {
+            "sku": "NVPROD4050065V/GI0824",
+            "name": "Set de serviettes de golf Par",
+            "price": 400.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/set-de-serviettes-de-golf-par-s00-nvprod4050065v/GI0824",
+            "match_score": 0.63
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Malle Golf qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Malle Golf",
+            "Set de serviettes de golf Par"
+          ],
+          "deadline": "low"
+        },
+        "budget_potential": "high (3K-6K)",
+        "budget_specific": 3000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 90.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 1.7290115356445312,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 10.96,
+      "rgpd": 2931.29,
+      "cache_lookup": 0.78,
+      "semantic_cache_lookup": 0.0,
+      "routing": 222.34,
+      "tier1": 1.8,
+      "tier2": 2.23,
+      "cross_validation": 1.58,
+      "rag": 80.43,
+      "recommendation": 0.47,
+      "quality_gate": 0.03,
+      "injection": 0.01,
+      "total": 3252.03
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 3252.0365715026855,
+    "from_cache": false
+  }
+}

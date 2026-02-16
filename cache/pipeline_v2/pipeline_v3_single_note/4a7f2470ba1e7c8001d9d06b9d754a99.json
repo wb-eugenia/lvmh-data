@@ -1,0 +1,158 @@
+{
+  "_cached_at": 1770886065.3570921,
+  "payload": {
+    "id": "API_1770886061",
+    "original_text": "Herr und Frau Hoffmann, beide 55 Jahre, treue Kunden seit 2014. Kaufen Geschenke Silberhochzeit nächsten Monat. Budget 14K. Beide Ärzte, er Neurologe sie Radiologin eigene Praxis. Leidenschaftlich Wandern Berge, jährliche Reisen Alpen Dolomiten. Sammeln alpine Kunst Fotografie Berge. Reisen auch kulturell, nächste Reise Wien Opernfestival. Sie eleganter klassischer Stil, bevorzugt navy cognac. Er praktisch funktional, schwarz braun. Beide Vegetarier Events. Keine Allergien. Zwei Kinder erwachsen, Tochter Ärztin Hamburg Sohn Ingenieur München. Familie eng, Hochzeit Tochter Sommer Geschenk Opportunity. Exzellente Kunden, kaufen regelmäßig, sehr zufrieden immer. Nachfassen März private Vorschau. Schätzen Qualität Langlebigkeit, interessiert Handwerkskunst Herstellungsprozess.",
+    "processed_text": "Herr und Frau Hoffmann, beide 55 Jahre, treue Kunden seit 2014. Kaufen Geschenke Silberhochzeit nächsten Monat. Budget 14K. Beide Ärzte, er Neurologe sie Radiologin eigene Praxis. Leidenschaftlich Wandern Berge, jährliche Reisen Alpen Dolomiten. Sammeln alpine Kunst Fotografie Berge. Reisen auch kulturell, nächste Reise Wien Opernfestival. Sie eleganter klassischer Stil, bevorzugt navy cognac. Er praktisch funktional, schwarz braun. Beide Vegetarier Events. Keine Allergien. Zwei Kinder erwachsen, Tochter Ärztin Hamburg Sohn Ingenieur München. Familie eng, Hochzeit Tochter Sommer Geschenk Opportunity. Exzellente Kunden, kaufen regelmäßig, sehr zufrieden immer. Nachfassen März private Vorschau. Schätzen Qualität Langlebigkeit, interessiert Handwerkskunst Herstellungsprozess.",
+    "language": "DE",
+    "timestamp": "2026-02-12T09:47:45.231949",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 0.83)"
+      ],
+      "confidence": 0.83,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon l'Article 9 du RGPD. Les informations sur la profession, le régime alimentaire et la situation familiale ne révèlent pas de conflits ou de données sensibles.",
+      "anonymized_text": "Herr und Frau Hoffmann, beide 55 Jahre, treue Kunden seit 2014. Kaufen Geschenke Silberhochzeit nächsten Monat. Budget 14K. Beide Ärzte, er Neurologe sie Radiologin eigene Praxis. Leidenschaftlich Wandern Berge, jährliche Reisen Alpen Dolomiten. Sammeln alpine Kunst Fotografie Berge. Reisen auch kulturell, nächste Reise Wien Opernfestival. Sie eleganter klassischer Stil, bevorzugt navy cognac. Er praktisch funktional, schwarz braun. Beide Vegetarier Events. Keine Allergien. Zwei Kinder erwachsen, Tochter Ärztin Hamburg Sohn Ingenieur München. Familie eng, Hochzeit Tochter Sommer Geschenk Opportunity. Exzellente Kunden, kaufen regelmäßig, sehr zufrieden immer. Nachfassen März private Vorschau. Schätzen Qualität Langlebigkeit, interessiert Handwerkskunst Herstellungsprozess."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "black",
+          "navy",
+          "accessories",
+          "vip",
+          "wedding_anniversary",
+          "medical_physician",
+          "travel_frequent",
+          "art_collector",
+          "vegetarian"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4620090V/1ABJSK",
+            "name": "Veste Napolitana à boutonnage simple en laine mélangée",
+            "price": 2500.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/veste-napolitana-a-boutonnage-simple-en-laine-melangee-nvprod4620090v/1ABJSK",
+            "match_score": 0.5
+          },
+          {
+            "sku": "NVPROD4550113V/M01513",
+            "name": "Boucles d'oreilles LV Symphony",
+            "price": 400.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-lv-symphony-s00-nvprod4550113v/M01513",
+            "match_score": 0.49
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['medical_physician', 'medical_surgeon']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: brown_cognac, black. Budget estimé: ultra_high (15K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Veste Napolitana à boutonnage simple en laine mélangée",
+            "Boucles d'oreilles LV Symphony"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": 14000,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "Super note: profil client tres complet et exploitable en CRM."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "profile": "single_note",
+    "stage_timings_ms": {
+      "cleaning": 13.33,
+      "rgpd": 2712.45,
+      "cache_lookup": 1.11,
+      "semantic_cache_lookup": 0.0,
+      "routing": 371.48,
+      "tier1": 5.68,
+      "tier2": 1.02,
+      "cross_validation": 3.02,
+      "rag": 300.62,
+      "recommendation": 0.35,
+      "quality_gate": 0.02,
+      "injection": 0.01,
+      "total": 3409.25
+    },
+    "fallbacks_applied": [],
+    "quality_gate_passed": true,
+    "quality_gate_reason": null,
+    "high_signal_input": true,
+    "processing_time_ms": 3409.2578887939453,
+    "from_cache": false
+  }
+}

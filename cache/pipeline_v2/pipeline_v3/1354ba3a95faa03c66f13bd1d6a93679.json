@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1770811409.4932578,
+  "payload": {
+    "id": "CA_014",
+    "original_text": "Ms. Johnson, 36, tech entrepreneur sold startup last year, new ultra-high potential client. Looking to build complete luxury wardrobe accessories after financial success. Budget extremely flexible, discussed 40K+ for initial purchases. She's interested in handbags full range, small leather goods, travel pieces. Passionate about equestrian sports, competes dressage regularly, member exclusive club Cotswolds. Travels constantly for angel investing, just back from Silicon Valley, planning Dubai next month. Collects contemporary art, particularly female artists, attends Art Basel Miami. Practices meditation daily, wellness retreat Bali quarterly. Vegan lifestyle choice, no animal products important note. Severe latex allergy critical for events. Single, no children but mentioned younger sister graduating university June gift opportunity. Hosts networking events for female entrepreneurs monthly could be boutique partnership. Excellent social media presence 200K followers lifestyle content, potential brand visibility. Very interested in sustainability, asked about materials sourcing transparency. Follow up weekly with curated selections. Invite all VIP events. Assign dedicated advisor for ongoing relationship. Asked about bespoke personalization options. This is transformational client, treat as top priority.",
+    "processed_text": "Ms. Johnson, 36, tech entrepreneur sold startup last year, new ultra-high potential client. Looking to build complete luxury wardrobe accessories after financial success. Budget extremely flexible, discussed 40K+ for initial purchases. She's interested in handbags full range, small leather goods, travel pieces. Passionate equestrian sports, competes dressage regularly, member exclusive club Cotswolds. Travels constantly for angel investing, just back from Silicon Valley, planning Dubai next month. Collects contemporary art, particularly female artists, attends Art Basel Miami. Practices meditation daily, wellness retreat Bali quarterly. Vegan lifestyle choice, no animal products important note. [RGPD_HEALTH_PHYSICAL_REDACTED] critical for events. Single, no children but mentioned younger sister graduating university June gift opportunity. Hosts networking events for female entrepreneurs monthly could be boutique partnership. Excellent social media presence 200K followers lifestyle content, potential brand visibility. Very interested in sustainability, asked materials sourcing transparency. Follow up weekly with curated selections. Invite all VIP events. Assign dedicated advisor for ongoing relationship. Asked bespoke personalization options. This is transformational client, treat as top priority.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:03:29.448001",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget 50K: +15",
+        "Budget Vague: +8",
+        "Multi Product: +5",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": true,
+      "categories_detected": [
+        "health_physical"
+      ],
+      "safe_to_store": false,
+      "severity": "high",
+      "reasoning": "The text contains a severe latex allergy, which is classified as a health-related sensitive data under Article 9 of the GDPR. This data is not safe to store without proper consent.",
+      "anonymized_text": "Ms. Johnson, 36, tech entrepreneur sold startup last year, new ultra-high potential client. Looking to build complete luxury wardrobe accessories after financial success. Budget extremely flexible, discussed 40K+ for initial purchases. She's interested in handbags full range, small leather goods, travel pieces. Passionate equestrian sports, competes dressage regularly, member exclusive club Cotswolds. Travels constantly for angel investing, just back from Silicon Valley, planning Dubai next month. Collects contemporary art, particularly female artists, attends Art Basel Miami. Practices meditation daily, wellness retreat Bali quarterly. Vegan lifestyle choice, no animal products important note. [RGPD_HEALTH_PHYSICAL_REDACTED] critical for events. Single, no children but mentioned younger sister graduating university June gift opportunity. Hosts networking events for female entrepreneurs monthly could be boutique partnership. Excellent social media presence 200K followers lifestyle content, potential brand visibility. Very interested in sustainability, asked materials sourcing transparency. Follow up weekly with curated selections. Invite all VIP events. Assign dedicated advisor for ongoing relationship. Asked bespoke personalization options. This is transformational client, treat as top priority."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "ready_to_wear",
+          "professional",
+          "luxury_service",
+          "leather_goods",
+          "casual_daily",
+          "small_leather",
+          "travel_luggage",
+          "art_collector",
+          "travel_frequent",
+          "vegan",
+          "entrepreneur_established",
+          "ultra_high",
+          "gift_for_sister"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "travel",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD3950583V/1AAUUS",
+            "name": "Surchemise workwear",
+            "price": 2040.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/surchemise-workwear-nvprod3950583v/1AAUUS",
+            "match_score": 0.53
+          },
+          {
+            "sku": "NVPROD4830038V/1AFACQ",
+            "name": "Pantalon workwear en denim",
+            "price": 1400.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-denim-nvprod4830038v/1AFACQ",
+            "match_score": 0.52
+          },
+          {
+            "sku": "NVPROD4830056V/1AFATC",
+            "name": "Pantalon workwear en coton",
+            "price": 1100.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/pantalon-workwear-en-coton-nvprod4830056v/1AFATC",
+            "match_score": 0.52
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "ultra_high"
+        },
+        "profession": {
+          "sector": "entrepreneur_established",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegan"
+        ],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: ready_to_wear, professional. Budget estimé: ultra_high (50K+).",
+          "priority": "Medium",
+          "target_products": [
+            "Surchemise workwear",
+            "Pantalon workwear en denim"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (50K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.88,
+        "missing_info": [
+          "Budget non spécifié",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 50.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "👍 Bonne note ! Ton profil client s'enrichit bien."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3005.272626876831,
+    "from_cache": false
+  }
+}

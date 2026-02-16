@@ -1,0 +1,149 @@
+{
+  "_cached_at": 1770811300.919626,
+  "payload": {
+    "id": "CA_068",
+    "original_text": "Signor Rossi, 42 anni, chef stellato Michelin ristorante Milano, nuovo cliente ottimo. Cerca regalo moglie anniversario 15 anni matrimonio. Budget 9K flessibile. Moglie sommelier ristorante stesso, coppia lavora insieme passione gastronomia. Viaggiano ricerca ingredienti produttori artigianali Francia Giappone. Moglie stile elegante professionale, preferisce cognac nero rosé gold. Collezionano bottiglie vino rare cantina impressionante. Anniversario marzo ristorante chiude settimana celebrazione privata. Entrambi pescetariani ovviamente. Moglie allergia nichel attenzione. Nessun figli focus carriera. Cliente interessante rete gastronomia lusso alta, molti clienti ristorante potenziali. Richiamare febbraio fine confermare. Interessato collaborazione evento boutique ristorante possibile.",
+    "processed_text": "Signor Rossi, 42 anni, chef stellato Michelin ristorante Milano, nuovo cliente ottimo. Cerca regalo moglie anniversario 15 anni matrimonio. Budget 9K flessibile. Moglie sommelier ristorante stesso, coppia lavora insieme passione gastronomia. Viaggiano ricerca ingredienti produttori artigianali Francia Giappone. Moglie stile elegante professionale, preferisce cognac nero rosé gold. Collezionano bottiglie vino rare cantina impressionante. Anniversario marzo ristorante chiude settimana celebrazione privata. Entrambi pescetariani ovviamente. Moglie allergia nichel attenzione. Nessun figli focus carriera. Cliente interessante rete gastronomia lusso alta, molti clienti ristorante potenziali. Richiamare febbraio fine confermare. Interessato collaborazione evento boutique ristorante possibile.",
+    "language": "IT",
+    "timestamp": "2026-02-11T13:01:40.884133",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 0.86)"
+      ],
+      "confidence": 0.86,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les allergies au nickel et le régime alimentaire pescetarien ne sont pas considérées comme sensibles dans ce contexte.",
+      "anonymized_text": "Signor Rossi, 42 anni, chef stellato Michelin ristorante Milano, nuovo cliente ottimo. Cerca regalo moglie anniversario 15 anni matrimonio. Budget 9K flessibile. Moglie sommelier ristorante stesso, coppia lavora insieme passione gastronomia. Viaggiano ricerca ingredienti produttori artigianali Francia Giappone. Moglie stile elegante professionale, preferisce cognac nero rosé gold. Collezionano bottiglie vino rare cantina impressionante. Anniversario marzo ristorante chiude settimana celebrazione privata. Entrambi pescetariani ovviamente. Moglie allergia nichel attenzione. Nessun figli focus carriera. Cliente interessante rete gastronomia lusso alta, molti clienti ristorante potenziali. Richiamare febbraio fine confermare. Interessato collaborazione evento boutique ristorante possibile."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "accessories",
+          "luxury_service",
+          "black",
+          "first_visit",
+          "gift_for_spouse",
+          "wedding_anniversary",
+          "nickel_allergy",
+          "travel_frequent",
+          "wine_enthusiast",
+          "art_collector",
+          "pescatarian",
+          "professional_work",
+          "evening"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "professional_work",
+          "evening"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "gold"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4670098V/M82879",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4670098v/M82879",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD2060003V/M69044",
+            "name": "Organizer de poche",
+            "price": 505.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod2060003v/M69044",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD4240008V/M30933",
+            "name": "Organizer de poche",
+            "price": 360.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-taigarama-nvprod4240008v/M30933",
+            "match_score": 0.49
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "first_visit"
+        },
+        "profession": {
+          "sector": "chef",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Envoie un mot de remerciement post-visite. Relance sur le Organizer de poche.",
+          "priority": "Medium",
+          "target_products": [
+            "Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 9000,
+        "urgency": "this_month"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 80.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2239.993095397949,
+    "from_cache": false
+  }
+}

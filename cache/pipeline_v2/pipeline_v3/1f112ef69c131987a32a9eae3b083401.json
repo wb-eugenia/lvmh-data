@@ -1,0 +1,138 @@
+{
+  "_cached_at": 1770811414.3959582,
+  "payload": {
+    "id": "CA_051",
+    "original_text": "Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin gemeinsames Projekt erfolgreich abgeschlossen. Budget 5K. Partnerin liebt Reisen Fotografie, dokumentiert Architektur weltweit. Stil modern minimalistisch funktional. Schwarz navy bevorzugt. Kundin selbst sammelt Designobjekte Bauhaus. Partnerin Vegetarierin. Projekt Fertigstellung nächste Woche. Zufrieden immer Service. Erwähnt großes Projekt kommend international könnte mehr Geschenke Team. Nachfassen März. Interessiert Firmenrabatt Mengenbestellungen.",
+    "processed_text": "Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin gemeinsames Projekt erfolgreich abgeschlossen. Budget 5K. Partnerin liebt Reisen Fotografie, dokumentiert Architektur weltweit. Stil modern minimalistisch funktional. Schwarz navy bevorzugt. Kundin selbst sammelt Designobjekte Bauhaus. Partnerin Vegetarierin. Projekt Fertigstellung nächste Woche. Zufrieden immer Service. Erwähnt großes Projekt kommend international könnte mehr Geschenke Team. Nachfassen März. Interessiert Firmenrabatt Mengenbestellungen.",
+    "language": "DE",
+    "timestamp": "2026-02-11T13:03:34.329120",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "low"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations fournies concernent des préférences de style et des détails professionnels sans mentionner de données sensibles.",
+      "anonymized_text": "Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin gemeinsames Projekt erfolgreich abgeschlossen. Budget 5K. Partnerin liebt Reisen Fotografie, dokumentiert Architektur weltweit. Stil modern minimalistisch funktional. Schwarz navy bevorzugt. Kundin selbst sammelt Designobjekte Bauhaus. Partnerin Vegetarierin. Projekt Fertigstellung nächste Woche. Zufrieden immer Service. Erwähnt großes Projekt kommend international könnte mehr Geschenke Team. Nachfassen März. Interessiert Firmenrabatt Mengenbestellungen."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "navy",
+          "luxury_service",
+          "black",
+          "leather_goods",
+          "travel_luggage",
+          "accessories",
+          "regular",
+          "gift_for_colleague",
+          "professional_work",
+          "travel"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "navy"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD110016V/R08339",
+            "name": "Livre Peter Marino Art Architecture - Édition Deluxe",
+            "price": 300.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-peter-marino-art-architecture-edition-deluxe-nvprod110016v/R08339",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD110015V/R08337",
+            "name": "Livre Peter Marino Art Architecture",
+            "price": 100.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-peter-marino-art-architecture-nvprod110015v/R08337",
+            "match_score": 0.48
+          },
+          {
+            "sku": "NVPROD3740059V/P01730",
+            "name": "Organizer de poche My LV Heritage",
+            "price": 470.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/organizer-de-poche-my-lv-heritage-monogram-eclipse-nvprod3740059v/P01730",
+            "match_score": 0.47
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Self",
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": null
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Discovery",
+        "next_best_action": {
+          "action_type": "follow_up",
+          "description": "Relance le client sur ses favoris: navy, luxury_service. Budget estimé: high (5K-15K).",
+          "priority": "Medium",
+          "target_products": [
+            "Livre Peter Marino Art Architecture - Édition Deluxe",
+            "Livre Peter Marino Art Architecture"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (5K-15K)",
+        "budget_specific": 5000,
+        "urgency": "low"
+      },
+      "meta_analysis": {
+        "confidence_score": 0.9,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 45.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+      },
+      "confidence": 0.9,
+      "processing_tier": "tier1",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 2.9358863830566406,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2350.787401199341,
+    "from_cache": false
+  }
+}

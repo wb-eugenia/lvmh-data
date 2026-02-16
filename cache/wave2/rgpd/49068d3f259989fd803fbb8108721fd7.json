@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1770193655.8511364,
+  "payload": {
+    "ID": "CA_105",
+    "original_text": "Frau und Herr Hoffmann, beide etwa Anfang 60, treue Kunden seit 2014, in gewisser Weise,. ein wenig, ziemlich du willst,. Große Einkaufsession neue zum Beispiel Saison plus Geschenke Kinder. Budget sehr flexibel besprochen 22K. Sie Professorin Literatur Universität, er Rechtsanwalt Partner großer Kanzlei,, so. Beide lieben Theater, Abonnenten mehrere Häuser, organisieren kulturelle Salons zuhause monatlich,,. Reisen gebildete Ziele Museen Kulturerbe, nächste Reise Griechenland archäologische Stätten. ein Tick, mehr oder weniger, so ungefähr. Sie sammelt antike Bücher erste Ausgaben, Auktionen regelmäßig, ziemlich,. ungefähr. Er spielt Cello Amateur Quartett Wochenenden. Beide Vegetarier seit Jahren. Keine Allergien. Tochter Ärztin heiratet Sommer. Sohn Journalist Berlin ungefähr. Exzellente Kunden höchster Bildung, empfehlen viele Akademiker so. Folgen April exklusive Vorschau.",
+    "anonymized_text": "Frau und Herr Hoffmann, beide etwa Anfang 60, treue Kunden seit 2014, in gewisser Weise,. ein wenig, ziemlich du willst,. Große Einkaufsession neue zum Beispiel Saison plus Geschenke Kinder. Budget sehr flexibel besprochen 22K. Sie Professorin Literatur Universität, er Rechtsanwalt Partner großer Kanzlei,, so. Beide lieben Theater, Abonnenten mehrere Häuser, organisieren kulturelle Salons zuhause monatlich,,. Reisen gebildete Ziele Museen Kulturerbe, nächste Reise Griechenland archäologische Stätten. ein Tick, mehr oder weniger, so ungefähr. Sie sammelt antike Bücher erste Ausgaben, Auktionen regelmäßig, ziemlich,. ungefähr. Er spielt Cello Amateur Quartett Wochenenden. Beide Vegetarier seit Jahren. Keine Allergien. Tochter Ärztin heiratet Sommer. Sohn Journalist Berlin ungefähr. Exzellente Kunden höchster Bildung, empfehlen viele Akademiker so. Folgen April exklusive Vorschau.",
+    "rgpd_result": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "sensitive_spans": [],
+      "safe_to_store": true,
+      "reasoning": "Le texte ne contient aucune donnée sensible selon les catégories définies. Les informations sur les clients sont principalement liées à leur profession, leurs intérêts et leur mode de vie, sans mentionner de données sensibles telles que la santé mentale, la santé physique, des conflits familiaux, des croyances religieuses, des opinions politiques, une orientation sexuelle ou une origine ethnique."
+    },
+    "contains_sensitive": false,
+    "categories_detected": [],
+    "safe_to_store": true
+  }
+}

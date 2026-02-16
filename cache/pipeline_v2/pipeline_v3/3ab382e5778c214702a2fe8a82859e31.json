@@ -1,0 +1,148 @@
+{
+  "_cached_at": 1770811264.900653,
+  "payload": {
+    "id": "CA_015",
+    "original_text": "Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, sie Galeristin eigene Galerie zeitgenössische Kunst. Suchen Geschenke Hochzeitstag 25 Jahre nächsten Monat. Budget zusammen 8-10K. Sie liebt moderne Kunst, kuratiert Ausstellungen junge Künstler. Er spielt Golf Wochenende, Mitglied lokaler Club. Beide reisen gern kulturelle Städte, nächste Reise Florenz Biennale geplant Mai. Sie bevorzugt außergewöhnliche Stücke, cognac rosé Gold. Er klassisch funktional schwarz navy. Beide Vegetarier für Events. Sie Nickelallergie beachten Hardware. Tochter studiert Medizin folgt Vater Schritte, Sohn Architekt Berlin. Exzellente Kunden, kaufen regelmäßig, empfehlen Freunde. Nachfassen März private Vorschau neue Kollektion. Interesse an Künstlerkooperationen limitierte Editionen.",
+    "processed_text": "Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, sie Galeristin eigene Galerie zeitgenössische Kunst. Suchen Geschenke Hochzeitstag 25 Jahre nächsten Monat. Budget zusammen 8-10K. Sie liebt moderne Kunst, kuratiert Ausstellungen junge Künstler. Er spielt Golf Wochenende, Mitglied lokaler Club. Beide reisen gern kulturelle Städte, nächste Reise Florenz Biennale geplant Mai. Sie bevorzugt außergewöhnliche Stücke, cognac rosé Gold. Er klassisch funktional schwarz navy. Beide Vegetarier für Events. Sie Nickelallergie beachten Hardware. Tochter studiert Medizin folgt Vater Schritte, Sohn Architekt Berlin. Exzellente Kunden, kaufen regelmäßig, empfehlen Freunde. Nachfassen März private Vorschau neue Kollektion. Interesse an Künstlerkooperationen limitierte Editionen.",
+    "language": "DE",
+    "timestamp": "2026-02-11T13:01:04.866984",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 0.99)"
+      ],
+      "confidence": 0.99,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur les professions, les préférences alimentaires (végétarien) et les activités de loisirs ne sont pas considérées comme sensibles. La mention de l'allergie au nickel est acceptable pour le business.",
+      "anonymized_text": "Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, sie Galeristin eigene Galerie zeitgenössische Kunst. Suchen Geschenke Hochzeitstag 25 Jahre nächsten Monat. Budget zusammen 8-10K. Sie liebt moderne Kunst, kuratiert Ausstellungen junge Künstler. Er spielt Golf Wochenende, Mitglied lokaler Club. Beide reisen gern kulturelle Städte, nächste Reise Florenz Biennale geplant Mai. Sie bevorzugt außergewöhnliche Stücke, cognac rosé Gold. Er klassisch funktional schwarz navy. Beide Vegetarier für Events. Sie Nickelallergie beachten Hardware. Tochter studiert Medizin folgt Vater Schritte, Sohn Architekt Berlin. Exzellente Kunden, kaufen regelmäßig, empfehlen Freunde. Nachfassen März private Vorschau neue Kollektion. Interesse an Künstlerkooperationen limitierte Editionen."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "navy",
+          "black",
+          "regular",
+          "medical_surgeon",
+          "art_collector",
+          "travel_frequent",
+          "golf",
+          "vegetarian",
+          "nickel_allergy",
+          "wedding_anniversary"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "cognac",
+            "rosé",
+            "gold"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD2000058V/M20207",
+            "name": "Maison Vivienne",
+            "price": 52000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/maison-vivienne-monogram-nvprod2000058v/M20207",
+            "match_score": 0.5
+          },
+          {
+            "sku": "006293/R07884",
+            "name": "Livre Recueil de nouvelles La Malle - Version Japonaise",
+            "price": 50.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/livre-recueil-de-nouvelles-la-malle-version-japonaise-006293/R07884",
+            "match_score": 0.5
+          },
+          {
+            "sku": "NVPROD3020031V/GI0555",
+            "name": "Boîte à bijoux",
+            "price": 1640.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/boite-a-bijoux-monogram-nvprod3020031v/GI0555",
+            "match_score": 0.49
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "regular"
+        },
+        "profession": {
+          "sector": "['medical_surgeon', 'art_collector']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "vegetarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding_anniversary"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le regular pour son wedding anniversary. Suggère le Maison Vivienne qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Maison Vivienne",
+            "Livre Recueil de nouvelles La Malle - Version Japonaise"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "high (8K-10K)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 90.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2718.895196914673,
+    "from_cache": false
+  }
+}

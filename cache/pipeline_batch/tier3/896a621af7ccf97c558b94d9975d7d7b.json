@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1769906287.3042583,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {
+        "colors": [],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD4490039V/M46674",
+          "name": "Sac Sport",
+          "price": 2200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-sport-monogram-empreinte-nvprod4490039v/M46674",
+          "match_score": 0.42
+        },
+        {
+          "sku": "NVPROD3640008V/GI0721",
+          "name": "Dossier Mark",
+          "price": 875.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/dossier-mark-monogram-nvprod3640008v/GI0721",
+          "match_score": 0.4
+        },
+        {
+          "sku": "NVPROD4490039V/M46609",
+          "name": "Sac Sport",
+          "price": 2200.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/sac-sport-monogram-empreinte-nvprod4490039v/M46609",
+          "match_score": 0.39
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": null,
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.8,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.8,
+    "processing_tier": "tier3",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 3,
+    "ID": "CA_337"
+  }
+}

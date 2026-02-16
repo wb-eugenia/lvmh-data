@@ -1,0 +1,92 @@
+{
+  "pilier_1_univers_produit": {
+    "categories": [
+      "watches",
+      "ready_to_wear",
+      "accessories",
+      "entrepreneur_established",
+      "creative_designer",
+      "art_collector",
+      "travel_frequent",
+      "eco_conscious",
+      "wedding_anniversary",
+      "nickel_allergy",
+      "vegan",
+      "vegetarian",
+      "pescatarian",
+      "vic"
+    ],
+    "produits_mentionnes": [],
+    "usage": [
+      "professional_work",
+      "evening",
+      "casual_daily"
+    ],
+    "preferences": {
+      "colors": [
+        "brown_cognac",
+        "black",
+        "navy",
+        "bold_colors"
+      ],
+      "styles": [],
+      "hardware": [],
+      "materials": [
+        "smooth_leather",
+        "grained_leather"
+      ]
+    },
+    "matched_products": []
+  },
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vic"
+    },
+    "profession": {
+      "sector": "entrepreneur_established",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegan",
+      "vegetarian",
+      "pescatarian"
+    ],
+    "allergies": {
+      "food": [
+        "nickel_allergy"
+      ],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "wedding_anniversary"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "budget_specific": null,
+    "urgency": "this_month"
+  },
+  "meta_analysis": {
+    "confidence_score": 0.98,
+    "missing_info": [],
+    "risk_flags": [],
+    "quality_score": 0.0,
+    "completeness_score": 0.0,
+    "advisor_feedback": null
+  },
+  "confidence": 0.98,
+  "processing_tier": "tier2",
+  "extracted_by": null,
+  "error": null,
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
+}

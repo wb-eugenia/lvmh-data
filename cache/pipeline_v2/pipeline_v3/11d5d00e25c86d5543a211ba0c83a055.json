@@ -1,0 +1,157 @@
+{
+  "_cached_at": 1770811320.2701757,
+  "payload": {
+    "id": "CA_098",
+    "original_text": "Herr und Frau Fischer, beide 54 Jahre, ausgezeichnete treue Kunden seit 2011. Einkauf wichtig Feier Silberhochzeit 25 Jahre große Party Familie Freunde. Budget kombiniert sehr großzügig 21K. Er Rechtsanwalt Partner große Kanzlei Frankfurt, sie Innenarchitektin eigenes Büro erfolgreich. Beide leidenschaftlich Oper klassische Musik, Abonnement Staatsoper jahrelang. Sammeln Opernprogramme signiert Künstler, Haus voll Memorabilia. Party Mai Hotel luxuriös 200 Gäste Kollegen Familie Freunde. Sie elegant raffiniert Stil, bevorzugt rosé Gold bordeaux cognac. Er klassisch traditionell, schwarz navy silber. Beide Pescetarier Events. Sie Nickelallergie beachten Hardware. Drei Kinder erwachsen erfolgreich: Tochter Ärztin Hamburg, Sohn Anwalt München folgt Vater, jüngste Tochter Architektin folgt Mutter Berlin. Familie eng verbunden Traditionen wichtig. Hochzeitstag Mai jedes Jahr Einkauf Ritual hier Jahrzehnt. Ausgezeichnete Kunden Lifetime Value außergewöhnlich höchste Stufe, Netzwerk Recht Architektur Kultur Frankfurt international ausgedehnt, verwiesen zahlreiche hochwertige Kunden Jahre. Follow-up monatlich Party Vorbereitungen koordinieren alles. Sehr interessiert Handwerk Personalisierung, beauftragt mehrere Stücke Vergangenheit individuell, fragten einzigartige Stücke Party bedeutungsvoll persönlich. Planen große Reise Weltreise Ruhestand fünf Jahre Geschenk sich selbst, könnte Ausstattung Opportunity. Schatz Kunden Beziehung Jahrzehnte makellos gepflegt Wertschätzung Loyalität außergewöhnlich. Absolute höchste Priorität Beziehung fortsetzen Exzellenz Service sorgfältig weiter pflegen.",
+    "processed_text": "Herr und Frau Fischer, beide 54 Jahre, ausgezeichnete treue Kunden seit 2011. Einkauf wichtig Feier Silberhochzeit 25 Jahre große Party Familie Freunde. Budget kombiniert sehr großzügig 21K. Er Rechtsanwalt Partner große Kanzlei Frankfurt, sie Innenarchitektin eigenes Büro erfolgreich. Beide leidenschaftlich Oper klassische Musik, Abonnement Staatsoper jahrelang. Sammeln Opernprogramme signiert Künstler, Haus voll Memorabilia. Party Mai Hotel luxuriös 200 Gäste Kollegen Familie Freunde. Sie elegant raffiniert Stil, bevorzugt rosé Gold bordeaux cognac. Er klassisch traditionell, schwarz navy silber. Beide Pescetarier Events. Sie Nickelallergie beachten Hardware. Drei Kinder erwachsen erfolgreich: Tochter Ärztin Hamburg, Sohn Anwalt München folgt Vater, jüngste Tochter Architektin folgt Mutter Berlin. Familie eng verbunden Traditionen wichtig. Hochzeitstag Mai jedes Jahr Einkauf Ritual hier Jahrzehnt. Ausgezeichnete Kunden Lifetime Value außergewöhnlich höchste Stufe, Netzwerk Recht Architektur Kultur Frankfurt international ausgedehnt, verwiesen zahlreiche hochwertige Kunden Jahre. Follow-up monatlich Party Vorbereitungen koordinieren alles. Sehr interessiert Handwerk Personalisierung, beauftragt mehrere Stücke Vergangenheit individuell, fragten einzigartige Stücke Party bedeutungsvoll persönlich. Planen große Reise Weltreise Ruhestand fünf Jahre Geschenk sich selbst, könnte Ausstattung Opportunity. Schatz Kunden Beziehung Jahrzehnte makellos gepflegt Wertschätzung Loyalität außergewöhnlich. Absolute höchste Priorität Beziehung fortsetzen Exzellenz Service sorgfältig weiter pflegen.",
+    "language": "DE",
+    "timestamp": "2026-02-11T13:02:00.226063",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Budget 10K: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "Le texte ne contient pas de données sensibles selon l'Article 9 du RGPD. Les informations sur la santé (allergie au nickel) sont acceptables pour le business, et il n'y a pas d'autres catégories sensibles détectées.",
+      "anonymized_text": "Herr und Frau Fischer, beide 54 Jahre, ausgezeichnete treue Kunden seit 2011. Einkauf wichtig Feier Silberhochzeit 25 Jahre große Party Familie Freunde. Budget kombiniert sehr großzügig 21K. Er Rechtsanwalt Partner große Kanzlei Frankfurt, sie Innenarchitektin eigenes Büro erfolgreich. Beide leidenschaftlich Oper klassische Musik, Abonnement Staatsoper jahrelang. Sammeln Opernprogramme signiert Künstler, Haus voll Memorabilia. Party Mai Hotel luxuriös 200 Gäste Kollegen Familie Freunde. Sie elegant raffiniert Stil, bevorzugt rosé Gold bordeaux cognac. Er klassisch traditionell, schwarz navy silber. Beide Pescetarier Events. Sie Nickelallergie beachten Hardware. Drei Kinder erwachsen erfolgreich: Tochter Ärztin Hamburg, Sohn Anwalt München folgt Vater, jüngste Tochter Architektin folgt Mutter Berlin. Familie eng verbunden Traditionen wichtig. Hochzeitstag Mai jedes Jahr Einkauf Ritual hier Jahrzehnt. Ausgezeichnete Kunden Lifetime Value außergewöhnlich höchste Stufe, Netzwerk Recht Architektur Kultur Frankfurt international ausgedehnt, verwiesen zahlreiche hochwertige Kunden Jahre. Follow-up monatlich Party Vorbereitungen koordinieren alles. Sehr interessiert Handwerk Personalisierung, beauftragt mehrere Stücke Vergangenheit individuell, fragten einzigartige Stücke Party bedeutungsvoll persönlich. Planen große Reise Weltreise Ruhestand fünf Jahre Geschenk sich selbst, könnte Ausstattung Opportunity. Schatz Kunden Beziehung Jahrzehnte makellos gepflegt Wertschätzung Loyalität außergewöhnlich. Absolute höchste Priorität Beziehung fortsetzen Exzellenz Service sorgfältig weiter pflegen."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "brown_cognac",
+          "navy",
+          "luxury_service",
+          "accessories",
+          "black",
+          "vip",
+          "wedding_anniversary",
+          "legal_lawyer",
+          "creative_designer",
+          "art_collector",
+          "travel_frequent",
+          "pescatarian",
+          "nickel_allergy",
+          "gift_for_spouse",
+          "shopping_with_spouse"
+        ],
+        "produits_mentionnes": [],
+        "usage": [
+          "evening",
+          "gift"
+        ],
+        "preferences": {
+          "colors": [
+            "black",
+            "brown_cognac",
+            "navy",
+            "rosé",
+            "gold",
+            "bordeaux",
+            "cognac",
+            "silver"
+          ],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4150042V/M81937",
+            "name": "LV x YK - Organizer de poche",
+            "price": 670.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4150042v/M81937",
+            "match_score": 0.5
+          },
+          {
+            "sku": "NVPROD4060049V/M82115",
+            "name": "LV x YK - Organizer de poche",
+            "price": 565.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/lv-x-yk-organizer-de-poche-monogram-taurillon-leather-lg-g90-nvprod4060049v/M82115",
+            "match_score": 0.49
+          },
+          {
+            "sku": "NVPROD1730173V/M79232",
+            "name": "Écharpe Cold Reykjavik",
+            "price": 2000.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/echarpe-cold-reykjavik-s00-nvprod1730173v/M79232",
+            "match_score": 0.49
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": "Gift",
+          "behavior": "vip"
+        },
+        "profession": {
+          "sector": "['legal_lawyer', 'creative_designer']",
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [
+          "pescatarian"
+        ],
+        "allergies": {
+          "food": [
+            "nickel_allergy"
+          ],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "wedding_anniversary"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le vip pour son wedding anniversary. Suggère le LV x YK - Organizer de poche qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "LV x YK - Organizer de poche",
+            "LV x YK - Organizer de poche"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (15K+)",
+        "budget_specific": null,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.75,
+        "missing_info": [
+          "Budget non spécifié",
+          "Statut client inconnu",
+          "Occasion non mentionnée",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 100.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "🌟 Super note ! +10 points d'expert. Tu as capturé un profil ultra-complet."
+      },
+      "confidence": 0.95,
+      "processing_tier": "tier2",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 3323.901414871216,
+    "from_cache": false
+  }
+}

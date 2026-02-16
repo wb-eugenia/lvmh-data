@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1769906274.1541505,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [],
+      "usage": [],
+      "preferences": {},
+      "matched_products": [
+        {
+          "sku": "NVPROD4550113V/M01513",
+          "name": "Boucles d'oreilles LV Symphony",
+          "price": 400.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/boucles-doreilles-lv-symphony-s00-nvprod4550113v/M01513",
+          "match_score": 0.46
+        },
+        {
+          "sku": "NVPROD4550108V/M01441",
+          "name": "Broche LV Symphony",
+          "price": 1300.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/broche-lv-symphony-s00-nvprod4550108v/M01441",
+          "match_score": 0.46
+        },
+        {
+          "sku": "NVPROD4550112V/M1235M",
+          "name": "Bague LV Symphony",
+          "price": 330.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/bague-lv-symphony-s00-nvprod4550112v/M1235M",
+          "match_score": 0.44
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {},
+      "profession": {},
+      "lifestyle": {}
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {},
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Warm",
+      "next_best_action": null,
+      "budget_potential": null,
+      "urgency": null
+    },
+    "meta_analysis": {
+      "confidence_score": 0.0,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.0,
+    "processing_tier": "tier2",
+    "extracted_by": "tier2_mistral_fallback",
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 0.0,
+    "rgpd_flag": false,
+    "tier": 2,
+    "ID": "CA_155"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1769906170.6987221,
+  "payload": {
+    "pilier_1_univers_produit": {
+      "categories": [
+        "accessories",
+        "beige_neutral",
+        "navy",
+        "luxury_service"
+      ],
+      "usage": [],
+      "preferences": {
+        "colors": [
+          "navy",
+          "beige_neutral"
+        ],
+        "styles": [],
+        "hardware": [],
+        "materials": []
+      },
+      "matched_products": [
+        {
+          "sku": "NVPROD3570150V/M77591",
+          "name": "Chapeau skater Color Blocks",
+          "price": 670.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/chapeau-skater-color-blocks-s00-nvprod3570150v/M77591",
+          "match_score": 0.54
+        },
+        {
+          "sku": "NVPROD4320123V/M01266",
+          "name": "Collier Monogram Colors",
+          "price": 1130.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/collier-monogram-colors-s00-nvprod4320123v/M01266",
+          "match_score": 0.49
+        },
+        {
+          "sku": "NVPROD4700160V/1AC1CX",
+          "name": "Doudoune tricolore à motif Monogram",
+          "price": 3500.0,
+          "url": "https://fr.louisvuitton.com/fra-fr/produits/doudoune-tricolore-a-motif-monogram-nvprod4700160v/1AC1CX",
+          "match_score": 0.49
+        }
+      ]
+    },
+    "pilier_2_profil_client": {
+      "purchase_context": {
+        "type": "Self",
+        "behavior": null
+      },
+      "profession": {
+        "sector": null,
+        "status": null
+      },
+      "lifestyle": {
+        "passions": [],
+        "family": "Unknown"
+      }
+    },
+    "pilier_3_hospitalite_care": {
+      "diet": [],
+      "allergies": {
+        "food": [
+          "vegetarian"
+        ],
+        "contact": []
+      },
+      "values": [],
+      "occasion": null
+    },
+    "pilier_4_action_business": {
+      "lead_temperature": "Discovery",
+      "next_best_action": null,
+      "budget_potential": "high (5K-10K)",
+      "urgency": "low"
+    },
+    "meta_analysis": {
+      "confidence_score": 0.9,
+      "missing_info": [],
+      "risk_flags": []
+    },
+    "confidence": 0.9,
+    "processing_tier": "tier1",
+    "extracted_by": null,
+    "error": null,
+    "from_cache": false,
+    "processing_time_ms": 5.892515182495117,
+    "rgpd_flag": false,
+    "tier": 1,
+    "ID": "CA_343"
+  }
+}

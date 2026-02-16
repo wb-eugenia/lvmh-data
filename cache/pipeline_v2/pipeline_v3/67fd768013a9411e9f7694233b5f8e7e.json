@@ -1,0 +1,140 @@
+{
+  "_cached_at": 1770811365.8281999,
+  "payload": {
+    "id": "CA_056",
+    "original_text": "Mr. Taylor, 38, professional golfer PGA Tour, first time client exceptional potential. Looking for travel pieces lifestyle professional golf circuit. Budget 16K very flexible. Travels constantly tournaments worldwide, on road 40 weeks year. Needs durable elegant functional pieces. Passionate about golf obviously, also fitness training, follows strict athlete regimen. Wife former model now sports agent represents athletes. Planning start golf academy youth after retiring few years. Vegan athlete diet performance. No allergies. Mentioned major tournament wins significant, brand partnerships several companies, good visibility potential. Wife birthday coming May gift opportunity. Anniversary August annually. Excellent new client segment professional athletes. Very active social media 500K followers lifestyle golf content. Follow up immediately after purchase maintain relationship. Invite VIP events sports-related. Asked about durability testing pieces travel wear tear important. Interested innovation materials technology lightweight durable. Could be brand ambassador if relationship develops well ongoing purchases likely.",
+    "processed_text": "Mr. [NAME], 38, professional golfer PGA Tour, first time client exceptional potential. Looking for travel pieces lifestyle professional golf circuit. Budget 16K very flexible. Travels constantly tournaments worldwide, on road 40 weeks year. Needs durable elegant functional pieces. Passionate golf obviously, also fitness training, follows strict athlete regimen. Wife former model now sports agent represents athletes. Planning start golf academy youth after retiring few years. Vegan athlete diet performance. No allergies. Mentioned major tournament wins significant, brand partnerships several companies, good visibility potential. Wife birthday coming May gift opportunity. Anniversary August annually. Excellent new client segment professional athletes. Very active social media 500K followers lifestyle golf content. Follow up immediately after purchase maintain relationship. Invite VIP events sports-related. Asked durability testing pieces travel wear tear important. Interested innovation materials technology lightweight durable. Could be brand ambassador if relationship develops ongoing purchases likely.",
+    "language": "EN",
+    "timestamp": "2026-02-11T13:02:45.786740",
+    "routing": {
+      "tier": 2,
+      "reasons": [
+        "Vip: +12",
+        "Budget 10K: +10",
+        "Budget 50K: +15",
+        "Budget Vague: +8",
+        "Allergy Medium: +6",
+        "Intent: Negation: +10",
+        "🤖 ML prediction (conf: 1.00)"
+      ],
+      "confidence": 1.0,
+      "priority": "medium"
+    },
+    "rgpd": {
+      "contains_sensitive": false,
+      "categories_detected": [],
+      "safe_to_store": true,
+      "severity": "low",
+      "reasoning": "The text does not contain any sensitive data as defined by Article 9 of the GDPR. It discusses the client's profession, lifestyle, and preferences without revealing any information related to health, family conflicts, religion, political opinions, sexual orientation, or ethnic origin.",
+      "anonymized_text": "Mr. [NAME], 38, professional golfer PGA Tour, first time client exceptional potential. Looking for travel pieces lifestyle professional golf circuit. Budget 16K very flexible. Travels constantly tournaments worldwide, on road 40 weeks year. Needs durable elegant functional pieces. Passionate golf obviously, also fitness training, follows strict athlete regimen. Wife former model now sports agent represents athletes. Planning start golf academy youth after retiring few years. Vegan athlete diet performance. No allergies. Mentioned major tournament wins significant, brand partnerships several companies, good visibility potential. Wife birthday coming May gift opportunity. Anniversary August annually. Excellent new client segment professional athletes. Very active social media 500K followers lifestyle golf content. Follow up immediately after purchase maintain relationship. Invite VIP events sports-related. Asked durability testing pieces travel wear tear important. Interested innovation materials technology lightweight durable. Could be brand ambassador if relationship develops ongoing purchases likely."
+    },
+    "extraction": {
+      "pilier_1_univers_produit": {
+        "categories": [
+          "accessories",
+          "jewelry",
+          "travel_luggage",
+          "golf",
+          "first_visit",
+          "vegan",
+          "gift_for_spouse",
+          "wedding_anniversary",
+          "professional_work",
+          "travel",
+          "tech_early_adopter"
+        ],
+        "produits_mentionnes": [],
+        "usage": [],
+        "preferences": {
+          "colors": [],
+          "styles": [],
+          "hardware": [],
+          "materials": []
+        },
+        "matched_products": [
+          {
+            "sku": "NVPROD4050065V/GI0824",
+            "name": "Set de serviettes de golf Par",
+            "price": 400.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/set-de-serviettes-de-golf-par-s00-nvprod4050065v/GI0824",
+            "match_score": 0.55
+          },
+          {
+            "sku": "NVPROD4050064V/GI0826",
+            "name": "Kit de golf Monogram et cuir noir Andrews",
+            "price": 645.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/kit-de-golf-monogram-et-cuir-noir-andrews-monogram-nvprod4050064v/GI0826",
+            "match_score": 0.52
+          },
+          {
+            "sku": "NVPROD4050063V/GI0825",
+            "name": "Housses pour têtes de clubs de golf Albatros",
+            "price": 1650.0,
+            "url": "https://fr.louisvuitton.com/fra-fr/produits/housses-pour-tetes-de-clubs-de-golf-albatros-s00-nvprod4050063v/GI0825",
+            "match_score": 0.5
+          }
+        ]
+      },
+      "pilier_2_profil_client": {
+        "purchase_context": {
+          "type": null,
+          "behavior": null
+        },
+        "profession": {
+          "sector": null,
+          "status": null
+        },
+        "lifestyle": {
+          "passions": [],
+          "family": "Unknown"
+        }
+      },
+      "pilier_3_hospitalite_care": {
+        "diet": [],
+        "allergies": {
+          "food": [],
+          "contact": []
+        },
+        "values": [],
+        "occasion": "birthday"
+      },
+      "pilier_4_action_business": {
+        "lead_temperature": "Warm",
+        "next_best_action": {
+          "action_type": "gift_suggestion",
+          "description": "Contacte le client pour son birthday. Suggère le Set de serviettes de golf Par qui correspond à ses goûts.",
+          "priority": "Medium",
+          "target_products": [
+            "Set de serviettes de golf Par",
+            "Kit de golf Monogram et cuir noir Andrews"
+          ],
+          "deadline": null
+        },
+        "budget_potential": "ultra_high (20K-50K)",
+        "budget_specific": 16000,
+        "urgency": null
+      },
+      "meta_analysis": {
+        "confidence_score": 0.95,
+        "missing_info": [
+          "Budget non spécifié",
+          "Type d'achat indéterminé"
+        ],
+        "risk_flags": [],
+        "quality_score": 40.0,
+        "completeness_score": 0.25,
+        "advisor_feedback": "💡 Note un peu courte. N'hésite pas à préciser l'occasion ou les préférences matières du client."
+      },
+      "confidence": 0.95,
+      "processing_tier": "unknown",
+      "extracted_by": null,
+      "error": null,
+      "from_cache": false,
+      "processing_time_ms": 0.0,
+      "rgpd_flag": false
+    },
+    "tier": null,
+    "processing_time_ms": 2245.8081245422363,
+    "from_cache": false
+  }
+}

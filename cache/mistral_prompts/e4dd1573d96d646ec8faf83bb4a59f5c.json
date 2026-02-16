@@ -1,0 +1,70 @@
+{
+  "pilier_1_univers_produit": {
+    "categories": [
+      "leather_goods",
+      "ready_to_wear",
+      "accessories",
+      "professional_work",
+      "vegan",
+      "gift_for_colleague"
+    ],
+    "produits_mentionnes": [],
+    "usage": [
+      "professional_work"
+    ],
+    "preferences": {
+      "colors": [],
+      "styles": [],
+      "hardware": [],
+      "materials": []
+    },
+    "matched_products": []
+  },
+  "pilier_2_profil_client": {
+    "purchase_context": {
+      "type": "Gift",
+      "behavior": "vip"
+    },
+    "profession": {
+      "sector": "['tech_executive', 'legal_corporate']",
+      "status": null
+    },
+    "lifestyle": {
+      "passions": [],
+      "family": "Unknown"
+    }
+  },
+  "pilier_3_hospitalite_care": {
+    "diet": [
+      "vegan"
+    ],
+    "allergies": {
+      "food": [],
+      "contact": []
+    },
+    "values": [],
+    "occasion": "christmas"
+  },
+  "pilier_4_action_business": {
+    "lead_temperature": "Warm",
+    "next_best_action": null,
+    "budget_potential": "ultra_high (15K+)",
+    "budget_specific": null,
+    "urgency": null
+  },
+  "meta_analysis": {
+    "confidence_score": 0.95,
+    "missing_info": [],
+    "risk_flags": [],
+    "quality_score": 0.0,
+    "completeness_score": 0.0,
+    "advisor_feedback": null
+  },
+  "confidence": 0.95,
+  "processing_tier": "tier2",
+  "extracted_by": null,
+  "error": null,
+  "from_cache": false,
+  "processing_time_ms": 0.0,
+  "rgpd_flag": false
+}
