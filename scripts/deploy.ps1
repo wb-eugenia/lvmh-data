@@ -1,7 +1,7 @@
 # Script de déploiement LVMH Pipeline sur Google Cloud Run (Docker V2)
 # Usage: ./scripts/deploy.ps1
 
-Write-Host "[INFO] LVMH Voice-to-Tag: Deploiement Cloud Native (Docker)" -ForegroundColor Cyan
+Write-Host "[INFO] LVMH Data API: Deploiement Cloud Native (Docker)" -ForegroundColor Cyan
 
 # Vérification de gcloud
 if (-not (Get-Command "gcloud" -ErrorAction SilentlyContinue)) {
@@ -19,13 +19,36 @@ if ([string]::IsNullOrWhiteSpace($currentProject)) {
     Write-Host "[OK] Projet detecte: $PROJECT_ID" -ForegroundColor Green
 }
 
-$SERVICE_NAME = "lvmh-voice-tag"
-$REGION = "europe-west1"
+$SERVICE_NAME = "lvmh-api"
+$REGION = "europe-west9"
+
+# Load environment variables from .env file
+$envFile = ".env"
+if (Test-Path $envFile) {
+    Get-Content $envFile | ForEach-Object {
+        if ($_ -match '^([^=]+)=(.*)$') {
+            $key = $matches[1].Trim()
+            $value = $matches[2].Trim()
+            [Environment]::SetEnvironmentVariable($key, $value, [EnvironmentVariableTarget]::Process)
+        }
+    }
+    Write-Host "[OK] Variables d'environnement chargees" -ForegroundColor Green
+}
+
+# Get API keys from environment
+$MISTRAL_KEY = $env:MISTRAL_API_KEY
+$GROQ_KEY = $env:GROQ_API_KEY
+$OPENAI_KEY = $env:OPENAI_API_KEY
+
+if ([string]::IsNullOrWhiteSpace($MISTRAL_KEY)) {
+    Write-Host "[ERROR] MISTRAL_API_KEY non trouvee dans .env" -ForegroundColor Red
+    exit 1
+}
 
 # 2. Build de l'image Docker (Cloud Build)
 Write-Host "`n[INFO] Construction de l'image Docker sur Google Cloud Build..." -ForegroundColor Yellow
 $IMAGE_URI = "gcr.io/$PROJECT_ID/$SERVICE_NAME"
-gcloud builds submit --tag $IMAGE_URI .
+gcloud builds submit --tag $IMAGE_URI . --project=$PROJECT_ID
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[ERROR] Erreur lors du build Docker."
@@ -41,7 +64,8 @@ gcloud run deploy $SERVICE_NAME `
     --allow-unauthenticated `
     --memory 1Gi `
     --port 8080 `
-    --set-env-vars "GROQ_API_KEY=RemplacerParVotreCle,MISTRAL_API_KEY=RemplacerParVotreCle"
+    --set-env-vars "GROQ_API_KEY=$GROQ_KEY,MISTRAL_API_KEY=$MISTRAL_KEY,LVMH_USE_ZVEC=true,OPENAI_API_KEY=$OPENAI_KEY,use_langextract_tier2=true" `
+    --project=$PROJECT_ID
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n[OK] DEPLOIEMENT TERMINE AVEC SUCCES !" -ForegroundColor Green

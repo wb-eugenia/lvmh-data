@@ -6,6 +6,9 @@ Handles environment variables and default values.
 import os
 from pydantic import BaseModel, Field
 from typing import Literal, Optional
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 
 class RuntimeProfile(BaseModel):
@@ -37,6 +40,9 @@ class Settings(BaseModel):
     use_cross_validation: bool = False
     use_note_validation: bool = False
     
+    # LangExtract Configuration (Tier 2)
+    use_langextract_tier2: bool = True  # Use LangExtract for Tier 2 extraction
+    
     # Profiles
     single_note_profile: Optional[RuntimeProfile] = None
     batch_csv_profile: Optional[RuntimeProfile] = None
@@ -67,6 +73,25 @@ class Settings(BaseModel):
     retry_max_attempts: int = 3
     retry_exponential_base: float = 2.0
     circuit_breaker_threshold: int = 5
+    
+    # BigQuery Configuration
+    bigquery_enabled: bool = Field(default_factory=lambda: os.getenv("BIGQUERY_ENABLED", "false").lower() == "true")
+    bigquery_project_id: str = Field(default_factory=lambda: os.getenv("GOOGLE_CLOUD_PROJECT", ""))
+    bigquery_dataset: str = Field(default="lvmh_data")
+    bigquery_table: str = Field(default="notes")
+    bigquery_credentials_path: str = Field(default_factory=lambda: os.getenv("GOOGLE_APPLICATION_CREDENTIALS", ""))
+    
+    # Router Configuration
+    router_tier1_threshold: int = Field(default=25)
+    router_tier2_threshold: int = Field(default=75)
+    router_is_written_mode: bool = Field(default=False)
+    
+    # RGPD Configuration
+    enable_rgpd_llm: bool = Field(default=False)
+    rgpd_model: str = Field(default="mistral")
+    
+    # Note Validation
+    use_note_validation: bool = Field(default=False)
 
 
 # Default profile instances

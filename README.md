@@ -1,8 +1,8 @@
-# LVMH Voice-to-Tag Pipeline V2.3 👜 ✨
+# LVMH Data Pipeline V2.4
 
 **Système d'Intelligence Artificielle de pointe pour l'Hyper-Personnalisation CRM.**
 
-> **Version**: 2.3.0 (Authentication + Docker + Frontend V2)
+> **Version**: 2.4.0 (LangExtract Integration + Zvec)
 > **Statut**: Production Ready
 > **Confidentialité**: LVMH Internal Use Only
 
@@ -56,6 +56,17 @@ Passage d'un mode "Batch" uniquement à une architecture **Événementielle** vi
 
 ---
 
+## ✨ Nouvelles Fonctionnalités V2.4
+
+### 🧠 LangExtract Integration (Google 2025)
+- **Tier 2** : Extraction via LangExtract + Mistral API (OpenAI-compatible)
+- **Source Grounding** : Mapping précis des extractions vers le texte source
+- **Schema Enforcement** : Few-shot examples pour extraction cohérente
+- **RGPD** : Audit trail complet des extractions
+- **Key Rotation** : Support multi-comptes Mistral pour higher quotas
+
+---
+
 ## 🏗️ Architecture Technique
 
 ### Flux de Données
@@ -65,9 +76,9 @@ graph TD
     User[📱 Frontend React] -->|JWT Auth| API[🔌 FastAPI Gateway]
     API -->|Auth Check| Router[🧠 Smart Router V3]
     
-    subgraph "Processing Tiered (Mistral AI)"
+    subgraph "Processing Tiered (Mistral AI + LangExtract)"
         Router -->|Simple| T1[⚙️ Regex Engine]
-        Router -->|Standard| T2[🔵 Mistral Balanced]
+        Router -->|Standard| T2[🔵 LangExtract + Mistral]
         Router -->|Complexe| T3[🔴 Mistral Premium]
     end
     

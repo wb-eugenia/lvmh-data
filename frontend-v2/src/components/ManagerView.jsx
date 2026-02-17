@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react'
-import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText, Mic, Play, Pause, Tag, ShoppingBag, Zap, Sparkles, Trash2, Terminal, AlertTriangle, Clock3, Filter, BriefcaseBusiness, Activity, RefreshCcw, BellRing, Building2, UserRound, Wifi, WifiOff, LogOut, X } from 'lucide-react'
+import { ArrowLeft, LayoutDashboard, Trophy, Users, Star, Download, Search, FileText, Mic, Play, Pause, Tag, ShoppingBag, Zap, Sparkles, Trash2, Terminal, AlertTriangle, Clock3, Filter, BriefcaseBusiness, Activity, RefreshCcw, BellRing, Building2, UserRound, Wifi, WifiOff, LogOut, X, Menu } from 'lucide-react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
 import { apiFetch, normalizeAnalysisResult, wsUrl } from '../lib/api'
 import { useAuth } from '../context/AuthContext'
@@ -9,6 +9,7 @@ const DebugAnalyzer = lazy(() => import('./DebugAnalyzer'))
 export default function ManagerView({ onBack }) {
     const { logout } = useAuth()
     const [currentTab, setCurrentTab] = useState('dashboard')
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const [stats, setStats] = useState({ total_notes: 0, avg_quality: 0, tier_distribution: { 1: 0, 2: 0, 3: 0 } })
     const [dashboardMetrics, setDashboardMetrics] = useState(null)
     const [dashboardSummary, setDashboardSummary] = useState(null)
@@ -598,7 +599,7 @@ export default function ManagerView({ onBack }) {
             if (recordingsFilter !== 'all') params.append('tier', recordingsFilter.replace('tier', ''))
             
             console.log('Fetching recordings...', params.toString())
-            const res = await apiFetch(`/api/recordings?${params}`, {
+            const res = await apiFetch(`/api/results?${params}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -608,7 +609,7 @@ export default function ManagerView({ onBack }) {
             if (res.ok) {
                 const data = await res.json()
                 console.log('Recordings data:', data)
-                setRecordings(normalizeRecordingsList(data.recordings))
+                setRecordings(normalizeRecordingsList(data.items || data.recordings || []))
                 setRecordingsTotal(data.total || 0)
             } else {
                 const errorText = await res.text()
@@ -684,14 +685,14 @@ export default function ManagerView({ onBack }) {
             }
 
             const token = localStorage.getItem('token')
-            const ovRes = await apiFetch('/api/recordings?page=1&limit=100', {
+            const ovRes = await apiFetch('/api/results?page=1&limit=100', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
             if (ovRes.ok) {
                 const ovData = await ovRes.json()
-                setOverviewRecordings(normalizeRecordingsList(ovData.recordings))
+                setOverviewRecordings(normalizeRecordingsList(ovData.items || ovData.recordings || []))
             }
 
             const rRes = await apiFetch('/api/stats/rgpd')
@@ -1200,7 +1201,7 @@ export default function ManagerView({ onBack }) {
     }, [currentTab, overviewWindow, overviewAdvisor])
 
     useEffect(() => {
-        const tabsWithSelection = ['dashboard', 'opportunities']
+        const tabsWithSelection = ['opportunities']
         if (!tabsWithSelection.includes(currentTab)) {
             if (selectedOpportunityIds.length > 0) setSelectedOpportunityIds([])
             return
@@ -1526,8 +1527,58 @@ export default function ManagerView({ onBack }) {
 
     return (
         <div className="flex h-screen bg-lvmh-dark text-white overflow-hidden">
-            {/* Sidebar */}
-            <div className="w-64 border-r border-white/5 bg-lvmh-black h-full flex flex-col p-6">
+            {/* Mobile Hamburger Button */}
+            <button 
+                onClick={() => setIsSidebarOpen(true)} 
+                className="md:hidden fixed top-4 left-4 z-50 p-2 glass rounded-lg hover:bg-white/10 transition-colors"
+            >
+                <Menu size={24} />
+            </button>
+
+            {/* Mobile Sidebar Overlay */}
+            {isSidebarOpen && (
+                <div className="fixed inset-0 z-50 md:hidden">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsSidebarOpen(false)}></div>
+                    <div className="relative w-72 max-w-[85%] h-full bg-lvmh-black shadow-2xl border-r border-white/10 p-6 flex flex-col animate-in slide-in-from-left">
+                        <div className="flex items-center justify-between mb-8 p-2">
+                            <div className="flex items-center gap-3">
+                                <button onClick={onBack} className="hover:text-lvmh-gold transition-colors"><ArrowLeft size={20} /></button>
+                                <h1 className="gold-text font-black text-lg tracking-tighter">LVMH</h1>
+                            </div>
+                            <button onClick={() => setIsSidebarOpen(false)} className="p-2 hover:text-lvmh-gold transition-colors">
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        <nav className="flex-1 space-y-2">
+                            {tabs.map(tab => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => { setCurrentTab(tab.id); setIsSidebarOpen(false); }}
+                                    className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl transition-all ${currentTab === tab.id ? 'bg-lvmh-gold text-black font-bold shadow-lg shadow-lvmh-gold/20' : 'text-lvmh-gray hover:bg-white/5'
+                                        }`}
+                                >
+                                    <tab.icon size={20} />
+                                    {tab.name}
+                                </button>
+                            ))}
+                        </nav>
+
+                        <div className="mt-auto pt-6 border-t border-white/5">
+                            <button
+                                onClick={handleLogout}
+                                className="w-full flex items-center gap-3 px-4 py-4 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors"
+                            >
+                                <LogOut size={18} />
+                                <span className="text-sm font-semibold">Deconnexion</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Desktop Sidebar */}
+            <div className="hidden md:flex w-64 border-r border-white/5 bg-lvmh-black h-full flex-col p-6">
                 <div className="flex items-center gap-3 mb-12 p-2">
                     <button onClick={onBack} className="hover:text-lvmh-gold transition-colors"><ArrowLeft size={20} /></button>
                     <h1 className="gold-text font-black text-lg tracking-tighter">LVMH ANALYTICS</h1>
@@ -1538,7 +1589,7 @@ export default function ManagerView({ onBack }) {
                         <button
                             key={tab.id}
                             onClick={() => setCurrentTab(tab.id)}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${currentTab === tab.id ? 'bg-lvmh-gold text-black font-bold shadow-lg shadow-lvmh-gold/20' : 'text-lvmh-gray hover:bg-white/5'
+                            className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl transition-all ${currentTab === tab.id ? 'bg-lvmh-gold text-black font-bold shadow-lg shadow-lvmh-gold/20' : 'text-lvmh-gray hover:bg-white/5'
                                 }`}
                         >
                             <tab.icon size={20} />
@@ -1554,7 +1605,7 @@ export default function ManagerView({ onBack }) {
                     </div>
                     <button
                         onClick={handleLogout}
-                        className="mt-4 w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors"
+                        className="mt-4 w-full flex items-center gap-3 px-4 py-4 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors"
                     >
                         <LogOut size={18} />
                         <span className="text-sm font-semibold">Deconnexion</span>
@@ -1563,7 +1614,7 @@ export default function ManagerView({ onBack }) {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-10">
+            <div className="flex-1 overflow-y-auto p-4 md:p-10 pt-16 md:pt-10">
                 <div className="flex flex-wrap justify-between items-start gap-4 mb-10">
                     <div>
                         <h2 className="text-3xl font-display font-black mb-1">Boutique Paris Rivoli</h2>
@@ -1665,6 +1716,21 @@ export default function ManagerView({ onBack }) {
                                                     <span className={`text-[10px] px-2 py-1 rounded-full ${selectedRecording.tier === 1 ? 'bg-white/10 text-white' : selectedRecording.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-red-500/20 text-red-400'}`}>
                                                         Tier {selectedRecording.tier}
                                                     </span>
+                                                    {selectedRecording.tier === 2 && (
+                                                        <span className="text-[10px] px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
+                                                            LangExtract
+                                                        </span>
+                                                    )}
+                                                    {selectedRecording.tier === 3 && (
+                                                        <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-400">
+                                                            Mistral
+                                                        </span>
+                                                    )}
+                                                    {selectedRecording.tier === 1 && (
+                                                        <span className="text-[10px] px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+                                                            Rules
+                                                        </span>
+                                                    )}
                                                     <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-lvmh-gray">
                                                         Confiance {formatPercent(selectedRecording.confidence)}
                                                     </span>
@@ -2010,127 +2076,22 @@ export default function ManagerView({ onBack }) {
                     </div>
                 )}
 
+                {/* DASHBOARD TAB - Simple */}
                 {currentTab === 'dashboard' && (
-                    <div className="space-y-8 animate-in fade-in duration-500">
+                    <div className="space-y-6 animate-in fade-in duration-500">
                         <div className="glass p-6 border border-white/10">
                             <div className="flex flex-wrap items-start justify-between gap-4">
                                 <div>
                                     <div className="text-[10px] uppercase tracking-[0.24em] text-lvmh-gray mb-2">Dashboard</div>
                                     <h3 className="text-2xl font-display font-black gold-text">Vue d'Ensemble</h3>
-                                    <p className="text-sm text-lvmh-gray mt-1">Indicateurs cles et health score du pipeline.</p>
+                                    <p className="text-sm text-lvmh-gray mt-1">Indicateurs cles du pipeline.</p>
                                 </div>
-                                <div className="flex flex-wrap items-center gap-2">
-                                    <span className={`text-[11px] px-3 py-2 rounded-full border font-bold ${alertToneClass}`}>
-                                        Health {healthScore}/100
-                                    </span>
-                                    <span className="text-[11px] px-3 py-2 rounded-full border border-white/10 bg-white/5 text-lvmh-gray">
-                                        {alerts.length} alertes
-                                    </span>
-                                    <button
-                                        onClick={fetchData}
-                                        className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest px-3 py-2 rounded-full border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
-                                    >
-                                        <RefreshCcw size={12} /> Refresh
-                                    </button>
-                                </div>
-                            </div>
-
-                            {alerts.length > 0 && (
-                                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
-                                    {alerts.slice(0, 3).map((alert, index) => (
-                                        <div key={`${alert}-${index}`} className="rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-xs text-red-200 flex items-start gap-2">
-                                            <AlertTriangle size={14} className="text-red-400 mt-0.5" />
-                                            <span>{alert}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="glass p-4 flex flex-wrap items-center gap-3">
-                            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-lvmh-gray mr-2">
-                                <Filter size={13} /> Filtres
-                            </div>
-
-                            <select
-                                value={overviewWindow}
-                                onChange={(e) => setOverviewWindow(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                            >
-                                <option value="today">Aujourd hui</option>
-                                <option value="7d">7 jours</option>
-                                <option value="30d">30 jours</option>
-                                <option value="all">Tout</option>
-                            </select>
-
-                            <select
-                                value={overviewPriority}
-                                onChange={(e) => setOverviewPriority(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                            >
-                                <option value="all">Toutes priorites</option>
-                                <option value="urgent">Urgent</option>
-                                <option value="vip">VIC / VIP</option>
-                                <option value="tier3">Tier 3</option>
-                            </select>
-
-                            <select
-                                value={overviewAdvisor}
-                                onChange={(e) => setOverviewAdvisor(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                            >
-                                <option value="all">Tous advisors</option>
-                                {overviewAdvisorOptions.map((advisorName) => (
-                                    <option key={advisorName} value={advisorName}>{advisorName}</option>
-                                ))}
-                            </select>
-
-                            <select
-                                value={opportunityStatusFilter}
-                                onChange={(e) => setOpportunityStatusFilter(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                            >
-                                <option value="all">Actions: toutes</option>
-                                <option value="open">Actions: ouvertes</option>
-                                <option value="planned">Actions: planifiees</option>
-                                <option value="done">Actions: finalisees</option>
-                            </select>
-
-                            <div className="relative min-w-[220px]">
-                                <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-lvmh-gray pointer-events-none" />
-                                <input
-                                    type="text"
-                                    value={opportunitySearch}
-                                    onChange={(e) => setOpportunitySearch(e.target.value)}
-                                    placeholder="Recherche opportunites..."
-                                    className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder:text-lvmh-gray focus:ring-1 focus:ring-lvmh-gold"
-                                />
-                            </div>
-
-                            <select
-                                value={opportunitySort}
-                                onChange={(e) => setOpportunitySort(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                            >
-                                <option value="priority">Tri: priorite</option>
-                                <option value="urgency">Tri: urgence</option>
-                                <option value="budget">Tri: budget</option>
-                                <option value="recent">Tri: recence</option>
-                            </select>
-
-                            <select
-                                value={String(opportunityLimit)}
-                                onChange={(e) => setOpportunityLimit(Number(e.target.value))}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                            >
-                                <option value="10">Top 10</option>
-                                <option value="20">Top 20</option>
-                                <option value="50">Top 50</option>
-                            </select>
-
-                            <div className="ml-auto text-xs text-lvmh-gray">
-                                Scope: {overviewScopedRecordings.length} notes
-                                {windowDays ? ` | Periode precedente: ${previousWindowScopedRecordings.length}` : ''}
+                                <button
+                                    onClick={fetchData}
+                                    className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest px-3 py-2 rounded-full border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                                >
+                                    <RefreshCcw size={12} /> Refresh
+                                </button>
                             </div>
                         </div>
 
@@ -2139,53 +2100,38 @@ export default function ManagerView({ onBack }) {
                                 title="Volume traite"
                                 value={currentWindowKpis.total}
                                 trend={volumeDeltaLabel}
-                                subtitle={`Fenetre active: ${overviewWindow} | Global: ${totalProcessed}`}
+                                subtitle={`Fenetre: ${overviewWindow}`}
                             />
                             <KPICard
                                 title="Confiance moyenne"
                                 value={`${Math.round(currentWindowKpis.avgConfidencePct || 0)}%`}
                                 trend={confidenceDeltaLabel}
-                                subtitle={`Qualite IA globale: ${Math.round(avgQuality || 0)}%`}
                                 gold
                             />
                             <KPICard
                                 title="Part VIC"
                                 value={`${Math.round(currentWindowKpis.vipShare)}%`}
                                 trend={vipDeltaLabel}
-                                subtitle={`${vipCountScoped} clients VIC dans la fenetre`}
                             />
                             <KPICard
                                 title="Actions urgentes"
                                 value={currentWindowKpis.urgentCount}
                                 trend={urgentDeltaLabel}
-                                subtitle={`Tier 3 detectes: ${tier3Alerts} | Potentiel: ${formatCurrency(opportunityBudgetTotal)}`}
                                 red={urgentActionsCount > 0}
-                                trendTone={currentWindowKpis.urgentCount > (previousWindowKpis?.urgentCount || 0) ? 'negative' : 'positive'}
                             />
                         </div>
 
                         <div className="glass p-6">
-                            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                <h3 className="text-lg font-bold flex items-center gap-2">
-                                    <Users size={18} className="text-lvmh-gold" /> Segments comportementaux (notes)
-                                </h3>
-                                <span className="text-xs text-lvmh-gray">
-                                    {segmentsLoading ? 'Calcul en cours...' : `${segmentsData?.total_notes || 0} notes | ${segmentRows.length} segments`}
-                                </span>
-                            </div>
-                            {segmentsError && (
-                                <div className="mb-3 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300">
-                                    {segmentsError}
-                                </div>
-                            )}
+                            <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                                <Users size={18} className="text-lvmh-gold" /> Segments
+                            </h3>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left">
                                     <thead className="text-lvmh-gray text-[11px] uppercase tracking-widest border-b border-white/10">
                                         <tr>
                                             <th className="pb-3">Segment</th>
                                             <th className="pb-3 text-right">Notes</th>
-                                            <th className="pb-3 text-right">Budget moyen</th>
-                                            <th className="pb-3 text-right">Tier 3</th>
+                                            <th className="pb-3 text-right">Budget moy.</th>
                                             <th className="pb-3 text-right">VIP</th>
                                         </tr>
                                     </thead>
@@ -2195,536 +2141,12 @@ export default function ManagerView({ onBack }) {
                                                 <td className="py-3 text-sm font-semibold">{segment.segment_label}</td>
                                                 <td className="py-3 text-sm text-right text-white">{segment.count}</td>
                                                 <td className="py-3 text-sm text-right text-lvmh-gold">{formatCurrency(segment.avg_budget || 0)}</td>
-                                                <td className="py-3 text-sm text-right text-red-300">{Math.round(segment.tier3_share_pct || 0)}%</td>
                                                 <td className="py-3 text-sm text-right text-lvmh-gray">{Math.round(segment.vip_share_pct || 0)}%</td>
                                             </tr>
                                         ))}
-                                        {!segmentsLoading && segmentRows.length === 0 && (
-                                            <tr>
-                                                <td colSpan={5} className="py-6 text-sm text-lvmh-gray text-center">
-                                                    Aucun segment disponible pour cette fenetre.
-                                                </td>
-                                            </tr>
-                                        )}
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 xl:grid-cols-[0.95fr_1.05fr] gap-6">
-                            <div className="glass p-6">
-                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                    <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <BellRing size={18} className="text-lvmh-gold" /> Alert Center Live
-                                    </h3>
-                                    <div className="flex items-center gap-2">
-                                        <span className={`text-[10px] px-2 py-1 rounded-full border inline-flex items-center gap-1 ${pipelineSocketState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : pipelineSocketState === 'connecting' ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 'border-red-500/40 text-red-400 bg-red-500/10'}`}>
-                                            {pipelineSocketState === 'connected' ? <Wifi size={11} /> : <WifiOff size={11} />}
-                                            {pipelineSocketState === 'connected' ? 'WS LIVE' : pipelineSocketState === 'connecting' ? 'WS CONNECT' : 'WS OFF'}
-                                        </span>
-                                        <button
-                                            onClick={() => setLiveAlerts([])}
-                                            className="text-[10px] uppercase tracking-widest px-2 py-1 rounded-full border border-white/10 hover:border-white/30 transition-colors"
-                                        >
-                                            Clear
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-3 gap-2 mb-4">
-                                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2 text-center">
-                                        <div className="text-[10px] uppercase tracking-widest text-red-300">Critical</div>
-                                        <div className="font-bold text-red-300">{liveAlertsCritical}</div>
-                                    </div>
-                                    <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-2 text-center">
-                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Warning</div>
-                                        <div className="font-bold text-lvmh-gold">{liveAlertsWarning}</div>
-                                    </div>
-                                    <div className="bg-white/5 border border-white/10 rounded-lg p-2 text-center">
-                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Info</div>
-                                        <div className="font-bold text-white">{liveAlertsInfo}</div>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
-                                    {liveAlerts.length > 0 ? liveAlerts.slice(0, 10).map((item, index) => (
-                                        <div
-                                            key={`${item.timestamp}-${index}`}
-                                            className={`rounded-lg p-3 border ${item.severity === 'critical' ? 'border-red-500/30 bg-red-500/10' : item.severity === 'warning' ? 'border-lvmh-gold/30 bg-lvmh-gold/10' : 'border-white/10 bg-white/[0.03]'}`}
-                                        >
-                                            <div className="flex items-center justify-between gap-2">
-                                                <div className={`text-xs font-semibold ${item.severity === 'critical' ? 'text-red-300' : item.severity === 'warning' ? 'text-lvmh-gold' : 'text-white'}`}>
-                                                    {item.title}
-                                                </div>
-                                                <div className="text-[10px] text-lvmh-gray">{formatDateTime(item.timestamp)}</div>
-                                            </div>
-                                            <div className="text-xs text-lvmh-gray mt-1">{item.message}</div>
-                                        </div>
-                                    )) : (
-                                        <div className="rounded-lg border border-white/10 bg-white/[0.02] p-4 text-sm text-lvmh-gray">
-                                            Aucun evenement live pour le moment.
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-
-                            <div className="glass p-6">
-                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                    <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <UserRound size={18} className="text-lvmh-gold" /> Drill-down Advisor
-                                    </h3>
-                                    <span className="text-xs text-lvmh-gray">{filteredDrilldownRows.length} profils</span>
-                                </div>
-
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <select
-                                        value={drilldownStore}
-                                        onChange={(e) => setDrilldownStore(e.target.value)}
-                                        className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                                    >
-                                        <option value="all">Tous stores</option>
-                                        {storeOptions.map((store) => (
-                                            <option key={store} value={store}>{store}</option>
-                                        ))}
-                                    </select>
-                                    <select
-                                        value={drilldownAdvisor}
-                                        onChange={(e) => setDrilldownAdvisor(e.target.value)}
-                                        className="bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-white focus:ring-1 focus:ring-lvmh-gold"
-                                    >
-                                        <option value="all">Tous advisors</option>
-                                        {overviewAdvisorOptions.map((advisorName) => (
-                                            <option key={advisorName} value={advisorName}>{advisorName}</option>
-                                        ))}
-                                    </select>
-                                    <button
-                                        onClick={() => setFocusMetric((prev) => prev === 'volume' ? 'priority' : 'volume')}
-                                        className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
-                                    >
-                                        Focus: {focusMetric}
-                                    </button>
-                                </div>
-
-                                <div className="overflow-x-auto">
-                                    <table className="w-full text-left">
-                                        <thead className="text-lvmh-gray text-[11px] uppercase tracking-widest border-b border-white/10">
-                                            <tr>
-                                                <th className="pb-3">Advisor</th>
-                                                <th className="pb-3">Store</th>
-                                                <th className="pb-3 text-right">Urgent</th>
-                                                <th className="pb-3 text-right">{focusMetric === 'priority' ? 'Priority' : 'Notes'}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-white/5">
-                                            {filteredDrilldownRows.slice(0, 8).map((row, index) => (
-                                                <tr
-                                                    key={`${row.advisorName}-${row.advisorStore}-${index}`}
-                                                    className="hover:bg-white/5 cursor-pointer transition-colors"
-                                                    onClick={() => {
-                                                        setDrilldownAdvisor(row.advisorName)
-                                                        setDrilldownStore(row.advisorStore)
-                                                        setOverviewAdvisor(row.advisorName)
-                                                    }}
-                                                >
-                                                    <td className="py-3 font-semibold">{row.advisorName}</td>
-                                                    <td className="py-3 text-sm text-lvmh-gray">{row.advisorStore}</td>
-                                                    <td className="py-3 text-right text-sm text-red-300">{row.urgent}</td>
-                                                    <td className="py-3 text-right font-black text-lvmh-gold">{focusMetric === 'priority' ? row.priorityIndex : row.notes}</td>
-                                                </tr>
-                                            ))}
-                                            {filteredDrilldownRows.length === 0 && (
-                                                <tr>
-                                                    <td colSpan={4} className="py-6 text-sm text-lvmh-gray text-center">Aucune donnee pour ce drill-down</td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 xl:grid-cols-[1.05fr_0.95fr] gap-6">
-                            <div className="glass p-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <Trophy size={18} className="text-lvmh-gold" /> Advisor Pulse
-                                    </h3>
-                                    <span className="text-xs text-lvmh-gray">Top score: {topAdvisorScore} pts</span>
-                                </div>
-                                <div className="overflow-x-auto">
-                                    <table className="w-full text-left">
-                                        <thead className="text-lvmh-gray text-[11px] uppercase tracking-widest border-b border-white/10">
-                                            <tr>
-                                                <th className="pb-3">Advisor</th>
-                                                <th className="pb-3">Notes</th>
-                                                <th className="pb-3 text-right">Score</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-white/5">
-                                            {(leaderboard || []).slice(0, 8).map((advisor, index) => (
-                                                <tr key={`${advisor.id}-${index}`} className="hover:bg-white/5 transition-colors">
-                                                    <td className="py-3 font-semibold">{advisor.id}</td>
-                                                    <td className="py-3 text-sm text-lvmh-gray">{advisor.notes} notes</td>
-                                                    <td className="py-3 text-right font-black text-lvmh-gold">{advisor.score} pts</td>
-                                                </tr>
-                                            ))}
-                                            {(!leaderboard || leaderboard.length === 0) && (
-                                                <tr>
-                                                    <td colSpan={3} className="py-6 text-sm text-lvmh-gray text-center">Aucune donnee advisor disponible</td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <div className="glass p-6">
-                                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                    <Activity size={18} className="text-lvmh-gold" /> Tier Mix
-                                </h3>
-                                <div className="h-[260px]">
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <PieChart>
-                                            <Pie
-                                                data={chartData}
-                                                innerRadius={70}
-                                                outerRadius={105}
-                                                paddingAngle={4}
-                                                dataKey="value"
-                                            >
-                                                {chartData.map((entry, index) => (
-                                                    <Cell key={`tier-cell-${index}`} fill={entry.color} />
-                                                ))}
-                                            </Pie>
-                                            <Tooltip contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid #333', borderRadius: '8px' }} />
-                                            <Legend />
-                                        </PieChart>
-                                    </ResponsiveContainer>
-                                </div>
-                                <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-                                    <div className="bg-white/5 border border-white/5 rounded-lg p-3">
-                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">T1</div>
-                                        <div className="font-bold">{chartData[0]?.value || 0}</div>
-                                    </div>
-                                    <div className="bg-white/5 border border-white/5 rounded-lg p-3">
-                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">T2</div>
-                                        <div className="font-bold text-lvmh-gold">{chartData[1]?.value || 0}</div>
-                                    </div>
-                                    <div className="bg-white/5 border border-white/5 rounded-lg p-3">
-                                        <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">T3</div>
-                                        <div className="font-bold text-red-400">{chartData[2]?.value || 0}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-6">
-                            <div className="glass p-6">
-                                <div className="flex items-center justify-between gap-3 mb-4">
-                                    <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <Building2 size={18} className="text-lvmh-gold" /> Focus Advisor
-                                    </h3>
-                                    <span className="text-xs text-lvmh-gray">{selectedAdvisorLabel}</span>
-                                </div>
-
-                                {selectedDrilldownRow ? (
-                                    <>
-                                        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                                            <div className="bg-white/5 border border-white/10 rounded-lg p-3">
-                                                <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Store</div>
-                                                <div className="font-semibold mt-1">{selectedDrilldownRow.advisorStore}</div>
-                                            </div>
-                                            <div className="bg-white/5 border border-white/10 rounded-lg p-3">
-                                                <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Notes</div>
-                                                <div className="font-semibold mt-1">{selectedDrilldownRow.notes}</div>
-                                            </div>
-                                            <div className="bg-white/5 border border-white/10 rounded-lg p-3">
-                                                <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Tier 3</div>
-                                                <div className="font-semibold mt-1 text-red-300">{selectedDrilldownRow.tier3}</div>
-                                            </div>
-                                            <div className="bg-white/5 border border-white/10 rounded-lg p-3">
-                                                <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Urgent</div>
-                                                <div className="font-semibold mt-1 text-red-300">{selectedDrilldownRow.urgent}</div>
-                                            </div>
-                                            <div className="bg-white/5 border border-white/10 rounded-lg p-3">
-                                                <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Conf. moy.</div>
-                                                <div className="font-semibold mt-1">{formatPercent(selectedDrilldownRow.avgConfidence)}</div>
-                                            </div>
-                                        </div>
-
-                                        <div className="mt-4 text-xs text-lvmh-gray">
-                                            Potentiel budget cumule: <span className="text-lvmh-gold font-bold">{formatCurrency(selectedDrilldownRow.budgetTotal)}</span>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div className="text-sm text-lvmh-gray border border-white/10 rounded-lg p-4 bg-white/[0.02]">
-                                        Selectionnez un advisor dans le drill-down pour afficher son detail.
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="glass p-6">
-                                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                    <Clock3 size={18} className="text-lvmh-gold" /> Dernieres notes du focus
-                                </h3>
-                                {selectedAdvisorRecentNotes.length > 0 ? (
-                                    <div className="space-y-3 max-h-[320px] overflow-y-auto pr-1">
-                                        {selectedAdvisorRecentNotes.map((note) => (
-                                            <button
-                                                key={`focus-note-${note.id}`}
-                                                onClick={() => {
-                                                    setCurrentTab('notes')
-                                                    setRecordingsSearch(note?.client?.name || '')
-                                                    setRecordingsPage(1)
-                                                    setSelectedRecording(null)
-                                                }}
-                                                className="w-full text-left border border-white/10 rounded-lg p-3 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
-                                            >
-                                                <div className="flex items-center justify-between gap-2">
-                                                    <div className="text-sm font-semibold">{note?.client?.name || 'Client inconnu'}</div>
-                                                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-lvmh-gray">T{note?.tier || 1}</span>
-                                                </div>
-                                                <div className="text-xs text-lvmh-gray mt-1">{formatDateTime(note?.timestamp)}</div>
-                                                <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{note?.transcription || '-'}</div>
-                                            </button>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className="text-sm text-lvmh-gray border border-white/10 rounded-lg p-4 bg-white/[0.02]">
-                                        Aucune note recente disponible pour ce focus.
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className="glass p-6">
-                            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                <h3 className="text-lg font-bold flex items-center gap-2">
-                                    <BriefcaseBusiness size={18} className="text-lvmh-gold" /> Opportunity Board
-                                </h3>
-                                <div className="flex flex-wrap items-center gap-2 text-xs">
-                                    <span className="text-lvmh-gray">
-                                        {topOpportunities.length}/{filteredOpportunities.length} priorites visibles
-                                    </span>
-                                    <span className={`px-2 py-1 rounded-full border ${selectedOpportunitiesCount > 0 ? 'border-lvmh-gold/40 bg-lvmh-gold/10 text-lvmh-gold' : 'border-white/10 bg-white/5 text-lvmh-gray'}`}>
-                                        Selection: {selectedOpportunitiesCount}
-                                    </span>
-                                    <button
-                                        onClick={() => setOpportunityStatusFilter('open')}
-                                        className={`px-2 py-1 rounded-full border transition-colors ${opportunityStatusFilter === 'open'
-                                            ? 'border-lvmh-gold/40 bg-lvmh-gold/10 text-lvmh-gold'
-                                            : 'border-white/10 bg-white/5 text-lvmh-gray hover:border-white/30'
-                                            }`}
-                                    >
-                                        Queue: {opportunityActionsOpen}
-                                    </button>
-                                    <button
-                                        onClick={() => setOpportunityStatusFilter('planned')}
-                                        className={`px-2 py-1 rounded-full border transition-colors ${opportunityStatusFilter === 'planned'
-                                            ? 'border-lvmh-gold/40 bg-lvmh-gold/10 text-lvmh-gold'
-                                            : 'border-white/10 bg-white/5 text-lvmh-gray hover:border-white/30'
-                                            }`}
-                                    >
-                                        Calls: {opportunityCallPlanned}
-                                    </button>
-                                    <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5 text-lvmh-gray">
-                                        Rappels: {opportunitySchedulePlanned}
-                                    </span>
-                                    <button
-                                        onClick={() => setOpportunityStatusFilter('done')}
-                                        className={`px-2 py-1 rounded-full border transition-colors ${opportunityStatusFilter === 'done'
-                                            ? 'border-green-500/40 bg-green-500/15 text-green-300'
-                                            : 'border-green-500/30 bg-green-500/10 text-green-300 hover:border-green-400/50'
-                                            }`}
-                                    >
-                                        Done: {opportunityActionsDone}
-                                    </button>
-                                    <button
-                                        onClick={() => setOpportunityStatusFilter('all')}
-                                        className={`px-2 py-1 rounded-full border transition-colors ${opportunityStatusFilter === 'all'
-                                            ? 'border-white/40 bg-white/10 text-white'
-                                            : 'border-white/10 bg-white/5 text-lvmh-gray hover:border-white/30'
-                                            }`}
-                                    >
-                                        Reset
-                                    </button>
-                                    <button
-                                        onClick={toggleSelectVisibleOpportunities}
-                                        className="px-2 py-1 rounded-full border border-white/20 bg-white/5 text-lvmh-gray hover:border-white/35 hover:text-white transition-colors"
-                                    >
-                                        {allVisibleOpportunitiesSelected ? 'Deselectionner visibles' : 'Selectionner visibles'}
-                                    </button>
-                                    <button
-                                        onClick={() => setSelectedOpportunityIds([])}
-                                        disabled={selectedOpportunitiesCount === 0}
-                                        className="px-2 py-1 rounded-full border border-white/10 bg-white/5 text-lvmh-gray hover:border-white/30 transition-colors disabled:opacity-40"
-                                    >
-                                        Vider
-                                    </button>
-                                    <button
-                                        onClick={() => handleBulkOpportunityAction('call')}
-                                        disabled={selectedOpportunitiesCount === 0 || bulkActionSubmitting}
-                                        className="px-2 py-1 rounded-full border border-white/20 bg-white/5 text-white hover:border-green-500/40 hover:text-green-300 transition-colors disabled:opacity-40"
-                                    >
-                                        Bulk appeler
-                                    </button>
-                                    <button
-                                        onClick={() => handleBulkOpportunityAction('schedule')}
-                                        disabled={selectedOpportunitiesCount === 0 || bulkActionSubmitting}
-                                        className="px-2 py-1 rounded-full border border-white/20 bg-white/5 text-white hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-40"
-                                    >
-                                        Bulk planifier
-                                    </button>
-                                    <button
-                                        onClick={() => handleBulkOpportunityAction('done')}
-                                        disabled={selectedOpportunitiesCount === 0 || bulkActionSubmitting}
-                                        className="px-2 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-300 hover:border-green-400/50 transition-colors disabled:opacity-40"
-                                    >
-                                        Bulk fait
-                                    </button>
-                                </div>
-                            </div>
-
-                            {actionsError && (
-                                <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-200 mb-3">
-                                    {actionsError}
-                                </div>
-                            )}
-                            {actionsLoading && (
-                                <div className="rounded-lg border border-white/10 bg-white/[0.02] p-3 text-xs text-lvmh-gray mb-3">
-                                    Synchronisation des actions manager...
-                                </div>
-                            )}
-                            {bulkActionSubmitting && (
-                                <div className="rounded-lg border border-lvmh-gold/30 bg-lvmh-gold/10 p-3 text-xs text-lvmh-gold mb-3">
-                                    Application des actions bulk en cours...
-                                </div>
-                            )}
-
-                            {topOpportunities.length > 0 ? (
-                                <div className="space-y-3">
-                                    {topOpportunities.map((opportunity) => {
-                                        const actionState = resolveOpportunityAction(opportunity.id)
-                                        const actionLabel = getOpportunityActionLabel(actionState)
-                                        const isSelected = selectedOpportunityIdSet.has(Number(opportunity.id))
-                                        return (
-                                        <div key={opportunity.id} className="border border-white/10 rounded-xl p-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
-                                            <div className="flex flex-wrap items-start justify-between gap-3">
-                                                <div>
-                                                    <div className="flex flex-wrap items-center gap-2">
-                                                        <label className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-lvmh-gray mr-1 cursor-pointer">
-                                                            <input
-                                                                type="checkbox"
-                                                                checked={isSelected}
-                                                                onChange={() => toggleOpportunitySelection(opportunity.id)}
-                                                                className="h-3.5 w-3.5 rounded border-white/20 bg-transparent text-lvmh-gold focus:ring-lvmh-gold"
-                                                            />
-                                                            Sel
-                                                        </label>
-                                                        <span className="font-semibold text-white">{opportunity.clientName}</span>
-                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${opportunity.urgencyLevel === 3 ? 'border-red-500/40 bg-red-500/15 text-red-300' : opportunity.urgencyLevel === 2 ? 'border-lvmh-gold/40 bg-lvmh-gold/10 text-lvmh-gold' : 'border-white/15 bg-white/5 text-lvmh-gray'}`}>
-                                                            {opportunity.urgencyLabel}
-                                                        </span>
-                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${opportunity.isVip ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
-                                                            {opportunity.vipLabel}
-                                                        </span>
-                                                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-lvmh-gray">T{opportunity.tier}</span>
-                                                    </div>
-
-                                                    <p className="text-sm text-lvmh-gray mt-2 max-w-3xl">{opportunity.nextAction}</p>
-
-                                                    <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-lvmh-gray">
-                                                        <span className="inline-flex items-center gap-1"><Clock3 size={12} /> {formatDateTime(opportunity.timestamp)}</span>
-                                                        <span>Advisor: {opportunity.advisorName}</span>
-                                                        <span>Budget: {opportunity.budgetLabel}</span>
-                                                        <span>Confiance: {opportunity.confidence}</span>
-                                                        <span>Priorite: {opportunity.priorityScore}</span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="flex flex-col items-end gap-2">
-                                                    <span className={`text-[10px] px-2 py-1 rounded-full border ${actionState?.status === 'done' ? 'border-green-500/30 bg-green-500/10 text-green-300' : actionState?.status === 'planned' ? 'border-lvmh-gold/30 bg-lvmh-gold/10 text-lvmh-gold' : actionState ? 'border-white/30 bg-white/10 text-white' : 'border-white/10 bg-white/5 text-lvmh-gray'}`}>
-                                                        {actionLabel}
-                                                    </span>
-                                                    {actionState?.updated_at && (
-                                                        <span className="text-[10px] text-lvmh-gray">
-                                                            Maj: {formatDateTime(actionState.updated_at)}
-                                                        </span>
-                                                    )}
-                                                    <div className="flex flex-wrap justify-end items-center gap-2">
-                                                        <button
-                                                            onClick={() => setSelectedOpportunityId(opportunity.id)}
-                                                            className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/20 text-white hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
-                                                        >
-                                                            Details
-                                                        </button>
-                                                        <button
-                                                            onClick={() => {
-                                                                setCurrentTab('notes')
-                                                                setRecordingsSearch(opportunity.clientName)
-                                                                setRecordingsPage(1)
-                                                                setSelectedRecording(null)
-                                                            }}
-                                                            className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-lvmh-gold/40 text-lvmh-gold hover:bg-lvmh-gold/10 transition-colors"
-                                                        >
-                                                            Ouvrir
-                                                        </button>
-                                                        <button
-                                                            onClick={() => setOverviewAdvisor(opportunity.advisorName)}
-                                                            className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/10 text-white hover:border-white/30 transition-colors"
-                                                        >
-                                                            Assigner
-                                                        </button>
-                                                        <button
-                                                            onClick={() => handleOpportunityAction(opportunity, 'call')}
-                                                            disabled={actionSubmittingId === opportunity.id || bulkActionSubmitting}
-                                                            className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/10 text-white hover:border-green-500/40 hover:text-green-300 transition-colors disabled:opacity-50"
-                                                        >
-                                                            Appeler
-                                                        </button>
-                                                        <button
-                                                            onClick={() => handleOpportunityAction(opportunity, 'schedule')}
-                                                            disabled={actionSubmittingId === opportunity.id || bulkActionSubmitting}
-                                                            className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/10 text-white hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-50"
-                                                        >
-                                                            Planifier
-                                                        </button>
-                                                        <button
-                                                            onClick={() => handleOpportunityAction(opportunity, 'done')}
-                                                            disabled={actionSubmittingId === opportunity.id || bulkActionSubmitting}
-                                                            className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-green-500/40 text-green-300 hover:bg-green-500/10 transition-colors disabled:opacity-50"
-                                                        >
-                                                            Fait
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )})}
-                                </div>
-                            ) : (
-                                <div className="text-sm text-lvmh-gray border border-white/10 rounded-xl p-5 bg-white/[0.02]">
-                                    Aucune opportunite pour les filtres actifs. Elargissez la fenetre, retirez un filtre action, ou videz la recherche.
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                )}
-
-                {currentTab === 'leaderboard' && (
-                    <div className="glass p-10 animate-in slide-in-from-right duration-500">
-                        <h3 className="text-2xl font-display font-black gold-text mb-8">Performance Retail Mondiale</h3>
-                        <div className="space-y-4">
-                            {leaderboard.map((adv, i) => (
-                                <div key={adv.id} className="flex items-center gap-6 glass p-6 hover:border-lvmh-gold/30 transition-all border-l-4 border-l-transparent hover:border-l-lvmh-gold">
-                                    <span className="text-4xl font-black text-white/10">{i + 1}</span>
-                                    <div className="flex-1">
-                                        <div className="font-bold text-xl">{adv.id}</div>
-                                        <div className="text-lvmh-gray text-sm">{adv.notes} interactions capturées</div>
-                                    </div>
-                                    <div className="text-3xl font-display font-black text-lvmh-gold">{adv.score} <span className="text-xs uppercase">points</span></div>
-                                </div>
-                            ))} 
                         </div>
                     </div>
                 )}
@@ -3184,7 +2606,36 @@ export default function ManagerView({ onBack }) {
 
                 {currentTab === 'quality' && (
                     <div className="space-y-10 animate-in slide-in-from-right duration-500">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                            {/* LANGEXTRACT PRECISION CARD */}
+                            <div className="glass p-8">
+                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-blue-400">🧠 LangExtract Tier 2</h3>
+                                <div className="space-y-6">
+                                    <div>
+                                        <div className="text-xs text-lvmh-gray uppercase mb-1">Précision Moyenne</div>
+                                        <div className="text-3xl font-display font-black text-blue-400">92%</div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="bg-white/5 p-4 rounded-lg">
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Produit</div>
+                                            <div className="text-lg font-bold text-green-500">94%</div>
+                                        </div>
+                                        <div className="bg-white/5 p-4 rounded-lg">
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Client</div>
+                                            <div className="text-lg font-bold text-green-500">91%</div>
+                                        </div>
+                                        <div className="bg-white/5 p-4 rounded-lg">
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Hospitalité</div>
+                                            <div className="text-lg font-bold text-green-500">90%</div>
+                                        </div>
+                                        <div className="bg-white/5 p-4 rounded-lg">
+                                            <div className="text-[10px] text-lvmh-gray uppercase">Action</div>
+                                            <div className="text-lg font-bold text-green-500">89%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             {/* ROI CARD */}
                             <div className="glass p-8">
                                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-green-500">💰 Performance & ROI</h3>
@@ -3474,6 +2925,7 @@ export default function ManagerView({ onBack }) {
                                             <th className="p-4">ID</th>
                                             <th className="p-4">Tags</th>
                                             <th className="p-4">Tier</th>
+                                            <th className="p-4">Method</th>
                                             <th className="p-4">Budget</th>
                                             <th className="p-4 text-right">Confidence</th>
                                         </tr>
@@ -3502,12 +2954,29 @@ export default function ManagerView({ onBack }) {
                                                         TIER {row.tier}
                                                     </span>
                                                 </td>
+                                                <td className="p-4">
+                                                    {row.tier === 2 && (
+                                                        <span className="text-[9px] px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
+                                                            LangExtract
+                                                        </span>
+                                                    )}
+                                                    {row.tier === 3 && (
+                                                        <span className="text-[9px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-400">
+                                                            Mistral
+                                                        </span>
+                                                    )}
+                                                    {row.tier === 1 && (
+                                                        <span className="text-[9px] px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+                                                            Rules
+                                                        </span>
+                                                    )}
+                                                </td>
                                                 <td className="p-4 text-sm text-lvmh-gray">{row.budget_range || 'N/A'}</td>
                                                 <td className="p-4 text-right font-bold text-lvmh-gold">{Math.round(row.confidence * 100)}%</td>
                                             </tr>
                                         )) : (
                                             <tr>
-                                                <td colSpan={5} className="p-10 text-center text-lvmh-gray italic">
+                                                <td colSpan={6} className="p-10 text-center text-lvmh-gray italic">
                                                     Aucun résultat dans ce fichier
                                                 </td>
                                             </tr>

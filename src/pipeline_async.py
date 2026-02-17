@@ -34,6 +34,7 @@ from src.models import PipelineOutput, RoutingDecision, ExtractionResult, RGPDRe
 from src.smart_router import SmartRouterV2
 from src.tier1_rules import Tier1RulesEngine
 from src.tier2_mistral import Tier2Mistral
+from src.tier2_langextract import Tier2LangExtract
 from src.extractor import TagExtractor
 from src.text_cleaner import MultilingualTextCleaner, _check_embeddings_available
 from src.cache_manager import CacheManager
@@ -43,6 +44,15 @@ from src.semantic_cache import SemanticCache
 from src.cross_validator import CrossValidator
 from src.recommender import RecommenderEngine
 from src.product_matcher import ProductMatcher
+
+USE_ZVEC = os.getenv("LVMH_USE_ZVEC", "true").lower() in {"1", "true", "yes"}
+if USE_ZVEC:
+    try:
+        from src.zvec_matcher import ZvecProductMatcher
+        ProductMatcher = ZvecProductMatcher
+        logger.info("Using ZvecProductMatcher for product matching")
+    except ImportError:
+        logger.warning("ZvecProductMatcher not available, falling back to ProductMatcher")
 from src.rgpd_filter import RGPDFilter
 from src.validator import NoteValidator
 from src.circuit_breaker import (
@@ -119,7 +129,13 @@ class AsyncPipeline:
             'is_written_mode': settings.router_is_written_mode,
         })
         self.tier1 = Tier1RulesEngine()
-        self.tier2 = Tier2Mistral()
+        # Use LangExtract for Tier 2 if enabled in config
+        if settings.use_langextract_tier2:
+            self.tier2 = Tier2LangExtract()
+            logger.info("Using LangExtract for Tier 2 extraction")
+        else:
+            self.tier2 = Tier2Mistral()
+            logger.info("Using Mistral for Tier 2 extraction")
         self.tier3 = TagExtractor()
         self.recommender = RecommenderEngine()
         self.matcher = ProductMatcher()
@@ -426,13 +442,26 @@ class AsyncPipeline:
                         return await coro_factory()
                 return await asyncio.wait_for(runner(), timeout=timeout_seconds)
 
+            # Edge processing: check if text is already preprocessed
+            text_preprocessed = note.get('text_preprocessed', False)
+            rgpd_risk_input = note.get('rgpd_risk')
+
             # 0. Data Cleaning
             cleaning_started = time.perf_counter()
             await safe_progress({"step": "cleaning", "tokens_saved": 0})
-            clean_res = self.cleaner.clean_text(raw_text, language)
-            text = clean_res['cleaned']
-            tokens_saved = clean_res.get('fillers_removed', 0)
-            await safe_progress({"step": "cleaning", "tokens_saved": tokens_saved})
+            
+            if text_preprocessed:
+                # Skip cleaning - text already processed on edge
+                text = raw_text
+                tokens_saved = 0
+                await safe_progress({"step": "cleaning", "tokens_saved": 0, "skipped": True})
+                logger.info("Note %s: Skipped cleaning (already preprocessed on edge)", note_id)
+            else:
+                clean_res = self.cleaner.clean_text(raw_text, language)
+                text = clean_res['cleaned']
+                tokens_saved = clean_res.get('fillers_removed', 0)
+                await safe_progress({"step": "cleaning", "tokens_saved": tokens_saved})
+            
             mark_stage("cleaning", cleaning_started)
             
             logger.debug(
@@ -445,10 +474,31 @@ class AsyncPipeline:
             # 0b. RGPD layer (Profile-aware: skip LLM for fast_batch)
             rgpd_started = time.perf_counter()
             await safe_progress({"step": "rgpd", "status": "processing"})
-            rgpd_result = self._build_heuristic_rgpd(text)
+            
+            # Edge RGPD: use pre-detected risk from edge if available
+            if rgpd_risk_input and isinstance(rgpd_risk_input, dict):
+                detected = rgpd_risk_input.get('detected', False)
+                categories = rgpd_risk_input.get('categories', [])
+                rgpd_result = RGPDResult(
+                    contains_sensitive=bool(detected),
+                    categories_detected=categories if isinstance(categories, list) else [],
+                    safe_to_store=not detected,
+                    severity='medium' if detected else 'none',
+                    reasoning='Pre-detected on edge (browser)',
+                    anonymized_text=text,
+                )
+                await safe_progress({
+                    "step": "rgpd",
+                    "status": "edge",
+                    "contains_sensitive": detected,
+                    "categories": categories,
+                })
+                logger.info("Note %s: Using edge RGPD detection: detected=%s, categories=%s", note_id, detected, categories)
+            else:
+                rgpd_result = self._build_heuristic_rgpd(text)
 
             # Profile-aware RGPD: use heuristic only for fast_batch
-            use_rgpd_llm = self.rgpd_enabled and self.rgpd_filter and not fast_batch_mode
+            use_rgpd_llm = self.rgpd_enabled and self.rgpd_filter and not fast_batch_mode and not text_preprocessed
             
             if use_rgpd_llm:
                 try:
