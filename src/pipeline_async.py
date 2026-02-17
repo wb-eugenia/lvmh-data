@@ -45,6 +45,7 @@ from src.cross_validator import CrossValidator
 from src.recommender import RecommenderEngine
 from src.product_matcher import ProductMatcher
 from src.services.llm_guard_service import get_llm_guard_service, secure_input
+from src.services.evidently_service import get_evidently_service, check_drift
 
 # Configure logging
 logging.basicConfig(
@@ -1052,6 +1053,25 @@ class AsyncPipeline:
             result = await f
             if result:
                 results.append(result)
+        
+        # Run drift monitoring on processed batch
+        try:
+            monitoring_service = get_evidently_service()
+            if results:
+                # Convert results to dict format for monitoring
+                result_data = []
+                for r in results:
+                    result_data.append({
+                        "raw_text": r.raw_text[:500] if r.raw_text else "",
+                        "extracted_data": r.extracted_data if hasattr(r, 'extracted_data') else {},
+                        "tier": int(r.tier_attempted.replace("tier", "")) if r.tier_attempted else 0,
+                        "confidence": r.extracted_data.get("confidence", 0) if hasattr(r, 'extracted_data') and r.extracted_data else 0,
+                    })
+                drift_result = monitoring_service.check_drift(result_data, generate_report=False)
+                if drift_result:
+                    logger.info(f"Drift check: score={drift_result.drift_score:.2%}, detected={drift_result.drift_detected}")
+        except Exception as e:
+            logger.warning(f"Monitoring drift check failed: {e}")
         
         return results
 

@@ -242,3 +242,92 @@ async def get_leaderboard_stats(db: Session = Depends(get_db)):
         }
         for u in users
     ]
+
+
+@router.get("/monitoring/status")
+async def get_monitoring_status():
+    """Get monitoring service status."""
+    try:
+        from src.services.evidently_service import get_evidently_service
+        service = get_evidently_service()
+        
+        return {
+            "available": service.is_available,
+            "reference_data_loaded": service.reference_data is not None,
+            "reports_dir": str(service.reports_dir),
+        }
+    except Exception as e:
+        return {"available": False, "error": str(e)}
+
+
+@router.post("/monitoring/set-reference")
+async def set_reference_data(notes: list[dict]):
+    """Set reference dataset for drift detection."""
+    try:
+        from src.services.evidently_service import get_evidently_service
+        service = get_evidently_service()
+        success = service.set_reference_data(notes)
+        
+        return {"success": success, "samples": len(notes)}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@router.get("/monitoring/drift")
+async def get_drift_report(generate_report: bool = False):
+    """Get current drift status."""
+    try:
+        from src.services.evidently_service import get_evidently_service
+        service = get_evidently_service()
+        
+        # Get recent notes from DB for drift check
+        db = next(get_db())
+        recent_notes = db.query(Note).order_by(Note.created_at.desc()).limit(100).all()
+        
+        if not recent_notes:
+            return {"error": "No recent notes available"}
+        
+        # Convert to dict format
+        note_data = []
+        for note in recent_notes:
+            try:
+                extracted = json.loads(note.extracted_data) if note.extracted_data else {}
+            except:
+                extracted = {}
+            
+            note_data.append({
+                "raw_text": note.raw_text[:500] if note.raw_text else "",
+                "extracted_data": extracted,
+                "tier": note.tier_attempted or 0,
+                "confidence": extracted.get("confidence", 0),
+            })
+        
+        drift_result = service.check_drift(note_data, generate_report=generate_report)
+        
+        if drift_result:
+            return {
+                "drift_detected": drift_result.drift_detected,
+                "drift_score": drift_result.drift_score,
+                "num_drifted_columns": drift_result.num_drifted_columns,
+                "total_columns": drift_result.total_columns,
+                "column_drift": drift_result.column_drift,
+                "timestamp": drift_result.timestamp,
+                "report_path": drift_result.report_path,
+            }
+        else:
+            return {"error": "Drift check failed", "available": service.is_available}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@router.get("/monitoring/reports")
+async def get_monitoring_reports():
+    """Get list of available monitoring reports."""
+    try:
+        from src.services.evidently_service import get_evidently_service
+        service = get_evidently_service()
+        
+        reports = service.get_reports_list()
+        return {"reports": reports}
+    except Exception as e:
+        return {"reports": [], "error": str(e)}

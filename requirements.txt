@@ -33,3 +33,6 @@ zvec>=0.2.0
 
 # Google Cloud
 google-cloud-bigquery>=3.0.0
+
+# Monitoring - Evidently
+evidently>=0.7.0
