@@ -36,3 +36,6 @@ google-cloud-bigquery>=3.0.0
 
 # Monitoring - Evidently
 evidently>=0.7.0
+
+# Extraction - LangExtract
+langextract>=1.1.0
