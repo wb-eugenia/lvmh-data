@@ -26,11 +26,24 @@ class User(Base):
 
 class Client(Base):
     __tablename__ = "clients"
+    __table_args__ = (
+        CheckConstraint(
+            "category IN ('Regular', 'Premium', 'VIC', 'Ultimate')",
+            name="ck_clients_category_valid",
+        ),
+        Index("ix_clients_external_id", "external_client_id"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
+    external_client_id = Column(String, unique=True, index=True, nullable=True)
+    category = Column(String, default="Regular", index=True)
     vic_status = Column(String, default="Standard", index=True)
     total_spent = Column(Float, default=0.0)
+    sentiment_score = Column(Float, default=0.0, index=True)
+    sentiment_history = Column(Text, default="[]")
+    total_interactions = Column(Integer, default=0)
+    last_interaction = Column(DateTime, default=datetime.utcnow)
 
     notes = relationship("Note", back_populates="client")
 
@@ -48,9 +61,11 @@ class Note(Base):
     client_id = Column(Integer, ForeignKey("clients.id"), index=True)
 
     transcription = Column(Text)
-    analysis_json = Column(Text) # Stored as JSON string
+    analysis_json = Column(Text)
     points_awarded = Column(Integer, default=0, index=True)
     timestamp = Column(DateTime, default=datetime.utcnow, index=True)
+    sentiment_score = Column(Float, default=0.0, index=True)
+    event_invitation_sent = Column(Boolean, default=False, index=True)
 
     advisor = relationship("User", back_populates="notes")
     client = relationship("Client", back_populates="notes")

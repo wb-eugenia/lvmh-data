@@ -71,9 +71,21 @@ Réponds en JSON strict:
             else:
                 logger.warning("NBA LLM requested but Mistral client/api key unavailable.")
     
-    def generate_recommendation(self, extraction: ExtractionResult, source_text: Optional[str] = None) -> ExtractionResult:
+    def generate_recommendation(
+        self, 
+        extraction: ExtractionResult, 
+        source_text: Optional[str] = None,
+        sentiment_score: float = 0.0,
+        client_category: str = "Regular"
+    ) -> ExtractionResult:
         """
         Processes an extraction result and populates the next_best_action field.
+        
+        Args:
+            extraction: The extraction result from the pipeline
+            source_text: Original text for additional context
+            sentiment_score: Client sentiment score (-1 to +1)
+            client_category: Client category (Regular, Premium, VIC, Ultimate)
         """
         # Lightweight deterministic enrichment to reduce missing critical fields
         # when LLM outputs are partial (timeouts/rate-limit/degraded answers).
@@ -187,6 +199,13 @@ Réponds en JSON strict:
                     p4.next_best_action.priority = "High"
                 if "CLV" not in p4.next_best_action.description:
                     p4.next_best_action.description += f" CLV estime: {p4.clv_estimate:,.0f} EUR."
+
+        # --- EVENT INVITATION LOGIC (Based on Sentiment + Category) ---
+        self._recommend_event_based_on_profile(
+            extraction, 
+            sentiment_score=sentiment_score,
+            client_category=client_category
+        )
             
         # --- GAMIFICATION (Super Note Score) ---
         self._calculate_gamification(extraction, source_text=source_text)
@@ -332,6 +351,70 @@ Réponds en JSON strict:
         if score <= 1.0:
             score *= 100.0
         return max(0.0, min(100.0, score))
+
+    def _recommend_event_based_on_profile(
+        self,
+        extraction: ExtractionResult,
+        sentiment_score: float = 0.0,
+        client_category: str = "Regular"
+    ) -> None:
+        """
+        Recommend event invitations based on client category and sentiment.
+        
+        Logic:
+        - VIP/Ultimate + Positive sentiment (>0.5) → Invite to exclusive events
+        - VIP/Ultimate + Negative sentiment (<-0.3) → Escalation to manager
+        - Premium + Positive → Invitation to boutique events
+        - Regular → Standard follow-up
+        """
+        p1 = extraction.pilier_1_univers_produit
+        p4 = extraction.pilier_4_action_business
+        
+        categories = (p1.categories or [])
+        categories_lower = [c.lower() for c in categories]
+        
+        event_description = None
+        action_type = None
+        priority = "Low"
+        
+        is_vip = client_category in ["VIP", "Ultimate"]
+        is_premium = client_category == "Premium"
+        
+        if is_vip and sentiment_score >= 0.5:
+            if any(cat in categories_lower for cat in ["mode", "fashion", "vetement", "prêt-à-porter", "haute couture"]):
+                event_description = "Client VIP enchanté + intérêt mode → Inviter Fashion Week ou défilés privés"
+                action_type = "invitation"
+                priority = "High"
+            elif any(cat in categories_lower for cat in ["bijoux", "joaillerie", "haute joaillerie", "horlogerie"]):
+                event_description = "Client VIP enchanté + intérêt jewels → Inviter exposition Haute Joaillerie"
+                action_type = "invitation"
+                priority = "High"
+            elif any(cat in categories_lower for cat in ["parfums", "fragrance", "beauté", "makeup"]):
+                event_description = "Client VIP enchanté + intérêt parfum → Inviter lancement parfum exclusif"
+                action_type = "invitation"
+                priority = "High"
+            else:
+                event_description = f"Client {client_category} content (sentiment: {sentiment_score:.1f}) → Inviter événement privé boutique"
+                action_type = "invitation"
+                priority = "Medium"
+                
+        elif is_vip and sentiment_score < -0.3:
+            event_description = f"Client {client_category} mécontent (sentiment: {sentiment_score:.1f}) → Escalade manager pour appel personnalisé urgent"
+            action_type = "escalation"
+            priority = "Critical"
+            
+        elif is_premium and sentiment_score >= 0.7:
+            event_description = "Client Premium très satisfait → Inviter événement boutique exclusif"
+            action_type = "invitation"
+            priority = "Medium"
+            
+        if event_description and action_type:
+            p4.next_best_action = NextBestAction(
+                action_type=action_type,
+                description=event_description,
+                priority=priority,
+                target_products=[],
+            )
 
     def _extract_meeting_hint(self, source_text: str) -> Optional[str]:
         text = source_text or ""

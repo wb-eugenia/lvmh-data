@@ -72,6 +72,14 @@ class NoteInput(BaseModel):
         default=True,
         description="True for web app (written notes), False for voice recordings. Affects routing."
     )
+    client_id: Optional[str] = Field(
+        default=None,
+        description="External client ID from LVMH CRM (optional, auto-fallback if not provided)"
+    )
+    client_name: Optional[str] = Field(
+        default=None,
+        description="Client name for search/create (optional)"
+    )
     
     @field_validator('text')
     @classmethod

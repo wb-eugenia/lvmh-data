@@ -6,8 +6,11 @@ Rate limited to 30 requests per minute.
 import sys
 import os
 import time
+import json
 import logging
+import uuid
 from typing import Optional, Any, List
+from datetime import datetime
 
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from slowapi import Limiter
@@ -31,6 +34,7 @@ from api.schemas import (
 )
 from src.pipeline_async import AsyncPipeline
 from src.language_utils import detect_language
+from src.text_cleaner import sentiment_rules
 from api.routers.auth import get_current_user, require_roles
 from api.models_sql import User, Note, Client
 from api.database import get_db, SessionLocal
@@ -134,7 +138,7 @@ def _projection_from_pipeline_result(result: Any) -> ParityProjection:
     )
 
 
-def get_pipeline() -> AsyncPipeline:
+def get_pipeline_from_container() -> AsyncPipeline:
     """Get pipeline instance via dependency injection."""
     return get_pipeline()
 
@@ -145,6 +149,8 @@ def persist_note_single_transaction(
     processed_text: str,
     analysis_payload: dict,
     points: int,
+    client_id_db: Optional[int] = None,
+    sentiment_score: float = 0.0,
 ) -> None:
     """
     Persist score + client + note in one short transaction.
@@ -158,10 +164,15 @@ def persist_note_single_transaction(
 
         user.score = int(user.score or 0) + int(points)
 
-        client_name = "Client VIP" if str(behavior or "").lower() in {"vic", "ultimate", "platinum"} else "Client Inconnu"
-        client = db.query(Client).filter(Client.name == client_name).first()
+        # Use the client_id if provided, otherwise fallback to behavior-based lookup
+        if client_id_db:
+            client = db.query(Client).filter(Client.id == client_id_db).first()
+        else:
+            client_name = "Client VIP" if str(behavior or "").lower() in {"vic", "ultimate", "platinum"} else "Client Inconnu"
+            client = db.query(Client).filter(Client.name == client_name).first()
+        
         if client is None:
-            client = Client(name=client_name, vic_status="Standard")
+            client = Client(name="Client Inconnu", vic_status="Standard")
             db.add(client)
             db.flush()
 
@@ -171,6 +182,7 @@ def persist_note_single_transaction(
             transcription=processed_text,
             analysis_json=json.dumps(analysis_payload, ensure_ascii=False, default=str),
             points_awarded=int(points),
+            sentiment_score=sentiment_score,
         )
         db.add(note)
         db.commit()
@@ -230,6 +242,75 @@ async def analyze_note(
                 detail=result.quality_gate_reason or "Quality contract failed (empty tags on high-signal note).",
             )
         
+        # === SENTIMENT ANALYSIS ===
+        sentiment_label, sentiment_score = sentiment_rules(note.text)
+        logger.info(f"Sentiment analysis: {sentiment_label} ({sentiment_score:.2f})")
+        
+        # === CLIENT LOOKUP/CREATE ===
+        client_id_db = None
+        client_category = "Regular"
+        
+        # Determine client identifier (external ID, name, or generate unknown)
+        client_identifier = note.client_id or note.client_name
+        if not client_identifier:
+            client_identifier = f"UNKNOWN_{uuid.uuid4().hex[:8]}"
+        
+        # Find or create client in database
+        try:
+            db = SessionLocal()
+            try:
+                # Try to find by external_client_id first
+                if note.client_id:
+                    client = db.query(Client).filter(Client.external_client_id == note.client_id).first()
+                # Then try by name
+                elif note.client_name:
+                    client = db.query(Client).filter(Client.name.ilike(f"%{note.client_name}%")).first()
+                else:
+                    client = None
+                
+                if client is None:
+                    # Create new client
+                    client = Client(
+                        name=note.client_name or "Client Inconnu",
+                        external_client_id=note.client_id if note.client_id else None,
+                        category="Regular",
+                        vic_status="Standard",
+                    )
+                    db.add(client)
+                    db.flush()
+                
+                client_id_db = client.id
+                client_category = client.category or "Regular"
+                
+                # Update client sentiment and interaction count
+                current_interactions = client.total_interactions or 0
+                current_sentiment = client.sentiment_score or 0.0
+                
+                # Calculate new average sentiment
+                new_sentiment = (current_sentiment * current_interactions + sentiment_score) / (current_interactions + 1)
+                
+                client.sentiment_score = new_sentiment
+                client.total_interactions = current_interactions + 1
+                client.last_interaction = datetime.utcnow()
+                
+                # Update category based on behavior if available
+                if ext and ext.pilier_2_profil_client:
+                    behavior = ext.pilier_2_profil_client.purchase_context.behavior
+                    if behavior in ["vic", "ultimate", "platinum"]:
+                        client.vic_status = behavior.upper()
+                        client.category = "VIC" if behavior in ["vic", "platinum"] else "Ultimate"
+                        client_category = client.category
+                
+                db.commit()
+                logger.info(f"Client {client.id} updated: sentiment={new_sentiment:.2f}, category={client_category}")
+            except Exception as e:
+                db.rollback()
+                logger.warning(f"Client update failed: {e}")
+            finally:
+                db.close()
+        except Exception as e:
+            logger.warning(f"Client database error: {e}")
+        
         # Build response with mapping from 4-Pillar to API schema
         # === PERSISTENCE ===
         try:
@@ -238,7 +319,15 @@ async def analyze_note(
                 quality_pct = quality * 100 if quality <= 1 else quality
                 points = 15 if quality_pct >= 80 else 10
                 behavior = ext.pilier_2_profil_client.purchase_context.behavior if ext else None
+                
+                # Add sentiment to analysis payload
                 analysis_payload = result.model_dump(mode="json", exclude={"original_text"})
+                analysis_payload["sentiment"] = {
+                    "label": sentiment_label,
+                    "score": sentiment_score,
+                }
+                analysis_payload["client_category"] = client_category
+                analysis_payload["client_id_db"] = client_id_db
 
                 if settings.single_note_profile.defer_non_critical_writes:
                     background_tasks.add_task(
@@ -248,6 +337,8 @@ async def analyze_note(
                         result.processed_text,
                         analysis_payload,
                         points,
+                        client_id_db,
+                        sentiment_score,
                     )
                 else:
                     persist_note_single_transaction(
@@ -256,6 +347,8 @@ async def analyze_note(
                         result.processed_text,
                         analysis_payload,
                         points,
+                        client_id_db,
+                        sentiment_score,
                     )
                 logger.info("Note persistence scheduled for user %s (+%s pts)", current_user.email, points)
         except Exception as e:

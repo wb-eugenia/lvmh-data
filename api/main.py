@@ -311,6 +311,29 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             logger.warning(f"Redis connection failed: {e}")
 
+    # Initialize BigQuery connection
+    if _env_flag("BIGQUERY_ENABLED", "0"):
+        try:
+            from config.production import settings
+            from src.bigquery_client import BigQueryManager
+            from api.routers.batch import set_bq_manager
+            
+            if settings.bigquery_enabled and settings.bigquery_project_id:
+                bq_manager = BigQueryManager(
+                    project_id=settings.bigquery_project_id,
+                    dataset_id=settings.bigquery_dataset,
+                    table_id=settings.bigquery_table
+                )
+                bq_manager.create_dataset_if_not_exists()
+                bq_manager.create_table_if_not_exists()
+                app.state.bq_manager = bq_manager
+                set_bq_manager(bq_manager)
+                logger.info(f"BigQuery connected: {settings.bigquery_project_id}.{settings.bigquery_dataset}")
+            else:
+                logger.info("BigQuery disabled (no project ID)")
+        except Exception as e:
+            logger.warning(f"BigQuery connection failed: {e}")
+
     if _env_flag("PRELOAD_PIPELINE", "0"):  # Disabled by default - lazy load is better
         try:
             from api.routers.analyze import get_pipeline
@@ -450,7 +473,7 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 
-from api.routers import analyze, batch, results, stats, transcribe, auth, streaming, feedback, dashboard, products
+from api.routers import analyze, batch, results, stats, transcribe, auth, streaming, feedback, dashboard, products, clients
 
 app.include_router(analyze.router, prefix="/api", tags=["Analyze"])
 app.include_router(batch.router, prefix="/api", tags=["Batch"])
@@ -462,6 +485,7 @@ app.include_router(streaming.router, prefix="/api", tags=["Streaming"])
 app.include_router(feedback.router, prefix="/api", tags=["Feedback"])
 app.include_router(products.router, prefix="/api", tags=["Products"])
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])
+app.include_router(clients.router, prefix="/api", tags=["Clients"])
 
 # GraphQL endpoint
 try:

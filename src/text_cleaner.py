@@ -548,6 +548,62 @@ class MultilingualTextCleaner:
         logger.info(f"✅ Finished. Est. tokens saved: {total_saved:,}")
         return pd.DataFrame(results)
 
+
+# ============== Sentiment Analysis (Rule-based) ==============
+
+POSITIVE_KEYWORDS = {
+    'excellent', 'parfait', 'adore', 'magnifique', 'superbe',
+    'enchante', 'enchanté', 'ravi', 'heureux', 'recommande',
+    'fidele', 'fidèle', 'merveilleux', 'formidable', 'genial',
+    'génial', 'impeccable', 'satisfait', 'satisfaite', 'content',
+    'bravo', 'felicitation', 'félicitation', 'merci', 'belle',
+    'magnifique', 'luxe', 'qualite', 'qualité', 'exceptionnel'
+}
+
+NEGATIVE_KEYWORDS = {
+    'deçu', 'decu', 'nul', 'mediocre', 'médiocre', 'jamais',
+    'horrible', 'terrible', 'mauvais', 'mauvaise', 'pas content',
+    'deplorable', 'déplorable', 'catastrophe', 'scandale',
+    'inacceptable', 'inadmissible', 'fache', 'fâché', 'enervé',
+    'frustre', 'frustré', 'deception', 'déception', 'probleme',
+    'problème', 'erreur', 'retard', 'attente', 'manque', 'stock',
+    'indisponible', 'refus', 'retour', 'marche pas', 'marche plus'
+}
+
+SENTIMENT_THRESHOLD = 0.3
+
+
+def sentiment_rules(text: str) -> Tuple[str, float]:
+    """
+    Analyze sentiment using keyword rules.
+    
+    Returns:
+        Tuple of (sentiment_label: str, score: float)
+        - sentiment_label: 'POSITIF', 'NEGATIF', or 'NEUTRE'
+        - score: float from -1.0 (very negative) to +1.0 (very positive)
+    """
+    if not text:
+        return "NEUTRE", 0.0
+    
+    text_lower = text.lower()
+    
+    pos_count = sum(1 for kw in POSITIVE_KEYWORDS if kw in text_lower)
+    neg_count = sum(1 for kw in NEGATIVE_KEYWORDS if kw in text_lower)
+    
+    total = pos_count + neg_count
+    if total == 0:
+        return "NEUTRE", 0.0
+    
+    final_score = (pos_count - neg_count) / max(1, pos_count + neg_count)
+    
+    if final_score > SENTIMENT_THRESHOLD:
+        return "POSITIF", min(1.0, final_score)
+    elif final_score < -SENTIMENT_THRESHOLD:
+        return "NEGATIF", max(-1.0, final_score)
+    else:
+        return "NEUTRE", final_score
+
+
 if __name__ == "__main__":
     import os
     

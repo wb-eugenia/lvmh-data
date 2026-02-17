@@ -16,6 +16,12 @@ export default function AdvisorView({ onBack }) {
     const [clientResults, setClientResults] = useState([])
     const [searchingClients, setSearchingClients] = useState(false)
 
+    // Client Search State
+    const [clientSearchQuery, setClientSearchQuery] = useState('')
+    const [clientSuggestions, setClientSuggestions] = useState([])
+    const [selectedClient, setSelectedClient] = useState(null)
+    const [showClientDropdown, setShowClientDropdown] = useState(false)
+
     const [isProcessing, setIsProcessing] = useState(false)
     const [currentStep, setCurrentStep] = useState(null)
     const [history, setHistory] = useState([])
@@ -230,6 +236,36 @@ export default function AdvisorView({ onBack }) {
         fetchLeaderboard()
         fetchUserStats()
     }, [user])
+
+    // Client Search Effect
+    useEffect(() => {
+        const searchClients = async () => {
+            if (!clientSearchQuery || clientSearchQuery.length < 2) {
+                setClientSuggestions([])
+                return
+            }
+            try {
+                const token = localStorage.getItem('token')
+                const res = await apiFetch(`/api/clients/search?q=${encodeURIComponent(clientSearchQuery)}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                if (res.ok) {
+                    const data = await res.json()
+                    setClientSuggestions(data || [])
+                }
+            } catch (e) {
+                console.error('Client search error:', e)
+            }
+        }
+        const debounce = setTimeout(searchClients, 300)
+        return () => clearTimeout(debounce)
+    }, [clientSearchQuery])
+
+    const handleSelectClient = (client) => {
+        setSelectedClient(client)
+        setClientSearchQuery(client.name)
+        setShowClientDropdown(false)
+    }
 
     const fetchLeaderboard = async () => {
         try {
@@ -565,7 +601,9 @@ export default function AdvisorView({ onBack }) {
                     text: textToAnalyze,
                     language: 'FR',
                     advisor_id: user.id || 1,
-                    store_id: user.store || "PARIS_HQ"
+                    store_id: user.store || "PARIS_HQ",
+                    client_id: selectedClient?.external_client_id || null,
+                    client_name: selectedClient?.name || null
                 })
             })
             if (!res.ok) throw new Error('Analysis failed')
@@ -580,6 +618,11 @@ export default function AdvisorView({ onBack }) {
                 quality_score: normalizedData?.meta_analysis?.quality_score,
                 processing_time_ms: normalizedData?.processing_time_ms
             })
+            
+            // Reset client selection after analysis
+            setSelectedClient(null)
+            setClientSearchQuery('')
+            setClientSuggestions([])
 
             const qualityScore = normalizeScore(normalizedData.meta_analysis?.quality_score || 0)
             const newScore = (user.points || user.score || 0) + (qualityScore >= 80 ? 15 : 10)
@@ -610,6 +653,9 @@ export default function AdvisorView({ onBack }) {
         setCurrentStep(null)
         setPipelineProgress(null)
         setPipelineStartedAt(null)
+        setSelectedClient(null)
+        setClientSearchQuery('')
+        setClientSuggestions([])
     }
 
     const activateTextMode = () => {
@@ -764,6 +810,58 @@ export default function AdvisorView({ onBack }) {
                                     >
                                         Annuler
                                     </button>
+                                </div>
+                                {/* Client Search Field */}
+                                <div className="mb-4 relative">
+                                    <label className="block text-xs text-lvmh-gray uppercase tracking-widest mb-2">Client (optionnel)</label>
+                                    <input
+                                        type="text"
+                                        value={clientSearchQuery}
+                                        onChange={(e) => {
+                                            setClientSearchQuery(e.target.value)
+                                            setShowClientDropdown(true)
+                                            setSelectedClient(null)
+                                        }}
+                                        onFocus={() => setShowClientDropdown(true)}
+                                        className="w-full rounded-xl bg-white/5 border border-white/10 text-sm text-white p-3 focus:outline-none focus:border-lvmh-gold"
+                                        placeholder="Rechercher un client (nom ou ID)..."
+                                    />
+                                    {showClientDropdown && clientSuggestions.length > 0 && (
+                                        <div className="absolute z-50 w-full mt-1 bg-gray-900 border border-white/20 rounded-lg shadow-lg max-h-48 overflow-auto">
+                                            {clientSuggestions.map((client) => (
+                                                <div
+                                                    key={client.id}
+                                                    onClick={() => handleSelectClient(client)}
+                                                    className="p-3 hover:bg-white/10 cursor-pointer flex items-center justify-between"
+                                                >
+                                                    <div>
+                                                        <div className="text-white text-sm">{client.name}</div>
+                                                        <div className="text-lvmh-gray text-xs">{client.external_client_id || 'ID interne'}</div>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <span className={`text-xs px-2 py-1 rounded ${client.category === 'VIC' || client.category === 'Ultimate' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                                            {client.category}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                    {selectedClient && (
+                                        <div className="mt-2 flex items-center gap-2">
+                                            <span className="text-xs text-lvmh-gold">Client selectionne:</span>
+                                            <span className="text-xs text-white">{selectedClient.name}</span>
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedClient(null)
+                                                    setClientSearchQuery('')
+                                                }}
+                                                className="text-xs text-lvmh-gray hover:text-white"
+                                            >
+                                                (x)
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                                 <textarea
                                     value={transcriptionDraft}
