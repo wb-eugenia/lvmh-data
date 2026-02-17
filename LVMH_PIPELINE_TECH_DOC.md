@@ -1,7 +1,7 @@
-# Documentation Technique Ultra-Détaillée : LVMH Voice-to-Tag Pipeline 👜 ✨
+# Documentation Technique Ultra-Détaillée : LVMH Data Pipeline
 
 ## 📝 1. Introduction & Vision Stratégique
-Le **LVMH Voice-to-Tag Pipeline** est une infrastructure cognitive conçue pour combler le fossé entre l'expérience client en boutique (donnée non structurée) et l'intelligence CRM (donnée structurée). Dans un contexte de luxe, la qualité de la saisie par les Client Advisors (CA) est souvent entravée par le manque de temps. Cette pipeline automatise l'extraction de insights critiques tout en préservant la souveraineté des données et en injectant une couche de gamification pour stimuler l'adoption terrain.
+Le **LVMH Data Pipeline** est une infrastructure cognitive conçue pour combler le fossé entre l'expérience client en boutique (donnée non structurée) et l'intelligence CRM (donnée structurée). Dans un contexte de luxe, la qualité de la saisie par les Client Advisors (CA) est souvent entravée par le manque de temps. Cette pipeline automatise l'extraction de insights critiques tout en préservant la souveraineté des données et en injectant une couche de gamification pour stimuler l'adoption terrain.
 
 ---
 

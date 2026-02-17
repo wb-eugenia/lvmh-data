@@ -1,8 +1,6 @@
-# LVMH Voice-to-Tag Pipeline - Agent Guide
+# LVMH Data Pipeline - Agent Guide
 
-## Project Overview
-
-**LVMH Voice-to-Tag Pipeline V2.3** is an advanced AI system for hyper-personalized CRM in luxury retail. It transforms voice transcriptions from Client Advisors (CAs) into structured, actionable client profiles using a multi-tier processing architecture.
+**LVMH Data Pipeline V2.3** is an advanced AI system for hyper-personalized CRM in luxury retail. It transforms voice transcriptions from Client Advisors (CAs) into structured, actionable client profiles using a multi-tier processing architecture.
 
 **Key Capabilities:**
 - Real-time voice-to-text transcription (Groq Whisper)
@@ -23,7 +21,7 @@
 | Component | Technology |
 |-----------|------------|
 | Framework | FastAPI (async) |
-| Language | Python 3.10+ |
+| Language | Python 3.10-3.12 |
 | Database | SQLite (SQLAlchemy ORM) |
 | Auth | JWT + bcrypt |
 | LLMs | Mistral AI (primary), OpenAI GPT-4o (fallback), Groq |
@@ -210,17 +208,42 @@ npm run deploy
 npm run dev
 ```
 
+#### Gestion des Secrets (CLI)
+
+**Cloudflare Pages (Wrangler):**
+```bash
+# Ajouter/modifier un secret
+npx wrangler secret put API_URL
+# Entrez la valeur: https://lvmh-api-xxx.run.app
+
+# Lister les secrets
+npx wrangler secret list
+
+# Supprimer un secret
+npx wrangler secret delete API_URL
+```
+
+**Variables d'environnement frontend (.env):**
+```bash
+# Dans frontend-v2/.env
+VITE_API_BASE_URL=https://lvmh-api-xxx.run.app
+
+# Pour utiliser en production, creer .env.production
+echo "VITE_API_BASE_URL=https://lvmh-api-xxx.run.app" > frontend-v2/.env.production
+```
+
 #### API (GCP Cloud Run)
 ```bash
 # Build and deploy
-gcloud builds submit --tag gcr.io/PROJECT_ID/lvmh-voice-tag .
-gcloud run deploy lvmh-voice-tag \
-  --image gcr.io/PROJECT_ID/lvmh-voice-tag \
+gcloud builds submit --tag gcr.io/PROJECT_ID/lvmh-api .
+gcloud run deploy lvmh-api \
+  --image gcr.io/PROJECT_ID/lvmh-api \
   --platform managed \
-  --region europe-west1 \
+  --region europe-west9 \
   --allow-unauthenticated \
   --memory 1Gi \
-  --port 8080
+  --port 8080 \
+  --set-env-vars "LVMH_USE_ZVEC=true"
 ```
 
 ---
@@ -233,6 +256,7 @@ gcloud run deploy lvmh-voice-tag \
 OPENAI_API_KEY=sk-...          # OpenAI GPT-4o-mini
 GROQ_API_KEY=gsk-...           # Groq API (Whisper + LLM)
 MISTRAL_API_KEY=...            # Mistral AI (primary LLM)
+LVMH_USE_ZVEC=true            # Enable Zvec for product matching
 ```
 
 ### Config Settings (config/production.py)
@@ -485,8 +509,8 @@ Requirements:
 ### Docker Production
 
 ```bash
-docker build -t lvmh-voice-tag .
-docker run -p 8080:8080 --env-file .env lvmh-voice-tag
+docker build -t lvmh-api .
+docker run -p 8080:8080 --env-file .env lvmh-api
 ```
 
 ---

@@ -78,10 +78,10 @@ validate-rgpd:
 
 # Docker commands
 docker-build:
-	docker build -t lvmh-voice-tag .
+	docker build -t lvmh-api .
 
 docker-run:
-	docker run -p 8501:8501 --env-file .env lvmh-voice-tag
+	docker run -p 8501:8501 --env-file .env lvmh-api
 
 docker-up:
 	docker-compose up -d

@@ -11,6 +11,7 @@ import {
     Home,
     LogOut,
     Mic,
+    Menu,
     RefreshCcw,
     Server,
     ShieldAlert,
@@ -121,6 +122,7 @@ export default function AdminPanel({ onBack }) {
     const [lastRefreshAt, setLastRefreshAt] = useState(null)
     const [refreshCountdown, setRefreshCountdown] = useState(REFRESH_INTERVAL_MS)
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
     const { pipeline, healthScore, healthTone, trendRows, trendTotals, mergedCost, componentRows, sparklines, comparisons } = useMemo(() => {
         const pipeline = summary?.pipeline
@@ -512,8 +514,62 @@ export default function AdminPanel({ onBack }) {
 
     return (
         <div className="min-h-screen bg-lvmh-black text-white">
+            {/* Mobile Hamburger Button */}
+            <button 
+                onClick={() => setIsMobileSidebarOpen(true)} 
+                className="md:hidden fixed top-4 left-4 z-50 p-2 glass rounded-lg hover:bg-white/10 transition-colors"
+            >
+                <Menu size={24} />
+            </button>
+
             <div className="flex">
-                <div className={`${sidebarCollapsed ? 'w-16' : 'w-56'} min-h-screen bg-black/50 border-r border-white/10 p-4 flex flex-col transition-all duration-300`}>
+                {/* Mobile Sidebar Overlay */}
+                {isMobileSidebarOpen && (
+                    <div className="fixed inset-0 z-50 md:hidden">
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMobileSidebarOpen(false)}></div>
+                        <div className="relative w-72 max-w-[85%] h-full bg-black/90 border-r border-white/10 p-4 flex flex-col animate-in slide-in-from-left">
+                            <div className="mb-6 flex items-center justify-between">
+                                <h1 className="text-xl font-display font-black gold-text">Admin</h1>
+                                <button 
+                                    onClick={() => setIsMobileSidebarOpen(false)} 
+                                    className="p-2 rounded-lg hover:bg-white/10 text-lvmh-gray hover:text-white transition-colors"
+                                >
+                                    <X size={24} />
+                                </button>
+                            </div>
+                            <nav className="flex-1 space-y-1">
+                                {adminTabs.map((tab) => {
+                                    const Icon = tab.icon
+                                    const isActive = activeTab === tab.id
+                                    return (
+                                        <button
+                                            key={tab.id}
+                                            onClick={() => { setActiveTab(tab.id); setIsMobileSidebarOpen(false); }}
+                                            className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg text-sm transition-colors ${
+                                                isActive
+                                                    ? 'bg-lvmh-gold/10 text-lvmh-gold border border-lvmh-gold/30'
+                                                    : 'text-lvmh-gray hover:text-white hover:bg-white/5 border border-transparent'
+                                            }`}
+                                        >
+                                            <Icon size={18} />
+                                            {tab.label}
+                                        </button>
+                                    )
+                                })}
+                            </nav>
+                            <button
+                                onClick={handleLogout}
+                                className="w-full flex items-center gap-3 px-4 py-4 rounded-lg text-sm transition-colors text-red-300 hover:bg-red-500/10 border border-transparent"
+                            >
+                                <LogOut size={18} />
+                                Deconnexion
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* Desktop Sidebar */}
+                <div className={`hidden md:flex ${sidebarCollapsed ? 'w-16' : 'w-56'} min-h-screen bg-black/50 border-r border-white/10 p-4 flex-col transition-all duration-300`}>
                     <div className="mb-6 flex items-center justify-between">
                         {!sidebarCollapsed && (
                             <>
@@ -535,7 +591,7 @@ export default function AdminPanel({ onBack }) {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                                    className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition-colors ${
                                         isActive
                                             ? 'bg-lvmh-gold/10 text-lvmh-gold border border-lvmh-gold/30'
                                             : 'text-lvmh-gray hover:text-white hover:bg-white/5 border border-transparent'
@@ -550,14 +606,14 @@ export default function AdminPanel({ onBack }) {
                     </nav>
                     <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-red-300 hover:bg-red-500/10 border border-transparent"
+                        className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition-colors text-red-300 hover:bg-red-500/10 border border-transparent"
                         title={sidebarCollapsed ? 'Deconnexion' : undefined}
                     >
                         <LogOut size={18} />
                         {!sidebarCollapsed && 'Deconnexion'}
                     </button>
                 </div>
-                <div className="flex-1 p-6 md:p-8 overflow-visible">
+                <div className="flex-1 p-6 md:p-8 overflow-visible pt-16 md:pt-6">
                     <div className="max-w-7xl mx-auto space-y-6">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>

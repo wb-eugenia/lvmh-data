@@ -15,7 +15,7 @@ Enhanced with:
 
 import re
 import time
-from typing import List, Dict, Tuple, Optional, Any
+from typing import List, Dict, Tuple, Optional, Any, Set
 import logging
 from src.models import (
     ExtractionResult, Pilier1Product, Pilier2Client, Pilier3Care, Pilier4Business,
@@ -77,27 +77,131 @@ class Tier1RulesEngine:
         'ultimate': (50000, 500000),
         'first_visit': (2000, 5000),
         'regular': (3000, 10000),
+        'high_potential': (10000, 50000),
+        'new_client': (2000, 5000),
     }
 
     # --- RELATIONS & CONTEXT ---
     RELATION_PATTERNS = {
         'gift_for_spouse': [
             r'cadeau\s+pour\s+(?:sa|mon|ma)\s+(femme|épouse|mari|époux)',
-            r'gift\s+for\s+(?:my|his|her)\s+(wife|husband|spouse)',
+            r'gift\s+(?:for|to)\s+(?:my|his|her|the|a)\s+(wife|husband|spouse|partner)',
             r'pour\s+(?:son|sa)\s+anniversaire\s+de\s+mariage',
+            r'pour\s+(?:l\')?anniversaire\s+de\s+(?:son|ma|leur)\s+(mari|femme|époux|épouse)',
+            r"pour\s+l'anniversaire\s+de\s+(?:son|ma|leur)\s+(?:mari|femme)",
+            r'birthday\s+gift\s+(?:for|to)',
+            r'\bgift\b.*\bwife\b|\bgift\b.*\bhusband\b',
+            r'gift\s+for\s+(?:his|her)\s+(wife|husband)',
+            r'wife\'s?\s+(?:birthday|anniversary)',
+            r'husband\'s?\s+(?:birthday|anniversary)',
+            r'spouse\'s?\s+(?:birthday|anniversary)',
+            r'regalo\s+(?:para\s+)?(?:su|mi)\s+(?:esposa|marido|español)',
+            r'cadeau\s+(?:pour?|)\s+(?:son|sa)\s+(?:époux|épouse)',
+            r'pour\s+(?:l\')?(?:anniversaire?|fête)\s+de\s+(?:sa|son|ma|mon)\s+(?:femme|mari|époux|épouse)',
+            r"anniversary\s+(?:gift|present)",
+            r'wedding\s+anniversary',
         ],
         'gift_for_children': [
             r'pour\s+(?:sa|son|ma|mon)\s+(fille|fils|enfant)',
-            r'for\s+(?:my|his|her)\s+(daughter|son|child)',
+            r'gift\s+(?:for|to)\s+(?:my|his|her|the|a)\s+(daughter|son|child|kids)',
+            r'pour\s+(?:l\')?anniversaire\s+de\s+(?:sa|ma|leur)\s+(fille|fils)',
+            r"pour\s+l'anniversaire\s+de\s+(?:sa|son)\s+(?:fille|fils)",
+            r'\bgift\b.*\bdaughter\b|\bgift\b.*\bson\b',
+            r'gift\s+for\s+(?:his|her|their)\s+(daughter|son|child|kids)',
+            r"daughter's?\s+(?:birthday|wedding)",
+            r"son's?\s+(?:birthday|wedding)",
+            r"children'?s?\s+(?:birthday|graduation)",
+            r"kid'?s?\s+birthday",
+            r"enfant'?s?\s+(?:anniversaire?|cadeau)",
+            r"petite-?fille|petit-?fils",
+            r"nièce|neveu",
+            r"nipote",
+            r'für\s+(?:seine|ihre|seine)\s+(?:Tochter|Sohn|Kinder)',
+            r'per\s+(?:la\s+)?(?:figlia|figlio|bambino)',
+            r"pour\s+l'anniversaire?\s+de\s+(?:sa|son|leur)\s+(?:fille|fils|enfant)",
+            r"shopping\s+for\s+(?:the\s+)?(?:daughter|son|children|kids)",
+            r"regalo\s+(?:para\s+)?(?:hija|hijo|niño)",
+            r"kleine\s+Tochter|kleiner\s+Sohn",
+            r"pour\s+sa\s+(?:fille|fils)\s+qui\s+a",
         ],
         'gift_for_parent': [
             r'pour\s+(?:sa|ma)\s+(mère|maman|père|papa)',
-            r'for\s+(?:my|his|her)\s+(mother|mom|father|dad)',
+            r'gift\s+(?:for|to)\s+(?:my|his|her|the|a)\s+(mother|mom|father|dad|parent)',
+            r'pour\s+(?:l\')?anniversaire\s+de\s+(?:sa|ma|leur)\s+(mère|père)',
+            r"pour\s+l'anniversaire\s+de\s+(?:sa|ma)\s+(?:mère|père)",
+            r'\bgift\b.*\bmother\b|\bgift\b.*\bfather\b',
+            r"mother'?s?\s+(?:birthday|day|anniversary)",
+            r"father'?s?\s+(?:birthday|day|anniversary)",
+            r"parent'?s?\s+(?:birthday|gift)",
+            r"maman'?s?\s+anniversaire|papa'?s?\s+anniversaire",
+            r'für\s+(?:die\s+)?(?:Mutter|Vater|Eltern)',
+            r'per\s+(?:la\s+)?(?:madre|padre|genitore)',
+            r'para\s+(?:la\s+)?(?:madre|padre)',
+            r"grandmother'?s?|grandfather'?s?",
+            r"grand-?mère|grand-?père",
+            r"nonna|nonni",
+            r"großmutter|Großvater",
+        ],
+        'gift_for_family': [
+            r'cadeau\s+(?:pour?|)\s+famille',
+            r'gift\s+(?:for|to)\s+(?:the\s+)?family',
+            r'regalo\s+(?:para\s+)?(?:la\s+)?familia',
+            r"family\s+gift",
+            r'pour\s+(?:les\s+)?(?:parents|frères|sœurs)',
+            r'gift\s+for\s+(?:parents|siblings|brother|sister)',
+            r'sister\'s?\s+birthday',
+            r"brother'?s?\s+birthday",
+            r"frère|soeur",
+            r"hermana|hermano",
+            r'Schwester|Bruder',
         ],
         'gift_for_self': [
-            r'pour\s+(moi|elle|lui)(?:-même)?',
-            r'for\s+(myself|himself|herself)',
-            r's\'offrir',
+            r'pour\s+(?:moi|elle|lui)(?:-même)?',
+            r'for\s+(?:myself|himself|herself)',
+            r"s'offrir",
+            r"s'offre",
+            r'pour\s+(?:se\s+)?faire\s+plaisir',
+            r'treat\s+(?:myself|himself|herself)',
+            r'self\s+gift',
+        ],
+        'gift_for_friend': [
+            r'cadeau\s+(?:pour?|)\s+(?:ami|amie|copine|copain)',
+            r'gift\s+(?:for|to)\s+(?:a\s+)?friend',
+            r'best\s+friend',
+            r'miglior\s+amico',
+            r'bestie',
+            r'für\s+(?:einen\s+)?Freund',
+            r'para\s+(?:un\s+)?amigo',
+            r"friend'?s?\s+birthday",
+            r'amic(?:\s|)e?',
+            r'colocataire|colleague|collègue',
+        ],
+        'gift_for_colleague': [
+            r'cadeau\s+(?:pour?|)\s+(?:colloque|collègue|collaborateur)',
+            r'gift\s+(?:for|to)\s+(?:a\s+)?colleague',
+            r'colleague\s+leaving',
+            r'colleague\s+departure',
+            r'départ\s+(?:du\s+)?collègue',
+            r'farewell\s+gift',
+            r'regalo\s+(?:de\s+)?despedida',
+            r'Abschiedsgeschenk',
+            r'collega',
+        ],
+        'gift_for_other': [
+            r"shopping\s+for\s+(?:a\s+)?gift",
+            r'\bgift\b.*\bpurchase\b',
+            r'looking\s+for\s+a\s+gift',
+            r'cherche\s+(?:un\s+)?cadeau',
+            r'für\s+(?:ein\s+)?Geschenk',
+            r'per\s+(?:un\s+)?regalo',
+            r'buscando\s+un\s+regalo',
+            r'special\s+occasion',
+            r'fête\s+(?:mère|père|noël)',
+            r"Mother's?\s+Day",
+            r"Father's?\s+Day",
+            r"Valentin'?s?\s+Day",
+            r"Noël|Christmas",
+            r"communion|confirmation",
         ]
     }
     
@@ -129,15 +233,24 @@ class Tier1RulesEngine:
 
     # --- HEALTH & SAFETY ---
     ALLERGIES = {
-        'nickel_allergy': [r'allergi\w*\s+(?:au\s+)?nickel', r'sensible\s+(?:au\s+)?nickel'],
-        'latex_allergy': [r'allergi\w*\s+(?:au\s+)?latex'],
-        'fragrance_sensitivity': [r'sensible\s+(?:aux\s+)?parfums?', r'fragrance\s+sensitivity'],
-        'leather_allergy': [r'allergi\w*\s+(?:au\s+)?cuir'],
+        'nickel_allergy': [r'allergi\w*\s+(?:au\s+)?nickel', r'sensible\s+(?:au\s+)?nickel', r'nickel\s+sensitivity'],
+        'latex_allergy': [r'allergi\w*\s+(?:au\s+)?latex', r'latex\s+sensitivity'],
+        'fragrance_sensitivity': [r'sensible\s+(?:aux\s+)?parfums?', r'fragrance\s+sensitivity', r'parfum\s+(?:problème|sensibilité)', r'\bno\s+perfume\b', r'\bno\s+scents?\b'],
+        'leather_allergy': [r'allergi\w*\s+(?:au\s+)?cuir', r'cuir\s+(?:problème|allergie)', r'leather\s+(?:allergy|sensitivity)'],
+        'metal_allergy': [r'allergi\w*\s+(?:aux?\s+)?métaux?', r'allergi\w*\s+metal', r'metal\s+sensitivity', r'sensible\s+(?:aux\s+)?métaux?'],
+        'nut_allergy': [r'allergi\w*\s+(?:aux?\s+)?(?:fruits?\s+à\s+coque|noix|arachide|cacahuète)', 
+                        r'allergie\s+noix', r'sensible\s+(?:aux\s+)?noix', r'peanut\s+allergy', r'nut\s+allergy', r'tree\s+nut\b'],
+        'shellfish_allergy': [r'allergi\w*\s+(?:aux\s+)?crustac[éè]s?', r'allergie\s+(?:aux\s+)?fruits?\s+de\s+mer', r'shellfish\s+allergy', r'seafood\s+allergy'],
+        'gluten_intolerance': [r'allergi\w*\s+(?:au\s+)?gluten', r'intol[eé]rance\s+au\s+gluten', r'gluten\s+(?:free|intolerance|sensitivity)', r'c[eé]liaque', r'celiac'],
+        'dairy_intolerance': [r'lactose\s+intolerance', r'allergi\w*\s+(?:au\s+)?lait', r'dairy\s+allergy', r'intol[eé]rance\s+aux\s+produits\s+laitiers'],
+        'sugar_intolerance': [r'diab[eé]te', r'diabetes', r'sugar\s+(?:free|sensitivity)'],
+        'skin_sensitivity': [r'peau\s+sensible', r'sensitive\s+skin', r'haut\s+sensib', r'reaction\s+cutan'],
     }
     
     DIETARY = {
-        'vegan': [r'\bvegan\b', r'\bvégane?\b'],
-        'vegetarian': [r'végétarien', r'vegetarian'],
+        'vegan': [r'\bvegan\b', r'\bv[eéèêë]g[eéèêë]n\b', r'vegan', r'vegetarian'],
+        'vegetarian': [r'v[eéèêë]g[eéèêë]tarien', r'vegetarian', r'\bvegetarian\b'],
+        'pescatarian': [r'pescatarien', r'pescatarian'],
         'halal': [r'\bhalal\b'], 
         'kosher': [r'\bkosher\b', r'\bkasher\b'],
     }
@@ -146,6 +259,44 @@ class Tier1RulesEngine:
         'high': [r'sévère', r'severe', r'grave', r'mortelle', r'life[\s-]?threatening', r'choc', r'urgence'],
         'medium': [r'modérée?', r'moderate', r'moyenne', r'importante'],
         'low': [r'légère', r'mild', r'petite', r'minor', r'pas\s+grave']
+    }
+
+    # --- NEGATIONS & COMPARISONS (NOUVEAU) ---
+    NEGATION_PATTERNS = [
+        (r'\b(?:pas|non|jamais|rien)\s+(?:intéressé|fan|aimé|adore|connoisseur)', 'leather_goods'),
+        (r'\b(?:ne\s+)?(?:s\'|m\')?intéresse\s+(?:pas|plus)\s+(?:par|au?|aux?)', None),
+        (r'\bno\s+(?:interest|fan|like|love)\b', None),
+        (r'\bnot\s+(?:interested|looking|want|a fan)\b', None),
+        (r'\bn\'a\s+pas\s+de\s+(?:budget|préférence)', None),
+        (r'\bwithout\b', None),
+        (r'\bnot\s+(?:a\s+)?(?:fan|interested)\b', None),
+        (r'\bprefers?\s+(?:not\b|no\b|but\b)', None),
+        (r'\bplutôt\s+que\b', None),
+        (r'\bversus\b|\bvs\b', None),
+        (r'\bsimilar\s+(?:to|as)\b', None),
+        (r'\bsame\s+(?:as|like)\b', None),
+        (r'\bnot\s+the\s+(?:black|dark)\b', None),
+        (r'\b(?:pas|non)\s+(?:fan|intéressé)\b', None),
+        (r"\bdoesn't\s+(?:like|want|need)\b", None),
+        (r'\bno\b.*\binterested\b', None),
+        (r'\b(?:pas|non)\s+intéressé\s+par\b', None),
+        (r'\b(?:pas|non)\s+fan\s+de\b', None),
+    ]
+
+    # Tags commonly negated that should be excluded
+    NEGATED_TAG_KEYWORDS = {
+        'leather_goods': ['cuir', 'leather', 'maroquinerie', 'sac', 'bag'],
+        'accessories': ['accessoire', 'accessory', 'ceinture', 'belt'],
+        'watches': ['montre', 'watch'],
+        'jewelry': ['bijou', 'jewelry', 'bague', 'ring'],
+        'black': ['noir', 'black'],
+        'textile': ['toile', 'canvas', 'tissu'],
+    }
+
+    # Tags to exclude when comparison detected (not a purchase intent)
+    COMPARISON_EXCLUDED_TAGS = {
+        'leather_goods', 'watches', 'jewelry', 'accessories', 
+        'hardsided_luggage', 'ready_to_wear', 'shoes'
     }
 
     # --- TEMPORAL ---
@@ -157,16 +308,22 @@ class Tier1RulesEngine:
     }
     
     URGENCY_PATTERNS = [
-        (r'urgent', 'high'), (r'asap', 'high'), (r'au\s+plus\s+vite', 'high'),
-        (r'demain', 'high'), (r'ce\s+week[\s-]?end', 'medium'),
-        (r'cette\s+semaine', 'medium')
+        (r'\burgent\b', 'high'), (r'\basap\b', 'high'), (r'\bau\s+plus\s+vite\b', 'high'),
+        (r'\bdemain\b', 'high'), (r"aujourd'hui", 'high'),
+        (r'\bce\s+week[\s-]?end\b', 'medium'), (r'\bcette\s+semaine\b', 'medium'),
+        (r'\bfin\s+du\s+mois\b', 'medium'), (r'\bdans\s+la\s+journée\b', 'high'),
+        (r'\bquick\b', 'medium'), (r'\bimmediat\w*\b', 'high'),
     ]
 
     # --- DEMOGRAPHICS ---
     STATUS_PATTERNS = {
-        'vic': r'\bVIC\b', 'vip': r'\bVIP\b', 'ultimate': r'\b(ultimate|UHNWI?)\b',
-        'first_visit': r'(première\s+visite|first\s+(?:time|visit))',
-        'regular': r'(client\s+régulier|regular\s+client)',
+        'vip': r'\bVIP\b',
+        'vic': r'\bVIC\b',
+        'ultimate': r'\b(ultimate|UHNWI?)\b',
+        'first_visit': r'(premier[e]?\s+visite|first\s+(?:time|visit)|nouveau\s+client|nouvelle\s+cliente)',
+        'regular': r'(client\s+régulier|regular\s+client|client\s+fidèle|stammkunde|cliente\s+rég)',
+        'high_potential': r'(excellent\s+(?:client|customer)|high\s+potential|exception[al]\s+potential|ultra[ -]high|très\s+potent|excellente?\s+cliente?|ausgezeichnet|hohes\s+Potenzial|ottimo\s+potenziale|excelente\s+potencial| cliente\s+excelente)',
+        'new_client': r'(nouveau\s+client|nouvelle\s+cliente|new\s+client|first[- ]time|primera\s+visita|nuovo\s+cliente|neuer\s+Kunde)',
     }
 
     # 🎨 PRÉFÉRENCES & USAGE
@@ -231,10 +388,48 @@ class Tier1RulesEngine:
     # 2. INITIALIZATION (PRE-COMPILATION)
     # =========================================================================
 
+    # Extended keywords not in taxonomy
+    EXTENDED_KEYWORDS = {
+        'textile': 'textile',
+        'toile': 'textile', 
+        'canvas': 'textile',
+        'tissu': 'textile',
+        'vegan': 'vegan',
+        'végane': 'vegan',
+        'végétalien': 'vegan',
+        'végétarienne': 'vegetarian',
+        'vegetarian': 'vegetarian',
+        'pescatarien': 'pescatarian',
+        'hardsided_luggage': 'hardsided_luggage',
+        'bagages': 'hardsided_luggage',
+        'valise': 'hardsided_luggage',
+        'montre': 'watches',
+        'watch': 'watches',
+    }
+
+    # Tags that are NOT product categories (filter to reduce FP)
+    # These include: intents, services, colors, materials, usage preferences
+    NON_PRODUCT_TAGS = {
+        'gift', 'customer_intent', 'entry_level', 'luxury_service',
+        'consultation', 'after_sales', 'price_inquiry', 'information_request',
+        # Colors (from preferences)
+        'black', 'brown_cognac', 'navy', 'beige_neutral', 'bold_colors',
+        'red', 'green', 'pink', 'gold', 'silver',
+        # Materials (from preferences)  
+        'smooth_leather', 'grained_leather', 'canvas', 'exotic', 'suede',
+        # Usage (from preferences)
+        'travel', 'professional', 'evening', 'casual_daily', 'professional_work',
+        'sport', 'luxury', 'entry_level', 'ultra_high', 'high',
+    }
+
     def __init__(self):
         self.stats = {'processed': 0}
         self.taxonomy = TaxonomyManager()
         self.keyword_map = self.taxonomy.get_all_keywords_map()
+        
+        # Add extended keywords
+        self.keyword_map.update(self.EXTENDED_KEYWORDS)
+        
         self.match_engine = "regex"
         self._aho_available = False
         self._aho_automaton = None
@@ -495,12 +690,21 @@ class Tier1RulesEngine:
         relations = self.extract_relations(text)
         gender_data = self.extract_context_aware_gender(text, relations)
         
-        # 3. Status
+        # 3. Status (with priority: VIP > VIC > high_potential > first_visit > regular > new_client)
+        status_priority = ['vip', 'vic', 'ultimate', 'high_potential', 'first_visit', 'regular', 'new_client']
         client_status = None
-        for status, pattern in self._compiled_patterns['status'].items():
-            if pattern.search(text):
-                client_status = status
-                break
+        for status_key in status_priority:
+            if status_key in self._compiled_patterns['status']:
+                pattern = self._compiled_patterns['status'][status_key]
+                if pattern.search(text):
+                    client_status = status_key
+                    break
+        
+        # Map high_potential/new_client to meaningful status for business
+        if client_status == 'high_potential':
+            client_status = 'vip'  # Treat high potential as VIP
+        elif client_status == 'new_client':
+            client_status = 'first_visit'
         
         # 4. Budget (Smart Inference)
         budget_data = self.infer_budget(text, client_status)
@@ -557,14 +761,15 @@ class Tier1RulesEngine:
                 materials=found_materials + lv_materials_found
             )
         )
+        client_gender = gender_data.get('client_gender') if gender_data else None
         p2 = Pilier2Client(
             purchase_context=PurchaseContext(type=purchase_type),
-            profession=Profession(),
-            lifestyle=Lifestyle(),
-            status=client_status
+            profession=Profession(status=client_gender),
+            lifestyle=Lifestyle(family=client_status or 'Unknown')
         )
         p3 = Pilier3Care(
-            allergies=Allergies(food=dietary, contact=allergies_simple), # Basic mapping
+            diet=dietary,
+            allergies=Allergies(contact=allergies_simple),
             occasion=temporal['occasions'][0] if temporal['occasions'] else None
         )
         p4 = Pilier4Business(
@@ -650,24 +855,78 @@ class Tier1RulesEngine:
         }
 
     def extract_taxonomy_tags(self, text: str) -> List[str]:
-        """Fast keyword extraction."""
+        """Fast keyword extraction with negation handling."""
         found_tags = set()
         text_lower = text.lower()
 
+        excluded_tags = self._detect_negated_tags(text_lower)
+
         if self._aho_available and self._aho_automaton is not None:
             try:
-                return self._extract_taxonomy_tags_aho(text_lower)
+                tags = self._extract_taxonomy_tags_aho(text_lower, excluded_tags)
             except Exception as exc:
                 logger.warning("Tier1 Aho extraction failed, falling back to regex: %s", exc)
+                tags = []
+        else:
+            for tag, patterns in self._compiled_patterns['keywords'].items():
+                if tag in excluded_tags or tag in self.NON_PRODUCT_TAGS:
+                    continue
+                if any(p.search(text_lower) for p in patterns):
+                    found_tags.add(tag)
+            tags = list(found_tags)
 
-        for tag, patterns in self._compiled_patterns['keywords'].items():
-            if any(p.search(text_lower) for p in patterns):
-                found_tags.add(tag)
-        return list(found_tags)
+        # Filter non-product tags
+        tags = [t for t in tags if t not in self.NON_PRODUCT_TAGS]
+        return tags
 
-    def _extract_taxonomy_tags_aho(self, text_lower: str) -> List[str]:
+    def _detect_negated_tags(self, text_lower: str) -> Set[str]:
+        """Detect tags that should be excluded due to negation or comparison."""
+        excluded = set()
+        
+        # Check for comparison patterns (not a purchase intent)
+        comparison_patterns = [
+            r'\bsimilar\s+(?:to|as)\b',
+            r'\bsame\s+(?:as|like)\b',
+            r'\bcomme\s+(?:mon|ma|le|un)\b',
+            r'\bcomme\s+celle?\b',
+            r'\bcomme\s+celui\b',
+        ]
+        
+        is_comparison = False
+        for comp_pattern in comparison_patterns:
+            if re.search(comp_pattern, text_lower, re.I):
+                is_comparison = True
+                break
+        
+        if is_comparison:
+            excluded.update(self.COMPARISON_EXCLUDED_TAGS)
+            logger.debug(f"COMPARISON DETECTED - Excluding tags: {excluded}")
+            return excluded
+        
+        # Regular negation patterns
+        for neg_pattern, excluded_tag in self.NEGATION_PATTERNS:
+            try:
+                if re.search(neg_pattern, text_lower, re.I):
+                    if excluded_tag:
+                        excluded.add(excluded_tag)
+                    else:
+                        for tag, keywords in self.NEGATED_TAG_KEYWORDS.items():
+                            if any(kw in text_lower for kw in keywords):
+                                excluded.add(tag)
+            except re.error:
+                continue
+        
+        if excluded:
+            logger.debug(f"NEGATION DETECTED - Excluding tags: {excluded}")
+        
+        return excluded
+
+    def _extract_taxonomy_tags_aho(self, text_lower: str, excluded_tags: Set[str] = None) -> List[str]:
         found_tags = set()
+        excluded = excluded_tags or set()
         for end_idx, (tag, alias) in self._aho_automaton.iter(text_lower):
+            if tag in excluded:
+                continue
             start_idx = end_idx - len(alias) + 1
             if self._is_word_boundary(text_lower, start_idx, end_idx):
                 found_tags.add(tag)

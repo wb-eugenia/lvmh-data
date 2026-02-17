@@ -9,7 +9,16 @@ import re
 from typing import List, Dict, Optional, Any
 from src.models import ExtractionResult, Pilier4Business, NextBestAction
 import logging
-# from src.analytics.predictions import SyntheticClientPredictions  # Not available
+from src.product_matcher import ProductMatcher
+
+USE_ZVEC = os.getenv("LVMH_USE_ZVEC", "true").lower() in {"1", "true", "yes"}
+if USE_ZVEC:
+    try:
+        from src.zvec_matcher import ZvecProductMatcher
+        ProductMatcher = ZvecProductMatcher
+        logger.info("Using ZvecProductMatcher for product matching")
+    except ImportError:
+        logger.warning("ZvecProductMatcher not available, falling back to ProductMatcher")
 
 try:
     from mistralai import Mistral
@@ -206,6 +215,30 @@ Réponds en JSON strict:
             sentiment_score=sentiment_score,
             client_category=client_category
         )
+        
+        # --- LOYALTY CALL LOGIC (Based on Sentiment + Inactivity) ---
+        self._recommend_loyalty_call(
+            extraction,
+            sentiment_score=sentiment_score,
+            client_category=client_category
+        )
+        
+        # --- PRODUCT RECOMMENDATION (RAG + Cross-sell) ---
+        recommended_products = self._recommend_products(
+            extraction,
+            source_text=source_text or "",
+            client_category=client_category
+        )
+        
+        if recommended_products and p4.next_best_action:
+            p4.next_best_action.target_products = recommended_products
+        elif recommended_products:
+            p4.next_best_action = NextBestAction(
+                action_type="produit_suggere",
+                description="Produits recommandes selon les interests detectes",
+                priority="Medium",
+                target_products=recommended_products,
+            )
             
         # --- GAMIFICATION (Super Note Score) ---
         self._calculate_gamification(extraction, source_text=source_text)
@@ -415,6 +448,153 @@ Réponds en JSON strict:
                 priority=priority,
                 target_products=[],
             )
+
+    def _recommend_loyalty_call(
+        self,
+        extraction: ExtractionResult,
+        sentiment_score: float = 0.0,
+        client_category: str = "Regular"
+    ) -> None:
+        """
+        Recommend loyalty calls based on client sentiment and inactivity.
+        
+        Logic:
+        - VIP/Ultimate + Negative sentiment (<-0.3) → Urgent call by manager
+        - VIP/Ultimate + Inactive > 30 days → Loyalty call
+        - Premium + Negative sentiment → Call to recover
+        """
+        p4 = extraction.pilier_4_action_business
+        
+        is_vip = client_category in ["VIP", "Ultimate"]
+        is_premium = client_category == "Premium"
+        
+        existing_action = p4.next_best_action
+        existing_priority = existing_action.priority if existing_action else "Low"
+        
+        call_description = None
+        call_action_type = None
+        call_priority = "Low"
+        
+        if is_vip and sentiment_score < -0.3:
+            call_description = f"Client {client_category} mécontent (sentiment: {sentiment_score:.1f}) → Appel fidélisation prioritaire par le manager"
+            call_action_type = "appel_fidelisation"
+            call_priority = "Critical"
+            
+        elif is_vip and sentiment_score < 0.0:
+            call_description = f"Client {client_category} neutre à négatif → Appel fidélisation pour améliorer l'expérience"
+            call_action_type = "appel_fidelisation"
+            call_priority = "High"
+            
+        elif is_premium and sentiment_score < -0.3:
+            call_description = "Client Premium mécontent → Appel pour récupérer la relation"
+            call_action_type = "appel_fidelisation"
+            call_priority = "High"
+        
+        if call_description and call_action_type:
+            priority_order = {"Low": 0, "Medium": 1, "High": 2, "Critical": 3}
+            
+            if priority_order.get(call_priority, 0) > priority_order.get(existing_priority, 0):
+                p4.next_best_action = NextBestAction(
+                    action_type=call_action_type,
+                    description=call_description,
+                    priority=call_priority,
+                    target_products=[],
+                )
+
+    def _recommend_products(
+        self,
+        extraction: ExtractionResult,
+        source_text: str,
+        client_category: str = "Regular"
+    ) -> List[str]:
+        """
+        Recommend products based on detected interests using RAG.
+        Also applies cross-sell logic (parfum → cosmetics, etc.)
+        """
+        p1 = extraction.pilier_1_univers_produit
+        p4 = extraction.pilier_4_action_business
+        
+        categories = p1.categories or []
+        interests = p1.interests or []
+        products_mentioned = p1.products_mentioned or []
+        
+        recommended_products = []
+        
+        try:
+            if not hasattr(self, '_product_matcher'):
+                self._product_matcher = ProductMatcher()
+                self._product_matcher.load_index()
+            
+            search_terms = []
+            if categories:
+                search_terms.extend(categories[:3])
+            if interests:
+                search_terms.extend(interests[:3])
+            if products_mentioned:
+                search_terms.extend(products_mentioned[:3])
+            
+            search_query = " ".join(search_terms) if search_terms else source_text[:200]
+            
+            matches = self._product_matcher.match(
+                query=search_query,
+                top_k=3,
+                threshold=0.4,
+                extraction=extraction
+            )
+            
+            for match in matches:
+                product_name = match.get('name', '')
+                if product_name and product_name not in recommended_products:
+                    recommended_products.append(product_name)
+                    
+        except Exception as e:
+            logger.warning(f"Product matching failed: {e}")
+        
+        cross_sell = self._get_cross_sell_recommendations(categories, client_category)
+        for product in cross_sell:
+            if product not in recommended_products:
+                recommended_products.append(product)
+        
+        return recommended_products[:5]
+
+    def _get_cross_sell_recommendations(
+        self,
+        categories: List[str],
+        client_category: str
+    ) -> List[str]:
+        """
+        Cross-sell logic: recommend complementary products based on detected interests.
+        """
+        cross_sell_map = {
+            "parfums": ["Parfums femme", "Parfums homme", "Coffret parfum"],
+            "fragrance": ["Parfums femme", "Parfums homme", "Coffret parfum"],
+            "beauté": ["Maquillage", "Soins visage", "Coffret beauté"],
+            "makeup": ["Maquillage", "Rouge à lèvres", "Mascara"],
+            "soins": ["Soins visage", "Crème hydratante", "Anti-âge"],
+            "mode": ["Accessoires", "Sacs", "Ceintures"],
+            "fashion": ["Accessoires", "Sacs", "Foulards"],
+            "bijoux": ["Bijoux fins", "Bracelets", "Boucles d'oreilles"],
+            "joaillerie": ["Haute joaillerie", "Bagues", "Pendentifs"],
+            "horlogerie": ["Montres", "Bracelets montre", "Étuis"],
+            "maroquinerie": ["Sacs", "Portefeuilles", "Ceintures"],
+            "vin": ["Champagne", "Vins fins", "Accessoires vin"],
+            "spirits": ["Whisky", "Cognac", "Vodka premium"]
+        }
+        
+        cross_sell_recommendations = []
+        categories_lower = [c.lower() for c in categories]
+        
+        for category in categories_lower:
+            if category in cross_sell_map:
+                cross_sell_recommendations.extend(cross_sell_map[category][:2])
+        
+        if client_category in ["VIP", "Ultimate"]:
+            if "parfums" in categories_lower or "fragrance" in categories_lower:
+                cross_sell_recommendations.append("Collection privée - Accès avant-première")
+            if "bijoux" in categories_lower or "joaillerie" in categories_lower:
+                cross_sell_recommendations.append("Rendez-vous atelier joaillerie")
+        
+        return list(set(cross_sell_recommendations))[:3]
 
     def _extract_meeting_hint(self, source_text: str) -> Optional[str]:
         text = source_text or ""

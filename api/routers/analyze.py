@@ -222,12 +222,22 @@ async def analyze_note(
         if note_language == "AUTO":
             note_language = detect_language(note.text, fallback="FR")
 
-        result = await pipeline.process_note({
+        # Edge processing: if text_preprocessed=True, skip server-side cleaning
+        note_data = {
             'ID': f'API_{int(time.time())}',
             'Transcription': note.text,
             'Language': note_language,
             'is_written': note.is_written_note,
-        }, on_progress=on_progress, profile=settings.single_note_profile.name, save_to_cache=settings.single_note_profile.save_to_cache)
+            'text_preprocessed': note.text_preprocessed,
+            'rgpd_risk': note.rgpd_risk,
+        }
+        
+        result = await pipeline.process_note(
+            note_data,
+            on_progress=on_progress, 
+            profile=settings.single_note_profile.name, 
+            save_to_cache=settings.single_note_profile.save_to_cache
+        )
         
         if result is None:
             raise HTTPException(status_code=500, detail="Analysis failed to produce a result.")
@@ -292,6 +302,11 @@ async def analyze_note(
                 client.sentiment_score = new_sentiment
                 client.total_interactions = current_interactions + 1
                 client.last_interaction = datetime.utcnow()
+                client.last_contact_date = datetime.utcnow()
+                
+                # Calculate days since last contact
+                if client.last_contact_date:
+                    client.days_since_contact = (datetime.utcnow() - client.last_contact_date).days
                 
                 # Update category based on behavior if available
                 if ext and ext.pilier_2_profil_client:

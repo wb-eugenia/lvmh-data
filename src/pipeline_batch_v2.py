@@ -38,6 +38,16 @@ from src.cache_manager import CacheManager
 from src.text_cleaner import MultilingualTextCleaner
 from src.bigquery_client import BigQueryManager
 from src.product_matcher import ProductMatcher
+import logging
+
+USE_ZVEC = os.getenv("LVMH_USE_ZVEC", "true").lower() in {"1", "true", "yes"}
+if USE_ZVEC:
+    try:
+        from src.zvec_matcher import ZvecProductMatcher
+        ProductMatcher = ZvecProductMatcher
+        logging.info("Using ZvecProductMatcher for product matching")
+    except ImportError:
+        logging.warning("ZvecProductMatcher not available, falling back to ProductMatcher")
 
 
 @dataclass
@@ -50,7 +60,7 @@ class BatchGroup:
 
 class PipelineBatchV2:
     """
-    Batch-optimized pipeline for LVMH Voice-to-Tag.
+    Batch-optimized pipeline for LVMH Data.
     
     Architecture:
     1. Route all notes (sequential, fast)

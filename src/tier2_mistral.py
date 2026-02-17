@@ -361,12 +361,23 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
         Args:
             model_tier: 'fast', 'balanced', or 'quality'
         """
-        api_key = os.getenv("MISTRAL_API_KEY")
+        # Use key rotator for multiple student accounts
+        try:
+            from src.mistral_rotator import get_mistral_rotator
+            self._rotator = get_mistral_rotator()
+            api_key = self._rotator.get_key()
+        except ImportError:
+            self._rotator = None
+            api_key = os.getenv("MISTRAL_API_KEY")
+        
         if not api_key:
             logger.warning("MISTRAL_API_KEY not found. Tier 2 might fail.")
         
         # Mistral native SDK (async-capable)
         self.client = Mistral(api_key=api_key)
+        
+        # Rotate to next key (for load balancing)
+        self._rotate_client_key()
         
         self.taxonomy = TaxonomyManager()
         
@@ -444,7 +455,14 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
         if self.circuit_breaker['failures'] > 0:
             logger.info(f"Mistral success after {self.circuit_breaker['failures']} failures - resetting")
             self.circuit_breaker['failures'] = 0
-
+    
+    def _rotate_client_key(self):
+        """Rotate to next Mistral key (for load balancing across accounts)."""
+        if self._rotator and self._rotator.key_count > 1:
+            new_key = self._rotator.rotate()
+            self.client = Mistral(api_key=new_key)
+            logger.info(f"Rotated to next Mistral API key")
+    
     def _record_extraction(self, result: Optional[ExtractionResult], processing_time_ms: float, success: bool = True):
         """Update internal metrics."""
         self.metrics['total_processed'] += 1
@@ -584,6 +602,7 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
 
         except asyncio.TimeoutError:
             logger.error(f"Mistral API timeout after {self.timeout_seconds}s")
+            self._rotate_client_key()  # Rotate key on timeout
             self._record_failure()
             self.metrics['total_timeouts'] += 1
             self._record_extraction(None, 0, success=False)
@@ -591,6 +610,7 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
             
         except json.JSONDecodeError as e:
             logger.error(f"Mistral JSON parsing error: {e}")
+            self._rotate_client_key()  # Rotate key on error
             self._record_failure()
             self.metrics['total_json_errors'] += 1
             self._record_extraction(None, 0, success=False)
@@ -598,6 +618,7 @@ Si allergie mentionnée: TOUJOURS extraire severity (analyse contexte)
             
         except Exception as e:
             logger.error(f"Mistral API error: {e}")
+            self._rotate_client_key()  # Rotate key on error
             self._record_failure()
             self._record_extraction(None, 0, success=False)
             raise e

@@ -80,6 +80,14 @@ class NoteInput(BaseModel):
         default=None,
         description="Client name for search/create (optional)"
     )
+    text_preprocessed: bool = Field(
+        default=False,
+        description="True if text was already cleaned/anonymized on edge (browser). Server will skip cleaning step."
+    )
+    rgpd_risk: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="RGPD risk flags detected on edge (browser). Contains detected categories."
+    )
     
     @field_validator('text')
     @classmethod

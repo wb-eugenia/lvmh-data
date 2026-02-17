@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, Play, RotateCcw, Wifi, WifiOff, LogOut, Send } from 'lucide-react'
 import PipelineVisualizer from './PipelineVisualizer'
 import { wsUrl, apiFetch } from '../lib/api'
+import { processTextEdge } from '../lib/edge-processor'
 import { useAuth } from '../context/AuthContext'
 
 const DEFAULT_RESULT = {
@@ -134,11 +135,15 @@ export default function PipelineView({ onBack }) {
         
         setSendingManual(true)
         try {
+            const edgeResult = processTextEdge(manualText, 'FR')
+            
             const res = await apiFetch('/api/analyze', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    text: manualText,
+                    text: edgeResult.text,
+                    text_preprocessed: true,
+                    rgpd_risk: edgeResult.rgpd_risk,
                     language: 'fr'
                 })
             })

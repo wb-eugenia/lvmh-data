@@ -15,7 +15,7 @@ import logging
 # Setup paths
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.pipeline_batch import PipelineBatchV2
+from src.pipeline_batch_v2 import PipelineBatchV2
 
 # Logger config
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')

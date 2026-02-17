@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ChevronDown, ChevronRight, Filter } from 'lucide-react'
+import { Mic, Search, Trophy, X, CheckCircle, Menu, LogOut, History, FileText, ChevronDown, ChevronRight, Filter, Loader2 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { apiFetch, normalizeAnalysisResult, wsUrl } from '../lib/api'
+import { processTextEdge } from '../lib/edge-processor'
+import { loadWhisperModel, transcribeAudio, isModelLoaded, setLoadProgressCallback } from '../lib/edge-transcriber'
 import confetti from 'canvas-confetti'
-import PipelineVisualizer from './PipelineVisualizer'
 
 export default function AdvisorView({ onBack }) {
     const { user, logout, updateUser } = useAuth()
@@ -47,6 +48,11 @@ export default function AdvisorView({ onBack }) {
         rag: true,
         nba: true
     })
+
+    // Whisper WASM state
+    const [whisperLoading, setWhisperLoading] = useState(false)
+    const [whisperProgress, setWhisperProgress] = useState(0)
+    const [whisperReady, setWhisperReady] = useState(false)
     const [pipelineProgress, setPipelineProgress] = useState(null)
     const [pipelineSocketState, setPipelineSocketState] = useState('connecting')
     const [pipelineStartedAt, setPipelineStartedAt] = useState(null)
@@ -549,30 +555,64 @@ export default function AdvisorView({ onBack }) {
 
     const processAudio = async (audioBlob) => {
         setIsProcessing(true)
-        setCurrentStep('cleaning')
+        setCurrentStep('transcribing')
         setPipelineStartedAt(Date.now())
-        setPipelineProgress({ step: 'cleaning', source: 'frontend' })
-
-        const formData = new FormData()
-        formData.append('file', audioBlob, 'recording.webm')
+        setPipelineProgress({ step: 'transcribing', source: 'frontend' })
 
         try {
-            const transRes = await apiFetch('/api/transcribe', {
-                method: 'POST',
-                body: formData
-            })
-            if (!transRes.ok) throw new Error("Transcription failed")
+            // Load Whisper model if not loaded
+            if (!isModelLoaded()) {
+                setWhisperLoading(true)
+                setLoadProgressCallback((info) => {
+                    if (info.status === 'downloading') {
+                        setWhisperProgress(info.progress)
+                    }
+                })
+                await loadWhisperModel('base')
+                setWhisperReady(true)
+                setWhisperLoading(false)
+            }
 
-            const { transcription } = await transRes.json()
-            setTranscriptionDraft(transcription || '')
+            // Transcribe with Whisper WASM
+            const transResult = await transcribeAudio(audioBlob, 'fr')
+            
+            // Show ORIGINAL text to user (for review/edit)
+            // Edge processing will happen in analyzeDraftTranscription
+            setTranscriptionDraft(transResult.text || '')
             setIsReviewingTranscription(true)
             setCurrentStep('done')
-            setPipelineProgress({ step: 'done', source: 'transcribe' })
+            setPipelineProgress({ 
+                step: 'done', 
+                source: 'transcribe',
+                provider: transResult.provider 
+            })
         } catch (e) {
-            showToast(`Erreur systeme: ${e.message}`)
+            console.error('Whisper error:', e)
+            showToast(`Erreur transcription: ${e.message}. Fallback au serveur...`)
+            
+            // Fallback to server transcription
+            try {
+                const formData = new FormData()
+                formData.append('file', audioBlob, 'recording.webm')
+                
+                const transRes = await apiFetch('/api/transcribe', {
+                    method: 'POST',
+                    body: formData
+                })
+                if (!transRes.ok) throw new Error("Transcription failed")
+                
+                const { transcription: serverTrans } = await transRes.json()
+                setTranscriptionDraft(serverTrans || '')
+                setIsReviewingTranscription(true)
+                setCurrentStep('done')
+                setPipelineProgress({ step: 'done', source: 'transcribe', provider: 'server' })
+            } catch (fallbackError) {
+                showToast(`Erreur systeme: ${fallbackError.message}`)
+            }
         } finally {
             setIsProcessing(false)
             setPipelineStartedAt(null)
+            setWhisperLoading(false)
         }
     }
 
@@ -590,6 +630,8 @@ export default function AdvisorView({ onBack }) {
         setPipelineProgress({ step: 'routing', source: 'frontend' })
 
         try {
+            const edgeResult = processTextEdge(textToAnalyze, 'FR')
+
             const token = localStorage.getItem('token')
             const res = await apiFetch('/api/analyze', {
                 method: 'POST',
@@ -598,7 +640,9 @@ export default function AdvisorView({ onBack }) {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
-                    text: textToAnalyze,
+                    text: edgeResult.text,
+                    text_preprocessed: true,
+                    rgpd_risk: edgeResult.rgpd_risk,
                     language: 'FR',
                     advisor_id: user.id || 1,
                     store_id: user.store || "PARIS_HQ",
@@ -782,17 +826,6 @@ export default function AdvisorView({ onBack }) {
                             className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="mb-6">
-                        <PipelineVisualizer
-                            isProcessing={isProcessing}
-                            currentStep={currentStep}
-                            result={currentResult}
-                            progress={pipelineProgress}
-                            connectionState={pipelineSocketState}
-                            elapsedMs={pipelineElapsedMs}
                         />
                     </div>
 
@@ -1326,7 +1359,7 @@ export default function AdvisorView({ onBack }) {
                                     setCurrentStep(null)
                                     setPipelineProgress(null)
                                 }}
-                                className="w-full bg-lvmh-gold text-black font-black py-4 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6"
+                                className="w-full bg-lvmh-gold text-black font-black py-5 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6"
                             >
                                 <CheckCircle size={20} aria-hidden="true" />
                                 Terminer
@@ -1342,7 +1375,7 @@ export default function AdvisorView({ onBack }) {
                         <button
                             onClick={toggleRecord}
                             disabled={isProcessing}
-                            className={`w-full py-4 rounded-xl transition-all shadow-[0_15px_40px_rgba(0,0,0,0.35)] border flex items-center justify-center gap-3 uppercase tracking-widest font-black ${isRecording
+                            className={`w-full py-5 rounded-xl transition-all shadow-[0_15px_40px_rgba(0,0,0,0.35)] border flex items-center justify-center gap-3 uppercase tracking-widest font-black ${isRecording
                                 ? 'bg-red-500 text-white border-red-400 hover:bg-red-500/90'
                                 : 'bg-lvmh-gold text-black border-lvmh-gold hover:bg-lvmh-gold/90'
                                 } ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}

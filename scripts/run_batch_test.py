@@ -11,7 +11,7 @@ from collections import Counter
 # Add src to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.pipeline_batch import PipelineBatchV2
+from src.pipeline_batch_v2 import PipelineBatchV2
 
 async def run_test(num_notes=50):
     # Clear cache just in case

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
@@ -7,41 +7,278 @@
 @tailwind utilities;
 
 :root {
-    --bg-0: #0b0a09;
-    --bg-1: #11100f;
-    --panel: rgba(255, 255, 255, 0.06);
-    --panel-strong: rgba(255, 255, 255, 0.1);
-    --border: rgba(255, 255, 255, 0.12);
-    --muted: #a69f96;
+    --bg-0: #080807;
+    --bg-1: #0f0f0e;
+    --bg-2: #1a1a19;
+    --panel: rgba(255, 255, 255, 0.04);
+    --panel-hover: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(212, 175, 55, 0.3);
+    --muted: #7a756d;
     --gold: #d4af37;
-    --gold-soft: #f5e0a3;
+    --gold-soft: #f0dc85;
+    --gold-bright: #ffd700;
+    --gold-glow: rgba(212, 175, 55, 0.4);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    background:
-        radial-gradient(1200px 800px at 15% -10%, rgba(212, 175, 55, 0.18), transparent 60%),
-        radial-gradient(900px 600px at 85% 10%, rgba(255, 255, 255, 0.06), transparent 60%),
-        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
-    color: #f3eee6;
+    background: 
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(212, 175, 55, 0.15), transparent 50%),
+        radial-gradient(ellipse 80% 50% at 80% 0%, rgba(255, 255, 255, 0.04), transparent 40%),
+        radial-gradient(ellipse 60% 40% at 10% 90%, rgba(212, 175, 55, 0.08), transparent 40%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 50%, var(--bg-2) 100%);
+    color: #f5f2eb;
     margin: 0;
     font-family: 'Manrope', system-ui, sans-serif;
     letter-spacing: 0.01em;
+    min-height: 100vh;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
+
+/* ==================== GLASS MORPHISM ==================== */
 
 .glass {
-    background: var(--panel);
-    backdrop-filter: blur(14px);
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--border);
-    border-radius: 1rem;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 1.25rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.glass:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.04) 100%);
+    border-color: var(--border-gold);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.5),
+        0 0 0 1px var(--gold-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.glass-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.glass-card:hover::before {
+    left: 100%;
+}
+
+.glass-card:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+    border-color: var(--border-gold);
+    box-shadow: 
+        0 24px 64px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* ==================== GOLD TEXT ==================== */
+
 .gold-text {
-    background: linear-gradient(120deg, var(--gold), var(--gold-soft));
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 50%, var(--gold) 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: goldShine 4s ease infinite;
 }
+
+@keyframes goldShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.gold-glow {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+/* ==================== GOLD BUTTONS ==================== */
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold) 0%, #c9a227 50%, var(--gold) 100%);
+    background-size: 200% 200%;
+    color: #080807;
+    border: none;
+    border-radius: 1rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 20px rgba(212, 175, 55, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-gold:hover {
+    background-position: 100% 100%;
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 32px rgba(212, 175, 55, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn-gold:hover::before {
+    left: 100%;
+}
+
+.btn-gold:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.btn-gold-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 1rem;
+    font-weight: 600;
+    padding: 0.875rem 1.75rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gold-outline:hover {
+    background: var(--gold);
+    color: #080807;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ==================== INPUTS ==================== */
+
+.input-glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1rem;
+    color: #f5f2eb;
+    font-family: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.input-glass::placeholder {
+    color: var(--muted);
+}
+
+.input-glass:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 
+        0 0 0 3px rgba(212, 175, 55, 0.15),
+        0 4px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ==================== LOADING SPINNER ==================== */
+
+.spinner-gold {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(212, 175, 55, 0.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loader-gold {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--gold);
+    font-weight: 500;
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-gold {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+    animation: pulse-gold 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* ==================== UTILITIES ==================== */
 
 .data-label {
     font-size: 0.65rem;
@@ -61,10 +298,126 @@ body {
     width: 8rem;
     height: 8rem;
     border-radius: 9999px;
-    background: linear-gradient(to bottom right, #d4af37, #b8860b);
+    background: linear-gradient(135deg, var(--gold) 0%, #b8960b 100%);
     border: 8px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 32px rgba(212, 175, 55, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-record:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 12px 48px rgba(212, 175, 55, 0.5),
+        0 0 60px rgba(212, 175, 55, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn-record:active {
+    transform: scale(0.95);
+}
+
+/* ==================== GOLD PARTICLES BACKGROUND ==================== */
+
+.gold-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.gold-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat 15s infinite;
+    filter: blur(1px);
+}
+
+@keyframes particleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) scale(1);
+    }
+}
+
+/* ==================== SCROLLBAR ==================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.5);
+}
+
+/* ==================== GRADIENTS ==================== */
+
+.gradient-gold-soft {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+}
+
+.gradient-dark {
+    background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+}
+
+/* ==================== BORDER GOLD ==================== */
+
+.border-gold {
+    border: 1px solid var(--border-gold);
+}
+
+.border-gold-glow {
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+/* ==================== SAFE AREAS (iPhone Notch) ==================== */
+
+.safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-inset-left {
+    padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-inset-right {
+    padding-right: env(safe-area-inset-right);
 }

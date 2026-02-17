@@ -137,5 +137,15 @@ export const normalizeAnalysisResult = (payload) => {
 export const apiFetch = (path, options = {}) => {
     const nextOptions = { ...options };
     nextOptions.headers = buildHeadersWithAuth(options.headers);
-    return fetch(apiUrl(path), nextOptions);
+    
+    return fetch(apiUrl(path), nextOptions).then((response) => {
+        // Handle 401 errors - redirect to login
+        if (response.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+            return response;
+        }
+        return response;
+    });
 };

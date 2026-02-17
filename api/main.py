@@ -1,5 +1,5 @@
 """
-LVMH Voice-to-Tag API
+LVMH Data API
 FastAPI backend for React frontend.
 """
 
@@ -300,7 +300,7 @@ class LoggingMiddleware(BaseHTTPMiddleware):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("LVMH Voice-to-Tag API starting")
+    logger.info("LVMH Data API starting")
 
     # Initialize Redis connection
     if _env_flag("USE_REDIS", "1"):
@@ -364,9 +364,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="LVMH Voice-to-Tag API",
-    description="API backend for LVMH Voice-to-Tag Intelligence Dashboard",
-    version="2.1.0",
+    title="LVMH Data API",
+    description="API backend for LVMH Intelligence Dashboard",
+    version="2.3.0",
     docs_url="/docs" if os.getenv("ENV") != "production" else None,
     redoc_url="/redoc" if os.getenv("ENV") != "production" else None,
     lifespan=lifespan,
@@ -376,6 +376,15 @@ ALLOWED_ORIGINS = os.getenv(
     "CORS_ORIGINS",
     "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173,https://lvmh-frontend.pages.dev"
 ).split(",")
+
+# Add Cloudflare Pages deployments (dynamic hash URLs)
+ALLOWED_ORIGINS.extend([
+    "https://66e1f587.lvmh-frontend.pages.dev",
+    "https://0fa57e1e.lvmh-frontend.pages.dev",
+    "https://6e9b143f.lvmh-frontend.pages.dev",
+    "https://5c94d5bd.lvmh-frontend.pages.dev",
+    "https://4b5696a8.lvmh-frontend.pages.dev",
+])
 
 app.add_middleware(
     CORSMiddleware,

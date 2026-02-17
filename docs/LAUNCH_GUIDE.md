@@ -1,4 +1,4 @@
-# 🚀 Guide de Lancement - LVMH Voice-to-Tag Pipeline
+# LVMH Data Pipeline - Guide de Lancement
 
 ## 📋 Prérequis
 
@@ -218,7 +218,7 @@ streamlit run app.py
                               ▼                            ▼                            ▼
                     ┌─────────────────┐          ┌─────────────────┐          ┌─────────────────┐
                     │  /auth/login    │          │  /analyze       │          │  /history       │
-                    │  JWT Token      │          │  Voice-to-Tag   │          │  User History   │
+                    │  JWT Token      │          │  Data Pipeline  │          │  User History   │
                     └────────┬────────┘          └────────┬────────┘          └─────────────────┘
                              │                            │
                              ▼                            ▼

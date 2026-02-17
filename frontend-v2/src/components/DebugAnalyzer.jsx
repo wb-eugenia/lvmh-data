@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Loader2, Terminal, Tag, ShoppingBag, Lightbulb, Brain, Shield, AlertCircle, ChevronDown, ChevronRight, Layers, Users } from 'lucide-react';
 import { apiFetch } from '../lib/api';
+import { processTextEdge } from '../lib/edge-processor';
 
 export default function DebugAnalyzer() {
     const [inputText, setInputText] = useState('');
@@ -31,11 +32,15 @@ export default function DebugAnalyzer() {
         const startTime = performance.now();
 
         try {
+            const edgeResult = processTextEdge(inputText, language);
+            
             const res = await apiFetch('/api/analyze', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    text: inputText,
+                    text: edgeResult.text,
+                    text_preprocessed: true,
+                    rgpd_risk: edgeResult.rgpd_risk,
                     language: language,
                     client_id: 'DEBUG_' + Date.now()
                 })

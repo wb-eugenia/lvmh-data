@@ -1,8 +1,8 @@
-# LVMH Voice-to-Tag Pipeline Architecture V2 (Batch Optimized)
+# LVMH Data Pipeline Architecture V2 (Batch Optimized)
 
 ## 🌍 Vision & Stratégie
 
-Architecture pipeline hybride **Batch-First** optimisée pour le traitement des notes vocales Client Advisor (CA) LVMH. 
+Architecture pipeline hybride **Batch-First** optimisée pour le traitement des notes vocales Client Advisor (CA) LVMH.
 Cette architecture privilégie la **souveraineté des données (EU-Native)**, la **performance extrême (Async/Parallel)** et l'**optimisation des coûts**.
 
 ### 🏆 Performance & Benchmarks (Jan 2026)

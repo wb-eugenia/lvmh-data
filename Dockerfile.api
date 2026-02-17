@@ -1,4 +1,4 @@
-# LVMH Voice-to-Tag API Dockerfile
+# LVMH Data API Dockerfile
 FROM python:3.11-slim
 
 WORKDIR /app

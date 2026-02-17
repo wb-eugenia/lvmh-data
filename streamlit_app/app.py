@@ -2,13 +2,13 @@ import streamlit as st
 from utils.data_loader import load_latest_results
 
 st.set_page_config(
-    page_title="LVMH Voice-to-Tag Dashboard",
+    page_title="LVMH Data Dashboard",
     page_icon="🏷️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.title("🚀 LVMH Voice-to-Tag Pipeline Dashboard")
+st.title("LVMH Data Pipeline Dashboard")
 
 st.markdown("""
 ### **Extension MaIA LVMH** - Multi-Tier Hybrid Pipeline

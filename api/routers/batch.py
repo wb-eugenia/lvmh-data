@@ -13,7 +13,7 @@ from datetime import datetime
 from typing import Dict, Optional
 
 import pandas as pd
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Request
 from fastapi.responses import StreamingResponse
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
@@ -27,6 +27,15 @@ from api.container import get_pipeline as get_pipeline_instance
 
 logger = logging.getLogger("lvmh-api.batch")
 router = APIRouter()
+
+_bq_manager = None
+
+def set_bq_manager(manager):
+    """Set BigQuery manager for batch exports"""
+    global _bq_manager
+    _bq_manager = manager
+    if _bq_manager:
+        logger.info("BigQuery manager configured for batch exports")
 
 # Redis-backed task store
 _redis_available = True
@@ -133,19 +142,32 @@ async def process_batch_async(task_id: str, df: pd.DataFrame, profile: str):
             # Update progress
             results.append({
                 "id": result.id,
-                "tags": result.extraction.tags if hasattr(result.extraction, 'tags') else [],
+            "tags": result.extraction.tags if hasattr(result.extraction, 'tags') else [],
                 "tier": result.routing.tier,
                 "confidence": result.routing.confidence,
                 "profile": result.profile,
                 "stage_timings_ms": result.stage_timings_ms,
                 "mode": profile,
+                "extraction": result.extraction.model_dump() if hasattr(result, 'extraction') else {},
+                "routing": result.routing.model_dump() if hasattr(result, 'routing') else {},
+                "meta_analysis": result.meta_analysis.model_dump() if hasattr(result, 'meta_analysis') else {},
             })
             await _update_task(task_id, {"progress": idx + 1, "results": results})
-             
+              
             # Small delay to avoid rate limits
             await asyncio.sleep(0.05)
         
         await _update_task(task_id, {"status": "complete", "results": results})
+        
+        # Export to BigQuery if enabled
+        global _bq_manager
+        if _bq_manager and _bq_manager.enabled:
+            try:
+                _bq_manager.insert_rows(results)
+                logger.info(f"BigQuery export completed for batch {task_id}")
+            except Exception as bq_error:
+                logger.warning(f"BigQuery export failed for batch {task_id}: {bq_error}")
+        
         logger.info("Batch %s completed: %s notes processed (profile=%s)", task_id, len(df), profile)
         
     except Exception as e:

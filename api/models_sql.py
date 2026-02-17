@@ -44,6 +44,8 @@ class Client(Base):
     sentiment_history = Column(Text, default="[]")
     total_interactions = Column(Integer, default=0)
     last_interaction = Column(DateTime, default=datetime.utcnow)
+    last_contact_date = Column(DateTime, nullable=True, index=True)
+    days_since_contact = Column(Integer, default=0)
 
     notes = relationship("Note", back_populates="client")
 

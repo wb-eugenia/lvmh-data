@@ -1,0 +1,101 @@
+id,text,tags,budget,status,allergies,diet,relation,gender,urgency,confidence
+CA_001,"Rendez-vous Mme Laurent, avocate affaires 45 ans, cliente occasionnelle. Cherche cadeau anniversaire...",small_leather,3000,Unknown,,,Gift,female,low,0.95
+CA_002,"Meeting with Mr. Anderson, first time customer, investment banker from London, around 38. Looking fo...",leather_goods,,first_visit,,pescatarian,Gift,male,low,0.93
+CA_003,"Signora Rossi e figlia insieme, cliente fedele da 2020. Signora 58 anni cerca borse nuove stagione, ...",,,vip,,"vegan,vegetarian",Self,female,low,0.73
+CA_004,"M. Dubois, 62 ans retraité, ancien dirigeant bancaire, client régulier. Achat rapide portefeuille ca...",small_leather,1500,regular,,,Self,male,low,0.95
+CA_005,"Mrs. Thompson with husband, both early 50s, excellent VIP clients since 2017. She's looking for new ...","leather_goods,vegan",,vip,nut_allergy,vegan,Self,female,low,0.88
+CA_006,"Sr. García, 29 años, futbolista profesional Real Madrid, primera visita. Viene con novia influencer ...",,,vip,,vegan,Self,,low,0.73
+CA_007,"Frau Schneider, 47 Jahre, Unternehmerin Modebranche, gelegentliche Kundin. Sucht Geschenk Geschäftsp...",,,Unknown,,,Self,,low,0.6
+CA_008,"Mme Petit et M. Petit, couple 35-38 ans, nouveaux quartier. Lui entrepreneur tech startup, elle chef...",,,vip,gluten_intolerance,,Self,female,low,0.93
+CA_009,"Mr. and Mrs. Kim, Korean couple living in London, late 40s, first visit but high potential. He's hed...",,,vip,shellfish_allergy,,Gift,male,low,0.8300000000000001
+CA_010,"Mme Bertrand, 55 ans, médecin cardiologue, cliente régulière depuis 2019. Renouvelle collection sacs...","travel_luggage,vegetarian",5000,vip,,vegetarian,Self,female,low,0.95
+CA_011,"Signor Conti, 33 anni, imprenditore crypto Bitcoin, nuovissimo cliente. Prima visita, vuole investir...",,,vip,,vegan,Self,female,low,0.73
+CA_012,"Sra. Martínez y madre juntas, clientas ocasionales. Sra. 42 años abogada, madre 68 años jubilada pro...",,,Unknown,,"vegan,vegetarian",Self,,low,0.6
+CA_013,"M. Lefevre, 70 ans, retraité ancien ambassadeur, client fidèle depuis 2012. Achat cadeau petite-fill...",vegetarian,2500,regular,,vegetarian,Gift,male,low,0.95
+CA_014,"Ms. Johnson, 36, tech entrepreneur sold startup last year, new ultra-high potential client. Looking ...",vegan,,vip,,vegan,Self,female,low,0.78
+CA_015,"Herr und Frau Weber, beide 52 Jahre, regelmäßige Kunden seit 2018. Er Chirurg Universitätsklinik, si...",,,Unknown,,,Self,,low,0.6
+CA_016,"Mme Rousseau, 44 ans, directrice communication grand groupe, nouvelle cliente. Cherche sac professio...","leather_goods,vegan",4000,first_visit,,,Self,female,low,0.9
+CA_017,"Signora Bianchi e marito, 58 e 62 anni, clienti VIP dal 2015. Lei cerca borse nuova stagione, lui ac...",,,vip,,,Gift,,low,0.78
+CA_018,"Mr. Davis, 41, professional tennis player recently retired, new client high potential. Looking for l...",,,vip,,,Gift,male,low,0.88
+CA_019,"M. et Mme Moreau, couple 48-50 ans, excellents clients depuis 2016. Achat multiple pièces collection...",,,Unknown,,vegetarian,Self,female,low,0.75
+CA_020,"Sra. López, 39 años, influencer moda lifestyle 2M seguidores Instagram TikTok, primera visita import...",,,vip,,vegan,Self,female,low,0.73
+CA_021,"M. Bernard, 56 ans, chirurgien orthopédique, client occasionnel. Cherche cadeau épouse 25 ans mariag...",vegetarian,6000,Unknown,,vegetarian,Gift,male,low,0.95
+CA_022,"Ms. Rodriguez, 31, startup founder raised Series B funding, new client excellent potential. Looking ...",vegan,15000,first_visit,shellfish_allergy,vegan,Self,female,low,0.9000000000000001
+CA_023,"Herr Fischer, 44 Jahre, Investmentbanker Frankfurt, regelmäßiger Kunde seit 2019. Kauft Geschenke Eh...",,7000,Unknown,,,Self,,low,0.75
+CA_024,"Signora e Signor Ferrara, coppia 42-45 anni, clienti VIP 2017. Acquisto multiplo collezione primaver...",,,vip,,,Gift,female,low,0.78
+CA_025,"Mme Girard, 38 ans, dentiste, nouvelle cliente. Achat rapide sac travail professionnel. Budget 3500€...",leather_goods,3500,first_visit,,,Self,female,low,0.8500000000000001
+CA_026,"Sr. Ramírez y esposa, 50-52 años, excelentes clientes desde 2016. Compra importante aniversario 20 a...",,,Unknown,,,Self,,low,0.6
+CA_027,"Mr. Chen, 47, hedge fund manager Hong Kong based, excellent new client. First visit but very high po...",vegan,20000,vip,,vegan,Self,male,low,0.8500000000000001
+CA_028,"M. Dubois et fille, 65 et 32 ans, clients réguliers. Lui retraité ancien dirigeant telecom, elle avo...",vegetarian,,Unknown,latex_allergy,vegetarian,Gift,female,low,0.75
+CA_029,"Frau Meyer, 39 Jahre, tech entrepreneur Berlin startup unicorn, neue Kundin hohes Potenzial. Sucht L...",,,vip,,vegan,Self,,low,0.73
+CA_030,"Famiglia Ricci completa, tre generazioni shopping insieme evento speciale. Nonna 72 anni, genitori 4...",,,Unknown,,"vegan,vegetarian",Gift,female,low,0.7
+CA_031,"Mme Fontaine, 43 ans, consultante stratégie, cliente occasionnelle. Cherche cadeau sœur 40 ans manag...",vegetarian,4000,Unknown,,vegetarian,Gift,female,low,0.95
+CA_032,"Dr. Patel and husband, both 38, first-time clients exceptional potential. She's plastic surgeon Harl...",vegetarian,17000,vip,nut_allergy,"vegan,vegetarian",Self,female,low,0.9000000000000001
+CA_033,"Sr. Torres, 28 años, DJ productor musical éxito internacional, nuevo cliente potencial alto. Busca p...",,,vip,,vegan,Self,female,low,0.73
+CA_034,"Herr und Frau Hoffmann, beide 55 Jahre, treue Kunden seit 2014. Kaufen Geschenke Silberhochzeit näch...",,14000,Unknown,,,Self,,low,0.75
+CA_035,"Signor Marino, 51 anni, imprenditore moda Milano, cliente regolare 2018. Acquista regali moglie comp...",,15000,Unknown,,vegan,Gift,female,low,0.8
+CA_036,"M. Simon, 59 ans, entrepreneur import-export, client occasionnel. Cherche cadeau épouse anniversaire...",vegan,8000,Unknown,,,Gift,male,low,0.95
+CA_037,"Mrs. Wilson and daughter shopping together, excellent multi-generational clients. Mother 67 retired ...","vegan,vegetarian",19000,Unknown,,"vegan,vegetarian",Gift,female,low,0.95
+CA_038,"Sra. Ruiz, 45 años, cardióloga hospital privado, nueva cliente buen potencial. Busca renovar accesor...",,,Unknown,,"vegan,vegetarian",Self,female,low,0.6
+CA_039,"Frau und Herr Zimmermann, 43-46 Jahre, exzellente neue Kunden hohes Potenzial. Sie Galeristin zeitge...",,,vip,,,Self,,low,0.73
+CA_040,"Mme Blanc et mari, 51-54 ans, clients fidèles 2016. Achat multiple collection printemps et cadeaux a...",,,Unknown,nickel_allergy,,Self,female,low,0.8
+CA_041,"M. Renaud, 41 ans, directeur commercial, première visite. Cherche cadeau épouse Saint-Valentin urgen...",vegan,3000,Unknown,,,Gift,,high,0.85
+CA_042,"Mrs. Hamilton, 52, philanthropy director foundation, regular client. Shopping for gala charity event...",,7000,regular,,pescatarian,Self,female,low,0.8
+CA_043,"Signor Galli, 36 anni, giornalista moda Vogue Italia, primo cliente alto potenziale. Cerca pezzi sho...",,9000,vip,,vegan,Self,female,high,0.8
+CA_044,"Sra. Mendoza, 48 años, empresaria retail moda, cliente ocasional. Compra regalos equipo trabajo aniv...",,8000,Unknown,,"vegan,vegetarian",Self,female,low,0.75
+CA_045,"Herr Schulz, 58 Jahre, Dirigent Symphonieorchester München, neuer Kunde ausgezeichnet. Sucht Geschen...",,,vip,,,Self,,low,0.73
+CA_046,"Mme Leroy, 33 ans, influenceuse lifestyle Instagram 600K, nouvelle cliente potentiel élevé. Cherche ...",vegan,11000,vip,,,Self,female,high,0.95
+CA_047,"Mr. and Mrs. Foster, 45-47, corporate clients excellent. Looking for business gifts top performers c...",vegan,20000,Unknown,,vegan,Self,male,low,0.8
+CA_048,"Signora Colombo, 60 anni, collezionista arte importante, cliente VIP 2013. Acquista regalo nipote la...",,,vip,,"vegan,vegetarian",Gift,female,low,0.83
+CA_049,"M. Martin, 50 ans, banquier affaires, client régulier. Achat cadeau fille 21 ans anniversaire. Budge...",vegan,4500,regular,,,Self,male,low,0.95
+CA_050,"Sr. y Sra. Navarro, 52-54 años, clientes excelentes desde 2015. Compra importante viaje aniversario ...",,,vip,,,Self,female,low,0.73
+CA_051,"Frau Koch, 44 Jahre, Architektin eigenes Büro, regelmäßige Kundin. Kauft Geschenk Geschäftspartnerin...",,5000,Unknown,,,Self,,low,0.75
+CA_052,"Dr. and Mrs. Montgomery, both 56, long-time VIP clients since 2012. Shopping for daughter's wedding ...",vegetarian,25000,vip,nut_allergy,"vegan,vegetarian",Gift,female,low,0.95
+CA_053,"Mme Perrin, 39 ans, avocate, nouvelle. Achat urgent cadeau collègue départ retraite. Budget 2K. Coll...",,2000,Unknown,,,Gift,female,high,0.8
+CA_054,"Signor e Signora De Luca, 47-49 anni, clienti fedeli 2017. Comprano regali genitori anniversario 50 ...",,14000,Unknown,,,Self,,low,0.75
+CA_055,"Sra. Jiménez, 42 años, directora recursos humanos multinacional, cliente ocasional. Compra regalos r...",,10000,Unknown,,"vegan,vegetarian",Self,female,low,0.75
+CA_056,"Mr. Taylor, 38, professional golfer PGA Tour, first time client exceptional potential. Looking for t...",vegan,16000,vip,,vegan,Gift,male,high,0.95
+CA_057,"Herr Becker, 51 Jahre, Rechtsanwalt Partner Kanzlei, Stammkunde. Kauft Geschenk Ehefrau Muttertag Ma...",,6000,regular,,,Self,,low,0.8
+CA_058,"M. et Mme Garnier, couple 50-52 ans, clients VIP depuis 2014. Achat important voyage anniversaire 25...",,,vip,,vegetarian,Gift,female,low,0.93
+CA_059,"Signora Esposito, 36 anni, avvocato societario, nuova cliente. Cerca regalo migliore amica matrimoni...",,4000,Unknown,,,Gift,female,low,0.8
+CA_060,"Sr. Ortiz, 55 años, empresario construcción, cliente regular. Compra regalos esposa cumpleaños 50 ce...",,13000,Unknown,,,Self,female,low,0.75
+CA_061,"Ms. Park, 34, YouTuber luxury lifestyle content 1.5M subscribers, first visit high potential. Lookin...",vegan,14000,vip,,vegan,Self,female,high,0.8500000000000001
+CA_062,"M. Dubois, 63 ans, collectionneur art contemporain, client VIP 2010. Achat cadeau petite-fille diplo...",vegetarian,7000,vip,,vegetarian,Gift,male,low,0.95
+CA_063,"Signora e Signor Moretti, coppia 44-46 anni, clienti regolari 2018. Acquisto multiplo viaggio annive...",,,Unknown,,,Gift,,low,0.65
+CA_064,"Sr. Vega, 27 años, streamer Twitch gaming 900K seguidores, nuevo cliente potencial. Busca piezas luj...",,9000,Unknown,,vegan,Self,female,low,0.75
+CA_065,"Frau Wagner, 51 Jahre, Professorin Kunstgeschichte Universität Berlin, treue Kundin seit 2016. Kauft...",,8000,vip,,,Self,,low,0.8
+CA_066,"Mr. and Mrs. Shah, both 49, excellent new clients exceptional potential. He's private equity partner...",,,vip,shellfish_allergy,pescatarian,Self,male,low,0.78
+CA_067,"Mme Fontaine, 57 ans, directrice hôtel palace 5 étoiles, nouvelle cliente potentiel. Cherche pièces ...",vegetarian,11000,vip,,vegetarian,Self,female,low,0.8500000000000001
+CA_068,"Signor Rossi, 42 anni, chef stellato Michelin ristorante Milano, nuovo cliente ottimo. Cerca regalo ...",,9000,first_visit,,,Self,female,low,0.8
+CA_069,"Sra. Castro, 53 años, jueza tribunal superior, cliente regular desde 2017. Compra renovación accesor...",,7000,Unknown,,"vegan,vegetarian",Self,female,low,0.75
+CA_070,"Herr und Frau Zimmermann, beide 39 Jahre, neue Kunden ausgezeichnetes Potenzial. Beide Ärzte, er Anä...",,,vip,,vegan,Self,,low,0.73
+CA_071,"M. Lambert, 48 ans, producteur cinéma films auteur, client occasionnel. Cherche cadeaux équipe film ...",vegan,12000,Unknown,,,Gift,male,high,0.85
+CA_072,"Mrs. Bennett, 44, television presenter news anchor national network, regular client since 2019. Shop...",vegan,10000,regular,,vegan,Gift,female,low,0.9
+CA_073,"Famiglia Benedetti completa, shopping multi-generazionale evento importante. Nonno 78 anni, genitori...",,,Unknown,,"vegan,vegetarian",Self,female,low,0.6
+CA_074,"Sr. Herrera, 35 años, jugador tenis profesional ATP top 50, primera visita excelente potencial. Busc...",,11000,vip,,vegan,Self,female,low,0.8
+CA_075,"Frau Schulz, 46 Jahre, Galeristin zeitgenössische Fotografie Hamburg, regelmäßige Kundin. Kauft Gesc...",,8000,Unknown,,,Gift,,low,0.8
+CA_076,"M. et Mme Rousseau, couple 55-57 ans, clients VIP excellents depuis 2013. Achat voyage croisière lux...",,,vip,,vegetarian,Self,female,low,0.88
+CA_077,"Mr. Phillips, 41, venture capitalist tech startups, new client high potential. Looking for professio...",vegan,15000,vip,,vegan,Self,male,high,0.8500000000000001
+CA_078,"Signora Caruso, 58 anni, direttrice orchestra sinfonica Napoli, nuova cliente eccellente. Cerca pezz...",,12000,Unknown,,,Self,female,low,0.75
+CA_079,"Sra. Romero, 37 años, arquitecta proyectos sostenibles, cliente ocasional. Compra regalo hermana bod...",,5000,Unknown,,vegan,Gift,female,low,0.8
+CA_080,"Dr. and Mrs. Anderson, both 62, long-time exceptional VIP clients since 2009. Shopping for retiremen...",vegetarian,,vip,,"vegan,vegetarian",Gift,female,low,0.83
+CA_081,"Mme Leclerc, 41 ans, avocate environnement, nouvelle cliente potentiel. Cherche pièces professionnel...",vegan,8000,first_visit,,,Self,female,low,0.8500000000000001
+CA_082,"Mr. Thompson, 36, hedge fund analyst, regular client. Shopping for sister's 30th birthday gift. Budg...",vegan,6000,regular,,vegan,Gift,male,low,0.95
+CA_083,"Herr und Frau Bauer, beide 48 Jahre, ausgezeichnete Kunden seit 2015. Einkauf wichtige Reise Jubiläu...",,,vip,,,Self,,low,0.73
+CA_084,"Signora Mancini, 39 anni, giornalista televisione, cliente occasionale. Acquista regalo marito compl...",,5000,Unknown,,"vegan,vegetarian",Self,female,low,0.75
+CA_085,"Sr. y Sra. Delgado, 56-58 años, clientes VIP excelentes desde 2014. Compra viaje aniversario 30 años...",,,vip,,,Self,,low,0.73
+CA_086,"Mrs. Harrison and mother shopping together, multi-generational excellent clients. Mrs. Harrison 47 b...",vegetarian,18000,vip,nut_allergy,"vegan,vegetarian",Self,female,low,0.95
+CA_087,"M. Blanc, 44 ans, restaurateur étoilé Michelin, nouveau client excellent. Cherche cadeaux équipe cui...",,10000,first_visit,,vegetarian,Gift,male,low,0.8500000000000001
+CA_088,"Frau Klein, 52 Jahre, Verlegerin Kunstbücher, Stammkundin seit 2017. Kauft Geschenk Autorin Bestsell...",,7000,Unknown,,,Self,,low,0.75
+CA_089,"Signor Greco, 50 anni, direttore banca investimenti, cliente regolare 2016. Acquista regali moglie a...",,,Unknown,,"vegan,vegetarian",Self,female,low,0.6
+CA_090,"Sra. Vargas y esposo, 43-45 años, clientes excelentes nuevos alto potencial. Ella empresaria tech st...",,,vip,,vegan,Self,,low,0.73
+CA_091,"Mme Mercier, 37 ans, dentiste, nouvelle. Achat rapide cadeau meilleure amie mariage. Budget 4K. Amie...",vegan,4000,Unknown,,,Self,female,low,0.9
+CA_092,"Mr. and Mrs. Wellington, both 59, exceptional long-time VIP clients since 2008. Shopping for extende...",vegetarian,,vip,,"vegan,vegetarian",Gift,male,low,0.93
+CA_093,"Herr Richter, 46 Jahre, Pilot Langstrecke internationale Airline, neuer Kunde. Sucht Geschenke Ehefr...",,9000,first_visit,,,Self,,low,0.8
+CA_094,"Signora Romano, 54 anni, psicologa clinica studio privato, cliente occasionale. Acquista regalo figl...",,6000,Unknown,,"vegan,vegetarian",Self,female,low,0.75
+CA_095,"M. et Mme Chevalier, couple 50-52 ans, excellents clients VIP depuis 2012. Achat important voyage an...",,,vip,,vegetarian,Self,female,low,0.88
+CA_096,"Sr. Silva, 40 años, periodista investigación premiado, cliente regular. Compra regalo esposa cumplea...",,7000,Unknown,,"vegan,vegetarian",Self,female,low,0.75
+CA_097,"Mrs. Cooper, 46, surgeon orthopedic hospital private practice, regular client since 2018. Shopping f...",vegan,11000,regular,,vegan,Gift,female,low,0.9
+CA_098,"Herr und Frau Fischer, beide 54 Jahre, ausgezeichnete treue Kunden seit 2011. Einkauf wichtig Feier ...",,,vip,,,Self,,low,0.73
+CA_099,"M. Fabre, 58 ans, notaire, client fidèle. Achat cadeau épouse fête mères. Budget 5K. Épouse professe...",vegetarian,5000,regular,,vegetarian,Gift,male,low,0.95
+CA_100,"Sir Richard and Lady Catherine, both 68, extraordinary VIP clients since 2005. Shopping for grandchi...",vegetarian,,vip,nut_allergy,"vegan,vegetarian",Gift,male,low,0.95
