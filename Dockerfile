@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install groq sqlalchemy passlib python-jose bcrypt
+RUN pip install sqlalchemy passlib python-jose bcrypt
 
 # Copy Backend Code
 COPY src/ ./src/

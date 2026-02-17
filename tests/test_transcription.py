@@ -80,40 +80,17 @@ async def test_voxtral():
         return False
 
 
-async def test_groq_fallback():
-    """Test Groq fallback."""
-    from src.transcriber import get_groq_client
-    
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        print("[!] GROQ_API_KEY not set - Groq fallback not available")
-        return False
-    
-    print(f"[OK] GROQ_API_KEY found: {api_key[:10]}...")
-    
-    client = get_groq_client()
-    if client:
-        print("[OK] Groq client initialized")
-        return True
-    
-    return False
-
-
 async def main():
     print("=" * 50)
     print("LVMH Voxtral Transcription Test")
     print("=" * 50)
     
-    print("\n[1] Testing Voxtral (Primary)...")
+    print("\n[1] Testing Voxtral...")
     voxtral_ok = await test_voxtral()
-    
-    print("\n[2] Testing Groq Fallback...")
-    groq_ok = await test_groq_fallback()
     
     print("\n" + "=" * 50)
     print("Summary:")
     print(f"  Voxtral: {'[OK]' if voxtral_ok else '[X]'}")
-    print(f"  Groq:    {'[OK]' if groq_ok else '[!]' if not os.getenv('GROQ_API_KEY') else '[X]'}")
     print("=" * 50)
     
     if voxtral_ok:

@@ -19,7 +19,14 @@ class RuntimeProfile(BaseModel):
     max_tokens: int = 1024
     temperature: float = 0.1
     timeout: int = 30
+    timeout_seconds: int = 30
     allow_cross_validation: bool = True
+    save_to_cache: bool = True
+    save_to_semantic_cache: bool = False
+    rag_top_k: int = 5
+    rag_threshold: float = 0.5
+    require_non_empty_tags: bool = False
+    strict_quality_gate: bool = False
 
 
 class Settings(BaseModel):
@@ -32,6 +39,8 @@ class Settings(BaseModel):
     tier1_confidence_threshold: float = Field(default=0.75, ge=0.0, le=1.0)
     tier2_confidence_threshold: float = Field(default=0.85, ge=0.0, le=1.0)
     max_concurrent_notes: int = Field(default=10, ge=1, le=50)
+    max_concurrent_tier2_calls: int = Field(default=10, ge=1, le=50)
+    max_concurrent_tier3_calls: int = Field(default=5, ge=1, le=20)
     processing_timeout_seconds: int = Field(default=60, ge=5, le=300)
     
     # Pipeline Options
@@ -64,6 +73,7 @@ class Settings(BaseModel):
     cache_enabled: bool = True
     cache_dir: str = "cache/pipeline_v2"
     cache_ttl_seconds: int = 86400
+    cache_key_salt: str = Field(default="lvmh-v3-salt")
     
     # Monitoring
     log_level: Literal['DEBUG', 'INFO', 'WARNING', 'ERROR'] = 'INFO'
@@ -90,40 +100,43 @@ class Settings(BaseModel):
     enable_rgpd_llm: bool = Field(default=False)
     rgpd_model: str = Field(default="mistral")
     
+    # Router Feedback
+    enable_router_feedback_learning: bool = Field(default=False)
+    
     # Note Validation
     use_note_validation: bool = Field(default=False)
+    
+    # Runtime profiles
+    single_note_profile: RuntimeProfile = Field(default_factory=lambda: RuntimeProfile(
+        name="single_note",
+        llm_provider="mistral",
+        llm_model="mistral-small",
+        max_tokens=1024,
+        temperature=0.1,
+        timeout=30,
+        allow_cross_validation=True,
+    ))
+    
+    batch_csv_profile: RuntimeProfile = Field(default_factory=lambda: RuntimeProfile(
+        name="batch_csv",
+        llm_provider="mistral",
+        llm_model="mistral-small",
+        max_tokens=512,
+        temperature=0.1,
+        timeout=60,
+        allow_cross_validation=False,
+    ))
+    
+    fast_batch_profile: RuntimeProfile = Field(default_factory=lambda: RuntimeProfile(
+        name="fast_batch",
+        llm_provider="mistral",
+        llm_model="mistral-small",
+        max_tokens=256,
+        temperature=0.1,
+        timeout=15,
+        allow_cross_validation=False,
+    ))
 
-
-# Default profile instances
-single_note_profile = RuntimeProfile(
-    name="single_note",
-    llm_provider="mistral",
-    llm_model="mistral-small",
-    max_tokens=1024,
-    temperature=0.1,
-    timeout=30,
-    allow_cross_validation=True,
-)
-
-batch_csv_profile = RuntimeProfile(
-    name="batch_csv",
-    llm_provider="mistral",
-    llm_model="mistral-small",
-    max_tokens=512,
-    temperature=0.1,
-    timeout=60,
-    allow_cross_validation=False,
-)
-
-fast_batch_profile = RuntimeProfile(
-    name="fast_batch",
-    llm_provider="groq",
-    llm_model="llama-3.1-8b-instant",
-    max_tokens=256,
-    temperature=0.1,
-    timeout=15,
-    allow_cross_validation=False,
-)
 
 # Singleton instance
 settings = Settings()

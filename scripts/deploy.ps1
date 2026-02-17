@@ -37,7 +37,6 @@ if (Test-Path $envFile) {
 
 # Get API keys from environment
 $MISTRAL_KEY = $env:MISTRAL_API_KEY
-$GROQ_KEY = $env:GROQ_API_KEY
 $OPENAI_KEY = $env:OPENAI_API_KEY
 
 if ([string]::IsNullOrWhiteSpace($MISTRAL_KEY)) {
@@ -64,7 +63,7 @@ gcloud run deploy $SERVICE_NAME `
     --allow-unauthenticated `
     --memory 1Gi `
     --port 8080 `
-    --set-env-vars "GROQ_API_KEY=$GROQ_KEY,MISTRAL_API_KEY=$MISTRAL_KEY,LVMH_USE_ZVEC=true,OPENAI_API_KEY=$OPENAI_KEY,use_langextract_tier2=true" `
+    --set-env-vars "MISTRAL_API_KEY=$MISTRAL_KEY,LVMH_USE_ZVEC=true,OPENAI_API_KEY=$OPENAI_KEY,use_langextract_tier2=true" `
     --project=$PROJECT_ID
 
 if ($LASTEXITCODE -eq 0) {

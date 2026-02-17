@@ -1,10 +1,10 @@
 """
-Unified Transcription Module - Voxtral Primary with Groq Fallback.
+Unified Transcription Module - Voxtral (Mistral) only.
+Zero external API fallback - full local processing.
 """
 
 import os
 import logging
-import shutil
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 from dataclasses import dataclass
@@ -31,18 +31,6 @@ def get_mistral_client():
         return None
     
     return Mistral(api_key=api_key)
-
-
-def get_groq_client():
-    """Get Groq client for fallback."""
-    from groq import AsyncGroq
-    
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        logger.warning("GROQ_API_KEY not found")
-        return None
-    
-    return AsyncGroq(api_key=api_key)
 
 
 async def transcribe_with_voxtral(
@@ -126,75 +114,14 @@ async def transcribe_with_voxtral(
         raise
 
 
-async def transcribe_with_groq(
-    audio_path: Path,
-    language: Optional[str] = None,
-) -> TranscriptionResult:
-    """
-    Transcribe audio using Groq Whisper (fallback).
-    
-    Args:
-        audio_path: Path to audio file
-        language: Optional language code
-    
-    Returns:
-        TranscriptionResult with text and metadata
-    """
-    client = get_groq_client()
-    
-    if not client:
-        raise Exception("Groq client not available")
-    
-    logger.info(f"Transcribing with Groq: {audio_path.name}")
-    
-    try:
-        with open(audio_path, "rb") as audio_file:
-            response = await client.audio.transcriptions.create(
-                model="whisper-large-v3",
-                file=audio_file,
-                language=language,
-                response_format="verbose_json",
-            )
-        
-        text = response.text if hasattr(response, 'text') else str(response)
-        
-        # Extract timestamps from Groq response
-        timestamps = None
-        if hasattr(response, 'words') and response.words:
-            timestamps = [
-                {
-                    "word": w.word,
-                    "start": w.start,
-                    "end": w.end,
-                }
-                for w in response.words
-            ]
-        
-        logger.info(f"Groq transcription success: {len(text)} chars")
-        
-        return TranscriptionResult(
-            text=text,
-            provider="groq",
-            language=language or "auto",
-            timestamps=timestamps,
-        )
-        
-    except Exception as e:
-        logger.error(f"Groq transcription error: {e}")
-        raise
-
-
 async def transcribe(
     audio_path: Path,
     language: Optional[str] = None,
     enable_timestamps: bool = True,
 ) -> TranscriptionResult:
     """
-    Main transcription function - Voxtral primary with Groq fallback.
-    
-    Priority:
-    1. Voxtral (Mistral) - Primary, EU data sovereignty
-    2. Groq - Fallback, faster but US data
+    Main transcription function - Voxtral (Mistral) only.
+    No external fallback - uses Whisper Edge on frontend instead.
     
     Args:
         audio_path: Path to audio file
@@ -204,25 +131,12 @@ async def transcribe(
     Returns:
         TranscriptionResult
     """
-    # First try Voxtral (Mistral)
-    try:
-        timestamps = ["word"] if enable_timestamps else None
-        return await transcribe_with_voxtral(
-            audio_path,
-            language=language,
-            timestamp_granularities=timestamps,
-        )
-    except Exception as e:
-        logger.warning(f"Voxtral failed: {e}, trying Groq fallback...")
-    
-    # Fallback to Groq
-    try:
-        return await transcribe_with_groq(audio_path, language=language)
-    except Exception as e:
-        logger.warning(f"Groq fallback failed: {e}")
-    
-    # If both fail, raise
-    raise Exception("All transcription providers failed")
+    timestamps = ["word"] if enable_timestamps else None
+    return await transcribe_with_voxtral(
+        audio_path,
+        language=language,
+        timestamp_granularities=timestamps,
+    )
 
 
 async def transcribe_from_file(

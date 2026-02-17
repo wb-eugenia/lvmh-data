@@ -70,7 +70,6 @@
 │   ├── smart_router.py    # Smart Router V3 (ML routing)
 │   ├── text_cleaner.py    # Pre-processing & normalization
 │   ├── tier1_rules.py     # Regex-based extraction (Tier 1)
-│   ├── tier2_groq.py      # Groq LLM processing (Tier 2)
 │   ├── tier2_mistral.py   # Mistral AI processing (Tier 2/3)
 │   ├── taxonomy.py        # Taxonomy management
 │   ├── extractor.py       # Tag extraction engine
@@ -254,8 +253,7 @@ gcloud run deploy lvmh-api \
 
 ```bash
 OPENAI_API_KEY=sk-...          # OpenAI GPT-4o-mini
-GROQ_API_KEY=gsk-...           # Groq API (Whisper + LLM)
-MISTRAL_API_KEY=...            # Mistral AI (primary LLM)
+MISTRAL_API_KEY=...            # Mistral AI (Voxtral + LLM)
 LVMH_USE_ZVEC=true            # Enable Zvec for product matching
 ```
 

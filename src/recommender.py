@@ -6,10 +6,12 @@ Transforms extracted tags and context into actionable business suggestions.
 import json
 import os
 import re
+import logging
 from typing import List, Dict, Optional, Any
 from src.models import ExtractionResult, Pilier4Business, NextBestAction
-import logging
 from src.product_matcher import ProductMatcher
+
+logger = logging.getLogger(__name__)
 
 USE_ZVEC = os.getenv("LVMH_USE_ZVEC", "true").lower() in {"1", "true", "yes"}
 if USE_ZVEC:
@@ -25,8 +27,6 @@ try:
     HAS_MISTRAL = True
 except ImportError:
     HAS_MISTRAL = False
-
-logger = logging.getLogger(__name__)
 
 class RecommenderEngine:
     """

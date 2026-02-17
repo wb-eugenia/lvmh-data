@@ -1,5 +1,6 @@
 """
-Transcribe router - Handles audio transcription via Voxtral (primary) with Groq fallback.
+Transcribe router - Handles audio transcription via Voxtral (Mistral) only.
+Whisper Edge (WASM) is used on frontend for local processing.
 """
 
 import os
@@ -28,11 +29,11 @@ async def transcribe_audio(
     language: Optional[str] = None,
 ):
     """
-    Transcribe uploaded audio file using Voxtral (Mistral) with Groq fallback.
+    Transcribe uploaded audio file using Voxtral (Mistral).
     
     - Primary: Voxtral Mini (Mistral) - EU data sovereignty
-    - Fallback: Groq Whisper - faster but US data
-    - Final fallback: Mock for demo mode
+    - Fallback: Mock for demo mode (no external API fallback)
+    - Frontend: Whisper Edge (WASM) for local processing
     
     Args:
         file: Audio file (mp3, wav, m4a, etc.)
@@ -50,12 +51,11 @@ async def transcribe_audio(
         with open(temp_file, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
-        # Check if API keys are available
+        # Check if Mistral API key is available
         mistral_key = os.getenv("MISTRAL_API_KEY")
-        groq_key = os.getenv("GROQ_API_KEY")
         
-        if not mistral_key and not groq_key:
-            logger.warning("No API keys found. Using mock transcription.")
+        if not mistral_key:
+            logger.warning("MISTRAL_API_KEY not found. Using mock transcription.")
             return get_mock_transcription()
         
         # Attempt transcription

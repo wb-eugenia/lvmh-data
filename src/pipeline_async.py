@@ -44,6 +44,14 @@ from src.semantic_cache import SemanticCache
 from src.cross_validator import CrossValidator
 from src.recommender import RecommenderEngine
 from src.product_matcher import ProductMatcher
+from src.services.llm_guard_service import get_llm_guard_service, secure_input
+
+# Configure logging
+logging.basicConfig(
+    level=settings.log_level,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 USE_ZVEC = os.getenv("LVMH_USE_ZVEC", "true").lower() in {"1", "true", "yes"}
 if USE_ZVEC:
@@ -55,20 +63,6 @@ if USE_ZVEC:
         logger.warning("ZvecProductMatcher not available, falling back to ProductMatcher")
 from src.rgpd_filter import RGPDFilter
 from src.validator import NoteValidator
-from src.circuit_breaker import (
-    circuit_breaker_manager,
-    get_tier2_circuit_breaker,
-    get_tier3_circuit_breaker,
-    get_rgpd_circuit_breaker,
-    CircuitBreakerError
-)
-
-# Configure logging
-logging.basicConfig(
-    level=settings.log_level,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
 
 class AsyncPipeline:
@@ -122,7 +116,7 @@ class AsyncPipeline:
         "bijou",
     )
     
-    def __init__(self, use_cache: bool = True, use_semantic_cache: bool = True, use_cross_validation: bool = True):
+    def __init__(self, use_cache: bool = True, use_semantic_cache: bool = True, use_cross_validation: bool = True, use_note_validation: bool = False):
         self.router = SmartRouterV2(config={
             'tier1_max_score': settings.router_tier1_threshold,
             'tier2_max_score': settings.router_tier2_threshold,
@@ -393,14 +387,16 @@ class AsyncPipeline:
             start_time = time.time()
             perf_start = time.perf_counter()
             
-            # Input validation
-            is_valid, error = NoteValidator.validate(note)
-            if not is_valid:
-                logger.warning(f"Note validation failed: {error}")
-                return None
+            # Input validation (skip if not enabled)
+            if self.note_validator:
+                validation_result = self.note_validator.validate(note)
+                if not validation_result.get("valid", True):
+                    error = validation_result.get("errors", ["Unknown error"])
+                    logger.warning(f"Note validation failed: {error}")
+                    return None
             
             # Sanitize input
-            note = NoteValidator.sanitize(note)
+            note = note  # NoteValidator.sanitize(note) if needed
             
             note_id = str(note.get('ID', 'unknown'))
             raw_text = note.get('Transcription') or ''  # Handle None or missing
@@ -470,8 +466,35 @@ class AsyncPipeline:
                 len(text),
                 tokens_saved
             )
-
-            # 0b. RGPD layer (Profile-aware: skip LLM for fast_batch)
+            
+            # 0b. Security layer (LLM Guard) - PII masking
+            security_started = time.perf_counter()
+            await safe_progress({"step": "security", "status": "processing"})
+            
+            try:
+                llm_guard_service = get_llm_guard_service()
+                sanitized_text, security_result = secure_input(text)
+                
+                if security_result.risk_score > 0:
+                    logger.info(
+                        "Note %s: PII detected and masked, issues: %s",
+                        note_id,
+                        security_result.detected_issues
+                    )
+                
+                text = sanitized_text
+                security_info = {
+                    "risk_score": security_result.risk_score,
+                    "issues": security_result.detected_issues,
+                }
+            except Exception as e:
+                logger.warning(f"Note {note_id}: Security scan failed: {e}")
+                security_info = {"error": str(e)}
+            
+            await safe_progress({"step": "security", "status": "complete", **security_info})
+            mark_stage("security", security_started)
+            
+            # 0c. RGPD layer (Profile-aware: skip LLM for fast_batch)
             rgpd_started = time.perf_counter()
             await safe_progress({"step": "rgpd", "status": "processing"})
             

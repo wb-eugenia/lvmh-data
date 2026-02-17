@@ -6,7 +6,6 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - GROQ_API_KEY=${GROQ_API_KEY}
       - MISTRAL_API_KEY=${MISTRAL_API_KEY}
     volumes:
       - ./output:/app/output
