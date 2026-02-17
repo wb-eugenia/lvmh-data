@@ -64,9 +64,7 @@
 │       └── transcribe.py  # Audio transcription
 │
 ├── src/                    # Core pipeline modules
-│   ├── event_pipeline.py  # Main FastAPI app (legacy entry)
-│   ├── pipeline_async.py  # Async batch processing
-│   ├── pipeline_batch_v2.py # Batch v2 with tier routing
+│   ├── pipeline_async.py  # Main async pipeline
 │   ├── smart_router.py    # Smart Router V3 (ML routing)
 │   ├── text_cleaner.py    # Pre-processing & normalization
 │   ├── tier1_rules.py     # Regex-based extraction (Tier 1)
@@ -115,7 +113,6 @@
 │   ├── test_text_cleaner.py
 │   └── test_precision.py
 │
-├── app.py                 # Streamlit legacy dashboard
 ├── requirements.txt       # Python dependencies
 ├── Dockerfile             # Multi-stage Docker build
 ├── docker-compose.yml     # Local orchestration
@@ -140,18 +137,14 @@ npm install
 python -m uvicorn api.main:app --reload --port 8000
 
 # Run frontend (dev server)
-cd frontend-v2
-npm run dev
-
-# Run Streamlit legacy app
-make run
+cdnpm run dev
+ frontend-v2
 ```
 
 ### Using Make
 
 ```bash
 make install          # Install Python dependencies
-make run              # Start Streamlit app
 make test             # Run pytest
 make pipeline         # Run Wave 2 pipeline
 make pipeline-nocache # Run without cache

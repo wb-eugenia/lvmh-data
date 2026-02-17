@@ -258,7 +258,7 @@ export default function PipelineView({ onBack }) {
                 <div className="flex items-center justify-between gap-4 mb-8">
                     <button
                         onClick={() => (onBack ? onBack() : window.history.back())}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 hover:border-silver/40 hover:text-silver transition-colors"
                     >
                         <ArrowLeft size={16} />
                         Retour
@@ -295,7 +295,7 @@ export default function PipelineView({ onBack }) {
                         <button
                             onClick={sendManualNote}
                             disabled={!manualText.trim() || sendingManual || isProcessing}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-lvmh-gold text-black font-bold text-xs uppercase tracking-widest hover:bg-lvmh-gold/90 transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-silver text-black font-bold text-xs uppercase tracking-widest hover:bg-silver/90 transition-colors disabled:opacity-50"
                         >
                             <Send size={14} />
                             {sendingManual ? 'Envoi...' : 'Envoyer'}
@@ -304,7 +304,7 @@ export default function PipelineView({ onBack }) {
                         <div className="flex items-center gap-2">
                             <span className={`text-[10px] px-3 py-2 rounded-full border inline-flex items-center gap-1 ${
                                 socketState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : 
-                                socketState === 'connecting' ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 
+                                socketState === 'connecting' ? 'border-silver/40 text-silver bg-silver/10' : 
                                 'border-red-500/40 text-red-400 bg-red-500/10'
                             }`}>
                                 {socketState === 'connected' ? <Wifi size={11} /> : <WifiOff size={11} />}
@@ -314,7 +314,7 @@ export default function PipelineView({ onBack }) {
                         <button
                             onClick={startSimulation}
                             disabled={isProcessing}
-                            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-lvmh-gold text-black font-bold text-xs uppercase tracking-widest hover:bg-lvmh-gold/90 transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-silver text-black font-bold text-xs uppercase tracking-widest hover:bg-silver/90 transition-colors disabled:opacity-50"
                         >
                             <Play size={14} />
                             Simuler

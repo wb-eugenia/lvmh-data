@@ -8,6 +8,7 @@ import {
     Coins,
     Database,
     Download,
+    Network,
     Home,
     LogOut,
     Mic,
@@ -31,6 +32,7 @@ import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Too
 import { apiFetch, wsUrl } from '../lib/api'
 import { useAuth } from '../context/AuthContext'
 import AdminProductsView from './AdminProductsView'
+import TaxonomyView from './TaxonomyView'
 
 const REFRESH_INTERVAL_MS = 30000
 const REFRESH_COUNTDOWN_MS = 10000
@@ -58,13 +60,13 @@ const getSparklineData = (rows, key, days = 7) => {
 
 const getToneColor = (value, thresholds = { good: 80, warn: 50 }) => {
     if (value >= thresholds.good) return 'text-green-400'
-    if (value >= thresholds.warn) return 'text-lvmh-gold'
+    if (value >= thresholds.warn) return 'text-silver'
     return 'text-red-400'
 }
 
 const getToneBg = (value, thresholds = { good: 80, warn: 50 }) => {
     if (value >= thresholds.good) return 'bg-green-500/10 border-green-500/30'
-    if (value >= thresholds.warn) return 'bg-lvmh-gold/10 border-lvmh-gold/30'
+    if (value >= thresholds.warn) return 'bg-silver/10 border-silver/30'
     return 'bg-red-500/10 border-red-500/30'
 }
 
@@ -127,7 +129,7 @@ export default function AdminPanel({ onBack }) {
     const { pipeline, healthScore, healthTone, trendRows, trendTotals, mergedCost, componentRows, sparklines, comparisons } = useMemo(() => {
         const pipeline = summary?.pipeline
         const healthScore = Math.round((metrics?.health_score ?? summary?.health_score ?? 0))
-        const healthTone = healthScore >= 80 ? 'border-green-500/40 text-green-400 bg-green-500/10' : healthScore >= 50 ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 'border-red-500/40 text-red-400 bg-red-500/10'
+        const healthTone = healthScore >= 80 ? 'border-green-500/40 text-green-400 bg-green-500/10' : healthScore >= 50 ? 'border-silver/40 text-silver bg-silver/10' : 'border-red-500/40 text-red-400 bg-red-500/10'
         
         const rows = timeseries?.daily ?? []
         const halfIndex = Math.floor(rows.length / 2)
@@ -507,6 +509,7 @@ export default function AdminPanel({ onBack }) {
         { id: 'enregistrement', label: 'Enregistrement', icon: Mic },
         { id: 'classement', label: 'Classement', icon: Trophy },
         { id: 'users', label: 'User & Credentials', icon: Users },
+        { id: 'taxonomy', label: 'Taxonomie', icon: Network },
         { id: 'produits', label: 'Produits', icon: ShoppingBag }
     ]
 
@@ -547,7 +550,7 @@ export default function AdminPanel({ onBack }) {
                                             onClick={() => { setActiveTab(tab.id); setIsMobileSidebarOpen(false); }}
                                             className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg text-sm transition-colors ${
                                                 isActive
-                                                    ? 'bg-lvmh-gold/10 text-lvmh-gold border border-lvmh-gold/30'
+                                                    ? 'bg-silver/10 text-silver border border-silver/30'
                                                     : 'text-lvmh-gray hover:text-white hover:bg-white/5 border border-transparent'
                                             }`}
                                         >
@@ -593,7 +596,7 @@ export default function AdminPanel({ onBack }) {
                                     onClick={() => setActiveTab(tab.id)}
                                     className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition-colors ${
                                         isActive
-                                            ? 'bg-lvmh-gold/10 text-lvmh-gold border border-lvmh-gold/30'
+                                            ? 'bg-silver/10 text-silver border border-silver/30'
                                             : 'text-lvmh-gray hover:text-white hover:bg-white/5 border border-transparent'
                                     }`}
                                     title={sidebarCollapsed ? tab.label : undefined}
@@ -623,13 +626,14 @@ export default function AdminPanel({ onBack }) {
                                     {activeTab === 'enregistrement' && 'Liste des notes'}
                                     {activeTab === 'classement' && 'Classement des advisors'}
                                     {activeTab === 'users' && 'Gestion utilisateurs'}
+                                    {activeTab === 'taxonomy' && 'Architecture 4 piliers'}
                                     {activeTab === 'produits' && 'Catalogue produits'}
                                 </p>
                             </div>
                             <p className="text-[11px] text-lvmh-gray mt-1">Fenetre active: {currentWindowLabel}</p>
                             <div className="flex flex-wrap items-center justify-end gap-2">
                                 <div className="inline-flex items-center gap-2 px-2 py-1.5 rounded-lg border border-white/10 bg-white/[0.02]">
-                                    <CalendarDays size={13} className="text-lvmh-gold" />
+                                    <CalendarDays size={13} className="text-silver" />
                                     <select
                                         value={windowDays}
                                         onChange={(event) => setWindowDays(Number(event.target.value))}
@@ -643,7 +647,7 @@ export default function AdminPanel({ onBack }) {
                                     </select>
                                 </div>
 
-                                <span className={`text-[10px] px-2 py-1 rounded-full border inline-flex items-center gap-1 ${socketState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : socketState === 'connecting' ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 'border-red-500/40 text-red-400 bg-red-500/10'}`}>
+                                <span className={`text-[10px] px-2 py-1 rounded-full border inline-flex items-center gap-1 ${socketState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : socketState === 'connecting' ? 'border-silver/40 text-silver bg-silver/10' : 'border-red-500/40 text-red-400 bg-red-500/10'}`}>
                                     {socketState === 'connected' ? <Wifi size={11} /> : <WifiOff size={11} />}
                                     {socketState === 'connected' ? 'WS LIVE' : socketState === 'connecting' ? 'WS CONNECT' : 'WS OFF'}
                                 </span>
@@ -651,7 +655,7 @@ export default function AdminPanel({ onBack }) {
                                 <button
                                     onClick={() => exportMetrics('json')}
                                     disabled={Boolean(exporting)}
-                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-50"
+                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-silver/40 hover:text-silver transition-colors disabled:opacity-50"
                                 >
                                     <Download size={12} />
                                     {exporting === 'json' ? 'Export JSON...' : 'Export JSON'}
@@ -659,7 +663,7 @@ export default function AdminPanel({ onBack }) {
                                 <button
                                     onClick={() => exportMetrics('csv')}
                                     disabled={Boolean(exporting)}
-                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-50"
+                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-silver/40 hover:text-silver transition-colors disabled:opacity-50"
                                 >
                                     <Download size={12} />
                                     {exporting === 'csv' ? 'Export CSV...' : 'Export CSV'}
@@ -667,7 +671,7 @@ export default function AdminPanel({ onBack }) {
 
                                 <button
                                     onClick={fetchDashboard}
-                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-silver/40 hover:text-silver transition-colors"
                                 >
                                     <RefreshCcw size={12} />
                                     Refresh
@@ -685,6 +689,10 @@ export default function AdminPanel({ onBack }) {
                             <AdminProductsView />
                         )}
 
+                        {activeTab === 'taxonomy' && (
+                            <TaxonomyView />
+                        )}
+
                         {activeTab === 'enregistrement' && (
                             <div className="glass p-6">
                                 <h3 className="text-lg font-bold mb-4">Liste des enregistrements</h3>
@@ -693,7 +701,7 @@ export default function AdminPanel({ onBack }) {
                                         {dailyNotes.map((row) => (
                                             <div 
                                                 key={row.note_id} 
-                                                className="rounded-lg border border-white/10 bg-white/[0.03] p-4 hover:border-lvmh-gold/40 cursor-pointer"
+                                                className="rounded-lg border border-white/10 bg-white/[0.03] p-4 hover:border-silver/40 cursor-pointer"
                                                 onClick={() => openNoteDetails(row.note_id)}
                                             >
                                                 <div className="flex justify-between">
@@ -713,14 +721,14 @@ export default function AdminPanel({ onBack }) {
                         {activeTab === 'classement' && (
                             <div className="glass p-6">
                                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                    <Trophy size={18} className="text-lvmh-gold" />
+                                    <Trophy size={18} className="text-silver" />
                                     Classement des Advisors
                                 </h3>
                                 <div className="space-y-2">
                                     {adminUsers.filter(u => u?.role === 'advisor').sort((a, b) => (b?.score || 0) - (a?.score || 0)).map((user, index) => (
                                         <div key={user.id} className="flex items-center justify-between p-4 rounded-lg border border-white/10 bg-white/[0.03]">
                                             <div className="flex items-center gap-4">
-                                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${index === 0 ? 'bg-lvmh-gold text-black' : 'bg-white/10 text-white'}`}>
+                                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${index === 0 ? 'bg-silver text-black' : 'bg-white/10 text-white'}`}>
                                                     {index + 1}
                                                 </div>
                                                 <div>
@@ -729,7 +737,7 @@ export default function AdminPanel({ onBack }) {
                                                 </div>
                                             </div>
                                             <div className="text-right">
-                                                <div className="text-xl font-bold text-lvmh-gold">{user.score || 0}</div>
+                                                <div className="text-xl font-bold text-silver">{user.score || 0}</div>
                                                 <div className="text-xs text-lvmh-gray">points</div>
                                             </div>
                                         </div>
@@ -742,12 +750,12 @@ export default function AdminPanel({ onBack }) {
                             <div className="space-y-6">
                                 <div className="glass p-6">
                                     <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                        <Users size={18} className="text-lvmh-gold" />
+                                        <Users size={18} className="text-silver" />
                                         Gestion des Utilisateurs
                                     </h3>
                                     <div className="grid grid-cols-3 gap-4 mb-6">
                                         <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4 text-center">
-                                            <div className="text-2xl font-black text-lvmh-gold">{advisorsCount}</div>
+                                            <div className="text-2xl font-black text-silver">{advisorsCount}</div>
                                             <div className="text-xs text-lvmh-gray uppercase">Advisors</div>
                                         </div>
                                         <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4 text-center">
@@ -762,7 +770,7 @@ export default function AdminPanel({ onBack }) {
                                     <button
                                         onClick={fetchAdminUsers}
                                         disabled={usersLoading}
-                                        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-50"
+                                        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs uppercase tracking-widest hover:border-silver/40 hover:text-silver transition-colors disabled:opacity-50"
                                     >
                                         <RefreshCcw size={12} />
                                         {usersLoading ? 'Refresh...' : 'Refresh Users'}
@@ -770,7 +778,7 @@ export default function AdminPanel({ onBack }) {
                                     <button
                                         onClick={handleResetAllPoints}
                                         disabled={adminActionLoading === 'reset-points'}
-                                        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-lvmh-gold/30 text-lvmh-gold text-xs uppercase tracking-widest hover:bg-lvmh-gold/10 transition-colors disabled:opacity-50 ml-2"
+                                        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-silver/30 text-silver text-xs uppercase tracking-widest hover:bg-silver/10 transition-colors disabled:opacity-50 ml-2"
                                     >
                                         <ShieldAlert size={12} />
                                         {adminActionLoading === 'reset-points' ? 'Reset...' : 'Reset Points'}
@@ -818,7 +826,7 @@ export default function AdminPanel({ onBack }) {
                                                                 user.role === 'admin'
                                                                     ? 'border-red-500/30 text-red-300 bg-red-500/10'
                                                                     : user.role === 'manager'
-                                                                        ? 'border-lvmh-gold/30 text-lvmh-gold bg-lvmh-gold/10'
+                                                                        ? 'border-silver/30 text-silver bg-silver/10'
                                                                         : 'border-green-500/30 text-green-300 bg-green-500/10'
                                                             }`}>
                                                                 {user.role}
@@ -829,7 +837,7 @@ export default function AdminPanel({ onBack }) {
                                                         <td className="px-4 py-3 text-right">{user.notes_count ?? 0}</td>
                                                         <td className="px-4 py-3 text-xs text-lvmh-gray">{formatDateTime(user.last_note_at)}</td>
                                                         <td className="px-4 py-3 text-xs">
-                                                            <div className="font-mono text-lvmh-gold break-all">
+                                                            <div className="font-mono text-silver break-all">
                                                                 {user?.credentials?.username || user.email}
                                                             </div>
                                                             <div className="text-lvmh-gray break-all">
@@ -859,7 +867,7 @@ export default function AdminPanel({ onBack }) {
                                 <div className="glass p-5">
                                     <div className="flex items-center justify-between mb-2">
                                         <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Health Score</div>
-                                        <div className={`w-2 h-2 rounded-full ${healthScore >= 80 ? 'bg-green-400' : healthScore >= 50 ? 'bg-lvmh-gold' : 'bg-red-400'} ${socketState === 'connected' ? 'animate-pulse' : ''}`}></div>
+                                        <div className={`w-2 h-2 rounded-full ${healthScore >= 80 ? 'bg-green-400' : healthScore >= 50 ? 'bg-silver' : 'bg-red-400'} ${socketState === 'connected' ? 'animate-pulse' : ''}`}></div>
                                     </div>
                                     <div className="flex items-end gap-3">
                                         <div className={`text-3xl font-black ${getToneColor(healthScore)}`}>
@@ -885,11 +893,11 @@ export default function AdminPanel({ onBack }) {
                                                 <AreaChart data={sparklines.health}>
                                                     <defs>
                                                         <linearGradient id="healthSpark" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#D4AF37' : '#f87171'} stopOpacity={0.4} />
-                                                            <stop offset="95%" stopColor={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#D4AF37' : '#f87171'} stopOpacity={0} />
+                                                            <stop offset="5%" stopColor={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#C0C0C0' : '#f87171'} stopOpacity={0.4} />
+                                                            <stop offset="95%" stopColor={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#C0C0C0' : '#f87171'} stopOpacity={0} />
                                                         </linearGradient>
                                                     </defs>
-                                                    <Area type="monotone" dataKey="value" stroke={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#D4AF37' : '#f87171'} fill="url(#healthSpark)" strokeWidth={1.5} />
+                                                    <Area type="monotone" dataKey="value" stroke={healthScore >= 80 ? '#4ade80' : healthScore >= 50 ? '#C0C0C0' : '#f87171'} fill="url(#healthSpark)" strokeWidth={1.5} />
                                                 </AreaChart>
                                             </ResponsiveContainer>
                                         )}
@@ -911,7 +919,7 @@ export default function AdminPanel({ onBack }) {
                                         </div>
                                     </div>
                                     <div className="text-xs text-lvmh-gray mt-2">
-                                        <span className={pipeline?.success_rate >= 0.95 ? 'text-green-400' : pipeline?.success_rate >= 0.8 ? 'text-lvmh-gold' : 'text-red-400'}>
+                                        <span className={pipeline?.success_rate >= 0.95 ? 'text-green-400' : pipeline?.success_rate >= 0.8 ? 'text-silver' : 'text-red-400'}>
                                             {formatPercent(pipeline?.success_rate || 0)} success
                                         </span>
                                     </div>
@@ -947,7 +955,7 @@ export default function AdminPanel({ onBack }) {
                                         </div>
                                     </div>
                                     <div className="text-xs text-lvmh-gray mt-2">
-                                        Confidence: <span className={pipeline?.avg_confidence >= 0.9 ? 'text-green-400' : pipeline?.avg_confidence >= 0.7 ? 'text-lvmh-gold' : 'text-red-400'}>
+                                        Confidence: <span className={pipeline?.avg_confidence >= 0.9 ? 'text-green-400' : pipeline?.avg_confidence >= 0.7 ? 'text-silver' : 'text-red-400'}>
                                             {formatPercent(pipeline?.avg_confidence || 0)}
                                         </span>
                                     </div>
@@ -983,7 +991,7 @@ export default function AdminPanel({ onBack }) {
                                         </div>
                                     </div>
                                     <div className="text-xs text-lvmh-gray mt-2">
-                                        Per note: <span className="text-lvmh-gold">{formatCurrency(mergedCost?.cost_per_note ?? mergedCost?.roi_metrics?.cost_per_note ?? 0)}</span>
+                                        Per note: <span className="text-silver">{formatCurrency(mergedCost?.cost_per_note ?? mergedCost?.roi_metrics?.cost_per_note ?? 0)}</span>
                                     </div>
                                     <div className="h-8 mt-2">
                                         {sparklines?.cost?.length > 0 && (
@@ -991,11 +999,11 @@ export default function AdminPanel({ onBack }) {
                                                 <AreaChart data={sparklines.cost}>
                                                     <defs>
                                                         <linearGradient id="costSpark" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.4} />
-                                                            <stop offset="95%" stopColor="#D4AF37" stopOpacity={0} />
+                                                            <stop offset="5%" stopColor="#C0C0C0" stopOpacity={0.4} />
+                                                            <stop offset="95%" stopColor="#C0C0C0" stopOpacity={0} />
                                                         </linearGradient>
                                                     </defs>
-                                                    <Area type="monotone" dataKey="value" stroke="#D4AF37" fill="url(#costSpark)" strokeWidth={1.5} />
+                                                    <Area type="monotone" dataKey="value" stroke="#C0C0C0" fill="url(#costSpark)" strokeWidth={1.5} />
                                                 </AreaChart>
                                             </ResponsiveContainer>
                                         )}
@@ -1006,7 +1014,7 @@ export default function AdminPanel({ onBack }) {
                             <div className="glass p-6">
                                 <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
                                     <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <Activity size={18} className="text-lvmh-gold" />
+                                        <Activity size={18} className="text-silver" />
                                         Trends ({currentWindowLabel})
                                     </h3>
                                     <div className="text-xs text-lvmh-gray">
@@ -1024,8 +1032,8 @@ export default function AdminPanel({ onBack }) {
                                                     <AreaChart data={trendRows} onClick={handleTrendChartClick}>
                                                         <defs>
                                                             <linearGradient id="costFill" x1="0" y1="0" x2="0" y2="1">
-                                                                <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.45} />
-                                                                <stop offset="95%" stopColor="#D4AF37" stopOpacity={0} />
+                                                                <stop offset="5%" stopColor="#C0C0C0" stopOpacity={0.45} />
+                                                                <stop offset="95%" stopColor="#C0C0C0" stopOpacity={0} />
                                                             </linearGradient>
                                                         </defs>
                                                         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
@@ -1036,7 +1044,7 @@ export default function AdminPanel({ onBack }) {
                                                             formatter={(value) => [formatCurrency(Number(value)), 'Cost']}
                                                             labelFormatter={(_, payload) => payload?.[0]?.payload?.fullLabel || '-'}
                                                         />
-                                                        <Area type="monotone" dataKey="cost_eur" stroke="#D4AF37" fillOpacity={1} fill="url(#costFill)" strokeWidth={2} />
+                                                        <Area type="monotone" dataKey="cost_eur" stroke="#C0C0C0" fillOpacity={1} fill="url(#costFill)" strokeWidth={2} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>
                                             </div>
@@ -1134,7 +1142,7 @@ export default function AdminPanel({ onBack }) {
 
                             <div className="glass p-6">
                                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                    <Server size={18} className="text-lvmh-gold" />
+                                    <Server size={18} className="text-silver" />
                                     Components Status
                                 </h3>
                                 <div className="space-y-2">
@@ -1144,7 +1152,7 @@ export default function AdminPanel({ onBack }) {
                                             <div key={key} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
                                                 <div className="flex items-center justify-between gap-2">
                                                     <div className="text-sm font-semibold flex items-center gap-2">
-                                                        <BarChart3 size={13} className="text-lvmh-gold" />
+                                                        <BarChart3 size={13} className="text-silver" />
                                                         {key}
                                                     </div>
                                                     <span className={`text-[10px] px-2 py-0.5 rounded-full border ${status.tone}`}>

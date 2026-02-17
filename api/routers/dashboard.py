@@ -1875,3 +1875,41 @@ async def admin_purge_recordings(
         db.rollback()
         logger.error("Admin purge recordings failed: %s", exc)
         raise HTTPException(status_code=500, detail="Failed to purge recordings")
+
+
+@router.get("/taxonomy")
+async def get_taxonomy():
+    """Get LVMH taxonomy structured by 4 pillars."""
+    from src.taxonomy import TaxonomyManager
+    
+    tm = TaxonomyManager(version="2.2")
+    core_tags = tm.taxonomy.get("core_tags", {})
+    
+    taxonomy = {
+        "1_produit": {
+            "products": core_tags.get("products", []),
+            "materials": core_tags.get("materials", []),
+            "colors": core_tags.get("colors", []),
+        },
+        "2_profil": {
+            "context": core_tags.get("context", []),
+            "professions": core_tags.get("professions", []),
+            "lifestyle": core_tags.get("lifestyle", []),
+        },
+        "3_hospitalite": {
+            "occasions": core_tags.get("occasions", []),
+            "dietary": core_tags.get("dietary", []),
+            "allergies": core_tags.get("allergies", []),
+        },
+        "4_actions": {
+            "budget": core_tags.get("budget", []),
+            "context_usage": core_tags.get("context_usage", []),
+        },
+    }
+    
+    return {
+        "taxonomy": taxonomy,
+        "version": tm.taxonomy.get("version", "2.2"),
+        "last_updated": tm.taxonomy.get("last_updated", "2026-01-28"),
+        "stats_coming_soon": True,
+    }

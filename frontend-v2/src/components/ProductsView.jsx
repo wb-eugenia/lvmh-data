@@ -222,13 +222,13 @@ export default function ProductsView({ onBack }) {
                     <div className="flex items-center gap-4">
                         <button
                             onClick={onBack}
-                            className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                            className="p-2 rounded-lg border border-white/10 hover:border-silver/40 hover:text-silver transition-colors"
                         >
                             <ArrowLeft size={20} />
                         </button>
                         <div>
                             <h1 className="text-xl font-display font-bold flex items-center gap-2">
-                                <ShoppingBag className="text-lvmh-gold" />
+                                <ShoppingBag className="text-silver" />
                                 Product Catalog
                             </h1>
                             <p className="text-xs text-lvmh-gray">
@@ -245,7 +245,7 @@ export default function ProductsView({ onBack }) {
                         )}
                         <button
                             onClick={() => { fetchBatches(); setShowBatchModal(true); }}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors text-sm"
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-silver/40 hover:text-silver transition-colors text-sm"
                         >
                             <Upload size={16} />
                             Import CSV
@@ -253,14 +253,14 @@ export default function ProductsView({ onBack }) {
                         <button
                             onClick={handleRebuildRag}
                             disabled={rebuildingRag}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors text-sm disabled:opacity-50"
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-silver/40 hover:text-silver transition-colors text-sm disabled:opacity-50"
                         >
                             <Database size={16} />
                             {rebuildingRag ? 'Rebuilding...' : 'Rebuild RAG'}
                         </button>
                         <button
                             onClick={() => fetchProducts(productsPage)}
-                            className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                            className="p-2 rounded-lg border border-white/10 hover:border-silver/40 hover:text-silver transition-colors"
                         >
                             <RefreshCcw size={18} />
                         </button>
@@ -278,12 +278,12 @@ export default function ProductsView({ onBack }) {
                                 placeholder="Search products..."
                                 value={productsSearch}
                                 onChange={(e) => setProductsSearch(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-lvmh-gray focus:border-lvmh-gold/50 focus:outline-none"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-lvmh-gray focus:border-silver/50 focus:outline-none"
                             />
                         </div>
                         <button
                             type="submit"
-                            className="px-4 py-2.5 rounded-lg bg-lvmh-gold text-black font-semibold text-sm hover:bg-lvmh-gold/90 transition-colors"
+                            className="px-4 py-2.5 rounded-lg bg-silver text-black font-semibold text-sm hover:bg-silver/90 transition-colors"
                         >
                             Search
                         </button>
@@ -295,7 +295,7 @@ export default function ProductsView({ onBack }) {
                             placeholder="Min €"
                             value={minPrice}
                             onChange={(e) => setMinPrice(e.target.value)}
-                            className="w-24 px-3 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-lvmh-gray focus:border-lvmh-gold/50 focus:outline-none text-sm"
+                            className="w-24 px-3 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-lvmh-gray focus:border-silver/50 focus:outline-none text-sm"
                         />
                         <span className="text-lvmh-gray">-</span>
                         <input
@@ -303,11 +303,11 @@ export default function ProductsView({ onBack }) {
                             placeholder="Max €"
                             value={maxPrice}
                             onChange={(e) => setMaxPrice(e.target.value)}
-                            className="w-24 px-3 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-lvmh-gray focus:border-lvmh-gold/50 focus:outline-none text-sm"
+                            className="w-24 px-3 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-lvmh-gray focus:border-silver/50 focus:outline-none text-sm"
                         />
                         <button
                             onClick={() => { setProductsPage(1); fetchProducts(1); }}
-                            className="px-3 py-2.5 rounded-lg border border-white/10 text-sm hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                            className="px-3 py-2.5 rounded-lg border border-white/10 text-sm hover:border-silver/40 hover:text-silver transition-colors"
                         >
                             Apply
                         </button>
@@ -316,13 +316,13 @@ export default function ProductsView({ onBack }) {
                     <div className="flex items-center gap-1 border border-white/10 rounded-lg p-1">
                         <button
                             onClick={() => setViewMode('grid')}
-                            className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white/10 text-lvmh-gold' : 'text-lvmh-gray hover:text-white'}`}
+                            className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white/10 text-silver' : 'text-lvmh-gray hover:text-white'}`}
                         >
                             <Grid3X3 size={18} />
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
-                            className={`p-2 rounded ${viewMode === 'list' ? 'bg-white/10 text-lvmh-gold' : 'text-lvmh-gray hover:text-white'}`}
+                            className={`p-2 rounded ${viewMode === 'list' ? 'bg-white/10 text-silver' : 'text-lvmh-gray hover:text-white'}`}
                         >
                             <List size={18} />
                         </button>
@@ -333,13 +333,13 @@ export default function ProductsView({ onBack }) {
                     <div className="w-48 flex-shrink-0">
                         <div className="glass rounded-xl p-4 sticky top-4">
                             <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                                <Filter size={14} className="text-lvmh-gold" />
+                                <Filter size={14} className="text-silver" />
                                 Categories
                             </h3>
                             <div className="space-y-1">
                                 <button
                                     onClick={() => handleCategoryChange('')}
-                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!productsCategory ? 'bg-lvmh-gold/20 text-lvmh-gold border border-lvmh-gold/30' : 'hover:bg-white/5 text-lvmh-gray hover:text-white'}`}
+                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!productsCategory ? 'bg-silver/20 text-silver border border-silver/30' : 'hover:bg-white/5 text-lvmh-gray hover:text-white'}`}
                                 >
                                     All Products
                                 </button>
@@ -347,7 +347,7 @@ export default function ProductsView({ onBack }) {
                                     <button
                                         key={cat}
                                         onClick={() => handleCategoryChange(cat)}
-                                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${productsCategory === cat ? 'bg-lvmh-gold/20 text-lvmh-gold border border-lvmh-gold/30' : 'hover:bg-white/5 text-lvmh-gray hover:text-white'}`}
+                                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${productsCategory === cat ? 'bg-silver/20 text-silver border border-silver/30' : 'hover:bg-white/5 text-lvmh-gray hover:text-white'}`}
                                     >
                                         {cat} ({count})
                                     </button>
@@ -391,7 +391,7 @@ export default function ProductsView({ onBack }) {
                                         href={product.url}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="glass rounded-xl overflow-hidden hover:border-lvmh-gold/50 transition-all hover:scale-[1.02]"
+                                        className="glass rounded-xl overflow-hidden hover:border-silver/50 transition-all hover:scale-[1.02]"
                                     >
                                         <div className="aspect-square bg-white/5 relative">
                                             {product.image_url ? (
@@ -417,7 +417,7 @@ export default function ProductsView({ onBack }) {
                                             <div className="text-sm font-medium line-clamp-2 min-h-[2.5rem]" title={product.name}>
                                                 {product.name}
                                             </div>
-                                            <div className="text-sm text-lvmh-gold font-bold mt-2">
+                                            <div className="text-sm text-silver font-bold mt-2">
                                                 {product.price_eur?.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                             </div>
                                             {product.category1 && (
@@ -452,7 +452,7 @@ export default function ProductsView({ onBack }) {
                                                 ) : (
                                                     <button
                                                         onClick={(e) => { e.preventDefault(); startEditStock(product.sku, product.stock); }}
-                                                        className="flex items-center gap-1 text-[10px] text-lvmh-gray hover:text-lvmh-gold transition-colors"
+                                                        className="flex items-center gap-1 text-[10px] text-lvmh-gray hover:text-silver transition-colors"
                                                     >
                                                         <PackageCheck size={12} />
                                                         <span>Stock: {product.stock}</span>
@@ -472,7 +472,7 @@ export default function ProductsView({ onBack }) {
                                         href={product.url}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="glass rounded-lg p-3 flex items-center gap-4 hover:border-lvmh-gold/50 transition-colors"
+                                        className="glass rounded-lg p-3 flex items-center gap-4 hover:border-silver/50 transition-colors"
                                     >
                                         <div className="w-16 h-16 bg-white/5 rounded-lg flex-shrink-0 overflow-hidden">
                                             {product.image_url ? (
@@ -494,7 +494,7 @@ export default function ProductsView({ onBack }) {
                                             <div className="text-xs text-lvmh-gray">{product.category1}</div>
                                         </div>
                                         <div className="text-right">
-                                            <div className="text-sm text-lvmh-gold font-bold">
+                                            <div className="text-sm text-silver font-bold">
                                                 {product.price_eur?.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                             </div>
                                             {product.is_discount && (
@@ -514,7 +514,7 @@ export default function ProductsView({ onBack }) {
                                 <button
                                     onClick={() => { const p = Math.max(1, productsPage - 1); setProductsPage(p); fetchProducts(p); }}
                                     disabled={productsPage === 1}
-                                    className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-2 rounded-lg border border-white/10 hover:border-silver/40 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ChevronLeft size={20} />
                                 </button>
@@ -524,7 +524,7 @@ export default function ProductsView({ onBack }) {
                                 <button
                                     onClick={() => { const p = productsPage + 1; setProductsPage(p); fetchProducts(p); }}
                                     disabled={productsPage >= totalPages}
-                                    className="p-2 rounded-lg border border-white/10 hover:border-lvmh-gold/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-2 rounded-lg border border-white/10 hover:border-silver/40 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ChevronRight size={20} />
                                 </button>
@@ -542,7 +542,7 @@ export default function ProductsView({ onBack }) {
                     <div className="glass p-6 rounded-lg w-full max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
                         <div className="flex justify-between items-center mb-4">
                             <h3 className="text-lg font-bold flex items-center gap-2">
-                                <Upload size={18} className="text-lvmh-gold" />
+                                <Upload size={18} className="text-silver" />
                                 Import CSV
                             </h3>
                             <button 
@@ -554,7 +554,7 @@ export default function ProductsView({ onBack }) {
                         </div>
 
                         <div className="mb-6">
-                            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:border-lvmh-gold/50 transition-colors">
+                            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:border-silver/50 transition-colors">
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <Upload size={24} className="text-lvmh-gray mb-2" />
                                     <p className="text-sm text-lvmh-gray">

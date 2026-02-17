@@ -105,7 +105,104 @@ graph TB
 
 ---
 
-## 🎯 Comptes Démo
+## 🔒 Sécurité & RGPD
+
+### LLM Guard
+- **PII Masking** : Masquage automatique emails, phones, noms
+- **Prompt Injection** : Détection attaques injection
+- **Toxicity** : Filtrage contenu inapproprié
+- **Secrets** : Détection keys/API tokens
+
+### RGPD Filter
+- **Santé** : Cancer, HIV, diabète, dépression
+- **Juridique** : Divorce, procès, prison
+- **Financier** : Faillite, surendettement
+- **Audit Trail** : Marquage données sensibles pour compliance
+
+---
+
+## 🧠 Intelligence Client
+
+### Churn Prediction
+- **Score 0-1** : Probabilité de départ client
+- **Niveaux** : low | medium | high
+- **Action** : Appel retention automatique si risque > 70%
+
+### CLV (Customer Lifetime Value)
+- **Estimation EUR** : Valeur vie client forecasted
+- **Tier** : silver | gold | platinum
+- **Upsell** : Priorité NBA augmentée pour platinum
+
+### Sentiment Analysis
+- **Score -1 à +1** : Ton de la conversation
+- **NÉGATIF < -0.3** : Escalation manager prioritaire
+- **POSITIF > 0.5** : Invitation événement exclusif
+
+---
+
+## 💾 Cache & Performance
+
+### Exact Match Cache
+- **Namespace** : pipeline_v3_{profile}
+- **TTL** : 24h (configurable)
+- **Hit** : Retour instantané <10ms
+
+### Semantic Cache
+- **Similarity** : > 0.85 threshold
+- **Modèle** : sentence-transformers
+- **Stats** : Hit rate affiché dans metrics
+
+---
+
+## ⚡ Résilience
+
+### Circuit Breaker
+- **Failure Threshold** : 10 erreurs consécutives
+- **Timeout** : 60s avant retry
+- **Fallback** : Tier 1 rules si API down
+
+### Dead Letter Queue (DLQ)
+- **Fichier** : outputs/dlq/dlq_YYYY-MM-DD.jsonl
+- **Export** : CSV pour analyse
+- **Retry** : Notes échouées isolées pour review
+
+### Cross-Validation
+- **Tier 1 vs Tier 2** : Comparaison automatique
+- **Seuil** : Alert si divergence > 20%
+- **Audit** : Log des écarts pour amélioration modèle
+
+---
+
+## 📊 Analytics & Monitoring
+
+### BigQuery Sync
+- **Stream** : Insertion temps réel
+- **Partitioning** : Par jour
+- **Champs** : 40+ colonnes (tags, scores, RGPD, budgets)
+
+### WebSocket Pipeline
+- **Endpoint** : /ws/pipeline
+- **Events** : step, progress, error
+- **Frontend** : Visualisation temps réel processing
+
+### Evidently (ML Monitoring)
+- **Data Quality** : Drift detection sur inputs
+- **Model Performance** : Précision temps réel
+- **Alerts** : Notification dérive modèle
+
+---
+
+## 🏆 Gamification
+
+### Leaderboard
+- **Temps Réel** : WebSocket push toutes les 30s
+- **Score** : Points par note traitée
+- **Rangs** : Advisor, Manager, Admin
+
+### Quality Scoring
+- **Score 0-100** : Richesse des données extraites
+- **Feedback** : Conseils amélioration pour CA
+- **Historique** : Suivi progression individuelle
 
 | Rôle | Email | Password |
 |------|-------|----------|

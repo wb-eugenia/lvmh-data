@@ -171,7 +171,7 @@ export default function PipelineVisualizer({
             {/* Header avec timeline */}
             <div className="glass p-4 rounded-xl border border-white/10">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lvmh-gold font-bold flex items-center gap-2">
+                    <h3 className="text-silver font-bold flex items-center gap-2">
                         <Activity size={18} className={isProcessing ? 'animate-pulse' : ''} />
                         Pipeline IA V3.0
                     </h3>
@@ -179,7 +179,7 @@ export default function PipelineVisualizer({
                         {connectionState && (
                             <div className={`text-[10px] px-2 py-1 rounded-full border inline-flex items-center gap-1 ${
                                 connectionState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : 
-                                connectionState === 'connecting' ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 
+                                connectionState === 'connecting' ? 'border-silver/40 text-silver bg-silver/10' : 
                                 'border-red-500/40 text-red-400 bg-red-500/10'
                             }`}>
                                 {connectionState === 'connected' ? <Wifi size={11} /> : <WifiOff size={11} />}
@@ -188,7 +188,7 @@ export default function PipelineVisualizer({
                         )}
                         {processingLabel && (
                             <div className={`text-[10px] px-2 py-1 rounded-full font-bold ${
-                                normalizedStep === 'failed' ? 'bg-red-500/20 text-red-400' : 'bg-lvmh-gold/20 text-lvmh-gold'
+                                normalizedStep === 'failed' ? 'bg-red-500/20 text-red-400' : 'bg-silver/20 text-silver'
                             }`}>
                                 {processingLabel}
                             </div>
@@ -207,13 +207,13 @@ export default function PipelineVisualizer({
                         return (
                             <div key={step.id} className="flex flex-col items-center min-w-[80px]">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                                    isCompleted ? 'bg-lvmh-gold text-black' : 
-                                    isActive ? 'bg-white text-black animate-pulse shadow-lg shadow-lvmh-gold/30' : 
+                                    isCompleted ? 'bg-silver text-black' : 
+                                    isActive ? 'bg-white text-black animate-pulse shadow-lg shadow-silver/30' : 
                                     'bg-white/10 text-gray-500'
                                 }`}>
                                     {isCompleted ? <CheckCircle size={16} /> : <Icon size={16} />}
                                 </div>
-                                <div className={`text-[10px] mt-2 text-center ${isActive ? 'text-white font-bold' : isCompleted ? 'text-lvmh-gold' : 'text-gray-500'}`}>
+                                <div className={`text-[10px] mt-2 text-center ${isActive ? 'text-white font-bold' : isCompleted ? 'text-silver' : 'text-gray-500'}`}>
                                     {step.name}
                                 </div>
                                 {stepTime && (
@@ -226,7 +226,7 @@ export default function PipelineVisualizer({
 
                 {/* Progress hint */}
                 {progressHint && isProcessing && (
-                    <div className="mt-3 text-center text-xs text-lvmh-gold/70">
+                    <div className="mt-3 text-center text-xs text-silver/70">
                         {progressHint}
                     </div>
                 )}
@@ -295,7 +295,7 @@ export default function PipelineVisualizer({
                                 <span className="text-[10px] uppercase text-lvmh-gray">Routing</span>
                                 <span className={`text-xs font-bold ${
                                     routing?.tier === 3 ? 'text-red-400' : 
-                                    routing?.tier === 2 ? 'text-lvmh-gold' : 'text-gray-400'
+                                    routing?.tier === 2 ? 'text-silver' : 'text-gray-400'
                                 }`}>
                                     Tier {routing?.tier || 1}
                                 </span>
@@ -306,7 +306,7 @@ export default function PipelineVisualizer({
                                 </div>
                             )}
                             {routing?.engine && (
-                                <div className="text-[9px] text-lvmh-gold">
+                                <div className="text-[9px] text-silver">
                                     Moteur: {routing.engine}
                                 </div>
                             )}
@@ -365,7 +365,7 @@ export default function PipelineVisualizer({
                     <div className="flex items-center gap-4 mb-4">
                         <div className="flex-1 bg-white/5 rounded-lg p-3 text-center">
                             <div className="text-[10px] uppercase text-lvmh-gray">Qualite</div>
-                            <div className="text-2xl font-bold text-lvmh-gold">{scoreLabel}</div>
+                            <div className="text-2xl font-bold text-silver">{scoreLabel}</div>
                         </div>
                         <div className="flex-1 bg-white/5 rounded-lg p-3 text-center">
                             <div className="text-[10px] uppercase text-lvmh-gray">Points</div>
@@ -381,7 +381,7 @@ export default function PipelineVisualizer({
                             </div>
                             <div className="flex flex-wrap gap-1">
                                 {tags.slice(0, 8).map((tag, i) => (
-                                    <span key={i} className="text-[9px] bg-lvmh-gold/20 text-lvmh-gold px-2 py-0.5 rounded-full">
+                                    <span key={i} className="text-[9px] bg-silver/20 text-silver px-2 py-0.5 rounded-full">
                                         {tag}
                                     </span>
                                 ))}
@@ -465,10 +465,10 @@ export default function PipelineVisualizer({
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                             {matchedProducts.slice(0, 6).map((product, i) => (
                                 <div key={i} className="bg-white/5 p-3 rounded-lg border border-white/5">
-                                    <div className="text-sm font-semibold text-lvmh-gold">{product.name || product.ID}</div>
+                                    <div className="text-sm font-semibold text-silver">{product.name || product.ID}</div>
                                     <div className="text-[10px] text-lvmh-gray uppercase">{product.category || 'Produit'}</div>
                                     {product.match_score && (
-                                        <div className="text-[10px] text-lvmh-gold mt-1">
+                                        <div className="text-[10px] text-silver mt-1">
                                             Score: {Math.round(product.match_score * 100)}%
                                         </div>
                                     )}

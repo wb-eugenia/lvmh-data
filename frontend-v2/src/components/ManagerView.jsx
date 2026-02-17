@@ -910,7 +910,7 @@ export default function ManagerView({ onBack }) {
     const alertToneClass = healthStatus === 'healthy'
         ? 'border-green-500/30 bg-green-500/10 text-green-400'
         : healthStatus === 'warning'
-            ? 'border-lvmh-gold/30 bg-lvmh-gold/10 text-lvmh-gold'
+            ? 'border-silver/30 bg-silver/10 text-silver'
             : 'border-red-500/30 bg-red-500/10 text-red-400'
 
     const overviewAdvisorOptions = Array.from(
@@ -958,7 +958,7 @@ export default function ManagerView({ onBack }) {
 
     const chartData = [
         { name: 'Tier 1', value: chartSource?.[1] || 0, color: '#888888' },
-        { name: 'Tier 2', value: chartSource?.[2] || 0, color: '#D4AF37' },
+        { name: 'Tier 2', value: chartSource?.[2] || 0, color: '#C0C0C0' },
         { name: 'Tier 3', value: chartSource?.[3] || 0, color: '#FF5252' }
     ]
 
@@ -1542,10 +1542,10 @@ export default function ManagerView({ onBack }) {
                     <div className="relative w-72 max-w-[85%] h-full bg-lvmh-black shadow-2xl border-r border-white/10 p-6 flex flex-col animate-in slide-in-from-left">
                         <div className="flex items-center justify-between mb-8 p-2">
                             <div className="flex items-center gap-3">
-                                <button onClick={onBack} className="hover:text-lvmh-gold transition-colors"><ArrowLeft size={20} /></button>
+                                <button onClick={onBack} className="hover:text-silver transition-colors"><ArrowLeft size={20} /></button>
                                 <h1 className="gold-text font-black text-lg tracking-tighter">LVMH</h1>
                             </div>
-                            <button onClick={() => setIsSidebarOpen(false)} className="p-2 hover:text-lvmh-gold transition-colors">
+                            <button onClick={() => setIsSidebarOpen(false)} className="p-2 hover:text-silver transition-colors">
                                 <X size={24} />
                             </button>
                         </div>
@@ -1555,7 +1555,7 @@ export default function ManagerView({ onBack }) {
                                 <button
                                     key={tab.id}
                                     onClick={() => { setCurrentTab(tab.id); setIsSidebarOpen(false); }}
-                                    className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl transition-all ${currentTab === tab.id ? 'bg-lvmh-gold text-black font-bold shadow-lg shadow-lvmh-gold/20' : 'text-lvmh-gray hover:bg-white/5'
+                                    className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl transition-all ${currentTab === tab.id ? 'bg-silver text-black font-bold shadow-lg shadow-silver/20' : 'text-lvmh-gray hover:bg-white/5'
                                         }`}
                                 >
                                     <tab.icon size={20} />
@@ -1580,7 +1580,7 @@ export default function ManagerView({ onBack }) {
             {/* Desktop Sidebar */}
             <div className="hidden md:flex w-64 border-r border-white/5 bg-lvmh-black h-full flex-col p-6">
                 <div className="flex items-center gap-3 mb-12 p-2">
-                    <button onClick={onBack} className="hover:text-lvmh-gold transition-colors"><ArrowLeft size={20} /></button>
+                    <button onClick={onBack} className="hover:text-silver transition-colors"><ArrowLeft size={20} /></button>
                     <h1 className="gold-text font-black text-lg tracking-tighter">LVMH ANALYTICS</h1>
                 </div>
 
@@ -1589,7 +1589,7 @@ export default function ManagerView({ onBack }) {
                         <button
                             key={tab.id}
                             onClick={() => setCurrentTab(tab.id)}
-                            className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl transition-all ${currentTab === tab.id ? 'bg-lvmh-gold text-black font-bold shadow-lg shadow-lvmh-gold/20' : 'text-lvmh-gray hover:bg-white/5'
+                            className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl transition-all ${currentTab === tab.id ? 'bg-silver text-black font-bold shadow-lg shadow-silver/20' : 'text-lvmh-gray hover:bg-white/5'
                                 }`}
                         >
                             <tab.icon size={20} />
@@ -1600,7 +1600,7 @@ export default function ManagerView({ onBack }) {
 
                 <div className="mt-auto pt-6 border-t border-white/5">
                     <div className="flex items-center gap-3 text-sm text-lvmh-gray px-4">
-                        <div className={`w-2 h-2 rounded-full ${pipelineSocketState === 'connected' ? 'bg-green-500 animate-pulse' : pipelineSocketState === 'connecting' ? 'bg-lvmh-gold animate-pulse' : 'bg-red-500'}`}></div>
+                        <div className={`w-2 h-2 rounded-full ${pipelineSocketState === 'connected' ? 'bg-green-500 animate-pulse' : pipelineSocketState === 'connecting' ? 'bg-silver animate-pulse' : 'bg-red-500'}`}></div>
                         {pipelineSocketState === 'connected' ? 'Serveur Live' : pipelineSocketState === 'connecting' ? 'Connexion WS...' : 'WS deconnecte'}
                     </div>
                     <button
@@ -1669,7 +1669,7 @@ export default function ManagerView({ onBack }) {
                                     <input
                                         type="text"
                                         placeholder="Rechercher dans les transcriptions..."
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-white text-sm focus:ring-1 focus:ring-lvmh-gold transition-all"
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-white text-sm focus:ring-1 focus:ring-silver transition-all"
                                         value={recordingsSearch}
                                         onChange={(e) => setRecordingsSearch(e.target.value)}
                                     />
@@ -1678,7 +1678,7 @@ export default function ManagerView({ onBack }) {
                             <select
                                 value={recordingsFilter}
                                 onChange={(e) => setRecordingsFilter(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-4 text-white text-sm focus:ring-1 focus:ring-lvmh-gold"
+                                className="bg-white/5 border border-white/10 rounded-lg py-2 px-4 text-white text-sm focus:ring-1 focus:ring-silver"
                             >
                                 <option value="all">Tous les tiers</option>
                                 <option value="tier1">Tier 1 (Simple)</option>
@@ -1689,20 +1689,20 @@ export default function ManagerView({ onBack }) {
 
                         {loadingRecordings ? (
                             <div className="flex justify-center py-20">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lvmh-gold"></div>
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-silver"></div>
                             </div>
                         ) : selectedRecording ? (
                             // Detail View
                             <div className="space-y-8 animate-in slide-in-from-right duration-300">
                                 <button
                                     onClick={() => setSelectedRecording(null)}
-                                    className="text-lvmh-gold text-sm hover:underline flex items-center gap-2"
+                                    className="text-silver text-sm hover:underline flex items-center gap-2"
                                 >
                                     ← Retour à la liste
                                 </button>
 
                                 <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
-                                    <div className="glass p-6 border-l-4 border-lvmh-gold">
+                                    <div className="glass p-6 border-l-4 border-silver">
                                         <div className="flex flex-wrap items-start justify-between gap-4">
                                             <div>
                                                 <div className="data-label">Client</div>
@@ -1710,10 +1710,10 @@ export default function ManagerView({ onBack }) {
                                                     {selectedRecording.client?.name || 'Client inconnu'}
                                                 </div>
                                                 <div className="mt-2 flex flex-wrap gap-2">
-                                                    <span className={`text-[10px] px-2 py-1 rounded-full ${selectedRecording.client?.vic_status !== 'Standard' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                                    <span className={`text-[10px] px-2 py-1 rounded-full ${selectedRecording.client?.vic_status !== 'Standard' ? 'bg-silver/20 text-silver' : 'bg-white/10 text-lvmh-gray'}`}>
                                                         {selectedRecording.client?.vic_status || 'Standard'}
                                                     </span>
-                                                    <span className={`text-[10px] px-2 py-1 rounded-full ${selectedRecording.tier === 1 ? 'bg-white/10 text-white' : selectedRecording.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-red-500/20 text-red-400'}`}>
+                                                    <span className={`text-[10px] px-2 py-1 rounded-full ${selectedRecording.tier === 1 ? 'bg-white/10 text-white' : selectedRecording.tier === 2 ? 'bg-silver/20 text-silver' : 'bg-red-500/20 text-red-400'}`}>
                                                         Tier {selectedRecording.tier}
                                                     </span>
                                                     {selectedRecording.tier === 2 && (
@@ -1755,7 +1755,7 @@ export default function ManagerView({ onBack }) {
                                             <div className="data-label">Tags ({selectedRecording.tags?.length || 0})</div>
                                             <div className="flex flex-wrap gap-2 mt-2 max-h-32 overflow-y-auto">
                                                 {selectedRecording.tags?.map((tag, i) => (
-                                                    <span key={i} className="text-xs bg-lvmh-gold/15 text-lvmh-gold px-2 py-1 rounded-full">
+                                                    <span key={i} className="text-xs bg-silver/15 text-silver px-2 py-1 rounded-full">
                                                         {tag}
                                                     </span>
                                                 ))}
@@ -1794,7 +1794,7 @@ export default function ManagerView({ onBack }) {
                                             </div>
                                             <div className="glass p-4">
                                                 <div className="data-label">Points</div>
-                                                <div className="text-lg font-semibold text-lvmh-gold">+{selectedRecording.points_awarded || 0} pts</div>
+                                                <div className="text-lg font-semibold text-silver">+{selectedRecording.points_awarded || 0} pts</div>
                                             </div>
                                             <div className="glass p-4">
                                                 <div className="data-label">Traitement</div>
@@ -1918,12 +1918,12 @@ export default function ManagerView({ onBack }) {
                                 {selectedRecording.matched_products?.length > 0 && (
                                     <div className="glass p-6">
                                         <div className="flex items-center gap-2 mb-4">
-                                            <ShoppingBag size={20} className="text-lvmh-gold" />
+                                            <ShoppingBag size={20} className="text-silver" />
                                             <h4 className="font-display font-bold">Produits recommandés (RAG)</h4>
                                         </div>
                                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-80 overflow-y-auto">
                                             {selectedRecording.matched_products.map((product, i) => (
-                                                <div key={i} className="bg-white/5 p-3 rounded-lg border border-white/10 hover:border-lvmh-gold/40 transition-colors">
+                                                <div key={i} className="bg-white/5 p-3 rounded-lg border border-white/10 hover:border-silver/40 transition-colors">
                                                     {product.image_url ? (
                                                         <img 
                                                             src={product.image_url} 
@@ -1936,7 +1936,7 @@ export default function ManagerView({ onBack }) {
                                                             <ShoppingBag size={24} className="text-lvmh-gray" />
                                                         </div>
                                                     )}
-                                                    <div className="font-bold text-sm text-lvmh-gold mb-1 truncate">{product.name || product.ID}</div>
+                                                    <div className="font-bold text-sm text-silver mb-1 truncate">{product.name || product.ID}</div>
                                                     <div className="text-xs text-lvmh-gray uppercase truncate">{product.category || 'Catégorie'}</div>
                                                     {product.description && (
                                                         <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
@@ -1984,17 +1984,17 @@ export default function ManagerView({ onBack }) {
                                     <div
                                         key={rec.id}
                                         onClick={() => setSelectedRecording(rec)}
-                                        className="glass p-5 hover:bg-white/5 transition-all cursor-pointer border-l-4 border-transparent hover:border-l-lvmh-gold"
+                                        className="glass p-5 hover:bg-white/5 transition-all cursor-pointer border-l-4 border-transparent hover:border-l-silver"
                                     >
                                         <div className="flex items-start justify-between gap-4">
                                             <div className="flex items-start gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-lvmh-gold/15 flex items-center justify-center">
-                                                    <Mic size={16} className="text-lvmh-gold" />
+                                                <div className="w-10 h-10 rounded-full bg-silver/15 flex items-center justify-center">
+                                                    <Mic size={16} className="text-silver" />
                                                 </div>
                                                 <div>
                                                     <div className="flex flex-wrap items-center gap-2">
                                                         <div className="font-semibold">{rec.client?.name || 'Client inconnu'}</div>
-                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${rec.client?.vic_status !== 'Standard' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${rec.client?.vic_status !== 'Standard' ? 'bg-silver/20 text-silver' : 'bg-white/10 text-lvmh-gray'}`}>
                                                             {rec.client?.vic_status || 'Standard'}
                                                         </span>
                                                     </div>
@@ -2006,7 +2006,7 @@ export default function ManagerView({ onBack }) {
                                             <div className="text-right">
                                                 <div className="text-xs text-lvmh-gray">{formatDateTime(rec.timestamp)}</div>
                                                 <div className="mt-1 flex items-center justify-end gap-2">
-                                                    <span className={`text-[10px] px-2 py-0.5 rounded-full ${rec.tier === 1 ? 'bg-white/10' : rec.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-red-500/20 text-red-400'}`}>
+                                                    <span className={`text-[10px] px-2 py-0.5 rounded-full ${rec.tier === 1 ? 'bg-white/10' : rec.tier === 2 ? 'bg-silver/20 text-silver' : 'bg-red-500/20 text-red-400'}`}>
                                                         T{rec.tier}
                                                     </span>
                                                     <span className="text-[10px] text-lvmh-gray">{formatPercent(rec.confidence)}</span>
@@ -2031,7 +2031,7 @@ export default function ManagerView({ onBack }) {
                                             <span>Budget: {rec.pilier_4_action_business?.budget_potential || 'N/A'}</span>
                                             <span>Urgence: {rec.pilier_4_action_business?.urgency || 'low'}</span>
                                             {rec.matched_products?.length > 0 && (
-                                                <span className="flex items-center gap-1 text-lvmh-gold">
+                                                <span className="flex items-center gap-1 text-silver">
                                                     <ShoppingBag size={12} />
                                                     {rec.matched_products.length} produits matchés
                                                 </span>
@@ -2088,7 +2088,7 @@ export default function ManagerView({ onBack }) {
                                 </div>
                                 <button
                                     onClick={fetchData}
-                                    className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest px-3 py-2 rounded-full border border-white/10 hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors"
+                                    className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest px-3 py-2 rounded-full border border-white/10 hover:border-silver/40 hover:text-silver transition-colors"
                                 >
                                     <RefreshCcw size={12} /> Refresh
                                 </button>
@@ -2123,7 +2123,7 @@ export default function ManagerView({ onBack }) {
 
                         <div className="glass p-6">
                             <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                <Users size={18} className="text-lvmh-gold" /> Segments
+                                <Users size={18} className="text-silver" /> Segments
                             </h3>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left">
@@ -2140,7 +2140,7 @@ export default function ManagerView({ onBack }) {
                                             <tr key={`segment-${segment.segment_id}`} className="hover:bg-white/5 transition-colors">
                                                 <td className="py-3 text-sm font-semibold">{segment.segment_label}</td>
                                                 <td className="py-3 text-sm text-right text-white">{segment.count}</td>
-                                                <td className="py-3 text-sm text-right text-lvmh-gold">{formatCurrency(segment.avg_budget || 0)}</td>
+                                                <td className="py-3 text-sm text-right text-silver">{formatCurrency(segment.avg_budget || 0)}</td>
                                                 <td className="py-3 text-sm text-right text-lvmh-gray">{Math.round(segment.vip_share_pct || 0)}%</td>
                                             </tr>
                                         ))}
@@ -2221,9 +2221,9 @@ export default function ManagerView({ onBack }) {
                                     <div className="text-[10px] uppercase tracking-widest text-red-300">Urgents</div>
                                     <div className="text-2xl font-bold text-red-300">{urgentActionsCount}</div>
                                 </div>
-                                <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-4">
-                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Budget Total</div>
-                                    <div className="text-2xl font-bold text-lvmh-gold">{formatCurrency(opportunityBudgetTotal)}</div>
+                                <div className="bg-silver/10 border border-silver/20 rounded-lg p-4">
+                                    <div className="text-[10px] uppercase tracking-widest text-silver">Budget Total</div>
+                                    <div className="text-2xl font-bold text-silver">{formatCurrency(opportunityBudgetTotal)}</div>
                                 </div>
                                 <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
                                     <div className="text-[10px] uppercase tracking-widest text-green-300">Finalisees</div>
@@ -2236,13 +2236,13 @@ export default function ManagerView({ onBack }) {
                                 {topOpportunities.slice(0, 15).map((opp) => {
                                     const actionState = resolveOpportunityAction(opp.id)
                                     return (
-                                        <div key={opp.id} className="glass p-4 border-l-4 border-lvmh-gold hover:bg-white/5 transition-all">
+                                        <div key={opp.id} className="glass p-4 border-l-4 border-silver hover:bg-white/5 transition-all">
                                             <div className="flex items-start justify-between gap-4">
                                                 <div className="flex-1">
                                                     <div className="flex items-center gap-2 mb-1">
                                                         <span className="font-semibold">{opp.clientName}</span>
-                                                        {opp.isVip && <Star size={14} className="text-lvmh-gold fill-lvmh-gold" />}
-                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${opp.tier === 3 ? 'bg-red-500/20 text-red-300' : opp.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                                        {opp.isVip && <Star size={14} className="text-silver fill-silver" />}
+                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${opp.tier === 3 ? 'bg-red-500/20 text-red-300' : opp.tier === 2 ? 'bg-silver/20 text-silver' : 'bg-white/10 text-lvmh-gray'}`}>
                                                             T{opp.tier}
                                                         </span>
                                                     </div>
@@ -2252,7 +2252,7 @@ export default function ManagerView({ onBack }) {
                                                     <div className="text-sm text-lvmh-gray mt-2 line-clamp-1">{opp.nextAction}</div>
                                                 </div>
                                                 <div className="text-right">
-                                                    <div className="text-lg font-bold text-lvmh-gold">{opp.budgetLabel}</div>
+                                                    <div className="text-lg font-bold text-silver">{opp.budgetLabel}</div>
                                                     <div className="text-xs text-lvmh-gray">{formatDateTime(opp.timestamp)}</div>
                                                     <div className="text-xs text-red-300 mt-1">{opp.urgencyLabel}</div>
                                                 </div>
@@ -2260,7 +2260,7 @@ export default function ManagerView({ onBack }) {
                                             <div className="flex flex-wrap gap-2 mt-3">
                                                 <button
                                                     onClick={() => setSelectedOpportunityId(opp.id)}
-                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-white/20 text-white hover:border-lvmh-gold/40"
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-white/20 text-white hover:border-silver/40"
                                                 >
                                                     Details
                                                 </button>
@@ -2274,7 +2274,7 @@ export default function ManagerView({ onBack }) {
                                                 <button
                                                     onClick={() => handleOpportunityAction(opp, 'done')}
                                                     disabled={actionSubmittingId === opp.id}
-                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-lvmh-gold/40 text-lvmh-gold hover:bg-lvmh-gold/10 disabled:opacity-50"
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border border-silver/40 text-silver hover:bg-silver/10 disabled:opacity-50"
                                                 >
                                                     Fait
                                                 </button>
@@ -2317,7 +2317,7 @@ export default function ManagerView({ onBack }) {
 
                             {segmentsLoading ? (
                                 <div className="flex justify-center py-20">
-                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-silver"></div>
                                 </div>
                             ) : segmentsError ? (
                                 <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-red-300">
@@ -2334,9 +2334,9 @@ export default function ManagerView({ onBack }) {
                                             <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Segments</div>
                                             <div className="text-2xl font-bold">{segmentRows.length}</div>
                                         </div>
-                                        <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-4">
-                                            <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Budget Moyen</div>
-                                            <div className="text-2xl font-bold text-lvmh-gold">
+                                        <div className="bg-silver/10 border border-silver/20 rounded-lg p-4">
+                                            <div className="text-[10px] uppercase tracking-widest text-silver">Budget Moyen</div>
+                                            <div className="text-2xl font-bold text-silver">
                                                 {formatCurrency(segmentRows.reduce((sum, s) => sum + (s.avg_budget || 0), 0) / Math.max(segmentRows.length, 1))}
                                             </div>
                                         </div>
@@ -2364,7 +2364,7 @@ export default function ManagerView({ onBack }) {
                                                     <tr key={seg.segment_id} className="hover:bg-white/5">
                                                         <td className="py-3 font-semibold">{seg.segment_label}</td>
                                                         <td className="py-3 text-right">{seg.count}</td>
-                                                        <td className="py-3 text-right text-lvmh-gold">{formatCurrency(seg.avg_budget || 0)}</td>
+                                                        <td className="py-3 text-right text-silver">{formatCurrency(seg.avg_budget || 0)}</td>
                                                         <td className="py-3 text-right text-red-300">{Math.round(seg.tier3_share_pct || 0)}%</td>
                                                         <td className="py-3 text-right text-lvmh-gray">{Math.round(seg.vip_share_pct || 0)}%</td>
                                                     </tr>
@@ -2393,7 +2393,7 @@ export default function ManagerView({ onBack }) {
                             <div className="glass p-6 border border-white/10">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <Trophy size={18} className="text-lvmh-gold" /> Classement
+                                        <Trophy size={18} className="text-silver" /> Classement
                                     </h3>
                                     <span className="text-xs text-lvmh-gray">{leaderboard.length} advisors</span>
                                 </div>
@@ -2415,7 +2415,7 @@ export default function ManagerView({ onBack }) {
                                                 </div>
                                             </div>
                                             <div className="text-right">
-                                                <div className="text-lg font-bold text-lvmh-gold">{adv.score}</div>
+                                                <div className="text-lg font-bold text-silver">{adv.score}</div>
                                                 <div className="text-[10px] text-lvmh-gray uppercase">points</div>
                                             </div>
                                         </div>
@@ -2430,7 +2430,7 @@ export default function ManagerView({ onBack }) {
                             <div className="glass p-6 border border-white/10">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-lg font-bold flex items-center gap-2">
-                                        <Users size={18} className="text-lvmh-gold" /> Detail par Advisor
+                                        <Users size={18} className="text-silver" /> Detail par Advisor
                                     </h3>
                                 </div>
                                 <div className="flex flex-wrap gap-2 mb-4">
@@ -2491,7 +2491,7 @@ export default function ManagerView({ onBack }) {
                                 <div className="flex items-center gap-2">
                                     <span className={`text-[10px] px-3 py-2 rounded-full border inline-flex items-center gap-1 ${
                                         pipelineSocketState === 'connected' ? 'border-green-500/40 text-green-400 bg-green-500/10' : 
-                                        pipelineSocketState === 'connecting' ? 'border-lvmh-gold/40 text-lvmh-gold bg-lvmh-gold/10' : 
+                                        pipelineSocketState === 'connecting' ? 'border-silver/40 text-silver bg-silver/10' : 
                                         'border-red-500/40 text-red-400 bg-red-500/10'
                                     }`}>
                                         {pipelineSocketState === 'connected' ? <Wifi size={11} /> : <WifiOff size={11} />}
@@ -2512,9 +2512,9 @@ export default function ManagerView({ onBack }) {
                                     <div className="text-[10px] uppercase tracking-widest text-red-300">Critical</div>
                                     <div className="text-3xl font-bold text-red-300">{liveAlertsCritical}</div>
                                 </div>
-                                <div className="bg-lvmh-gold/10 border border-lvmh-gold/20 rounded-lg p-4 text-center">
-                                    <div className="text-[10px] uppercase tracking-widest text-lvmh-gold">Warning</div>
-                                    <div className="text-3xl font-bold text-lvmh-gold">{liveAlertsWarning}</div>
+                                <div className="bg-silver/10 border border-silver/20 rounded-lg p-4 text-center">
+                                    <div className="text-[10px] uppercase tracking-widest text-silver">Warning</div>
+                                    <div className="text-3xl font-bold text-silver">{liveAlertsWarning}</div>
                                 </div>
                                 <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
                                     <div className="text-[10px] uppercase tracking-widest text-lvmh-gray">Info</div>
@@ -2529,14 +2529,14 @@ export default function ManagerView({ onBack }) {
                                         key={`${alert.timestamp}-${idx}`}
                                         className={`rounded-lg p-4 border ${
                                             alert.severity === 'critical' ? 'border-red-500/30 bg-red-500/10' : 
-                                            alert.severity === 'warning' ? 'border-lvmh-gold/30 bg-lvmh-gold/10' : 
+                                            alert.severity === 'warning' ? 'border-silver/30 bg-silver/10' : 
                                             'border-white/10 bg-white/[0.03]'
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <div className={`font-semibold ${
                                                 alert.severity === 'critical' ? 'text-red-300' : 
-                                                alert.severity === 'warning' ? 'text-lvmh-gold' : 
+                                                alert.severity === 'warning' ? 'text-silver' : 
                                                 'text-white'
                                             }`}>
                                                 {alert.title}
@@ -2580,7 +2580,7 @@ export default function ManagerView({ onBack }) {
 
                                     <div className="bg-white/5 p-4 rounded-lg border border-white/5 space-y-4">
                                         <div>
-                                            <div className="text-[10px] text-lvmh-gold uppercase font-bold mb-2 tracking-widest">🚀 Opportunité NBA</div>
+                                            <div className="text-[10px] text-silver uppercase font-bold mb-2 tracking-widest">🚀 Opportunité NBA</div>
                                             <div className="font-medium text-sm">{r.pilier_4_action_business?.next_best_action?.description || "Analyse approfondie requise"}</div>
                                         </div>
 
@@ -2590,7 +2590,7 @@ export default function ManagerView({ onBack }) {
                                                 <div className="flex gap-2 overflow-x-auto pb-1">
                                                     {r.matched_products.slice(0, 3).map((prod, pi) => (
                                                         <div key={pi} className="flex-shrink-0 bg-lvmh-black border border-white/5 p-2 rounded text-[10px]">
-                                                            <div className="font-bold text-lvmh-gold">{prod.name || prod.ID}</div>
+                                                            <div className="font-bold text-silver">{prod.name || prod.ID}</div>
                                                             <div className="text-[9px] text-lvmh-gray">{prod.category}</div>
                                                         </div>
                                                     ))}
@@ -2694,8 +2694,8 @@ export default function ManagerView({ onBack }) {
                         {/* Upload Zone */}
                         <div className="glass p-8 text-center">
                             <div className="mb-6">
-                                <div className="w-16 h-16 rounded-full bg-lvmh-gold/20 flex items-center justify-center mx-auto mb-4">
-                                    <Sparkles size={32} className="text-lvmh-gold" />
+                                <div className="w-16 h-16 rounded-full bg-silver/20 flex items-center justify-center mx-auto mb-4">
+                                    <Sparkles size={32} className="text-silver" />
                                 </div>
                                 <h4 className="text-lg font-bold mb-2">Nettoyer un fichier CSV</h4>
                                 <p className="text-sm text-lvmh-gray mb-6">
@@ -2726,7 +2726,7 @@ export default function ManagerView({ onBack }) {
                                     <select
                                         value={selectedColumn}
                                         onChange={(e) => setSelectedColumn(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:ring-1 focus:ring-silver transition-all"
                                     >
                                         <option value="">-- Choisir une colonne --</option>
                                         {availableColumns.map(col => (
@@ -2755,7 +2755,7 @@ export default function ManagerView({ onBack }) {
                                     <button
                                         onClick={handleDataCleaning}
                                         disabled={cleaningLoading}
-                                        className="px-8 py-3 bg-lvmh-gold text-black font-bold rounded-lg hover:bg-lvmh-gold/90 transition-colors disabled:opacity-50 flex items-center gap-2 mx-auto"
+                                        className="px-8 py-3 bg-silver text-black font-bold rounded-lg hover:bg-silver/90 transition-colors disabled:opacity-50 flex items-center gap-2 mx-auto"
                                     >
                                         {cleaningLoading ? (
                                             <>
@@ -2803,7 +2803,7 @@ export default function ManagerView({ onBack }) {
                                     </div>
                                     <button
                                         onClick={downloadCleanedFile}
-                                        className="ml-auto px-4 py-2 bg-lvmh-gold text-black font-bold rounded-lg hover:bg-lvmh-gold/90 transition-colors flex items-center gap-2"
+                                        className="ml-auto px-4 py-2 bg-silver text-black font-bold rounded-lg hover:bg-silver/90 transition-colors flex items-center gap-2"
                                     >
                                         <Download size={16} />
                                         Télécharger
@@ -2813,7 +2813,7 @@ export default function ManagerView({ onBack }) {
                                 {/* Stats Grid */}
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                     <div className="bg-white/5 p-4 rounded-lg text-center">
-                                        <div className="text-2xl font-display font-black text-lvmh-gold">{cleaningResult.report.original_rows}</div>
+                                        <div className="text-2xl font-display font-black text-silver">{cleaningResult.report.original_rows}</div>
                                         <div className="text-xs text-lvmh-gray uppercase">Lignes originales</div>
                                     </div>
                                     <div className="bg-white/5 p-4 rounded-lg text-center">
@@ -2825,7 +2825,7 @@ export default function ManagerView({ onBack }) {
                                         <div className="text-xs text-lvmh-gray uppercase">Lignes finales</div>
                                     </div>
                                     <div className="bg-white/5 p-4 rounded-lg text-center">
-                                        <div className="text-2xl font-display font-black text-lvmh-gold">{cleaningResult.report.reduction_percent}%</div>
+                                        <div className="text-2xl font-display font-black text-silver">{cleaningResult.report.reduction_percent}%</div>
                                         <div className="text-xs text-lvmh-gray uppercase">Réduction</div>
                                     </div>
                                 </div>
@@ -2843,7 +2843,7 @@ export default function ManagerView({ onBack }) {
                                     ))}
                                     {cleaningResult.report.rows_cleaned > 0 && (
                                         <div className="flex items-center gap-3 bg-white/5 p-3 rounded-lg">
-                                            <Sparkles size={16} className="text-lvmh-gold" />
+                                            <Sparkles size={16} className="text-silver" />
                                             <span className="text-sm">
                                                 Nettoyage des espaces et normalisation du texte
                                             </span>
@@ -2855,7 +2855,7 @@ export default function ManagerView({ onBack }) {
                                 <div className="mt-6 pt-6 border-t border-white/10">
                                     <div className="flex items-center gap-2 mb-3">
                                         <span className="text-sm text-lvmh-gray">Colonne utilisée pour le nettoyage:</span>
-                                        <span className="text-sm font-bold text-lvmh-gold">
+                                        <span className="text-sm font-bold text-silver">
                                             {cleaningResult.report.text_column_used}
                                         </span>
                                     </div>
@@ -2870,7 +2870,7 @@ export default function ManagerView({ onBack }) {
                                         {cleaningResult.report.final_columns.map((col, i) => (
                                             <span 
                                                 key={i} 
-                                                className={`text-xs px-2 py-1 rounded ${col === cleaningResult.report.text_column_used ? 'bg-lvmh-gold text-black font-bold' : 'bg-white/10'}`}
+                                                className={`text-xs px-2 py-1 rounded ${col === cleaningResult.report.text_column_used ? 'bg-silver text-black font-bold' : 'bg-white/10'}`}
                                             >
                                                 {col}
                                             </span>
@@ -2905,7 +2905,7 @@ export default function ManagerView({ onBack }) {
                             <select
                                 value={selectedCsv}
                                 onChange={handleCsvSelect}
-                                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all appearance-none cursor-pointer"
+                                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-silver transition-all appearance-none cursor-pointer"
                             >
                                 {csvFiles.map(file => (
                                     <option key={file} value={file} className="bg-lvmh-black">{file}</option>
@@ -2915,7 +2915,7 @@ export default function ManagerView({ onBack }) {
 
                         {loadingCsv ? (
                             <div className="flex justify-center py-20">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lvmh-gold"></div>
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-silver"></div>
                             </div>
                         ) : (
                             <div className="glass overflow-hidden">
@@ -2948,7 +2948,7 @@ export default function ManagerView({ onBack }) {
                                                 </td>
                                                 <td className="p-4">
                                                     <span className={`text-[10px] px-2 py-1 rounded-full font-bold ${row.tier === 1 ? 'bg-white/10 text-white' :
-                                                            row.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
+                                                            row.tier === 2 ? 'bg-silver/20 text-silver' :
                                                                 'bg-red-500/20 text-red-500'
                                                         }`}>
                                                         TIER {row.tier}
@@ -2972,7 +2972,7 @@ export default function ManagerView({ onBack }) {
                                                     )}
                                                 </td>
                                                 <td className="p-4 text-sm text-lvmh-gray">{row.budget_range || 'N/A'}</td>
-                                                <td className="p-4 text-right font-bold text-lvmh-gold">{Math.round(row.confidence * 100)}%</td>
+                                                <td className="p-4 text-right font-bold text-silver">{Math.round(row.confidence * 100)}%</td>
                                             </tr>
                                         )) : (
                                             <tr>
@@ -3004,16 +3004,16 @@ export default function ManagerView({ onBack }) {
                                         {selectedOpportunityRecord?.client?.name || 'Client inconnu'}
                                     </h4>
                                     <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px]">
-                                        <span className={`px-2 py-1 rounded-full border ${selectedOpportunityUrgency.level === 3 ? 'border-red-500/40 bg-red-500/15 text-red-300' : selectedOpportunityUrgency.level === 2 ? 'border-lvmh-gold/40 bg-lvmh-gold/10 text-lvmh-gold' : 'border-white/20 bg-white/10 text-lvmh-gray'}`}>
+                                        <span className={`px-2 py-1 rounded-full border ${selectedOpportunityUrgency.level === 3 ? 'border-red-500/40 bg-red-500/15 text-red-300' : selectedOpportunityUrgency.level === 2 ? 'border-silver/40 bg-silver/10 text-silver' : 'border-white/20 bg-white/10 text-lvmh-gray'}`}>
                                             Urgence: {selectedOpportunityUrgency.label}
                                         </span>
-                                        <span className={`px-2 py-1 rounded-full ${selectedOpportunityRecord?.client?.vic_status && selectedOpportunityRecord.client.vic_status !== 'Standard' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                        <span className={`px-2 py-1 rounded-full ${selectedOpportunityRecord?.client?.vic_status && selectedOpportunityRecord.client.vic_status !== 'Standard' ? 'bg-silver/20 text-silver' : 'bg-white/10 text-lvmh-gray'}`}>
                                             {selectedOpportunityRecord?.client?.vic_status || 'Standard'}
                                         </span>
                                         <span className="px-2 py-1 rounded-full bg-white/10 text-lvmh-gray">
                                             Tier {selectedOpportunityRecord?.tier || 1}
                                         </span>
-                                        <span className={`px-2 py-1 rounded-full border ${selectedOpportunityActionState?.status === 'done' ? 'border-green-500/40 bg-green-500/15 text-green-300' : selectedOpportunityActionState?.status === 'planned' ? 'border-lvmh-gold/40 bg-lvmh-gold/10 text-lvmh-gold' : 'border-white/20 bg-white/10 text-lvmh-gray'}`}>
+                                        <span className={`px-2 py-1 rounded-full border ${selectedOpportunityActionState?.status === 'done' ? 'border-green-500/40 bg-green-500/15 text-green-300' : selectedOpportunityActionState?.status === 'planned' ? 'border-silver/40 bg-silver/10 text-silver' : 'border-white/20 bg-white/10 text-lvmh-gray'}`}>
                                             {selectedOpportunityActionLabel}
                                         </span>
                                     </div>
@@ -3040,7 +3040,7 @@ export default function ManagerView({ onBack }) {
                                                         const label = formatChipValue(product)
                                                         if (!label) return null
                                                         return (
-                                                            <span key={`nba-target-${index}`} className="text-[10px] px-2 py-1 rounded-full border border-lvmh-gold/30 bg-lvmh-gold/10 text-lvmh-gold">
+                                                            <span key={`nba-target-${index}`} className="text-[10px] px-2 py-1 rounded-full border border-silver/30 bg-silver/10 text-silver">
                                                                 {label}
                                                             </span>
                                                         )
@@ -3078,13 +3078,13 @@ export default function ManagerView({ onBack }) {
                                             </div>
                                             <div className="flex items-center justify-between gap-3">
                                                 <span className="text-lvmh-gray">Budget potentiel</span>
-                                                <span className="text-lvmh-gold font-medium">
+                                                <span className="text-silver font-medium">
                                                     {selectedOpportunityBudget ? formatCurrency(selectedOpportunityBudget) : (selectedOpportunityP4?.budget_potential || '-')}
                                                 </span>
                                             </div>
                                             <div className="flex items-center justify-between gap-3">
                                                 <span className="text-lvmh-gray">Risque churn</span>
-                                                <span className={`${selectedOpportunityChurn >= 0.7 ? 'text-red-300' : selectedOpportunityChurn >= 0.4 ? 'text-lvmh-gold' : 'text-white'} font-medium`}>
+                                                <span className={`${selectedOpportunityChurn >= 0.7 ? 'text-red-300' : selectedOpportunityChurn >= 0.4 ? 'text-silver' : 'text-white'} font-medium`}>
                                                     {selectedOpportunityP4?.churn_level ? `${selectedOpportunityP4.churn_level.toUpperCase()} (${Math.round(selectedOpportunityChurn * 100)}%)` : '-'}
                                                 </span>
                                             </div>
@@ -3113,7 +3113,7 @@ export default function ManagerView({ onBack }) {
                                                 <button
                                                     onClick={() => handleOpportunityAction({ id: selectedOpportunityRecord.id }, 'schedule')}
                                                     disabled={actionSubmittingId === selectedOpportunityRecord.id || bulkActionSubmitting}
-                                                    className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/20 text-white hover:border-lvmh-gold/40 hover:text-lvmh-gold transition-colors disabled:opacity-50"
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-white/20 text-white hover:border-silver/40 hover:text-silver transition-colors disabled:opacity-50"
                                                 >
                                                     Planifier
                                                 </button>
@@ -3132,7 +3132,7 @@ export default function ManagerView({ onBack }) {
                                                         setSelectedRecording(null)
                                                         setSelectedOpportunityId(null)
                                                     }}
-                                                    className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-lvmh-gold/40 text-lvmh-gold hover:bg-lvmh-gold/10 transition-colors"
+                                                    className="text-[10px] uppercase tracking-widest px-3 py-2 rounded-lg border border-silver/40 text-silver hover:bg-silver/10 transition-colors"
                                                 >
                                                     Ouvrir fiche
                                                 </button>
@@ -3196,7 +3196,7 @@ export default function ManagerView({ onBack }) {
                                                             <div className="text-sm font-semibold text-white">{productName}</div>
                                                             <div className="text-xs text-lvmh-gray mt-1">{productMeta || 'Categorie non renseignee'}</div>
                                                             {!Number.isNaN(scoreValue) && Number.isFinite(scoreValue) && (
-                                                                <div className="text-[10px] text-lvmh-gold mt-2">Match: {Math.round(scoreValue * 100)}%</div>
+                                                                <div className="text-[10px] text-silver mt-2">Match: {Math.round(scoreValue * 100)}%</div>
                                                             )}
                                                         </div>
                                                     )
@@ -3228,7 +3228,7 @@ function KPICard({ title, value, trend, subtitle = null, gold = false, red = fal
                 : 'text-lvmh-gray'
     return (
         <div className="glass p-6 relative overflow-hidden group hover:scale-[1.02] transition-transform">
-            {gold && <div className="absolute top-0 right-0 w-32 h-32 bg-lvmh-gold/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-lvmh-gold/10 transition-colors"></div>}
+            {gold && <div className="absolute top-0 right-0 w-32 h-32 bg-silver/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-silver/10 transition-colors"></div>}
             <div className="text-lvmh-gray text-xs uppercase tracking-widest font-bold mb-4">{title}</div>
             <div className={`text-4xl font-black mb-2 ${gold ? 'gold-text' : (red ? 'text-red-500' : 'text-white')}`}>{value}</div>
             <div className={`text-[10px] font-bold ${trendClass}`}>{trendText}</div>

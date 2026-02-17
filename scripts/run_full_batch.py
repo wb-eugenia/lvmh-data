@@ -11,15 +11,9 @@ from collections import Counter
 # Add src to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.pipeline_batch_v2 import PipelineBatchV2
+from src.pipeline_async import AsyncPipeline
 
 async def run_full_batch(num_notes=400):
-    # Clear cache usually? Maybe NOT for 400 notes to save money/time if re-running.
-    # But for a clean Generalization run, let's clear it.
-    if os.path.exists('cache/pipeline_batch'):
-        # shutil.rmtree('cache/pipeline_batch') # Keep cache for speed if partial
-        print("ℹ️  Cache pipeline préservé pour vitesse")
-        
     print(f"{'='*60}")
     print(f"🚀 FULL BATCH RUN: {num_notes} NOTES")
     print(f"{'='*60}")
@@ -27,7 +21,6 @@ async def run_full_batch(num_notes=400):
     # 1. Load Data
     csv_path = "data/raw/LVMH_Notes_CA101-400.csv"
     if not os.path.exists(csv_path):
-        # Fallback to cleaned if raw not found
         csv_path = "data/LVMH_Notes_CA101-400_cleaned.csv"
         
     if not os.path.exists(csv_path):
@@ -54,7 +47,6 @@ async def run_full_batch(num_notes=400):
         print("⚠️ Colonne 'Transcription' non trouvée, utilisation de la 1ère colonne.")
         df['Transcription'] = df.iloc[:, 0]
 
-    # Full set
     # Limit to num_notes if specified, else all
     if num_notes:
         sample_notes = df.head(num_notes).to_dict('records')
@@ -63,15 +55,15 @@ async def run_full_batch(num_notes=400):
     
     # Add IDs
     for i, note in enumerate(sample_notes):
-        if 'ID' not in note: note['ID'] = f"CA_{101+i}" # Align with dataset ID convention
-        if 'Language' not in note: note['Language'] = 'fr'
+        if 'ID' not in note: note['ID'] = f"CA_{101+i}"
+        if 'Language' not in note: note['Language'] = 'FR'
 
     # 2. Run Pipeline
     print(f"\n⚙️  Processing {len(sample_notes)} notes...")
     start_time = time.time()
     
-    pipeline = PipelineBatchV2(use_cache=True, use_bq=False)
-    results = await pipeline.process_batch_async(sample_notes)
+    pipeline = AsyncPipeline(use_cache=True)
+    results = await pipeline.process_batch(sample_notes)
     
     total_time = time.time() - start_time
     print(f"\n✅ Terminé en {total_time:.2f}s ({total_time/len(sample_notes):.2f}s/note)")

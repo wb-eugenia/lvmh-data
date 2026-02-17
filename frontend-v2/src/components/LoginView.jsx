@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { User, Lock, Sparkles, AlertCircle } from 'lucide-react';
 
-function GoldParticles() {
+function SilverParticles() {
     const particles = Array.from({ length: 15 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
@@ -64,44 +64,44 @@ export default function LoginView() {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-            <GoldParticles />
+            <SilverParticles />
             
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1549488344-c7052fb51f22?q=80&w=2670&auto=format&fit=crop')] bg-cover opacity-10 pointer-events-none"></div>
 
             <div className="w-full max-w-md glass-card p-10 relative z-10">
                 <div className="text-center mb-10">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-lvmh-gold to-[#a68520] flex items-center justify-center shadow-xl shadow-lvmh-gold/30">
-                        <Sparkles className="text-black w-8 h-8" />
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#C0C0C0] to-[#A0A0A0] flex items-center justify-center shadow-xl shadow-silver/30">
+                        <Sparkles className="text-[#0C1929] w-8 h-8" />
                     </div>
                     <h1 className="text-4xl font-display font-bold gold-text mb-2">LVMH</h1>
                     <p className="text-lvmh-gray uppercase tracking-[0.25em] text-xs">Excellence Retail & Clienteling</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-lvmh-gray mb-3 font-medium">Identifiant LVMH</label>
-                        <div className="relative">
-                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-lvmh-gold/60" size={18} />
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="space-y-2">
+                        <label className="block text-xs uppercase tracking-widest text-lvmh-gray font-medium">Identifiant LVMH</label>
+                        <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+                            <User className="text-silver/60 shrink-0" size={20} />
                             <input
                                 type="text"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="advisor@lvmh.com"
-                                className="input-glass pl-12 pr-4"
+                                placeholder="votre@email.com"
+                                className="bg-transparent border-none outline-none text-white placeholder-white/40 w-full text-base"
                             />
                         </div>
                     </div>
 
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-lvmh-gray mb-3 font-medium">Mot de Passe</label>
-                        <div className="relative">
-                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-lvmh-gold/60" size={18} />
+                    <div className="space-y-2">
+                        <label className="block text-xs uppercase tracking-widest text-lvmh-gray font-medium">Mot de Passe</label>
+                        <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+                            <Lock className="text-silver/60 shrink-0" size={20} />
                             <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="input-glass pl-12 pr-4"
+                                className="bg-transparent border-none outline-none text-white placeholder-white/40 w-full text-base"
                             />
                         </div>
                     </div>
@@ -115,7 +115,7 @@ export default function LoginView() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="btn-gold w-full py-4 uppercase tracking-widest flex justify-center items-center gap-2 text-base"
+                        className="btn-gold w-full py-4 uppercase tracking-widest flex justify-center items-center gap-2 text-base mt-4"
                     >
                         {isLoading ? (
                             <div className="spinner-gold"></div>
@@ -125,13 +125,6 @@ export default function LoginView() {
                             </>
                         )}
                     </button>
-
-                    <div className="text-center text-xs text-lvmh-gray mt-6 space-y-1">
-                        <p className="text-lvmh-gold/60 mb-2">Demo Credentials:</p>
-                        <p>Advisor: <span className="text-white/80">advisor@lvmh.com</span> / <span className="text-white/80">lvmh</span></p>
-                        <p>Manager: <span className="text-white/80">manager@lvmh.com</span> / <span className="text-white/80">lvmh</span></p>
-                        <p>Admin: <span className="text-white/80">admin@lvmh.com</span> / <span className="text-white/80">lvmh</span></p>
-                    </div>
                 </form>
             </div>
         </div>

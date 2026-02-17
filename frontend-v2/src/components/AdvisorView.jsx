@@ -104,17 +104,17 @@ export default function AdvisorView({ onBack }) {
             ? {
                 label: 'Validation',
                 helper: 'Verifier puis lancer l analyse',
-                tone: 'text-lvmh-gold',
-                border: 'border-lvmh-gold/40',
-                badge: 'bg-lvmh-gold/20 text-lvmh-gold'
+                tone: 'text-silver',
+                border: 'border-silver/40',
+                badge: 'bg-silver/20 text-silver'
             }
         : isProcessing
             ? {
                 label: 'Analyse',
                 helper: 'La pipeline traite la note',
-                tone: 'text-lvmh-gold',
-                border: 'border-lvmh-gold/40',
-                badge: 'bg-lvmh-gold/20 text-lvmh-gold'
+                tone: 'text-silver',
+                border: 'border-silver/40',
+                badge: 'bg-silver/20 text-silver'
             }
             : currentResult
                 ? {
@@ -677,7 +677,7 @@ export default function AdvisorView({ onBack }) {
                     particleCount: 150,
                     spread: 70,
                     origin: { y: 0.6 },
-                    colors: ['#D4AF37', '#ffffff']
+                    colors: ['#C0C0C0', '#ffffff']
                 })
             }
         } catch (e) {
@@ -716,8 +716,8 @@ export default function AdvisorView({ onBack }) {
             {/* Loading Overlay */}
             {isProcessing && !isRecording && !currentResult && (
                 <div className="absolute inset-x-6 top-24 z-50 flex flex-col items-center justify-center animate-in fade-in duration-500">
-                    <div className="w-12 h-12 border-4 border-lvmh-gold border-t-transparent rounded-full animate-spin mb-4" />
-                    <div className="text-lvmh-gold font-bold tracking-widest uppercase text-[10px] animate-pulse">Intelligence Flow...</div>
+                    <div className="w-12 h-12 border-4 border-silver border-t-transparent rounded-full animate-spin mb-4" />
+                    <div className="text-silver font-bold tracking-widest uppercase text-[10px] animate-pulse">Intelligence Flow...</div>
                 </div>
             )}
 
@@ -746,39 +746,39 @@ export default function AdvisorView({ onBack }) {
                     {/* Drawer Content */}
                     <div className="relative w-3/4 max-w-sm bg-[#1a1a1a] shadow-2xl h-full p-6 animate-in slide-in-from-left duration-300 border-r border-white/10 flex flex-col">
                         <div className="mb-8 pt-4">
-                            <h2 className="text-2xl font-didot text-lvmh-gold mb-1">LVMH</h2>
+                            <h2 className="text-2xl font-didot text-silver mb-1">LVMH</h2>
                             <p className="text-xs text-gray-400 uppercase tracking-widest">Assistant Vendeur</p>
                         </div>
 
                         <div className="flex items-center gap-4 mb-8 p-4 glass rounded-xl">
-                            <div className="w-12 h-12 rounded-full bg-lvmh-gold flex items-center justify-center text-black font-bold text-xl">
+                            <div className="w-12 h-12 rounded-full bg-silver flex items-center justify-center text-black font-bold text-xl">
                                 {user.name.charAt(0)}
                             </div>
                             <div>
                                 <div className="font-bold">{user.name}</div>
-                                <div className="text-xs text-lvmh-gold">{user.store || "Boutique Paris"}</div>
+                                <div className="text-xs text-silver">{user.store || "Boutique Paris"}</div>
                             </div>
                         </div>
 
                         <nav className="space-y-2 flex-1">
-                            <button onClick={() => handleMenuNavigation('record')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'record' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <Mic size={20} className={activeView === 'record' ? 'text-lvmh-gold' : ''} />
+                            <button onClick={() => handleMenuNavigation('record')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'record' ? 'bg-silver/20 text-silver' : 'hover:bg-white/5'}`}>
+                                <Mic size={20} className={activeView === 'record' ? 'text-silver' : ''} />
                                 <span>Nouvelle dictee</span>
                             </button>
-                            <button onClick={() => handleMenuNavigation('history')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'history' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <History size={20} className={activeView === 'history' ? 'text-lvmh-gold' : ''} />
+                            <button onClick={() => handleMenuNavigation('history')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'history' ? 'bg-silver/20 text-silver' : 'hover:bg-white/5'}`}>
+                                <History size={20} className={activeView === 'history' ? 'text-silver' : ''} />
                                 <span>Mes Enregistrements</span>
                             </button>
-                            <button onClick={() => handleMenuNavigation('classement')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'classement' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <Trophy size={20} className={activeView === 'classement' ? 'text-lvmh-gold' : ''} />
+                            <button onClick={() => handleMenuNavigation('classement')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'classement' ? 'bg-silver/20 text-silver' : 'hover:bg-white/5'}`}>
+                                <Trophy size={20} className={activeView === 'classement' ? 'text-silver' : ''} />
                                 <span>Classement</span>
                             </button>
-                            <button onClick={() => handleMenuNavigation('search')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'search' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <Search size={20} className={activeView === 'search' ? 'text-lvmh-gold' : ''} />
+                            <button onClick={() => handleMenuNavigation('search')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'search' ? 'bg-silver/20 text-silver' : 'hover:bg-white/5'}`}>
+                                <Search size={20} className={activeView === 'search' ? 'text-silver' : ''} />
                                 <span>Rechercher</span>
                             </button>
-                            <button onClick={() => handleMenuNavigation('csv')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'csv' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'hover:bg-white/5'}`}>
-                                <FileText size={20} className={activeView === 'csv' ? 'text-lvmh-gold' : ''} />
+                            <button onClick={() => handleMenuNavigation('csv')} className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left ${activeView === 'csv' ? 'bg-silver/20 text-silver' : 'hover:bg-white/5'}`}>
+                                <FileText size={20} className={activeView === 'csv' ? 'text-silver' : ''} />
                                 <span>Resultats CSV</span>
                             </button>
                         </nav>
@@ -792,17 +792,17 @@ export default function AdvisorView({ onBack }) {
             )}
 
             <div className="flex justify-between items-center mb-6 relative z-10">
-                <button onClick={() => setIsMenuOpen(true)} className="p-2 -ml-2 hover:text-lvmh-gold transition-colors">
+                <button onClick={() => setIsMenuOpen(true)} className="p-2 -ml-2 hover:text-silver transition-colors">
                     <Menu size={24} />
                     {/* Notification dot example */}
                     {/* <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span> */}
                 </button>
                 <div className="text-center">
-                    <div className="text-[10px] text-lvmh-gold uppercase tracking-tighter">{user.store || "LVMH Paris Rivoli"}</div>
+                    <div className="text-[10px] text-silver uppercase tracking-tighter">{user.store || "LVMH Paris Rivoli"}</div>
                     <div className="font-bold text-sm">{user.name}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="glass px-3 py-1 text-sm font-bold text-lvmh-gold">{user.points || user.score || 0} pts</div>
+                    <div className="glass px-3 py-1 text-sm font-bold text-silver">{user.points || user.score || 0} pts</div>
                     <button
                         onClick={handleLogout}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/40 text-red-300 text-[10px] uppercase tracking-widest hover:bg-red-500/10 transition-colors"
@@ -823,7 +823,7 @@ export default function AdvisorView({ onBack }) {
                         <input
                             type="text"
                             placeholder="Rechercher un client..."
-                            className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
+                            className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-silver transition-all"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -831,7 +831,7 @@ export default function AdvisorView({ onBack }) {
 
                     {!currentResult ? (
                         isReviewingTranscription ? (
-                            <div className="glass p-5 border border-lvmh-gold/30 animate-in fade-in">
+                            <div className="glass p-5 border border-silver/30 animate-in fade-in">
                                 <div className="flex items-center justify-between gap-3 mb-4">
                                     <div>
                                         <div className="data-label">Validation transcription</div>
@@ -856,7 +856,7 @@ export default function AdvisorView({ onBack }) {
                                             setSelectedClient(null)
                                         }}
                                         onFocus={() => setShowClientDropdown(true)}
-                                        className="w-full rounded-xl bg-white/5 border border-white/10 text-sm text-white p-3 focus:outline-none focus:border-lvmh-gold"
+                                        className="w-full rounded-xl bg-white/5 border border-white/10 text-sm text-white p-3 focus:outline-none focus:border-silver"
                                         placeholder="Rechercher un client (nom ou ID)..."
                                     />
                                     {showClientDropdown && clientSuggestions.length > 0 && (
@@ -872,7 +872,7 @@ export default function AdvisorView({ onBack }) {
                                                         <div className="text-lvmh-gray text-xs">{client.external_client_id || 'ID interne'}</div>
                                                     </div>
                                                     <div className="text-right">
-                                                        <span className={`text-xs px-2 py-1 rounded ${client.category === 'VIC' || client.category === 'Ultimate' ? 'bg-lvmh-gold/20 text-lvmh-gold' : 'bg-white/10 text-lvmh-gray'}`}>
+                                                        <span className={`text-xs px-2 py-1 rounded ${client.category === 'VIC' || client.category === 'Ultimate' ? 'bg-silver/20 text-silver' : 'bg-white/10 text-lvmh-gray'}`}>
                                                             {client.category}
                                                         </span>
                                                     </div>
@@ -882,7 +882,7 @@ export default function AdvisorView({ onBack }) {
                                     )}
                                     {selectedClient && (
                                         <div className="mt-2 flex items-center gap-2">
-                                            <span className="text-xs text-lvmh-gold">Client selectionne:</span>
+                                            <span className="text-xs text-silver">Client selectionne:</span>
                                             <span className="text-xs text-white">{selectedClient.name}</span>
                                             <button
                                                 onClick={() => {
@@ -899,7 +899,7 @@ export default function AdvisorView({ onBack }) {
                                 <textarea
                                     value={transcriptionDraft}
                                     onChange={(e) => setTranscriptionDraft(e.target.value)}
-                                    className="w-full min-h-[220px] rounded-xl bg-white/5 border border-white/10 text-sm text-white p-4 focus:outline-none focus:border-lvmh-gold resize-y"
+                                    className="w-full min-h-[220px] rounded-xl bg-white/5 border border-white/10 text-sm text-white p-4 focus:outline-none focus:border-silver resize-y"
                                     placeholder="La transcription apparait ici..."
                                 />
                                 <div className="mt-4 flex items-center justify-between text-xs text-lvmh-gray">
@@ -917,8 +917,8 @@ export default function AdvisorView({ onBack }) {
                                         onClick={analyzeDraftTranscription}
                                         disabled={isProcessing || !transcriptionDraft.trim()}
                                         className={`py-3 rounded-xl uppercase tracking-widest text-xs font-black transition-all ${isProcessing || !transcriptionDraft.trim()
-                                            ? 'bg-lvmh-gold/50 text-black/60 cursor-not-allowed'
-                                            : 'bg-lvmh-gold text-black hover:bg-lvmh-gold/90'
+                                            ? 'bg-silver/50 text-black/60 cursor-not-allowed'
+                                            : 'bg-silver text-black hover:bg-silver/90'
                                             }`}
                                     >
                                         Lancer l analyse
@@ -952,9 +952,9 @@ export default function AdvisorView({ onBack }) {
                                     <div className="absolute inset-0 rounded-full bg-red-500/20 animate-ping" />
                                 )}
                                 <div
-                                    className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : isProcessing ? 'bg-lvmh-gold/20 border-lvmh-gold/40' : 'bg-white border-white/20'}`}
+                                    className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : isProcessing ? 'bg-silver/20 border-silver/40' : 'bg-white border-white/20'}`}
                                 >
-                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : isProcessing ? "text-lvmh-gold" : "text-black"} />
+                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : isProcessing ? "text-silver" : "text-black"} />
                                 </div>
 
                                 {isRecording && (
@@ -969,19 +969,19 @@ export default function AdvisorView({ onBack }) {
                             <div className="glass w-full p-5">
                                 {userRank && (
                                     <div className="mb-3 text-xs text-lvmh-gray">
-                                        Votre classement: <span className="text-lvmh-gold font-bold">#{userRank}</span> sur {leaderboard.length} advisors
+                                        Votre classement: <span className="text-silver font-bold">#{userRank}</span> sur {leaderboard.length} advisors
                                     </div>
                                 )}
-                                <div className="flex items-center gap-2 text-lvmh-gold text-xs font-bold uppercase mb-4 tracking-widest leading-none">
+                                <div className="flex items-center gap-2 text-silver text-xs font-bold uppercase mb-4 tracking-widest leading-none">
                                     <Trophy size={14} /> Leaderboard Live
                                 </div>
                                 <div className="space-y-3">
                                     {leaderboard.length > 0 ? leaderboard.map((adv, i) => (
                                         <div key={i} className={`flex justify-between py-2 border-b border-white/5 last:border-0 items-center ${adv.isMe ? 'bg-white/5 -mx-2 px-2 rounded' : ''}`}>
                                             <span className="text-sm font-medium flex items-center gap-2">
-                                                {i + 1}. {adv.id} {adv.isMe && <span className="text-[10px] bg-lvmh-gold text-black px-1 rounded font-bold">MOI</span>}
+                                                {i + 1}. {adv.id} {adv.isMe && <span className="text-[10px] bg-silver text-black px-1 rounded font-bold">MOI</span>}
                                             </span>
-                                            <span className="font-bold text-sm text-lvmh-gold">{adv.score} pts</span>
+                                            <span className="font-bold text-sm text-silver">{adv.score} pts</span>
                                         </div>
                                     )) : (
                                         <div className="text-center text-xs text-lvmh-gray py-4">Aucune donnee</div>
@@ -1008,15 +1008,15 @@ export default function AdvisorView({ onBack }) {
                                 </button>
                             </div>
 
-                            <div className="glass p-5 border-l-4 border-lvmh-gold mb-8 bg-lvmh-gold/5">
+                            <div className="glass p-5 border-l-4 border-silver mb-8 bg-silver/5">
                                 <div className="data-label">Recompense</div>
                                 <div className="text-lg font-bold leading-tight">{resultMeta?.advisor_feedback || "Note traitee !"}</div>
                                 <div className="mt-3 flex items-center gap-3">
-                                    <div className="text-2xl font-black text-lvmh-gold">{normalizeScore(resultMeta?.quality_score || 0)}%</div>
+                                    <div className="text-2xl font-black text-silver">{normalizeScore(resultMeta?.quality_score || 0)}%</div>
                                     <div className="text-xs text-lvmh-gray">qualite</div>
                                     <span className={`text-[10px] px-2 py-1 rounded-full ${
                                         (resultMeta?.quality_score || 0) >= 0.8 ? 'bg-green-500/20 text-green-300' :
-                                        (resultMeta?.quality_score || 0) >= 0.5 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
+                                        (resultMeta?.quality_score || 0) >= 0.5 ? 'bg-silver/20 text-silver' :
                                         'bg-red-500/20 text-red-300'
                                     }`}>
                                         {(resultMeta?.quality_score || 0) >= 0.8 ? 'Excellent' : (resultMeta?.quality_score || 0) >= 0.5 ? 'Correct' : 'A ameliorer'}
@@ -1025,8 +1025,8 @@ export default function AdvisorView({ onBack }) {
                             </div>
 
                             {generateQualityTips(normalizeScore(resultMeta?.quality_score || 0), resultTags, currentResult?.extraction).length > 0 && (
-                                <div className="glass p-4 mb-6 border border-lvmh-gold/20">
-                                    <div className="text-xs text-lvmh-gold font-bold uppercase mb-3">Conseils pour ameliorer</div>
+                                <div className="glass p-4 mb-6 border border-silver/20">
+                                    <div className="text-xs text-silver font-bold uppercase mb-3">Conseils pour ameliorer</div>
                                     <div className="space-y-2">
                                         {generateQualityTips(normalizeScore(resultMeta?.quality_score || 0), resultTags, currentResult?.extraction).map((tip, i) => (
                                             <div key={i} className="flex items-start gap-2 text-sm">
@@ -1039,14 +1039,14 @@ export default function AdvisorView({ onBack }) {
                             )}
 
                             <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
-                                <div className="glass p-6 border-l-4 border-lvmh-gold">
+                                <div className="glass p-6 border-l-4 border-silver">
                                     <div className="flex flex-wrap items-start justify-between gap-4">
                                         <div>
                                             <div className="data-label">Client</div>
                                             <div className="text-2xl font-display gold-text">{resultId}</div>
                                             <div className="mt-2 flex flex-wrap gap-2">
                                                 {vipStatus && (
-                                                    <span className="text-[10px] px-2 py-1 rounded-full bg-lvmh-gold/20 text-lvmh-gold">
+                                                    <span className="text-[10px] px-2 py-1 rounded-full bg-silver/20 text-silver">
                                                         {String(vipStatus).toUpperCase()}
                                                     </span>
                                                 )}
@@ -1083,7 +1083,7 @@ export default function AdvisorView({ onBack }) {
                                             {resultTags.length ? (
                                                 <>
                                                     {resultTags.slice(0, 12).map((tag, i) => (
-                                                        <span key={i} className="text-xs bg-lvmh-gold/15 text-lvmh-gold px-2 py-1 rounded-full">
+                                                        <span key={i} className="text-xs bg-silver/15 text-silver px-2 py-1 rounded-full">
                                                             {tag}
                                                         </span>
                                                     ))}
@@ -1136,7 +1136,7 @@ export default function AdvisorView({ onBack }) {
                                 </div>
                             </div>
 
-                            <div className="glass p-5 mb-6 border border-lvmh-gold/30 bg-lvmh-gold/5">
+                            <div className="glass p-5 mb-6 border border-silver/30 bg-silver/5">
                                 <div className="data-label">Resume actionnable</div>
                                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
                                     <div className="bg-white/5 rounded-lg p-3">
@@ -1270,7 +1270,7 @@ export default function AdvisorView({ onBack }) {
                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                             {resultP1.matched_products.map((product, i) => (
                                                 <div key={i} className="bg-white/5 p-4 rounded-lg border border-white/10">
-                                                    <div className="font-bold text-lvmh-gold mb-1">{product.name || product.ID}</div>
+                                                    <div className="font-bold text-silver mb-1">{product.name || product.ID}</div>
                                                     <div className="text-xs text-lvmh-gray uppercase">{product.category || 'Categorie'}</div>
                                                     {product.description && (
                                                         <div className="text-xs text-lvmh-gray mt-2 line-clamp-2">{product.description}</div>
@@ -1310,14 +1310,14 @@ export default function AdvisorView({ onBack }) {
             {activeView === 'classement' && (
                 <div className="flex-1 overflow-y-auto animate-in fade-in">
                     <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <Trophy size={24} className="text-lvmh-gold" />
+                        <Trophy size={24} className="text-silver" />
                         Classement
                     </h2>
 
                     {userRank && (
-                        <div className="glass p-6 mb-6 text-center border-l-4 border-lvmh-gold">
+                        <div className="glass p-6 mb-6 text-center border-l-4 border-silver">
                             <div className="text-xs text-lvmh-gray uppercase tracking-widest mb-2">Votre Position</div>
-                            <div className="text-5xl font-black text-lvmh-gold">#{userRank}</div>
+                            <div className="text-5xl font-black text-silver">#{userRank}</div>
                             <div className="text-sm text-lvmh-gray mt-2">sur {leaderboard.length} advisors</div>
                         </div>
                     )}
@@ -1325,7 +1325,7 @@ export default function AdvisorView({ onBack }) {
                     <div className="glass p-5">
                         <div className="space-y-3">
                             {leaderboard.length > 0 ? leaderboard.map((adv, i) => (
-                                <div key={i} className={`flex justify-between py-3 border-b border-white/5 last:border-0 items-center ${adv.isMe ? 'bg-lvmh-gold/10 -mx-3 px-3 rounded' : ''}`}>
+                                <div key={i} className={`flex justify-between py-3 border-b border-white/5 last:border-0 items-center ${adv.isMe ? 'bg-silver/10 -mx-3 px-3 rounded' : ''}`}>
                                     <div className="flex items-center gap-3">
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
                                             i === 0 ? 'bg-yellow-500 text-black' :
@@ -1336,10 +1336,10 @@ export default function AdvisorView({ onBack }) {
                                             {i + 1}
                                         </div>
                                         <span className="font-medium">
-                                            {adv.id} {adv.isMe && <span className="text-[10px] bg-lvmh-gold text-black px-1 rounded font-bold ml-1">MOI</span>}
+                                            {adv.id} {adv.isMe && <span className="text-[10px] bg-silver text-black px-1 rounded font-bold ml-1">MOI</span>}
                                         </span>
                                     </div>
-                                    <span className="font-bold text-lg text-lvmh-gold">{adv.score} pts</span>
+                                    <span className="font-bold text-lg text-silver">{adv.score} pts</span>
                                 </div>
                             )) : (
                                 <div className="text-center py-8 text-lvmh-gray">Aucune donnee</div>
@@ -1359,7 +1359,7 @@ export default function AdvisorView({ onBack }) {
                                     setCurrentStep(null)
                                     setPipelineProgress(null)
                                 }}
-                                className="w-full bg-lvmh-gold text-black font-black py-5 rounded-xl hover:bg-lvmh-gold/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6"
+                                className="w-full bg-silver text-black font-black py-5 rounded-xl hover:bg-silver/90 transition-all shadow-[0_15px_40px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 uppercase tracking-widest mt-6"
                             >
                                 <CheckCircle size={20} aria-hidden="true" />
                                 Terminer
@@ -1377,7 +1377,7 @@ export default function AdvisorView({ onBack }) {
                             disabled={isProcessing}
                             className={`w-full py-5 rounded-xl transition-all shadow-[0_15px_40px_rgba(0,0,0,0.35)] border flex items-center justify-center gap-3 uppercase tracking-widest font-black ${isRecording
                                 ? 'bg-red-500 text-white border-red-400 hover:bg-red-500/90'
-                                : 'bg-lvmh-gold text-black border-lvmh-gold hover:bg-lvmh-gold/90'
+                                : 'bg-silver text-black border-silver hover:bg-silver/90'
                                 } ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             <Mic size={20} />
@@ -1392,7 +1392,7 @@ export default function AdvisorView({ onBack }) {
                 <div className="flex-1 overflow-y-auto animate-in fade-in">
                     <div className="flex items-center justify-between gap-3 mb-4">
                         <h2 className="text-2xl font-bold flex items-center gap-2">
-                            <History size={24} className="text-lvmh-gold" />
+                            <History size={24} className="text-silver" />
                             Historique
                         </h2>
                     </div>
@@ -1404,7 +1404,7 @@ export default function AdvisorView({ onBack }) {
                             placeholder="Rechercher dans les transcriptions..."
                             value={historySearch}
                             onChange={(e) => setHistorySearch(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white placeholder-lvmh-gray focus:outline-none focus:border-lvmh-gold/40"
+                            className="w-full pl-10 pr-4 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white placeholder-lvmh-gray focus:outline-none focus:border-silver/40"
                         />
                     </div>
 
@@ -1418,7 +1418,7 @@ export default function AdvisorView({ onBack }) {
                                 key={item.id}
                                 onClick={() => setHistoryFilter(item.id)}
                                 className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${historyFilter === item.id
-                                    ? 'border-lvmh-gold bg-lvmh-gold/20 text-lvmh-gold'
+                                    ? 'border-silver bg-silver/20 text-silver'
                                     : 'border-white/10 text-lvmh-gray hover:border-white/30 hover:text-white'
                                     }`}
                             >
@@ -1441,14 +1441,14 @@ export default function AdvisorView({ onBack }) {
                     ) : (
                         <div className="space-y-4">
                             {filteredHistory.length > 0 ? filteredHistory.map(note => (
-                                <div key={note.id} onClick={() => handleViewDetail(note)} className="glass p-4 border-l-2 border-lvmh-gold cursor-pointer hover:bg-white/10 transition-colors">
+                                <div key={note.id} onClick={() => handleViewDetail(note)} className="glass p-4 border-l-2 border-silver cursor-pointer hover:bg-white/10 transition-colors">
                                     <div className="flex justify-between items-start mb-2">
                                         <span className="font-bold text-white">{note.client}</span>
                                         <span className="text-xs text-lvmh-gray">{new Date(note.date).toLocaleDateString()}</span>
                                     </div>
                                     <p className="text-sm text-gray-400 line-clamp-2 mb-2">"{note.transcription}"</p>
                                     <div className="flex justify-end">
-                                        <span className="text-xs font-bold text-lvmh-gold">+{note.points} pts</span>
+                                        <span className="text-xs font-bold text-silver">+{note.points} pts</span>
                                     </div>
                                 </div>
                             )) : (
@@ -1464,13 +1464,13 @@ export default function AdvisorView({ onBack }) {
                 <div className="flex-1 animate-in fade-in">
                     <div className="flex items-center justify-between gap-3 mb-6">
                         <h2 className="text-2xl font-bold flex items-center gap-2">
-                            <Search size={24} className="text-lvmh-gold" />
+                            <Search size={24} className="text-silver" />
                             Recherche Client
                         </h2>
                         <button
                             onClick={() => setSearchOnlyVip((prev) => !prev)}
                             className={`text-[10px] px-3 py-1.5 rounded-full uppercase tracking-widest border transition-colors ${searchOnlyVip
-                                ? 'border-lvmh-gold bg-lvmh-gold/20 text-lvmh-gold'
+                                ? 'border-silver bg-silver/20 text-silver'
                                 : 'border-white/10 text-lvmh-gray hover:border-white/30 hover:text-white'
                                 }`}
                         >
@@ -1482,7 +1482,7 @@ export default function AdvisorView({ onBack }) {
                         <input
                             type="text"
                             placeholder="Nom du client..."
-                            className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all"
+                            className="w-full bg-white/5 border-none rounded-xl py-4 pl-12 pr-4 text-white focus:ring-1 focus:ring-silver transition-all"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             autoFocus
@@ -1501,16 +1501,16 @@ export default function AdvisorView({ onBack }) {
                     ) : (
                         <div className="space-y-4">
                             {filteredClientResults.length > 0 ? filteredClientResults.map(client => (
-                                <div key={client.id} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
+                                <div key={client.id} className="glass p-4 border-l-2 border-silver hover:bg-white/5 transition-colors">
                                     <div className="flex justify-between items-center">
                                         <div>
                                             <div className="font-bold text-white flex items-center gap-2">
                                                 {client.name}
-                                                {client.vic_status !== 'Standard' && <span className="text-[10px] bg-lvmh-gold text-black px-1 rounded font-black">{client.vic_status}</span>}
+                                                {client.vic_status !== 'Standard' && <span className="text-[10px] bg-silver text-black px-1 rounded font-black">{client.vic_status}</span>}
                                             </div>
                                             <div className="text-xs text-lvmh-gray">{client.total_notes} enregistrements</div>
                                         </div>
-                                        <button onClick={() => { setActiveView('record'); setSearchQuery(client.name); }} className="text-lvmh-gold text-xs font-bold uppercase hover:underline">
+                                        <button onClick={() => { setActiveView('record'); setSearchQuery(client.name); }} className="text-silver text-xs font-bold uppercase hover:underline">
                                             Nouvelle dictee
                                         </button>
                                     </div>
@@ -1535,7 +1535,7 @@ export default function AdvisorView({ onBack }) {
             {activeView === 'csv' && (
                 <div className="flex-1 overflow-y-auto animate-in fade-in">
                     <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <FileText size={24} className="text-lvmh-gold" />
+                        <FileText size={24} className="text-silver" />
                         Resultats CSV
                     </h2>
 
@@ -1545,7 +1545,7 @@ export default function AdvisorView({ onBack }) {
                         <select
                             value={selectedCsv}
                             onChange={handleCsvSelect}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold transition-all appearance-none cursor-pointer"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white focus:ring-1 focus:ring-silver transition-all appearance-none cursor-pointer"
                         >
                             {csvFiles.map(file => (
                                 <option key={file} value={file} className="bg-lvmh-black">{file}</option>
@@ -1555,18 +1555,18 @@ export default function AdvisorView({ onBack }) {
 
                     {loadingCsv ? (
                         <div className="flex justify-center py-10">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lvmh-gold"></div>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-silver"></div>
                         </div>
                     ) : (
                         <>
                             <div className="text-xs text-lvmh-gray mb-4">{csvTotal} resultats</div>
                             <div className="space-y-3">
                                 {csvData.length > 0 ? csvData.map((row, i) => (
-                                    <div key={i} className="glass p-4 border-l-2 border-lvmh-gold hover:bg-white/5 transition-colors">
+                                    <div key={i} className="glass p-4 border-l-2 border-silver hover:bg-white/5 transition-colors">
                                         <div className="flex justify-between items-start mb-2">
                                             <span className="font-bold text-white">{row.id}</span>
                                             <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${row.tier === 1 ? 'bg-white/10 text-white' :
-                                                    row.tier === 2 ? 'bg-lvmh-gold/20 text-lvmh-gold' :
+                                                    row.tier === 2 ? 'bg-silver/20 text-silver' :
                                                         'bg-red-500/20 text-red-500'
                                                 }`}>
                                                 TIER {row.tier}
@@ -1584,7 +1584,7 @@ export default function AdvisorView({ onBack }) {
                                         </div>
                                         <div className="flex justify-between items-center text-xs">
                                             <span className="text-lvmh-gray">{row.budget_range || 'Budget N/A'}</span>
-                                            <span className="text-lvmh-gold font-bold">{Math.round(row.confidence * 100)}%</span>
+                                            <span className="text-silver font-bold">{Math.round(row.confidence * 100)}%</span>
                                         </div>
                                         {row.reasoning && (
                                             <p className="text-[10px] text-lvmh-gray mt-2 italic line-clamp-2">"{row.reasoning}"</p>
@@ -1615,7 +1615,7 @@ function CollapsibleSection({ title, isOpen, onToggle, children, accent = 'gold'
                 className="w-full flex items-center justify-between gap-3 text-left"
             >
                 <h4 className={`text-base font-display font-bold ${titleClass}`}>{title}</h4>
-                {isOpen ? <ChevronDown size={18} className="text-lvmh-gold" /> : <ChevronRight size={18} className="text-lvmh-gray" />}
+                {isOpen ? <ChevronDown size={18} className="text-silver" /> : <ChevronRight size={18} className="text-lvmh-gray" />}
             </button>
             {isOpen && <div className="mt-4">{children}</div>}
         </div>

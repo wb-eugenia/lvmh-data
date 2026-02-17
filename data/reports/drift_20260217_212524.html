@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LVMH Pipeline - Drift Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+               max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
+                  color: white; padding: 30px; border-radius: 10px; margin-bottom: 20px; }
+        .card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .status { display: inline-block; padding: 8px 16px; border-radius: 20px; font-weight: bold; }
+        .status.ok { background: #d4edda; color: #155724; }
+        .status.alert { background: #f8d7da; color: #721c24; }
+        .metric { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .metric:last-child { border-bottom: none; }
+        .metric-label { color: #666; }
+        .metric-value { font-weight: bold; }
+        .drift-badge { background: #dc3545; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .no-drift-badge { background: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LVMH Pipeline Monitoring</h1>
+        <p>Drift Detection Report - drift_20260217_212524</p>
+        <p>Generated: 2026-02-17 21:25:24 UTC</p>
+    </div>
+    
+    <div class="card">
+        <h2>Drift Status</h2>
+        <p><span class="status ok">
+            NO SIGNIFICANT DRIFT
+        </span></p>
+        <div class="metric">
+            <span class="metric-label">Overall Drift Score</span>
+            <span class="metric-value">10.0%</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Features Analyzed</span>
+            <span class="metric-value">10</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label">Drifted Features</span>
+            <span class="metric-value">1</span>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Drifted Features (1)</h2>
+        <table>
+            <tr><th>Feature</th><th>Reference Mean</th><th>Current Mean</th><th>Change</th></tr>
+            <tr>
+                <td>confidence</td>
+                <td>0.95</td>
+                <td>0.50</td>
+                <td><span class="drift-badge">+47.4%</span></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="card">
+        <h2>All Features</h2>
+        <table>
+            <tr><th>Feature</th><th>Reference Mean</th><th>Current Mean</th><th>Change</th><th>Status</th></tr>
+            <tr>
+                <td>num_products</td>
+                <td>1.00</td>
+                <td>1.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>num_categories</td>
+                <td>1.00</td>
+                <td>1.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>num_materials</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>num_colors</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>has_vip</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>has_budget</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>has_nba</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>urgency</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+            <tr>
+                <td>confidence</td>
+                <td>0.95</td>
+                <td>0.50</td>
+                <td>47.4%</td>
+                <td><span class="drift-badge">DRIFT</span></td>
+            </tr>
+            <tr>
+                <td>num_extractions</td>
+                <td>2.00</td>
+                <td>2.00</td>
+                <td>0.0%</td>
+                <td><span class="no-drift-badge">OK</span></td>
+            </tr>
+
+        </table>
+    </div>
+    
+    <div class="card">
+        <h2>Recommendations</h2>
+        <ul>
+            <li>If drift is detected, review recent changes to the pipeline</li>
+            <li>Check taxonomy updates that may affect extraction</li>
+            <li>Consider updating the reference dataset with recent data</li>
+            <li>Monitor for data quality issues in source systems</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -58,12 +58,12 @@ function AppContent() {
         return (
             <div className="h-screen bg-black text-white flex items-center justify-center p-6">
                 <div className="glass p-8 max-w-md text-center">
-                    <div className="text-lvmh-gold text-sm uppercase tracking-widest mb-3">Acces restreint</div>
+                    <div className="text-silver text-sm uppercase tracking-widest mb-3">Acces restreint</div>
                     <h2 className="text-2xl font-display font-bold mb-2">Admin Total</h2>
                     <p className="text-lvmh-gray text-sm">Cette vue est reservee au role admin.</p>
                     <button
                         onClick={() => navigate('landing')}
-                        className="mt-6 px-5 py-2 rounded-lg bg-lvmh-gold text-black font-bold text-sm hover:bg-lvmh-gold/90 transition-colors"
+                        className="mt-6 px-5 py-2 rounded-lg bg-silver text-black font-bold text-sm hover:bg-silver/90 transition-colors"
                     >
                         Retour
                     </button>

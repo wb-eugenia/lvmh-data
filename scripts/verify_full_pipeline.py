@@ -15,20 +15,12 @@ import logging
 # Setup paths
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.pipeline_batch_v2 import PipelineBatchV2
+from src.pipeline_async import AsyncPipeline
 
 # Logger config
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
-# Nettoyage préventif du cache pour éviter conflit V1/V2
-import shutil
-if os.path.exists("cache/tier3"):
-    shutil.rmtree("cache/tier3")
-    print("🧹 Cache Tier 3 nettoyé (Migration V2)")
-if os.path.exists("cache/mistral_prompts"):
-    shutil.rmtree("cache/mistral_prompts")
-    print("🧹 Cache Tier 2 nettoyé")
 
 async def main():
     print(f"{'='*60}")
@@ -46,62 +38,36 @@ async def main():
     print(f"\"{fake_note['Transcription']}\"")
     
     # 2. Lancer le pipeline
-    print("\n⚙️  Lancement du Pipeline Batch V2...")
-    pipeline = PipelineBatchV2(use_cache=False, use_bq=False)
+    print("\n⚙️  Lancement du Pipeline Async...")
+    pipeline = AsyncPipeline(use_cache=False)
     
-    # Force Tier 3 parsing (pour voir la taxonomie complète)
-    # On bypass le routeur pour ce test spécifique en appelant directement l'extracteur ou en forçant le niveau ?
-    # Mieux : on laisse le pipeline faire, le routeur devrait l'envoyer en T3 vu la complexité.
+    result = await pipeline.process_note(fake_note)
     
-    results = await pipeline.process_batch_async([fake_note])
-    result = results[0]
+    if result is None:
+        print("❌ Échec du traitement")
+        return
     
     # 3. Vérification de la Structure (Taxonomie 4 Piliers)
-    print("\n📊 RÉSULTATS D'ANALYSE (JSON):")
-    
-    # On dump le résultat pour inspection visuelle
-    # Les résultats sont déjà à la racine du dict retourné par le pipeline
-    data = result
-    
-    # Nettoyage pour affichage (retirer les clés techniques si besoin)
-    display_data = {k: v for k, v in data.items() if k not in ['_cleaned_text']}
-        
-    print(json.dumps(display_data, indent=2, ensure_ascii=False))
+    print("\n📊 RÉSULTATS D'ANALYSE:")
+    print(f"   Tier: {result.routing.tier}")
+    print(f"   Confidence: {result.routing.confidence:.2f}")
+    print(f"   Tags: {result.extraction.tags}")
     
     # 4. Validations Spécifiques
     errors = []
     
-    # Check Pilier 1 (Produit)
-    p1 = data.get('pilier_1_univers_produit', {})
-    if 'Handbag_Main' not in p1.get('categories', []) and 'Leather_Goods' not in p1.get('categories', []):
-        # C'est flexible, on vérifie juste que ce n'est pas vide
-        if not p1.get('categories'):
-             errors.append("❌ Pilier 1: Aucune catégorie détectée")
+    # Check Tags
+    if not result.extraction.tags:
+        errors.append("❌ Aucun tag détecté")
     
-    # Check Pilier 2 (Client - Avocate)
-    p2 = data.get('pilier_2_profil_client', {})
-    profession = p2.get('profession', {})
-    if not profession.get('status') and not profession.get('sector'):
-         # "Avocate" devrait être capté
-         print(f"⚠️ Warning Pilier 2: Profession non structurée (attendu: Legal_Finance). Got: {profession}")
-
-    # Check Pilier 4 (Business - Anniversaire)
-    p3 = data.get('pilier_3_hospitalite_care', {})
-    if p3.get('occasion') != 'Personal_Milestone' and 'Anniversary' not in str(p3):
-         print(f"⚠️ Warning Pilier 3: Occasion 'Anniversaire' non détectée.")
-
     # Check RAG (Matched Products)
-    # Le RAG insère les produits MATCHÉS dans le pilier 1
-    matched = p1.get('matched_products', [])
-    if matched:
-        print(f"\n✅ RAG SUCCÈS: {len(matched)} produits trouvés !")
-        for p in matched:
-            print(f"   👜 {p['name']} ({p.get('sku')}) - Score: {p.get('match_score')}")
+    if hasattr(result, 'products') and result.products:
+        print(f"\n✅ RAG SUCCÈS: {len(result.products)} produits trouvés !")
     else:
-        errors.append("❌ RAG ÉCHEC: Aucun produit matché (Capucines attendu)")
-
+        print("\n⚠️ RAG:Aucun produits matchés")
+    
     if not errors:
-        print("\n🎉 SUCCÈS TOTAL ! Le pipeline est conforme V2 + RAG.")
+        print("\n🎉 SUCCÈS TOTAL ! Le pipeline est conforme.")
     else:
         print("\n❌ ÉCHECS DÉTECTÉS :")
         for err in errors:

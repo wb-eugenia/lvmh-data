@@ -172,13 +172,13 @@ export default function AdminProductsView() {
             <div className="glass p-6">
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                     <h3 className="text-lg font-bold flex items-center gap-2">
-                        <ShoppingBag size={18} className="text-lvmh-gold" />
+                        <ShoppingBag size={18} className="text-silver" />
                         Gestion des Produits
                     </h3>
                     <div className="flex gap-2">
                         <button
                             onClick={() => { fetchBatches(); setShowImportModal(true); }}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs hover:border-lvmh-gold/40"
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs hover:border-silver/40"
                         >
                             <Upload size={14} />
                             Import CSV
@@ -186,14 +186,14 @@ export default function AdminProductsView() {
                         <button
                             onClick={handleRebuildRag}
                             disabled={ragRebuilding}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs hover:border-lvmh-gold/40 disabled:opacity-50"
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-xs hover:border-silver/40 disabled:opacity-50"
                         >
                             <RefreshCw size={14} className={ragRebuilding ? 'animate-spin' : ''} />
                             {ragRebuilding ? 'Rebuilding...' : 'Rebuild RAG'}
                         </button>
                         <button
                             onClick={() => setShowAddModal(true)}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-lvmh-gold text-black text-xs font-bold hover:bg-lvmh-gold/90"
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-silver text-black text-xs font-bold hover:bg-silver/90"
                         >
                             <Plus size={14} />
                             Ajouter Produit
@@ -209,10 +209,10 @@ export default function AdminProductsView() {
                             placeholder="Rechercher produits..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white placeholder-lvmh-gray focus:outline-none focus:border-lvmh-gold/40"
+                            className="w-full pl-10 pr-4 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white placeholder-lvmh-gray focus:outline-none focus:border-silver/40"
                         />
                     </div>
-                    <button type="submit" className="px-4 py-2 rounded-lg border border-lvmh-gold/40 text-lvmh-gold hover:bg-lvmh-gold/10">
+                    <button type="submit" className="px-4 py-2 rounded-lg border border-silver/40 text-silver hover:bg-silver/10">
                         Rechercher
                     </button>
                 </form>
@@ -237,20 +237,20 @@ export default function AdminProductsView() {
                                         )}
                                     </div>
                                     <div className="font-semibold text-sm truncate">{product.name}</div>
-                                    <div className="text-xs text-lvmh-gold">{product.price_eur ? product.price_eur.toFixed(2) + ' €' : '-'}</div>
+                                    <div className="text-xs text-silver">{product.price_eur ? product.price_eur.toFixed(2) + ' €' : '-'}</div>
                                     <div className="text-[10px] text-lvmh-gray uppercase">{product.category1 || 'N/A'}</div>
                                     <div className="flex items-center justify-between mt-2">
                                         <div className="flex items-center gap-1">
                                             <button
                                                 onClick={() => handleStockChange(product.sku, Math.max(0, (product.stock || 0) - 1))}
-                                                className="p-1 rounded border border-white/10 hover:border-lvmh-gold/40"
+                                                className="p-1 rounded border border-white/10 hover:border-silver/40"
                                             >
                                                 <Minus size={12} />
                                             </button>
                                             <span className="text-xs px-2">{product.stock || 0}</span>
                                             <button
                                                 onClick={() => handleStockChange(product.sku, (product.stock || 0) + 1)}
-                                                className="p-1 rounded border border-white/10 hover:border-lvmh-gold/40"
+                                                className="p-1 rounded border border-white/10 hover:border-silver/40"
                                             >
                                                 <Plus size={12} />
                                             </button>
@@ -373,7 +373,7 @@ export default function AdminProductsView() {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full py-2 rounded-lg bg-lvmh-gold text-black font-bold hover:bg-lvmh-gold/90"
+                                className="w-full py-2 rounded-lg bg-silver text-black font-bold hover:bg-silver/90"
                             >
                                 Ajouter
                             </button>
@@ -390,7 +390,7 @@ export default function AdminProductsView() {
                     <div className="glass p-6 rounded-lg w-full max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
                         <div className="flex justify-between items-center mb-4">
                             <h3 className="text-lg font-bold flex items-center gap-2">
-                                <Upload size={18} className="text-lvmh-gold" />
+                                <Upload size={18} className="text-silver" />
                                 Import CSV
                             </h3>
                             <button 
@@ -402,7 +402,7 @@ export default function AdminProductsView() {
                         </div>
 
                         <div className="mb-6">
-                            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:border-lvmh-gold/50 transition-colors">
+                            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:border-silver/50 transition-colors">
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <Upload size={24} className="text-lvmh-gray mb-2" />
                                     <p className="text-sm text-lvmh-gray">

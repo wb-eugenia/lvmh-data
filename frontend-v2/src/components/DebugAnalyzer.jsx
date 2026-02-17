@@ -71,7 +71,7 @@ export default function DebugAnalyzer() {
                 className="w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors"
             >
                 <div className="flex items-center gap-3">
-                    <Icon size={20} className="text-lvmh-gold" />
+                    <Icon size={20} className="text-silver" />
                     <span className="font-bold">{title}</span>
                     {badge && (
                         <span className={`text-xs px-2 py-0.5 rounded-full ${badge.color}`}>
@@ -189,7 +189,7 @@ export default function DebugAnalyzer() {
                     <select
                         value={language}
                         onChange={(e) => setLanguage(e.target.value)}
-                        className="bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:ring-1 focus:ring-lvmh-gold"
+                        className="bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:ring-1 focus:ring-silver"
                     >
                         <option value="FR">🇫🇷 Français</option>
                         <option value="EN">🇬🇧 English</option>
@@ -200,7 +200,7 @@ export default function DebugAnalyzer() {
                     <button
                         onClick={analyzeText}
                         disabled={loading || !inputText.trim()}
-                        className="flex items-center gap-2 bg-lvmh-gold text-black px-6 py-3 rounded-lg font-bold hover:bg-lvmh-gold/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 bg-silver text-black px-6 py-3 rounded-lg font-bold hover:bg-silver/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {loading ? <Loader2 size={20} className="animate-spin" /> : <Play size={20} />}
                         {loading ? 'Analyse...' : 'Analyser'}
@@ -211,7 +211,7 @@ export default function DebugAnalyzer() {
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     placeholder="Ex: Mme Dupont cherche un sac noir en cuir pour son anniversaire. Budget 2000€. Elle est cliente VIP depuis 2019..."
-                    className="w-full h-32 bg-white/5 border border-white/10 rounded-lg p-4 text-white placeholder-lvmh-gray resize-none focus:ring-1 focus:ring-lvmh-gold transition-all"
+                    className="w-full h-32 bg-white/5 border border-white/10 rounded-lg p-4 text-white placeholder-lvmh-gray resize-none focus:ring-1 focus:ring-silver transition-all"
                 />
 
                 {/* Quick Examples */}
@@ -281,14 +281,14 @@ export default function DebugAnalyzer() {
                     {allTags.length > 0 && (
                         <div className="glass p-4">
                             <div className="flex items-center gap-2 mb-3">
-                                <Tag size={18} className="text-lvmh-gold" />
+                                <Tag size={18} className="text-silver" />
                                 <span className="font-bold">Tags Extraits</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 {allTags.map((tag, i) => (
                                     <span 
                                         key={i} 
-                                        className="bg-lvmh-gold/20 text-lvmh-gold px-3 py-1 rounded-full text-sm font-medium"
+                                        className="bg-silver/20 text-silver px-3 py-1 rounded-full text-sm font-medium"
                                     >
                                         {tag}
                                     </span>
@@ -412,7 +412,7 @@ export default function DebugAnalyzer() {
                                 <div className="grid grid-cols-3 gap-4">
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Budget</span>
-                                        <div className="text-lg font-bold text-lvmh-gold mt-1">
+                                        <div className="text-lg font-bold text-silver mt-1">
                                             {result.pilier_4_action_business.budget_specific
                                                 ? `${result.pilier_4_action_business.budget_specific}€`
                                                 : (result.pilier_4_action_business.budget_potential || 'Non détecté')}
@@ -434,7 +434,7 @@ export default function DebugAnalyzer() {
                                     </div>
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Prochaine Action</span>
-                                        <div className="text-sm font-medium text-lvmh-gold mt-1">
+                                        <div className="text-sm font-medium text-silver mt-1">
                                             {formatValue(result.pilier_4_action_business.next_best_action) || 'Aucune'}
                                         </div>
                                         {Array.isArray(result.pilier_4_action_business.next_best_action?.target_products)
@@ -454,8 +454,8 @@ export default function DebugAnalyzer() {
                                     </div>
                                 </div>
                                 {result.pilier_4_action_business.nba_rationale && (
-                                    <div className="bg-lvmh-gold/10 border-l-2 border-lvmh-gold rounded p-3">
-                                        <span className="text-xs text-lvmh-gold">💡 Raisonnement NBA</span>
+                                    <div className="bg-silver/10 border-l-2 border-silver rounded p-3">
+                                        <span className="text-xs text-silver">💡 Raisonnement NBA</span>
                                         <div className="text-sm mt-1">{result.pilier_4_action_business.nba_rationale}</div>
                                     </div>
                                 )}
@@ -473,12 +473,12 @@ export default function DebugAnalyzer() {
                                     <div key={i} className="bg-white/5 rounded-lg p-4 border border-white/10">
                                         <div className="flex justify-between items-start mb-2">
                                             <span className="font-bold">{product.name || product.ID || `Produit ${i + 1}`}</span>
-                                            <span className="text-xs bg-lvmh-gold/20 text-lvmh-gold px-2 py-1 rounded">
+                                            <span className="text-xs bg-silver/20 text-silver px-2 py-1 rounded">
                                                 {Math.round(((product.match_score ?? product.similarity) || 0) * 100)}% match
                                             </span>
                                         </div>
                                         <div className="text-sm text-lvmh-gray">{product.category || 'Categorie N/A'}</div>
-                                        <div className="text-lvmh-gold font-bold mt-2">{product.price ? `${product.price}€` : 'Prix N/A'}</div>
+                                        <div className="text-silver font-bold mt-2">{product.price ? `${product.price}€` : 'Prix N/A'}</div>
                                     </div>
                                 ))}
                             </div>
@@ -502,7 +502,7 @@ export default function DebugAnalyzer() {
                                 </div>
                                 <div className="bg-white/5 rounded p-3">
                                     <span className="text-xs text-lvmh-gray">Confiance Routing</span>
-                                    <div className="text-2xl font-bold text-lvmh-gold mt-1">
+                                    <div className="text-2xl font-bold text-silver mt-1">
                                         {Math.round((result.routing?.confidence || 0) * 100)}%
                                     </div>
                                 </div>
@@ -557,7 +557,7 @@ export default function DebugAnalyzer() {
                             {result.rgpd?.anonymized_text && (
                                 <div className="bg-white/5 rounded p-3">
                                     <span className="text-xs text-lvmh-gray">Texte Anonymisé</span>
-                                    <div className="text-sm mt-1 font-mono text-lvmh-gold">
+                                    <div className="text-sm mt-1 font-mono text-silver">
                                         {result.rgpd.anonymized_text}
                                     </div>
                                 </div>
@@ -572,19 +572,19 @@ export default function DebugAnalyzer() {
                                 <div className="grid grid-cols-3 gap-4">
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Quality Score</span>
-                                        <div className="text-2xl font-bold text-lvmh-gold mt-1">
+                                        <div className="text-2xl font-bold text-silver mt-1">
                                             {qualityPercent}%
                                         </div>
                                     </div>
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Confiance Extraction</span>
-                                        <div className="text-2xl font-bold text-lvmh-gold mt-1">
+                                        <div className="text-2xl font-bold text-silver mt-1">
                                             {confidencePercent}%
                                         </div>
                                     </div>
                                     <div className="bg-white/5 rounded p-3">
                                         <span className="text-xs text-lvmh-gray">Complétude</span>
-                                        <div className="text-2xl font-bold text-lvmh-gold mt-1">
+                                        <div className="text-2xl font-bold text-silver mt-1">
                                             {completenessPercent}%
                                         </div>
                                     </div>
