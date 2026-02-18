@@ -1,0 +1,1 @@
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYW5hZ2VyQGx2bWguY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpZCI6MiwiZXhwIjoxNzcxMzc5MTM4fQ.q81YMRVNELbaWJo2M-GTc4qrKrfnynEypovxj3I7zGE","token_type":"bearer","role":"manager","name":"Jean Dupont","points":45,"store":"Paris HQ"}

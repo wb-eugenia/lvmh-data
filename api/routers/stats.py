@@ -234,14 +234,20 @@ async def get_leaderboard_stats(db: Session = Depends(get_db)):
     """Get real leaderboard from User scores."""
     users = db.query(User).filter(User.role == "advisor").order_by(User.score.desc()).all()
     
-    return [
-        {
+    result = []
+    for u in users:
+        try:
+            note_count = len(u.notes) if u.notes else 0
+        except:
+            note_count = db.query(Note).filter(Note.advisor_id == u.id).count()
+        
+        result.append({
             "id": u.full_name or u.email.split('@')[0],
-            "notes": len(u.notes),
+            "notes": note_count,
             "score": u.score
-        }
-        for u in users
-    ]
+        })
+    
+    return result
 
 
 @router.get("/monitoring/status")

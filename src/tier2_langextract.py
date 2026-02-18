@@ -65,7 +65,13 @@ def _map_langextract_to_extraction_result(lx_tags: list, text: str, confidence: 
         if tag_class == "produit":
             # Map to Pilier 1
             if attrs.get("categorie"):
-                pilier_1.categories.append(attrs["categorie"])
+                cat = attrs["categorie"]
+                if isinstance(cat, list):
+                    cat = cat[0] if cat else ""
+                elif not isinstance(cat, str):
+                    cat = str(cat)
+                if cat:
+                    pilier_1.categories.append(cat)
             if attrs.get("marque"):
                 pilier_1.produits_mentionnes.append(f"{attrs.get('marque')} {tag_text}")
             if attrs.get("budget"):
@@ -88,14 +94,25 @@ def _map_langextract_to_extraction_result(lx_tags: list, text: str, confidence: 
         elif tag_class == "hospitalite":
             # Map to Pilier 3
             if attrs.get("occasion"):
-                pilier_3.occasion = attrs["occasion"]
+                occasion = attrs["occasion"]
+                if isinstance(occasion, list):
+                    occasion = occasion[0] if occasion else ""
+                elif not isinstance(occasion, str):
+                    occasion = str(occasion)
+                if occasion:
+                    pilier_3.occasion = occasion
                 
         elif tag_class == "action_business":
             # Map to Pilier 4
             if attrs.get("type_action"):
+                action_type = attrs["type_action"]
+                if isinstance(action_type, list):
+                    action_type = action_type[0] if action_type else "follow_up"
+                elif not isinstance(action_type, str):
+                    action_type = str(action_type)
                 pilier_4.next_best_action = NextBestAction(
-                    action_type=attrs["type_action"],
-                    description=f"Action: {attrs['type_action']}"
+                    action_type=action_type,
+                    description=f"Action: {action_type}"
                 )
             if attrs.get("urgence"):
                 urgency = attrs["urgence"].lower()

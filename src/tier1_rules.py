@@ -51,8 +51,10 @@ class Tier1RulesEngine:
          lambda m: int(m.group(1))),
 
         # French - Standard patterns
-        (r'budget\s*(?:de|:)?\s*(\d{1,3})[\s,]?(\d{3})?\s*(?:€|euros?)?', 
-         lambda m: int(m.group(1)) * 1000 + int(m.group(2) or 0)),
+        (r'budget\s*(?:de|:)?\s*(\d{1,3})\s*[kK]\s*(?:€|euros?)?', 
+         lambda m: int(m.group(1)) * 1000),
+        (r'budget\s*(?:de|:)?\s*(\d{1,3})\s*(?:€|euros?)?', 
+         lambda m: int(m.group(1))),
         (r'budget\s*(?:de|:)?\s*(\d+)\s*[kK]', lambda m: int(m.group(1)) * 1000),
         (r'(\d+)\s*[kK]\s*(?:€|euros?)?\s*(?:de\s+)?budget', lambda m: int(m.group(1)) * 1000),
         (r'entre\s*(\d+)\s*(?:et|à)\s*(\d+)\s*[kK]', 

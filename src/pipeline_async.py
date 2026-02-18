@@ -44,6 +44,7 @@ from src.semantic_cache import SemanticCache
 from src.cross_validator import CrossValidator
 from src.recommender import RecommenderEngine
 from src.product_matcher import ProductMatcher
+from src.circuit_breaker import get_tier2_circuit_breaker, get_tier3_circuit_breaker
 from src.services.llm_guard_service import get_llm_guard_service, secure_input
 from src.services.evidently_service import get_evidently_service, check_drift
 
@@ -527,15 +528,17 @@ class AsyncPipeline:
             if use_rgpd_llm:
                 try:
                     rgpd_circuit = get_rgpd_circuit_breaker()
-                    rgpd_payload = await rgpd_circuit.call(
-                        self.rgpd_filter.process_note,
-                        {
-                            "ID": note_id,
-                            "Transcription": text,
-                            "Language": language,
-                        },
-                        fallback=None
-                    )
+                    try:
+                        rgpd_payload = await rgpd_circuit.call(
+                            self.rgpd_filter.process_note,
+                            {
+                                "ID": note_id,
+                                "Transcription": text,
+                                "Language": language,
+                            },
+                        )
+                    except Exception:
+                        rgpd_payload = None
                     
                     if rgpd_payload is not None:
                         detection = rgpd_payload.get("rgpd_result") or {}
@@ -688,13 +691,15 @@ class AsyncPipeline:
                             
                             # Use circuit breaker for Tier 2
                             tier2_circuit = get_tier2_circuit_breaker()
-                            tier2_result = await tier2_circuit.call(
-                                run_with_semaphore_timeout,
-                                self.tier2_semaphore,
-                                lambda: self.tier2.extract(text, language),
-                                tier2_timeout,
-                                fallback=None
-                            )
+                            try:
+                                tier2_result = await tier2_circuit.call(
+                                    run_with_semaphore_timeout,
+                                    self.tier2_semaphore,
+                                    lambda: self.tier2.extract(text, language),
+                                    tier2_timeout,
+                                )
+                            except Exception:
+                                tier2_result = None
                             
                             # Handle result from circuit breaker
                             if tier2_result is None:
@@ -762,19 +767,21 @@ class AsyncPipeline:
                             
                             # Use circuit breaker for Tier 3
                             tier3_circuit = get_tier3_circuit_breaker()
-                            tier3_result = await tier3_circuit.call(
-                                run_with_semaphore_timeout,
-                                self.openai_semaphore,
-                                lambda: self.tier3.extract(
-                                    text,
-                                    language,
-                                    client_status=None,
-                                    escalation_reason=decision.reasons[-1] if decision.reasons else None,
-                                    use_cache=False
-                                ),
-                                tier3_timeout,
-                                fallback=None
-                            )
+                            try:
+                                tier3_result = await tier3_circuit.call(
+                                    run_with_semaphore_timeout,
+                                    self.openai_semaphore,
+                                    lambda: self.tier3.extract(
+                                        text,
+                                        language,
+                                        client_status=None,
+                                        escalation_reason=decision.reasons[-1] if decision.reasons else None,
+                                        use_cache=False
+                                    ),
+                                    tier3_timeout,
+                                )
+                            except Exception:
+                                tier3_result = None
                             
                             if tier3_result is None:
                                 decision.tier = 2 if 2 in tier_results else 1

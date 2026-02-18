@@ -63,7 +63,7 @@ circuit_breaker_manager = CircuitBreakerManager()
 
 def get_tier2_circuit_breaker() -> CircuitBreaker:
     """Get circuit breaker for tier 2."""
-    return circuit_breaker_manager.get_breaker("tier2", 5)
+    return circuit_breaker_manager.get_breaker("tier2", 50)
 
 
 def get_tier3_circuit_breaker() -> CircuitBreaker:

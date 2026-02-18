@@ -405,7 +405,6 @@ export default function ManagerView({ onBack }) {
         { id: 'advisors', name: 'Advisors', icon: Trophy },
         { id: 'alerts', name: 'Alertes', icon: BellRing },
         { id: 'notes', name: 'Notes', icon: Mic },
-        { id: 'vip', name: 'VIP', icon: Star },
         { id: 'quality', name: 'Qualité', icon: Star },
         { id: 'datacleaning', name: 'Data', icon: Sparkles },
         { id: 'debug', name: 'Debug', icon: Terminal }
@@ -1162,7 +1161,7 @@ export default function ManagerView({ onBack }) {
     const segmentRows = Array.isArray(segmentsData?.segments) ? segmentsData.segments : []
 
     useEffect(() => {
-        const tabsWithSelection = ['dashboard', 'opportunities', 'notes', 'segments', 'vip']
+        const tabsWithSelection = ['dashboard', 'opportunities', 'notes', 'segments']
         if (!tabsWithSelection.includes(currentTab)) {
             if (selectedOpportunityId !== null) {
                 setSelectedOpportunityId(null)
@@ -2555,54 +2554,7 @@ export default function ManagerView({ onBack }) {
                     </div>
                 )}
 
-                {currentTab === 'vip' && (
-                    <div className="space-y-6 animate-in slide-in-from-right duration-500">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Star className="text-red-500 fill-red-500" size={24} />
-                            <h3 className="text-2xl font-display font-black">Segment Discovery (Tier 3)</h3>
-                        </div>
-                        <div className="grid grid-cols-1 gap-4">
-                            {(history || []).filter(x => x.tier === 3).map((r, i) => (
-                                <div key={i} className="glass p-6 border-l-4 border-red-500 hover:bg-white/5 transition-all">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <span className="text-xl font-bold">{r.ID}</span>
-                                        <span className="text-xs bg-red-500/20 text-red-500 px-3 py-1 rounded-full font-bold">ALERTE MISTRAL</span>
-                                    </div>
-                                    <p className="text-lvmh-gray text-sm mb-4">"{r.Transcription?.substring(0, 100)}..."</p>
-
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {(r.tags || []).map(tag => (
-                                            <span key={tag} className="text-[10px] bg-white/5 border border-white/10 px-2 py-0.5 rounded text-lvmh-gray uppercase">
-                                                {tag.replace('_', ' ')}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className="bg-white/5 p-4 rounded-lg border border-white/5 space-y-4">
-                                        <div>
-                                            <div className="text-[10px] text-silver uppercase font-bold mb-2 tracking-widest">🚀 Opportunité NBA</div>
-                                            <div className="font-medium text-sm">{r.pilier_4_action_business?.next_best_action?.description || "Analyse approfondie requise"}</div>
-                                        </div>
-
-                                        {r.matched_products?.length > 0 && (
-                                            <div className="pt-3 border-t border-white/5">
-                                                <div className="text-[10px] text-lvmh-gray uppercase font-bold mb-2 tracking-widest">🛍️ Produits Catalogués (RAG)</div>
-                                                <div className="flex gap-2 overflow-x-auto pb-1">
-                                                    {r.matched_products.slice(0, 3).map((prod, pi) => (
-                                                        <div key={pi} className="flex-shrink-0 bg-lvmh-black border border-white/5 p-2 rounded text-[10px]">
-                                                            <div className="font-bold text-silver">{prod.name || prod.ID}</div>
-                                                            <div className="text-[9px] text-lvmh-gray">{prod.category}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                {/* VIP tab removed */}
 
                 {currentTab === 'quality' && (
                     <div className="space-y-10 animate-in slide-in-from-right duration-500">

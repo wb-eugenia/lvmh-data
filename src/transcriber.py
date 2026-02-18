@@ -1,6 +1,5 @@
 """
-Unified Transcription Module - Voxtral (Mistral) only.
-Zero external API fallback - full local processing.
+Transcription Module - Supports Groq Whisper and Voxtral (Mistral).
 """
 
 import os
@@ -31,6 +30,80 @@ def get_mistral_client():
         return None
     
     return Mistral(api_key=api_key)
+
+
+def get_groq_client():
+    """Get Groq client with API key."""
+    from groq import Groq
+    
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        logger.warning("GROQ_API_KEY not found")
+        return None
+    
+    return Groq(api_key=api_key)
+
+
+async def transcribe_with_groq(
+    audio_path: Path,
+    language: Optional[str] = None,
+) -> TranscriptionResult:
+    """
+    Transcribe audio using Groq Whisper (faster, better quality).
+    
+    Args:
+        audio_path: Path to audio file
+        language: Optional language code (fr, it, de, en, etc.)
+    
+    Returns:
+        TranscriptionResult with text and metadata
+    """
+    client = get_groq_client()
+    
+    if not client:
+        raise Exception("Groq client not available")
+    
+    logger.info(f"Transcribing with Groq Whisper: {audio_path.name}, language={language}")
+    
+    try:
+        with open(audio_path, "rb") as audio_file:
+            response = client.audio.transcriptions.create(
+                file=(audio_path.name, audio_file.read()),
+                model="whisper-large-v3",
+                response_format="verbose_json",
+                language=language,
+                timestamp_granularities=["word"],
+            )
+        
+        text = response.text if hasattr(response, 'text') else str(response)
+        
+        timestamps = None
+        if hasattr(response, 'words') and response.words:
+            timestamps = [
+                {
+                    "word": w.word,
+                    "start": w.start,
+                    "end": w.end,
+                }
+                for w in response.words
+            ]
+        
+        detected_language = language
+        if not detected_language and hasattr(response, 'language'):
+            detected_language = response.language
+        
+        logger.info(f"Groq transcription success: {len(text)} chars")
+        
+        return TranscriptionResult(
+            text=text,
+            provider="groq-whisper",
+            language=detected_language,
+            timestamps=timestamps,
+        )
+        
+    except Exception as e:
+        logger.error(f"Groq transcription error: {e}")
+        raise
 
 
 async def transcribe_with_voxtral(
@@ -118,22 +191,33 @@ async def transcribe(
     audio_path: Path,
     language: Optional[str] = None,
     enable_timestamps: bool = True,
+    provider: str = "groq",
 ) -> TranscriptionResult:
     """
-    Main transcription function - Voxtral (Mistral) only.
-    No external fallback - uses Whisper Edge on frontend instead.
+    Main transcription function - Groq Whisper preferred, Voxtral fallback.
     
     Args:
         audio_path: Path to audio file
         language: Optional language code
         enable_timestamps: Include word-level timestamps
+        provider: "groq" (default) or "mistral"
     
     Returns:
         TranscriptionResult
     """
+    if provider == "groq":
+        try:
+            return await transcribe_with_groq(audio_path, language=language)
+        except Exception as e:
+            logger.warning(f"Groq failed, falling back to Voxtral: {e}")
+    
+    # Fallback to Voxtral
     timestamps = ["word"] if enable_timestamps else None
     return await transcribe_with_voxtral(
         audio_path,
+        language=language,
+        timestamp_granularities=timestamps,
+    )
         language=language,
         timestamp_granularities=timestamps,
     )

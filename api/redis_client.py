@@ -1,5 +1,6 @@
 """
 Redis client for caching and distributed operations.
+With in-memory fallback when Redis is unavailable.
 """
 
 import os
@@ -15,10 +16,18 @@ logger = logging.getLogger("lvmh-api.redis")
 
 _redis_client: Optional[Redis] = None
 
+# In-memory fallback
+_memory_store: dict = {}
+
 
 def get_redis_url() -> str:
     """Get Redis URL from environment or default."""
     return os.getenv("REDIS_URL", "redis://localhost:6379/0")
+
+
+def is_redis_available() -> bool:
+    """Check if Redis URL is configured."""
+    return bool(os.getenv("REDIS_URL", ""))
 
 
 async def get_redis() -> Redis:
@@ -60,7 +69,8 @@ class RedisCache:
                 return json.loads(value)
         except Exception as e:
             logger.warning(f"Redis get error: {e}")
-        return None
+        # Fallback to memory
+        return _memory_store.get(self._key(key))
     
     async def set(self, key: str, value: Any, ttl: Optional[int] = None) -> bool:
         """Set value in cache."""
@@ -74,7 +84,9 @@ class RedisCache:
             return True
         except Exception as e:
             logger.warning(f"Redis set error: {e}")
-            return False
+        # Fallback to memory
+        _memory_store[self._key(key)] = value
+        return False
     
     async def delete(self, key: str) -> bool:
         """Delete key from cache."""
@@ -84,7 +96,9 @@ class RedisCache:
             return True
         except Exception as e:
             logger.warning(f"Redis delete error: {e}")
-            return False
+        # Fallback to memory
+        _memory_store.pop(self._key(key), None)
+        return False
     
     async def exists(self, key: str) -> bool:
         """Check if key exists."""
@@ -93,15 +107,19 @@ class RedisCache:
             return await r.exists(self._key(key)) > 0
         except Exception as e:
             logger.warning(f"Redis exists error: {e}")
-            return False
+        # Fallback to memory
+        return self._key(key) in _memory_store
 
 
 class BatchTaskStore:
-    """Redis-backed batch task storage."""
+    """Redis-backed batch task storage with in-memory fallback."""
     
     TASK_PREFIX = "lvmh:batch:task:"
     TASK_TTL = 86400  # 24 hours
     
+    # In-memory storage for fallback
+    _tasks: dict = {}
+
     @staticmethod
     def _key(task_id: str) -> str:
         return f"{BatchTaskStore.TASK_PREFIX}{task_id}"
@@ -119,7 +137,9 @@ class BatchTaskStore:
             return True
         except Exception as e:
             logger.warning(f"Batch task save error: {e}")
-            return False
+        # Fallback to memory
+        cls._tasks[cls._key(task_id)] = data
+        return False
     
     @classmethod
     async def get(cls, task_id: str) -> Optional[dict]:
@@ -131,6 +151,8 @@ class BatchTaskStore:
                 return json.loads(value)
         except Exception as e:
             logger.warning(f"Batch task get error: {e}")
+        # Fallback to memory
+        return cls._tasks.get(cls._key(task_id))
         return None
     
     @classmethod
@@ -142,7 +164,9 @@ class BatchTaskStore:
             return True
         except Exception as e:
             logger.warning(f"Batch task delete error: {e}")
-            return False
+        # Fallback to memory
+        cls._tasks.pop(cls._key(task_id), None)
+        return False
     
     @classmethod
     async def list_tasks(cls, pattern: str = "*") -> list[str]:
@@ -153,4 +177,6 @@ class BatchTaskStore:
             return [k.replace(cls.TASK_PREFIX, "") for k in keys]
         except Exception as e:
             logger.warning(f"Batch task list error: {e}")
-            return []
+        # Fallback to memory
+        prefix = cls.TASK_PREFIX
+        return [k.replace(prefix, "") for k in cls._tasks.keys() if k.startswith(prefix)]

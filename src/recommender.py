@@ -515,8 +515,8 @@ Réponds en JSON strict:
         p4 = extraction.pilier_4_action_business
         
         categories = p1.categories or []
-        interests = p1.interests or []
-        products_mentioned = p1.products_mentioned or []
+        preferences = p1.preferences.colors if p1.preferences else []
+        products_mentioned = p1.produits_mentionnes or []
         
         recommended_products = []
         
@@ -528,8 +528,8 @@ Réponds en JSON strict:
             search_terms = []
             if categories:
                 search_terms.extend(categories[:3])
-            if interests:
-                search_terms.extend(interests[:3])
+            if preferences:
+                search_terms.extend(preferences[:3])
             if products_mentioned:
                 search_terms.extend(products_mentioned[:3])
             

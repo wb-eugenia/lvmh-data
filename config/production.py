@@ -27,13 +27,17 @@ class RuntimeProfile(BaseModel):
     rag_threshold: float = 0.5
     require_non_empty_tags: bool = False
     strict_quality_gate: bool = False
+    defer_non_critical_writes: bool = False  # Save notes to DB by default
 
 
 class Settings(BaseModel):
-    """Configuration centralisée type-safe"""
+    """Configuration centralisee type-safe"""
     
     # Environment
     environment: Literal['dev', 'staging', 'prod'] = 'dev'
+    
+    # Persistance - save notes to DB by default
+    defer_non_critical_writes: bool = False  # Save notes synchronously
     
     # Pipeline Thresholds
     tier1_confidence_threshold: float = Field(default=0.75, ge=0.0, le=1.0)

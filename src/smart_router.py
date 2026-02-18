@@ -71,8 +71,8 @@ class SmartRouterV3:
     
     # Seuils optimisés pour notes écrites
     # Objectif: 20-30% en Tier 1 (vs 4% avant)
-    TIER1_MAX_SCORE = 35   # AVANT: 20 (Quick Win: +15pts)
-    TIER2_MAX_SCORE = 80  # AVANT: 75
+    TIER1_MAX_SCORE = 20   # Plus strict: score < 20 = Tier 1
+    TIER2_MAX_SCORE = 60  # Score 20-60 = Tier 2
     
     TIER_COSTS = {1: 0.0, 2: 0.0001, 3: 0.005}
     TIER_TIMES = {1: 50, 2: 3000, 3: 5000}

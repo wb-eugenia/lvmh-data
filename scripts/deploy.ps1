@@ -61,9 +61,10 @@ gcloud run deploy $SERVICE_NAME `
     --platform managed `
     --region $REGION `
     --allow-unauthenticated `
-    --memory 1Gi `
+    --memory 2Gi `
     --port 8080 `
-    --set-env-vars "MISTRAL_API_KEY=$MISTRAL_KEY,LVMH_USE_ZVEC=true,OPENAI_API_KEY=$OPENAI_KEY,use_langextract_tier2=true" `
+    --set-env-vars "MISTRAL_API_KEY=$MISTRAL_KEY,LVMH_USE_ZVEC=true,OPENAI_API_KEY=$OPENAI_KEY,use_langextract_tier2=true,USE_CLOUD_SQL=true,CLOUD_SQL_CONNECTION_NAME=$PROJECT_ID:$REGION:lvmh-pipeline-prod,DB_USER=lvmh_app" `
+    --add-cloudsql-instances "$PROJECT_ID:$REGION:lvmh-pipeline-prod" `
     --project=$PROJECT_ID
 
 if ($LASTEXITCODE -eq 0) {
