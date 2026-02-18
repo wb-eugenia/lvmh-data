@@ -23,6 +23,7 @@ import {
     Users,
     Wifi,
     WifiOff,
+    PlusCircle,
     X,
     ChevronLeft,
     ChevronRight,
@@ -42,6 +43,87 @@ const WINDOW_PRESETS = [
     { label: '30 jours', days: 30 },
     { label: '90 jours', days: 90 }
 ]
+
+const ADMIN_MOCK_RECORDINGS = [
+    {
+        id: 'mock-1',
+        note_id: 'mock-1',
+        timestamp: new Date().toISOString(),
+        transcription: "Cliente VIC interessee par un Capucines noir pour un anniversaire de mariage.",
+        tier: 3,
+        confidence: 0.92,
+        processing_time_ms: 1420,
+        advisor: { name: 'Sophie Martin' },
+        client: { name: 'Claire Dubois', vic_status: 'VIC' },
+        tags: ['capucines', 'black', 'birthday_gift', 'vic'],
+        pilier_4_action_business: {
+            budget_potential: 'High (5-15k EUR)',
+            next_best_action: { description: 'Organiser un rendez-vous prive avec deux options premium.' }
+        }
+    },
+    {
+        id: 'mock-2',
+        note_id: 'mock-2',
+        timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
+        transcription: "Client recherche un Keepall pour ses deplacements professionnels, personnalisation initiales demandee.",
+        tier: 2,
+        confidence: 0.84,
+        processing_time_ms: 1880,
+        advisor: { name: 'Sophie Martin' },
+        client: { name: 'Marco Bianchi', vic_status: 'Premium' },
+        tags: ['keepall', 'travel', 'professional_work', 'core'],
+        pilier_4_action_business: {
+            budget_potential: 'Core (2-5k EUR)',
+            next_best_action: { description: 'Envoyer disponibilites + options personnalisation sous 24h.' }
+        }
+    },
+    {
+        id: 'mock-3',
+        note_id: 'mock-3',
+        timestamp: new Date(Date.now() - 1000 * 60 * 55).toISOString(),
+        transcription: "Premiere visite pour cadeau de fiancee, preference pour Alma beige et accessoires assortis.",
+        tier: 2,
+        confidence: 0.79,
+        processing_time_ms: 1695,
+        advisor: { name: 'Sophie Martin' },
+        client: { name: 'Sofia Laurent', vic_status: 'Standard' },
+        tags: ['alma', 'gift', 'beige_neutral', 'flexible_unknown'],
+        pilier_4_action_business: {
+            budget_potential: 'Flexible/Unknown',
+            next_best_action: { description: 'Preparer total look cadeau avec packaging premium.' }
+        }
+    }
+]
+
+const normalizeRecordingRow = (row, index = 0) => {
+    const rawNoteId = row?.note_id ?? row?.id ?? `mock-${index + 1}`
+    const noteId = Number.isFinite(Number(rawNoteId)) ? Number(rawNoteId) : String(rawNoteId)
+    const transcription = row?.transcription || row?.transcription_preview || 'Aucune transcription'
+    const preview = transcription.length > 180 ? `${transcription.slice(0, 180)}...` : transcription
+    const confidence = Number(row?.confidence)
+    const safeConfidence = Number.isFinite(confidence) ? confidence : 0
+    const tags = Array.isArray(row?.tags) ? row.tags : []
+    const nbaValue = row?.next_best_action || row?.pilier_4_action_business?.next_best_action
+    const nextBestAction = typeof nbaValue === 'string'
+        ? nbaValue
+        : nbaValue?.description || nbaValue?.title || 'Aucune action recommandee'
+
+    return {
+        ...row,
+        note_id: noteId,
+        transcription,
+        transcription_preview: preview,
+        tier: Number(row?.tier) || 1,
+        confidence: safeConfidence,
+        processing_time_ms: Number(row?.processing_time_ms) || 0,
+        advisor_name: row?.advisor?.name || row?.advisor_name || 'Advisor inconnu',
+        client_name: row?.client?.name || row?.client_name || 'Client inconnu',
+        client_vic_status: row?.client?.vic_status || row?.client_vic_status || 'Standard',
+        tags: tags.slice(0, 8),
+        next_best_action_description: nextBestAction,
+        budget_label: row?.pilier_4_action_business?.budget_potential || row?.budget_label || 'N/A'
+    }
+}
 
 const calculateTrend = (current, previous) => {
     if (!previous || previous === 0) return { value: 0, isPositive: true, isNeutral: true }
@@ -218,15 +300,31 @@ export default function AdminPanel({ onBack }) {
         }
     }
 
-    const fetchDailyNotes = async () => {
+    const fetchDailyNotes = async (fallbackToMock = true) => {
         try {
-            const res = await apiFetch(`/api/results?limit=50&days=${windowDays}`)
+            const params = new URLSearchParams()
+            params.set('page', '1')
+            params.set('limit', '50')
+            const res = await apiFetch(`/api/recordings?${params.toString()}`)
             if (res.ok) {
                 const data = await res.json()
-                setDailyNotes(data.notes ?? [])
+                const recordings = (data.recordings ?? []).map((row, idx) => normalizeRecordingRow(row, idx))
+                if (recordings.length > 0) {
+                    setDailyNotes(recordings)
+                    return
+                }
+            }
+
+            if (fallbackToMock) {
+                setDailyNotes(ADMIN_MOCK_RECORDINGS.map((row, idx) => normalizeRecordingRow(row, idx)))
+            } else {
+                setDailyNotes([])
             }
         } catch (e) {
             console.error('Failed to fetch daily notes:', e)
+            if (fallbackToMock) {
+                setDailyNotes(ADMIN_MOCK_RECORDINGS.map((row, idx) => normalizeRecordingRow(row, idx)))
+            }
         }
     }
 
@@ -354,10 +452,17 @@ export default function AdminPanel({ onBack }) {
 
     useEffect(() => {
         if (selectedNoteId) {
+            const parsedNoteId = Number(selectedNoteId)
+            if (!Number.isFinite(parsedNoteId)) {
+                setNoteDetails(null)
+                setNoteSummary(null)
+                setNoteDetailsError(null)
+                return
+            }
             setNoteDetailsLoading(true)
             setNoteDetailsError(null)
             Promise.all([
-                apiFetch(`/api/results/${selectedNoteId}`)
+                apiFetch(`/api/results/${parsedNoteId}`)
             ]).then(([detailsRes]) => {
                 if (detailsRes.ok) {
                     detailsRes.json().then(data => {
@@ -444,16 +549,39 @@ export default function AdminPanel({ onBack }) {
         setAdminActionLoading('purge-recordings')
         setAdminActionMessage(null)
         try {
-            const res = await apiFetch('/api/dashboard/admin/purge-recordings', { method: 'POST' })
+            const res = await apiFetch('/api/dashboard/admin/recordings?reset_points=true&delete_feedback=true', { method: 'DELETE' })
             if (res.ok) {
                 setAdminActionMessage('Enregistrements supprimés avec succès')
                 fetchAdminUsers()
-                fetchDailyNotes()
+                fetchDailyNotes(false)
             } else {
                 setAdminActionMessage(`Erreur: ${res.status}`)
             }
         } catch (e) {
             setAdminActionMessage(e.message)
+        } finally {
+            setAdminActionLoading(null)
+            setTimeout(() => setAdminActionMessage(null), 5000)
+        }
+    }
+
+    const handleSeedMockRecordings = async () => {
+        setAdminActionLoading('seed-mocks')
+        setAdminActionMessage(null)
+        try {
+            const res = await apiFetch('/api/dashboard/admin/recordings/mock?count=8', { method: 'POST' })
+            if (res.ok) {
+                const data = await res.json()
+                setAdminActionMessage(`${data.created_notes || 0} enregistrements mock crees`)
+                fetchDailyNotes(false)
+                fetchAdminUsers()
+                return
+            }
+            setDailyNotes(ADMIN_MOCK_RECORDINGS.map((row, idx) => normalizeRecordingRow(row, idx)))
+            setAdminActionMessage(`Seed API indisponible (HTTP ${res.status}) - mocks locaux charges`)
+        } catch (e) {
+            setDailyNotes(ADMIN_MOCK_RECORDINGS.map((row, idx) => normalizeRecordingRow(row, idx)))
+            setAdminActionMessage(`Seed API indisponible - mocks locaux charges (${e.message})`)
         } finally {
             setAdminActionLoading(null)
             setTimeout(() => setAdminActionMessage(null), 5000)

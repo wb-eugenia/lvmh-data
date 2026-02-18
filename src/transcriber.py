@@ -44,6 +44,19 @@ def get_groq_client():
     return Groq(api_key=api_key)
 
 
+def get_groq_openai_client():
+    """Get OpenAI-compatible client for Groq TTS endpoints."""
+    from openai import OpenAI
+
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        logger.warning("GROQ_API_KEY not found")
+        return None
+
+    base_url = os.getenv("GROQ_OPENAI_BASE_URL", "https://api.groq.com/openai/v1")
+    return OpenAI(api_key=api_key, base_url=base_url)
+
+
 async def transcribe_with_groq(
     audio_path: Path,
     language: Optional[str] = None,
@@ -218,9 +231,48 @@ async def transcribe(
         language=language,
         timestamp_granularities=timestamps,
     )
-        language=language,
-        timestamp_granularities=timestamps,
+
+
+def synthesize_with_groq(
+    text: str,
+    voice: Optional[str] = None,
+    model: Optional[str] = None,
+    response_format: str = "mp3",
+) -> bytes:
+    """
+    Synthesize speech from text via Groq OpenAI-compatible audio endpoint.
+    """
+    cleaned = str(text or "").strip()
+    if not cleaned:
+        raise ValueError("Text cannot be empty for speech synthesis")
+
+    client = get_groq_openai_client()
+    if not client:
+        raise RuntimeError("Groq TTS client not available")
+
+    tts_model = model or os.getenv("GROQ_TTS_MODEL", "playai-tts")
+    tts_voice = voice or os.getenv("GROQ_TTS_VOICE", "Arista-PlayAI")
+    fmt = (response_format or "mp3").strip().lower()
+    if fmt not in {"mp3", "wav"}:
+        fmt = "mp3"
+
+    logger.info("Generating Groq TTS audio with model=%s voice=%s", tts_model, tts_voice)
+    response = client.audio.speech.create(
+        model=tts_model,
+        voice=tts_voice,
+        input=cleaned,
+        response_format=fmt,
     )
+
+    if hasattr(response, "read"):
+        audio_bytes = response.read()
+    else:
+        audio_bytes = bytes(response)
+
+    if not audio_bytes:
+        raise RuntimeError("Groq TTS returned empty audio payload")
+
+    return audio_bytes
 
 
 async def transcribe_from_file(

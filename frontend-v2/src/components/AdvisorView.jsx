@@ -954,7 +954,7 @@ export default function AdvisorView({ onBack }) {
                                 <div
                                     className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 ${isRecording ? 'bg-red-500 border-red-400 scale-110' : isProcessing ? 'bg-silver/20 border-silver/40' : 'bg-white border-white/20'}`}
                                 >
-                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : isProcessing ? "text-silver" : "text-black"} />
+                                    <Mic size={40} className={isRecording ? "text-white animate-pulse" : isProcessing ? "text-silver" : "text-white"} />
                                 </div>
 
                                 {isRecording && (
@@ -1377,7 +1377,7 @@ export default function AdvisorView({ onBack }) {
                             disabled={isProcessing}
                             className={`w-full py-5 rounded-xl transition-all shadow-[0_15px_40px_rgba(0,0,0,0.35)] border flex items-center justify-center gap-3 uppercase tracking-widest font-black ${isRecording
                                 ? 'bg-red-500 text-white border-red-400 hover:bg-red-500/90'
-                                : 'bg-silver text-black border-silver hover:bg-silver/90'
+                                : 'bg-silver text-white border-silver hover:bg-silver/90'
                                 } ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             <Mic size={20} />

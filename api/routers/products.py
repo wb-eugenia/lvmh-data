@@ -17,7 +17,7 @@ from fastapi import APIRouter, Query, HTTPException, UploadFile, File, Depends
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, Integer
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
@@ -166,9 +166,9 @@ async def get_product_stats(db: Session = Depends(get_db)):
         func.avg(ProductModel.price_eur).label('avg_price'),
         func.min(ProductModel.price_eur).label('min_price'),
         func.max(ProductModel.price_eur).label('max_price'),
-        func.sum(func.cast(ProductModel.is_discount, int)).label('discount_count'),
-        func.sum(func.cast(ProductModel.stock > 0, int)).label('in_stock_count'),
-        func.sum(func.cast(ProductModel.rag_indexed, int)).label('indexed_count'),
+        func.sum(func.cast(ProductModel.is_discount, Integer)).label('discount_count'),
+        func.sum(func.cast(ProductModel.stock > 0, Integer)).label('in_stock_count'),
+        func.sum(func.cast(ProductModel.rag_indexed, Integer)).label('indexed_count'),
     ).first()
     
     return {

@@ -19,8 +19,9 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session, joinedload
 
 from api.database import get_db
+from api.auth_utils import get_password_hash
 from api.models_sql import Client, Feedback, Note, OpportunityAction, User
-from api.routers.auth import require_roles
+from api.routers.auth import require_roles, get_current_user
 from config.production import settings
 
 logger = logging.getLogger("lvmh-api.dashboard")
@@ -55,6 +56,95 @@ ALLOWED_OPPORTUNITY_PRIORITY_FILTER = {"all", "urgent", "vip", "tier3"}
 ALLOWED_OPPORTUNITY_SORT = {"priority", "recent", "budget", "urgency"}
 ALLOWED_OPPORTUNITY_WINDOW = {"all", "today", "7d", "30d"}
 DEMO_ACCOUNT_EMAILS = {"advisor@lvmh.com", "manager@lvmh.com", "admin@lvmh.com"}
+MOCK_RECORDING_BLUEPRINTS: List[Dict[str, Any]] = [
+    {
+        "client_name": "Claire Dubois",
+        "external_client_id": "MOCK-CL-001",
+        "category": "VIC",
+        "vic_status": "VIC",
+        "transcription": "Cliente VIC interessee par un Capucines noir en cuir graine pour un anniversaire de mariage. Budget autour de 8000 euros.",
+        "tier": 3,
+        "confidence": 0.92,
+        "quality": 0.91,
+        "products": ["Capucines MM", "Twist PM"],
+        "categories": ["capucines", "leather_goods"],
+        "colors": ["black"],
+        "materials": ["grained_leather"],
+        "budget": "High (5-15k EUR)",
+        "urgency": "high",
+        "next_action": "Proposer un rendez-vous prive avec deux coloris en boutique.",
+        "tags": ["capucines", "black", "birthday_gift", "vic", "high"],
+        "matched_products": [
+            {"name": "Capucines MM", "sku": "LV-MOCK-001", "match_score": 0.95, "price_eur": 7600},
+            {"name": "Twist PM", "sku": "LV-MOCK-002", "match_score": 0.82, "price_eur": 4200},
+        ],
+    },
+    {
+        "client_name": "Marco Bianchi",
+        "external_client_id": "MOCK-CL-002",
+        "category": "Premium",
+        "vic_status": "Premium",
+        "transcription": "Client regulier cherche un Keepall Damier graphite pour deplacements pro, souhait de personnalisation initiales MB.",
+        "tier": 2,
+        "confidence": 0.84,
+        "quality": 0.86,
+        "products": ["Keepall 50", "Horizon 55"],
+        "categories": ["keepall", "travel_luggage"],
+        "colors": ["navy"],
+        "materials": ["canvas"],
+        "budget": "Core (2-5k EUR)",
+        "urgency": "medium",
+        "next_action": "Envoyer options de personnalisation et disponibilites sous 24h.",
+        "tags": ["keepall", "travel", "professional_work", "core"],
+        "matched_products": [
+            {"name": "Keepall 50 Damier", "sku": "LV-MOCK-003", "match_score": 0.89, "price_eur": 3200},
+            {"name": "Horizon 55", "sku": "LV-MOCK-004", "match_score": 0.77, "price_eur": 3600},
+        ],
+    },
+    {
+        "client_name": "Sofia Laurent",
+        "external_client_id": "MOCK-CL-003",
+        "category": "Regular",
+        "vic_status": "Standard",
+        "transcription": "Premiere visite pour un cadeau de fiancee, preference pour Alma beige et accessoires assortis. Budget flexible.",
+        "tier": 2,
+        "confidence": 0.79,
+        "quality": 0.8,
+        "products": ["Alma BB", "Silk Scarf"],
+        "categories": ["alma", "accessories"],
+        "colors": ["beige_neutral"],
+        "materials": ["smooth_leather"],
+        "budget": "Flexible/Unknown",
+        "urgency": "medium",
+        "next_action": "Preparer total look cadeau avec emballage premium et message personnalise.",
+        "tags": ["alma", "gift", "beige_neutral", "flexible_unknown"],
+        "matched_products": [
+            {"name": "Alma BB", "sku": "LV-MOCK-005", "match_score": 0.88, "price_eur": 2450},
+        ],
+    },
+    {
+        "client_name": "Nadia El Fassi",
+        "external_client_id": "MOCK-CL-004",
+        "category": "Ultimate",
+        "vic_status": "Ultimate",
+        "transcription": "Cliente ultimate demande une malle sur mesure pour collection de bijoux, evenement prive dans 10 jours.",
+        "tier": 3,
+        "confidence": 0.95,
+        "quality": 0.94,
+        "products": ["Petite Malle", "Custom Trunk"],
+        "categories": ["petite_malle", "trunk", "jewelry"],
+        "colors": ["brown_cognac"],
+        "materials": ["exotic"],
+        "budget": "Ultra High (>15k EUR)",
+        "urgency": "high",
+        "next_action": "Coordonner atelier sur-mesure et validation VIP sous 48h.",
+        "tags": ["trunk", "jewelry", "ultimate", "ultra_high"],
+        "matched_products": [
+            {"name": "Petite Malle", "sku": "LV-MOCK-006", "match_score": 0.9, "price_eur": 5100},
+            {"name": "Malle Sur-Mesure", "sku": "LV-MOCK-007", "match_score": 0.97, "price_eur": 22000},
+        ],
+    },
+]
 
 
 def _utcnow_naive() -> datetime:
@@ -460,6 +550,154 @@ def _safe_json_load(value: Optional[str]) -> Optional[Dict]:
         return json.loads(value)
     except Exception:
         return None
+
+
+def _ensure_demo_user_for_mock(
+    db: Session,
+    *,
+    email: str,
+    full_name: str,
+    role: str,
+    store: str,
+) -> User:
+    user = db.query(User).filter(User.email == email).first()
+    if user:
+        return user
+
+    user = User(
+        email=email,
+        hashed_password=get_password_hash(os.getenv("DEMO_PASSWORD", "lvmh")),
+        full_name=full_name,
+        role=role,
+        store=store,
+    )
+    db.add(user)
+    db.flush()
+    return user
+
+
+def _ensure_mock_client(
+    db: Session,
+    *,
+    name: str,
+    external_client_id: str,
+    category: str,
+    vic_status: str,
+) -> Client:
+    client = db.query(Client).filter(Client.external_client_id == external_client_id).first()
+    if client:
+        return client
+
+    client = Client(
+        name=name,
+        external_client_id=external_client_id,
+        category=category,
+        vic_status=vic_status,
+        total_spent=0.0,
+        sentiment_score=0.25,
+        total_interactions=0,
+        last_interaction=datetime.utcnow(),
+        last_contact_date=datetime.utcnow(),
+        days_since_contact=0,
+    )
+    db.add(client)
+    db.flush()
+    return client
+
+
+def _build_mock_analysis_payload(blueprint: Dict[str, Any], note_idx: int) -> Dict[str, Any]:
+    transcription = str(blueprint.get("transcription") or "").strip()
+    confidence = float(blueprint.get("confidence") or 0.8)
+    tier = int(blueprint.get("tier") or 2)
+    quality = float(blueprint.get("quality") or 0.82)
+    urgency = str(blueprint.get("urgency") or "medium")
+    budget = str(blueprint.get("budget") or "Flexible/Unknown")
+    next_action = str(blueprint.get("next_action") or "Relance client recommandee.")
+    products = [str(p).strip() for p in blueprint.get("products", []) if str(p).strip()]
+    categories = [str(c).strip() for c in blueprint.get("categories", []) if str(c).strip()]
+    colors = [str(c).strip() for c in blueprint.get("colors", []) if str(c).strip()]
+    materials = [str(m).strip() for m in blueprint.get("materials", []) if str(m).strip()]
+    tags = [str(t).strip() for t in blueprint.get("tags", []) if str(t).strip()]
+
+    return {
+        "id": f"MOCK_NOTE_{note_idx}",
+        "language": "FR",
+        "processed_text": transcription,
+        "original_text": transcription,
+        "routing": {
+            "tier": tier,
+            "confidence": confidence,
+            "reasons": ["mock_seed_admin"],
+        },
+        "rgpd": {
+            "contains_sensitive": False,
+            "categories_detected": [],
+            "anonymized_text": transcription,
+        },
+        "processing_time_ms": float(1300 + (note_idx * 120)),
+        "model_used": "mock-hybrid",
+        "extraction": {
+            "tags": tags,
+            "meta_analysis": {
+                "quality_score": quality,
+                "confidence_score": confidence,
+                "completeness_score": min(0.98, quality + 0.04),
+                "advisor_feedback": "Mock note generee pour la vue admin.",
+                "missing_info": [],
+                "risk_flags": [],
+            },
+            "pilier_1_univers_produit": {
+                "categories": categories,
+                "produits_mentionnes": products,
+                "preferences": {
+                    "colors": colors,
+                    "materials": materials,
+                    "styles": [],
+                },
+                "matched_products": blueprint.get("matched_products", []),
+            },
+            "pilier_2_profil_client": {
+                "purchase_context": {
+                    "type": "Gift" if "gift" in " ".join(tags).lower() else "Self",
+                    "behavior": str(blueprint.get("vic_status") or "standard").lower(),
+                    "events": ["mock_event"],
+                    "urgency": urgency,
+                },
+                "relation": {
+                    "gift_for": "spouse",
+                    "occasion": "special_event",
+                },
+                "profession": {
+                    "type": "executive",
+                    "locations": ["Paris"],
+                },
+                "lifestyle": {
+                    "type": "luxury",
+                },
+            },
+            "pilier_3_hospitalite_care": {
+                "occasion": "private_appointment",
+                "allergies": {
+                    "food": [],
+                    "contact": [],
+                },
+                "preferred_contact": ["whatsapp"],
+                "delivery": {
+                    "discreet_packaging": True,
+                },
+            },
+            "pilier_4_action_business": {
+                "budget_potential": budget,
+                "budget_specific": None,
+                "urgency": urgency,
+                "next_best_action": {
+                    "description": next_action,
+                    "target_products": products[:3],
+                },
+                "nba_rationale": "Mock rationale generated for admin validation.",
+            },
+        },
+    }
 
 
 def _normalized_tag_set(values: Optional[List[str]]) -> set[str]:
@@ -1801,6 +2039,71 @@ async def admin_reset_points(
         raise HTTPException(status_code=500, detail="Failed to reset points")
 
 
+@router.post("/admin/recordings/mock")
+async def admin_seed_mock_recordings(
+    count: int = Query(default=8, ge=1, le=50),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_roles("admin")),
+):
+    """Seed mock recordings (notes + analysis) for admin validation."""
+    try:
+        advisor = _ensure_demo_user_for_mock(
+            db,
+            email="advisor@lvmh.com",
+            full_name="Sophie Martin",
+            role="advisor",
+            store="Champs-Elysees",
+        )
+
+        created_note_ids: List[int] = []
+        now = _utcnow_naive()
+
+        for idx in range(count):
+            blueprint = MOCK_RECORDING_BLUEPRINTS[idx % len(MOCK_RECORDING_BLUEPRINTS)]
+            client = _ensure_mock_client(
+                db,
+                name=str(blueprint.get("client_name") or f"Client Mock {idx + 1}"),
+                external_client_id=str(blueprint.get("external_client_id") or f"MOCK-CL-{idx + 1:03d}"),
+                category=str(blueprint.get("category") or "Regular"),
+                vic_status=str(blueprint.get("vic_status") or "Standard"),
+            )
+            client.total_interactions = int(client.total_interactions or 0) + 1
+            client.last_interaction = now
+            client.last_contact_date = now
+            client.days_since_contact = 0
+
+            payload = _build_mock_analysis_payload(blueprint, idx + 1)
+            quality = float(payload.get("extraction", {}).get("meta_analysis", {}).get("quality_score", 0.8))
+            points = 15 if quality >= 0.8 else 10
+            advisor.score = int(advisor.score or 0) + points
+
+            note = Note(
+                advisor_id=advisor.id,
+                client_id=client.id,
+                transcription=str(blueprint.get("transcription") or ""),
+                analysis_json=json.dumps(payload, ensure_ascii=False),
+                points_awarded=points,
+                timestamp=now - timedelta(minutes=(idx * 9)),
+                sentiment_score=0.35,
+            )
+            db.add(note)
+            db.flush()
+            created_note_ids.append(int(note.id))
+
+        db.commit()
+        return {
+            "status": "ok",
+            "created_notes": len(created_note_ids),
+            "note_ids": created_note_ids,
+            "advisor_id": advisor.id,
+            "requested_by": current_user.email,
+        }
+    except Exception as exc:
+        db.rollback()
+        logger.error("Admin mock recordings seed failed: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to seed mock recordings")
+
+
 @router.delete("/admin/recordings/{note_id}")
 async def admin_delete_recording(
     note_id: int,
@@ -1912,4 +2215,50 @@ async def get_taxonomy():
         "version": tm.taxonomy.get("version", "2.2"),
         "last_updated": tm.taxonomy.get("last_updated", "2026-01-28"),
         "stats_coming_soon": True,
+    }
+
+
+@router.get("/leaderboard")
+async def get_leaderboard(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """Get leaderboard - accessible by advisors, managers, admins."""
+    users = db.query(User).filter(User.role == "advisor").order_by(User.score.desc()).all()
+    
+    result = []
+    for u in users:
+        note_count = db.query(Note).filter(Note.advisor_id == u.id).count()
+        result.append({
+            "id": u.id,
+            "full_name": u.full_name or u.email.split('@')[0],
+            "email": u.email,
+            "score": u.score or 0,
+            "notes": note_count,
+        })
+    
+    return {"users": result, "leaderboard": result}
+
+
+@router.get("/advisor/stats")
+async def get_advisor_stats(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """Get stats for current advisor."""
+    from sqlalchemy import func
+    
+    advisor_id = current_user.id
+    
+    total_notes = db.query(func.count(Note.id)).filter(Note.advisor_id == advisor_id).scalar() or 0
+    
+    avg_quality = db.query(func.avg(Note.quality_score)).filter(
+        Note.advisor_id == advisor_id,
+        Note.quality_score.isnot(None)
+    ).scalar() or 0
+    
+    recent_notes = db.query(Note).filter(
+        Note.advisor_id == advisor_id
+    ).order_by(Note.created_at.desc()).limit(10).all()
+    
+    return {
+        "total_notes": total_notes,
+        "avg_quality": round(avg_quality, 1) if avg_quality else 0,
+        "score": current_user.score or 0,
+        "store": current_user.store,
+        "recent_notes_count": len(recent_notes),
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Activity, Database, LayoutDashboard, Mic, ShieldCheck, Sparkles } from 'lucide-react'
+import { Database, LayoutDashboard, Mic, ShieldCheck, Sparkles } from 'lucide-react'
 
 function SilverParticles() {
     const particles = Array.from({ length: 20 }, (_, i) => ({
@@ -86,13 +86,6 @@ export default function LandingPage({ onNavigate }) {
                             title: 'Espace Manager',
                             desc: 'Analytics boutique et pilotage CRM',
                             silver: false,
-                        },
-                        {
-                            id: 'pipeline',
-                            icon: Activity,
-                            title: 'Pipeline Live',
-                            desc: 'Visualisation temps reel du flux IA',
-                            silver: true,
                         },
                     ].map((item, idx) => (
                         <button
