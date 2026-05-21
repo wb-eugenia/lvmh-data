@@ -7,7 +7,6 @@
 [![AI](https://img.shields.io/badge/AI-LangExtract%2BZVec-purple?style=flat-square)](https://github.com/google/langextract)
 [![Docker](https://img.shields.io/badge/Deploy-GCP_Cloud_Run-blue?style=flat-square)](https://cloud.google.com/run)
 
-> **Live Demo** : [Frontend](https://lvmh-frontend.pages.dev) | [API Docs](https://lvmh-api-570069708764.europe-west9.run.app/docs) | [Backend](https://lvmh-api-570069708764.europe-west9.run.app)
 
 ---
 
@@ -41,10 +40,7 @@ graph TB
   F --> G[(🗄️ BigQuery<br/>Audit + Analytics)]
 ```
 
-**URLs Live :**
-- **Frontend** : https://lvmh-frontend.pages.dev
-- **API** : https://lvmh-api-570069708764.europe-west9.run.app
-- **Docs** : https://lvmh-api-570069708764.europe-west9.run.app/docs
+
 
 ---
 
